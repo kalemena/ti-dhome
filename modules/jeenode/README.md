@@ -12,6 +12,7 @@ Sensors are placed in each room and are each monitoring few of below:
 * Light
 * TODO: plant humidity
 * TODO: gaz
+* TODO: pH-meter / CO2
 
 Eventualy, the various measure will serve for:
 * control electric heaters
