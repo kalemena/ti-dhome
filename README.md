@@ -7,3 +7,7 @@ Minimalist:
 * arduino sketches
 * simple datastore
 
+Schematic
+=========
+
+![Architecture](/Architecture.png?raw=true "Architecture overview")
