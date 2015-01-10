@@ -6,7 +6,7 @@ Purpose of relay board is to act on room electric heaters using "pilot" wire (lo
 Schematic
 =========
 
-![Schematic](modules/cubieboard/Schema.png?raw=true "Schema overview")
+![Schematic](modules/cubieboard/res/Schema.jpg?raw=true "Schema overview")
 
 Wiring
 ======
