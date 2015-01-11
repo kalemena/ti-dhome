@@ -26,7 +26,7 @@ No extraordinary wiring:
 Only the pilote wire is plugged.
 
 [Here](http://www.planete-domotique.com/blog/2012/01/05/piloter-un-radiateur-grace-a-son-fil-pilote/) is order table.
-![Order table](res/ordre_fil_pilote.jpg?raw=true =240x200 "Order table")
+<img src="res/ordre_fil_pilote.jpg?raw=true" alt="Order table" style="width: 240px;"/>
 
 Following the orders table, only no signal or total stop (alternate up signal) is pushed to heaters (1N4007 used):
 - Relay COM: Pilote Heater wire (supposed to be black)
