@@ -25,8 +25,8 @@ No extraordinary wiring:
 
 Only the pilote wire is plugged.
 
-Here is order table.
-![Order table](res/ordre_fil_pilote.jpg?raw=true "Order table")
+[Here](http://www.planete-domotique.com/blog/2012/01/05/piloter-un-radiateur-grace-a-son-fil-pilote/) is order table.
+![Order table](res/ordre_fil_pilote.jpg?raw=true =240x200 "Order table")
 
 Following the orders table, only no signal or total stop (alternate up signal) is pushed to heaters (1N4007 used):
 - Relay COM: Pilote Heater wire (supposed to be black)
@@ -36,7 +36,7 @@ Following the orders table, only no signal or total stop (alternate up signal) i
 Library
 =======
 
-Raspbery cloned GpiO library used with minor change to match Cubian resources.
+Raspberry cloned GpiO library used with minor change to match Cubian resources.
 
 See [kalemena/GpiO](https://github.com/kalemena/GpiO)
 
