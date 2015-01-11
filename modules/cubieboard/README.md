@@ -11,13 +11,27 @@ Schematic
 Wiring
 ======
 
+* Cubieboard to SainSmart
+
 Because input relay board take 5v, 2 ULN2803 were used to pull up from 3.3v gpios.
 
 No extraordinary wiring:
-- shareground between Cubieboard gpios, ULN2803 and Relay board
+- share ground between Cubieboard gpios, ULN2803 and Relay board
 - each gpio pin to input of ULN2803
 - each ULN2803 5v pin to input of relay board
 - Vcc 5v from relay board to Vcc ULN2803
+
+* SainSmart to Electric Heaters
+
+Only the pilote wire is plugged.
+
+Here is order table.
+![Order table](res/ordre_fil_pilote.jpg?raw=true "Order table")
+
+Following the orders table, only no signal or total stop (alternate up signal) is pushed to heaters (1N4007 used):
+- Relay COM: Pilote Heater wire (supposed to be black)
+- Relay NC: None or "Délesteur"
+- Relay NO: 1N4007 + 220v Phase (heater stop command)
 
 Library
 =======
@@ -33,6 +47,7 @@ API
 Returns list of relay with states.
 
 e.g.
+```js
 [
   {"switch":0,"value":1},
   {"switch":1,"value":1},
@@ -51,15 +66,20 @@ e.g.
   {"switch":14,"value":1},
   {"switch":15,"value":0}
 ]
+```
 
 * GET /gpios/:id/set?value=Y
+
 Sets or Switch relay On/Off
+
 X is relay id
+
 optional Y is value to change to. 0 = Off, 1 = On
 
 e.g. response
+```js
 {"switch":"13","value":1}
-
+```
 
 
 

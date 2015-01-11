@@ -11,9 +11,9 @@ Material
 ========
 
 Hardware used for sensors/actors:
-* CurrentCost: Main + 6 plugs
-* RFXtrx433: Weather Station, and soon alarm monitoring
 * Arduino with radio enabled (JeeNode compatible): 15+ low cost sensors
+* CurrentCost: Main + 6 plugs
+* RFXtrx433: Weather Station, Window motor openers, Alarm monitoring
 * Sainsmart relay board: 16 relays
 * Fanless low-consumption servers (Cubieboard v2 or multi-purpose Core i3 with SSD)
 
