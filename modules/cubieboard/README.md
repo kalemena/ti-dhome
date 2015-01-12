@@ -11,7 +11,7 @@ Schematic
 Wiring
 ======
 
-* Cubieboard to SainSmart
+# Cubieboard to SainSmart
 
 Because input relay board take 5v, 2 ULN2803 were used to pull up from 3.3v gpios.
 
@@ -21,7 +21,7 @@ No extraordinary wiring:
 - each ULN2803 5v pin to input of relay board
 - Vcc 5v from relay board to Vcc ULN2803
 
-* SainSmart to Electric Heaters
+# SainSmart to Electric Heaters
 
 Only the pilote wire is plugged.
 
