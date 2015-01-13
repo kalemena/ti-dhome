@@ -23,3 +23,25 @@ Schematic
 =========
 
 ![Architecture](/res/Architecture.png?raw=true "Architecture overview")
+
+How-To
+======
+
+* intall pre-requisites
+
+```js
+$ sudo apt-get install python-software-properties
+$ sudo add-apt-repository ppa:chris-lea/node.js
+$ sudo apt-get update && sudo apt-get upgrade
+$ sudo apt-get install build-essential couchdb nodejs mosquitto
+```
+
+* run mosquitto (port 1884)
+```js
+$ /etc/init.d/mosquitto start
+```
+
+* run central server
+```js
+TBD
+```
