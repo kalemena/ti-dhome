@@ -5,8 +5,17 @@ var com = require("serialport"),
     mqtt = require('mqtt'),
     xml2js = require('xml2js');
 
-var client = mqtt.createClient('1883', 'localhost');
-var serialPort = new com.SerialPort("/dev/ttyUSB2", {
+var argv = process.argv;
+for (var i = 2; i <= 4; i++) {
+  if(!argv[i]) process.exit(-1);
+}
+
+var mqttport = argv[2]
+  , mqtthost = argv[3]
+  , usbResource = argv[4];
+    
+var client = mqtt.createClient(mqttport, mqtthost);
+var serialPort = new com.SerialPort(usbResource, {
     baudrate: 57600,
     parser: com.parsers.readline('\r\n')
   });

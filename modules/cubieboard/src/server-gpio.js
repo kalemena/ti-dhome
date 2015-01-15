@@ -2,6 +2,13 @@ var express = require('express'),
     app = express(),
     gpio = require("gpio");
 
+var argv = process.argv;
+for (var i = 2; i <= 2; i++) {
+  if(!argv[i]) process.exit(-1);
+}
+
+var port = argv[2];
+    
 var intervalTimer;
 var items = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ];
 var gpios = [];
@@ -70,5 +77,5 @@ items.forEach(function(item) {
   })
 });
 
-app.listen(process.env.PORT || 3000);
-console.log('Listening on port 3000');
+app.listen(process.env.PORT || port);
+console.log('Listening on port ' + port);
