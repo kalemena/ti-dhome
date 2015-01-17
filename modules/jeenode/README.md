@@ -22,9 +22,9 @@ Eventualy, the various measure will serve for:
 Example
 =======
 
-![Sample#1](/res/20150104_211827-notes.JPG?raw=true "Sample #1")
+![Sample#1](res/20150104_211827-notes.JPG?raw=true "Sample #1")
 
-![Sample#2](/res/20150104_211916-notes.JPG?raw=true "Sample #2")
+![Sample#2](res/20150104_211916-notes.JPG?raw=true "Sample #2")
 
 
 
