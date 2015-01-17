@@ -19,7 +19,12 @@ Eventualy, the various measure will serve for:
 * control VMC (home motorized air flow controler)
 * alarms on various actions (plants, etc)
 
+Example
+=======
 
+![Sample#1](/res/20150104_211827-notes.JPG?raw=true "Sample #1")
+
+![Sample#2](/res/20150104_211916-notes.JPG?raw=true "Sample #2")
 
 
 
