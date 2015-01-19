@@ -46,6 +46,10 @@ Sensors (1+ per board):
 Actors:
 * TBD: Sainsmart relay boards
 
+
+![Parts](res/Arduino-parts.jpg?raw=true "Parts")
+
+
 Prototypes
 ==========
 
