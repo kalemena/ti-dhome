@@ -85,5 +85,26 @@ e.g. response
 {"switch":"13","value":1}
 ```
 
+How-To
+======
+
+$ sudo mkdir /opt/node
+$ wget http://nodejs.org/dist/v0.10.2/node-v0.10.2-linux-arm-pi.tar.gz
+$ tar xvzf node-v0.10.2-linux-arm-pi.tar.gz
+$ sudo cp -r node-v0.10.2-linux-arm-pi/* /opt/node
+$ nano /etc/profile
+
+<<<
+...
+NODE_JS_HOME="/opt/node"
+PATH="$PATH:$NODE_JS_HOME/bin"
+export PATH
+...
+<<<
+
+... clone this repository
+$ npm install mqtt express
+
+... run
 
 
