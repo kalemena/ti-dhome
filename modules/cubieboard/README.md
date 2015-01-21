@@ -88,6 +88,7 @@ e.g. response
 How-To
 ======
 
+```js
 $ sudo mkdir /opt/node
 $ wget http://nodejs.org/dist/v0.10.2/node-v0.10.2-linux-arm-pi.tar.gz
 $ tar xvzf node-v0.10.2-linux-arm-pi.tar.gz
@@ -106,5 +107,5 @@ export PATH
 $ npm install mqtt express
 
 ... run
-
+```
 
