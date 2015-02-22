@@ -16,6 +16,7 @@ Hardware used for sensors/actors:
 * RFXtrx433: Weather Station, Window motor openers, Alarm monitoring
 * Sainsmart relay board: 16 relays
 * Fanless low-consumption servers (Cubieboard v2 or multi-purpose Core i3 with SSD)
+* few cheap components (for téléinfo)
 
 ![Overview](/res/Schema.jpg?raw=true "Hardware overview")
 
