@@ -3,6 +3,7 @@ FROM ubuntu:14.04
 RUN \
         apt-get update; apt-get upgrade -y; \
         apt-get install -y nodejs npm \
+		mosquitto \
                 git-core \
                 python-software-properties python \
                 g++ make software-properties-common \
@@ -21,6 +22,6 @@ RUN \
         npm install node-red-contrib-rfxcom; \
         npm install node-red-node-openweathermap; 
         
-EXPOSE 1880
+EXPOSE 1880 1883
 
 CMD ["nodejs", "red.js"]
