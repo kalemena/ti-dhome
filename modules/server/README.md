@@ -25,3 +25,5 @@ Used node-red nodes
 * http://flows.nodered.org/node/node-red-contrib-rfxcom
 * Jeenodes: https://www.ibm.com/developerworks/community/blogs/B-Fool/entry/home_automation_with_node_red_jeenodes_and_the_oen_energy_monitor_project?lang=en
 * http://flows.nodered.org/node/node-red-node-openweathermap
+
+// copy flows to ".node-red/lib/flows"
