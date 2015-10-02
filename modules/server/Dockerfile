@@ -18,7 +18,10 @@ RUN \
 
 WORKDIR /home/node-red
 
+ADD run.sh /run.sh
+
 RUN \
+	chmod 777 /run.sh; \
         npm install node-red-contrib-rfxcom; \
         npm install node-red-node-openweathermap; 
         
