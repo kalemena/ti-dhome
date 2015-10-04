@@ -8,7 +8,7 @@ Listens on RfxTrx433 using nodejs and publishes to MQTT (mosquitto).
 # Hardware
 ==========
 
-![Overview](/res/modules/rfxtrx433/res/rfxtrx433-schema.jpg?raw=true "Hardware overview")
+![Parts](res/rfxtrx433-schema.jpg?raw=true "Hardware overview")
 
 # How-To
 ========
