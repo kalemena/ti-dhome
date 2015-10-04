@@ -27,4 +27,4 @@ RUN \
         
 EXPOSE 1880 1883
 
-CMD ["nodejs", "red.js"]
+CMD ["/run.sh"]
