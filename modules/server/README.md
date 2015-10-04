@@ -12,11 +12,12 @@ Installation
 
 ```js
 $ docker build -t node-red .
-$ docker run -d -p 1880:1880 -p 1883:1883 \
+$ docker run --name nodered --hostname nodered \
+  -d -p 1880:1880 -p 1883:1883 \
+  -v ./data:/root/.node-red \
   --device=/dev/ttyUSB0:/dev/ttyRfxTrx \
   --device=/dev/ttyUSB1:/dev/ttyJeeLink \
-  --device=/dev/ttyUSB2:/dev/ttyCurrentCost \
-  node-red
+  --device=/dev/ttyUSB2:/dev/ttyCurrenCost node-red
 ```
 
 Used node-red nodes
@@ -24,5 +25,3 @@ Used node-red nodes
 
 * http://flows.nodered.org/node/node-red-contrib-rfxcom
 * http://flows.nodered.org/node/node-red-node-openweathermap
-
-// copy flows to ".node-red/lib/flows"
