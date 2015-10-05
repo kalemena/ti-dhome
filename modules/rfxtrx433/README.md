@@ -6,15 +6,14 @@ RFXtrx433 is used to monitor and act on various proprietary systems such as:
 Listens on RfxTrx433 using nodejs and publishes to MQTT (mosquitto).
 
 # Hardware
-==========
 
 ![Parts](res/rfxtrx433-schema.jpg?raw=true "Hardware overview")
 
 # How-To
-========
 
 ## Software
-===========
+
+Below is sample which listens on USB plugged RfxTrx433 and then publishes temperature/humidity/rain over MQTT.
 
 ```js
 #!/usr/bin/env node
@@ -32,26 +31,18 @@ client.on('connect', function() {
 
 // Start RFXCom activity
 rfxtrx.on("th2", function (evt) {
-    var now = new Date();
-    console.log(now.toISOString() + ' sensors/' + parseInt(evt.id,16) + '/entries/1/events/temperature = ' + evt.temperature);
-    console.log(now.toISOString() + ' sensors/' + parseInt(evt.id,16) + '/entries/2/events/humidity = ' + evt.humidity);
     client.publish('sensors/' + parseInt(evt.id,16) + '/entries/1/events/temperature', '' + evt.temperature);
     client.publish('sensors/' + parseInt(evt.id,16) + '/entries/1/events/humidity', '' + evt.humidity);
 });
 
 rfxtrx.on("temp2", function (evt) {
-    var now = new Date();
-    console.log(now.toISOString() + ' sensors/' + parseInt(evt.id,16) + '/entries/1/events/temperature = ' + evt.temperature);
     client.publish('sensors/' + parseInt(evt.id,16) + '/entries/1/events/temperature', '' + evt.temperature);
 });
 
 rfxtrx.on("rain2", function (evt) {
-    var now = new Date();
     var value = { rainrate: evt.rainrate, raintotal: evt.raintotal };
-    console.log(now.toISOString() + ' sensors/' + parseInt(evt.id,16) + '/entries/1/events/rain = ' + JSON.stringify(value));
     client.publish('sensors/' + parseInt(evt.id,16) + '/entries/1/events/rain', JSON.stringify(value));
 });
-
 
 rfxtrx.initialise(function () {
     console.log("Device initialized");
