@@ -103,9 +103,9 @@ export PATH
 ...
 <<<
 
-... clone this repository
+$ git clone https://github.com/kalemena/ti-dhome.git
+$ cd ti-dhome/modules/cubieboard/src
 $ npm install mqtt express
-
-... run
+$ node server-gpio.js
 ```
 
