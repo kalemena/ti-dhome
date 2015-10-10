@@ -54,9 +54,9 @@ The service has an inner mosquitto and uses pre-build strategies to wire-up the 
 Idea is to leverage [Node RED](http://nodered.org)
 
 * steps: 
-** install [Docker](https://www.docker.com/)
-** change the below command line to map your USB devices.
-** connect to http://localhost:1880, change the project flow based on need. 
+ * install [Docker](https://www.docker.com/)
+ * change the below command line to map your USB devices.
+ * connect to http://localhost:1880, change the project flow based on need. 
 
 ```js
 $ git clone https://github.com/kalemena/ti-dhome.git
