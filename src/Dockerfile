@@ -26,5 +26,6 @@ RUN \
         npm install node-red-node-openweathermap; 
         
 EXPOSE 1880 1883
+ENV TZ=Europe/Paris
 
 CMD ["/run.sh"]
