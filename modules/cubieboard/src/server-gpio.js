@@ -2,6 +2,12 @@ var express = require('express'),
     app = express(),
     gpio = require("gpio");
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+    
 var argv = process.argv;
 for (var i = 2; i <= 2; i++) {
   if(!argv[i]) process.exit(-1);
