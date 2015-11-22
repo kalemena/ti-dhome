@@ -23,7 +23,8 @@ ADD run.sh /run.sh
 RUN \
 	chmod 777 /run.sh; \
         npm install node-red-contrib-rfxcom; \
-        npm install node-red-node-openweathermap; 
+        npm install node-red-node-openweathermap; \
+        npm install node-red-node-ping;
         
 EXPOSE 1880 1883
 ENV TZ=Europe/Paris
