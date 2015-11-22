@@ -109,3 +109,16 @@ $ npm install mqtt express
 $ node server-gpio.js
 ```
 
+Running as service (forever)
+
+```js
+$ sudo -i npm install -g forever
+$ sudo mkdir /var/run/forever
+
+$ sudo cp web-gpio /etc/init.d/web-gpio
+$ sudo chmod a+x /etc/init.d/web-gpio
+$ sudo update-rc.d web-gpio defaults
+
+$ sudo -i service web-gpio start
+$ sudo -i service web-gpio stop
+```
