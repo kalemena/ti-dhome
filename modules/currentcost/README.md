@@ -5,6 +5,12 @@ Every 2 hours, historical reports can be submitted to home computer using USB ad
 
 Additional plugable sensor can be used to monitor more devices.
 
+
+
+*CURRENTLY RUNNING FROM NODE-RED PROJECT FLOW*
+
+
+
 Schema
 ======
 
@@ -28,7 +34,11 @@ $ sudo chmod 777 /dev/ttyUSB0
 $ cat /dev/ttyUSB0
 ```
 
-* Edit script to point to USB devices
+* Edit test script to point to USB devices or point Node-Red to correct USB device.
+
+
+Test
+====
 
 * Run script from script folder (once mosquitto bus running on port 1884)
 
