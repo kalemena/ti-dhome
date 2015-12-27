@@ -60,9 +60,9 @@ Idea is to leverage [Node RED](http://nodered.org)
 
 ```js
 $ git clone https://github.com/kalemena/ti-dhome.git
-$ cd ti-dhome/src
+$ cd ti-dhome/dist/flow
 $ docker build -t node-red .
-$ docker run --name nodered --hostname nodered \
+$ docker run --restart=always --name nodered --hostname nodered \
   -d -p 1880:1880 -p 1883:1883 \
   -v ./data:/root/.node-red \
   --device=/dev/ttyUSB0:/dev/ttyRfxTrx \
