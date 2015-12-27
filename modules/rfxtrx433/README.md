@@ -5,11 +5,34 @@ RFXtrx433 is used to monitor and act on various proprietary systems such as:
 
 Listens on RfxTrx433 using nodejs and publishes to MQTT (mosquitto).
 
+
+*CURRENTLY RUNNING RFXTRX433 FROM NODE-RED PROJECT FLOW*
+
+
 # Hardware
 
 ![Parts](res/rfxtrx433-schema.jpg?raw=true "Hardware overview")
 
-# How-To
+
+# Test
+
+## Hardware
+
+* Connect rfxtrx433 to USB and find which usb resource connected
+
+```js
+$ lsusb
+$ dmesg
+```
+
+* Allow user access to resource and set speed
+
+```js
+$ sudo stty -F /dev/ttyUSB1 38400 cs8
+$ sudo chmod 777 /dev/ttyUSB1
+```
+
+* Edit test script to point to USB devices or point Node-Red to correct USB device.
 
 ## Software
 
