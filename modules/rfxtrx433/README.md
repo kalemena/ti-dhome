@@ -6,7 +6,7 @@ RFXtrx433 is used to monitor and act on various proprietary systems such as:
 Listens on RfxTrx433 using nodejs and publishes to MQTT (mosquitto).
 
 
-*CURRENTLY RUNNING RFXTRX433 FROM NODE-RED PROJECT FLOW*
+**CURRENTLY RUNNING RFXTRX433 FROM NODE-RED PROJECT FLOW**
 
 
 # Hardware
@@ -37,6 +37,12 @@ $ sudo chmod 777 /dev/ttyUSB1
 ## Software
 
 Below is sample which listens on USB plugged RfxTrx433 and then publishes temperature/humidity/rain over MQTT.
+
+
+
+**[node-rfxcom](https://github.com/kalemena/node-rfxcom) has been patched to support rain sensor from Oregon**
+
+
 
 ```js
 #!/usr/bin/env node
