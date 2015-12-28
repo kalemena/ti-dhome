@@ -1,12 +1,12 @@
+WEBPATH_RELATIVE=../../src/web/www
+WEBPATH_ABSOLUTE=$(realpath $(WEBPATH_RELATIVE))
+
 default: build
 
 run: build
-	docker run --restart=always --name nodered --hostname nodered \
-		-d -p 1880:1880 -p 1883:1883 \
-		-v ./data:/root/.node-red \
-		--device=/dev/ttyUSB0:/dev/ttyRfxTrx \
-		--device=/dev/ttyUSB1:/dev/ttyJeeLink \
-		--device=/dev/ttyUSB2:/dev/ttyCurrenCost node-red
+	docker run --restart=always --name ti-dhome --hostname ti-dhome \
+		-d -p 80:80 \
+		-v $(WEBPATH_ABSOLUTE):/usr/share/nginx/html nginx
 	
-build: Dockerfile
-	docker build -t node-red .
+build:
+	docker pull nginx
