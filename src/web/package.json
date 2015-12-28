@@ -1,0 +1,10 @@
+{
+  "name": "ti-dhome",
+  "description": "ti-dhome",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.1",
+    "http-proxy": "0.10.3"
+  }
+}
