@@ -317,7 +317,7 @@
   },
   "node-red-node-openweathermap": {
    "name": "node-red-node-openweathermap",
-   "version": "0.1.0",
+   "version": "0.1.7",
    "nodes": {
     "openweathermap": {
      "name": "openweathermap",
@@ -377,6 +377,21 @@
      "enabled": true,
      "module": "node-red-node-twitter",
      "file": "/home/node-red/node_modules/node-red-node-twitter/27-twitter.js"
+    }
+   }
+  },
+  "node-red-node-ping": {
+   "name": "node-red-node-ping",
+   "version": "0.0.6",
+   "nodes": {
+    "ping": {
+     "name": "ping",
+     "types": [
+      "ping"
+     ],
+     "enabled": true,
+     "module": "node-red-node-ping",
+     "file": "/home/node-red/node_modules/node-red-node-ping/88-ping.js"
     }
    }
   }
