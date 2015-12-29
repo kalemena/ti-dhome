@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 768" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="dropshadow" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/> 
+      <feOffset dx="2" dy="2" result="offsetblur"/> 
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+  </defs>
+
+  <image opacity=".6" x="0" y="0" width="1024" height="768" xlink:href="maison-1er-mini.png" />
+        
+  <!-- Bureau -->
+  <text class="sensor" id="sensors_00053_entries_2_events_temperature" x="260" y="380">N/A</text>
+  <text class="sensor" id="sensors_02431_entries_0_events_temperature" x="260" y="340">N/A</text>
+  <text class="sensor" id="sensors_00053_entries_3_events_humidity" x="260" y="420">N/A</text>
+  <circle class="switch" id="switch_1" cx="290" cy="470" r="5"/>
+  <!-- Ch.Damien -->
+  <text class="sensor" id="sensors_00004_entries_4_events_temperature" x="740" y="470">N/A</text>
+  <circle class="switch" id="switch_3" cx="740" cy="570" r="5"/>
+  <!-- Ch.Jeux -->
+  <text class="sensor" id="sensors_00005_entries_4_events_temperature" x="350" y="200">N/A</text>
+  <circle class="switch" id="switch_0" cx="340" cy="190" r="5"/>
+  <!-- Mezanine -->
+  <text class="sensor" id="sensors_00007_entries_4_events_temperature" x="540" y="320">N/A</text>
+  <circle class="switch" id="switch_5" cx="490" cy="310" r="5"/>
+  <!-- Ch.Léna -->
+  <text class="sensor" id="sensors_00010_entries_2_events_temperature" x="450" y="470">N/A</text>
+  <circle class="switch" id="switch_2" cx="480" cy="570" r="5"/>
+  <!-- Sdb Haut -->
+  <text class="sensor" id="sensors_00012_entries_2_events_temperature" x="780" y="260">N/A</text>
+  <text class="sensor" id="sensors_00012_entries_3_events_humidity" x="780" y="300">N/A</text>
+  <text class="sensor" id="sensors_00012_entries_4_events_light" x="780" y="340">N/A</text>
+  <circle class="switch" id="switch_4" cx="770" cy="310" r="5"/>
+</svg>
