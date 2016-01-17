@@ -1,0 +1,81 @@
+.carousel-indicators  {
+  top:10px;
+}
+
+.carousel-indicators li {
+    border-color: #fdfdfd;
+    background-color:#c4cdd6;
+    display: inline-block;
+    vertical-align: middle;
+    width: 5px;
+    height: 5px;
+    background: #c4cdd6;
+    border-radius: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+}
+.carousel-indicators .active {
+    background: #222529;
+    width: 5px;
+    height: 5px;
+    align: center;
+}
+
+.carousel .item {
+  align: center;
+}
+
+div.gaugeTotal_div table {
+    width: auto;
+    margin: 0 auto !important;
+    display: inline-block;
+}
+
+.map {
+  align: center;
+  width: 1024px;
+  height: 768px;
+}
+
+tr.heater td {
+  background-color: grey;
+  color: white;
+}
+
+tr.measure td {
+  background-color: grey;
+  color: white;
+}
+
+tr.heater td.red {
+  background-color: red;
+  color: white;
+}
+tr.heater td.green {
+  background-color: green;
+  color: white;
+}
+tr.measure td.green {
+  background-color: green;
+  color: white;
+}
+tr.heater td.blue {
+  background-color: blue;
+  color: white;
+}
+
+text.sensor,circle.switch {
+    stroke: #660000;
+    fill:   #FF1200;
+    font-family: sans-serif;
+    font-size: 36px;
+    filter: url(#dropshadow);
+}
+
+circle.switch {
+    cursor:pointer
+}

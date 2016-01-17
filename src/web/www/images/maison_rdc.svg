@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 768" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="dropshadow" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/> 
+      <feOffset dx="2" dy="2" result="offsetblur"/> 
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+  </defs>
+
+  <image opacity=".6" x="0" y="0" width="1024" height="768" xlink:href="maison-rdc-mini.png" />
+
+  <!-- Ch Bas -->
+  <circle class="switch" id="switch_6" cx="810" cy="400" r="5"/>
+  <text class="sensor" id="sensors_00008_entries_2_events_temperature" x="720" y="380">N/A</text>
+  <!-- SdB Bas -->
+  <circle class="switch" id="switch_7" cx="680" cy="370" r="5"/>
+  <!-- Hall -->
+  <circle class="switch" id="switch_15" cx="600" cy="410" r="5"/>
+  <text class="sensor" id="sensors_00052_entries_2_events_temperature" x="450" y="380">N/A</text>
+  <text class="sensor" id="sensors_00052_entries_3_events_humidity" x="450" y="420">N/A</text>
+  <!-- Salon -->
+  <circle class="switch" id="switch_14" cx="620" cy="480" r="5"/>
+  <text class="sensor" id="sensors_00006_entries_6_events_temperature" x="500" y="520">N/A</text>
+  <text class="sensor" id="sensors_00006_entries_4_events_temperature" x="640" y="520">N/A</text>
+  
+  <text class="sensor" id="sensors_00050_entries_2_events_temperature" x="500" y="580">N/A</text>
+  <text class="sensor" id="sensors_00050_entries_4_events_temperature" x="640" y="580">N/A</text>
+  <text class="sensor" id="sensors_00050_entries_3_events_humidity" x="500" y="620">N/A</text>
+  <!-- Garage -->
+  <text class="sensor" id="sensors_00009_entries_2_events_temperature" x="360" y="230">N/A</text>
+  <!-- Exterieur -->
+  <text class="sensor" id="sensors_00051_entries_2_events_temperature" x="50" y="600">N/A</text>
+  <text class="sensor" id="sensors_00051_entries_3_events_humidity" x="50" y="640">N/A</text>
+  <text class="sensor" id="sensors_00006_entries_7_events_pressure" x="50" y="680">N/A</text>
+  <text class="sensor" id="sensors_54272_entries_1_events_rain" x="50" y="720">N/A</text>
+</svg>
