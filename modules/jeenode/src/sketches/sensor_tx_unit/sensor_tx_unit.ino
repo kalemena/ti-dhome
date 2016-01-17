@@ -10,23 +10,26 @@
 #include <avr/sleep.h>
 #include <util/atomic.h>
 
-#define NODEID    23        // node ID used for this unit
+#define NODEID    71        // node ID used for this unit
 #define NODEGROUP 5         // node GROUP used for this unit
 #define REPORT_PERIOD  3000 // how often to measure, in tenths of seconds
 
 #define SHT11_PORT     0    // define SHT11 port
-#define DHT22_PORT     0    // define DHT22 port
-#define DS18B20_1_PORT 5    // WARNING 4=DIO port 1, 5=PORT2, 6=PORT3, 7=PORT4 ... 1-wire temperature sensors
+#define DHT22_PORT     3    // define DHT22 port
+#define DS18B20_1_PORT 0    // WARNING 4=DIO port 1, 5=PORT2, 6=PORT3, 7=PORT4 ... 1-wire temperature sensors
 #define DS18B20_2_PORT 0    // WARNING ..
-#define LDR_PORT       0    // define LDR on AIO pin
+#define LDR_PORT       A1   // define LDR on AO,A1,... pin
+#define LDR_ENABLED    true
 #define BMP85_PORT     0    // define BMP85 port
+#define SOIL_PORT      A0   // A0, A1 ...
+#define SOIL_ENABLED   true
 
 // set the sync mode to 2 if the fuses are still the Arduino default
 // mode 3 (full powerdown) can only be used with 258 CK startup fuses
 #define RADIO_SYNC_MODE 2
 
 // Type of data to be reported
-enum { TEMPERATURE, HUMIDITY, PRESSURE, LIGHT, BATTERY, TYPE_END };
+enum { TEMPERATURE, HUMIDITY, PRESSURE, LIGHT, BATTERY, SOIL, TYPE_END };
 
 // The scheduler makes it easy to perform various tasks at various times:
 enum { REPORT, TASK_END };
@@ -67,7 +70,7 @@ static byte reportCount;
     BMP085 psensor (i2c_pressure, 3); // ultra high resolution
 #endif
 #if LDR_PORT
-    Port ldr (LDR_PORT);
+    //Port ldr (LDR_PORT);
 #endif
 
 // has to be defined because we're using the watchdog for low-power waiting
@@ -154,15 +157,26 @@ static void measureAndReport() {
         payload.port = 7;
         report();        
     #endif
-    #if LDR_PORT
-        ldr.digiWrite2(1);  // enable AIO pull-up
-        byte light = ~ ldr.anaRead() >> 2;
-        ldr.digiWrite2(0);  // disable pull-up to reduce current draw
+    #if LDR_ENABLED
+        //ldr.digiWrite2(1);  // enable AIO pull-up
+        //byte light = ~ ldr.anaRead() >> 2;
+        //ldr.digiWrite2(0);  // disable pull-up to reduce current draw
+        int32_t LDRReading = analogRead(LDR_PORT);
 
         payload.type = LIGHT;
-        payload.value = light;
+        payload.value = LDRReading;
         payload.port = 8;
         report();
+    #endif
+    #if SOIL_ENABLED
+      int32_t sensorValue = analogRead(SOIL_PORT);
+      //sensorValue = constrain(sensorValue, 600, 1022);
+      //int soil = map(sensorValue, 600, 1022, 100, 0);
+  
+      payload.type = SOIL;
+      payload.value = sensorValue;
+      payload.port = 9;
+      report();
     #endif
 }
 
@@ -174,7 +188,7 @@ static void report() {
     rf12_sendWait(RADIO_SYNC_MODE);
     rf12_sleep(0);
 
-    Sleepy::loseSomeTime(32);
+    Sleepy::loseSomeTime(50);
 }
 
 void setup () {
