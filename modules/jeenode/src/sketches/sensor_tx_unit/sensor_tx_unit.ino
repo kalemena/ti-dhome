@@ -10,26 +10,28 @@
 #include <avr/sleep.h>
 #include <util/atomic.h>
 
-#define NODEID    71        // node ID used for this unit
+#define NODEID    80        // node ID used for this unit
 #define NODEGROUP 5         // node GROUP used for this unit
-#define REPORT_PERIOD  3000 // how often to measure, in tenths of seconds
+#define REPORT_PERIOD  200  // how often to measure, in tenths of seconds
 
 #define SHT11_PORT     0    // define SHT11 port
-#define DHT22_PORT     3    // define DHT22 port
+#define DHT22_PORT     6    // define DHT22 port
 #define DS18B20_1_PORT 0    // WARNING 4=DIO port 1, 5=PORT2, 6=PORT3, 7=PORT4 ... 1-wire temperature sensors
 #define DS18B20_2_PORT 0    // WARNING ..
 #define LDR_PORT       A1   // define LDR on AO,A1,... pin
-#define LDR_ENABLED    true
+#define LDR_ENABLED    false
 #define BMP85_PORT     0    // define BMP85 port
 #define SOIL_PORT      A0   // A0, A1 ...
-#define SOIL_ENABLED   true
+#define SOIL_ENABLED   false
+#define TOGGLE_1_PORT  5    // digital port
+#define TOGGLE_2_PORT  0    // digital port
 
 // set the sync mode to 2 if the fuses are still the Arduino default
 // mode 3 (full powerdown) can only be used with 258 CK startup fuses
 #define RADIO_SYNC_MODE 2
 
 // Type of data to be reported
-enum { TEMPERATURE, HUMIDITY, PRESSURE, LIGHT, BATTERY, SOIL, TYPE_END };
+enum { TEMPERATURE, HUMIDITY, PRESSURE, LIGHT, BATTERY, SOIL, TOGGLE, TYPE_END };
 
 // The scheduler makes it easy to perform various tasks at various times:
 enum { REPORT, TASK_END };
@@ -178,6 +180,20 @@ static void measureAndReport() {
       payload.port = 9;
       report();
     #endif
+    #if TOGGLE_1_PORT
+      int toggleState = digitalRead(TOGGLE_1_PORT);
+      payload.type = TOGGLE;
+      payload.value = toggleState;
+      payload.port = 10;
+      report();
+    #endif
+    #if TOGGLE_2_PORT
+      int toggleState = digitalRead(TOGGLE_2_PORT);
+      payload.type = TOGGLE;
+      payload.value = toggleState;
+      payload.port = 11;
+      report();
+    #endif
 }
 
 static void report() {
@@ -210,6 +226,12 @@ void setup () {
     #endif
     #if BMP85_PORT
         psensor.getCalibData();
+    #endif
+    #if TOGGLE_1_PORT
+      pinMode(TOGGLE_1_PORT, INPUT); 
+    #endif
+    #if TOGGLE_2_PORT
+      pinMode(TOGGLE_2_PORT, INPUT); 
     #endif
    
     reportCount = 0;
