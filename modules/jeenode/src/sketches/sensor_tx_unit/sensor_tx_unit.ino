@@ -9,13 +9,14 @@
 #include <DallasTemperature.h>
 #include <avr/sleep.h>
 #include <util/atomic.h>
+#include <Vcc.h>
 
 #define NODEID    80        // node ID used for this unit
 #define NODEGROUP 5         // node GROUP used for this unit
-#define REPORT_PERIOD  200  // how often to measure, in tenths of seconds
+#define REPORT_PERIOD  50 // how often to measure, in tenths of seconds
 
 #define SHT11_PORT     0    // define SHT11 port
-#define DHT22_PORT     6    // define DHT22 port
+#define DHT22_PORT     3    // define DHT22 port
 #define DS18B20_1_PORT 0    // WARNING 4=DIO port 1, 5=PORT2, 6=PORT3, 7=PORT4 ... 1-wire temperature sensors
 #define DS18B20_2_PORT 0    // WARNING ..
 #define LDR_PORT       A1   // define LDR on AO,A1,... pin
@@ -23,8 +24,9 @@
 #define BMP85_PORT     0    // define BMP85 port
 #define SOIL_PORT      A0   // A0, A1 ...
 #define SOIL_ENABLED   false
-#define TOGGLE_1_PORT  5    // digital port
+#define TOGGLE_1_PORT  0    // digital port
 #define TOGGLE_2_PORT  0    // digital port
+#define BATTERY_CORRECTION 3.86/3.71 // Measured Vcc by multimeter divided by reported Vcc
 
 // set the sync mode to 2 if the fuses are still the Arduino default
 // mode 3 (full powerdown) can only be used with 258 CK startup fuses
@@ -47,6 +49,8 @@ struct {
 
 // count up reports order until next reset
 static byte reportCount;
+
+Vcc vcc(BATTERY_CORRECTION);
 
 // Conditional code, depending on which sensors are connected and how:
 #if SHT11_PORT
@@ -82,11 +86,10 @@ ISR(WDT_vect) { Sleepy::watchdogEvent(); }
 static void measureAndReport() {
     payload.id = NODEID;
     
-    // Battery
-    //payload.type = BATTERY;
-    //payload.value = rf12_lowbat(); 
-    //payload.port = 1;
-    //report();
+    payload.type = BATTERY;
+    payload.value = vcc.Read_Volts() * 1000; 
+    payload.port = 1;
+    report();
 
     #if SHT11_PORT
         sht11.measure(SHT11::HUMI, Sleepy::loseSomeTime(32));        
