@@ -2,7 +2,7 @@
  "nodes": {
   "node-red": {
    "name": "node-red",
-   "version": "0.11.1-git",
+   "version": "0.14.6-git",
    "nodes": {
     "sentiment": {
      "name": "sentiment",
@@ -108,7 +108,8 @@
      "types": [
       "rpi-gpio in",
       "rpi-gpio out",
-      "rpi-mouse"
+      "rpi-mouse",
+      "rpi-keyboard"
      ],
      "enabled": true,
      "module": "node-red",
@@ -129,8 +130,7 @@
      "name": "httpin",
      "types": [
       "http in",
-      "http response",
-      "http request"
+      "http response"
      ],
      "enabled": true,
      "module": "node-red",
@@ -259,34 +259,59 @@
      "enabled": true,
      "module": "node-red",
      "file": "/home/node-red/nodes/core/storage/50-file.js"
-    }
-   }
-  },
-  "node-red-contrib-rfxcom": {
-   "name": "node-red-contrib-rfxcom",
-   "version": "1.1.1",
-   "nodes": {
-    "rfx-lights-in": {
-     "name": "rfx-lights-in",
+    },
+    "status": {
+     "name": "status",
      "types": [
-      "rfxtrx-port",
-      "rfx-lights-in",
-      "rfx-sensor",
-      "rfx-lights-out",
-      "rfx-meter",
-      "PT2262-device-list",
-      "rfx-PT2262-in",
-      "rfx-PT2262-out"
+      "status"
      ],
      "enabled": true,
-     "module": "node-red-contrib-rfxcom",
-     "file": "/home/node-red/node_modules/node-red-contrib-rfxcom/rfxcom.js"
+     "module": "node-red",
+     "file": "/home/node-red/nodes/core/core/25-status.js"
+    },
+    "link": {
+     "name": "link",
+     "types": [
+      "link in",
+      "link out"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/home/node-red/nodes/core/core/60-link.js"
+    },
+    "tls": {
+     "name": "tls",
+     "types": [
+      "tls-config"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/home/node-red/nodes/core/io/05-tls.js"
+    },
+    "httprequest": {
+     "name": "httprequest",
+     "types": [
+      "http request"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/home/node-red/nodes/core/io/21-httprequest.js"
+    },
+    "split": {
+     "name": "split",
+     "types": [
+      "split",
+      "join"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/home/node-red/nodes/core/logic/17-split.js"
     }
    }
   },
   "node-red-node-email": {
    "name": "node-red-node-email",
-   "version": "0.1.0",
+   "version": "0.1.11",
    "nodes": {
     "email": {
      "name": "email",
@@ -302,7 +327,7 @@
   },
   "node-red-node-feedparser": {
    "name": "node-red-node-feedparser",
-   "version": "0.1.2",
+   "version": "0.1.5",
    "nodes": {
     "feedparse": {
      "name": "feedparse",
@@ -315,25 +340,9 @@
     }
    }
   },
-  "node-red-node-openweathermap": {
-   "name": "node-red-node-openweathermap",
-   "version": "0.1.7",
-   "nodes": {
-    "openweathermap": {
-     "name": "openweathermap",
-     "types": [
-      "openweathermap",
-      "openweathermap in"
-     ],
-     "enabled": true,
-     "module": "node-red-node-openweathermap",
-     "file": "/home/node-red/node_modules/node-red-node-openweathermap/weather.js"
-    }
-   }
-  },
   "node-red-node-rbe": {
    "name": "node-red-node-rbe",
-   "version": "0.1.0",
+   "version": "0.1.5",
    "nodes": {
     "rbe": {
      "name": "rbe",
@@ -348,7 +357,7 @@
   },
   "node-red-node-serialport": {
    "name": "node-red-node-serialport",
-   "version": "0.0.3",
+   "version": "0.2.1",
    "nodes": {
     "serialport": {
      "name": "serialport",
@@ -365,7 +374,7 @@
   },
   "node-red-node-twitter": {
    "name": "node-red-node-twitter",
-   "version": "0.1.1",
+   "version": "0.1.7",
    "nodes": {
     "twitter": {
      "name": "twitter",
@@ -380,9 +389,50 @@
     }
    }
   },
+  "node-red-contrib-rfxcom": {
+   "name": "node-red-contrib-rfxcom",
+   "version": "1.2.0",
+   "nodes": {
+    "rfxcom": {
+     "name": "rfxcom",
+     "types": [
+      "rfxtrx-port",
+      "rfx-lights-in",
+      "rfx-lights-out",
+      "rfx-doorbell-in",
+      "rfx-doorbell-out",
+      "rfx-sensor",
+      "rfx-meter",
+      "rfx-detector-in",
+      "PT2262-device-list",
+      "rfx-PT2262-in",
+      "rfx-PT2262-out"
+     ],
+     "enabled": true,
+     "module": "node-red-contrib-rfxcom",
+     "file": "/home/node-red/node_modules/node-red-contrib-rfxcom/rfxcom.js"
+    }
+   }
+  },
+  "node-red-node-openweathermap": {
+   "name": "node-red-node-openweathermap",
+   "version": "0.1.11",
+   "nodes": {
+    "openweathermap": {
+     "name": "openweathermap",
+     "types": [
+      "openweathermap",
+      "openweathermap in"
+     ],
+     "enabled": true,
+     "module": "node-red-node-openweathermap",
+     "file": "/home/node-red/node_modules/node-red-node-openweathermap/weather.js"
+    }
+   }
+  },
   "node-red-node-ping": {
    "name": "node-red-node-ping",
-   "version": "0.0.6",
+   "version": "0.0.12",
    "nodes": {
     "ping": {
      "name": "ping",

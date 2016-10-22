@@ -1,0 +1,25 @@
+version: '2'
+services:  
+  nodered:
+    image: kalemena/ti-dhome
+    build: ./flow
+    restart: always
+    ports:
+     - "1880:1880"
+     - "1883:1883"
+    volumes:
+     - ../src/flow/data:/root/.node-red
+    devices:
+     - "/dev/ttyUSB0:/dev/ttyCurrenCost"
+     - "/dev/ttyUSB1:/dev/ttyJeeLink"
+     - "/dev/ttyUSB2:/dev/ttyRfxTrx"
+    environment:
+     - FLOWS=flows_nodered.json
+     
+  tidhome:
+    image: nginx
+    restart: always
+    ports:
+     - "80:80"
+    volumes:
+     - ${WEBPATH_RELATIVE}:/usr/share/nginx/html
