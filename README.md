@@ -42,7 +42,7 @@ Everything can be setup at need.
 * [Web Relays](/modules/cubieboard)
 * [RfxTrx433](/modules/rfxtrx433)
 * [CurrentCost](/modules/currentcost)
-* [JeeLink](/modules/jeenode)
+* [Sensors](https://github.com/kalemena/ti-dhome-sensors)
 * Database is up to user. Using CouchDB, but this is not shared for now.
 
 

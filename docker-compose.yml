@@ -1,7 +1,7 @@
 version: '2'
 services:  
   nodered:
-    image: kalemena/node-red:0.17.5
+    image: kalemena/node-red:0.16.2
     restart: always
     ports:
      - "1880:1880"
@@ -13,7 +13,7 @@ services:
      - "/dev/ttyUSB0:/dev/ttyJeeLink"
      - "/dev/ttyUSB1:/dev/ttyRfxTrx"
     environment:
-     - FLOWS=flows_nodered.json
+     - FLOWS=tidhome.json
      
   tidhome:
     image: nginx
