@@ -9,9 +9,9 @@ services:
     volumes:
      - ./src/flow/data:/root/.node-red
     devices:
-     - "/dev/ttyUSB2:/dev/ttyCurrenCost"
-     - "/dev/ttyUSB0:/dev/ttyJeeLink"
-     - "/dev/ttyUSB1:/dev/ttyRfxTrx"
+     - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
+     - "/dev/ttyJeeLink:/dev/ttyJeeLink"
+     - "/dev/ttyRfxTrx:/dev/ttyRfxTrx"
     environment:
      - FLOWS=tidhome.json
      
