@@ -32,6 +32,17 @@ Hardware used for sensors/actors:
 
 ![Architecture](/res/Architecture.png?raw=true "Architecture overview")
 
+# Dashboard
+
+A simple Dashboard uses Grafana and InfluxDB as storage.
+
+![Dashboard Power](/res/dashboard-power-1.png)
+
+![Dashboard Sensors](/res/dashboard-sensors-1.png)
+
+![Dashboard System](/res/dashboard-system-1.png)
+
+
 # How-To
 
 ## Setup each module
