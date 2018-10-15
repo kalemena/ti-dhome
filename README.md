@@ -71,14 +71,7 @@ Idea is to leverage [Node RED](http://nodered.org)
 
 ```js
 $ git clone https://github.com/kalemena/ti-dhome.git
-$ cd ti-dhome/dist/flow
-$ docker build -t kalemena/ti-dhome .
-$ docker run --restart=always --name nodered --hostname nodered \
-  -d -p 1880:1880 -p 1883:1883 \
-  -v ./data:/root/.node-red \
-  --device=/dev/ttyUSB2:/dev/ttyRfxTrx \
-  --device=/dev/ttyUSB1:/dev/ttyJeeLink \
-  --device=/dev/ttyUSB0:/dev/ttyCurrenCost node-red
+$ docker-compose up -d
 ```
 
 ### Used node-red nodes
@@ -89,3 +82,8 @@ $ docker run --restart=always --name nodered --hostname nodered \
 ### Project default flows
 
 ![Flows](/res/nodered-sensors-input.png?raw=true "Node-red flows")
+
+
+### Security
+
+$ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
