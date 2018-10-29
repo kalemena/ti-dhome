@@ -52,7 +52,7 @@ services:
     image: eclipse-mosquitto:1.4.12
     restart: always
     ports:
-     - "2883:1883"
+     - "1883:1883"
      - "9001:9001"
 
   nodered:
@@ -60,7 +60,6 @@ services:
     restart: always
     ports:
      - "1880:1880"
-     - "1883:1883"
     volumes:
      - ./src/flow/data:/root/.node-red
      - ./etc/nodered/settings.js:/home/node-red/settings.js
