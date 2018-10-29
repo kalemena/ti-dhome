@@ -61,8 +61,7 @@ services:
     ports:
      - "1880:1880"
     volumes:
-     - ./src/flow/data:/root/.node-red
-     - ./etc/nodered/settings.js:/home/node-red/settings.js
+     - ./src/node-red:/root/.node-red
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"

@@ -372,94 +372,23 @@
     }
    }
   },
-  "node-red-node-email": {
-   "name": "node-red-node-email",
-   "version": "0.1.29",
+  "node-red-contrib-influxdb": {
+   "name": "node-red-contrib-influxdb",
+   "version": "0.2.2",
    "local": false,
    "nodes": {
-    "email": {
-     "name": "email",
+    "influxdb": {
+     "name": "influxdb",
      "types": [
-      "e-mail",
-      "e-mail in"
+      "influxdb",
+      "influxdb out",
+      "influxdb batch",
+      "influxdb in"
      ],
      "enabled": true,
      "local": false,
-     "module": "node-red-node-email",
-     "file": "/home/node-red/node_modules/node-red-node-email/61-email.js"
-    }
-   }
-  },
-  "node-red-node-feedparser": {
-   "name": "node-red-node-feedparser",
-   "version": "0.1.14",
-   "local": false,
-   "nodes": {
-    "feedparse": {
-     "name": "feedparse",
-     "types": [
-      "feedparse"
-     ],
-     "enabled": true,
-     "local": false,
-     "module": "node-red-node-feedparser",
-     "file": "/home/node-red/node_modules/node-red-node-feedparser/32-feedparse.js"
-    }
-   }
-  },
-  "node-red-node-rbe": {
-   "name": "node-red-node-rbe",
-   "version": "0.2.3",
-   "local": false,
-   "nodes": {
-    "rbe": {
-     "name": "rbe",
-     "types": [
-      "rbe"
-     ],
-     "enabled": true,
-     "local": false,
-     "module": "node-red-node-rbe",
-     "file": "/home/node-red/node_modules/node-red-node-rbe/rbe.js"
-    }
-   }
-  },
-  "node-red-node-serialport": {
-   "name": "node-red-node-serialport",
-   "version": "0.6.8",
-   "local": false,
-   "nodes": {
-    "serialport": {
-     "name": "serialport",
-     "types": [
-      "serial in",
-      "serial out",
-      "serial request",
-      "serial-port"
-     ],
-     "enabled": true,
-     "local": false,
-     "module": "node-red-node-serialport",
-     "file": "/home/node-red/node_modules/node-red-node-serialport/25-serial.js"
-    }
-   }
-  },
-  "node-red-node-twitter": {
-   "name": "node-red-node-twitter",
-   "version": "1.1.3",
-   "local": false,
-   "nodes": {
-    "twitter": {
-     "name": "twitter",
-     "types": [
-      "twitter-credentials",
-      "twitter in",
-      "twitter out"
-     ],
-     "enabled": true,
-     "local": false,
-     "module": "node-red-node-twitter",
-     "file": "/home/node-red/node_modules/node-red-node-twitter/27-twitter.js"
+     "module": "node-red-contrib-influxdb",
+     "file": "/home/node-red/node_modules/node-red-contrib-influxdb/influxdb.js"
     }
    }
   },
@@ -491,61 +420,6 @@
      "local": false,
      "module": "node-red-contrib-rfxcom",
      "file": "/home/node-red/node_modules/node-red-contrib-rfxcom/rfxcom.js"
-    }
-   }
-  },
-  "node-red-node-openweathermap": {
-   "name": "node-red-node-openweathermap",
-   "version": "0.2.1",
-   "local": false,
-   "nodes": {
-    "openweathermap": {
-     "name": "openweathermap",
-     "types": [
-      "openweathermap",
-      "openweathermap in"
-     ],
-     "enabled": true,
-     "local": false,
-     "module": "node-red-node-openweathermap",
-     "file": "/home/node-red/node_modules/node-red-node-openweathermap/weather.js"
-    }
-   }
-  },
-  "node-red-node-ping": {
-   "name": "node-red-node-ping",
-   "version": "0.0.15",
-   "local": false,
-   "nodes": {
-    "ping": {
-     "name": "ping",
-     "types": [
-      "ping"
-     ],
-     "enabled": true,
-     "local": false,
-     "module": "node-red-node-ping",
-     "file": "/home/node-red/node_modules/node-red-node-ping/88-ping.js"
-    }
-   }
-  },
-  "node-red-contrib-influxdb": {
-   "name": "node-red-contrib-influxdb",
-   "version": "0.2.2",
-   "local": false,
-   "nodes": {
-    "influxdb": {
-     "name": "influxdb",
-     "types": [
-      "influxdb",
-      "influxdb out",
-      "influxdb batch",
-      "influxdb in"
-     ],
-     "enabled": true,
-     "local": false,
-     "module": "node-red-contrib-influxdb",
-     "file": "/home/node-red/node_modules/node-red-contrib-influxdb/influxdb.js"
     }
    }
   },
@@ -755,16 +629,130 @@
      "file": "/home/node-red/node_modules/node-red-dashboard/nodes/ui_group.js"
     }
    }
-  }
- },
- "_credentialSecret": "13ffc1464451d0255352aac2be631a9b04164ea1b38b74ac5596754f9e1bcf36",
- "users": {
-  "_": {
-   "editor": {
-    "view": {
-     "view-grid-size": 20,
-     "view-node-status": true,
-     "view-show-tips": true
+  },
+  "node-red-node-email": {
+   "name": "node-red-node-email",
+   "version": "0.1.29",
+   "local": false,
+   "nodes": {
+    "email": {
+     "name": "email",
+     "types": [
+      "e-mail",
+      "e-mail in"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-email",
+     "file": "/home/node-red/node_modules/node-red-node-email/61-email.js"
+    }
+   }
+  },
+  "node-red-node-feedparser": {
+   "name": "node-red-node-feedparser",
+   "version": "0.1.14",
+   "local": false,
+   "nodes": {
+    "feedparse": {
+     "name": "feedparse",
+     "types": [
+      "feedparse"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-feedparser",
+     "file": "/home/node-red/node_modules/node-red-node-feedparser/32-feedparse.js"
+    }
+   }
+  },
+  "node-red-node-openweathermap": {
+   "name": "node-red-node-openweathermap",
+   "version": "0.2.1",
+   "local": false,
+   "nodes": {
+    "openweathermap": {
+     "name": "openweathermap",
+     "types": [
+      "openweathermap",
+      "openweathermap in"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-openweathermap",
+     "file": "/home/node-red/node_modules/node-red-node-openweathermap/weather.js"
+    }
+   }
+  },
+  "node-red-node-ping": {
+   "name": "node-red-node-ping",
+   "version": "0.0.15",
+   "local": false,
+   "nodes": {
+    "ping": {
+     "name": "ping",
+     "types": [
+      "ping"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-ping",
+     "file": "/home/node-red/node_modules/node-red-node-ping/88-ping.js"
+    }
+   }
+  },
+  "node-red-node-rbe": {
+   "name": "node-red-node-rbe",
+   "version": "0.2.3",
+   "local": false,
+   "nodes": {
+    "rbe": {
+     "name": "rbe",
+     "types": [
+      "rbe"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-rbe",
+     "file": "/home/node-red/node_modules/node-red-node-rbe/rbe.js"
+    }
+   }
+  },
+  "node-red-node-serialport": {
+   "name": "node-red-node-serialport",
+   "version": "0.6.8",
+   "local": false,
+   "nodes": {
+    "serialport": {
+     "name": "serialport",
+     "types": [
+      "serial in",
+      "serial out",
+      "serial request",
+      "serial-port"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-serialport",
+     "file": "/home/node-red/node_modules/node-red-node-serialport/25-serial.js"
+    }
+   }
+  },
+  "node-red-node-twitter": {
+   "name": "node-red-node-twitter",
+   "version": "1.1.3",
+   "local": false,
+   "nodes": {
+    "twitter": {
+     "name": "twitter",
+     "types": [
+      "twitter-credentials",
+      "twitter in",
+      "twitter out"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-twitter",
+     "file": "/home/node-red/node_modules/node-red-node-twitter/27-twitter.js"
     }
    }
   }

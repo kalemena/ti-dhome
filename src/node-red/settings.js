@@ -23,6 +23,7 @@ module.exports = {
     uiPort: process.env.PORT || 1880,
 
     // By default, the Node-RED UI accepts connections on all IPv4 interfaces.
+    // To listen on all IPv6 addresses, set uiHost to "::",
     // The following property can be used to listen on a specific interface. For
     // example, the following would only allow connections from the local machine.
     //uiHost: "127.0.0.1",
@@ -39,6 +40,10 @@ module.exports = {
     // Timeout in milliseconds for TCP server socket connections
     //  defaults to no timeout
     //socketTimeout: 120000,
+
+    // Maximum number of messages to wait in queue while attempting to connect to TCP socket
+    //  defaults to 1000
+    //tcpMsgQueueSize: 2000,
 
     // Timeout in milliseconds for HTTP request connections
     //  defaults to 120 seconds
@@ -64,7 +69,7 @@ module.exports = {
 
     // To enabled pretty-printing of the flow within the flow file, set the following
     //  property to true:
-    flowFilePretty: true,
+    //flowFilePretty: true,
 
     // By default, credentials are encrypted in storage using a generated key. To
     // specify your own secret, set the following property.
@@ -204,10 +209,20 @@ module.exports = {
 
     functionGlobalContext: {
         // os:require('os'),
-        // octalbonescript:require('octalbonescript'),
         // jfive:require("johnny-five"),
         // j5board:require("johnny-five").Board({repl:false})
     },
+
+    // Context Storage
+    // The following property can be used to enable context storage. The configuration
+    // provided here will enable file-based context that flushes to disk every 30 seconds.
+    // Refer to the documentation for further options: https://nodered.org/docs/api/context/
+    //
+    //contextStorage: {
+    //    default: {
+    //        module:"localfilesystem"
+    //    },
+    //},
 
     // The following property can be used to order the categories in the editor
     // palette. If a node's category is not in the list, the category will get
@@ -233,5 +248,13 @@ module.exports = {
             // Whether or not to include audit events in the log output
             audit: false
         }
-    }
+    },
+
+    // Customising the editor
+    editorTheme: {
+        projects: {
+            // To enable the Projects feature, set this value to true
+            enabled: false
+        }
+    },
 }
