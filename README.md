@@ -50,7 +50,7 @@ A simple Dashboard uses Grafana and InfluxDB as storage.
 Everything can be setup at need.
 
 * [Téléinfo](/modules/teleinfo)
-* [Web Relays](/modules/cubieboard)
+* [Web Relays](https://github.com/kalemena/ti-dhome-web-relay-board)
 * [RfxTrx433](/modules/rfxtrx433)
 * [CurrentCost](/modules/currentcost)
 * [Sensors](https://github.com/kalemena/ti-dhome-sensors)
