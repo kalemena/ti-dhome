@@ -9,7 +9,7 @@ services:
      - "9001:9001"
 
   nodered:
-    image: kalemena/node-red:0.19.6
+    image: kalemena/node-red:0.20.5
     restart: always
     ports:
      - "1880:1880"
