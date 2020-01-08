@@ -1,32 +1,48 @@
 
-Home automation from scratch for the dummies!
+# Ti-DHome
+
+This is a Home automation project.
+
+Pronounced "Ty d'Homme" stands for *little man* in French.
+
+## Description
 
 A home server can be put in place to monitor and act on various environment sensors.
-Initially, this all started with idea that each room can be tracked in temperature, then heaters can be switched on/off based on sensor metrics.
 
+## History
+
+Initially, this all started in 2010 when arriving in my new home.
+
+Room temperatures were not perfect, with high difference between rooms and strange weather-related discrepencencies.
+
+## Goal
+
+Room can be tracked in temperature and humidity while heaters can be switched on/off based on precise room sensor metrics.
+
+# Design approach
 
 This repository is an attempt to put together the source and explanation to build minimalist home automation.
 
-Minimalist approach:
+Minimal approach means:
+
 * avoid complex monolithic framework used here and there on automation
 * client(s)/server(s) plugs together using *ANY* progamming language by leveraging message queues (MQTT)
 * simple arduino sketches for sensors
 * simple datastore (any or multiple)
-* deploys as much as possible with automation using [Docker](https://www.docker.com/)
-
-The samples in each module were build in full nodejs, however from now, the central service can be handled using the wonderful Node-red project.
+* deploy as much as possible with automation using [Docker](https://www.docker.com/)
 
 # Material
 
 Hardware used for sensors/actors:
+
 * Arduino with radio enabled (JeeNode compatible): 15+ low cost sensors
-* [CurrentCost EnviR](http://www.currentcost.com/product-envir.html): Main + 9 plugs
-* [RFXtrx433](http://www.rfxcom.com/): Weather Station, Window motor openers, Alarm monitoring
+* link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR]: Main + 9 plugs
+* link:http://www.rfxcom.com/[RFXtrx433]: Weather Station, Window motor openers, Alarm monitoring
 * Sainsmart relay board: 16 relays
-* Fanless low-consumption servers ([Cubieboard v2](http://cubieboard.org) or multi-purpose Core i3 with SSD)
+* Fanless low-consumption servers link:http://cubieboard.org[Cubieboard v2] or multi-purpose Core i3 with SSD)
 * few cheap components (for téléinfo)
 
-![Overview](/res/Schema.jpg?raw=true "Hardware overview")
+image:/res/Schema.jpg?raw=true[Hardware overview]
 
 # Schematic
 
@@ -92,3 +108,5 @@ $ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pe
 ### Links
 
 https://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
+
+https://github.com/GladysAssistant/Gladys/blob/master/docker/Dockerfile
