@@ -1,25 +1,25 @@
 
-# Ti-DHome
+= Ti-DHome
 
 This is a Home automation project.
 
 Pronounced "Ty d'Homme" stands for *little man* in French.
 
-## Description
+== Description
 
 A home server can be put in place to monitor and act on various environment sensors.
 
-## History
+== History
 
 Initially, this all started in 2010 when arriving in my new home.
 
 Room temperatures were not perfect, with high difference between rooms and strange weather-related discrepencencies.
 
-## Goal
+== Goal
 
 Room can be tracked in temperature and humidity while heaters can be switched on/off based on precise room sensor metrics.
 
-# Design approach
+= Design approach
 
 This repository is an attempt to put together the source and explanation to build minimalist home automation.
 
@@ -29,9 +29,9 @@ Minimal approach means:
 * client(s)/server(s) plugs together using *ANY* progamming language by leveraging message queues (MQTT)
 * simple arduino sketches for sensors
 * simple datastore (any or multiple)
-* deploy as much as possible with automation using [Docker](https://www.docker.com/)
+* deploy as much as possible with automation using link:https://www.docker.com/[Docker]
 
-# Material
+= Material
 
 Hardware used for sensors/actors:
 
@@ -44,68 +44,61 @@ Hardware used for sensors/actors:
 
 image:/res/Schema.jpg?raw=true[Hardware overview]
 
-# Schematic
+= Schematic
 
-![Architecture](/res/Architecture.png?raw=true "Architecture overview")
+link:/res/Architecture.png?raw=true[Architecture]
 
-# Dashboard
+= Dashboard
 
 A simple Dashboard uses Grafana and InfluxDB as storage.
 
-![Dashboard Power](/res/dashboard-power-1.png)
+link:/res/dashboard-power-1.png[Dashboard Power]
 
-![Dashboard Sensors](/res/dashboard-sensors-1.png)
+link:/res/dashboard-sensors-1.png[Dashboard Sensors]
 
-![Dashboard System](/res/dashboard-system-1.png)
+link:/res/dashboard-system-1.png[Dashboard System]
 
+= How-To
 
-# How-To
-
-## Setup each module
+== Setup each module
 
 Everything can be setup at need.
 
-* [Téléinfo](/modules/teleinfo)
-* [Web Relays](https://github.com/kalemena/ti-dhome-web-relay-board)
-* [RfxTrx433](/modules/rfxtrx433)
-* [CurrentCost](/modules/currentcost)
-* [Sensors](https://github.com/kalemena/ti-dhome-sensors)
+* link:/modules/teleinfo[Téléinfo]
+* link:https://github.com/kalemena/ti-dhome-web-relay-board[Web Relays]
+* link:/modules/rfxtrx433[RfxTrx433]
+* link:/modules/currentcost[CurrentCost]
+* link:https://github.com/kalemena/ti-dhome-sensors[Sensors]
 * Database is up to user. Using CouchDB, but this is not shared for now.
 
-
-## Install software
-
+== Install software
 
 Central service is fully contained into Docker container.
 The service has an inner mosquitto and uses pre-build strategies to wire-up the few modules.
-Idea is to leverage [Node RED](http://nodered.org)
+Idea is to leverage link:http://nodered.org[Node RED]
 
 * steps: 
- * install [Docker](https://www.docker.com/)
+ * install link:https://www.docker.com/[Docker]
  * change the below command line to map your USB devices.
  * connect to http://localhost:1880, change the project flow based on need. 
 
-```js
-$ git clone https://github.com/kalemena/ti-dhome.git
-$ docker-compose up -d
-```
+    $ git clone https://github.com/kalemena/ti-dhome.git
+    $ docker-compose up -d
 
-### Used node-red nodes
+=== Used node-red nodes
 
 * http://flows.nodered.org/node/node-red-contrib-rfxcom
 * http://flows.nodered.org/node/node-red-node-openweathermap
 
-### Project default flows
+=== Project default flows
 
-![Flows](/res/nodered-sensors-input.png?raw=true "Node-red flows")
+link:/res/nodered-sensors-input.png?raw=true[Node-RED Flows]
 
+=== Security
 
-### Security
+    $ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
 
-$ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
-
-
-### Links
+=== Links
 
 https://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
 
