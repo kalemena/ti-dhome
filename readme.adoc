@@ -46,17 +46,17 @@ image:/res/Schema.jpg?raw=true[Hardware overview]
 
 = Schematic
 
-link:/res/Architecture.png?raw=true[Architecture]
+image:/res/Architecture.png?raw=true[Architecture]
 
 = Dashboard
 
 A simple Dashboard uses Grafana and InfluxDB as storage.
 
-link:/res/dashboard-power-1.png[Dashboard Power]
+image:/res/dashboard-power-1.png[Dashboard Power]
 
-link:/res/dashboard-sensors-1.png[Dashboard Sensors]
+image:/res/dashboard-sensors-1.png[Dashboard Sensors]
 
-link:/res/dashboard-system-1.png[Dashboard System]
+image:/res/dashboard-system-1.png[Dashboard System]
 
 = How-To
 
@@ -92,7 +92,7 @@ Idea is to leverage link:http://nodered.org[Node RED]
 
 === Project default flows
 
-link:/res/nodered-sensors-input.png?raw=true[Node-RED Flows]
+image:/res/nodered-sensors-input.png?raw=true[Node-RED Flows]
 
 === Security
 
