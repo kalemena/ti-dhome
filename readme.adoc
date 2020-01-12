@@ -1,35 +1,23 @@
 
 = Ti-DHome
 
-This is a Home automation project.
+This is a Home automation project. Pronounced "Ti d'Homme" stands for *little man* in French.
 
-Pronounced "Ty d'Homme" stands for *little man* in French.
+Home server monitors and act on various environment events such as sensors.
 
-== Description
+For example, sensors send room temperatures, and a small but flexible workflow allows to orchestrate heaters in these rooms, taking into account time of day, week/year period, absence from home and global weather feeds.
 
-A home server can be put in place to monitor and act on various environment sensors.
-
-== History
-
-Initially, this all started in 2010 when arriving in my new home.
-
-Room temperatures were not perfect, with high difference between rooms and strange weather-related discrepencencies.
-
-== Goal
-
-Room can be tracked in temperature and humidity while heaters can be switched on/off based on precise room sensor metrics.
+image:/res/Architecture.png?raw=true[Architecture]
 
 = Design approach
 
-This repository is an attempt to put together the source and explanation to build minimalist home automation.
-
-Minimal approach means:
+The source and explanation in this repository are following few principles:
 
 * avoid complex monolithic framework used here and there on automation
 * client(s)/server(s) plugs together using *ANY* progamming language by leveraging message queues (MQTT)
 * simple arduino sketches for sensors
-* simple datastore (any or multiple)
-* deploy as much as possible with automation using link:https://www.docker.com/[Docker]
+* simple datastore (any, multiple, interchangeable)
+* deploy as much as possible with automation using for example link:https://www.docker.com/[Docker]
 
 = Material
 
@@ -43,10 +31,6 @@ Hardware used for sensors/actors:
 * few cheap components (for téléinfo)
 
 image:/res/Schema.jpg?raw=true[Hardware overview]
-
-= Schematic
-
-image:/res/Architecture.png?raw=true[Architecture]
 
 = Dashboard
 
@@ -84,11 +68,6 @@ Idea is to leverage link:http://nodered.org[Node RED]
 
     $ git clone https://github.com/kalemena/ti-dhome.git
     $ docker-compose up -d
-
-=== Used node-red nodes
-
-* http://flows.nodered.org/node/node-red-contrib-rfxcom
-* http://flows.nodered.org/node/node-red-node-openweathermap
 
 === Project default flows
 
