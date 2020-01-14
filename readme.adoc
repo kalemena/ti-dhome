@@ -1,13 +1,17 @@
 
 = Ti-DHome
 
+ifdef::env-github[]
+:imagesdir: /
+endif::[]
+
 This is a Home automation project. Pronounced "Ti d'Homme" stands for *little man* in French.
 
 Home server monitors and act on various environment events such as sensors.
 
 For example, sensors send room temperatures, and a small but flexible workflow allows to orchestrate heaters in these rooms, taking into account time of day, week/year period, absence from home and global weather feeds.
 
-image:/res/Architecture.png?raw=true[Architecture]
+image:res/Schema.jpg?raw=true[Hardware overview]
 
 = Design approach
 
@@ -18,6 +22,8 @@ The source and explanation in this repository are following few principles:
 * simple arduino sketches for sensors
 * simple datastore (any, multiple, interchangeable)
 * deploy as much as possible with automation using for example link:https://www.docker.com/[Docker]
+
+image:res/Architecture.png?raw=true[Architecture]
 
 = Material
 
@@ -30,17 +36,15 @@ Hardware used for sensors/actors:
 * Fanless low-consumption servers link:http://cubieboard.org[Cubieboard v2] or multi-purpose Core i3 with SSD)
 * few cheap components (for téléinfo)
 
-image:/res/Schema.jpg?raw=true[Hardware overview]
-
 = Dashboard
 
 A simple Dashboard uses Grafana and InfluxDB as storage.
 
-image:/res/dashboard-power-1.png[Dashboard Power]
+image:res/dashboard-power-1.png[Dashboard Power]
 
-image:/res/dashboard-sensors-1.png[Dashboard Sensors]
+image:res/dashboard-sensors-1.png[Dashboard Sensors]
 
-image:/res/dashboard-system-1.png[Dashboard System]
+image:res/dashboard-system-1.png[Dashboard System]
 
 = How-To
 
@@ -71,7 +75,7 @@ Idea is to leverage link:http://nodered.org[Node RED]
 
 === Project default flows
 
-image:/res/nodered-sensors-input.png?raw=true[Node-RED Flows]
+image:res/nodered-sensors-input.png?raw=true[Node-RED Flows]
 
 === Security
 
