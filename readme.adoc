@@ -13,7 +13,9 @@ For example, sensors send room temperatures, and a small but flexible workflow a
 
 image:res/Schema.jpg?raw=true[Hardware overview]
 
-= Design approach
+= Design
+
+== Principle
 
 The source and explanation in this repository are following few principles:
 
@@ -22,6 +24,8 @@ The source and explanation in this repository are following few principles:
 * simple arduino sketches for sensors
 * simple datastore (any, multiple, interchangeable)
 * deploy as much as possible with automation using for example link:https://www.docker.com/[Docker]
+
+== Architecture
 
 image:res/Architecture.png?raw=true[Architecture]
 
