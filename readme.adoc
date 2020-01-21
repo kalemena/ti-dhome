@@ -1,3 +1,4 @@
+:toc:
 
 = Ti-DHome
 
@@ -11,11 +12,11 @@ Home server monitors and act on various environment events such as sensors.
 
 For example, sensors send room temperatures, and a small but flexible workflow allows to orchestrate heaters in these rooms, taking into account time of day, week/year period, absence from home and global weather feeds.
 
-image:res/Schema.jpg?raw=true[Hardware overview]
+image:res/Schema.png?raw=true[Hardware overview]
 
-= Design
+== Design
 
-== Principle
+=== Principle
 
 The source and explanation in this repository are following few principles:
 
@@ -25,22 +26,27 @@ The source and explanation in this repository are following few principles:
 * simple datastore (any, multiple, interchangeable)
 * deploy as much as possible with automation using for example link:https://www.docker.com/[Docker]
 
-== Architecture
+=== Architecture
+
+There are only 2 core concepts:
+
+* Communication of each element from the system is done through messaging system *MQTT bus* (mosquito)
+* *Node-red* enables wiring everything together, as loosely coupled custom strategies
 
 image:res/Architecture.png?raw=true[Architecture]
 
-= Material
+=== Material
 
 Hardware used for sensors/actors:
 
-* Arduino with radio enabled (JeeNode compatible): 15+ low cost sensors
-* link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR]: Main + 9 plugs
-* link:http://www.rfxcom.com/[RFXtrx433]: Weather Station, Window motor openers, Alarm monitoring
-* Sainsmart relay board: 16 relays
-* Fanless low-consumption servers link:http://cubieboard.org[Cubieboard v2] or multi-purpose Core i3 with SSD)
-* few cheap components (for téléinfo)
+* Fanless low-consumption servers (Core i3 with SSD)
+* Arduino 866Mhz custom sensors (15+ low cost sensors)
+* link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR] to measure 230v main + 9 plugs
+* link:http://www.rfxcom.com/[RFXtrx433] to record Weather Station measures, trigger Window motor openers, or monitor alarm
+* Sainsmart relay board as Web relays
+* few cheap components (for EDF téléinfo which is Electric French Main power counters)
 
-= Dashboard
+=== Dashboard
 
 A simple Dashboard uses Grafana and InfluxDB as storage.
 
@@ -52,18 +58,18 @@ image:res/dashboard-system-1.png[Dashboard System]
 
 = How-To
 
-== Setup each module
+== Setup modules
 
 Everything can be setup at need.
 
-* link:/modules/teleinfo[Téléinfo]
 * link:https://github.com/kalemena/ti-dhome-web-relay-board[Web Relays]
+* link:/modules/teleinfo[Téléinfo]
 * link:/modules/rfxtrx433[RfxTrx433]
 * link:/modules/currentcost[CurrentCost]
 * link:https://github.com/kalemena/ti-dhome-sensors[Sensors]
 * Database is up to user. Using CouchDB, but this is not shared for now.
 
-== Install software
+== Deployment
 
 Central service is fully contained into Docker container.
 The service has an inner mosquitto and uses pre-build strategies to wire-up the few modules.
@@ -77,15 +83,15 @@ Idea is to leverage link:http://nodered.org[Node RED]
     $ git clone https://github.com/kalemena/ti-dhome.git
     $ docker-compose up -d
 
-=== Project default flows
+== Strategies (aka Node-red flows)
 
 image:res/nodered-sensors-input.png?raw=true[Node-RED Flows]
 
-=== Security
+= Security
 
     $ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
 
-=== Links
+= Links
 
 https://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
 
