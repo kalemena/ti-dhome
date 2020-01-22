@@ -10,6 +10,8 @@ This is a Home automation project. Pronounced "Ti d'Homme" stands for *little ma
 
 Home server monitors and act on various environment events such as sensors.
 
+This project serves has hat documentation for a set of sub-projects enabling my Home Automation.
+
 For example, sensors send room temperatures, and a small but flexible workflow allows to orchestrate heaters in these rooms, taking into account time of day, week/year period, absence from home and global weather feeds.
 
 image:res/Schema.png?raw=true[Hardware overview]
@@ -30,21 +32,23 @@ The source and explanation in this repository are following few principles:
 
 There are only 2 core concepts:
 
-* Communication of each element from the system is done through messaging system *MQTT bus* (mosquito)
-* *Node-red* enables wiring everything together, as loosely coupled custom strategies
+* Communication of each element from the system is done through messaging system *MQTT bus* (mosquitto)
+* *Node-red* enables loosely coupled custom workflow strategies
 
-image:res/Architecture.png?raw=true[Architecture]
+image:res/architecture-bus.png?raw=true[Architecture]
+
+In turns, this simplistic approach allows very flexible and powerful Home Automation.
 
 === Material
 
 Hardware used for sensors/actors:
 
-* Fanless low-consumption servers (Core i3 with SSD)
-* Arduino 866Mhz custom sensors (15+ low cost sensors)
+* Fanless low-consumption servers (e.g. Core i3 with SSD, or RaspberryPi)
+* link:https://github.com/kalemena/ti-dhome-web-relay-board[Web relays board]
+* link:https://github.com/kalemena/ti-dhome-sensors[Arduino 866Mhz DIY sensors] (15+ low cost sensors)
 * link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR] to measure 230v main + 9 plugs
 * link:http://www.rfxcom.com/[RFXtrx433] to record Weather Station measures, trigger Window motor openers, or monitor alarm
-* Sainsmart relay board as Web relays
-* few cheap components (for EDF téléinfo which is Electric French Main power counters)
+* Few cheap components (for EDF téléinfo which is Electric French Main power counters)
 
 === Dashboard
 
@@ -56,9 +60,9 @@ image:res/dashboard-sensors-1.png[Dashboard Sensors]
 
 image:res/dashboard-system-1.png[Dashboard System]
 
-= How-To
+== How-To
 
-== Setup modules
+=== Setup modules
 
 Everything can be setup at need.
 
@@ -67,31 +71,38 @@ Everything can be setup at need.
 * link:/modules/rfxtrx433[RfxTrx433]
 * link:/modules/currentcost[CurrentCost]
 * link:https://github.com/kalemena/ti-dhome-sensors[Sensors]
-* Database is up to user. Using CouchDB, but this is not shared for now.
+* Database is up to user. InfluxDB is nice, but this is not shared for now.
 
-== Deployment
+=== Deployment
 
-Central service is fully contained into Docker container.
-The service has an inner mosquitto and uses pre-build strategies to wire-up the few modules.
-Idea is to leverage link:http://nodered.org[Node RED]
+There is no specific service.
+
+Instead there is a docker container with link:http://nodered.org[Node RED].
+
+A set of strategies are loaded in Node-RED to allow integration of the various components.
 
 * steps: 
- * install link:https://www.docker.com/[Docker]
- * change the below command line to map your USB devices.
- * connect to http://localhost:1880, change the project flow based on need. 
+** install link:https://www.docker.com/[Docker]
+** clone this repository
 
     $ git clone https://github.com/kalemena/ti-dhome.git
+
+** edit the docker-compose.yml to map your USB devices.
+** start Node-RED
+
     $ docker-compose up -d
 
-== Strategies (aka Node-red flows)
+** connect to http://localhost:1880, change the project flow based on need. 
+
+=== Strategies (aka Node-red flows)
 
 image:res/nodered-sensors-input.png?raw=true[Node-RED Flows]
 
-= Security
+== Security
 
     $ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
 
-= Links
+== Links
 
 https://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
 
