@@ -13,6 +13,7 @@ services:
       INFLUXDB_ADMIN_ENABLED: "true"
       INFLUXDB_ADMIN_USER: ${INFLUXDB_ADMIN_USER}
       INFLUXDB_ADMIN_PASSWORD: ${INFLUXDB_ADMIN_PASSWORD}
+      INFLUXDB_MONITOR_STORE_ENABLED: "false"
     deploy:
       resources:
         limits:
