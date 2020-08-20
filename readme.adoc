@@ -14,7 +14,7 @@ This project serves has hat documentation for a set of sub-projects enabling my 
 
 For example, sensors send room temperatures, and a small but flexible workflow allows to orchestrate heaters in these rooms, taking into account time of day, week/year period, absence from home and global weather feeds.
 
-image:res/Schema.png?raw=true[Hardware overview]
+image:res/schema-architecture.jpg?raw=true[Overview]
 
 == Design
 
