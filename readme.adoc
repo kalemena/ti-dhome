@@ -1,10 +1,10 @@
 :toc:
 
-= Ti-DHome
-
 ifdef::env-github[]
 :imagesdir: /
 endif::[]
+
+= Ti-DHome
 
 This is a Home automation project. Pronounced "Ti d'Homme" stands for *little man* in French.
 
