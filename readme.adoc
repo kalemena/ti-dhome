@@ -6,15 +6,17 @@ endif::[]
 
 = Ti-DHome
 
-This is a Home automation project. Pronounced "Ti d'Homme" stands for *little man* in French.
-
-Home server monitors and act on various environment events such as sensors.
-
-This project serves has hat documentation for a set of sub-projects enabling my Home Automation.
-
-For example, sensors send room temperatures, and a small but flexible workflow allows to orchestrate heaters in these rooms, taking into account time of day, week/year period, absence from home and global weather feeds.
+This is a Home automation project. Pronounced "Ti d'Homme" stands for *little man* in French. +
+This GIT project is a hat project with a set of sub-projects enabling Home Automation.
 
 image:res/schema-architecture.jpg?raw=true[Overview]
+
+.Example Usage
+[TIP]
+====
+Sensors (DIY or proprietary) are sending room temperatures, motion or doors state. +
+A small and flexible Node-Red workflow allows to orchestrate heaters based on simple rules around sensors values and/or schedule and/or external weather.
+====
 
 == Design
 
@@ -22,15 +24,17 @@ image:res/schema-architecture.jpg?raw=true[Overview]
 
 The source and explanation in this repository are following few principles:
 
-* avoid complex monolithic framework used here and there on automation
-* client(s)/server(s) plugs together using *ANY* progamming language by leveraging message queues (MQTT)
-* simple arduino sketches for sensors
-* simple datastore (any, multiple, interchangeable)
-* deploy as much as possible with automation using for example link:https://www.docker.com/[Docker]
+* Avoid complex monolithic framework used here and there on automation
+* Avoid using proprietary gateways named *boxes* such as any IKEA, Xiaomi, Amazon Echo, Leroy Merlin, etc
+* Use (or re-use) available technology, avoid deprecation, but stay open to new technology
+* Client(s)/server(s) plugs together using *ANY* progamming language by leveraging message queues (MQTT) when necessary
+* DIY sensors or Web device are using simple arduino sketches
+* Each element (e.g. Timeseries datastore) can be any, or multiple, and are interchangeable
+* Deploy as much as possible with automation in mind, using link:https://www.docker.com/[Docker]
 
 === Architecture
 
-There are only 2 core concepts:
+There are only few technical concepts:
 
 * Communication of each element from the system is done through messaging system *MQTT bus* (mosquitto)
 * *Node-red* enables loosely coupled custom workflow strategies
@@ -49,6 +53,7 @@ Hardware used for sensors/actors:
 * link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR] to measure 230v main + 9 plugs
 * link:http://www.rfxcom.com/[RFXtrx433] to record Weather Station measures, trigger Window motor openers, or monitor alarm
 * Few cheap components (for EDF téléinfo which is Electric French Main power counters)
+* link:https://aeotec.com/z-wave-usb-stick/[ZWave] or link:https://phoscon.de/en/conbee2[ZigBee] USB sticks as gateways (with minimal footprint) to proprietary devices
 
 === Dashboard
 
