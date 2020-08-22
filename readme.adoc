@@ -76,7 +76,7 @@ Everything can be setup at need.
 * link:/modules/rfxtrx433[RfxTrx433]
 * link:/modules/currentcost[CurrentCost]
 * link:https://github.com/kalemena/ti-dhome-sensors[Sensors]
-* Database is up to user. InfluxDB is nice, but this is not shared for now.
+* Database is interchangeable. InfluxDB is nice for Timeseries
 
 === Deployment
 
@@ -110,5 +110,3 @@ image:res/nodered-sensors-input.png?raw=true[Node-RED Flows]
 == Links
 
 https://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
-
-https://github.com/GladysAssistant/Gladys/blob/master/docker/Dockerfile
