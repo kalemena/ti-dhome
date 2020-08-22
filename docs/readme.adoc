@@ -1,0 +1,109 @@
+:toc:
+
+ifdef::env-github[]
+:imagesdir: /
+endif::[]
+
+= Ti-DHome
+
+This is a Home automation project. Pronounced "Ti d'Homme" stands for *little man* in French. +
+This GIT project is a hat project with a set of sub-projects enabling Home Automation.
+
+image:images/schema-architecture.jpg?raw=true[Overview]
+
+.Example Usage
+[TIP]
+====
+Sensors (DIY or proprietary) are sending room temperatures, motion or doors state. +
+A small and flexible Node-Red workflow allows to orchestrate heaters based on simple rules around sensors values and/or schedule and/or external weather.
+====
+
+== Design
+
+=== Principle
+
+The source and explanation in this repository are following few principles:
+
+* Avoid complex monolithic framework used here and there on automation
+* Avoid using proprietary gateways named *boxes* such as any IKEA, Xiaomi, Amazon Echo, Leroy Merlin, etc
+* Use (or re-use) available technology, avoid deprecation, but stay open to new technology
+* Client(s)/server(s) plugs together using *ANY* progamming language by leveraging message queues (MQTT) when necessary
+* DIY sensors or Web device are using simple arduino sketches
+* Each element (e.g. Timeseries datastore) can be any, or multiple, and are interchangeable
+* Deploy as much as possible with automation in mind, using link:https://www.docker.com/[Docker]
+
+=== Architecture
+
+There are only few technical concepts:
+
+* Communication of each element from the system is done through messaging system *MQTT bus* (mosquitto)
+* *Node-red* enables loosely coupled custom workflow strategies
+
+image:images/architecture-bus.png?raw=true[Architecture]
+
+In turns, this simplistic approach allows very flexible and powerful Home Automation.
+
+=== Material
+
+Hardware used for sensors/actors:
+
+* Fanless low-consumption servers (e.g. Core i3 with SSD, or RaspberryPi)
+* link:https://github.com/kalemena/ti-dhome-web-relay-board[Web relays board]
+* link:https://github.com/kalemena/ti-dhome-sensors[Arduino 866Mhz DIY sensors] (15+ low cost sensors)
+* link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR] to measure 230v main + 9 plugs
+* link:http://www.rfxcom.com/[RFXtrx433] to record Weather Station measures, trigger Window motor openers, or monitor alarm
+* link:https://aeotec.com/z-wave-usb-stick/[ZWave] or link:https://phoscon.de/en/conbee2[ZigBee] USB sticks as gateways (with minimal footprint) to proprietary devices
+* Few cheap components (for EDF téléinfo which is Electric French Main power counters)
+
+=== Dashboard
+
+A simple Dashboard uses Grafana and InfluxDB as storage.
+
+image:images/dashboard-power-1.png[Dashboard Power,320,240]
+image:images/dashboard-sensors-1.png[Dashboard Sensors,320,240]
+image:images/dashboard-system-1.png[Dashboard System,320,240]
+
+== How-To
+
+This project can be entirely or partialy reproduced. +
+Hence this is not required to buy everything above mentioned to be working. +
+If you need to control ZigBee devices, just immplement relevant part of this project.
+
+=== Setup modules
+
+* link:https://github.com/kalemena/ti-dhome-web-relay-board[Web Relays]
+* link:https://github.com/kalemena/ti-dhome-sensors[Sensors]
+* link:/modules/teleinfo[Téléinfo]
+* link:/modules/rfxtrx433[RfxTrx433]
+* link:/modules/currentcost[CurrentCost]
+* Database is interchangeable. InfluxDB is nice for Timeseries and runs out of the box through docker
+
+=== Deployment
+
+Central to all the Orchestration of IoT is a docker container with link:http://nodered.org[Node RED]. +
+A set of strategies are loaded in Node-RED to allow integration of the various components.
+
+* steps: 
+** install link:https://www.docker.com/[Docker]
+** clone this repository
+
+    $ git clone https://github.com/kalemena/ti-dhome.git
+
+** edit the docker-compose.yml to map your USB devices.
+** start Node-RED
+
+    $ make start
+
+** connect to http://localhost:1880, change the project flow. 
+
+=== Strategies (aka Node-red flows)
+
+image:images/nodered-sensors-input.png?raw=true[Node-RED Flows]
+
+== Security
+
+    $ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
+
+== Links
+
+https://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
