@@ -4,6 +4,8 @@ In France, few components can be used to extract Main Home power consumption.
 
 It is especially useful to have information such as consumption by time periods where periods can be high or low cost hours.
 
+image:/docs/images/schema-teleinfo-linky.jpg[Linky]
+
 == Hardware
 
 Central board:
