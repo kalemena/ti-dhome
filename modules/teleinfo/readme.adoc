@@ -1,27 +1,28 @@
+= Teleinfo
 
 In France, few components can be used to extract Main Home power consumption.
 
 It is especially useful to have information such as consumption by time periods where periods can be high or low cost hours.
 
-Hardware
-========
+== Hardware
 
 Central board:
 * Arduino Nano 5v
 * Optocoupler: SFH6206
 
-Schematic
-=========
+== Arduino Schematic
 
-![Parts](res/ArduinoProMini33-RF-sensor-teleinfo_bb.png?raw=true "Parts")
+Very basic, 2 pins to wire (e.g. pin 'D2' below).
 
+image:images/ArduinoProMini33-RF-sensor-teleinfo_bb.png[Parts]
 
-Sketch
-======
+== Arduino Sketch
 
-Software part
+The Arduino sketch is ultra simple. +
+Simply ensure to set proper pin number for read (e.g. '2' below)
 
-```js
+[source,c++]
+----
 #include <SoftwareSerial.h>
 
 SoftwareSerial cptSerial(2, 3);
@@ -35,21 +36,22 @@ void loop() {
   if (cptSerial.available())
     Serial.write(cptSerial.read() & 0x7F);
 }
-```
+----
 
-Installation
-============
+== Installation
 
 * Once wired to computer, find correct USB tty number (dmesg | grep tty), then execute commands:
 
-```js
+[source,bash]
+----
 $ stty -F /dev/ttyUSB0 1200 sane evenp parenb cs7 -crtscts
 $ cat /dev/ttyUSB0
-```
+----
 
 * Then other library can be used to parse and digest the teleinfo data that looks like below:
 
-```js
+[source,c++]
+----
 ADCO 02092xxxxxx @
 OPTARIF HC.. <
 ISOUSC 45 ?
@@ -61,14 +63,13 @@ IMAX 047 J
 PAPP 04860 3
 HHPHC A ,
 MOTDETAT 000000 B
-```
+----
 
-Resources
-=========
+== Resources
 
-* [Descriptin & wiring](http://www.planet-libre.org/index.php?post_id=11122)
-* [Descriptin & wiring](http://www.domotique-info.fr/2014/05/recuperer-teleinformation-arduino/)
-* [NodeJS teleinfo](https://github.com/lhuet/teleinfo-node)
-* [Sample app teleinfo](http://www.frinux.fr/2015/01/25/afficher-et-analyser-les-donnees-teleinfo-du-compteur-edf-avec-raspberry-pi-et-nodejs/)
-* [Sample app teleinfo](https://github.com/lhuet/teleinfo-app)
+* link:http://www.planet-libre.org/index.php?post_id=11122[Descriptin & wiring]
+* link:http://www.domotique-info.fr/2014/05/recuperer-teleinformation-arduino/[Descriptin & wiring]
+* link:https://github.com/lhuet/teleinfo-node[NodeJS teleinfo]
+* link:http://www.frinux.fr/2015/01/25/afficher-et-analyser-les-donnees-teleinfo-du-compteur-edf-avec-raspberry-pi-et-nodejs/[Sample app teleinfo]
+* link:https://github.com/lhuet/teleinfo-app[Sample app teleinfo]
 
