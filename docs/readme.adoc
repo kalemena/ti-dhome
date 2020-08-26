@@ -71,12 +71,15 @@ If you need to control ZigBee devices, just immplement relevant part of this pro
 
 === Setup modules
 
-* link:https://github.com/kalemena/ti-dhome-web-relay-board[Web Relays]
-* link:https://github.com/kalemena/ti-dhome-sensors[Sensors]
-* link:/docs/modules/gateways-usb-teleinfo[Téléinfo]
-* link:/docs/modules/gateways-usb-rfxtrx433[RfxTrx433]
-* link:/docs/modules/gateways-usb-currentcost[CurrentCost]
-* Database is interchangeable. InfluxDB is nice for Timeseries and runs out of the box through docker
+* Databases: use any, as appropriate for your use-case
+** link:https://www.influxdata.com/products/influxdb-overview/[InfluxDB] for Timeseries on sensors metrics
+
+* Gateways:
+** link:https://github.com/kalemena/ti-dhome-web-relay-board[Web Relays (external git project)]
+** link:https://github.com/kalemena/ti-dhome-sensors[Sensors (external git project)]
+** link:/docs/modules/gateways-usb-currentcost[Gateway USB CurrentCost]
+** link:/docs/modules/gateways-usb-rfxtrx433[Gateway USB RfxTrx433]
+** link:/docs/modules/gateways-usb-teleinfo[Gateway USB Téléinfo]
 
 === Deployment
 
