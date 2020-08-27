@@ -66,47 +66,59 @@ image:images/dashboard-system-1.png[Dashboard System,320,240]
 == How-To
 
 This project can be entirely or partialy reproduced. +
-Hence this is not required to buy everything above mentioned to be working. +
+Hence this is not required to buy everything above mentioned to be working for Ti-Dhome. +
 If you need to control ZigBee devices, just immplement relevant part of this project.
 
 === Setup modules
 
-* Databases: use any, as appropriate for your use-case
-** link:https://www.influxdata.com/products/influxdb-overview/[InfluxDB] for Timeseries on sensors metrics
+==== Orchestrator
 
-* Gateways:
-** link:https://github.com/kalemena/ti-dhome-web-relay-board[Web Relays (external git project)]
-** link:https://github.com/kalemena/ti-dhome-sensors[Sensors (external git project)]
-** link:/docs/modules/gateways-usb-currentcost[Gateway USB CurrentCost]
-** link:/docs/modules/gateways-usb-rfxtrx433[Gateway USB RfxTrx433]
-** link:/docs/modules/gateways-usb-teleinfo[Gateway USB Téléinfo]
+Central to all the Orchestration of IoT is a docker container with link:http://nodered.org[Node RED]. +
+Node-Red enables loosely coupled custom workflow strategies. +
+IoT devices can therefore be wired from monitoring to action. +
+Node-Red is like the advanced modern IFTTT (If This Then That) service, with much much more powerful integration capabilities, at the cost a requiring a little bit more effort to use :-)
+
+Because Ti-Dhome requires few defaults and libs installed, a specific Docker version is cooked. +
+Check link:https://github.com/kalemena/docker-node-red[Ti-Dhome - Docker Node-Red (external git project)]
+
+==== Databases
+
+Use any, as appropriate for your use-case. +
+
+Ti-Dhome uses link:https://www.influxdata.com/products/influxdb-overview/[InfluxDB] to store Timeseries on sensors metrics.
+
+==== Gateways
+
+Here are gateways integrated OK in Ti-Dhome:
+
+* link:https://github.com/kalemena/ti-dhome-web-relay-board[Ti-Dhome - Web Relays (external git project)]
+* link:https://github.com/kalemena/ti-dhome-sensors[Ti-Dhome - Sensors (external git project)]
+* link:/docs/modules/gateways-usb-currentcost[Gateway USB CurrentCost]
+* link:/docs/modules/gateways-usb-rfxtrx433[Gateway USB RfxTrx433]
+* link:/docs/modules/gateways-usb-teleinfo[Gateway USB Téléinfo]
 
 === Deployment
 
-Central to all the Orchestration of IoT is a docker container with link:http://nodered.org[Node RED]. +
-A set of strategies are loaded in Node-RED to allow integration of the various components.
-
-* steps: 
-** install link:https://www.docker.com/[Docker]
-** clone this repository
+* install link:https://www.docker.com/[Docker]
+* clone this repository
 
     $ git clone https://github.com/kalemena/ti-dhome.git
 
-** edit the docker-compose.yml to map your USB devices.
-** start Node-RED
+* edit the docker-compose.yml to map your USB gateway devices.
+* start Node-RED
 
     $ make start
 
-** connect to http://localhost:1880, change the project flow. 
+** connect to link:http://localhost:1880[], change the project flow. 
 
-=== Strategies (aka Node-red flows)
+==== Strategies (aka Node-red flows)
 
 image:images/nodered-sensors-input.png?raw=true[Node-RED Flows]
 
-== Security
+==== Security
 
     $ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
 
 == Links
 
-https://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
+link:https://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana[]
