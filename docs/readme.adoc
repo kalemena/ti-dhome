@@ -81,11 +81,14 @@ Node-Red is like the advanced modern IFTTT (If This Then That) service, with muc
 Because Ti-Dhome requires few defaults and libs installed, a specific Docker version is cooked. +
 Check link:https://github.com/kalemena/docker-node-red[Ti-Dhome - Docker Node-Red (external git project)]
 
-==== Databases
+==== Databases & Monitoring
 
 Use any, as appropriate for your use-case. +
+Ti-Dhome uses link:https://www.influxdata.com/products/influxdb-overview/[InfluxDB] to store Timeseries on sensors metrics. +
 
-Ti-Dhome uses link:https://www.influxdata.com/products/influxdb-overview/[InfluxDB] to store Timeseries on sensors metrics.
+InfluxDB is generally used in stack with monitoring of system, with link:https://github.com/influxdata/telegraf[Telegraf] and link:https://grafana.com/[Grafana]. +
+
+This is how this is deployed as link:https://github.com/kalemena/install-howto/tree/master/monitoring[Ti-Dhome - Monitoring stack]
 
 ==== IoT Gateways
 
