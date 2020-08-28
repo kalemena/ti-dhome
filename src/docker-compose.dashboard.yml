@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+
+  influxdb:
+    image: influxdb
+    user: "${UID}:${GID}"
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+    volumes: 
+      - ./var/lib/influxdb:/var/lib/influxdb:rw
+      - ./var/lib/.influx_history:/.influx_history
+    environment:
+      INFLUXDB_ADMIN_ENABLED: "true"
+      INFLUXDB_ADMIN_USER: ${INFLUXDB_ADMIN_USER:-default}
+      INFLUXDB_ADMIN_PASSWORD: ${INFLUXDB_ADMIN_PASSWORD:-password}
+      INFLUXDB_MONITOR_STORE_ENABLED: "false"
+
+  telegraf:
+    image: telegraf
+    network_mode: host
+    volumes:
+      - ./etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/rootfs/sys:ro
+      - /proc:/rootfs/proc:ro
+      - /etc:/rootfs/etc:ro      
+    environment:
+      HOST_PROC: /rootfs/proc
+      HOST_SYS: /rootfs/sys
+      HOST_ETC: /rootfs/etc
+
+  grafana:
+    image: grafana/grafana
+    user: "${UID}:${GID}"
+    ports:
+      - "3000:3000"
+    volumes:
+  #    - ./etc/grafana:/etc/grafana
+      - ./var/lib/grafana:/var/lib/grafana
+      - ./var/log/grafana:/var/log/grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-default}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-password}
