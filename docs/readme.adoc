@@ -63,6 +63,8 @@ image:images/dashboard-power-1.png[Dashboard Power,320,240]
 image:images/dashboard-sensors-1.png[Dashboard Sensors,320,240]
 image:images/dashboard-system-1.png[Dashboard System,320,240]
 
+image:images/dashboard-system-2.png[Dashboard System,320,240]
+
 == How-To
 
 This project can be entirely or partialy reproduced. +
