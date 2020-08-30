@@ -22,7 +22,7 @@ services:
   #   environment:
   #    - FLOWS=tidhome.json
 
-  tidhome:
+  web:
     image: nginx
     restart: always
     ports:
