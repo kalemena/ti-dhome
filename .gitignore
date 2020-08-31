@@ -6,4 +6,12 @@ node_modules
 /data
 trash
 
+# Data (cache or Database)
 var
+
+# Private
+*private
+
+# ZigBee
+*.db
+session.default
