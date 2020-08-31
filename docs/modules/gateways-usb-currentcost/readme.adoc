@@ -137,3 +137,8 @@ if(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] != undefined
 
 return [ outputMsgs ];
 ----
+
+= Links
+
+* link:https://subversion.nexusuk.org/projects/currentcost/[]
+* link:https://blog.nexusuk.org/2017/10/esp8266-currentcost-wifi-gateway.html[]
