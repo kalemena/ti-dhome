@@ -29,6 +29,25 @@ services:
       - DEBUG_ZDP=0
       - DEBUG_OTAU=0
 
+  nodered:
+    #image: kalemena/node-red:latest
+    build: ./node-red
+    restart: always
+    ports:
+     - "1880:1880"
+    volumes:
+     - ./tidhome:/opt/tidhome
+     - ./tidhome/config:/home/nodered/.node-red
+     - ./var/log/node-red:/var/log/node-red
+    devices:
+     - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
+     - "/dev/ttyJeeLink:/dev/ttyJeeLink"
+     - "/dev/ttyZWave:/dev/ttyZWave"
+    environment:
+     - FLOWS=/opt/tidhome/flows/tidhome-flows.json
+    env_file:
+     - ./src/tidhome/etc/.env-private
+
   # nodered:
   #   image: kalemena/node-red:latest
   #   restart: always
