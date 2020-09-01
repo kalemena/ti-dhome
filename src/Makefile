@@ -2,7 +2,7 @@
 ############################
 # Prepare for 1st time usage
 ############################
-init: init-images init-influxdb init-telegraf init-grafana
+init: init-images init-influxdb init-telegraf init-grafana init-nodered
 
 init-images:
 	docker-compose pull
@@ -30,6 +30,9 @@ init-telegraf:
 init-grafana:
 	mkdir -p var/lib/grafana
 	mkdir -p var/log/grafana
+
+init-nodered:
+	mkdir -p var/log/node-red
 
 ############################
 # Manages life cycle
