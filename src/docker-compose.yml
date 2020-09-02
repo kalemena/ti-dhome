@@ -46,7 +46,7 @@ services:
     environment:
      - FLOWS=/opt/tidhome/flows/tidhome-flows.json
     env_file:
-     - ./src/tidhome/etc/.env-private
+     - ./tidhome/etc/.env-private
 
   # nodered:
   #   image: kalemena/node-red:latest
