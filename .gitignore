@@ -8,6 +8,10 @@ trash
 
 # Data (cache or Database)
 var
+*.backup
+*.log
+*Log*
+*cache*
 
 # Private
 *private
@@ -15,3 +19,13 @@ var
 # ZigBee
 *.db
 session.default
+
+# birthdays*
+# .config.json
+# package.json
+# settings.js
+# *_cred.json
+# ozw*
+
+
+# etc
