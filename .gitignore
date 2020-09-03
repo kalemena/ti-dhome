@@ -15,6 +15,7 @@ var
 
 # Private
 *private
+**/.env
 
 # ZigBee
 *.db

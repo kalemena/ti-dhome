@@ -48,20 +48,6 @@ services:
     env_file:
      - .env
 
-  # nodered:
-  #   image: kalemena/node-red:latest
-  #   restart: always
-  #   ports:
-  #    - "3880:1880"
-  #   volumes:
-  #    - ./node-red:/home/nodered/.node-red
-  #   # devices:
-  #   #  - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
-  #   #  - "/dev/ttyJeeLink:/dev/ttyJeeLink"
-  #   #  - "/dev/ttyRfxTrx:/dev/ttyRfxTrx"
-  #   environment:
-  #    - FLOWS=tidhome.json
-
   web:
     image: nginx
     restart: always
