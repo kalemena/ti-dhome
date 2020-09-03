@@ -31,7 +31,7 @@ services:
 
   nodered:
     #image: kalemena/node-red:latest
-    build: ./node-red
+    build: ./scripts
     restart: always
     ports:
      - "1880:1880"
@@ -46,7 +46,7 @@ services:
     environment:
      - FLOWS=/opt/tidhome/flows/tidhome-flows.json
     env_file:
-     - ./tidhome/etc/.env-private
+     - .env
 
   # nodered:
   #   image: kalemena/node-red:latest
