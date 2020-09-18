@@ -2,10 +2,12 @@
 ############################
 # Prepare for 1st time usage
 ############################
-init: init-images init-influxdb init-telegraf init-grafana init-nodered
+init: init-images build-images init-influxdb init-telegraf init-grafana init-nodered
 
 init-images:
 	docker-compose pull
+
+build-images:
 	docker-compose build
 
 init-influxdb:
