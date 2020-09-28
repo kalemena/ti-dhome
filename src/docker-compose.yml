@@ -39,6 +39,8 @@ services:
      - ./tidhome:/opt/tidhome
      - ./tidhome/config:/home/nodered/.node-red
      - ./var/log/node-red:/var/log/node-red
+     # - /home/nodered/.node-red/settings.js      # Default Settings file
+     # - /data/flows.json                         # Default Flows file
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
