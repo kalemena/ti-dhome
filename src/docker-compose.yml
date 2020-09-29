@@ -2,11 +2,8 @@ version: '3.7'
 services:
 
   mqtt:
-    image: eclipse-mosquitto:1.4.12
+    image: eclipse-mosquitto:1.6
     restart: always
-    # ports:
-    #  - "2883:1883"
-    #  - "29001:9001"
 
   # https://github.com/marthoc/docker-deconz
   deconz:
