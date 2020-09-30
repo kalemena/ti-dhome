@@ -110,8 +110,14 @@ Here are gateways integrated OK in Ti-Dhome:
 * clone this repository
 
     $ git clone https://github.com/kalemena/ti-dhome.git
+    $ cd ti-dhome/src
 
 * edit the docker-compose.yml to map your USB gateway devices.
+
+* initialize few folders and config
+
+    $ make init
+
 * start Node-RED
 
     $ make start
