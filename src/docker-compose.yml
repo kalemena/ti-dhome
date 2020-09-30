@@ -9,6 +9,7 @@ services:
   deconz:
     image: marthoc/deconz
     restart: always
+    # user: "${UID}:${GID}"
     ports:
       - 7080:7080
       - 7443:7443
@@ -29,6 +30,8 @@ services:
       - DEBUG_ZCL=0
       - DEBUG_ZDP=0
       - DEBUG_OTAU=0
+    extra_hosts:
+      - "phoscon.de:127.0.0.1"
 
   nodered:
     #image: kalemena/node-red:latest
