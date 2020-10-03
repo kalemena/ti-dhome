@@ -11,4 +11,6 @@ RUN npm i \
         node-red-contrib-flatter \
         node-red-contrib-covid19 \
         node-red-contrib-deconz \
-        node-red-contrib-influxdb
+        node-red-contrib-influxdb \
+        node-red-contrib-metric-per-topic
+        
