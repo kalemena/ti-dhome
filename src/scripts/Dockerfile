@@ -12,5 +12,5 @@ RUN npm i \
         node-red-contrib-covid19 \
         node-red-contrib-deconz \
         node-red-contrib-influxdb \
-        node-red-contrib-metric-per-topic
+        node-red-contrib-topic-frequencies
         
