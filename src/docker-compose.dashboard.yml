@@ -4,10 +4,11 @@ services:
 
   influxdb:
     image: influxdb
+    restart: always
     user: "${UID}:${GID}"
-    ports:
-      - "8083:8083"
-      - "8086:8086"
+    # ports:
+    #   - "8083:8083"
+    #   - "8086:8086"
     volumes: 
       - ./var/lib/influxdb:/var/lib/influxdb:rw
       - ./var/lib/.influx_history:/.influx_history
@@ -19,6 +20,7 @@ services:
 
   telegraf:
     image: telegraf
+    restart: always
     network_mode: host
     volumes:
       - ./etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
@@ -32,6 +34,7 @@ services:
       HOST_ETC: /rootfs/etc
 
   grafana:
+    restart: always
     image: grafana/grafana
     user: "${UID}:${GID}"
     ports:
