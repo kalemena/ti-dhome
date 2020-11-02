@@ -54,6 +54,13 @@ services:
     env_file:
      - .env
 
+  tools:
+    image: attestation-covid19
+    volumes:
+      - ./tidhome/data/covid/config_clement.inc:/data/config/config.inc:ro
+    # ports:
+    #   - 5000:5000
+
   web:
     image: nginx
     restart: always
