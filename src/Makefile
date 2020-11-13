@@ -1,46 +1,63 @@
+##########################
+# Initialize Environment
+##########################
 
-############################
-# Prepare for 1st time usage
-############################
-init: init-images build-images init-influxdb init-telegraf init-grafana init-nodered
+init: init-images init-influxdb init-telegraf init-grafana
 
 init-images:
+	echo "Initialize: Pull Images ..."
 	docker-compose pull
 
-build-images:
-	docker-compose build
-
 init-influxdb:
-	mkdir -p var/lib/influxdb/meta
+	echo "Initialize: Setup InfluxDB ..."
+	# For information only
 	mkdir -p etc/influxdb
-	docker run --rm influxdb influxd config | tee etc/influxdb/influxdb.conf > /dev/null
-	touch var/lib/.influx_history
-
-	docker run --rm \
-		--user 1000:1000 \
-		-e INFLUXDB_HTTP_AUTH_ENABLED=true \
-        -e INFLUXDB_ADMIN_USER=default \
-        -e INFLUXDB_ADMIN_PASSWORD=password \
-        -v $(CURDIR)/var/lib/influxdb:/var/lib/influxdb \
-        -v $(CURDIR)/etc/influxdb/scripts:/docker-entrypoint-initdb.d \
-        influxdb /init-influxdb.sh
+	docker run --rm influxdb influxd config | tee etc/influxdb/influxdb-default.conf > /dev/null
+	cp -n etc/influxdb/influxdb-default.conf etc/influxdb/influxdb.conf
+	# Volumes
+	# mkdir -p var/lib/influxdb
+	# touch var/lib/.influx_history
+	# Initialize DB (done through first run)
+	docker-compose up -d influxdb
+	sleep 10s
+	docker-compose down
+	# docker run --rm \
+	# 	--user 1000:1000 \
+	# 	-e INFLUXDB_HTTP_AUTH_ENABLED=true \
+    #     -e INFLUXDB_ADMIN_USER=default \
+    #     -e INFLUXDB_ADMIN_PASSWORD=password \
+    #     -v $(CURDIR)/var/lib/influxdb:/var/lib/influxdb \
+    #     -v $(CURDIR)/etc/influxdb/scripts:/docker-entrypoint-initdb.d \
+    #     influxdb /init-influxdb.sh
 
 init-telegraf:
+	echo "Initialize: Setup Telegraf ..."
+	# For information only
 	mkdir -p etc/telegraf
-	docker run --rm telegraf telegraf config | tee etc/telegraf/telegraf.conf > /dev/null
+	docker run --rm telegraf telegraf config | tee etc/telegraf/telegraf-default.conf > /dev/null
+	cp -n etc/telegraf/telegraf-default.conf etc/telegraf/telegraf.conf
 
 init-grafana:
-	mkdir -p var/lib/grafana
-	mkdir -p var/log/grafana
+	echo "Initialize: Setup Grafana ..."
+	# mkdir -p var/lib/grafana
+	# mkdir -p var/log/grafana
 
-init-nodered:
-	mkdir -p var/log/node-red
+##########################
+# Test Environment
+##########################
 
-############################
-# Manages life cycle
-############################
+test.influxdb:
+	docker-compose exec influxdb influx
+
+##########################
+# Manage Environment
+##########################
+
 start: 
 	docker-compose up -d
+
+logs:
+	docker-compose logs -f
 
 stop:
 	docker-compose stop

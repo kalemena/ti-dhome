@@ -1,2 +1,17 @@
 CREATE DATABASE weather;
 CREATE RETENTION POLICY one_week ON weather DURATION 168h REPLICATION 1 DEFAULT;
+CREATE DATABASE covid19;
+
+# CREATE RETENTION POLICY one_week ON covid19 DURATION 168h REPLICATION 1 DEFAULT;
+
+# Example
+# create database iotdb
+# show retention policies on iotdb
+# create retention policy three_hours_iot_training on iotdb duration 3h replication 1 default
+# show retention policies on iotdb
+
+# use iotdb
+# show measurements
+# show series
+# select * from temperature
+# select * from weather
