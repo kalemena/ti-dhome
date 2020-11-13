@@ -32,6 +32,10 @@ services:
       - DEBUG_OTAU=0
     extra_hosts:
       - "phoscon.de:127.0.0.1"
+    networks:
+      default:
+        aliases:
+          - deconz.tidhome.local
 
   nodered:
     #image: kalemena/node-red:latest
@@ -55,9 +59,9 @@ services:
      - .env
 
   tools:
-    image: attestation-covid19
-    volumes:
-      - ./tidhome/data/covid/config_clement.inc:/data/config/config.inc:ro
+    image: kalemena/attestation-covid19:latest
+    #volumes:
+    #  - ./tidhome/data/covid/config_clement.inc:/data/config/config.inc:ro
     # ports:
     #   - 5000:5000
 
