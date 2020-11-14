@@ -29,7 +29,7 @@
           "rgba(237, 129, 40, 0.89)",
           "#d44a3a"
         ],
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "fieldConfig": {
           "defaults": {
             "custom": {}
@@ -146,7 +146,7 @@
           "#629e51",
           "#bf1b00"
         ],
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "fieldConfig": {
           "defaults": {
             "custom": {}
@@ -268,7 +268,7 @@
           "#e0752d",
           "#bf1b00"
         ],
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "fieldConfig": {
           "defaults": {
             "custom": {}
@@ -383,7 +383,7 @@
       },
       {
         "columns": [],
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "fieldConfig": {
           "defaults": {
             "custom": {}
@@ -527,7 +527,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "decimals": 0,
         "fieldConfig": {
           "defaults": {
@@ -695,7 +695,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "decimals": 0,
         "fieldConfig": {
           "defaults": {
@@ -865,7 +865,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "decimals": 0,
         "fieldConfig": {
           "defaults": {
@@ -1076,7 +1076,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "decimals": 0,
         "fieldConfig": {
           "defaults": {
@@ -1304,7 +1304,7 @@
               "$__all"
             ]
           },
-          "datasource": "InfluxDB",
+          "datasource": "InfluxDB-Telegraf",
           "definition": "",
           "error": null,
           "hide": 0,
@@ -1336,7 +1336,7 @@
               "$__all"
             ]
           },
-          "datasource": "InfluxDB",
+          "datasource": "InfluxDB-Telegraf",
           "definition": "",
           "error": null,
           "hide": 0,

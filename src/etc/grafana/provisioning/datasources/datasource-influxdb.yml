@@ -9,7 +9,7 @@ deleteDatasources:
 # list of datasources to insert/update depending
 # whats available in the database
 datasources:
-  - name: 'InfluxDB'
+  - name: 'InfluxDB-Telegraf'
     org_id: 1
     type: 'influxdb'
     access: 'proxy'
@@ -17,4 +17,14 @@ datasources:
     is_default: true
     url: 'http://influxdb:8086'
     database: 'telegraf'
+    version: 1
+
+  - name: 'InfluxDB-Covid19'
+    org_id: 1
+    type: 'influxdb'
+    access: 'proxy'
+    editable: true
+    is_default: true
+    url: 'http://influxdb:8086'
+    database: 'covid19'
     version: 1

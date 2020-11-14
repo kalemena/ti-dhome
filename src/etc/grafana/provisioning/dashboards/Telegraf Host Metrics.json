@@ -29,7 +29,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -146,7 +146,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -263,7 +263,7 @@
         "rgba(235, 123, 30, 0.89)",
         "rgba(106, 45, 172, 0.81)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -380,7 +380,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -497,7 +497,7 @@
         "rgba(244, 126, 30, 0.89)",
         "rgba(98, 54, 245, 0.9)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -615,7 +615,7 @@
         "rgba(244, 126, 30, 0.89)",
         "rgb(196, 95, 95)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -732,7 +732,7 @@
         "rgba(244, 126, 30, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -850,7 +850,7 @@
         "rgba(244, 126, 30, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -968,7 +968,7 @@
         "rgba(244, 126, 30, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1086,7 +1086,7 @@
         "rgba(244, 126, 30, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1204,7 +1204,7 @@
         "rgba(244, 126, 30, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1322,7 +1322,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1558,7 +1558,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1734,7 +1734,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2001,7 +2001,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2269,7 +2269,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2700,7 +2700,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2833,7 +2833,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -3084,7 +3084,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": "InfluxDB-Telegraf",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -3430,7 +3430,7 @@
     "list": [
       {
         "allValue": null,
-        "datasource": "InfluxDB",
+        "datasource": "InfluxDB-Telegraf",
         "definition": "",
         "error": null,
         "hide": 0,
