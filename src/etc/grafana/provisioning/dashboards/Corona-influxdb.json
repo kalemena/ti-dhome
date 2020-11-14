@@ -1291,6 +1291,178 @@
       }
     },
     {
+      "aliasColors": {
+        "confirmed": "dark-orange",
+        "confirmed.sum": "dark-orange",
+        "deaths": "dark-red",
+        "deaths.sum": "dark-red",
+        "fatality_rate": "light-purple",
+        "recovered": "dark-green",
+        "recovered.sum": "dark-green",
+        "remaining": "semi-dark-blue"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB-Covid19",
+      "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "hiddenSeries": false,
+      "id": 42,
+      "interval": "6h",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.2",
+      "pointradius": 1,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Fatality_Ratio",
+          "color": "#CA95E5",
+          "dashes": true,
+          "linewidth": 2,
+          "points": false,
+          "yaxis": 2
+        },
+        {
+          "alias": "Recovery_Ratio",
+          "color": "#8AB8FF",
+          "dashes": true,
+          "linewidth": 2,
+          "points": false,
+          "yaxis": 2
+        },
+        {
+          "alias": "Remaining",
+          "color": "#3274D9",
+          "linewidth": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CoronaNew",
+          "orderByTime": "ASC",
+          "policy": "covid19\".\"autogen",
+          "query": "SELECT sum(ConfirmedNew) AS \"Confirmed\", sum(DeathsNew) AS \"Deaths\", sum(RecoveredNew) AS \"Recovered\", 100*sum(DeathsNew)/sum(ConfirmedNew) as \"Fatality_Ratio\", 100*sum(RecoveredNew)/sum(ConfirmedNew) as \"Recovery_Ratio\", sum(ConfirmedNew)-sum(DeathsNew)-sum(RecoveredNew) as \"Remaining\" \nFROM \"covid19\".\"autogen\".\"CoronaNew\" WHERE $timeFilter GROUP BY time(24h) fill(previous)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Confirmed"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "Confirmed"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": 2,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -1309,7 +1481,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 26
+        "y": 38
       },
       "hiddenSeries": false,
       "id": 21,
@@ -1442,7 +1614,7 @@
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 26
+        "y": 38
       },
       "hiddenSeries": false,
       "id": 39,
@@ -1575,7 +1747,7 @@
         "h": 6,
         "w": 6,
         "x": 12,
-        "y": 26
+        "y": 38
       },
       "hiddenSeries": false,
       "id": 23,
@@ -1708,7 +1880,7 @@
         "h": 6,
         "w": 6,
         "x": 18,
-        "y": 26
+        "y": 38
       },
       "hiddenSeries": false,
       "id": 24,
@@ -1849,7 +2021,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 32
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 38,
@@ -1982,7 +2154,7 @@
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 32
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 22,
@@ -2115,7 +2287,7 @@
         "h": 6,
         "w": 6,
         "x": 12,
-        "y": 32
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 40,
@@ -2248,7 +2420,7 @@
         "h": 6,
         "w": 6,
         "x": 18,
-        "y": 32
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 41,
@@ -2377,7 +2549,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 50
       },
       "id": 33,
       "panels": [],
@@ -2389,7 +2561,7 @@
         "Confirmed": "yellow",
         "Deaths": "red",
         "Germany": "green",
-        "Recovered": "green"
+        "Recovered": "light-red"
       },
       "bars": false,
       "dashLength": 10,
@@ -2409,7 +2581,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 39
+        "y": 51
       },
       "hiddenSeries": false,
       "id": 28,
@@ -2435,7 +2607,16 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "Confirmed",
+          "yaxis": 2
+        },
+        {
+          "alias": "Recovered",
+          "yaxis": 1
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
@@ -2592,6 +2773,57 @@
               "value": "France"
             }
           ]
+        },
+        {
+          "alias": "Deaths (mean)",
+          "groupBy": [
+            {
+              "params": [
+                "96h"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CoronaNew",
+          "orderByTime": "ASC",
+          "policy": "covid19\".\"autogen",
+          "query": "SELECT mean(DeathsNew) FROM \"covid19\".\"autogen\".\"CoronaNew\" WHERE (\"country\" = 'France') AND $timeFilter GROUP BY time(96h), \"country\" fill(null)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "RecoveredNew"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "country",
+              "operator": "=",
+              "value": "France"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -2627,7 +2859,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -2666,7 +2898,7 @@
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 39
+        "y": 51
       },
       "id": 9,
       "interval": "",
@@ -2804,7 +3036,7 @@
         "h": 6,
         "w": 6,
         "x": 12,
-        "y": 39
+        "y": 51
       },
       "id": 10,
       "interval": "",
@@ -2940,7 +3172,7 @@
         "h": 6,
         "w": 6,
         "x": 18,
-        "y": 39
+        "y": 51
       },
       "id": 11,
       "interval": null,
@@ -3053,7 +3285,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 57
       },
       "id": 37,
       "panels": [],
@@ -3084,7 +3316,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 46
+        "y": 58
       },
       "hiddenSeries": false,
       "id": 25,
@@ -3334,7 +3566,7 @@
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 46
+        "y": 58
       },
       "hiddenSeries": false,
       "id": 26,
@@ -3584,7 +3816,7 @@
         "h": 6,
         "w": 6,
         "x": 12,
-        "y": 46
+        "y": 58
       },
       "hiddenSeries": false,
       "id": 27,
@@ -3840,7 +4072,7 @@
         "h": 6,
         "w": 6,
         "x": 18,
-        "y": 46
+        "y": 58
       },
       "id": 8,
       "interval": "",
@@ -3947,7 +4179,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 52
+        "y": 64
       },
       "id": 35,
       "panels": [
@@ -4156,5 +4388,5 @@
   "timezone": "browser",
   "title": "Corona",
   "uid": "6_b44HuZk",
-  "version": 1
+  "version": 6
 }
