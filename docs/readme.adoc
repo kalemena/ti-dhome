@@ -24,11 +24,11 @@ A small and flexible Node-Red workflow allows to orchestrate heaters based on si
 
 The source and explanation in this repository are following few principles:
 
-* Avoid complex monolithic framework used here and there on automation
+* Avoid complex monolithic framework used here and there in automation
 * Avoid using proprietary gateways named *boxes* such as any IKEA, Xiaomi, Amazon Echo, Leroy Merlin, etc
 * Use (or re-use) available technology, avoid deprecation, but stay open to new technology
 * Client(s)/server(s) plugs together using *ANY* progamming language by leveraging message queues (MQTT) when necessary
-* DIY sensors or Web device are using simple arduino sketches
+* DIY sensors or Web devices are using simple arduino sketches
 * Each element (e.g. Timeseries datastore) can be any, or multiple, and are interchangeable
 * Deploy as much as possible with automation in mind, using link:https://www.docker.com/[Docker]
 
