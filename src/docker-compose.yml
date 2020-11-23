@@ -59,7 +59,8 @@ services:
      - .env
 
   tools:
-    image: kalemena/attestation-covid19:latest
+    # image: kalemena/attestation-covid19:latest
+    build: https://github.com/kalemena/attestation-covid19.git 
     #volumes:
     #  - ./tidhome/data/covid/config_clement.inc:/data/config/config.inc:ro
     # ports:
