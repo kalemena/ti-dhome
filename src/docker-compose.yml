@@ -17,10 +17,14 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./etc/deconz:/root/.local/share/dresden-elektronik/deCONZ
+      - /run/udev:/run/udev:ro  # so that serial number vendor/product ids are known
+    device_cgroup_rules:
+      - 'c 166:* rmw' # allow creation of /dev/ttyACMx nodes via mknod
+      - 'c 188:* rmw' # allow creation of /dev/ttyUSBx nodes via mknod
     devices:
-      - /dev/ttyZigbee
+      - /dev/bus/usb
     environment:
-      - DECONZ_DEVICE=/dev/ttyZigbee
+      # - DECONZ_DEVICE=/dev/ttyZigbee
       - DECONZ_WEB_PORT=7080
       - DECONZ_WS_PORT=7443
       # - DECONZ_VNC_MODE=1
@@ -32,6 +36,7 @@ services:
       - DEBUG_OTAU=0
     extra_hosts:
       - "phoscon.de:127.0.0.1"
+      - "dresden-light.appspot.com:127.0.0.1"
     networks:
       default:
         aliases:
