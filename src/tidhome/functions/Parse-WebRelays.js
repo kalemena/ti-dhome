@@ -5,24 +5,26 @@ var displayMsg = ""
 timestampH = new Date().toISOString()
 timestamp = new Date().getTime()
 
-for (var i in msg.payload) {
+for (var i in msg.payload.relays) {
+    
+    relayId = msg.payload.relays[i].id
+    relayDesc = msg.payload.relays[i].description
+    relayValue = msg.payload.relays[i].value
     type = 'toggle'
-    nodeid = msg.payload[i].switch
     entry = 0
-    value = msg.payload[i].value
     
     var msgS = {}
-    msgS.topic = 'sensors/iotheaters/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;
+    msgS.topic = 'sensors/iotheaters/nodes/' + relayId + '/entries/' + entry + '/events/' + type;
     msgS.payload = { 
         "gateway":"iotheaters",
-        "id": nodeid,
+        "id": relayId,
         "entry": entry,
         "type": type,
-        "value": value,
+        "value": relayValue,
         "timestamp": timestamp,
         "timestamp-human": timestampH
     }
-    displayMsg += msg.payload[i].description + "(" + msg.payload[i].switch + ")=" + msg.payload[i].value + "; "
+    displayMsg += relayDesc + "(" + relayId + ")=" + relayValue + "; "
     outputMsgs.push(msgS);
 }
 
