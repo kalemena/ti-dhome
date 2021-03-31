@@ -42,6 +42,30 @@ services:
         aliases:
           - deconz.tidhome.local
 
+  # influxdb:
+  #   image: influxdb
+  #   # user: "${UID}:${GID}"
+  #   restart: always
+  #   ports:
+  #     - "8083:8083"
+  #     - "8086:8086"
+  #   volumes: 
+  #     - ./etc/influxdb/scripts:/docker-entrypoint-initdb.d
+  #     # - ./var/lib/influxdb:/var/lib/influxdb:rw
+  #     # - ./var/lib/.influx_history:/.influx_history
+  #     - influxdb-data:/var/lib/influxdb:rw
+  #   environment:
+  #     INFLUXDB_DB: "telegraf"
+  #     INFLUXDB_REPORTING_DISABLED: "true"
+  #     INFLUXDB_ADMIN_ENABLED: "true"
+  #     INFLUXDB_ADMIN_USER: ${INFLUXDB_ADMIN_USER:-default}
+  #     INFLUXDB_ADMIN_PASSWORD: ${INFLUXDB_ADMIN_PASSWORD:-password}
+  #     INFLUXDB_USER: ${INFLUXDB_USER:-default}
+  #     INFLUXDB_USER_PASSWORD: ${INFLUXDB_USER_PASSWORD:-password}
+  #     INFLUXDB_MONITOR_STORE_ENABLED: "false"
+  #     INFLUXDB_META_LOGGING_ENABLED: "true"
+  #     INFLUXDB_DATA_QUERY_LOG_ENABLED: "false"
+
   nodered:
     #image: kalemena/node-red:latest
     build: ./scripts
