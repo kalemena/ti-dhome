@@ -23,10 +23,10 @@ var
 session.default
 
 birthdays*
-# .config.json
-# package.json
-# settings.js
-# *_cred.json
+.config.json
+package.json
+settings.js
+*_cred.json
 # ozw*
 
 
