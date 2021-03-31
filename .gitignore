@@ -12,6 +12,7 @@ var
 *.log
 *Log*
 *cache*
+*.bkp
 
 # Private
 *private
@@ -21,7 +22,7 @@ var
 *.db
 session.default
 
-# birthdays*
+birthdays*
 # .config.json
 # package.json
 # settings.js
