@@ -1,19 +1,9 @@
 CREATE DATABASE sensors;
 CREATE RETENTION POLICY one_week ON sensors DURATION 168h REPLICATION 1 DEFAULT;
-CREATE RETENTION POLICY one_month ON sensors DURATION 4w REPLICATION 1;
 CREATE RETENTION POLICY one_year ON sensors DURATION 52w REPLICATION 1;
+CREATE RETENTION POLICY ten_years ON sensors DURATION 520w REPLICATION 1;
+CREATE CONTINUOUS QUERY "cq_15m" ON "sensors" BEGIN SELECT mean("value") AS "mean_value" INTO "one_year"."downsampled_sensors" FROM "sensors" GROUP BY time(15m), type, location END;
 CREATE DATABASE covid19;
-
-# Example
-# create database sensors
-# show retention policies on sensors
-# create retention policy three_hours on sensors duration 3h replication 1 default
-# show retention policies on sensors
-
-# use sensors
-# show measurements
-# show series
-# select * from sensors
 
 # Users
 # CREATE USER admin WITH PASSWORD 'admin123' WITH ALL PRIVILEGES
