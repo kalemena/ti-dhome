@@ -1,4 +1,8 @@
 version: '3.7'
+
+volumes:
+  influxdb-data:
+
 services:
 
   mqtt:
