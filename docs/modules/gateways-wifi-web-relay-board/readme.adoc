@@ -1,0 +1,5 @@
+= Module - Web Relay Board
+
+This is an external Ti-Dhome module designed at link:https://github.com/kalemena/ti-dhome-web-relay-board[]
+
+Integration in Node-Red is done through the link:https://github.com/kalemena/ti-dhome-web-relay-board/blob/master/api.adoc[REST API]
