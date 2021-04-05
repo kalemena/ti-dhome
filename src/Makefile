@@ -53,6 +53,9 @@ test.influxdb:
 # Manage Environment
 ##########################
 
+build:
+	docker-compose build
+
 start: 
 	docker-compose up -d
 
