@@ -1,0 +1,648 @@
+[
+  {
+    "id": "b1782abc.430f38",
+    "type": "tab",
+    "label": "Sensors-WebRelay",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "e2c89ae6.57aa1",
+    "type": "http request",
+    "z": "b1782abc.430f38",
+    "name": "Web Relays",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://192.168.1.60/status",
+    "tls": "",
+    "persist": true,
+    "proxy": "",
+    "authType": "",
+    "x": 370,
+    "y": 140,
+    "wires": [
+      [
+        "aed3b5e8.2bdba",
+        "7c54b8f2.2432a"
+      ]
+    ]
+  },
+  {
+    "id": "1757f9f9.180a86",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "Poll Web Relays (60s)",
+    "repeat": "60",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 160,
+    "y": 140,
+    "wires": [
+      [
+        "e2c89ae6.57aa1"
+      ]
+    ]
+  },
+  {
+    "id": "bf66c587.e16b18",
+    "type": "mqtt out",
+    "z": "b1782abc.430f38",
+    "name": "sensors/xxx/nodes/...",
+    "topic": "",
+    "qos": "",
+    "retain": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 820,
+    "y": 110,
+    "wires": []
+  },
+  {
+    "id": "aed3b5e8.2bdba",
+    "type": "file function",
+    "z": "b1782abc.430f38",
+    "name": "Parse WebRelays",
+    "filename": "/opt/tidhome/functions/Parse-WebRelays.js",
+    "reloadfile": true,
+    "outputs": 1,
+    "x": 560,
+    "y": 140,
+    "wires": [
+      [
+        "bf66c587.e16b18"
+      ]
+    ]
+  },
+  {
+    "id": "220263b.bb9aa1c",
+    "type": "catch",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "scope": null,
+    "uncaught": false,
+    "x": 110,
+    "y": 80,
+    "wires": [
+      [
+        "5d10dd0b.1db574"
+      ]
+    ]
+  },
+  {
+    "id": "5d10dd0b.1db574",
+    "type": "link out",
+    "z": "b1782abc.430f38",
+    "name": "General CatchAll",
+    "links": [
+      "1bf42829.b3e0b8"
+    ],
+    "x": 265,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "7c54b8f2.2432a",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 540,
+    "y": 190,
+    "wires": []
+  },
+  {
+    "id": "a7d2ebd0.4c12a",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "01 - Bureau",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "1",
+    "x": 120,
+    "y": 410,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "6c6e6c5d.0ac7ac",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "00 - SdJ",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "0",
+    "x": 110,
+    "y": 370,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "bb55b46b.570be8",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "02 - Chambre L.",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "2",
+    "x": 130,
+    "y": 450,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "9f42607e.9d9368",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "03 - Chambre D.",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "3",
+    "x": 130,
+    "y": 490,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "abc37c81.f3592",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "04 - SdB - Haut",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "4",
+    "x": 130,
+    "y": 530,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "cdcf4c5a.dce938",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "05 - Mezanine",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "5",
+    "x": 120,
+    "y": 570,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "5f8460fe.a89da",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "06 - Chambre P/M",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "6",
+    "x": 140,
+    "y": 610,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "66076534.bebc9c",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "07 - SdB - Bas",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "7",
+    "x": 130,
+    "y": 650,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "883e7994.d94b68",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "14 - Salon",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "14",
+    "x": 110,
+    "y": 690,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "930f4fce.94c2d8",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "15 - Hall",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "15",
+    "x": 110,
+    "y": 730,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "558d963e.cb324",
+    "type": "comment",
+    "z": "b1782abc.430f38",
+    "name": "IOTHeaters - Test",
+    "info": "",
+    "x": 130,
+    "y": 330,
+    "wires": []
+  },
+  {
+    "id": "aab849a7.ee2658",
+    "type": "mqtt out",
+    "z": "b1782abc.430f38",
+    "name": "actors/iotheaters/switch",
+    "topic": "actors/iotheaters/switch",
+    "qos": "",
+    "retain": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 1160,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "741678fd.3f4f18",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{}",
+        "tot": "json"
+      },
+      {
+        "t": "set",
+        "p": "payload.id",
+        "pt": "msg",
+        "to": "topic",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 870,
+    "y": 360,
+    "wires": [
+      [
+        "aab849a7.ee2658",
+        "e790a499.f53248"
+      ]
+    ]
+  },
+  {
+    "id": "9c1a2185.ace048",
+    "type": "link in",
+    "z": "b1782abc.430f38",
+    "name": "WebRelaysIn",
+    "links": [],
+    "x": 535,
+    "y": 570,
+    "wires": [
+      [
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "c269b719.1c237",
+    "type": "link in",
+    "z": "b1782abc.430f38",
+    "name": "WebRelaysInLatch",
+    "links": [
+      "7dfb853e.03a1f4"
+    ],
+    "x": 535,
+    "y": 620,
+    "wires": [
+      [
+        "d5867a8d.091"
+      ]
+    ]
+  },
+  {
+    "id": "e790a499.f53248",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "true",
+    "x": 1100,
+    "y": 410,
+    "wires": []
+  },
+  {
+    "id": "9a182caa.06e45",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1010,
+    "y": 620,
+    "wires": []
+  },
+  {
+    "id": "50816b6.a434a94",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "08 - Portail",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "8",
+    "payload": "",
+    "payloadType": "date",
+    "x": 490,
+    "y": 660,
+    "wires": [
+      [
+        "d5867a8d.091"
+      ]
+    ]
+  },
+  {
+    "id": "deb0a59.85d1458",
+    "type": "trigger",
+    "z": "b1782abc.430f38",
+    "name": "Portail Clic",
+    "op1": "",
+    "op2": "",
+    "op1type": "nul",
+    "op2type": "pay",
+    "duration": "1",
+    "extend": true,
+    "overrideDelay": false,
+    "units": "s",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 860,
+    "y": 660,
+    "wires": [
+      [
+        "ae57d3a3.e3fe88",
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "ae57d3a3.e3fe88",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1010,
+    "y": 660,
+    "wires": []
+  },
+  {
+    "id": "d5867a8d.091",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "",
+        "tot": "date"
+      },
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "8",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 660,
+    "y": 660,
+    "wires": [
+      [
+        "deb0a59.85d1458",
+        "9a182caa.06e45",
+        "741678fd.3f4f18"
+      ]
+    ]
+  },
+  {
+    "id": "e2d7dc14.f1a8a8",
+    "type": "comment",
+    "z": "b1782abc.430f38",
+    "name": "Actors - MQTT push",
+    "info": "",
+    "x": 140,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "dda2b638.2a5f7",
+    "type": "mqtt in",
+    "z": "b1782abc.430f38",
+    "name": "actors/iotheaters/switch",
+    "topic": "actors/iotheaters/switch",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "c38452a5.4f84e8",
+    "x": 150,
+    "y": 260,
+    "wires": [
+      [
+        "f8329ea7.84c6d8"
+      ]
+    ]
+  },
+  {
+    "id": "f8329ea7.84c6d8",
+    "type": "http request",
+    "z": "b1782abc.430f38",
+    "name": "Switch Web Relays",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.1.60/relays/set?id={{{payload.id}}}",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 500,
+    "y": 260,
+    "wires": [
+      [
+        "eeed3c1e.9602e8"
+      ]
+    ]
+  },
+  {
+    "id": "eeed3c1e.9602e8",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "true",
+    "x": 870,
+    "y": 260,
+    "wires": []
+  }
+]
