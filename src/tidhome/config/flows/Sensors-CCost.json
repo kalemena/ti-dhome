@@ -1,0 +1,95 @@
+[
+  {
+    "id": "f96b3a53.67de8",
+    "type": "tab",
+    "label": "Sensors-CCost",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "81a1739b.736d1",
+    "type": "serial in",
+    "z": "f96b3a53.67de8",
+    "name": "CurrentCost",
+    "serial": "36396f66.41717",
+    "x": 130,
+    "y": 110,
+    "wires": [
+      [
+        "e9003ce.5c1f84"
+      ]
+    ]
+  },
+  {
+    "id": "e9003ce.5c1f84",
+    "type": "xml",
+    "z": "f96b3a53.67de8",
+    "name": "xml2json",
+    "property": "payload",
+    "attr": "",
+    "chr": "",
+    "x": 340,
+    "y": 110,
+    "wires": [
+      [
+        "136be37c.938365"
+      ]
+    ]
+  },
+  {
+    "id": "57c57a10.955624",
+    "type": "mqtt out",
+    "z": "f96b3a53.67de8",
+    "name": "sensors/xxx/nodes/...",
+    "topic": "",
+    "qos": "",
+    "retain": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 840,
+    "y": 110,
+    "wires": []
+  },
+  {
+    "id": "136be37c.938365",
+    "type": "file function",
+    "z": "f96b3a53.67de8",
+    "name": "Parse CurrentCost",
+    "filename": "/opt/tidhome/functions/Parse-CurrentCost.js",
+    "reloadfile": false,
+    "outputs": 1,
+    "x": 570,
+    "y": 110,
+    "wires": [
+      [
+        "57c57a10.955624"
+      ]
+    ]
+  },
+  {
+    "id": "a44c6fd5.e88c1",
+    "type": "catch",
+    "z": "f96b3a53.67de8",
+    "name": "",
+    "scope": null,
+    "uncaught": false,
+    "x": 120,
+    "y": 70,
+    "wires": [
+      [
+        "4a641f47.46cb08"
+      ]
+    ]
+  },
+  {
+    "id": "4a641f47.46cb08",
+    "type": "link out",
+    "z": "f96b3a53.67de8",
+    "name": "General CatchAll",
+    "links": [
+      "1bf42829.b3e0b8"
+    ],
+    "x": 275,
+    "y": 70,
+    "wires": []
+  }
+]
