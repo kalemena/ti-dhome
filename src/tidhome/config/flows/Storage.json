@@ -1,0 +1,137 @@
+[
+  {
+    "id": "d88a69c4.1942c8",
+    "type": "tab",
+    "label": "Storage",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "cc675ec4.106d",
+    "type": "comment",
+    "z": "d88a69c4.1942c8",
+    "name": "Sensors - Heaters/Power/RFM868",
+    "info": "",
+    "x": 180,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "90d304a9.c871a",
+    "type": "mqtt in",
+    "z": "d88a69c4.1942c8",
+    "name": "sensors/#",
+    "topic": "sensors/#",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "c38452a5.4f84e8",
+    "x": 100,
+    "y": 160,
+    "wires": [
+      [
+        "dcd509f1.d56dd"
+      ]
+    ]
+  },
+  {
+    "id": "14def27.355280e",
+    "type": "debug",
+    "z": "d88a69c4.1942c8",
+    "name": "Debug",
+    "active": false,
+    "tosidebar": true,
+    "console": true,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 870,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "dcd509f1.d56dd",
+    "type": "function",
+    "z": "d88a69c4.1942c8",
+    "name": "Store Global",
+    "func": "var topicNodesPrefix = 'tidhome.sensors.' + msg.payload.gateway + '.nodes'\nvar nodes = global.get(topicNodesPrefix) || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        entryStr = (msg.payload.entry != undefined) ? ('-' + msg.payload.entry) : ''\n        global.set(topicNodesPrefix + '[' + i + '].' + msg.payload.type + entryStr, msg.payload.value);\n        global.set(topicNodesPrefix + '[' + i + '].timestamp', msg.payload.timestamp);\n    }\n}\n// pass through\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 440,
+    "y": 160,
+    "wires": [
+      [
+        "14def27.355280e"
+      ]
+    ]
+  },
+  {
+    "id": "694da039.ceca8",
+    "type": "catch",
+    "z": "d88a69c4.1942c8",
+    "name": "",
+    "scope": null,
+    "uncaught": false,
+    "x": 100,
+    "y": 80,
+    "wires": [
+      [
+        "950a0758.599f88"
+      ]
+    ]
+  },
+  {
+    "id": "950a0758.599f88",
+    "type": "link out",
+    "z": "d88a69c4.1942c8",
+    "name": "General CatchAll",
+    "links": [
+      "1bf42829.b3e0b8"
+    ],
+    "x": 255,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "f510711e.2bca98",
+    "type": "trigger",
+    "z": "d88a69c4.1942c8",
+    "name": "Watchdog",
+    "op1": "",
+    "op2": "",
+    "op1type": "nul",
+    "op2type": "payl",
+    "duration": "15",
+    "extend": true,
+    "units": "min",
+    "reset": "",
+    "bytopic": "topic",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 430,
+    "y": 230,
+    "wires": [
+      [
+        "af1ad962.e16788"
+      ]
+    ]
+  },
+  {
+    "id": "af1ad962.e16788",
+    "type": "debug",
+    "z": "d88a69c4.1942c8",
+    "name": "Msg Content",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 610,
+    "y": 230,
+    "wires": []
+  }
+]
