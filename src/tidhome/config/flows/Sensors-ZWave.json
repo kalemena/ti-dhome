@@ -1,0 +1,342 @@
+[
+  {
+    "id": "f05920f3.ffcdb8",
+    "type": "tab",
+    "label": "Sensors-ZWave",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "52ce40ac.9e4088",
+    "type": "catch",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "scope": null,
+    "uncaught": false,
+    "x": 100,
+    "y": 80,
+    "wires": [
+      [
+        "e89ea7a2.3f6668"
+      ]
+    ]
+  },
+  {
+    "id": "e89ea7a2.3f6668",
+    "type": "link out",
+    "z": "f05920f3.ffcdb8",
+    "name": "General CatchAll",
+    "links": [
+      "1bf42829.b3e0b8"
+    ],
+    "x": 255,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "2362314e.1f34c6",
+    "type": "zwave-in",
+    "z": "f05920f3.ffcdb8",
+    "name": "ZWave-USB",
+    "controller": "d6378b62.a3ced8",
+    "x": 110,
+    "y": 120,
+    "wires": [
+      [
+        "cce91c7f.80f468"
+      ]
+    ]
+  },
+  {
+    "id": "cce91c7f.80f468",
+    "type": "switch",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "property": "payload.cmdclass",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "50",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "37",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 590,
+    "y": 120,
+    "wires": [
+      [
+        "3b0089c1.42fc26"
+      ],
+      [
+        "a9493a41.2acd68"
+      ]
+    ]
+  },
+  {
+    "id": "3b0089c1.42fc26",
+    "type": "debug",
+    "z": "f05920f3.ffcdb8",
+    "name": "Event",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 780,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "a9493a41.2acd68",
+    "type": "debug",
+    "z": "f05920f3.ffcdb8",
+    "name": "Switch",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 780,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "5658dcd.5fb1524",
+    "type": "zwave-out",
+    "z": "f05920f3.ffcdb8",
+    "name": "ZWave Out",
+    "controller": "d6378b62.a3ced8",
+    "x": 390,
+    "y": 450,
+    "wires": [
+      [
+        "2e837db0.342a4a"
+      ]
+    ]
+  },
+  {
+    "id": "2e837db0.342a4a",
+    "type": "debug",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 560,
+    "y": 450,
+    "wires": []
+  },
+  {
+    "id": "20393f73.3797e8",
+    "type": "inject",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "switchOn",
+    "payload": "{\"nodeid\":6}",
+    "payloadType": "json",
+    "x": 140,
+    "y": 440,
+    "wires": [
+      [
+        "5658dcd.5fb1524",
+        "36acbac6.983b9e"
+      ]
+    ]
+  },
+  {
+    "id": "d697aa34.bc65e8",
+    "type": "inject",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "switchOff",
+    "payload": "{\"nodeid\":6}",
+    "payloadType": "json",
+    "x": 140,
+    "y": 480,
+    "wires": [
+      [
+        "5658dcd.5fb1524",
+        "36acbac6.983b9e"
+      ]
+    ]
+  },
+  {
+    "id": "f04132ae.a1adc8",
+    "type": "inject",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "switchOn",
+    "payload": "{\"nodeid\":7}",
+    "payloadType": "json",
+    "x": 140,
+    "y": 520,
+    "wires": [
+      [
+        "5658dcd.5fb1524",
+        "36acbac6.983b9e"
+      ]
+    ]
+  },
+  {
+    "id": "9becff.5a8283",
+    "type": "inject",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "switchOff",
+    "payload": "{\"nodeid\":7}",
+    "payloadType": "json",
+    "x": 140,
+    "y": 560,
+    "wires": [
+      [
+        "5658dcd.5fb1524",
+        "36acbac6.983b9e"
+      ]
+    ]
+  },
+  {
+    "id": "b6d90e2f.03f32",
+    "type": "link in",
+    "z": "f05920f3.ffcdb8",
+    "name": "inject",
+    "links": [
+      "21528503.db161a"
+    ],
+    "x": 125,
+    "y": 340,
+    "wires": [
+      [
+        "5658dcd.5fb1524",
+        "36acbac6.983b9e"
+      ]
+    ]
+  },
+  {
+    "id": "36acbac6.983b9e",
+    "type": "debug",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 370,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "973fddf7.4bfb28",
+    "type": "inject",
+    "z": "f05920f3.ffcdb8",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "enablePoll",
+    "payload": "{\"nodeid\":7,\"class_id\":37,\"instance\":1,\"index\":1}",
+    "payloadType": "json",
+    "x": 90,
+    "y": 300,
+    "wires": [
+      [
+        "5658dcd.5fb1524",
+        "36acbac6.983b9e"
+      ]
+    ]
+  },
+  {
+    "id": "fd894a46.2e8c2",
+    "type": "comment",
+    "z": "f05920f3.ffcdb8",
+    "name": "ZWave Devices",
+    "info": "",
+    "x": 120,
+    "y": 260,
+    "wires": []
+  }
+]
