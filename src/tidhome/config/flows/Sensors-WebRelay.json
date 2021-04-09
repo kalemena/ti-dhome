@@ -644,5 +644,37 @@
     "x": 870,
     "y": 260,
     "wires": []
+  },
+  {
+    "id": "a9a5a446.2c7cb",
+    "type": "websocket in",
+    "z": "b1782abc.430f38",
+    "name": "WebRelay",
+    "server": "",
+    "client": "26438802.204788",
+    "x": 230,
+    "y": 850,
+    "wires": [
+      [
+        "3a14fce6.fe7564"
+      ]
+    ]
+  },
+  {
+    "id": "3a14fce6.fe7564",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "WebRelayDebug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 480,
+    "y": 850,
+    "wires": []
   }
 ]
