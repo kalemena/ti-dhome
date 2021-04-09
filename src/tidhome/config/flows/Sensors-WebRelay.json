@@ -137,7 +137,7 @@
     "onceDelay": "",
     "topic": "1",
     "x": 120,
-    "y": 410,
+    "y": 480,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -161,7 +161,7 @@
     "onceDelay": "",
     "topic": "0",
     "x": 110,
-    "y": 370,
+    "y": 440,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -185,7 +185,7 @@
     "onceDelay": "",
     "topic": "2",
     "x": 130,
-    "y": 450,
+    "y": 520,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -209,7 +209,7 @@
     "onceDelay": "",
     "topic": "3",
     "x": 130,
-    "y": 490,
+    "y": 560,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -233,7 +233,7 @@
     "onceDelay": "",
     "topic": "4",
     "x": 130,
-    "y": 530,
+    "y": 600,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -257,7 +257,7 @@
     "onceDelay": "",
     "topic": "5",
     "x": 120,
-    "y": 570,
+    "y": 640,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -281,7 +281,7 @@
     "onceDelay": "",
     "topic": "6",
     "x": 140,
-    "y": 610,
+    "y": 680,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -305,7 +305,7 @@
     "onceDelay": "",
     "topic": "7",
     "x": 130,
-    "y": 650,
+    "y": 720,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -329,7 +329,7 @@
     "onceDelay": "",
     "topic": "14",
     "x": 110,
-    "y": 690,
+    "y": 760,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -353,7 +353,7 @@
     "onceDelay": "",
     "topic": "15",
     "x": 110,
-    "y": 730,
+    "y": 800,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -367,7 +367,7 @@
     "name": "IOTHeaters - Test",
     "info": "",
     "x": 130,
-    "y": 330,
+    "y": 400,
     "wires": []
   },
   {
@@ -380,7 +380,7 @@
     "retain": "",
     "broker": "c38452a5.4f84e8",
     "x": 1160,
-    "y": 360,
+    "y": 430,
     "wires": []
   },
   {
@@ -410,7 +410,7 @@
     "to": "",
     "reg": false,
     "x": 870,
-    "y": 360,
+    "y": 430,
     "wires": [
       [
         "aab849a7.ee2658",
@@ -425,7 +425,7 @@
     "name": "WebRelaysIn",
     "links": [],
     "x": 535,
-    "y": 570,
+    "y": 640,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -441,7 +441,7 @@
       "7dfb853e.03a1f4"
     ],
     "x": 535,
-    "y": 620,
+    "y": 690,
     "wires": [
       [
         "d5867a8d.091"
@@ -457,7 +457,7 @@
     "console": "false",
     "complete": "true",
     "x": 1100,
-    "y": 410,
+    "y": 480,
     "wires": []
   },
   {
@@ -474,7 +474,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 1010,
-    "y": 620,
+    "y": 690,
     "wires": []
   },
   {
@@ -499,7 +499,7 @@
     "payload": "",
     "payloadType": "date",
     "x": 490,
-    "y": 660,
+    "y": 730,
     "wires": [
       [
         "d5867a8d.091"
@@ -524,7 +524,7 @@
     "topic": "topic",
     "outputs": 1,
     "x": 860,
-    "y": 660,
+    "y": 730,
     "wires": [
       [
         "ae57d3a3.e3fe88",
@@ -546,7 +546,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 1010,
-    "y": 660,
+    "y": 730,
     "wires": []
   },
   {
@@ -576,7 +576,7 @@
     "to": "",
     "reg": false,
     "x": 660,
-    "y": 660,
+    "y": 730,
     "wires": [
       [
         "deb0a59.85d1458",
@@ -652,11 +652,11 @@
     "name": "WebRelay",
     "server": "",
     "client": "26438802.204788",
-    "x": 230,
-    "y": 850,
+    "x": 110,
+    "y": 330,
     "wires": [
       [
-        "3a14fce6.fe7564"
+        "f6196e3f.e870e"
       ]
     ]
   },
@@ -673,8 +673,33 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 480,
-    "y": 850,
+    "x": 910,
+    "y": 330,
     "wires": []
+  },
+  {
+    "id": "f6196e3f.e870e",
+    "type": "switch",
+    "z": "b1782abc.430f38",
+    "name": "PAPP",
+    "property": "teleinfo",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "hask",
+        "v": "PAPP",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 320,
+    "y": 330,
+    "wires": [
+      [
+        "3a14fce6.fe7564"
+      ]
+    ]
   }
 ]
