@@ -61,7 +61,8 @@
     "y": 110,
     "wires": [
       [
-        "57c57a10.955624"
+        "57c57a10.955624",
+        "99e6cd73.0c8e88"
       ]
     ]
   },
@@ -91,5 +92,79 @@
     "x": 275,
     "y": 70,
     "wires": []
+  },
+  {
+    "id": "ef7af4f7.f7274",
+    "type": "debug",
+    "z": "f96b3a53.67de8",
+    "name": "CCDebug",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 910,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "b378c436.6d3a5",
+    "type": "function",
+    "z": "f96b3a53.67de8",
+    "name": "query insert",
+    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.payload.value) },\n            { \"type\": \"power-inst\", \"location\": \"cc-\" + msg.payload.id }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 890,
+    "y": 230,
+    "wires": [
+      [
+        "6166ef2d.f866f8"
+      ]
+    ]
+  },
+  {
+    "id": "6166ef2d.f866f8",
+    "type": "mqtt out",
+    "z": "f96b3a53.67de8",
+    "name": "sensors",
+    "topic": "sensors",
+    "qos": "",
+    "retain": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 1060,
+    "y": 230,
+    "wires": []
+  },
+  {
+    "id": "99e6cd73.0c8e88",
+    "type": "switch",
+    "z": "f96b3a53.67de8",
+    "name": "",
+    "property": "payload.type",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "watts",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 740,
+    "y": 180,
+    "wires": [
+      [
+        "ef7af4f7.f7274",
+        "b378c436.6d3a5"
+      ]
+    ]
   }
 ]
