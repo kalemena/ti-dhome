@@ -698,8 +698,40 @@
     "y": 330,
     "wires": [
       [
-        "3a14fce6.fe7564"
+        "3a14fce6.fe7564",
+        "9a463cf0.bef99"
       ]
     ]
+  },
+  {
+    "id": "9a463cf0.bef99",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "query insert",
+    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.teleinfo.PAPP) },\n            { \"type\": \"power-inst\", \"location\": \"main\" }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 710,
+    "y": 370,
+    "wires": [
+      [
+        "1ba94549.ae6bdb"
+      ]
+    ]
+  },
+  {
+    "id": "1ba94549.ae6bdb",
+    "type": "mqtt out",
+    "z": "b1782abc.430f38",
+    "name": "sensors",
+    "topic": "sensors",
+    "qos": "",
+    "retain": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 880,
+    "y": 370,
+    "wires": []
   }
 ]
