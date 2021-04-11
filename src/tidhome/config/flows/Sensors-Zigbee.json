@@ -1568,7 +1568,8 @@
         "3470570a.f144b"
       ],
       [
-        "1d6a3681.0ce819"
+        "1d6a3681.0ce819",
+        "6129e357.f1a854"
       ]
     ]
   },
@@ -1610,13 +1611,13 @@
     "id": "6e1cb063.384d98",
     "type": "change",
     "z": "237573f3.977b64",
-    "name": "type=power",
+    "name": "type=power-inst",
     "rules": [
       {
         "t": "set",
         "p": "payload.type",
         "pt": "msg",
-        "to": "power",
+        "to": "power-inst",
         "tot": "str"
       },
       {
@@ -1632,7 +1633,7 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 490,
+    "x": 500,
     "y": 1010,
     "wires": [
       [
