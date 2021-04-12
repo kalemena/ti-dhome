@@ -129,64 +129,6 @@
     "wires": []
   },
   {
-    "id": "b6fda128.9f4638",
-    "type": "switch",
-    "z": "237573f3.977b64",
-    "name": "Identify switch",
-    "property": "payload.state.buttonevent",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "nnull"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "outputs": 2,
-    "x": 390,
-    "y": 1210,
-    "wires": [
-      [
-        "62cc7390.cba3e4",
-        "3ff54951.c94786"
-      ],
-      []
-    ]
-  },
-  {
-    "id": "62cc7390.cba3e4",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "Pushbutton",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "complete": "payload.state.buttonevent",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 600,
-    "y": 1190,
-    "wires": []
-  },
-  {
-    "id": "3ff54951.c94786",
-    "type": "function",
-    "z": "237573f3.977b64",
-    "name": "Deconz/switch/{{id}}",
-    "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/switch/\"+msg.payload.id;\nnewmsg.payload = msg.payload.state.buttonevent;\nreturn newmsg;",
-    "outputs": 1,
-    "noerr": 0,
-    "x": 629.62890625,
-    "y": 1223.68359375,
-    "wires": [
-      [
-        "ee6bf31d.71e1b"
-      ]
-    ]
-  },
-  {
     "id": "9537c502.0e6768",
     "type": "switch",
     "z": "237573f3.977b64",
@@ -216,60 +158,6 @@
     ]
   },
   {
-    "id": "ee6bf31d.71e1b",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 820,
-    "y": 1220,
-    "wires": []
-  },
-  {
-    "id": "dc186d6b.070118",
-    "type": "deconz-input",
-    "z": "237573f3.977b64",
-    "name": "Listen in",
-    "server": "7daf73cd.995c9c",
-    "device": "group_9",
-    "device_name": "○ Lidl on/off group",
-    "topic": "",
-    "state": 0,
-    "output": "onchange",
-    "outputAtStartup": true,
-    "x": 270,
-    "y": 1310,
-    "wires": [
-      [
-        "5e722cd4.6fb764"
-      ],
-      [
-        "27ccee96.c25822"
-      ]
-    ]
-  },
-  {
-    "id": "5e722cd4.6fb764",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "x": 570,
-    "y": 1290,
-    "wires": []
-  },
-  {
     "id": "10a36060.0df5e8",
     "type": "deconz-event",
     "z": "237573f3.977b64",
@@ -283,68 +171,6 @@
         "ed4892b1.071258"
       ]
     ]
-  },
-  {
-    "id": "89c87765.4b352",
-    "type": "deconz-battery",
-    "z": "237573f3.977b64",
-    "name": "",
-    "server": "7daf73cd.995c9c",
-    "device": "00:15:8d:00:01:5e:96:99-01-0406",
-    "device_name": "Bureau : ZHAPresence",
-    "outputAtStartup": true,
-    "x": 270,
-    "y": 1460,
-    "wires": [
-      [
-        "5928cf69.2cc6a8"
-      ],
-      [
-        "dc80235d.c62e1"
-      ]
-    ]
-  },
-  {
-    "id": "27ccee96.c25822",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "x": 570,
-    "y": 1330,
-    "wires": []
-  },
-  {
-    "id": "5928cf69.2cc6a8",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "x": 570,
-    "y": 1450,
-    "wires": []
-  },
-  {
-    "id": "dc80235d.c62e1",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "x": 570,
-    "y": 1490,
-    "wires": []
   },
   {
     "id": "8d42076c.9375a8",
@@ -361,57 +187,6 @@
     "statusType": "auto",
     "x": 440,
     "y": 320,
-    "wires": []
-  },
-  {
-    "id": "63ec5f4b.27439",
-    "type": "deconz-input",
-    "z": "237573f3.977b64",
-    "name": "CLIPSensor",
-    "server": "7daf73cd.995c9c",
-    "device": "00:15:8d:00:01:49:b6:c8-01-0006-ct-dim-toogle-1",
-    "device_name": "CLIP-Sensor CTDIM-TOOGLE : CLIPGenericFlag",
-    "topic": "",
-    "state": "0",
-    "output": "always",
-    "outputAtStartup": true,
-    "x": 280,
-    "y": 1390,
-    "wires": [
-      [
-        "18600bc7.575cec"
-      ],
-      [
-        "dec6881d.b1f4c"
-      ]
-    ]
-  },
-  {
-    "id": "18600bc7.575cec",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "x": 570,
-    "y": 1370,
-    "wires": []
-  },
-  {
-    "id": "dec6881d.b1f4c",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "x": 570,
-    "y": 1410,
     "wires": []
   },
   {
