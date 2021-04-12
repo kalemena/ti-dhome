@@ -209,8 +209,8 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 1190,
-    "y": 1170,
+    "x": 560,
+    "y": 1280,
     "wires": [
       [
         "6b0999cd.8d9938"
@@ -226,8 +226,8 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 1400,
-    "y": 1170,
+    "x": 770,
+    "y": 1280,
     "wires": []
   },
   {
@@ -246,8 +246,8 @@
     "bytopic": "topic",
     "topic": "payload.uniqueid",
     "outputs": 1,
-    "x": 880,
-    "y": 1170,
+    "x": 250,
+    "y": 1280,
     "wires": [
       [
         "a0da8496.149cb8"
@@ -267,8 +267,8 @@
     "targetType": "full",
     "statusVal": "payload",
     "statusType": "auto",
-    "x": 1360,
-    "y": 1120,
+    "x": 730,
+    "y": 1230,
     "wires": []
   },
   {
@@ -335,8 +335,8 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 1040,
-    "y": 1170,
+    "x": 410,
+    "y": 1280,
     "wires": [
       [
         "357aa886.10edf8"
@@ -357,7 +357,7 @@
     "alignToClock": true,
     "generator": "internal",
     "x": 760,
-    "y": 1090,
+    "y": 1170,
     "wires": [
       [
         "1232e688.7e9771"
@@ -523,12 +523,17 @@
         "vt": "str"
       },
       {
+        "t": "cont",
+        "v": "-0012",
+        "vt": "str"
+      },
+      {
         "t": "else"
       }
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 16,
+    "outputs": 17,
     "x": 280,
     "y": 620,
     "wires": [
@@ -576,6 +581,9 @@
       ],
       [
         "91e73fd0.4ed448"
+      ],
+      [
+        "2534d81e.4d0d3"
       ],
       [
         "b961f4f1.1e0648"
@@ -802,7 +810,7 @@
     "type": "debug",
     "z": "237573f3.977b64",
     "name": "Passthrough",
-    "active": false,
+    "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -1269,7 +1277,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 1020,
-    "y": 1060,
+    "y": 1140,
     "wires": []
   },
   {
@@ -1286,7 +1294,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 930,
-    "y": 1090,
+    "y": 1170,
     "wires": []
   },
   {
@@ -1467,5 +1475,97 @@
     "x": 265,
     "y": 90,
     "wires": []
+  },
+  {
+    "id": "8becfc06.c2706",
+    "type": "Topic Frequencies",
+    "z": "237573f3.977b64",
+    "name": "Buttons",
+    "units": "minutes",
+    "interval": "30",
+    "reportUnits": "minutes",
+    "reportInterval": "1",
+    "topicKey": "payload.uniqueid",
+    "valueKey": "",
+    "alignToClock": true,
+    "generator": "internal",
+    "x": 770,
+    "y": 1090,
+    "wires": [
+      [
+        "eeb6cb58.6860c8"
+      ],
+      [
+        "5fab15d9.63c10c"
+      ]
+    ]
+  },
+  {
+    "id": "eeb6cb58.6860c8",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "Metrics",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1020,
+    "y": 1060,
+    "wires": []
+  },
+  {
+    "id": "5fab15d9.63c10c",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "Switches",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 940,
+    "y": 1090,
+    "wires": []
+  },
+  {
+    "id": "2534d81e.4d0d3",
+    "type": "change",
+    "z": "237573f3.977b64",
+    "name": "type=button",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload.type",
+        "pt": "msg",
+        "to": "button",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "payload.value",
+        "pt": "msg",
+        "to": "payload.state.buttonevent",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 490,
+    "y": 1090,
+    "wires": [
+      [
+        "8becfc06.c2706"
+      ]
+    ]
   }
 ]
