@@ -2,7 +2,7 @@
   {
     "id": "d88a69c4.1942c8",
     "type": "tab",
-    "label": "Storage",
+    "label": "InfluxDB",
     "disabled": false,
     "info": ""
   },
