@@ -39,9 +39,9 @@ services:
     env_file:
       - .env
 
-  covid:
-    image: covid-19-influxdb
-    build: https://github.com/smartcuc/COVID-19.git
-    environment:
-      INFLUX_HOST: influxdb
-      SCHEDULE_H: 8
+  # covid:
+  #   image: covid-19-influxdb
+  #   build: https://github.com/smartcuc/COVID-19.git
+  #   environment:
+  #     INFLUX_HOST: influxdb
+  #     SCHEDULE_H: 8
