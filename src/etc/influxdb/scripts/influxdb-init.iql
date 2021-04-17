@@ -1,7 +1,7 @@
 CREATE DATABASE sensors;
 CREATE RETENTION POLICY one_week ON sensors DURATION 1w REPLICATION 1 DEFAULT;
 CREATE RETENTION POLICY one_year ON sensors DURATION 52w REPLICATION 1;
-CREATE RETENTION POLICY five_years ON sensors DURATION 52w REPLICATION 1;
+CREATE RETENTION POLICY five_years ON sensors DURATION 260w REPLICATION 1;
 CREATE CONTINUOUS QUERY "cq_15m" ON "sensors" BEGIN SELECT mean("value") AS "value_15m" INTO "one_year"."sensors_15m" FROM "sensors" GROUP BY time(15m), type, location END;
 CREATE CONTINUOUS QUERY "cq_1h"  ON "sensors" BEGIN SELECT mean("value") AS "value_1h"  INTO "five_years"."sensors_1h" FROM "sensors" GROUP BY time(1h), type, location END;
 CREATE DATABASE covid19;
