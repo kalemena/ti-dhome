@@ -155,7 +155,7 @@
     "type": "readdir",
     "z": "8627a08f.2f4c18",
     "name": "Daily CSVs",
-    "dir": "/opt/tidhome/data/daily-events",
+    "dir": "/etc/tidhome/daily-events",
     "as": "multi",
     "recursive": false,
     "outproperty": "filename",

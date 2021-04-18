@@ -60,7 +60,7 @@
     "type": "file in",
     "z": "112e9cf8.590b23",
     "name": "ti-dhome.yaml",
-    "filename": "/opt/tidhome/data/ti-dhome.yaml",
+    "filename": "/etc/tidhome/ti-dhome.yaml",
     "format": "utf8",
     "chunk": false,
     "sendError": false,
