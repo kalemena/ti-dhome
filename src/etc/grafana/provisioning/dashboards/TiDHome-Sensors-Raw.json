@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1618607169573,
+  "id": 1,
+  "iteration": 1618821217054,
   "links": [],
   "panels": [
     {
@@ -34,8 +34,8 @@
       "scopedVars": {
         "type": {
           "selected": true,
-          "text": "battery",
-          "value": "battery"
+          "text": "temperature",
+          "value": "temperature"
         }
       },
       "title": "Details $type",
@@ -87,8 +87,8 @@
       "scopedVars": {
         "type": {
           "selected": true,
-          "text": "battery",
-          "value": "battery"
+          "text": "temperature",
+          "value": "temperature"
         }
       },
       "seriesOverrides": [],
@@ -148,7 +148,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": "1h",
+      "timeFrom": "6h",
       "timeRegions": [],
       "timeShift": null,
       "title": "$type (h)",
@@ -233,8 +233,8 @@
       "scopedVars": {
         "type": {
           "selected": true,
-          "text": "battery",
-          "value": "battery"
+          "text": "temperature",
+          "value": "temperature"
         }
       },
       "seriesOverrides": [],
@@ -331,10 +331,10 @@
           "selected": true,
           "tags": [],
           "text": [
-            "battery"
+            "temperature"
           ],
           "value": [
-            "battery"
+            "temperature"
           ]
         },
         "datasource": "InfluxDB-Sensors",
@@ -361,7 +361,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
