@@ -62,7 +62,7 @@
     "wires": [
       [
         "57c57a10.955624",
-        "99e6cd73.0c8e88"
+        "65932785.3642e"
       ]
     ]
   },
@@ -106,8 +106,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 910,
-    "y": 180,
+    "x": 800,
+    "y": 190,
     "wires": []
   },
   {
@@ -115,12 +115,12 @@
     "type": "function",
     "z": "f96b3a53.67de8",
     "name": "query insert",
-    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.payload.value) },\n            { \"type\": \"power-inst\", \"location\": \"cc-\" + msg.payload.id }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.payload.value) },\n            { \"type\": \"power-inst\", \"location\": msg.payload.name }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 890,
+    "x": 940,
     "y": 230,
     "wires": [
       [
@@ -137,7 +137,7 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 1060,
+    "x": 1110,
     "y": 230,
     "wires": []
   },
@@ -158,12 +158,30 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 740,
-    "y": 180,
+    "x": 790,
+    "y": 230,
+    "wires": [
+      [
+        "b378c436.6d3a5"
+      ]
+    ]
+  },
+  {
+    "id": "65932785.3642e",
+    "type": "function",
+    "z": "f96b3a53.67de8",
+    "name": "Friendly name",
+    "func": "var tidhome = global.get(\"tidhome\") || {}\nsensors = tidhome.sensors || {}\ncurrsnetcostNodes = sensors.currentcost.nodes || {}\nmsg.payload.name = \"cc-\" + msg.payload.id + \"-\" + currsnetcostNodes[msg.payload.id].location || \"Unknown\"\n\n// pass through\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 580,
+    "y": 210,
     "wires": [
       [
         "ef7af4f7.f7274",
-        "b378c436.6d3a5"
+        "99e6cd73.0c8e88"
       ]
     ]
   }

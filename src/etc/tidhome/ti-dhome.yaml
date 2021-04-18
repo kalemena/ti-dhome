@@ -1,0 +1,35 @@
+
+sensors:
+
+  currentcost:
+    
+    nodes:
+    - id: 0
+      location: Chauffage
+      description: Tous les chauffages
+    - id: 1
+      location: Bureau
+      description: Ordinateurs/écrans
+    - id: 3
+      location: Celier~Lavage
+      description: Lave-Linge
+    - id: 4
+      location: Celier-Séchage
+      description: Sèche-Linge
+    - id: 5
+      location: Salon~TV
+      description: TV, Freebox et switch
+    - id: 6
+      location: Celier~Frigo
+      description: Frigo
+    - id: 7
+      location: Aquarium
+      description: Aquarium
+    - id: 8
+      location: Freebox
+      description: Freebox et Routeur
+    - id: 9
+      location: Cuisine~Lavage
+      description: Lave-vaisselle
+      enabled: false
+
