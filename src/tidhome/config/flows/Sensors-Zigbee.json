@@ -596,7 +596,7 @@
     "type": "debug",
     "z": "237573f3.977b64",
     "name": "Passthrough",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -1054,7 +1054,8 @@
     "wires": [
       [
         "52746a99.0ea23c",
-        "6129e357.f1a854"
+        "6129e357.f1a854",
+        "578f2b90.d5dc64"
       ]
     ]
   },
@@ -1305,6 +1306,50 @@
       [
         "6129e357.f1a854"
       ]
+    ]
+  },
+  {
+    "id": "55cc0216.af27cc",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "Passthrough",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1160,
+    "y": 510,
+    "wires": []
+  },
+  {
+    "id": "578f2b90.d5dc64",
+    "type": "switch",
+    "z": "237573f3.977b64",
+    "name": "Battery",
+    "property": "payload.value",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "null"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 970,
+    "y": 510,
+    "wires": [
+      [
+        "55cc0216.af27cc"
+      ],
+      []
     ]
   }
 ]
