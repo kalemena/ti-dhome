@@ -98,7 +98,7 @@
     "type": "debug",
     "z": "f96b3a53.67de8",
     "name": "CCDebug",
-    "active": false,
+    "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -176,7 +176,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 580,
+    "x": 560,
     "y": 210,
     "wires": [
       [

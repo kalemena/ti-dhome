@@ -13,7 +13,7 @@
     "name": "Jeelink",
     "serial": "4c23cd92.778204",
     "x": 90,
-    "y": 120,
+    "y": 160,
     "wires": [
       [
         "e8d888e4.072f5"
@@ -29,8 +29,8 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 800,
-    "y": 120,
+    "x": 760,
+    "y": 160,
     "wires": []
   },
   {
@@ -41,8 +41,8 @@
     "filename": "/opt/tidhome/functions/Parse-JeeLink.js",
     "reloadfile": false,
     "outputs": 1,
-    "x": 540,
-    "y": 120,
+    "x": 260,
+    "y": 160,
     "wires": [
       [
         "f20c9be2.db11d8",
@@ -88,8 +88,8 @@
     "tostatus": false,
     "complete": "true",
     "targetType": "full",
-    "x": 1060,
-    "y": 160,
+    "x": 920,
+    "y": 210,
     "wires": []
   },
   {
@@ -102,8 +102,8 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 970,
-    "y": 210,
+    "x": 930,
+    "y": 250,
     "wires": [
       [
         "9502284c.4f29f8"
@@ -119,8 +119,8 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 1140,
-    "y": 210,
+    "x": 1100,
+    "y": 250,
     "wires": []
   },
   {
@@ -142,23 +142,62 @@
         "vt": "str"
       },
       {
+        "t": "eq",
+        "v": "pressure",
+        "vt": "str"
+      },
+      {
         "t": "else"
       }
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 3,
-    "x": 750,
-    "y": 220,
+    "outputs": 4,
+    "x": 710,
+    "y": 260,
     "wires": [
       [
         "823b2da3.07a708",
         "b10f5d4d.ca99e8"
       ],
       [
-        "823b2da3.07a708"
+        "823b2da3.07a708",
+        "b10f5d4d.ca99e8"
       ],
-      []
+      [
+        "823b2da3.07a708",
+        "b10f5d4d.ca99e8"
+      ],
+      [
+        "eefff2a7.d27e98"
+      ]
     ]
+  },
+  {
+    "id": "97976fe3.d1a8a",
+    "type": "comment",
+    "z": "d06e385b.de11c8",
+    "name": "Custom Devices",
+    "info": "",
+    "x": 120,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "eefff2a7.d27e98",
+    "type": "debug",
+    "z": "d06e385b.de11c8",
+    "name": "Not looked",
+    "active": false,
+    "tosidebar": true,
+    "console": true,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 930,
+    "y": 290,
+    "wires": []
   }
 ]
