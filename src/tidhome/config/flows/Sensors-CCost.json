@@ -98,7 +98,7 @@
     "type": "debug",
     "z": "f96b3a53.67de8",
     "name": "CCDebug",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -106,7 +106,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 800,
+    "x": 770,
     "y": 190,
     "wires": []
   },
@@ -114,7 +114,7 @@
     "id": "b378c436.6d3a5",
     "type": "function",
     "z": "f96b3a53.67de8",
-    "name": "query insert",
+    "name": "power-inst",
     "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.payload.value) },\n            { \"type\": \"power-inst\", \"location\": msg.payload.name }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
     "outputs": 1,
     "noerr": 0,
@@ -153,16 +153,30 @@
         "t": "eq",
         "v": "watts",
         "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "temperature",
+        "vt": "str"
+      },
+      {
+        "t": "else"
       }
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 1,
-    "x": 790,
-    "y": 230,
+    "outputs": 3,
+    "x": 760,
+    "y": 240,
     "wires": [
       [
         "b378c436.6d3a5"
+      ],
+      [
+        "23acd2ce.970c6e"
+      ],
+      [
+        "6db06cf3.4bc614"
       ]
     ]
   },
@@ -182,6 +196,41 @@
       [
         "ef7af4f7.f7274",
         "99e6cd73.0c8e88"
+      ]
+    ]
+  },
+  {
+    "id": "6db06cf3.4bc614",
+    "type": "debug",
+    "z": "f96b3a53.67de8",
+    "name": "CCDebug",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 930,
+    "y": 310,
+    "wires": []
+  },
+  {
+    "id": "23acd2ce.970c6e",
+    "type": "function",
+    "z": "f96b3a53.67de8",
+    "name": "temperature",
+    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.payload.value) },\n            { \"type\": \"temperature\", \"location\": \"cc-Bureau\" }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 940,
+    "y": 270,
+    "wires": [
+      [
+        "6166ef2d.f866f8"
       ]
     ]
   }
