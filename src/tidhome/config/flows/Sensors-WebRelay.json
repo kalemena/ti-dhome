@@ -656,7 +656,8 @@
     "y": 330,
     "wires": [
       [
-        "f6196e3f.e870e"
+        "f6196e3f.e870e",
+        "6efd389b.03b1"
       ]
     ]
   },
@@ -673,15 +674,15 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 910,
-    "y": 330,
+    "x": 700,
+    "y": 310,
     "wires": []
   },
   {
     "id": "f6196e3f.e870e",
     "type": "switch",
     "z": "b1782abc.430f38",
-    "name": "PAPP",
+    "name": "teleinfo.PAPP",
     "property": "teleinfo",
     "propertyType": "msg",
     "rules": [
@@ -694,12 +695,12 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 320,
+    "x": 350,
     "y": 330,
     "wires": [
       [
-        "3a14fce6.fe7564",
-        "9a463cf0.bef99"
+        "9a463cf0.bef99",
+        "3a14fce6.fe7564"
       ]
     ]
   },
@@ -707,14 +708,14 @@
     "id": "9a463cf0.bef99",
     "type": "function",
     "z": "b1782abc.430f38",
-    "name": "query insert",
+    "name": "Teleinfo-PAPP",
     "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.teleinfo.PAPP) },\n            { \"type\": \"power-inst\", \"location\": \"main\" }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 710,
-    "y": 370,
+    "x": 690,
+    "y": 350,
     "wires": [
       [
         "1ba94549.ae6bdb"
@@ -730,8 +731,77 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 880,
-    "y": 370,
+    "x": 940,
+    "y": 380,
     "wires": []
+  },
+  {
+    "id": "6efd389b.03b1",
+    "type": "switch",
+    "z": "b1782abc.430f38",
+    "name": "sensors",
+    "property": "sensors",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "hask",
+        "v": "temperature",
+        "vt": "str"
+      },
+      {
+        "t": "hask",
+        "v": "humidity",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 330,
+    "y": 370,
+    "wires": [
+      [
+        "b629ec5a.2b4f78"
+      ],
+      [
+        "16258a34.5ce016"
+      ]
+    ]
+  },
+  {
+    "id": "b629ec5a.2b4f78",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "Sensors-Temperature",
+    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.sensors.temperature) },\n            { \"type\": \"temperature\", \"location\": \"wr-Garage\" }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 710,
+    "y": 390,
+    "wires": [
+      [
+        "1ba94549.ae6bdb"
+      ]
+    ]
+  },
+  {
+    "id": "16258a34.5ce016",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "Sensors-Humidity",
+    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.sensors.humidity) },\n            { \"type\": \"humidity\", \"location\": \"wr-Garage\" }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 700,
+    "y": 430,
+    "wires": [
+      [
+        "1ba94549.ae6bdb"
+      ]
+    ]
   }
 ]
