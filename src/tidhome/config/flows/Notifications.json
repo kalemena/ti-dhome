@@ -36,7 +36,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 710,
+    "x": 740,
     "y": 370,
     "wires": [
       [
@@ -57,32 +57,11 @@
     "mode": "message",
     "lang": "fr",
     "units": "si",
-    "x": 490,
+    "x": 520,
     "y": 370,
     "wires": [
       [
-        "8b517c2b.d93ed8",
-        "eff1f82.28aea08"
-      ]
-    ]
-  },
-  {
-    "id": "9b4ceb45.43c628",
-    "type": "inject",
-    "z": "8627a08f.2f4c18",
-    "name": "Test",
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 110,
-    "y": 280,
-    "wires": [
-      [
-        "f6373746.83f598"
+        "8b517c2b.d93ed8"
       ]
     ]
   },
@@ -94,7 +73,7 @@
     "func": "msg.payload = \"Fresh (re-)deploy !\"\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 260,
+    "x": 290,
     "y": 160,
     "wires": [
       []
@@ -105,8 +84,8 @@
     "type": "simpletime",
     "z": "8627a08f.2f4c18",
     "name": "now",
-    "x": 510,
-    "y": 330,
+    "x": 610,
+    "y": 290,
     "wires": [
       [
         "57125e6f.c04dd"
@@ -126,7 +105,7 @@
     "temp": "",
     "skip": "0",
     "strings": true,
-    "x": 460,
+    "x": 490,
     "y": 290,
     "wires": [
       [
@@ -142,8 +121,10 @@
     "func": "if (msg.payload.date !== undefined) {\n    \n    var message, bdom, bmonth, byear;\n    bparsed = msg.payload.date.split('/');\n    \n    if(bparsed.length == 3) {\n        // year/month/day\n        bdom = parseInt(bparsed[2])\n        bmonth = parseInt(bparsed[1])\n        byear = parseInt(bparsed[0])\n        \n    } else {\n        // month/day\n        bdom = parseInt(bparsed[1])\n        bmonth = parseInt(bparsed[0])\n        \n    }\n    \n    if((bdom == msg.mydom) && (bmonth == msg.mymonthn)) {\n        // date matches today\n        \n        if(msg.filename.indexOf('saints') !== -1) {\n            message = \"Saints \" + msg.payload.value\n            \n        } else if(msg.filename.indexOf('birthday') !== -1) { \n            if(byear !== undefined) {\n                message = \"Happy \" + (msg.myyear - byear) + \"th Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n            } else {\n                message = \"Happy Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n            }\n            \n        } else {\n            message = msg.payload.value\n        }\n        \n        msg.payload = message\n        return msg;\n    }\n}\n\n// Default nothing\nreturn null;",
     "outputs": 1,
     "noerr": 0,
-    "x": 670,
-    "y": 330,
+    "initialize": "",
+    "finalize": "",
+    "x": 770,
+    "y": 290,
     "wires": [
       [
         "57bdbb93.d54314"
@@ -159,7 +140,7 @@
     "as": "multi",
     "recursive": false,
     "outproperty": "filename",
-    "x": 290,
+    "x": 320,
     "y": 270,
     "wires": [
       [
@@ -176,7 +157,7 @@
     "format": "utf8",
     "chunk": false,
     "sendError": false,
-    "x": 330,
+    "x": 360,
     "y": 310,
     "wires": [
       [
@@ -210,9 +191,9 @@
     "wires": [
       [
         "f6373746.83f598",
-        "57bdbb93.d54314",
         "e7e9239c.0be1c",
-        "796c897.a1f1278"
+        "796c897.a1f1278",
+        "57bdbb93.d54314"
       ]
     ]
   },
@@ -254,7 +235,7 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 880,
+    "x": 1110,
     "y": 200,
     "wires": []
   },
@@ -276,28 +257,15 @@
     "func": "msg.time = new Date().getTime()\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 290,
+    "initialize": "",
+    "finalize": "",
+    "x": 320,
     "y": 370,
     "wires": [
       [
         "45d9a893.f40ca8"
       ]
     ]
-  },
-  {
-    "id": "eff1f82.28aea08",
-    "type": "debug",
-    "z": "8627a08f.2f4c18",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "x": 710,
-    "y": 410,
-    "wires": []
   },
   {
     "id": "b24260ef.c5b1e8",
@@ -331,12 +299,11 @@
     "deathspermilion": false,
     "regionList": "[\"FR\",\"US\",\"GB\",\"IT\",\"ES\",\"DE\",\"CA\"]",
     "regionListType": "json",
-    "x": 300,
-    "y": 440,
+    "x": 310,
+    "y": 410,
     "wires": [
       [
-        "9bc6fdda.21edd8",
-        "eff1f82.28aea08"
+        "9bc6fdda.21edd8"
       ]
     ]
   },
@@ -348,41 +315,13 @@
     "func": "var outputMsgs = []\n\n/*\n// plenty messages\nvar keys = Object.keys(msg.covid);\nfor (const country of keys) {\n  var message = \"COVID \" + \"[\" + msg.covid[country].countryinfo.country  + \"](\" + msg.covid[country].countryinfo.flagurl + \"): \\n\" +\n    \"Cas     = \" + msg.covid[country].cases + \"\\n\" +\n    \"Morts   = \" + msg.covid[country].deaths + \"\\n\" +\n    \"Sorties = \" + msg.covid[country].recovered + \"\\n\";\n    \n  outputMsgs.push({ topic: country, payload: message, photo: msg.covid[country].countryinfo.flagurl });\n}\n*/\n\n// single message\nvar message = \"COVID: \\n\";\nmessage += \"Cas\\tMorts\\tSortie\\n\";\nvar keys = Object.keys(msg.covid);\nfor (const country of keys) {\n  message += msg.covid[country].countryinfo.country + \": \" \n    + msg.covid[country].cases + \"\\t\" + msg.covid[country].deaths + \"\\t\" + msg.covid[country].recovered + \"\\n\";\n}\noutputMsgs.push({ topic: \"covid\", payload: message });\n\nreturn [ outputMsgs ];",
     "outputs": 1,
     "noerr": 0,
-    "x": 520,
-    "y": 440,
+    "initialize": "",
+    "finalize": "",
+    "x": 730,
+    "y": 410,
     "wires": [
       [
-        "eff1f82.28aea08",
         "57bdbb93.d54314"
-      ]
-    ]
-  },
-  {
-    "id": "b01fe37c.b78c3",
-    "type": "inject",
-    "z": "8627a08f.2f4c18",
-    "name": "test",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 110,
-    "y": 440,
-    "wires": [
-      [
-        "796c897.a1f1278"
       ]
     ]
   },
