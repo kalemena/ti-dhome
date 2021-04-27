@@ -336,5 +336,275 @@
     "x": 255,
     "y": 80,
     "wires": []
+  },
+  {
+    "id": "f55edfdb.784b5",
+    "type": "feedparse",
+    "z": "8627a08f.2f4c18",
+    "name": "Dealabs",
+    "url": "https://www.dealabs.com/rss/hot",
+    "interval": 15,
+    "x": 110,
+    "y": 520,
+    "wires": [
+      [
+        "b0f7a636.7693f"
+      ]
+    ]
+  },
+  {
+    "id": "fdfde972.bdcf78",
+    "type": "debug",
+    "z": "8627a08f.2f4c18",
+    "name": "Deals",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1070,
+    "y": 590,
+    "wires": []
+  },
+  {
+    "id": "132697ab.0077b8",
+    "type": "switch",
+    "z": "8627a08f.2f4c18",
+    "name": "Exclude some...",
+    "property": "article",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "cont",
+        "v": "smartphone",
+        "vt": "str"
+      },
+      {
+        "t": "cont",
+        "v": "portable",
+        "vt": "str"
+      },
+      {
+        "t": "cont",
+        "v": "aspirateur",
+        "vt": "str"
+      },
+      {
+        "t": "cont",
+        "v": "ps4",
+        "vt": "str"
+      },
+      {
+        "t": "cont",
+        "v": "xbox",
+        "vt": "str"
+      },
+      {
+        "t": "cont",
+        "v": "payload",
+        "vt": "msg"
+      }
+    ],
+    "checkall": "false",
+    "repair": false,
+    "outputs": 6,
+    "x": 550,
+    "y": 590,
+    "wires": [
+      [
+        "701f7f10.809c28"
+      ],
+      [
+        "701f7f10.809c28"
+      ],
+      [
+        "701f7f10.809c28"
+      ],
+      [
+        "701f7f10.809c28"
+      ],
+      [
+        "701f7f10.809c28"
+      ],
+      [
+        "ff64d0d5.cdd1b"
+      ]
+    ]
+  },
+  {
+    "id": "b0f7a636.7693f",
+    "type": "json",
+    "z": "8627a08f.2f4c18",
+    "name": "",
+    "property": "article",
+    "action": "",
+    "pretty": false,
+    "x": 250,
+    "y": 520,
+    "wires": [
+      [
+        "c92f4659.822398"
+      ]
+    ]
+  },
+  {
+    "id": "683d83e8.058ebc",
+    "type": "change",
+    "z": "8627a08f.2f4c18",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "topic",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 910,
+    "y": 630,
+    "wires": [
+      [
+        "fdfde972.bdcf78",
+        "9c972788.21f68"
+      ]
+    ]
+  },
+  {
+    "id": "c92f4659.822398",
+    "type": "change",
+    "z": "8627a08f.2f4c18",
+    "name": "lowercase",
+    "rules": [
+      {
+        "t": "set",
+        "p": "article",
+        "pt": "msg",
+        "to": "$lowercase(article)\t",
+        "tot": "jsonata"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 390,
+    "y": 520,
+    "wires": [
+      [
+        "56ecadef.e60ecc"
+      ]
+    ]
+  },
+  {
+    "id": "56ecadef.e60ecc",
+    "type": "template",
+    "z": "8627a08f.2f4c18",
+    "name": "includes",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "handlebars",
+    "syntax": "plain",
+    "template": "fitbit\nultrawide\nultrasharp\n3840\n5120\nnintendo\nmario\nwestern\nxiaomi\nzigbee\nquest\noculus\nlego\ndji\nphoto\nbosh\nsamsung\nsiemens\nsèche",
+    "output": "str",
+    "x": 230,
+    "y": 590,
+    "wires": [
+      [
+        "b022e313.4cffd8"
+      ]
+    ]
+  },
+  {
+    "id": "b022e313.4cffd8",
+    "type": "split",
+    "z": "8627a08f.2f4c18",
+    "name": "",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 380,
+    "y": 590,
+    "wires": [
+      [
+        "132697ab.0077b8"
+      ]
+    ]
+  },
+  {
+    "id": "ff64d0d5.cdd1b",
+    "type": "trigger",
+    "z": "8627a08f.2f4c18",
+    "name": "Watchdog",
+    "op1": "",
+    "op2": "",
+    "op1type": "nul",
+    "op2type": "pay",
+    "duration": "1",
+    "extend": true,
+    "units": "s",
+    "reset": "",
+    "bytopic": "topic",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 740,
+    "y": 630,
+    "wires": [
+      [
+        "683d83e8.058ebc"
+      ]
+    ]
+  },
+  {
+    "id": "c86e3fdb.b856e8",
+    "type": "comment",
+    "z": "8627a08f.2f4c18",
+    "name": "Dealabs",
+    "info": "Listen to Dealabs HotDeals\nSearch keywords\nSort topics\nSend Telegram notification",
+    "x": 110,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "701f7f10.809c28",
+    "type": "debug",
+    "z": "8627a08f.2f4c18",
+    "name": "Exclude",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 740,
+    "y": 580,
+    "wires": []
+  },
+  {
+    "id": "9c972788.21f68",
+    "type": "mqtt out",
+    "z": "8627a08f.2f4c18",
+    "name": "notifications/telegram",
+    "topic": "notifications/telegram",
+    "qos": "",
+    "retain": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 1120,
+    "y": 630,
+    "wires": []
   }
 ]
