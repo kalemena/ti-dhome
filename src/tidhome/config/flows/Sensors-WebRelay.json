@@ -137,7 +137,7 @@
     "onceDelay": "",
     "topic": "1",
     "x": 110,
-    "y": 660,
+    "y": 740,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -161,7 +161,7 @@
     "onceDelay": "",
     "topic": "0",
     "x": 100,
-    "y": 620,
+    "y": 700,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -185,7 +185,7 @@
     "onceDelay": "",
     "topic": "2",
     "x": 120,
-    "y": 700,
+    "y": 780,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -209,7 +209,7 @@
     "onceDelay": "",
     "topic": "3",
     "x": 120,
-    "y": 740,
+    "y": 820,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -233,7 +233,7 @@
     "onceDelay": "",
     "topic": "4",
     "x": 120,
-    "y": 780,
+    "y": 860,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -257,7 +257,7 @@
     "onceDelay": "",
     "topic": "5",
     "x": 110,
-    "y": 820,
+    "y": 900,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -281,7 +281,7 @@
     "onceDelay": "",
     "topic": "6",
     "x": 130,
-    "y": 860,
+    "y": 940,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -305,7 +305,7 @@
     "onceDelay": "",
     "topic": "7",
     "x": 120,
-    "y": 900,
+    "y": 980,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -329,7 +329,7 @@
     "onceDelay": "",
     "topic": "14",
     "x": 100,
-    "y": 940,
+    "y": 1020,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -353,7 +353,7 @@
     "onceDelay": "",
     "topic": "15",
     "x": 100,
-    "y": 980,
+    "y": 1060,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -367,7 +367,7 @@
     "name": "IOTHeaters - Test",
     "info": "",
     "x": 120,
-    "y": 580,
+    "y": 660,
     "wires": []
   },
   {
@@ -380,7 +380,7 @@
     "retain": "",
     "broker": "c38452a5.4f84e8",
     "x": 1150,
-    "y": 610,
+    "y": 690,
     "wires": []
   },
   {
@@ -410,7 +410,7 @@
     "to": "",
     "reg": false,
     "x": 860,
-    "y": 610,
+    "y": 690,
     "wires": [
       [
         "aab849a7.ee2658",
@@ -425,7 +425,7 @@
     "name": "WebRelaysIn",
     "links": [],
     "x": 525,
-    "y": 820,
+    "y": 900,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -441,7 +441,7 @@
       "7dfb853e.03a1f4"
     ],
     "x": 525,
-    "y": 870,
+    "y": 950,
     "wires": [
       [
         "d5867a8d.091"
@@ -457,7 +457,7 @@
     "console": "false",
     "complete": "true",
     "x": 1090,
-    "y": 660,
+    "y": 740,
     "wires": []
   },
   {
@@ -474,7 +474,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 1000,
-    "y": 870,
+    "y": 950,
     "wires": []
   },
   {
@@ -499,7 +499,7 @@
     "payload": "",
     "payloadType": "date",
     "x": 480,
-    "y": 910,
+    "y": 990,
     "wires": [
       [
         "d5867a8d.091"
@@ -524,7 +524,7 @@
     "topic": "topic",
     "outputs": 1,
     "x": 850,
-    "y": 910,
+    "y": 990,
     "wires": [
       [
         "ae57d3a3.e3fe88",
@@ -546,7 +546,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 1000,
-    "y": 910,
+    "y": 990,
     "wires": []
   },
   {
@@ -576,7 +576,7 @@
     "to": "",
     "reg": false,
     "x": 650,
-    "y": 910,
+    "y": 990,
     "wires": [
       [
         "deb0a59.85d1458",
@@ -656,7 +656,10 @@
     "y": 280,
     "wires": [
       [
-        "d18d74a7.7a061"
+        "f6196e3f.e870e",
+        "6efd389b.03b1",
+        "2812070e.894da8",
+        "ac2d43ea.e2eaf"
       ]
     ]
   },
@@ -770,7 +773,7 @@
     "repair": false,
     "outputs": 3,
     "x": 430,
-    "y": 460,
+    "y": 410,
     "wires": [
       [
         "b629ec5a.2b4f78"
@@ -794,7 +797,7 @@
     "initialize": "",
     "finalize": "",
     "x": 810,
-    "y": 460,
+    "y": 440,
     "wires": [
       [
         "1ba94549.ae6bdb"
@@ -812,7 +815,7 @@
     "initialize": "",
     "finalize": "",
     "x": 800,
-    "y": 500,
+    "y": 480,
     "wires": [
       [
         "1ba94549.ae6bdb"
@@ -877,7 +880,7 @@
     "type": "debug",
     "z": "b1782abc.430f38",
     "name": "WebRelayDebug",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -886,47 +889,8 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 460,
-    "y": 560,
+    "y": 600,
     "wires": []
-  },
-  {
-    "id": "d18d74a7.7a061",
-    "type": "switch",
-    "z": "b1782abc.430f38",
-    "name": "which",
-    "property": "sensors",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "hask",
-        "v": "teleinfo",
-        "vt": "str"
-      },
-      {
-        "t": "hask",
-        "v": "sensors",
-        "vt": "str"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 3,
-    "x": 250,
-    "y": 280,
-    "wires": [
-      [
-        "f6196e3f.e870e"
-      ],
-      [
-        "6efd389b.03b1"
-      ],
-      [
-        "2812070e.894da8"
-      ]
-    ]
   },
   {
     "id": "f080b42a.8ae208",
@@ -942,7 +906,66 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 790,
-    "y": 540,
+    "y": 520,
+    "wires": []
+  },
+  {
+    "id": "ac2d43ea.e2eaf",
+    "type": "switch",
+    "z": "b1782abc.430f38",
+    "name": "relays",
+    "property": "relays",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 420,
+    "y": 560,
+    "wires": [
+      [
+        "7755fd51.b4d8f4",
+        "d66f7b10.e7534"
+      ]
+    ]
+  },
+  {
+    "id": "d66f7b10.e7534",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "Relays-OnOff",
+    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.relays[0].value) },\n            { \"type\": \"plug-onoff\", \"location\": \"wr-Garage-\" + msg.relays[0].id }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 790,
+    "y": 560,
+    "wires": [
+      [
+        "1ba94549.ae6bdb"
+      ]
+    ]
+  },
+  {
+    "id": "7755fd51.b4d8f4",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "RelaysDebug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 790,
+    "y": 600,
     "wires": []
   }
 ]
