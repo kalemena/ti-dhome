@@ -656,10 +656,10 @@
     "y": 280,
     "wires": [
       [
-        "f6196e3f.e870e",
-        "6efd389b.03b1",
         "2812070e.894da8",
-        "ac2d43ea.e2eaf"
+        "ac2d43ea.e2eaf",
+        "67d26f68.ac9028",
+        "c97606c5.d54558"
       ]
     ]
   },
@@ -667,7 +667,7 @@
     "id": "f6196e3f.e870e",
     "type": "switch",
     "z": "b1782abc.430f38",
-    "name": "teleinfo",
+    "name": "teleinfo value",
     "property": "teleinfo",
     "propertyType": "msg",
     "rules": [
@@ -698,7 +698,7 @@
     "checkall": "true",
     "repair": false,
     "outputs": 5,
-    "x": 430,
+    "x": 560,
     "y": 300,
     "wires": [
       [
@@ -751,7 +751,7 @@
     "id": "6efd389b.03b1",
     "type": "switch",
     "z": "b1782abc.430f38",
-    "name": "sensors",
+    "name": "sensors value",
     "property": "sensors",
     "propertyType": "msg",
     "rules": [
@@ -772,8 +772,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 3,
-    "x": 430,
-    "y": 410,
+    "x": 570,
+    "y": 450,
     "wires": [
       [
         "b629ec5a.2b4f78"
@@ -888,7 +888,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 460,
+    "x": 430,
     "y": 600,
     "wires": []
   },
@@ -924,7 +924,7 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 420,
+    "x": 390,
     "y": 560,
     "wires": [
       [
@@ -967,5 +967,51 @@
     "x": 790,
     "y": 600,
     "wires": []
+  },
+  {
+    "id": "67d26f68.ac9028",
+    "type": "switch",
+    "z": "b1782abc.430f38",
+    "name": "sensors",
+    "property": "sensors",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 400,
+    "y": 440,
+    "wires": [
+      [
+        "6efd389b.03b1"
+      ]
+    ]
+  },
+  {
+    "id": "c97606c5.d54558",
+    "type": "switch",
+    "z": "b1782abc.430f38",
+    "name": "teleinfo",
+    "property": "teleinfo",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 400,
+    "y": 300,
+    "wires": [
+      [
+        "f6196e3f.e870e"
+      ]
+    ]
   }
 ]
