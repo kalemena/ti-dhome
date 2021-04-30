@@ -726,7 +726,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 790,
+    "x": 900,
     "y": 280,
     "wires": [
       [
@@ -743,7 +743,7 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 1040,
+    "x": 1150,
     "y": 310,
     "wires": []
   },
@@ -796,7 +796,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 810,
+    "x": 920,
     "y": 440,
     "wires": [
       [
@@ -814,7 +814,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 800,
+    "x": 910,
     "y": 480,
     "wires": [
       [
@@ -832,7 +832,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 790,
+    "x": 900,
     "y": 320,
     "wires": [
       [
@@ -850,7 +850,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 790,
+    "x": 900,
     "y": 360,
     "wires": [
       [
@@ -871,7 +871,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 790,
+    "x": 900,
     "y": 400,
     "wires": []
   },
@@ -905,7 +905,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 790,
+    "x": 900,
     "y": 520,
     "wires": []
   },
@@ -928,8 +928,8 @@
     "y": 560,
     "wires": [
       [
-        "7755fd51.b4d8f4",
-        "d66f7b10.e7534"
+        "b7f3c41.7550bb8",
+        "7755fd51.b4d8f4"
       ]
     ]
   },
@@ -938,12 +938,13 @@
     "type": "function",
     "z": "b1782abc.430f38",
     "name": "Relays-OnOff",
-    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.relays[0].value) },\n            { \"type\": \"plug-onoff\", \"location\": \"wr-Garage-\" + msg.relays[0].id }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.payload.value) },\n            { \"type\": \"plug-onoff\", \"location\": \"wr-Garage-\" + msg.payload.id }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 790,
+    "libs": [],
+    "x": 900,
     "y": 560,
     "wires": [
       [
@@ -964,7 +965,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 790,
+    "x": 900,
     "y": 600,
     "wires": []
   },
@@ -1011,6 +1012,52 @@
     "wires": [
       [
         "f6196e3f.e870e"
+      ]
+    ]
+  },
+  {
+    "id": "10349fb3.8e444",
+    "type": "split",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 730,
+    "y": 540,
+    "wires": [
+      [
+        "d66f7b10.e7534"
+      ]
+    ]
+  },
+  {
+    "id": "b7f3c41.7550bb8",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "relays",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 570,
+    "y": 540,
+    "wires": [
+      [
+        "10349fb3.8e444"
       ]
     ]
   }
