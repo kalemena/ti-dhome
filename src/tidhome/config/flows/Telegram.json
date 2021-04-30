@@ -126,5 +126,102 @@
         "b52ace9b.c4f7f"
       ]
     ]
+  },
+  {
+    "id": "f7290145.4541",
+    "type": "telegram command",
+    "z": "f6aef2f1.dd52e8",
+    "name": "/help",
+    "command": "/help",
+    "bot": "4fc69d2d.235124",
+    "strict": false,
+    "hasresponse": false,
+    "outputs": 2,
+    "x": 90,
+    "y": 350,
+    "wires": [
+      [
+        "2a90a04d.2f6e98"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "42720d76.713b3c",
+    "type": "telegram sender",
+    "z": "f6aef2f1.dd52e8",
+    "name": "Send",
+    "bot": "4fc69d2d.235124",
+    "outputs": 1,
+    "x": 450,
+    "y": 300,
+    "wires": [
+      [
+        "20cc8013.f8d02"
+      ]
+    ]
+  },
+  {
+    "id": "2a90a04d.2f6e98",
+    "type": "function",
+    "z": "f6aef2f1.dd52e8",
+    "name": "",
+    "func": "var helpMessage = \"/help - shows help\\n\";\nhelpMessage += \"/status - request for status\\n\";\nhelpMessage += \"/meteo - request for meteo\\n\";\n\nhelpMessage += \"Your chat id is \" + msg.payload.chatId + \"\\n\";\nhelpMessage += \"You are welcome: \"+ msg.originalMessage.from.username + \"\\n\";\n\nmsg.payload.content = helpMessage;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 270,
+    "y": 300,
+    "wires": [
+      [
+        "42720d76.713b3c"
+      ]
+    ]
+  },
+  {
+    "id": "20cc8013.f8d02",
+    "type": "debug",
+    "z": "f6aef2f1.dd52e8",
+    "name": "Status",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 590,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "118b2ea9.b320d1",
+    "type": "telegram command",
+    "z": "f6aef2f1.dd52e8",
+    "name": "/start",
+    "command": "/start",
+    "bot": "4fc69d2d.235124",
+    "strict": false,
+    "hasresponse": false,
+    "useregex": false,
+    "removeregexcommand": false,
+    "outputs": 1,
+    "x": 90,
+    "y": 300,
+    "wires": [
+      [
+        "2a90a04d.2f6e98"
+      ]
+    ]
+  },
+  {
+    "id": "a7974ba.f02b438",
+    "type": "comment",
+    "z": "f6aef2f1.dd52e8",
+    "name": "HELP",
+    "info": "",
+    "x": 90,
+    "y": 260,
+    "wires": []
   }
 ]
