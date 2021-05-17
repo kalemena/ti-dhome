@@ -222,78 +222,6 @@
     "wires": []
   },
   {
-    "id": "357aa886.10edf8",
-    "type": "function",
-    "z": "237573f3.977b64",
-    "name": "Notify",
-    "func": "msg.content = msg.payload\nmsg.payload = \"Stale Sensor: \" + msg.payload.name + \"(\" + msg.payload.uniqueid + \")\"\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 820,
-    "y": 1210,
-    "wires": [
-      [
-        "6b0999cd.8d9938"
-      ]
-    ]
-  },
-  {
-    "id": "b2266f73.6d2cb",
-    "type": "mqtt out",
-    "z": "237573f3.977b64",
-    "name": "notifications/telegram",
-    "topic": "notifications/telegram",
-    "qos": "",
-    "retain": "",
-    "broker": "c38452a5.4f84e8",
-    "x": 1030,
-    "y": 1210,
-    "wires": []
-  },
-  {
-    "id": "5a677916.14f77",
-    "type": "trigger",
-    "z": "237573f3.977b64",
-    "name": "Watchdog",
-    "op1": "",
-    "op2": "",
-    "op1type": "nul",
-    "op2type": "payl",
-    "duration": "15",
-    "extend": true,
-    "units": "min",
-    "reset": "",
-    "bytopic": "topic",
-    "topic": "payload.uniqueid",
-    "outputs": 1,
-    "x": 510,
-    "y": 1210,
-    "wires": [
-      [
-        "a0da8496.149cb8"
-      ]
-    ]
-  },
-  {
-    "id": "6b0999cd.8d9938",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "Stale ?",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": true,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "payload",
-    "statusType": "auto",
-    "x": 990,
-    "y": 1160,
-    "wires": []
-  },
-  {
     "id": "701631b4.93c578",
     "type": "split",
     "z": "237573f3.977b64",
@@ -327,24 +255,6 @@
     "wires": [
       [
         "c5f01a10.120958"
-      ]
-    ]
-  },
-  {
-    "id": "a0da8496.149cb8",
-    "type": "function",
-    "z": "237573f3.977b64",
-    "name": "Name?",
-    "func": "zigbee = global.get(\"zigbee\")\nmsg.payload.name = zigbee[msg.payload.uniqueid].name\n\n// pass through\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 670,
-    "y": 1210,
-    "wires": [
-      [
-        "357aa886.10edf8"
       ]
     ]
   },
@@ -733,38 +643,6 @@
     "x": 265,
     "y": 90,
     "wires": []
-  },
-  {
-    "id": "2534d81e.4d0d3",
-    "type": "change",
-    "z": "237573f3.977b64",
-    "name": "type=button",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload.type",
-        "pt": "msg",
-        "to": "button",
-        "tot": "str"
-      },
-      {
-        "t": "set",
-        "p": "payload.value",
-        "pt": "msg",
-        "to": "payload.state.buttonevent",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 670,
-    "y": 1050,
-    "wires": [
-      []
-    ]
   },
   {
     "id": "d6430df6.f47e08",
