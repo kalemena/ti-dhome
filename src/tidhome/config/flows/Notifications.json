@@ -514,7 +514,7 @@
     "fieldType": "msg",
     "format": "handlebars",
     "syntax": "plain",
-    "template": "fitbit\nultrawide\nultrasharp\n3840\n5120\nnintendo\nmario\nwestern\nxiaomi\nzigbee\nquest\noculus\nlego\ndji\nphoto\nbosh\nsamsung\nsiemens\nsèche",
+    "template": "fitbit\nultrawide\nultrasharp\n3840\n5120\nnintendo\nmario\nwestern\nxiaomi\nzigbee\nquest\noculus\nlego\ndji\nphoto\nsamsung",
     "output": "str",
     "x": 230,
     "y": 590,
