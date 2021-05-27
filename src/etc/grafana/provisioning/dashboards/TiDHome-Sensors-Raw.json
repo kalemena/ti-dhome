@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1618824212509,
+  "iteration": 1623615481478,
   "links": [],
   "panels": [
     {
@@ -34,8 +34,8 @@
       "scopedVars": {
         "type": {
           "selected": true,
-          "text": "power-inst",
-          "value": "power-inst"
+          "text": "temperature",
+          "value": "temperature"
         }
       },
       "title": "Details $type",
@@ -87,8 +87,8 @@
       "scopedVars": {
         "type": {
           "selected": true,
-          "text": "power-inst",
-          "value": "power-inst"
+          "text": "temperature",
+          "value": "temperature"
         }
       },
       "seriesOverrides": [],
@@ -233,8 +233,8 @@
       "scopedVars": {
         "type": {
           "selected": true,
-          "text": "power-inst",
-          "value": "power-inst"
+          "text": "temperature",
+          "value": "temperature"
         }
       },
       "seriesOverrides": [],
@@ -328,12 +328,13 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
+          "tags": [],
           "text": [
-            "power-inst"
+            "temperature"
           ],
           "value": [
-            "power-inst"
+            "temperature"
           ]
         },
         "datasource": "InfluxDB-Sensors",
@@ -367,5 +368,5 @@
   "timezone": "",
   "title": "TiDHome-Sensors-Raw",
   "uid": "mZjQcZUGz",
-  "version": 4
+  "version": 3
 }
