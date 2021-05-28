@@ -1137,109 +1137,11 @@
     ]
   },
   {
-    "id": "a990b195.116168",
-    "type": "inject",
-    "z": "237573f3.977b64",
-    "name": "0",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "0",
-    "payloadType": "num",
-    "x": 560,
-    "y": 1270,
-    "wires": [
-      [
-        "45b01360.c0adb4"
-      ]
-    ]
-  },
-  {
-    "id": "45b01360.c0adb4",
-    "type": "deconz-output",
-    "z": "237573f3.977b64",
-    "name": "Volet Down",
-    "server": "7daf73cd.995c9c",
-    "device": "group_13",
-    "device_name": "○ G-Volet-CuisinePorte",
-    "command": "scene",
-    "commandType": "deconz_cmd",
-    "payload": "1",
-    "payloadType": "deconz_payload",
-    "transitionTime": "",
-    "transitionTimeType": "num",
-    "x": 770,
-    "y": 1230,
-    "wires": []
-  },
-  {
-    "id": "e61c825b.41a7a",
-    "type": "inject",
-    "z": "237573f3.977b64",
-    "name": "255",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "255",
-    "payloadType": "num",
-    "x": 560,
-    "y": 1150,
-    "wires": [
-      [
-        "da4b8c4.ce3257"
-      ]
-    ]
-  },
-  {
-    "id": "13b16138.beca4f",
-    "type": "deconz-input",
-    "z": "237573f3.977b64",
-    "name": "",
-    "server": "7daf73cd.995c9c",
-    "device": "80:4b:50:ff:fe:e0:f4:44-01-0006",
-    "device_name": "TuyaRemote : ZHASwitch",
-    "topic": "",
-    "state": "buttonevent",
-    "output": "always",
-    "outputAtStartup": false,
-    "x": 160,
-    "y": 1200,
-    "wires": [
-      [
-        "9cb62758.8e0688",
-        "7409c94d.eac3f8"
-      ],
-      []
-    ]
-  },
-  {
     "id": "7409c94d.eac3f8",
     "type": "debug",
     "z": "237573f3.977b64",
     "name": "ZigBeeEvent",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -1247,8 +1149,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 400,
-    "y": 1160,
+    "x": 310,
+    "y": 1180,
     "wires": []
   },
   {
@@ -1268,24 +1170,110 @@
         "t": "eq",
         "v": "1004",
         "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "2002",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "2004",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "3002",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "3004",
+        "vt": "str"
       }
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 2,
-    "x": 390,
-    "y": 1200,
+    "outputs": 6,
+    "x": 300,
+    "y": 1250,
     "wires": [
       [
-        "9850a259.2b8ef"
+        "b9724258.6f7c2"
       ],
+      [],
       [
-        "f3ef6c3e.1fa21"
+        "dbc1205c.3704e"
+      ],
+      [],
+      [
+        "9e520fae.d6f5d8"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "799efabc.65b18c",
+    "type": "comment",
+    "z": "237573f3.977b64",
+    "name": "Shutters",
+    "info": "",
+    "x": 110,
+    "y": 1160,
+    "wires": []
+  },
+  {
+    "id": "456f92c3.4e8b64",
+    "type": "inject",
+    "z": "237573f3.977b64",
+    "name": "Down",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "0",
+    "payloadType": "num",
+    "x": 350,
+    "y": 1420,
+    "wires": [
+      [
+        "9e520fae.d6f5d8"
       ]
     ]
   },
   {
-    "id": "9850a259.2b8ef",
+    "id": "28e480c8.ac1c4",
+    "type": "inject",
+    "z": "237573f3.977b64",
+    "name": "Up",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "255",
+    "payloadType": "num",
+    "x": 350,
+    "y": 1340,
+    "wires": [
+      [
+        "b9724258.6f7c2"
+      ]
+    ]
+  },
+  {
+    "id": "b9724258.6f7c2",
     "type": "change",
     "z": "237573f3.977b64",
     "name": "Up",
@@ -1303,16 +1291,16 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 560,
-    "y": 1190,
+    "x": 520,
+    "y": 1340,
     "wires": [
       [
-        "da4b8c4.ce3257"
+        "4641d45a.80a6b4"
       ]
     ]
   },
   {
-    "id": "f3ef6c3e.1fa21",
+    "id": "9e520fae.d6f5d8",
     "type": "change",
     "z": "237573f3.977b64",
     "name": "Down",
@@ -1330,40 +1318,93 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 560,
-    "y": 1230,
+    "x": 520,
+    "y": 1420,
     "wires": [
       [
-        "45b01360.c0adb4"
+        "4641d45a.80a6b4"
       ]
     ]
   },
   {
-    "id": "799efabc.65b18c",
-    "type": "comment",
+    "id": "801c4473.ea4868",
+    "type": "inject",
     "z": "237573f3.977b64",
-    "name": "Shutters",
-    "info": "",
-    "x": 110,
-    "y": 1160,
-    "wires": []
+    "name": "Mid",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "150",
+    "payloadType": "num",
+    "x": 350,
+    "y": 1380,
+    "wires": [
+      [
+        "dbc1205c.3704e"
+      ]
+    ]
   },
   {
-    "id": "da4b8c4.ce3257",
-    "type": "deconz-output",
+    "id": "dbc1205c.3704e",
+    "type": "change",
     "z": "237573f3.977b64",
-    "name": "Volet Up",
-    "server": "7daf73cd.995c9c",
-    "device": "group_13",
-    "device_name": "○ G-Volet-CuisinePorte",
-    "command": "scene",
-    "commandType": "deconz_cmd",
-    "payload": "2",
-    "payloadType": "deconz_payload",
-    "transitionTime": "",
-    "transitionTimeType": "num",
-    "x": 760,
-    "y": 1190,
+    "name": "Mid",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "190",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 520,
+    "y": 1380,
+    "wires": [
+      [
+        "4641d45a.80a6b4"
+      ]
+    ]
+  },
+  {
+    "id": "a3d9dda0.acd1",
+    "type": "link in",
+    "z": "237573f3.977b64",
+    "name": "V-in",
+    "links": [
+      "d6786414.315f18"
+    ],
+    "x": 155,
+    "y": 1210,
+    "wires": [
+      [
+        "7409c94d.eac3f8",
+        "9cb62758.8e0688"
+      ]
+    ]
+  },
+  {
+    "id": "4641d45a.80a6b4",
+    "type": "link out",
+    "z": "237573f3.977b64",
+    "name": "V-out",
+    "links": [
+      "b14a924c.1f69f8"
+    ],
+    "x": 675,
+    "y": 1380,
     "wires": []
   }
 ]
