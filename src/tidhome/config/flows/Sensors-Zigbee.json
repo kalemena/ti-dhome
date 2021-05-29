@@ -1295,7 +1295,7 @@
     "y": 1340,
     "wires": [
       [
-        "4641d45a.80a6b4"
+        "e2a81f83.6b5988"
       ]
     ]
   },
@@ -1322,7 +1322,7 @@
     "y": 1420,
     "wires": [
       [
-        "4641d45a.80a6b4"
+        "e2a81f83.6b5988"
       ]
     ]
   },
@@ -1374,7 +1374,7 @@
     "y": 1380,
     "wires": [
       [
-        "4641d45a.80a6b4"
+        "e2a81f83.6b5988"
       ]
     ]
   },
@@ -1401,12 +1401,103 @@
     "id": "4641d45a.80a6b4",
     "type": "link out",
     "z": "237573f3.977b64",
-    "name": "V-out",
+    "name": "V-out-CuisinePorte",
     "links": [
       "b14a924c.1f69f8"
     ],
-    "x": 675,
+    "x": 955,
+    "y": 1330,
+    "wires": []
+  },
+  {
+    "id": "6cd561c7.b2cb4",
+    "type": "link out",
+    "z": "237573f3.977b64",
+    "name": "V-out-Salon",
+    "links": [
+      "e20ece40.a9da5"
+    ],
+    "x": 955,
     "y": 1380,
     "wires": []
+  },
+  {
+    "id": "6cb1ebef.c28644",
+    "type": "link out",
+    "z": "237573f3.977b64",
+    "name": "V-out-Hall",
+    "links": [
+      "9330db92.515238"
+    ],
+    "x": 955,
+    "y": 1430,
+    "wires": []
+  },
+  {
+    "id": "e2a81f83.6b5988",
+    "type": "function",
+    "z": "237573f3.977b64",
+    "name": "n/a",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 660,
+    "y": 1380,
+    "wires": [
+      [
+        "4641d45a.80a6b4",
+        "6ad39d79.1c0a14",
+        "7620c817.f286f"
+      ]
+    ]
+  },
+  {
+    "id": "6ad39d79.1c0a14",
+    "type": "delay",
+    "z": "237573f3.977b64",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "10",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "x": 860,
+    "y": 1430,
+    "wires": [
+      [
+        "6cb1ebef.c28644"
+      ]
+    ]
+  },
+  {
+    "id": "7620c817.f286f",
+    "type": "delay",
+    "z": "237573f3.977b64",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "5",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "x": 860,
+    "y": 1380,
+    "wires": [
+      [
+        "6cd561c7.b2cb4"
+      ]
+    ]
   }
 ]
