@@ -245,33 +245,6 @@
     ]
   },
   {
-    "id": "3e32665d.b9272a",
-    "type": "change",
-    "z": "f6aef2f1.dd52e8",
-    "name": "Up",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "1002",
-        "tot": "num"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 440,
-    "y": 500,
-    "wires": [
-      [
-        "14ebbca6.96705b"
-      ]
-    ]
-  },
-  {
     "id": "8d0d171f.e98ce",
     "type": "comment",
     "z": "f6aef2f1.dd52e8",
@@ -315,81 +288,51 @@
     "y": 520,
     "wires": [
       [
-        "3e32665d.b9272a"
+        "a0f1b25d.56ebd8"
       ],
       [
-        "8f908796.3b7e58"
+        "fb39c3f5.aecd5"
       ],
       [
-        "13d80513.565abb"
+        "b20b07bf.0fa17"
       ],
       []
     ]
   },
   {
-    "id": "8f908796.3b7e58",
-    "type": "change",
-    "z": "f6aef2f1.dd52e8",
-    "name": "Mid",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "2002",
-        "tot": "num"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 440,
-    "y": 540,
-    "wires": [
-      [
-        "14ebbca6.96705b"
-      ]
-    ]
-  },
-  {
-    "id": "13d80513.565abb",
-    "type": "change",
-    "z": "f6aef2f1.dd52e8",
-    "name": "Down",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "3002",
-        "tot": "num"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 440,
-    "y": 580,
-    "wires": [
-      [
-        "14ebbca6.96705b"
-      ]
-    ]
-  },
-  {
-    "id": "14ebbca6.96705b",
+    "id": "a0f1b25d.56ebd8",
     "type": "link out",
     "z": "f6aef2f1.dd52e8",
     "name": "",
     "links": [
-      "a3d9dda0.acd1"
+      "aa5c34a.f9d6ec8"
     ],
-    "x": 565,
-    "y": 540,
+    "x": 405,
+    "y": 510,
+    "wires": []
+  },
+  {
+    "id": "fb39c3f5.aecd5",
+    "type": "link out",
+    "z": "f6aef2f1.dd52e8",
+    "name": "",
+    "links": [
+      "2ddb7dd.4c66182"
+    ],
+    "x": 405,
+    "y": 550,
+    "wires": []
+  },
+  {
+    "id": "b20b07bf.0fa17",
+    "type": "link out",
+    "z": "f6aef2f1.dd52e8",
+    "name": "",
+    "links": [
+      "b5ef13e8.5356d8"
+    ],
+    "x": 405,
+    "y": 590,
     "wires": []
   }
 ]
