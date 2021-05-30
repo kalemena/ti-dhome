@@ -240,7 +240,8 @@
     "y": 510,
     "wires": [
       [
-        "6e059c3f.301864"
+        "6e059c3f.301864",
+        "3f7706b3.bd9a5a"
       ]
     ]
   },
@@ -259,7 +260,7 @@
     "type": "switch",
     "z": "f6aef2f1.dd52e8",
     "name": "",
-    "property": "payload",
+    "property": "originalMessage.text",
     "propertyType": "msg",
     "rules": [
       {
@@ -296,7 +297,9 @@
       [
         "b20b07bf.0fa17"
       ],
-      []
+      [
+        "3f7706b3.bd9a5a"
+      ]
     ]
   },
   {
@@ -307,8 +310,8 @@
     "links": [
       "aa5c34a.f9d6ec8"
     ],
-    "x": 405,
-    "y": 510,
+    "x": 585,
+    "y": 490,
     "wires": []
   },
   {
@@ -319,8 +322,8 @@
     "links": [
       "2ddb7dd.4c66182"
     ],
-    "x": 405,
-    "y": 550,
+    "x": 585,
+    "y": 530,
     "wires": []
   },
   {
@@ -331,8 +334,25 @@
     "links": [
       "b5ef13e8.5356d8"
     ],
-    "x": 405,
-    "y": 590,
+    "x": 585,
+    "y": 570,
+    "wires": []
+  },
+  {
+    "id": "3f7706b3.bd9a5a",
+    "type": "debug",
+    "z": "f6aef2f1.dd52e8",
+    "name": "Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 340,
+    "y": 630,
     "wires": []
   }
 ]
