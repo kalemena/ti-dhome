@@ -53,7 +53,7 @@ services:
           - deconz.tidhome.local
 
   influxdb:
-    image: influxdb:1.8.5
+    image: influxdb:1.8.6
     # user: "${UID}:${GID}"
     restart: always
     ports:
