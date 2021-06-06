@@ -30,6 +30,17 @@ init-influxdb:
     #     -v $(CURDIR)/etc/influxdb/scripts:/docker-entrypoint-initdb.d \
     #     influxdb /init-influxdb.sh
 
+init-influxdb2:
+	echo "Initialize: Setup InfluxDB ..."
+	# For information only
+	mkdir -p etc/influxdb2
+	docker run --rm influxdb:2.0.7 influxd print-config > etc/influxdb2/config-default.yml
+	cp -n etc/influxdb2/config-default.yml etc/influxdb2/config.yml
+	# Volumes
+	#docker-compose up -d influxdb2
+	#sleep 10s
+	#docker-compose influxdb2 down
+
 init-telegraf:
 	echo "Initialize: Setup Telegraf ..."
 	# For information only
