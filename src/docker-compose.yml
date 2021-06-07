@@ -7,6 +7,7 @@ version: '3.7'
 
 volumes:
   influxdb-data:
+  influxdb2-data:
 
 services:
 
