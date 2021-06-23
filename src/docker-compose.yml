@@ -78,7 +78,29 @@ services:
       INFLUXDB_ADMIN_PASSWORD: ${INFLUXDB_ADMIN_PASSWORD:-password}
       INFLUXDB_USER: ${INFLUXDB_USER:-default}
       INFLUXDB_USER_PASSWORD: ${INFLUXDB_USER_PASSWORD:-password}
-      
+
+  # influxdb2:
+  #   image: influxdb:2.0.7
+  #   # user: "${UID}:${GID}"
+  #   restart: always
+  #   ports:
+  #     - "9083:8083"
+  #     - "9086:8086"
+  #   volumes: 
+  #     #- ./etc/influxdb/scripts:/docker-entrypoint-initdb.d
+  #     - ./etc/influxdb2:/etc/influxdb2
+  #     - influxdb2-data:/var/lib/influxdb2:rw
+  #   environment:
+  #     DOCKER_INFLUXDB_INIT_MODE: setup
+  #     # Creds
+  #     DOCKER_INFLUXDB_INIT_USERNAME: ${DOCKER_INFLUXDB_INIT_USERNAME:-default}
+  #     DOCKER_INFLUXDB_INIT_PASSWORD: ${DOCKER_INFLUXDB_INIT_PASSWORD:-password}
+  #     DOCKER_INFLUXDB_INIT_ORG: ${DOCKER_INFLUXDB_INIT_ORG:-tidhome-org}
+  #     DOCKER_INFLUXDB_INIT_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET:-tidhome-bucket}
+  #     DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN:-secret-auth-token}
+  #     # Retention
+  #     DOCKER_INFLUXDB_INIT_RETENTION: ${DOCKER_INFLUXDB_INIT_RETENTION:-4w}
+            
   nodered:
     #image: kalemena/node-red:latest
     build: .
