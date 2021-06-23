@@ -185,11 +185,12 @@
     "type": "function",
     "z": "f96b3a53.67de8",
     "name": "Friendly name",
-    "func": "var tidhome = global.get(\"tidhome\") || {}\nsensors = tidhome.sensors || {}\ncurrsnetcostNodes = sensors.currentcost.nodes || {}\nmsg.payload.name = \"cc-\" + msg.payload.id + \"-\" + currsnetcostNodes[msg.payload.id].location || \"Unknown\"\n\n// pass through\nreturn msg;",
+    "func": "var tidhome = global.get(\"tidhome\") || {}\nsensors = tidhome.sensors || {}\ncurrsnetcostNodes = sensors.currentcost.nodes || {}\n\nlet i = 0;\nlet len = currsnetcostNodes.length;\nfor (; i < len; ) {\n  if(currsnetcostNodes[i].id === msg.payload.id) {\n    msg.payload.name = \"cc-\" + msg.payload.id + \"-\" + currsnetcostNodes[i].location || \"Unknown\"\n  }\n  i++;\n} \n\n// pass through\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
+    "libs": [],
     "x": 790,
     "y": 210,
     "wires": [
