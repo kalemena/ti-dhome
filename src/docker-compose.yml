@@ -117,7 +117,7 @@ services:
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
-     - "/dev/ttyZWave:/dev/ttyZWave"
+    #  - "/dev/ttyZWave:/dev/ttyZWave"
     # environment:
     #  - FLOWS=/opt/tidhome/flows/tidhome-flows.json
     env_file:
