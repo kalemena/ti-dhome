@@ -15,43 +15,24 @@ services:
     image: eclipse-mosquitto:1.6
     restart: always
 
-  # https://github.com/marthoc/docker-deconz
-  deconz:
-    image: marthoc/deconz
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt
     restart: always
-    # user: "${UID}:${GID}"
     ports:
-      - 7080:7080
-      - 7443:7443
-      - 7900:5900
+      - "8181:8181"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./etc/deconz:/root/.local/share/dresden-elektronik/deCONZ
-      - /run/udev:/run/udev:ro  # so that serial number vendor/product ids are known
-    device_cgroup_rules:
-      - 'c 166:* rmw' # allow creation of /dev/ttyACMx nodes via mknod
-      - 'c 188:* rmw' # allow creation of /dev/ttyUSBx nodes via mknod
+      - ./tidhome/data:/app/data
+      - /run/udev:/run/udev:ro
     devices:
-      - /dev/bus/usb
+      - /dev/ttyACM0:/dev/ttyACM0
+    privileged: true
     environment:
-      # - DECONZ_DEVICE=/dev/ttyZigbee
-      - DECONZ_WEB_PORT=7080
-      - DECONZ_WS_PORT=7443
-      - DECONZ_VNC_MODE=1
-      - DECONZ_VNC_PORT=5900
-      - DECONZ_VNC_PASSWORD=${ZIGBEE_DECONZ_VNC_PASSWORD:-password}
-      - DEBUG_INFO=1
-      - DEBUG_APS=0
-      - DEBUG_ZCL=0
-      - DEBUG_ZDP=0
-      - DEBUG_OTAU=0
-    extra_hosts:
-      - "phoscon.de:127.0.0.1"
-      - "dresden-light.appspot.com:127.0.0.1"
+      - TZ=Europe/Paris
     networks:
       default:
         aliases:
-          - deconz.tidhome.local
+          - zigbee2mqtt.tidhome.local
 
   influxdb:
     image: influxdb:1.8.6
