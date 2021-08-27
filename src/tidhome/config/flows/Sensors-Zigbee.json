@@ -24,45 +24,6 @@
     "wires": []
   },
   {
-    "id": "32410673.2da7da",
-    "type": "http request",
-    "z": "237573f3.977b64",
-    "name": "GET /sensors",
-    "method": "GET",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "x": 620,
-    "y": 180,
-    "wires": [
-      [
-        "701631b4.93c578"
-      ]
-    ]
-  },
-  {
-    "id": "56d4c46e.955304",
-    "type": "function",
-    "z": "237573f3.977b64",
-    "name": "/sensors",
-    "func": "\nvar newmsg = {};\nnewmsg.payload = \"\";\nnewmsg.topic = \"\";\nnewmsg.url = \"http://deconz:7080/api/\"+ msg.apikey + \"/sensors\";\nreturn newmsg;\n\n// msg.payload = \"http://deconz:7080/api/\" + msg.apikey + \"/sensors\";\n//return msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 440,
-    "y": 180,
-    "wires": [
-      [
-        "32410673.2da7da"
-      ]
-    ]
-  },
-  {
     "id": "da797c2a.8ca438",
     "type": "inject",
     "z": "237573f3.977b64",
@@ -86,36 +47,7 @@
     "x": 120,
     "y": 180,
     "wires": [
-      [
-        "3acd2d68.3a414a"
-      ]
-    ]
-  },
-  {
-    "id": "3acd2d68.3a414a",
-    "type": "change",
-    "z": "237573f3.977b64",
-    "name": "APIKEY",
-    "rules": [
-      {
-        "t": "set",
-        "p": "apikey",
-        "pt": "msg",
-        "to": "$(ZIGBEE_DECONZ_APIKEY)",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 290,
-    "y": 180,
-    "wires": [
-      [
-        "56d4c46e.955304"
-      ]
+      []
     ]
   },
   {
@@ -158,8 +90,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 4,
-    "x": 150,
-    "y": 350,
+    "x": 290,
+    "y": 660,
     "wires": [
       [
         "bcb0fb01.de4dc8",
@@ -180,21 +112,6 @@
     ]
   },
   {
-    "id": "10a36060.0df5e8",
-    "type": "deconz-event",
-    "z": "237573f3.977b64",
-    "name": "",
-    "server": "7daf73cd.995c9c",
-    "device_name": null,
-    "x": 120,
-    "y": 270,
-    "wires": [
-      [
-        "ed4892b1.071258"
-      ]
-    ]
-  },
-  {
     "id": "8d42076c.9375a8",
     "type": "debug",
     "z": "237573f3.977b64",
@@ -207,8 +124,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 520,
-    "y": 270,
+    "x": 660,
+    "y": 580,
     "wires": []
   },
   {
@@ -272,8 +189,8 @@
     "valueKey": "",
     "alignToClock": true,
     "generator": "internal",
-    "x": 360,
-    "y": 410,
+    "x": 500,
+    "y": 720,
     "wires": [
       [],
       []
@@ -292,8 +209,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 360,
-    "y": 330,
+    "x": 500,
+    "y": 640,
     "wires": []
   },
   {
@@ -306,8 +223,8 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 1080,
-    "y": 450,
+    "x": 1220,
+    "y": 760,
     "wires": [
       [
         "8f2de443.dfe26"
@@ -323,8 +240,8 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 1250,
-    "y": 450,
+    "x": 1390,
+    "y": 760,
     "wires": []
   },
   {
@@ -338,8 +255,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 320,
-    "y": 270,
+    "x": 460,
+    "y": 580,
     "wires": [
       [
         "8d42076c.9375a8",
@@ -373,8 +290,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 690,
-    "y": 470,
+    "x": 830,
+    "y": 780,
     "wires": [
       [
         "6129e357.f1a854"
@@ -407,8 +324,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 680,
-    "y": 510,
+    "x": 820,
+    "y": 820,
     "wires": [
       [
         "6129e357.f1a854"
@@ -441,8 +358,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 680,
-    "y": 550,
+    "x": 820,
+    "y": 860,
     "wires": [
       [
         "6129e357.f1a854"
@@ -475,8 +392,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 660,
-    "y": 670,
+    "x": 800,
+    "y": 980,
     "wires": [
       [
         "6129e357.f1a854"
@@ -509,8 +426,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 680,
-    "y": 630,
+    "x": 820,
+    "y": 940,
     "wires": [
       [
         "6129e357.f1a854"
@@ -543,8 +460,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 670,
-    "y": 590,
+    "x": 810,
+    "y": 900,
     "wires": [
       [
         "6129e357.f1a854"
@@ -577,8 +494,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 680,
-    "y": 870,
+    "x": 820,
+    "y": 1180,
     "wires": [
       [
         "6129e357.f1a854"
@@ -611,8 +528,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 680,
-    "y": 830,
+    "x": 820,
+    "y": 1140,
     "wires": [
       [
         "6129e357.f1a854"
@@ -671,8 +588,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 3,
-    "x": 360,
-    "y": 370,
+    "x": 500,
+    "y": 680,
     "wires": [
       [
         "cd1533d2.5464d"
@@ -709,8 +626,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 670,
-    "y": 350,
+    "x": 810,
+    "y": 660,
     "wires": [
       [
         "6129e357.f1a854"
@@ -743,8 +660,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 680,
-    "y": 390,
+    "x": 820,
+    "y": 700,
     "wires": [
       [
         "6129e357.f1a854"
@@ -831,8 +748,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 14,
-    "x": 360,
-    "y": 590,
+    "x": 500,
+    "y": 900,
     "wires": [
       [
         "6b8af3e.5ebac0c"
@@ -891,8 +808,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 360,
-    "y": 460,
+    "x": 500,
+    "y": 770,
     "wires": []
   },
   {
@@ -908,8 +825,8 @@
     "valueKey": "",
     "alignToClock": true,
     "generator": "internal",
-    "x": 360,
-    "y": 720,
+    "x": 500,
+    "y": 1030,
     "wires": [
       [],
       []
@@ -928,8 +845,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 360,
-    "y": 840,
+    "x": 500,
+    "y": 1150,
     "wires": []
   },
   {
@@ -958,8 +875,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 710,
-    "y": 910,
+    "x": 850,
+    "y": 1220,
     "wires": [
       [
         "6129e357.f1a854"
@@ -979,8 +896,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 690,
-    "y": 990,
+    "x": 830,
+    "y": 1300,
     "wires": []
   },
   {
@@ -1009,8 +926,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 680,
-    "y": 710,
+    "x": 820,
+    "y": 1020,
     "wires": [
       [
         "6129e357.f1a854"
@@ -1043,8 +960,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 670,
-    "y": 750,
+    "x": 810,
+    "y": 1060,
     "wires": [
       [
         "6129e357.f1a854"
@@ -1077,8 +994,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 660,
-    "y": 790,
+    "x": 800,
+    "y": 1100,
     "wires": [
       [
         "6129e357.f1a854"
@@ -1098,8 +1015,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 360,
-    "y": 800,
+    "x": 500,
+    "y": 1110,
     "wires": []
   },
   {
@@ -1128,8 +1045,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 690,
-    "y": 950,
+    "x": 830,
+    "y": 1260,
     "wires": [
       [
         "6129e357.f1a854"
