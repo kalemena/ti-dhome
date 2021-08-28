@@ -10,7 +10,6 @@ RUN npm i \
         node-red-contrib-simple-weekly-scheduler \
         node-red-contrib-flatter \
         node-red-contrib-covid19 \
-        node-red-contrib-deconz \
         node-red-contrib-influxdb \
         node-red-contrib-topic-frequencies \
         node-red-node-feedparser \
