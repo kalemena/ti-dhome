@@ -1,4 +1,4 @@
-FROM kalemena/node-red:2.0.5
+FROM kalemena/node-red:2.0.6
 
 RUN npm i \
         node-red-contrib-file-function-ext \
