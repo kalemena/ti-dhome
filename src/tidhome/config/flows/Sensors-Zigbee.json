@@ -56,7 +56,7 @@
     "z": "237573f3.977b64",
     "name": "ZigBee Devices",
     "info": "",
-    "x": 130,
+    "x": 100,
     "y": 140,
     "wires": []
   },
@@ -134,7 +134,7 @@
     "z": "237573f3.977b64",
     "name": "ZigBee Events",
     "info": "",
-    "x": 130,
+    "x": 100,
     "y": 230,
     "wires": []
   },
@@ -1054,418 +1054,6 @@
     ]
   },
   {
-    "id": "7409c94d.eac3f8",
-    "type": "debug",
-    "z": "237573f3.977b64",
-    "name": "ZigBeeEvent",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 760,
-    "y": 2020,
-    "wires": []
-  },
-  {
-    "id": "9cb62758.8e0688",
-    "type": "switch",
-    "z": "237573f3.977b64",
-    "name": "Buttons ?",
-    "property": "payload",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "1002",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "1004",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "2002",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "2004",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "3002",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "3004",
-        "vt": "str"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 6,
-    "x": 750,
-    "y": 2090,
-    "wires": [
-      [
-        "b9724258.6f7c2"
-      ],
-      [],
-      [
-        "dbc1205c.3704e"
-      ],
-      [],
-      [
-        "9e520fae.d6f5d8"
-      ],
-      []
-    ]
-  },
-  {
-    "id": "799efabc.65b18c",
-    "type": "comment",
-    "z": "237573f3.977b64",
-    "name": "Shutters",
-    "info": "",
-    "x": 560,
-    "y": 2000,
-    "wires": []
-  },
-  {
-    "id": "456f92c3.4e8b64",
-    "type": "inject",
-    "z": "237573f3.977b64",
-    "name": "Down",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "0",
-    "payloadType": "num",
-    "x": 760,
-    "y": 2340,
-    "wires": [
-      [
-        "9e520fae.d6f5d8"
-      ]
-    ]
-  },
-  {
-    "id": "28e480c8.ac1c4",
-    "type": "inject",
-    "z": "237573f3.977b64",
-    "name": "Up",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "255",
-    "payloadType": "num",
-    "x": 760,
-    "y": 2180,
-    "wires": [
-      [
-        "b9724258.6f7c2"
-      ]
-    ]
-  },
-  {
-    "id": "b9724258.6f7c2",
-    "type": "change",
-    "z": "237573f3.977b64",
-    "name": "Up",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "255",
-        "tot": "num"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 970,
-    "y": 2180,
-    "wires": [
-      [
-        "e2a81f83.6b5988"
-      ]
-    ]
-  },
-  {
-    "id": "9e520fae.d6f5d8",
-    "type": "change",
-    "z": "237573f3.977b64",
-    "name": "Down",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "0",
-        "tot": "num"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 970,
-    "y": 2340,
-    "wires": [
-      [
-        "e2a81f83.6b5988"
-      ]
-    ]
-  },
-  {
-    "id": "801c4473.ea4868",
-    "type": "inject",
-    "z": "237573f3.977b64",
-    "name": "Mid",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "150",
-    "payloadType": "num",
-    "x": 760,
-    "y": 2260,
-    "wires": [
-      [
-        "dbc1205c.3704e"
-      ]
-    ]
-  },
-  {
-    "id": "dbc1205c.3704e",
-    "type": "change",
-    "z": "237573f3.977b64",
-    "name": "Mid",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "190",
-        "tot": "num"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 970,
-    "y": 2260,
-    "wires": [
-      [
-        "e2a81f83.6b5988"
-      ]
-    ]
-  },
-  {
-    "id": "a3d9dda0.acd1",
-    "type": "link in",
-    "z": "237573f3.977b64",
-    "name": "V-button",
-    "links": [
-      "7a95eb80.2e007c",
-      "d6786414.315f18",
-      "14ebbca6.96705b"
-    ],
-    "x": 605,
-    "y": 2050,
-    "wires": [
-      [
-        "7409c94d.eac3f8",
-        "9cb62758.8e0688"
-      ]
-    ]
-  },
-  {
-    "id": "4641d45a.80a6b4",
-    "type": "link out",
-    "z": "237573f3.977b64",
-    "name": "V-out-CuisinePorte",
-    "links": [
-      "b14a924c.1f69f8"
-    ],
-    "x": 1405,
-    "y": 2220,
-    "wires": []
-  },
-  {
-    "id": "6cd561c7.b2cb4",
-    "type": "link out",
-    "z": "237573f3.977b64",
-    "name": "V-out-Salon",
-    "links": [
-      "e20ece40.a9da5"
-    ],
-    "x": 1405,
-    "y": 2260,
-    "wires": []
-  },
-  {
-    "id": "6cb1ebef.c28644",
-    "type": "link out",
-    "z": "237573f3.977b64",
-    "name": "V-out-Hall",
-    "links": [
-      "9330db92.515238"
-    ],
-    "x": 1405,
-    "y": 2300,
-    "wires": []
-  },
-  {
-    "id": "e2a81f83.6b5988",
-    "type": "function",
-    "z": "237573f3.977b64",
-    "name": "n/a",
-    "func": "\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 1140,
-    "y": 2260,
-    "wires": [
-      [
-        "4641d45a.80a6b4",
-        "6ad39d79.1c0a14",
-        "7620c817.f286f"
-      ]
-    ]
-  },
-  {
-    "id": "6ad39d79.1c0a14",
-    "type": "delay",
-    "z": "237573f3.977b64",
-    "name": "",
-    "pauseType": "delay",
-    "timeout": "10",
-    "timeoutUnits": "seconds",
-    "rate": "1",
-    "nbRateUnits": "1",
-    "rateUnits": "second",
-    "randomFirst": "1",
-    "randomLast": "5",
-    "randomUnits": "seconds",
-    "drop": false,
-    "x": 1300,
-    "y": 2300,
-    "wires": [
-      [
-        "6cb1ebef.c28644"
-      ]
-    ]
-  },
-  {
-    "id": "7620c817.f286f",
-    "type": "delay",
-    "z": "237573f3.977b64",
-    "name": "",
-    "pauseType": "delay",
-    "timeout": "5",
-    "timeoutUnits": "seconds",
-    "rate": "1",
-    "nbRateUnits": "1",
-    "rateUnits": "second",
-    "randomFirst": "1",
-    "randomLast": "5",
-    "randomUnits": "seconds",
-    "drop": false,
-    "x": 1300,
-    "y": 2260,
-    "wires": [
-      [
-        "6cd561c7.b2cb4"
-      ]
-    ]
-  },
-  {
-    "id": "aa5c34a.f9d6ec8",
-    "type": "link in",
-    "z": "237573f3.977b64",
-    "name": "V-in-up",
-    "links": [
-      "a0f1b25d.56ebd8"
-    ],
-    "x": 795,
-    "y": 2220,
-    "wires": [
-      [
-        "b9724258.6f7c2"
-      ]
-    ]
-  },
-  {
-    "id": "2ddb7dd.4c66182",
-    "type": "link in",
-    "z": "237573f3.977b64",
-    "name": "V-in-mid",
-    "links": [
-      "fb39c3f5.aecd5"
-    ],
-    "x": 795,
-    "y": 2300,
-    "wires": [
-      [
-        "dbc1205c.3704e"
-      ]
-    ]
-  },
-  {
-    "id": "b5ef13e8.5356d8",
-    "type": "link in",
-    "z": "237573f3.977b64",
-    "name": "V-in-down",
-    "links": [
-      "b20b07bf.0fa17"
-    ],
-    "x": 795,
-    "y": 2380,
-    "wires": [
-      [
-        "9e520fae.d6f5d8"
-      ]
-    ]
-  },
-  {
     "id": "2b11a227.b0ca06",
     "type": "mqtt in",
     "z": "237573f3.977b64",
@@ -1804,8 +1392,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 530,
-    "y": 2610,
+    "x": 470,
+    "y": 2270,
     "wires": []
   },
   {
@@ -1903,8 +1491,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 17,
-    "x": 510,
-    "y": 2770,
+    "x": 450,
+    "y": 2430,
     "wires": [
       [
         "d3920a89.33069"
@@ -1959,7 +1547,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 530,
-    "y": 3050,
+    "y": 3070,
     "wires": []
   },
   {
@@ -1990,7 +1578,7 @@
     "repair": false,
     "outputs": 3,
     "x": 510,
-    "y": 3110,
+    "y": 3120,
     "wires": [
       [
         "378cc77d.34fe"
@@ -2013,8 +1601,8 @@
     "nl": false,
     "rap": true,
     "rh": 0,
-    "x": 280,
-    "y": 2610,
+    "x": 220,
+    "y": 2270,
     "wires": [
       [
         "ebce7da8.88de98",
@@ -2028,8 +1616,8 @@
     "z": "237573f3.977b64",
     "name": "Actioning lights",
     "info": "",
-    "x": 200,
-    "y": 2570,
+    "x": 140,
+    "y": 2230,
     "wires": []
   },
   {
@@ -2077,8 +1665,8 @@
     "correl": "",
     "expiry": "",
     "broker": "a899f03.9c7ef1",
-    "x": 1550,
-    "y": 2690,
+    "x": 1490,
+    "y": 2350,
     "wires": []
   },
   {
@@ -2100,8 +1688,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 820,
-    "y": 2630,
+    "x": 760,
+    "y": 2290,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2127,8 +1715,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 820,
-    "y": 2670,
+    "x": 760,
+    "y": 2330,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2154,8 +1742,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 820,
-    "y": 2710,
+    "x": 760,
+    "y": 2370,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2181,8 +1769,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 840,
-    "y": 2750,
+    "x": 780,
+    "y": 2410,
     "wires": [
       []
     ]
@@ -2206,8 +1794,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 830,
-    "y": 2790,
+    "x": 770,
+    "y": 2450,
     "wires": [
       []
     ]
@@ -2231,8 +1819,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 840,
-    "y": 2830,
+    "x": 780,
+    "y": 2490,
     "wires": [
       []
     ]
@@ -2435,8 +2023,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 800,
-    "y": 2910,
+    "x": 740,
+    "y": 2570,
     "wires": [
       [
         "27b10ed9.f6d66a"
@@ -2476,8 +2064,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 810,
-    "y": 2950,
+    "x": 750,
+    "y": 2610,
     "wires": [
       [
         "27b10ed9.f6d66a"
@@ -2531,8 +2119,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 7,
-    "x": 980,
-    "y": 2930,
+    "x": 920,
+    "y": 2590,
     "wires": [
       [
         "d8b96e7c.3d48c8"
@@ -2576,8 +2164,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1170,
-    "y": 2770,
+    "x": 1110,
+    "y": 2430,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2603,8 +2191,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1170,
-    "y": 2810,
+    "x": 1110,
+    "y": 2470,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2630,8 +2218,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1170,
-    "y": 2850,
+    "x": 1110,
+    "y": 2510,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2657,8 +2245,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1170,
-    "y": 2890,
+    "x": 1110,
+    "y": 2550,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2684,8 +2272,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1170,
-    "y": 2930,
+    "x": 1110,
+    "y": 2590,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2711,8 +2299,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1170,
-    "y": 2970,
+    "x": 1110,
+    "y": 2630,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -2738,8 +2326,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1180,
-    "y": 2730,
+    "x": 1120,
+    "y": 2390,
     "wires": [
       [
         "6fc8333b.7f6d1c"
@@ -3081,8 +2669,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1770,
-    "y": 1020,
+    "x": 1620,
+    "y": 1180,
     "wires": []
   },
   {
@@ -3165,8 +2753,8 @@
     "round": true,
     "property": "payload.move",
     "name": "",
-    "x": 1430,
-    "y": 1020,
+    "x": 1280,
+    "y": 1180,
     "wires": [
       [
         "d545bc5e.ab2af"
@@ -3192,8 +2780,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1580,
-    "y": 1120,
+    "x": 1430,
+    "y": 1280,
     "wires": [
       [
         "ed7e5bf9.c3ba68"
@@ -3233,8 +2821,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1570,
-    "y": 1020,
+    "x": 1420,
+    "y": 1180,
     "wires": [
       [
         "e67be7e9.698a3"
@@ -3253,8 +2841,8 @@
     "nl": false,
     "rap": true,
     "rh": 0,
-    "x": 200,
-    "y": 930,
+    "x": 180,
+    "y": 840,
     "wires": [
       [
         "6335ea75.a87bd4",
@@ -3284,8 +2872,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 1320,
-    "y": 1080,
+    "x": 1170,
+    "y": 1240,
     "wires": [
       [],
       []
@@ -3304,8 +2892,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 480,
-    "y": 880,
+    "x": 410,
+    "y": 840,
     "wires": []
   },
   {
@@ -3330,8 +2918,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 910,
-    "y": 1080,
+    "x": 760,
+    "y": 1240,
     "wires": [
       [
         "873456a9.af8e5"
@@ -3355,8 +2943,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1110,
-    "y": 1180,
+    "x": 960,
+    "y": 1340,
     "wires": []
   },
   {
@@ -3378,8 +2966,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1130,
-    "y": 1080,
+    "x": 980,
+    "y": 1240,
     "wires": [
       [
         "784a0a40.77a8e4"
@@ -3405,8 +2993,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1360,
-    "y": 1120,
+    "x": 1210,
+    "y": 1280,
     "wires": [
       [
         "b60a2ede.38c8c"
@@ -3435,8 +3023,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 1130,
-    "y": 1120,
+    "x": 980,
+    "y": 1280,
     "wires": [
       [
         "8727348b.c1985"
@@ -3459,8 +3047,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1330,
-    "y": 1180,
+    "x": 1180,
+    "y": 1340,
     "wires": []
   },
   {
@@ -3469,7 +3057,7 @@
     "z": "237573f3.977b64",
     "name": "Actioning a remote button",
     "info": "",
-    "x": 160,
+    "x": 130,
     "y": 630,
     "wires": []
   },
@@ -3479,8 +3067,8 @@
     "z": "237573f3.977b64",
     "name": "Actioning the magic cube",
     "info": "",
-    "x": 160,
-    "y": 870,
+    "x": 130,
+    "y": 800,
     "wires": []
   },
   {
@@ -3495,7 +3083,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
-    "x": 200,
+    "x": 180,
     "y": 670,
     "wires": [
       [
@@ -3521,8 +3109,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 490,
-    "y": 930,
+    "x": 420,
+    "y": 880,
     "wires": [
       [
         "2a74ef94.59aac"
@@ -3551,14 +3139,34 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 640,
-    "y": 930,
+    "x": 660,
+    "y": 880,
     "wires": [
       [
         "274d1df9.f97ce2"
       ],
       [
         "1888e2d7.750abd"
+      ]
+    ]
+  },
+  {
+    "id": "2f285578099ecddd",
+    "type": "mqtt in",
+    "z": "237573f3.977b64",
+    "name": "",
+    "topic": "zigbee2mqtt/R07~Celier~Chaussures",
+    "qos": "2",
+    "datatype": "auto",
+    "broker": "c38452a5.4f84e8",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "x": 290,
+    "y": 3010,
+    "wires": [
+      [
+        "378cc77d.34fe"
       ]
     ]
   }
