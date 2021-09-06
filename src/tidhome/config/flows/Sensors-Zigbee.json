@@ -3081,8 +3081,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1500,
-    "y": 870,
+    "x": 1770,
+    "y": 1020,
     "wires": []
   },
   {
@@ -3165,8 +3165,8 @@
     "round": true,
     "property": "payload.move",
     "name": "",
-    "x": 1210,
-    "y": 830,
+    "x": 1430,
+    "y": 1020,
     "wires": [
       [
         "d545bc5e.ab2af"
@@ -3192,8 +3192,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1310,
-    "y": 970,
+    "x": 1580,
+    "y": 1120,
     "wires": [
       [
         "ed7e5bf9.c3ba68"
@@ -3233,8 +3233,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1350,
-    "y": 830,
+    "x": 1570,
+    "y": 1020,
     "wires": [
       [
         "e67be7e9.698a3"
@@ -3257,7 +3257,8 @@
     "y": 930,
     "wires": [
       [
-        "6335ea75.a87bd4"
+        "6335ea75.a87bd4",
+        "59774785.92416"
       ]
     ]
   },
@@ -3283,8 +3284,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 1050,
-    "y": 930,
+    "x": 1320,
+    "y": 1080,
     "wires": [
       [],
       []
@@ -3295,7 +3296,7 @@
     "type": "debug",
     "z": "237573f3.977b64",
     "name": "",
-    "active": false,
+    "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -3303,8 +3304,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 440,
-    "y": 990,
+    "x": 480,
+    "y": 880,
     "wires": []
   },
   {
@@ -3329,8 +3330,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 640,
-    "y": 930,
+    "x": 910,
+    "y": 1080,
     "wires": [
       [
         "873456a9.af8e5"
@@ -3354,8 +3355,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 840,
-    "y": 1030,
+    "x": 1110,
+    "y": 1180,
     "wires": []
   },
   {
@@ -3377,8 +3378,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 860,
-    "y": 930,
+    "x": 1130,
+    "y": 1080,
     "wires": [
       [
         "784a0a40.77a8e4"
@@ -3404,8 +3405,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1090,
-    "y": 970,
+    "x": 1360,
+    "y": 1120,
     "wires": [
       [
         "b60a2ede.38c8c"
@@ -3434,8 +3435,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 860,
-    "y": 970,
+    "x": 1130,
+    "y": 1120,
     "wires": [
       [
         "8727348b.c1985"
@@ -3458,8 +3459,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1060,
-    "y": 1030,
+    "x": 1330,
+    "y": 1180,
     "wires": []
   },
   {
@@ -3500,6 +3501,64 @@
       [
         "8ab5bcf7.50a07",
         "ef08590c.fd1a7"
+      ]
+    ]
+  },
+  {
+    "id": "59774785.92416",
+    "type": "switch",
+    "z": "237573f3.977b64",
+    "name": "Action?",
+    "property": "payload.action",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "tap",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 490,
+    "y": 930,
+    "wires": [
+      [
+        "2a74ef94.59aac"
+      ]
+    ]
+  },
+  {
+    "id": "2a74ef94.59aac",
+    "type": "switch",
+    "z": "237573f3.977b64",
+    "name": "Side?",
+    "property": "payload.side",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "3",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 640,
+    "y": 930,
+    "wires": [
+      [
+        "274d1df9.f97ce2"
+      ],
+      [
+        "1888e2d7.750abd"
       ]
     ]
   }
