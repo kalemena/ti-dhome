@@ -3,6 +3,7 @@ FROM kalemena/node-red:2.0.6
 RUN npm i \
         node-red-contrib-file-function-ext \
         node-red-contrib-string \
+        node-red-contrib-object-hash \
         node-red-contrib-fs \
         node-red-contrib-readdir \
         node-red-contrib-telegrambot \
