@@ -357,7 +357,7 @@
     "type": "debug",
     "z": "8627a08f.2f4c18",
     "name": "Deals",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,

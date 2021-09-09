@@ -247,7 +247,9 @@
     "topic": "sensors",
     "qos": "2",
     "datatype": "json",
-    "broker": "d699fffa.d07df",
+    "broker": "c38452a5.4f84e8",
+    "nl": false,
+    "rap": false,
     "x": 90,
     "y": 340,
     "wires": [
