@@ -213,7 +213,7 @@
         "t": "set",
         "p": "payload.value",
         "pt": "msg",
-        "to": "payload.humidity / 100",
+        "to": "payload.humidity",
         "tot": "jsonata"
       }
     ],
