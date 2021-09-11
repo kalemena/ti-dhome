@@ -3284,7 +3284,7 @@
         "t": "set",
         "p": "payload.type",
         "pt": "msg",
-        "to": "battery",
+        "to": "voltage",
         "tot": "str"
       },
       {
