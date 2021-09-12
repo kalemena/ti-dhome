@@ -58,6 +58,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
+    "libs": [],
     "x": 440,
     "y": 160,
     "wires": [
