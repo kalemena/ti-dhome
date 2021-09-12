@@ -65,7 +65,7 @@
     "type": "debug",
     "z": "237573f3.977b64",
     "name": "",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -101,28 +101,7 @@
     "x": 780,
     "y": 180,
     "wires": [
-      [
-        "b2268266.0d86a8"
-      ]
-    ]
-  },
-  {
-    "id": "b2268266.0d86a8",
-    "type": "function",
-    "z": "237573f3.977b64",
-    "name": "Store Global",
-    "func": "// init (id needed)\nvar tidhome = global.get(\"tidhome\") || {}\n// var zigbee = global.get(\"zigbee\") || {}\nglobal.set(\"tidhome\", tidhome)\nglobal.set(\"tidhome.sensors.zigbee.\" + msg.payload.uniqueid, msg.payload);\n\n// pass through\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 930,
-    "y": 180,
-    "wires": [
-      [
-        "c5f01a10.120958"
-      ]
+      []
     ]
   },
   {
@@ -1544,7 +1523,7 @@
     "expiry": "",
     "broker": "c38452a5.4f84e8",
     "x": 1250,
-    "y": 750,
+    "y": 780,
     "wires": []
   },
   {
@@ -2106,7 +2085,7 @@
     "to": "",
     "reg": false,
     "x": 960,
-    "y": 610,
+    "y": 560,
     "wires": [
       [
         "6a4dd527.0c6374"
@@ -2133,7 +2112,7 @@
     "to": "",
     "reg": false,
     "x": 960,
-    "y": 650,
+    "y": 600,
     "wires": [
       [
         "6a4dd527.0c6374"
@@ -2175,7 +2154,7 @@
     "payload": "{\"state\":\"OPEN\"}",
     "payloadType": "json",
     "x": 960,
-    "y": 560,
+    "y": 510,
     "wires": [
       [
         "274d1df9.f97ce2"
@@ -2200,7 +2179,7 @@
     "payload": "{\"state\":\"CLOSE\"}",
     "payloadType": "json",
     "x": 960,
-    "y": 700,
+    "y": 650,
     "wires": [
       [
         "1888e2d7.750abd"
@@ -2222,7 +2201,7 @@
     "expiry": "",
     "broker": "c38452a5.4f84e8",
     "x": 1220,
-    "y": 630,
+    "y": 580,
     "wires": []
   },
   {
@@ -2560,22 +2539,42 @@
       },
       {
         "t": "eq",
+        "v": "action_angle",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
         "v": "shake",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "side",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "action",
         "vt": "str"
       }
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 2,
-    "x": 530,
-    "y": 650,
+    "outputs": 5,
+    "x": 490,
+    "y": 700,
     "wires": [
       [
         "2a74ef94.59aac"
       ],
       [
+        "9ff6d0268b748359"
+      ],
+      [
         "c6bedaf25152623e"
-      ]
+      ],
+      [],
+      []
     ]
   },
   {
@@ -2600,7 +2599,7 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 710,
+    "x": 660,
     "y": 650,
     "wires": [
       [
@@ -2778,7 +2777,7 @@
     "name": "Tap the cube to Open/Close shutters",
     "info": "",
     "x": 1240,
-    "y": 590,
+    "y": 540,
     "wires": []
   },
   {
@@ -2788,7 +2787,7 @@
     "name": "Shake the cube to toggle cozy light",
     "info": "",
     "x": 1240,
-    "y": 710,
+    "y": 740,
     "wires": []
   },
   {
@@ -2811,7 +2810,7 @@
     "to": "",
     "reg": false,
     "x": 990,
-    "y": 750,
+    "y": 780,
     "wires": [
       [
         "831f3268.666ba"
@@ -2880,7 +2879,8 @@
     "wires": [
       [
         "e38e1f834e0149a8",
-        "8d42076c.9375a8"
+        "8d42076c.9375a8",
+        "a5a916fc45b1b7f4"
       ]
     ]
   },
@@ -3384,13 +3384,137 @@
         "t": "hask",
         "v": "occupancy",
         "vt": "str"
+      },
+      {
+        "t": "hask",
+        "v": "illuminance",
+        "vt": "str"
       }
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 1,
+    "outputs": 2,
     "x": 290,
     "y": 1950,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "fcf5336f6f22ce51",
+    "type": "function",
+    "z": "237573f3.977b64",
+    "name": "Store Global",
+    "func": "// init (id needed)\nvar tidhome = global.get(\"tidhome\") || {}\n// var zigbee = global.get(\"zigbee\") || {}\nglobal.set(\"tidhome\", tidhome)\nglobal.set(\"tidhome.sensors.zigbee.\" + msg.topic.replace(\"zigbee2mqtt/\",\"\"), msg.payload);\n\n// pass through\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 930,
+    "y": 180,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "42c65007ee68f7b0",
+    "type": "function",
+    "z": "237573f3.977b64",
+    "name": "Compute",
+    "func": "// init (id needed)\nvar tidhome = global.get(\"tidhome\") || {}\nvar sensors = tidhome.get(\"sensors\") || {}\nvar zigbee = tidhome.get(\"zigbee\") || {}\n\nvar sensor_name = msg.topic.replace(\"zigbee2mqtt/\",\"\")\n\nvar device_state = zigbee.get(sensor_name) || {}\n\nvar last_position = device_state.get(\"last_position\") || 0\n\nvar direction = 0\nif(msg.action_angle > 0) {\n    position = Math.min(100, last_position + msg.action_angle)\n} else {\n    position = Math.max(0, last_position - msg.action_angle)\n}\n\nglobal.set(\"tidhome.sensors.zigbee.\" + sensor_name + \".last_position\", last_position);\n\n// pass through\nreturn {\n    payload: position\n    };",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 970,
+    "y": 690,
+    "wires": [
+      [
+        "6a4dd527.0c6374"
+      ]
+    ]
+  },
+  {
+    "id": "9ff6d0268b748359",
+    "type": "range",
+    "z": "237573f3.977b64",
+    "minin": "-180",
+    "maxin": "+180",
+    "minout": "-50",
+    "maxout": "+50",
+    "action": "scale",
+    "round": true,
+    "property": "payload.action_angle",
+    "name": "",
+    "x": 670,
+    "y": 690,
+    "wires": [
+      [
+        "42c65007ee68f7b0"
+      ]
+    ]
+  },
+  {
+    "id": "a5a916fc45b1b7f4",
+    "type": "function",
+    "z": "237573f3.977b64",
+    "name": "Name?",
+    "func": "var sensor_name = msg.topic.replace(\"zigbee2mqtt/\",\"\")\nmsg.payload.name = sensor_name\nreturn msg",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 290,
+    "y": 1440,
+    "wires": [
+      [
+        "211e5780596a5474",
+        "632ac04e5a355363"
+      ]
+    ]
+  },
+  {
+    "id": "211e5780596a5474",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 460,
+    "y": 1400,
+    "wires": []
+  },
+  {
+    "id": "632ac04e5a355363",
+    "type": "change",
+    "z": "237573f3.977b64",
+    "name": "Global",
+    "rules": [
+      {
+        "t": "set",
+        "p": "tidhome_zigbee[msg.payload.name]",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 460,
+    "y": 1440,
     "wires": [
       []
     ]
