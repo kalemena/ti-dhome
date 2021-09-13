@@ -2539,7 +2539,12 @@
       },
       {
         "t": "eq",
-        "v": "action_angle",
+        "v": "rotate_right",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "rotate_left",
         "vt": "str"
       },
       {
@@ -2560,15 +2565,20 @@
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 5,
-    "x": 490,
-    "y": 700,
+    "outputs": 6,
+    "x": 440,
+    "y": 690,
     "wires": [
       [
         "2a74ef94.59aac"
       ],
       [
-        "9ff6d0268b748359"
+        "c4ae1b832667595b",
+        "fe18c704095d647f"
+      ],
+      [
+        "c4ae1b832667595b",
+        "fe18c704095d647f"
       ],
       [
         "c6bedaf25152623e"
@@ -3423,7 +3433,7 @@
     "type": "function",
     "z": "237573f3.977b64",
     "name": "Compute",
-    "func": "// init (id needed)\nvar tidhome = global.get(\"tidhome\") || {}\nvar sensors = tidhome.get(\"sensors\") || {}\nvar zigbee = tidhome.get(\"zigbee\") || {}\n\nvar sensor_name = msg.topic.replace(\"zigbee2mqtt/\",\"\")\n\nvar device_state = zigbee.get(sensor_name) || {}\n\nvar last_position = device_state.get(\"last_position\") || 0\n\nvar direction = 0\nif(msg.action_angle > 0) {\n    position = Math.min(100, last_position + msg.action_angle)\n} else {\n    position = Math.max(0, last_position - msg.action_angle)\n}\n\nglobal.set(\"tidhome.sensors.zigbee.\" + sensor_name + \".last_position\", last_position);\n\n// pass through\nreturn {\n    payload: position\n    };",
+    "func": "// init (id needed)\nvar sensor_name = msg.topic.replace(\"zigbee2mqtt/\",\"\")\nvar last_position = global.get(\"tidhome_cache.\" + sensor_name + \".last_position\") || 0\n\nvar direction = 0\nif(msg.payload.action_angle > 0) {\n    position = Math.min(100, last_position + msg.payload.action_angle)\n} else {\n    position = Math.max(0, last_position + msg.payload.action_angle)\n}\n\nglobal.set(\"tidhome_cache.\" + sensor_name + \".last_position\", position);\n\n// pass through\nreturn {\n    payload: {\n        position: position\n        }\n    };",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
@@ -3433,6 +3443,7 @@
     "y": 690,
     "wires": [
       [
+        "a18b7635bb4482ed",
         "6a4dd527.0c6374"
       ]
     ]
@@ -3449,11 +3460,12 @@
     "round": true,
     "property": "payload.action_angle",
     "name": "",
-    "x": 670,
+    "x": 810,
     "y": 690,
     "wires": [
       [
-        "42c65007ee68f7b0"
+        "42c65007ee68f7b0",
+        "f888d3bf690fc752"
       ]
     ]
   },
@@ -3482,7 +3494,7 @@
     "type": "debug",
     "z": "237573f3.977b64",
     "name": "",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -3517,6 +3529,118 @@
     "y": 1440,
     "wires": [
       []
+    ]
+  },
+  {
+    "id": "88336ff6539e9c17",
+    "type": "mqtt in",
+    "z": "237573f3.977b64",
+    "name": "",
+    "topic": "zigbee2mqtt/R08~tbd~tbd",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "c38452a5.4f84e8",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "x": 160,
+    "y": 710,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c4ae1b832667595b",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 660,
+    "y": 730,
+    "wires": []
+  },
+  {
+    "id": "f888d3bf690fc752",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 960,
+    "y": 730,
+    "wires": []
+  },
+  {
+    "id": "a18b7635bb4482ed",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1150,
+    "y": 690,
+    "wires": []
+  },
+  {
+    "id": "32cca13a6da997d8",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 800,
+    "y": 730,
+    "wires": []
+  },
+  {
+    "id": "fe18c704095d647f",
+    "type": "switch",
+    "z": "237573f3.977b64",
+    "name": "Action?",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "hask",
+        "v": "action_angle",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 670,
+    "y": 690,
+    "wires": [
+      [
+        "9ff6d0268b748359",
+        "32cca13a6da997d8"
+      ]
     ]
   }
 ]
