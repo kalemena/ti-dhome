@@ -3433,7 +3433,7 @@
     "type": "function",
     "z": "237573f3.977b64",
     "name": "Compute",
-    "func": "// init (id needed)\nvar sensor_name = msg.topic.replace(\"zigbee2mqtt/\",\"\")\nvar last_position = global.get(\"tidhome_cache.\" + sensor_name + \".last_position\") || 0\n\nvar direction = 0\nif(msg.payload.action_angle > 0) {\n    position = Math.min(100, last_position + msg.payload.action_angle)\n} else {\n    position = Math.max(0, last_position + msg.payload.action_angle)\n}\n\nglobal.set(\"tidhome_cache.\" + sensor_name + \".last_position\", position);\n\n// pass through\nreturn {\n    payload: {\n        position: position\n        }\n    };",
+    "func": "var sensor_name = msg.topic.replace(\"zigbee2mqtt/\",\"\")\n\n// 0=up, 100=down\nvar last_position = global.get(\"tidhome_cache.\" + sensor_name + \".last_position\") || 0\n\nif(msg.payload.action_angle > 20) {\n    position = Math.min(100, last_position + 25)\n} else if(msg.payload.action_angle < 20) {\n    position = Math.max(0, last_position - 25)\n}\n\nglobal.set(\"tidhome_cache.\" + sensor_name + \".last_position\", position);\n\n// pass through\nreturn {\n    payload: {\n        position: position\n        }\n    };",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
@@ -3443,29 +3443,7 @@
     "y": 690,
     "wires": [
       [
-        "a18b7635bb4482ed",
-        "6a4dd527.0c6374"
-      ]
-    ]
-  },
-  {
-    "id": "9ff6d0268b748359",
-    "type": "range",
-    "z": "237573f3.977b64",
-    "minin": "-180",
-    "maxin": "+180",
-    "minout": "-50",
-    "maxout": "+50",
-    "action": "scale",
-    "round": true,
-    "property": "payload.action_angle",
-    "name": "",
-    "x": 810,
-    "y": 690,
-    "wires": [
-      [
-        "42c65007ee68f7b0",
-        "f888d3bf690fc752"
+        "a18b7635bb4482ed"
       ]
     ]
   },
@@ -3638,8 +3616,8 @@
     "y": 690,
     "wires": [
       [
-        "9ff6d0268b748359",
-        "32cca13a6da997d8"
+        "32cca13a6da997d8",
+        "42c65007ee68f7b0"
       ]
     ]
   }
