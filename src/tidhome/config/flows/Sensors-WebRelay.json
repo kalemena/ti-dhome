@@ -876,7 +876,7 @@
     "id": "17c50e3b.c70f22",
     "type": "debug",
     "z": "b1782abc.430f38",
-    "name": "TeleinfoDebug",
+    "name": "Otherwise",
     "active": false,
     "tosidebar": true,
     "console": false,
@@ -885,8 +885,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 900,
-    "y": 640,
+    "x": 550,
+    "y": 510,
     "wires": []
   },
   {
@@ -1021,11 +1021,12 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 400,
-    "y": 390,
+    "x": 270,
+    "y": 330,
     "wires": [
       [
-        "f6196e3f.e870e"
+        "4041416e2b11e83f",
+        "59e96ad40da5ad96"
       ]
     ]
   },
@@ -1154,8 +1155,8 @@
     "id": "a04282091d8972bc",
     "type": "mqtt out",
     "z": "b1782abc.430f38",
-    "name": "teleinfo",
-    "topic": "teleinfo",
+    "name": "sensors",
+    "topic": "sensors",
     "qos": "",
     "retain": "",
     "respTopic": "",
@@ -1478,7 +1479,7 @@
     "type": "debug",
     "z": "b1782abc.430f38",
     "name": "TeleinfoDebug",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -1548,6 +1549,99 @@
     "wires": [
       [
         "452dbe57e77cf0ee"
+      ]
+    ]
+  },
+  {
+    "id": "4041416e2b11e83f",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "WSDebug",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 560,
+    "y": 550,
+    "wires": []
+  },
+  {
+    "id": "59e96ad40da5ad96",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "Pre-process",
+    "func": "function isNumeric(n) { \n      return !isNaN(parseFloat(n)) && isFinite(n); \n}\n\nvar msgs = []\n\n//if(msg.teleinfo.IINST) {\n//    msgs.push( { topic: \"IINST\", payload: msg.teleinfo.IINST } )\n//}\n\n// Check all key/value\nvar keys = Object.keys(msg.teleinfo);\nfor(var i = 0; i < keys.length; i++) {\n    var key = keys[i];\n    var value = isNumeric(msg.teleinfo[key]) ? Number(msg.teleinfo[key]) : msg.teleinfo[key]\n    \n    global.set(\"tidhome_teleinfo.\" + key, value);\n    \n    msgs.push( { topic: key, payload: value } )\n}\n\nreturn msgs",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 560,
+    "y": 640,
+    "wires": [
+      [
+        "09eeee4ada393189"
+      ]
+    ]
+  },
+  {
+    "id": "92f6a23eb338c0e1",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "PreProcessDebug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1170,
+    "y": 640,
+    "wires": []
+  },
+  {
+    "id": "09eeee4ada393189",
+    "type": "rbe",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "func": "rbe",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 740,
+    "y": 640,
+    "wires": [
+      [
+        "1596cc938fc8a912"
+      ]
+    ]
+  },
+  {
+    "id": "1596cc938fc8a912",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "Insert Query",
+    "func": "fields = { \"value\": Number(msg.payload) }\ntags =   { \"type\": \"teleinfo-\" + msg.topic, \"location\": \"main\" }\n\nvar msgres =  {\n    payload: {\n        payload: [ fields, tags ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 930,
+    "y": 640,
+    "wires": [
+      [
+        "92f6a23eb338c0e1",
+        "a04282091d8972bc"
       ]
     ]
   }
