@@ -137,7 +137,7 @@
     "onceDelay": "",
     "topic": "1",
     "x": 110,
-    "y": 980,
+    "y": 1080,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -161,7 +161,7 @@
     "onceDelay": "",
     "topic": "0",
     "x": 100,
-    "y": 940,
+    "y": 1040,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -185,7 +185,7 @@
     "onceDelay": "",
     "topic": "2",
     "x": 120,
-    "y": 1020,
+    "y": 1120,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -209,7 +209,7 @@
     "onceDelay": "",
     "topic": "3",
     "x": 120,
-    "y": 1060,
+    "y": 1160,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -233,7 +233,7 @@
     "onceDelay": "",
     "topic": "4",
     "x": 120,
-    "y": 1100,
+    "y": 1200,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -257,7 +257,7 @@
     "onceDelay": "",
     "topic": "5",
     "x": 110,
-    "y": 1140,
+    "y": 1240,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -281,7 +281,7 @@
     "onceDelay": "",
     "topic": "6",
     "x": 130,
-    "y": 1180,
+    "y": 1280,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -305,7 +305,7 @@
     "onceDelay": "",
     "topic": "7",
     "x": 120,
-    "y": 1220,
+    "y": 1320,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -329,7 +329,7 @@
     "onceDelay": "",
     "topic": "14",
     "x": 100,
-    "y": 1260,
+    "y": 1360,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -353,7 +353,7 @@
     "onceDelay": "",
     "topic": "15",
     "x": 100,
-    "y": 1300,
+    "y": 1400,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -367,7 +367,7 @@
     "name": "IOTHeaters - Test",
     "info": "",
     "x": 120,
-    "y": 900,
+    "y": 1000,
     "wires": []
   },
   {
@@ -380,7 +380,7 @@
     "retain": "",
     "broker": "c38452a5.4f84e8",
     "x": 1150,
-    "y": 930,
+    "y": 1030,
     "wires": []
   },
   {
@@ -410,7 +410,7 @@
     "to": "",
     "reg": false,
     "x": 860,
-    "y": 930,
+    "y": 1030,
     "wires": [
       [
         "aab849a7.ee2658",
@@ -425,7 +425,7 @@
     "name": "WebRelaysIn",
     "links": [],
     "x": 525,
-    "y": 1140,
+    "y": 1240,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -442,7 +442,7 @@
       "1fd6723.fc4360e"
     ],
     "x": 525,
-    "y": 1190,
+    "y": 1290,
     "wires": [
       [
         "d5867a8d.091"
@@ -458,7 +458,7 @@
     "console": "false",
     "complete": "true",
     "x": 1090,
-    "y": 980,
+    "y": 1080,
     "wires": []
   },
   {
@@ -475,7 +475,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 1000,
-    "y": 1190,
+    "y": 1290,
     "wires": []
   },
   {
@@ -500,7 +500,7 @@
     "payload": "",
     "payloadType": "date",
     "x": 480,
-    "y": 1230,
+    "y": 1330,
     "wires": [
       [
         "d5867a8d.091"
@@ -525,7 +525,7 @@
     "topic": "topic",
     "outputs": 1,
     "x": 850,
-    "y": 1230,
+    "y": 1330,
     "wires": [
       [
         "ae57d3a3.e3fe88",
@@ -547,7 +547,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 1000,
-    "y": 1230,
+    "y": 1330,
     "wires": []
   },
   {
@@ -577,7 +577,7 @@
     "to": "",
     "reg": false,
     "x": 650,
-    "y": 1230,
+    "y": 1330,
     "wires": [
       [
         "deb0a59.85d1458",
@@ -643,7 +643,7 @@
     "console": "false",
     "complete": "true",
     "x": 860,
-    "y": 210,
+    "y": 180,
     "wires": []
   },
   {
@@ -654,7 +654,7 @@
     "server": "",
     "client": "26438802.204788",
     "x": 100,
-    "y": 290,
+    "y": 330,
     "wires": [
       [
         "2812070e.894da8",
@@ -735,46 +735,32 @@
     "repair": false,
     "outputs": 12,
     "x": 560,
-    "y": 340,
+    "y": 390,
     "wires": [
       [
-        "9a463cf0.bef99"
+        "b8ca5c1cf47a8524",
+        "5e70207e65d376ff"
       ],
       [
-        "4f35fd73.a4c464"
+        "5c35b72901f41b02"
       ],
       [
-        "b78ef890.6574c"
+        "10056bf86cd32c8e"
+      ],
+      [
+        "6c3f7191a68f3388"
       ],
       [],
       [],
-      [],
-      [],
+      [
+        "7ebb8ca96772fc71"
+      ],
       [],
       [],
       [],
       [],
       [
         "17c50e3b.c70f22"
-      ]
-    ]
-  },
-  {
-    "id": "9a463cf0.bef99",
-    "type": "function",
-    "z": "b1782abc.430f38",
-    "name": "Teleinfo-PAPP",
-    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.teleinfo.PAPP) },\n            { \"type\": \"power-inst\", \"location\": \"main\" }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 900,
-    "y": 280,
-    "wires": [
-      [
-        "1ba94549.ae6bdb"
       ]
     ]
   },
@@ -787,8 +773,8 @@
     "qos": "",
     "retain": "",
     "broker": "c38452a5.4f84e8",
-    "x": 1150,
-    "y": 310,
+    "x": 1200,
+    "y": 780,
     "wires": []
   },
   {
@@ -817,7 +803,7 @@
     "repair": false,
     "outputs": 3,
     "x": 570,
-    "y": 590,
+    "y": 730,
     "wires": [
       [
         "b629ec5a.2b4f78"
@@ -841,7 +827,7 @@
     "initialize": "",
     "finalize": "",
     "x": 920,
-    "y": 580,
+    "y": 720,
     "wires": [
       [
         "1ba94549.ae6bdb"
@@ -859,26 +845,7 @@
     "initialize": "",
     "finalize": "",
     "x": 910,
-    "y": 620,
-    "wires": [
-      [
-        "1ba94549.ae6bdb"
-      ]
-    ]
-  },
-  {
-    "id": "4f35fd73.a4c464",
-    "type": "function",
-    "z": "b1782abc.430f38",
-    "name": "Teleinfo-HCHP",
-    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.teleinfo.HCHP) },\n            { \"type\": \"power-hist\", \"location\": \"main-hp\" }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 900,
-    "y": 320,
+    "y": 760,
     "wires": [
       [
         "1ba94549.ae6bdb"
@@ -890,17 +857,18 @@
     "type": "function",
     "z": "b1782abc.430f38",
     "name": "Teleinfo-HCHC",
-    "func": "var msgres =  {\n    payload: {\n        payload: [\n            { \"value\": Number(msg.teleinfo.HCHC) },\n            { \"type\": \"power-hist\", \"location\": \"main-hc\" }\n        ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "func": "fields = { \"value\": Number(msg.payload) }\ntags =   { \"type\": \"teleinfo-hc\", \"location\": \"main\" }\n\nvar msgres =  {\n    payload: {\n        payload: [ fields, tags ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 900,
-    "y": 360,
+    "x": 1150,
+    "y": 480,
     "wires": [
       [
-        "1ba94549.ae6bdb"
+        "a04282091d8972bc",
+        "7631420d62e27f0c"
       ]
     ]
   },
@@ -909,7 +877,7 @@
     "type": "debug",
     "z": "b1782abc.430f38",
     "name": "TeleinfoDebug",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -918,7 +886,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 900,
-    "y": 410,
+    "y": 640,
     "wires": []
   },
   {
@@ -935,7 +903,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 430,
-    "y": 740,
+    "y": 880,
     "wires": []
   },
   {
@@ -952,7 +920,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 900,
-    "y": 660,
+    "y": 800,
     "wires": []
   },
   {
@@ -971,7 +939,7 @@
     "repair": false,
     "outputs": 1,
     "x": 390,
-    "y": 700,
+    "y": 840,
     "wires": [
       [
         "b7f3c41.7550bb8",
@@ -991,7 +959,7 @@
     "finalize": "",
     "libs": [],
     "x": 900,
-    "y": 700,
+    "y": 840,
     "wires": [
       [
         "1ba94549.ae6bdb"
@@ -1012,7 +980,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 900,
-    "y": 740,
+    "y": 880,
     "wires": []
   },
   {
@@ -1031,7 +999,7 @@
     "repair": false,
     "outputs": 1,
     "x": 400,
-    "y": 580,
+    "y": 720,
     "wires": [
       [
         "6efd389b.03b1"
@@ -1054,7 +1022,7 @@
     "repair": false,
     "outputs": 1,
     "x": 400,
-    "y": 340,
+    "y": 390,
     "wires": [
       [
         "f6196e3f.e870e"
@@ -1073,7 +1041,7 @@
     "stream": false,
     "addname": "",
     "x": 730,
-    "y": 680,
+    "y": 820,
     "wires": [
       [
         "d66f7b10.e7534"
@@ -1100,10 +1068,486 @@
     "to": "",
     "reg": false,
     "x": 570,
-    "y": 680,
+    "y": 820,
     "wires": [
       [
         "10349fb3.8e444"
+      ]
+    ]
+  },
+  {
+    "id": "6c3f7191a68f3388",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "IINST",
+    "func": "msg.payload = msg.teleinfo.IINST\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 870,
+    "y": 560,
+    "wires": [
+      [
+        "ed407f1cbc8db419",
+        "19648e8ccdda83ee"
+      ]
+    ]
+  },
+  {
+    "id": "ed407f1cbc8db419",
+    "type": "rbe",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "func": "rbe",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 990,
+    "y": 560,
+    "wires": [
+      [
+        "9262833a8814975a"
+      ]
+    ]
+  },
+  {
+    "id": "9262833a8814975a",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "Teleinfo-IINST",
+    "func": "fields = { \"value\": Number(msg.payload) }\ntags =   { \"type\": \"teleinfo-iinst\", \"location\": \"main\" }\n\nvar msgres =  {\n    payload: {\n        payload: [ fields, tags ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1150,
+    "y": 560,
+    "wires": [
+      [
+        "5cbfb8ec84b8c12d",
+        "a04282091d8972bc"
+      ]
+    ]
+  },
+  {
+    "id": "5cbfb8ec84b8c12d",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 1320,
+    "y": 560,
+    "wires": []
+  },
+  {
+    "id": "a04282091d8972bc",
+    "type": "mqtt out",
+    "z": "b1782abc.430f38",
+    "name": "teleinfo",
+    "topic": "teleinfo",
+    "qos": "",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 1500,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "10056bf86cd32c8e",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "HCHC",
+    "func": "msg.payload = msg.teleinfo.HCHC\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 870,
+    "y": 480,
+    "wires": [
+      [
+        "7f62d29a3a9b4f89",
+        "c00a4358ce16a028"
+      ]
+    ]
+  },
+  {
+    "id": "7f62d29a3a9b4f89",
+    "type": "rbe",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "func": "rbe",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 990,
+    "y": 480,
+    "wires": [
+      [
+        "b78ef890.6574c"
+      ]
+    ]
+  },
+  {
+    "id": "7631420d62e27f0c",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 1320,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "6ae870ccf2761225",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "Teleinfo-HCHP",
+    "func": "fields = { \"value\": Number(msg.payload) }\ntags =   { \"type\": \"teleinfo-hp\", \"location\": \"main\" }\n\nvar msgres =  {\n    payload: {\n        payload: [ fields, tags ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1150,
+    "y": 400,
+    "wires": [
+      [
+        "fc6f42e55fccefaf",
+        "a04282091d8972bc"
+      ]
+    ]
+  },
+  {
+    "id": "5c35b72901f41b02",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "HCHP",
+    "func": "msg.payload = msg.teleinfo.HCHP\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 870,
+    "y": 400,
+    "wires": [
+      [
+        "4e2abc15dff806af",
+        "82ac714782bb3c17"
+      ]
+    ]
+  },
+  {
+    "id": "4e2abc15dff806af",
+    "type": "rbe",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "func": "rbe",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 990,
+    "y": 400,
+    "wires": [
+      [
+        "6ae870ccf2761225"
+      ]
+    ]
+  },
+  {
+    "id": "fc6f42e55fccefaf",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 1320,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "d67aa1123049fcaa",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "Teleinfo-PAPP",
+    "func": "fields = { \"value\": Number(msg.payload) }\ntags =   { \"type\": \"teleinfo-papp\", \"location\": \"main\" }\n\nvar msgres =  {\n    payload: {\n        payload: [ fields, tags ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1150,
+    "y": 320,
+    "wires": [
+      [
+        "8b054494521f64e3",
+        "a04282091d8972bc"
+      ]
+    ]
+  },
+  {
+    "id": "b8ca5c1cf47a8524",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "PAPP",
+    "func": "msg.payload = msg.teleinfo.PAPP\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 870,
+    "y": 320,
+    "wires": [
+      [
+        "73f9abe0ac3cce5e",
+        "b845925d9cdee907"
+      ]
+    ]
+  },
+  {
+    "id": "73f9abe0ac3cce5e",
+    "type": "rbe",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "func": "rbe",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 990,
+    "y": 320,
+    "wires": [
+      [
+        "d67aa1123049fcaa"
+      ]
+    ]
+  },
+  {
+    "id": "8b054494521f64e3",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 1320,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "b845925d9cdee907",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "teleinfo.PAPP",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1050,
+    "y": 280,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "82ac714782bb3c17",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "teleinfo.HCHP",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1050,
+    "y": 360,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c00a4358ce16a028",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "teleinfo.HCHC",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1050,
+    "y": 440,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "19648e8ccdda83ee",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "teleinfo.IINST",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1050,
+    "y": 520,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5e70207e65d376ff",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "TeleinfoDebug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 900,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "7ebb8ca96772fc71",
+    "type": "function",
+    "z": "b1782abc.430f38",
+    "name": "PTEC",
+    "func": "msg.payload = msg.teleinfo.PTEC\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 870,
+    "y": 600,
+    "wires": [
+      [
+        "3ecd9252828276bb"
+      ]
+    ]
+  },
+  {
+    "id": "452dbe57e77cf0ee",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 1320,
+    "y": 600,
+    "wires": []
+  },
+  {
+    "id": "3ecd9252828276bb",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "teleinfo.PTEC",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1050,
+    "y": 600,
+    "wires": [
+      [
+        "452dbe57e77cf0ee"
       ]
     ]
   }
