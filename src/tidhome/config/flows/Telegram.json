@@ -40,7 +40,7 @@
     "name": "Send",
     "bot": "4fc69d2d.235124",
     "outputs": 1,
-    "x": 700,
+    "x": 870,
     "y": 160,
     "wires": [
       [
@@ -59,7 +59,7 @@
     "tostatus": false,
     "complete": "true",
     "targetType": "full",
-    "x": 860,
+    "x": 1030,
     "y": 160,
     "wires": []
   },
@@ -90,7 +90,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 510,
+    "x": 680,
     "y": 160,
     "wires": [
       [
@@ -123,7 +123,7 @@
     "y": 160,
     "wires": [
       [
-        "b52ace9b.c4f7f"
+        "ec21e2dfc2fb77be"
       ]
     ]
   },
@@ -354,5 +354,28 @@
     "x": 340,
     "y": 630,
     "wires": []
+  },
+  {
+    "id": "ec21e2dfc2fb77be",
+    "type": "switch",
+    "z": "f6aef2f1.dd52e8",
+    "name": "not empty",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nempty"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 470,
+    "y": 160,
+    "wires": [
+      [
+        "b52ace9b.c4f7f"
+      ]
+    ]
   }
 ]
