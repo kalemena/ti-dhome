@@ -2066,60 +2066,6 @@
     ]
   },
   {
-    "id": "274d1df9.f97ce2",
-    "type": "change",
-    "z": "237573f3.977b64",
-    "name": "up",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"state\":\"OPEN\"}",
-        "tot": "json"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 960,
-    "y": 520,
-    "wires": [
-      [
-        "6a4dd527.0c6374"
-      ]
-    ]
-  },
-  {
-    "id": "1888e2d7.750abd",
-    "type": "change",
-    "z": "237573f3.977b64",
-    "name": "down",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"state\":\"CLOSE\"}",
-        "tot": "json"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 960,
-    "y": 600,
-    "wires": [
-      [
-        "6a4dd527.0c6374"
-      ]
-    ]
-  },
-  {
     "id": "e67be7e9.698a3",
     "type": "debug",
     "z": "237573f3.977b64",
@@ -2134,74 +2080,6 @@
     "statusType": "auto",
     "x": 1090,
     "y": 2380,
-    "wires": []
-  },
-  {
-    "id": "358a4384.236554",
-    "type": "inject",
-    "z": "237573f3.977b64",
-    "name": "OPEN",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"state\":\"OPEN\"}",
-    "payloadType": "json",
-    "x": 960,
-    "y": 470,
-    "wires": [
-      [
-        "274d1df9.f97ce2"
-      ]
-    ]
-  },
-  {
-    "id": "5ff823c1.92c744",
-    "type": "inject",
-    "z": "237573f3.977b64",
-    "name": "CLOSE",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"state\":\"CLOSE\"}",
-    "payloadType": "json",
-    "x": 960,
-    "y": 650,
-    "wires": [
-      [
-        "1888e2d7.750abd"
-      ]
-    ]
-  },
-  {
-    "id": "6a4dd527.0c6374",
-    "type": "mqtt out",
-    "z": "237573f3.977b64",
-    "name": "",
-    "topic": "zigbee2mqtt/G01~Volets/set",
-    "qos": "",
-    "retain": "",
-    "respTopic": "",
-    "contentType": "",
-    "userProps": "",
-    "correl": "",
-    "expiry": "",
-    "broker": "c38452a5.4f84e8",
-    "x": 1220,
-    "y": 580,
     "wires": []
   },
   {
@@ -2778,16 +2656,6 @@
     "statusType": "auto",
     "x": 260,
     "y": 1250,
-    "wires": []
-  },
-  {
-    "id": "1ac03bb717caec93",
-    "type": "comment",
-    "z": "237573f3.977b64",
-    "name": "Tap the cube to Open/Close shutters",
-    "info": "",
-    "x": 1240,
-    "y": 540,
     "wires": []
   },
   {
@@ -3439,7 +3307,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 970,
+    "x": 950,
     "y": 690,
     "wires": [
       [
@@ -3622,64 +3490,16 @@
     ]
   },
   {
-    "id": "3df4eddc6be05837",
-    "type": "link in",
-    "z": "237573f3.977b64",
-    "name": "Cmd-Volets-Up",
-    "links": [
-      "a0f1b25d.56ebd8"
-    ],
-    "x": 845,
-    "y": 520,
-    "wires": [
-      [
-        "274d1df9.f97ce2"
-      ]
-    ]
-  },
-  {
-    "id": "d489eb6918f14011",
-    "type": "link in",
-    "z": "237573f3.977b64",
-    "name": "Cmd-Volets-Down",
-    "links": [
-      "b20b07bf.0fa17"
-    ],
-    "x": 845,
-    "y": 600,
-    "wires": [
-      [
-        "1888e2d7.750abd"
-      ]
-    ]
-  },
-  {
-    "id": "3504f0b736031ce4",
-    "type": "link in",
-    "z": "237573f3.977b64",
-    "name": "Cmd-Volets-Mid",
-    "links": [
-      "fb39c3f5.aecd5"
-    ],
-    "x": 845,
-    "y": 560,
-    "wires": [
-      [
-        "f6c550949675dcf5"
-      ]
-    ]
-  },
-  {
-    "id": "f6c550949675dcf5",
+    "id": "1888e2d7.750abd",
     "type": "change",
     "z": "237573f3.977b64",
-    "name": "mid",
+    "name": "down",
     "rules": [
       {
         "t": "set",
         "p": "payload",
         "pt": "msg",
-        "to": "{\"position\":\"40\"}",
+        "to": "{\"state\":\"CLOSE\"}",
         "tot": "json"
       }
     ],
@@ -3689,10 +3509,150 @@
     "to": "",
     "reg": false,
     "x": 960,
-    "y": 560,
+    "y": 650,
     "wires": [
       [
-        "6a4dd527.0c6374"
+        "6b4297d5511a5e8b"
+      ]
+    ]
+  },
+  {
+    "id": "274d1df9.f97ce2",
+    "type": "change",
+    "z": "237573f3.977b64",
+    "name": "up",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{    \"state\": \"OPEN\" }",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 960,
+    "y": 570,
+    "wires": [
+      [
+        "6b4297d5511a5e8b"
+      ]
+    ]
+  },
+  {
+    "id": "b2588e29a6469f13",
+    "type": "inject",
+    "z": "237573f3.977b64",
+    "name": "OPEN",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"state\":\"OPEN\"}",
+    "payloadType": "json",
+    "x": 960,
+    "y": 530,
+    "wires": [
+      [
+        "6b4297d5511a5e8b"
+      ]
+    ]
+  },
+  {
+    "id": "470fc1854974e274",
+    "type": "inject",
+    "z": "237573f3.977b64",
+    "name": "CLOSE",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"state\":\"CLOSE\"}",
+    "payloadType": "json",
+    "x": 960,
+    "y": 610,
+    "wires": [
+      [
+        "6b4297d5511a5e8b"
+      ]
+    ]
+  },
+  {
+    "id": "6b4297d5511a5e8b",
+    "type": "mqtt out",
+    "z": "237573f3.977b64",
+    "name": "",
+    "topic": "zigbee2mqtt/G01~Volets/set",
+    "qos": "",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 1210,
+    "y": 590,
+    "wires": []
+  },
+  {
+    "id": "6ec0d7f989e759a4",
+    "type": "comment",
+    "z": "237573f3.977b64",
+    "name": "Tap the cube to Open/Close shutters",
+    "info": "",
+    "x": 1230,
+    "y": 550,
+    "wires": []
+  },
+  {
+    "id": "0457c2a6501c8d96",
+    "type": "link in",
+    "z": "237573f3.977b64",
+    "name": "Cmd-Volets-Position",
+    "links": [
+      "a0f1b25d.56ebd8"
+    ],
+    "x": 815,
+    "y": 490,
+    "wires": [
+      [
+        "a2a1c0e8ef9a7dac"
+      ]
+    ]
+  },
+  {
+    "id": "a2a1c0e8ef9a7dac",
+    "type": "function",
+    "z": "237573f3.977b64",
+    "name": "Compute",
+    "func": "// pass through\nreturn {\n    payload: {\n        position: msg.payload\n        }\n    };",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 950,
+    "y": 490,
+    "wires": [
+      [
+        "6b4297d5511a5e8b"
       ]
     ]
   }

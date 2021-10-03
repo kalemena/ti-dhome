@@ -90,6 +90,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
+    "libs": [],
     "x": 680,
     "y": 160,
     "wires": [
@@ -230,6 +231,9 @@
     "z": "f6aef2f1.dd52e8",
     "name": "/volets",
     "command": "/volets",
+    "description": "",
+    "registercommand": false,
+    "language": "",
     "bot": "4fc69d2d.235124",
     "strict": false,
     "hasresponse": false,
@@ -240,8 +244,7 @@
     "y": 510,
     "wires": [
       [
-        "6e059c3f.301864",
-        "3f7706b3.bd9a5a"
+        "6e059c3f.301864"
       ]
     ]
   },
@@ -282,23 +285,23 @@
         "t": "else"
       }
     ],
-    "checkall": "true",
+    "checkall": "false",
     "repair": false,
     "outputs": 4,
     "x": 260,
     "y": 520,
     "wires": [
       [
-        "a0f1b25d.56ebd8"
+        "6f1b9a71afbd13ec"
       ],
       [
-        "fb39c3f5.aecd5"
+        "7997e1892ec98091"
       ],
       [
-        "b20b07bf.0fa17"
+        "8608c6bea9d4521a"
       ],
       [
-        "3f7706b3.bd9a5a"
+        "acc99ab81795114d"
       ]
     ]
   },
@@ -308,34 +311,10 @@
     "z": "f6aef2f1.dd52e8",
     "name": "",
     "links": [
-      "aa5c34a.f9d6ec8"
+      "0457c2a6501c8d96"
     ],
     "x": 585,
-    "y": 490,
-    "wires": []
-  },
-  {
-    "id": "fb39c3f5.aecd5",
-    "type": "link out",
-    "z": "f6aef2f1.dd52e8",
-    "name": "",
-    "links": [
-      "2ddb7dd.4c66182"
-    ],
-    "x": 585,
-    "y": 530,
-    "wires": []
-  },
-  {
-    "id": "b20b07bf.0fa17",
-    "type": "link out",
-    "z": "f6aef2f1.dd52e8",
-    "name": "",
-    "links": [
-      "b5ef13e8.5356d8"
-    ],
-    "x": 585,
-    "y": 570,
+    "y": 500,
     "wires": []
   },
   {
@@ -351,8 +330,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 340,
-    "y": 630,
+    "x": 620,
+    "y": 620,
     "wires": []
   },
   {
@@ -375,6 +354,107 @@
     "wires": [
       [
         "b52ace9b.c4f7f"
+      ]
+    ]
+  },
+  {
+    "id": "acc99ab81795114d",
+    "type": "function",
+    "z": "f6aef2f1.dd52e8",
+    "name": "Parse",
+    "func": "\nfunction isNumeric(n) { \n      return !isNaN(parseFloat(n)) && isFinite(n); \n}\n\nif(isNumeric(msg.payload.content)) {\n    var position = Number(msg.payload.content)\n    return {\n        payload: position\n    };\n}",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 620,
+    "wires": [
+      [
+        "3f7706b3.bd9a5a",
+        "a0f1b25d.56ebd8"
+      ]
+    ]
+  },
+  {
+    "id": "6f1b9a71afbd13ec",
+    "type": "change",
+    "z": "f6aef2f1.dd52e8",
+    "name": "up = 0",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "0",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 420,
+    "y": 500,
+    "wires": [
+      [
+        "a0f1b25d.56ebd8"
+      ]
+    ]
+  },
+  {
+    "id": "7997e1892ec98091",
+    "type": "change",
+    "z": "f6aef2f1.dd52e8",
+    "name": "mid = 35",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "35",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 430,
+    "y": 540,
+    "wires": [
+      [
+        "a0f1b25d.56ebd8"
+      ]
+    ]
+  },
+  {
+    "id": "8608c6bea9d4521a",
+    "type": "change",
+    "z": "f6aef2f1.dd52e8",
+    "name": "down = 100",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "100",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 440,
+    "y": 580,
+    "wires": [
+      [
+        "a0f1b25d.56ebd8"
       ]
     ]
   }
