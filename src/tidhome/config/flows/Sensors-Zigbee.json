@@ -2085,7 +2085,7 @@
     "to": "",
     "reg": false,
     "x": 960,
-    "y": 560,
+    "y": 520,
     "wires": [
       [
         "6a4dd527.0c6374"
@@ -2154,7 +2154,7 @@
     "payload": "{\"state\":\"OPEN\"}",
     "payloadType": "json",
     "x": 960,
-    "y": 510,
+    "y": 470,
     "wires": [
       [
         "274d1df9.f97ce2"
@@ -3618,6 +3618,81 @@
       [
         "32cca13a6da997d8",
         "42c65007ee68f7b0"
+      ]
+    ]
+  },
+  {
+    "id": "3df4eddc6be05837",
+    "type": "link in",
+    "z": "237573f3.977b64",
+    "name": "Cmd-Volets-Up",
+    "links": [
+      "a0f1b25d.56ebd8"
+    ],
+    "x": 845,
+    "y": 520,
+    "wires": [
+      [
+        "274d1df9.f97ce2"
+      ]
+    ]
+  },
+  {
+    "id": "d489eb6918f14011",
+    "type": "link in",
+    "z": "237573f3.977b64",
+    "name": "Cmd-Volets-Down",
+    "links": [
+      "b20b07bf.0fa17"
+    ],
+    "x": 845,
+    "y": 600,
+    "wires": [
+      [
+        "1888e2d7.750abd"
+      ]
+    ]
+  },
+  {
+    "id": "3504f0b736031ce4",
+    "type": "link in",
+    "z": "237573f3.977b64",
+    "name": "Cmd-Volets-Mid",
+    "links": [
+      "fb39c3f5.aecd5"
+    ],
+    "x": 845,
+    "y": 560,
+    "wires": [
+      [
+        "f6c550949675dcf5"
+      ]
+    ]
+  },
+  {
+    "id": "f6c550949675dcf5",
+    "type": "change",
+    "z": "237573f3.977b64",
+    "name": "mid",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"position\":\"40\"}",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 960,
+    "y": 560,
+    "wires": [
+      [
+        "6a4dd527.0c6374"
       ]
     ]
   }
