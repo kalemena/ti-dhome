@@ -3627,7 +3627,8 @@
     "z": "237573f3.977b64",
     "name": "Cmd-Volets-Position",
     "links": [
-      "a0f1b25d.56ebd8"
+      "a0f1b25d.56ebd8",
+      "fcb36f963325c072"
     ],
     "x": 815,
     "y": 490,
@@ -3652,7 +3653,79 @@
     "y": 490,
     "wires": [
       [
+        "5a581833051f6e11",
         "6b4297d5511a5e8b"
+      ]
+    ]
+  },
+  {
+    "id": "5a581833051f6e11",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1140,
+    "y": 490,
+    "wires": []
+  },
+  {
+    "id": "d6b0b7d21e99f29e",
+    "type": "mqtt out",
+    "z": "237573f3.977b64",
+    "name": "",
+    "topic": "zigbee2mqtt/V01~Hall/set",
+    "qos": "",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 1200,
+    "y": 450,
+    "wires": []
+  },
+  {
+    "id": "4343d80627f170c9",
+    "type": "link in",
+    "z": "237573f3.977b64",
+    "name": "Cmd-Volet-H",
+    "links": [
+      "e7e52fec716f59a2",
+      "3dae35cb9b74126c"
+    ],
+    "x": 815,
+    "y": 450,
+    "wires": [
+      [
+        "9065d90dfcd4ac91"
+      ]
+    ]
+  },
+  {
+    "id": "9065d90dfcd4ac91",
+    "type": "function",
+    "z": "237573f3.977b64",
+    "name": "Compute",
+    "func": "// pass through\nreturn {\n    payload: {\n        position: msg.payload\n        }\n    };",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 950,
+    "y": 450,
+    "wires": [
+      [
+        "d6b0b7d21e99f29e"
       ]
     ]
   }
