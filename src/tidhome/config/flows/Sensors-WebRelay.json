@@ -292,23 +292,24 @@
     "id": "66076534.bebc9c",
     "type": "inject",
     "z": "b1782abc.430f38",
-    "name": "07 - SdB - Bas",
+    "name": "12/13 - SdB - Bas - Hors-Gel (1/0)",
     "props": [
       {
-        "p": "topic",
-        "vt": "str"
+        "p": "payload"
       }
     ],
     "repeat": "",
     "crontab": "",
     "once": false,
     "onceDelay": "",
-    "topic": "7",
-    "x": 120,
-    "y": 1040,
+    "topic": "",
+    "payload": "[{\"id\":12,\"value\":1},{\"id\":13,\"value\":0}]",
+    "payloadType": "json",
+    "x": 180,
+    "y": 1230,
     "wires": [
       [
-        "741678fd.3f4f18"
+        "599739700ec7f52e"
       ]
     ]
   },
@@ -329,7 +330,7 @@
     "onceDelay": "",
     "topic": "14",
     "x": 100,
-    "y": 1080,
+    "y": 1070,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -353,7 +354,7 @@
     "onceDelay": "",
     "topic": "15",
     "x": 100,
-    "y": 1120,
+    "y": 1110,
     "wires": [
       [
         "741678fd.3f4f18"
@@ -474,7 +475,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1000,
+    "x": 830,
     "y": 1010,
     "wires": []
   },
@@ -546,7 +547,7 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1000,
+    "x": 1090,
     "y": 1050,
     "wires": []
   },
@@ -621,12 +622,12 @@
     "method": "GET",
     "ret": "txt",
     "paytoqs": "ignore",
-    "url": "http://192.168.1.60/relays/set?id={{{payload.id}}}",
+    "url": "http://ioteleinfo.local/relays/set?id={{{payload.id}}}&value=-1",
     "tls": "",
     "persist": false,
     "proxy": "",
     "authType": "",
-    "x": 490,
+    "x": 570,
     "y": 210,
     "wires": [
       [
@@ -642,8 +643,8 @@
     "active": false,
     "console": "false",
     "complete": "true",
-    "x": 860,
-    "y": 180,
+    "x": 800,
+    "y": 210,
     "wires": []
   },
   {
@@ -953,8 +954,8 @@
     "correl": "",
     "expiry": "",
     "broker": "c38452a5.4f84e8",
-    "x": 1140,
-    "y": 320,
+    "x": 1130,
+    "y": 360,
     "wires": []
   },
   {
@@ -1043,8 +1044,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 830,
-    "y": 330,
+    "x": 820,
+    "y": 370,
     "wires": [
       [
         "a04282091d8972bc",
@@ -1065,8 +1066,8 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1160,
-    "y": 370,
+    "x": 1150,
+    "y": 410,
     "wires": []
   },
   {
@@ -1080,8 +1081,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 970,
-    "y": 290,
+    "x": 960,
+    "y": 330,
     "wires": [
       [
         "a04282091d8972bc",
@@ -1111,8 +1112,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 810,
-    "y": 290,
+    "x": 800,
+    "y": 330,
     "wires": [
       [
         "06838726b26da1b0"
@@ -1127,7 +1128,7 @@
     "type": "debug",
     "z": "b1782abc.430f38",
     "name": "StorageDebug",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
@@ -1135,8 +1136,384 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1160,
-    "y": 270,
+    "x": 1150,
+    "y": 310,
     "wires": []
+  },
+  {
+    "id": "8175abc180c732e4",
+    "type": "mqtt in",
+    "z": "b1782abc.430f38",
+    "name": "actors/iotheaters/set",
+    "topic": "actors/iotheaters/set",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "c38452a5.4f84e8",
+    "nl": false,
+    "rap": false,
+    "x": 130,
+    "y": 260,
+    "wires": [
+      [
+        "6b78b06d6d132a3b"
+      ]
+    ]
+  },
+  {
+    "id": "764d1bad5688d0fc",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "12/13 - SdB - Bas - Arrêt (0/1)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "",
+    "payload": "[{\"id\":12,\"value\":0},{\"id\":13,\"value\":1}]",
+    "payloadType": "json",
+    "x": 160,
+    "y": 1190,
+    "wires": [
+      [
+        "f2ff089c7ab46d18"
+      ]
+    ]
+  },
+  {
+    "id": "3bde7b97690123f5",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "12/13 - SdB - Bas - Confort (1/1)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "",
+    "payload": "[{\"id\":12,\"value\":1},{\"id\":13,\"value\":1}]",
+    "payloadType": "json",
+    "x": 170,
+    "y": 1310,
+    "wires": [
+      [
+        "86ca3879169296a4"
+      ]
+    ]
+  },
+  {
+    "id": "76d241f8de75d86c",
+    "type": "inject",
+    "z": "b1782abc.430f38",
+    "name": "12/13 - SdB - Bas - Eco (0/0)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "",
+    "topic": "",
+    "payload": "[{\"id\":12,\"value\":0},{\"id\":13,\"value\":0}]",
+    "payloadType": "json",
+    "x": 160,
+    "y": 1270,
+    "wires": [
+      [
+        "7db6ed799f5584e9"
+      ]
+    ]
+  },
+  {
+    "id": "b3aa32fd19f96b87",
+    "type": "mqtt out",
+    "z": "b1782abc.430f38",
+    "name": "actors/iotheaters/set",
+    "topic": "actors/iotheaters/set",
+    "qos": "",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 1050,
+    "y": 1190,
+    "wires": []
+  },
+  {
+    "id": "7dd8b5cb4665b8b2",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "true",
+    "x": 1000,
+    "y": 1250,
+    "wires": []
+  },
+  {
+    "id": "bf76f115523ab776",
+    "type": "debug",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "active": false,
+    "console": "false",
+    "complete": "true",
+    "x": 800,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "7b49a1133d01334e",
+    "type": "split",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 760,
+    "y": 1230,
+    "wires": [
+      [
+        "7dd8b5cb4665b8b2",
+        "b3aa32fd19f96b87"
+      ]
+    ]
+  },
+  {
+    "id": "046ac47846e9e56f",
+    "type": "http request",
+    "z": "b1782abc.430f38",
+    "name": "Set Web Relays",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://ioteleinfo.local/relays/set?id={{{payload.id}}}&state={{{payload.value}}}",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 560,
+    "y": 260,
+    "wires": [
+      [
+        "bf76f115523ab776"
+      ]
+    ]
+  },
+  {
+    "id": "6b78b06d6d132a3b",
+    "type": "delay",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "pauseType": "rate",
+    "timeout": "500",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "0.1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "x": 350,
+    "y": 260,
+    "wires": [
+      [
+        "046ac47846e9e56f"
+      ]
+    ]
+  },
+  {
+    "id": "32ea48f887dcaf01",
+    "type": "link in",
+    "z": "b1782abc.430f38",
+    "name": "SdB - Bas - Arrêt",
+    "links": [
+      "c1852428ac6080d8",
+      "793f6369000801a1"
+    ],
+    "x": 345,
+    "y": 1190,
+    "wires": [
+      [
+        "f2ff089c7ab46d18"
+      ]
+    ]
+  },
+  {
+    "id": "b0a470b5c8a47a30",
+    "type": "link in",
+    "z": "b1782abc.430f38",
+    "name": "SdB - Bas - HG",
+    "links": [
+      "18a5a31073de4d77"
+    ],
+    "x": 345,
+    "y": 1230,
+    "wires": [
+      [
+        "599739700ec7f52e"
+      ]
+    ]
+  },
+  {
+    "id": "b08009e947680796",
+    "type": "link in",
+    "z": "b1782abc.430f38",
+    "name": "SdB - Bas - Eco",
+    "links": [
+      "493fa36818992cda",
+      "2945bb0883a55a36"
+    ],
+    "x": 345,
+    "y": 1270,
+    "wires": [
+      [
+        "7db6ed799f5584e9"
+      ]
+    ]
+  },
+  {
+    "id": "f59fd05791a47896",
+    "type": "link in",
+    "z": "b1782abc.430f38",
+    "name": "SdB - Bas - Confort",
+    "links": [
+      "3a1ef7f0e97ac224",
+      "d8336f52c2dabcac"
+    ],
+    "x": 345,
+    "y": 1310,
+    "wires": [
+      [
+        "86ca3879169296a4"
+      ]
+    ]
+  },
+  {
+    "id": "86ca3879169296a4",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "[{\"id\":12,\"value\":1},{\"id\":13,\"value\":1}]",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 470,
+    "y": 1310,
+    "wires": [
+      [
+        "7b49a1133d01334e"
+      ]
+    ]
+  },
+  {
+    "id": "7db6ed799f5584e9",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "[{\"id\":12,\"value\":0},{\"id\":13,\"value\":0}]",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 470,
+    "y": 1270,
+    "wires": [
+      [
+        "7b49a1133d01334e"
+      ]
+    ]
+  },
+  {
+    "id": "599739700ec7f52e",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "[{\"id\":12,\"value\":1},{\"id\":13,\"value\":0}]",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 470,
+    "y": 1230,
+    "wires": [
+      [
+        "7b49a1133d01334e"
+      ]
+    ]
+  },
+  {
+    "id": "f2ff089c7ab46d18",
+    "type": "change",
+    "z": "b1782abc.430f38",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "[{\"id\":12,\"value\":0},{\"id\":13,\"value\":1}]",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 470,
+    "y": 1190,
+    "wires": [
+      [
+        "7b49a1133d01334e"
+      ]
+    ]
   }
 ]
