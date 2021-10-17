@@ -1,10 +1,5 @@
 version: '3.7'
 
-# networks: 
-#   default: 
-#     external: 
-#       name: external-ti-dhome 
-
 volumes:
   influxdb-data:
   influxdb2-data:
