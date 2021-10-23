@@ -34,3 +34,4 @@ settings.js
 # etc
 src/tidhome/config/flow-manager-nodes-order.json
 src/tidhome/config/package-lock.json
+src/docker-compose.override.yml
