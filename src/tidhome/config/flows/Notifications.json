@@ -294,16 +294,17 @@
     "critical": false,
     "todaycases": false,
     "todaydeaths": false,
-    "casepermilion": false,
+    "casepermilion": true,
     "regionFilter": true,
     "deathspermilion": false,
-    "regionList": "[\"FR\",\"US\",\"GB\",\"IT\",\"ES\",\"DE\",\"CA\"]",
+    "regionList": "[\"FR\",\"US\",\"GB\",\"DE\",\"CA\"]",
     "regionListType": "json",
     "x": 310,
     "y": 410,
     "wires": [
       [
-        "9bc6fdda.21edd8"
+        "9bc6fdda.21edd8",
+        "39621e4afac92901"
       ]
     ]
   },
@@ -604,6 +605,23 @@
     "broker": "c38452a5.4f84e8",
     "x": 1120,
     "y": 630,
+    "wires": []
+  },
+  {
+    "id": "39621e4afac92901",
+    "type": "debug",
+    "z": "8627a08f.2f4c18",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 720,
+    "y": 450,
     "wires": []
   }
 ]
