@@ -1,6 +1,7 @@
 FROM kalemena/node-red:2.1.0
 
 RUN npm i \
+        node-red-contrib-simpletime \
         node-red-contrib-file-function-ext \
         node-red-contrib-string \
         node-red-contrib-object-hash \
