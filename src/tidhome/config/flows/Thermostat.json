@@ -575,7 +575,7 @@
     "once": false,
     "onceDelay": 0.1,
     "topic": "",
-    "payload": "arrêt",
+    "payload": "arret",
     "payloadType": "str",
     "x": 400,
     "y": 700,
