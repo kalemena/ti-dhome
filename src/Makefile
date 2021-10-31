@@ -2,7 +2,10 @@
 # Initialize Environment
 ##########################
 
-init: init-images init-influxdb init-telegraf init-grafana
+init: init-env init-images init-influxdb init-telegraf init-grafana
+
+init-env:
+	cp src/.env-example src/.env
 
 init-images:
 	echo "Initialize: Pull Images ..."
