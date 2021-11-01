@@ -581,6 +581,7 @@
     "qos": "2",
     "datatype": "json",
     "broker": "c38452a5.4f84e8",
+    "inputs": 0,
     "x": 140,
     "y": 210,
     "wires": [
@@ -1126,6 +1127,7 @@
     "broker": "c38452a5.4f84e8",
     "nl": false,
     "rap": false,
+    "inputs": 0,
     "x": 130,
     "y": 260,
     "wires": [
@@ -1183,6 +1185,7 @@
     "randomUnits": "seconds",
     "drop": false,
     "allowrate": false,
+    "outputs": 1,
     "x": 350,
     "y": 260,
     "wires": [

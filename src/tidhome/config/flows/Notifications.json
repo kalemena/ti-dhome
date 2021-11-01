@@ -73,10 +73,12 @@
     "func": "msg.payload = \"Fresh (re-)deploy !\"\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 290,
+    "x": 320,
     "y": 160,
     "wires": [
-      []
+      [
+        "57bdbb93.d54314"
+      ]
     ]
   },
   {
@@ -474,7 +476,8 @@
     "y": 630,
     "wires": [
       [
-        "fdfde972.bdcf78"
+        "fdfde972.bdcf78",
+        "9c972788.21f68"
       ]
     ]
   },

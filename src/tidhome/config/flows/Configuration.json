@@ -275,6 +275,7 @@
     "randomLast": "5",
     "randomUnits": "seconds",
     "drop": true,
+    "outputs": 1,
     "x": 720,
     "y": 130,
     "wires": [

@@ -673,6 +673,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 160,
     "y": 270,
     "wires": [
@@ -710,6 +711,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 190,
     "y": 1130,
     "wires": [
@@ -730,6 +732,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 120,
     "y": 340,
     "wires": [
@@ -1149,6 +1152,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 260,
     "y": 2600,
     "wires": [
@@ -1180,6 +1184,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 180,
     "y": 1210,
     "wires": [
@@ -1932,6 +1937,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 170,
     "y": 980,
     "wires": [
@@ -2182,6 +2188,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 180,
     "y": 650,
     "wires": [
@@ -2510,6 +2517,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 200,
     "y": 860,
     "wires": [
@@ -2632,6 +2640,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 180,
     "y": 1290,
     "wires": [
@@ -3389,6 +3398,7 @@
     "nl": false,
     "rap": true,
     "rh": 0,
+    "inputs": 0,
     "x": 160,
     "y": 710,
     "wires": [
