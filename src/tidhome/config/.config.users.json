@@ -1,0 +1,20 @@
+{
+    "_": {
+        "editor": {
+            "view": {
+                "view-grid-size": "10",
+                "view-node-status": true,
+                "view-node-show-label": true,
+                "view-show-tips": true,
+                "view-snap-grid": true,
+                "view-show-grid": true,
+                "view-show-welcome-tours": true
+            },
+            "tours": {
+                "welcome": "2.1.0"
+            }
+        },
+        "menu-menu-item-palette": true,
+        "menu-menu-item-sidebar": true
+    }
+}
