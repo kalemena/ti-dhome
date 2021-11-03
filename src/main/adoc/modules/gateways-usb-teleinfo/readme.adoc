@@ -4,7 +4,7 @@ In France, few components can be used to extract Main Home power consumption.
 
 It is especially useful to have information such as consumption by time periods where periods can be high or low cost hours.
 
-image:/docs/images/schema-teleinfo-linky.jpg[Linky, width=40%]
+image:schema-teleinfo-linky.jpg[Linky, width=40%]
 
 == Hardware
 
@@ -17,7 +17,7 @@ Central board:
 
 Very basic, 2 pins to wire (e.g. pin 'D2' below).
 
-image:images/ArduinoProMini33-RF-sensor-teleinfo_bb.png[Parts]
+image:gateways-usb-teleinfo-ArduinoProMini33-RF-sensor-teleinfo_bb.png[Parts]
 
 == Arduino Sketch
 

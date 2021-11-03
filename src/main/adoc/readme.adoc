@@ -1,7 +1,7 @@
 :toc:
 
 ifdef::env-github[]
-:imagesdir: /docs
+:imagesdir: /src/main/adoc
 endif::[]
 
 = Ti-DHome
@@ -9,7 +9,7 @@ endif::[]
 This is a Home automation project. Pronounced "Ti d'Homme" stands for *little man* in French. +
 This GIT project is a hat project with a set of sub-projects enabling Home Automation.
 
-image:images/schema-architecture.jpg?raw=true[Overview]
+image:schema-architecture.jpg[Overview]
 
 .Example Usage
 [TIP]
@@ -39,7 +39,7 @@ There are only few technical concepts:
 * Communication of each element from the system is done through messaging system *MQTT bus* (mosquitto)
 * *Node-red* enables loosely coupled custom workflow strategies
 
-image:images/architecture-bus.png?raw=true[Architecture]
+image:architecture-bus.png[Architecture]
 
 In turns, this simplistic approach allows very flexible and powerful Home Automation.
 
@@ -59,11 +59,11 @@ Hardware used for sensors/actors:
 
 A simple Dashboard uses Grafana and InfluxDB as storage.
 
-image:images/dashboard-power-1.png[Dashboard Power,320,240]
-image:images/dashboard-sensors-1.png[Dashboard Sensors,320,240]
-image:images/dashboard-system-1.png[Dashboard System,320,240]
+image:dashboard-power-1.png[Dashboard Power,320,240]
+image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
+image:dashboard-system-1.png[Dashboard System,320,240]
 
-image:images/dashboard-system-2.png[Dashboard System,320,240]
+image:dashboard-system-2.png[Dashboard System,320,240]
 
 == How-To
 
@@ -90,19 +90,17 @@ Ti-Dhome uses link:https://www.influxdata.com/products/influxdb-overview/[Influx
 
 InfluxDB is generally used in stack with monitoring of system, with link:https://github.com/influxdata/telegraf[Telegraf] and link:https://grafana.com/[Grafana]. +
 
-This is how this is deployed as link:https://github.com/kalemena/install-howto/tree/master/monitoring[Ti-Dhome - Monitoring stack]
-
 ==== IoT Gateways
 
 Here are gateways integrated OK in Ti-Dhome:
 
 * link:https://github.com/kalemena/ti-dhome-web-relay-board[Ti-Dhome - Web Relays (external git project)]
 * link:https://github.com/kalemena/ti-dhome-sensors[Ti-Dhome - Sensors (external git project)]
-* link:/docs/modules/gateways-usb-currentcost[Gateway USB CurrentCost]
-* link:/docs/modules/gateways-usb-rfxtrx433[Gateway USB RfxTrx433]
-* link:/docs/modules/gateways-usb-teleinfo[Gateway USB Téléinfo]
-* link:https://github.com/kalemena/iot-tools/tree/master/docs/gateways/zigbee[ZigBee (example usage for Ti-DHome)]
-* link:https://github.com/kalemena/iot-tools/tree/master/docs/gateways/zwave[ZWave (example usage for Ti-DHome)]
+* link:https://kalemena.github.io/iot-tools/#gateways_currentcost[Gateway USB CurrentCost]
+* link:https://kalemena.github.io/iot-tools/#gateways_rfxtrx_433[Gateway USB RfxTrx433]
+* link:https://kalemena.github.io/iot-tools/#sensors_teleinfo[Gateway USB Téléinfo]
+* link:https://kalemena.github.io/iot-tools/#gateways_zigbee[ZigBee (example usage for Ti-DHome)]
+* link:https://kalemena.github.io/iot-tools/#gateways_z_wave[ZWave (example usage for Ti-DHome)]
 
 === Deployment
 
@@ -126,11 +124,30 @@ Here are gateways integrated OK in Ti-Dhome:
 
 ==== Strategies (aka Node-red flows)
 
-image:images/nodered-sensors-input.png?raw=true[Node-RED Flows]
+image:nodered-sensors-input.png[Node-RED Flows]
 
 ==== Security
 
     $ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
+
+// non-GitHub
+ifndef::env-github[]
+
+== Modules
+
+:leveloffset: +2
+
+include::modules/gateways-wifi-web-relay-board/readme.adoc[web relay]
+
+include::modules/gateways-usb-teleinfo/readme.adoc[teleinfo]
+
+include::modules/gateways-usb-rfxtrx433/readme.adoc[RfxTrx433]
+
+include::modules/gateways-usb-currentcost/readme.adoc[Current Cost]
+
+:leveloffset: -2
+
+endif::[]
 
 == Links
 

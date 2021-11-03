@@ -11,6 +11,6 @@ Sensors (DIY or proprietary) are sending room temperatures, motion or doors stat
 A small and flexible Node-Red workflow allows to orchestrate heaters based on simple rules around sensors values and/or schedule and/or external weather.
 ====
 
-Check more info in link:docs[details].
+Check more info in link:src/main/adoc[details].
 
-image:docs/images/schema-architecture.jpg?raw=true[Overview]
+image:src/main/adoc/images/schema-architecture.jpg?raw=true[Overview]
