@@ -30,8 +30,10 @@ settings.js
 *_cred.json
 # ozw*
 
-
 # etc
 src/tidhome/config/flow-manager-nodes-order.json
 src/tidhome/config/package-lock.json
 src/docker-compose.override.yml
+
+# build
+/build

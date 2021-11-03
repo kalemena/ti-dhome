@@ -1,0 +1,37 @@
+:author: Kalemena
+:library: Asciidoctor
+:encoding: utf-8
+:idprefix:
+:numbered:
+:rootdir: /project/src/main/adoc
+:imagesdir: {rootdir}/images
+:giturl: https://github.com/kalemena/ti-dhome/tree/master
+:binariesdir: https://github.com/kalemena/ti-dhome/raw/master/src/main/adoc/binaries
+:assetsdir: https://github.com/kalemena/ti-dhome/raw/master/src/main/adoc/assets
+//:toc: left
+:toclevels: 5
+//:toc-placement: left
+:css-signature: demo
+:doctype: book
+:icons: font
+:icon-set: octicon
+//:stylesheet: {rootdir}/themes/asciidoctor.css
+:title-page: TiDhome
+:title-logo-image: {rootdir}/images/favicon.png
+//:favicon: {rootdir}/images/favicon.png
+//:front-cover-image: image:/src/main/adoc/images/favicon.png[]
+:pagenums:
+
+:description: TiDhome Project - Book
+
+:toc:
+
+ifdef::backend-pdf[]
+IMPORTANT: This is an automatically generated document written using AsciiDoc.
+endif::[]
+
+include::readme.adoc[General Info]
+
+// <<<
+// :leveloffset: +1
+// include::includes/_cross-references.adoc[]
