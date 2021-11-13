@@ -166,7 +166,7 @@
     "rh": 0,
     "inputs": 0,
     "x": 190,
-    "y": 1130,
+    "y": 1270,
     "wires": [
       [
         "4045760b900137f1"
@@ -399,7 +399,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 260,
-    "y": 1170,
+    "y": 1310,
     "wires": []
   },
   {
@@ -430,7 +430,7 @@
     "repair": false,
     "outputs": 3,
     "x": 520,
-    "y": 1210,
+    "y": 1350,
     "wires": [
       [],
       [
@@ -453,7 +453,7 @@
     "rh": 0,
     "inputs": 0,
     "x": 180,
-    "y": 1210,
+    "y": 1350,
     "wires": [
       [
         "29c44cef.4bde74",
@@ -526,7 +526,7 @@
     "to": "",
     "reg": false,
     "x": 740,
-    "y": 1210,
+    "y": 1350,
     "wires": [
       []
     ]
@@ -1003,7 +1003,7 @@
     "repair": false,
     "outputs": 6,
     "x": 540,
-    "y": 1290,
+    "y": 1430,
     "wires": [
       [],
       [],
@@ -1027,7 +1027,7 @@
     "rh": 0,
     "inputs": 0,
     "x": 180,
-    "y": 1290,
+    "y": 1430,
     "wires": [
       [
         "5fceb06548201bc3",
@@ -1049,7 +1049,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 260,
-    "y": 1250,
+    "y": 1390,
     "wires": []
   },
   {
@@ -1123,7 +1123,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 280,
-    "y": 1090,
+    "y": 1230,
     "wires": []
   },
   {
@@ -1549,7 +1549,7 @@
     "topic": "",
     "payloadType": "date",
     "x": 110,
-    "y": 1410,
+    "y": 1550,
     "wires": [
       [
         "0c25f5688e5a94dd"
@@ -1571,7 +1571,7 @@
     "expiry": "",
     "broker": "c38452a5.4f84e8",
     "x": 630,
-    "y": 1410,
+    "y": 1550,
     "wires": []
   },
   {
@@ -1594,7 +1594,7 @@
     "to": "",
     "reg": false,
     "x": 320,
-    "y": 1410,
+    "y": 1550,
     "wires": [
       [
         "d7e801f2cd22de87"
@@ -1621,7 +1621,7 @@
     "to": "",
     "reg": false,
     "x": 330,
-    "y": 1450,
+    "y": 1590,
     "wires": [
       [
         "d7e801f2cd22de87"
@@ -1649,7 +1649,7 @@
     "topic": "",
     "payloadType": "date",
     "x": 110,
-    "y": 1450,
+    "y": 1590,
     "wires": [
       [
         "821fafeae2bba567"
@@ -1663,7 +1663,126 @@
     "name": "Triggers -> Actions -> Aquarium",
     "info": "",
     "x": 150,
-    "y": 1370,
+    "y": 1510,
+    "wires": []
+  },
+  {
+    "id": "12ae2abf0a3b5511",
+    "type": "debug",
+    "z": "237573f3.977b64",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 240,
+    "y": 1090,
+    "wires": []
+  },
+  {
+    "id": "b67d79737457a6cc",
+    "type": "switch",
+    "z": "237573f3.977b64",
+    "name": "",
+    "property": "payload.action",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "1_single",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 520,
+    "y": 1130,
+    "wires": [
+      [
+        "dc4e2f67d699d410"
+      ]
+    ]
+  },
+  {
+    "id": "0a13a3ed57757141",
+    "type": "mqtt in",
+    "z": "237573f3.977b64",
+    "name": "",
+    "topic": "zigbee2mqtt/R02~ChL~OnOff",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "c38452a5.4f84e8",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 170,
+    "y": 1130,
+    "wires": [
+      [
+        "12ae2abf0a3b5511",
+        "b67d79737457a6cc"
+      ]
+    ]
+  },
+  {
+    "id": "8e7e4102525abe18",
+    "type": "mqtt out",
+    "z": "237573f3.977b64",
+    "name": "",
+    "topic": "zigbee2mqtt/P05~ChL~OnOff/set",
+    "qos": "",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "c38452a5.4f84e8",
+    "x": 1240,
+    "y": 1130,
+    "wires": []
+  },
+  {
+    "id": "dc4e2f67d699d410",
+    "type": "change",
+    "z": "237573f3.977b64",
+    "name": "state=TOGGLE",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"state\":\"TOGGLE\"}",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 730,
+    "y": 1130,
+    "wires": [
+      [
+        "8e7e4102525abe18"
+      ]
+    ]
+  },
+  {
+    "id": "e5ac221ef6154143",
+    "type": "comment",
+    "z": "237573f3.977b64",
+    "name": "Click on/off to toggle light",
+    "info": "",
+    "x": 1210,
+    "y": 1090,
     "wires": []
   }
 ]
