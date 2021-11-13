@@ -172,22 +172,12 @@
     "type": "inject",
     "z": "8627a08f.2f4c18",
     "name": "Morning",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
+    "props": [],
     "repeat": "",
     "crontab": "00 09 * * *",
     "once": false,
     "onceDelay": "5",
     "topic": "",
-    "payload": "Good morning!",
-    "payloadType": "str",
     "x": 100,
     "y": 240,
     "wires": [
@@ -195,7 +185,7 @@
         "f6373746.83f598",
         "e7e9239c.0be1c",
         "796c897.a1f1278",
-        "57bdbb93.d54314"
+        "09304e7665f8b8b8"
       ]
     ]
   },
@@ -626,5 +616,32 @@
     "x": 720,
     "y": 450,
     "wires": []
+  },
+  {
+    "id": "09304e7665f8b8b8",
+    "type": "change",
+    "z": "8627a08f.2f4c18",
+    "name": "Morning",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "Good morning!",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 310,
+    "y": 230,
+    "wires": [
+      [
+        "57bdbb93.d54314"
+      ]
+    ]
   }
 ]
