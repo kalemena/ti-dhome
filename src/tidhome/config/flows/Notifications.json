@@ -178,6 +178,7 @@
     "once": false,
     "onceDelay": "5",
     "topic": "",
+    "payloadType": "str",
     "x": 100,
     "y": 240,
     "wires": [
@@ -605,7 +606,7 @@
     "type": "debug",
     "z": "8627a08f.2f4c18",
     "name": "",
-    "active": true,
+    "active": false,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
