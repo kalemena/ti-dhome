@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 4,
-  "iteration": 1636659544537,
+  "iteration": 1638256643765,
   "links": [],
   "panels": [
     {
@@ -30,11 +30,12 @@
       "description": "",
       "gridPos": {
         "h": 8,
-        "w": 6,
+        "w": 24,
         "x": 0,
         "y": 0
       },
       "id": 13,
+      "interval": null,
       "mappingType": 1,
       "mappingTypes": [
         {
@@ -46,6 +47,7 @@
           "value": 2
         }
       ],
+      "maxDataPoints": 5000,
       "nullPointMode": "connected",
       "polystat": {
         "animationSpeed": 2500,
@@ -98,12 +100,12 @@
           "to": "null"
         }
       ],
-      "repeat": "location",
-      "repeatDirection": "h",
+      "repeat": null,
       "savedComposites": [],
       "savedOverrides": [],
       "targets": [
         {
+          "alias": "$tag_location",
           "groupBy": [
             {
               "params": [
@@ -112,10 +114,13 @@
               "type": "time"
             }
           ],
+          "hide": false,
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT mean(value) FROM \"sensors\" WHERE (\"type\" = 'temperature' AND \"location\" =~ /.*TH.*/) AND $timeFilter GROUP BY \"location\",time(1h)",
           "queryType": "randomWalk",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -147,7 +152,8 @@
           ]
         }
       ],
-      "title": "Temperature $location",
+      "timeFrom": null,
+      "title": "Temperature",
       "type": "grafana-polystat-panel",
       "valueMaps": [
         {
@@ -247,7 +253,9 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" =~ /^$type$/) AND $timeFilter GROUP BY time($__interval), \"location\" fill(null)",
           "queryType": "randomWalk",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -475,18 +483,8 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": [
-            "cc-Bureau",
-            "zigbee2mqtt/S06~ChL~Etagere",
-            "cc-7-Aquarium",
-            "cc-8-Freebox"
-          ],
-          "value": [
-            "cc-Bureau",
-            "zigbee2mqtt/S06~ChL~Etagere",
-            "cc-7-Aquarium",
-            "cc-8-Freebox"
-          ]
+          "text": [],
+          "value": []
         },
         "datasource": "InfluxDB-Sensors",
         "definition": "SHOW TAG VALUES WITH KEY = \"location\"",
@@ -511,12 +509,12 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "TiDHome-Sensors-Raw",
   "uid": "mZjQcZUGz",
-  "version": 4
+  "version": 8
 }
