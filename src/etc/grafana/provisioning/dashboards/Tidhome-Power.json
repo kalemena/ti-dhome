@@ -44,13 +44,17 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 24,
+        "h": 14,
+        "w": 3,
         "x": 0,
         "y": 0
       },
       "id": 9,
       "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -58,13 +62,13 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
+        "text": {},
+        "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
       "targets": [
         {
+          "alias": "",
           "groupBy": [
             {
               "params": [
@@ -79,10 +83,11 @@
               "type": "fill"
             }
           ],
+          "hide": true,
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(1h) fill(null)",
+          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(5m) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
@@ -108,10 +113,125 @@
               "value": "teleinfo-Wh-Total"
             }
           ]
+        },
+        {
+          "datasource": "__expr__",
+          "expression": "${A} / 1000",
+          "hide": false,
+          "refId": "Total",
+          "type": "math"
+        },
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "1h"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "sensors",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHC') AND $timeFilter GROUP BY time(5m) fill(null)",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "teleinfo-Wh-Total"
+            }
+          ]
+        },
+        {
+          "datasource": "__expr__",
+          "expression": "${C} / 1000",
+          "hide": false,
+          "refId": "HC",
+          "type": "math"
+        },
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "1h"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "sensors",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHP') AND $timeFilter GROUP BY time(5m) fill(null)",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "teleinfo-Wh-Total"
+            }
+          ]
+        },
+        {
+          "datasource": "__expr__",
+          "expression": "${B} / 1000",
+          "hide": false,
+          "refId": "HP",
+          "type": "math"
         }
       ],
-      "title": "Panel Title",
-      "type": "gauge"
+      "title": "Index (kWh)",
+      "type": "stat"
     },
     {
       "collapsed": false,
@@ -120,7 +240,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 14
       },
       "id": 6,
       "panels": [],
@@ -183,7 +303,7 @@
         "h": 10,
         "w": 11,
         "x": 0,
-        "y": 11
+        "y": 15
       },
       "id": 2,
       "options": {
@@ -215,7 +335,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(5m) fill(null)",
+          "query": "SELECT non_negative_derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(5m) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
@@ -302,7 +422,7 @@
         "h": 10,
         "w": 13,
         "x": 11,
-        "y": 11
+        "y": 15
       },
       "id": 3,
       "options": {
@@ -334,7 +454,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(15m) fill(null)",
+          "query": "SELECT non_negative_derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(15m) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
@@ -421,7 +541,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 25
       },
       "id": 4,
       "options": {
@@ -457,7 +577,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(1h) fill(null)",
+          "query": "SELECT non_negative_derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(1h) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
@@ -545,7 +665,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 35
       },
       "id": 11,
       "options": {
@@ -578,7 +698,7 @@
           "measurement": "sensors_15m",
           "orderByTime": "ASC",
           "policy": "one_year",
-          "query": "SELECT non_negative_derivative(\"value_15m\",1d) FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY \"location\"",
+          "query": "SELECT non_negative_derivative(\"value_15m\",1h) FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY \"location\"",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
@@ -636,7 +756,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 45
       },
       "id": 7,
       "options": {
@@ -657,6 +777,7 @@
       "pluginVersion": "8.0.4",
       "targets": [
         {
+          "alias": "24h ago (Wh)",
           "groupBy": [
             {
               "params": [
@@ -671,7 +792,7 @@
               "type": "fill"
             }
           ],
-          "hide": false,
+          "hide": true,
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
@@ -679,7 +800,7 @@
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "table",
+          "resultFormat": "time_series",
           "select": [
             [
               {
@@ -703,6 +824,7 @@
           ]
         },
         {
+          "alias": "Recent (Wh)",
           "groupBy": [
             {
               "params": [
@@ -717,7 +839,7 @@
               "type": "fill"
             }
           ],
-          "hide": false,
+          "hide": true,
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
@@ -725,7 +847,7 @@
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "B",
-          "resultFormat": "table",
+          "resultFormat": "time_series",
           "select": [
             [
               {
@@ -750,9 +872,16 @@
         },
         {
           "datasource": "__expr__",
-          "expression": "$B-$A",
+          "expression": "$A / 1000",
           "hide": false,
-          "refId": "C",
+          "refId": "24h ago (kWh)",
+          "type": "math"
+        },
+        {
+          "datasource": "__expr__",
+          "expression": "$B / 1000",
+          "hide": false,
+          "refId": "Recent (kWh)",
           "type": "math"
         }
       ],
@@ -776,5 +905,5 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 10
+  "version": 16
 }
