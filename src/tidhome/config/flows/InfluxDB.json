@@ -96,47 +96,6 @@
     "wires": []
   },
   {
-    "id": "f510711e.2bca98",
-    "type": "trigger",
-    "z": "d88a69c4.1942c8",
-    "name": "Watchdog",
-    "op1": "",
-    "op2": "",
-    "op1type": "nul",
-    "op2type": "payl",
-    "duration": "15",
-    "extend": true,
-    "units": "min",
-    "reset": "",
-    "bytopic": "topic",
-    "topic": "topic",
-    "outputs": 1,
-    "x": 430,
-    "y": 230,
-    "wires": [
-      [
-        "af1ad962.e16788"
-      ]
-    ]
-  },
-  {
-    "id": "af1ad962.e16788",
-    "type": "debug",
-    "z": "d88a69c4.1942c8",
-    "name": "Msg Content",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 610,
-    "y": 230,
-    "wires": []
-  },
-  {
     "id": "f9ad7f8e.736a08",
     "type": "influxdb in",
     "z": "d88a69c4.1942c8",

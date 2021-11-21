@@ -13,7 +13,7 @@
     "name": "Jeelink",
     "serial": "4c23cd92.778204",
     "x": 90,
-    "y": 160,
+    "y": 120,
     "wires": [
       [
         "e8d888e4.072f5"
@@ -30,7 +30,7 @@
     "retain": "",
     "broker": "c38452a5.4f84e8",
     "x": 760,
-    "y": 160,
+    "y": 120,
     "wires": []
   },
   {
@@ -42,7 +42,7 @@
     "reloadfile": false,
     "outputs": 1,
     "x": 260,
-    "y": 160,
+    "y": 120,
     "wires": [
       [
         "f20c9be2.db11d8",
@@ -89,7 +89,7 @@
     "complete": "true",
     "targetType": "full",
     "x": 920,
-    "y": 210,
+    "y": 170,
     "wires": []
   },
   {
@@ -104,7 +104,7 @@
     "finalize": "",
     "libs": [],
     "x": 930,
-    "y": 250,
+    "y": 210,
     "wires": [
       [
         "9502284c.4f29f8"
@@ -121,7 +121,7 @@
     "retain": "",
     "broker": "c38452a5.4f84e8",
     "x": 1140,
-    "y": 250,
+    "y": 210,
     "wires": []
   },
   {
@@ -155,7 +155,7 @@
     "repair": false,
     "outputs": 4,
     "x": 710,
-    "y": 260,
+    "y": 220,
     "wires": [
       [
         "823b2da3.07a708",
@@ -175,16 +175,6 @@
     ]
   },
   {
-    "id": "97976fe3.d1a8a",
-    "type": "comment",
-    "z": "d06e385b.de11c8",
-    "name": "Custom Devices",
-    "info": "",
-    "x": 120,
-    "y": 120,
-    "wires": []
-  },
-  {
     "id": "eefff2a7.d27e98",
     "type": "debug",
     "z": "d06e385b.de11c8",
@@ -198,7 +188,7 @@
     "statusVal": "",
     "statusType": "auto",
     "x": 930,
-    "y": 290,
+    "y": 250,
     "wires": []
   }
 ]
