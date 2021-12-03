@@ -603,6 +603,7 @@
     "persist": false,
     "proxy": "",
     "authType": "",
+    "senderr": false,
     "x": 570,
     "y": 210,
     "wires": [
@@ -1051,7 +1052,7 @@
     "type": "function",
     "z": "b1782abc.430f38",
     "name": "Insert Wh Total",
-    "func": "var teleinfoHC = global.get(\"tidhome_teleinfo.HCHC\")\nvar teleinfoHP = global.get(\"tidhome_teleinfo.HCHP\")\n\nfields = { \"value\": Number(teleinfoHC + teleinfoHP) }\ntags =   { \"type\": \"teleinfo-Wh-Total\", \"location\": \"main\" }\n\nvar msgres =  {\n    payload: {\n        payload: [ fields, tags ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
+    "func": "var teleinfoHC = global.get(\"tidhome_teleinfo.HCHC\")\nvar teleinfoHP = global.get(\"tidhome_teleinfo.HCHP\")\n\nvar value = Number(teleinfoHC + teleinfoHP)\n\nfields = { \"value\": value }\ntags =   { \"type\": \"teleinfo-Wh-Total\", \"location\": \"main\" }\n\nvar msgres =  {\n    payload: {\n        payload: [ fields, tags ],\n        measurement: \"sensors\"\n    }\n}\n\nreturn msgres;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
@@ -1161,6 +1162,7 @@
     "persist": false,
     "proxy": "",
     "authType": "",
+    "senderr": false,
     "x": 560,
     "y": 260,
     "wires": [
