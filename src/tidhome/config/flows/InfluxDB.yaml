@@ -1,0 +1,435 @@
+- id: d88a69c4.1942c8
+  type: tab
+  label: InfluxDB
+  disabled: false
+  info: ''
+- id: cc675ec4.106d
+  type: comment
+  z: d88a69c4.1942c8
+  name: Sensors - Heaters/Power/RFM868
+  info: ''
+  x: 180
+  'y': 120
+  wires: []
+- id: 90d304a9.c871a
+  type: mqtt in
+  z: d88a69c4.1942c8
+  name: sensors/#
+  topic: sensors/#
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  inputs: 0
+  x: 100
+  'y': 160
+  wires:
+    - - dcd509f1.d56dd
+- id: 14def27.355280e
+  type: debug
+  z: d88a69c4.1942c8
+  name: Debug
+  active: false
+  tosidebar: true
+  console: true
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 870
+  'y': 160
+  wires: []
+- id: dcd509f1.d56dd
+  type: function
+  z: d88a69c4.1942c8
+  name: Store Global
+  func: |-
+    var topicNodesPrefix = 'tidhome.sensors.' + msg.payload.gateway + '.nodes'
+    var nodes = global.get(topicNodesPrefix) || [];
+    for (var i = 0; i < nodes.length; i++) {
+        if(nodes[i].id === msg.payload.id) {
+            // found node
+            entryStr = (msg.payload.entry != undefined) ? ('-' + msg.payload.entry) : ''
+            global.set(topicNodesPrefix + '[' + i + '].' + msg.payload.type + entryStr, msg.payload.value);
+            global.set(topicNodesPrefix + '[' + i + '].timestamp', msg.payload.timestamp);
+        }
+    }
+    // pass through
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 440
+  'y': 160
+  wires:
+    - - 14def27.355280e
+- id: 694da039.ceca8
+  type: catch
+  z: d88a69c4.1942c8
+  name: ''
+  scope: null
+  uncaught: false
+  x: 100
+  'y': 80
+  wires:
+    - - 950a0758.599f88
+- id: 950a0758.599f88
+  type: link out
+  z: d88a69c4.1942c8
+  name: General CatchAll
+  links:
+    - 1bf42829.b3e0b8
+  x: 255
+  'y': 80
+  wires: []
+- id: f9ad7f8e.736a08
+  type: influxdb in
+  z: d88a69c4.1942c8
+  influxdb: ab73d852ece55e2a
+  name: ''
+  query: ''
+  rawOutput: false
+  precision: ''
+  retentionPolicy: ''
+  org: organisation
+  x: 720
+  'y': 560
+  wires:
+    - - fe17bda8.2a07a8
+- id: 266e0143.d568d6
+  type: comment
+  z: d88a69c4.1942c8
+  name: Selects
+  info: ''
+  x: 90
+  'y': 500
+  wires: []
+- id: fe17bda8.2a07a8
+  type: debug
+  z: d88a69c4.1942c8
+  name: ''
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1030
+  'y': 560
+  wires: []
+- id: 7ad1b802.d1df98
+  type: inject
+  z: d88a69c4.1942c8
+  name: SELECT * FROM "sensors" WHERE "type" = 'temp' AND "value" > 22
+  props:
+    - p: query
+      v: SELECT * FROM "sensors" WHERE "type" = 'temp' AND "value" > 22
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payloadType: str
+  x: 290
+  'y': 560
+  wires:
+    - - f9ad7f8e.736a08
+- id: 716819cb.d00088
+  type: comment
+  z: d88a69c4.1942c8
+  name: insert - events
+  info: ''
+  x: 110
+  'y': 300
+  wires: []
+- id: ea4448b9.c62a4
+  type: inject
+  z: d88a69c4.1942c8
+  name: SELECT * FROM "one_month"."downsampled_sensors"
+  props:
+    - p: query
+      v: SELECT * FROM "one_month"."downsampled_sensors"
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  x: 240
+  'y': 600
+  wires:
+    - - f9ad7f8e.736a08
+- id: d596b2444fd43e3c
+  type: influxdb in
+  z: d88a69c4.1942c8
+  influxdb: ab73d852ece55e2a
+  name: HCHC
+  query: >-
+    SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHC') AND
+    time >= now() - 120s GROUP BY time(1s) fill(null)
+  rawOutput: false
+  precision: ''
+  retentionPolicy: ''
+  org: ''
+  x: 270
+  'y': 690
+  wires:
+    - - 82533b700edc1266
+      - df07ff3921d0b25e
+- id: df07ff3921d0b25e
+  type: function
+  z: d88a69c4.1942c8
+  name: HCHC
+  func: |-
+
+    var newIdx = msg.payload.length -1
+
+    var msgRes = {
+        payload: {
+            HCHC_old_value: parseFloat(msg.payload[0].distinct),
+            HCHC_old_date: new Date(msg.payload[0].time),
+            HCHC_new_value: parseFloat(msg.payload[newIdx].distinct),
+            HCHC_new_date: new Date(msg.payload[newIdx].time)
+        },
+        topic: 'HCHC'
+    }
+
+    return msgRes
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 690
+  wires:
+    - - c1a0255e668d8275
+      - c2c63f155fdffef0
+- id: d4a3070811472f1d
+  type: function
+  z: d88a69c4.1942c8
+  name: HCHP
+  func: |-
+    var newIdx = msg.payload.length -1
+
+    var msgRes = {
+        payload: {
+            HCHP_old_value: parseFloat(msg.payload[0].distinct),
+            HCHP_old_date: new Date(msg.payload[0].time),
+            HCHP_new_value: parseFloat(msg.payload[newIdx].distinct),
+            HCHP_new_date: new Date(msg.payload[newIdx].time)
+        },
+        topic: 'HCHP'
+    }
+
+    return msgRes
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 770
+  wires:
+    - - c1a0255e668d8275
+      - c2c63f155fdffef0
+- id: c1a0255e668d8275
+  type: debug
+  z: d88a69c4.1942c8
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 520
+  'y': 730
+  wires: []
+- id: a40455ca98b5996a
+  type: debug
+  z: d88a69c4.1942c8
+  name: ''
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 690
+  'y': 770
+  wires: []
+- id: 82533b700edc1266
+  type: debug
+  z: d88a69c4.1942c8
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 310
+  'y': 730
+  wires: []
+- id: bf874566.5d9478
+  type: influxdb out
+  z: d88a69c4.1942c8
+  influxdb: ab73d852ece55e2a
+  name: ''
+  measurement: ''
+  precision: ''
+  retentionPolicy: ''
+  database: ''
+  retentionPolicyV18Flux: ''
+  org: ''
+  bucket: ''
+  x: 540
+  'y': 340
+  wires: []
+- id: 2b444ab.4ee2eb6
+  type: debug
+  z: d88a69c4.1942c8
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 330
+  'y': 380
+  wires: []
+- id: 363803a4.b81044
+  type: mqtt in
+  z: d88a69c4.1942c8
+  name: sensors
+  topic: sensors
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: false
+  inputs: 0
+  x: 90
+  'y': 340
+  wires:
+    - - 2b444ab.4ee2eb6
+      - 7e3ea563.cfecfc
+- id: 7e3ea563.cfecfc
+  type: function
+  z: d88a69c4.1942c8
+  name: Wrap
+  func: |
+    var msgres = msg.payload
+    return msgres;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 330
+  'y': 340
+  wires:
+    - - bf874566.5d9478
+      - 1dcfd422.bd14fc
+- id: 1dcfd422.bd14fc
+  type: debug
+  z: d88a69c4.1942c8
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 510
+  'y': 380
+  wires: []
+- id: d3720c7fdd188cb1
+  type: inject
+  z: d88a69c4.1942c8
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 100
+  'y': 690
+  wires:
+    - - d596b2444fd43e3c
+      - 473a6d075dc99456
+- id: c2c63f155fdffef0
+  type: join
+  z: d88a69c4.1942c8
+  name: ''
+  mode: custom
+  build: object
+  property: payload
+  propertyType: msg
+  key: topic
+  joiner: \n
+  joinerType: str
+  accumulate: false
+  timeout: ''
+  count: '2'
+  reduceRight: false
+  reduceExp: ''
+  reduceInit: ''
+  reduceInitType: ''
+  reduceFixup: ''
+  x: 690
+  'y': 730
+  wires:
+    - - a40455ca98b5996a
+- id: 473a6d075dc99456
+  type: influxdb in
+  z: d88a69c4.1942c8
+  influxdb: ab73d852ece55e2a
+  name: HCHP
+  query: >-
+    SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHP') AND
+    time >= now() - 120s GROUP BY time(1s) fill(null)
+  rawOutput: false
+  precision: ''
+  retentionPolicy: ''
+  org: ''
+  x: 270
+  'y': 770
+  wires:
+    - - 82533b700edc1266
+      - d4a3070811472f1d
+- id: 841410ae48e9f842
+  type: influxdb in
+  z: d88a69c4.1942c8
+  influxdb: ab73d852ece55e2a
+  name: HCHP
+  query: >-
+    // SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHC')
+    AND time >= now() - 1m GROUP BY time(1s) fill(null) ORDER BY time DESC
+
+
+    SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHP') AND
+    time >= now() - 120s GROUP BY time(1s) fill(null)
+  rawOutput: false
+  precision: ''
+  retentionPolicy: ''
+  org: ''
+  x: 270
+  'y': 810
+  wires:
+    - []
