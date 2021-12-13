@@ -1,0 +1,970 @@
+- id: b1782abc.430f38
+  type: tab
+  label: Sensors-WebRelay
+  disabled: false
+  info: ''
+- id: e2c89ae6.57aa1
+  type: http request
+  z: b1782abc.430f38
+  name: Web Relays
+  method: GET
+  ret: obj
+  paytoqs: ignore
+  url: 'http://ioteleinfo.local/status'
+  tls: ''
+  persist: true
+  proxy: ''
+  authType: ''
+  x: 360
+  'y': 90
+  wires:
+    - - aed3b5e8.2bdba
+      - 7c54b8f2.2432a
+- id: 1757f9f9.180a86
+  type: inject
+  z: b1782abc.430f38
+  name: Poll Web Relays (60s)
+  repeat: '60'
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: ''
+  payload: ''
+  payloadType: str
+  x: 150
+  'y': 90
+  wires:
+    - - e2c89ae6.57aa1
+- id: bf66c587.e16b18
+  type: mqtt out
+  z: b1782abc.430f38
+  name: sensors/xxx/nodes/...
+  topic: ''
+  qos: ''
+  retain: ''
+  broker: c38452a5.4f84e8
+  x: 810
+  'y': 60
+  wires: []
+- id: aed3b5e8.2bdba
+  type: file function
+  z: b1782abc.430f38
+  name: Parse WebRelays
+  filename: /opt/tidhome/functions/Parse-WebRelays.js
+  reloadfile: true
+  outputs: 1
+  x: 550
+  'y': 90
+  wires:
+    - - bf66c587.e16b18
+- id: 220263b.bb9aa1c
+  type: catch
+  z: b1782abc.430f38
+  name: ''
+  scope: null
+  uncaught: false
+  x: 100
+  'y': 30
+  wires:
+    - - 5d10dd0b.1db574
+- id: 5d10dd0b.1db574
+  type: link out
+  z: b1782abc.430f38
+  name: General CatchAll
+  links:
+    - 1bf42829.b3e0b8
+  x: 255
+  'y': 30
+  wires: []
+- id: 7c54b8f2.2432a
+  type: debug
+  z: b1782abc.430f38
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'false'
+  statusVal: ''
+  statusType: auto
+  x: 530
+  'y': 140
+  wires: []
+- id: a7d2ebd0.4c12a
+  type: inject
+  z: b1782abc.430f38
+  name: 01 - Bureau
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '1'
+  x: 110
+  'y': 800
+  wires:
+    - - 741678fd.3f4f18
+- id: 6c6e6c5d.0ac7ac
+  type: inject
+  z: b1782abc.430f38
+  name: 00 - SdJ
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '0'
+  x: 100
+  'y': 760
+  wires:
+    - - 741678fd.3f4f18
+- id: bb55b46b.570be8
+  type: inject
+  z: b1782abc.430f38
+  name: 02 - Chambre L.
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '2'
+  x: 120
+  'y': 840
+  wires:
+    - - 741678fd.3f4f18
+- id: 9f42607e.9d9368
+  type: inject
+  z: b1782abc.430f38
+  name: 03 - Chambre D.
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '3'
+  x: 120
+  'y': 880
+  wires:
+    - - 741678fd.3f4f18
+- id: abc37c81.f3592
+  type: inject
+  z: b1782abc.430f38
+  name: 04 - SdB - Haut
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '4'
+  x: 120
+  'y': 920
+  wires:
+    - - 741678fd.3f4f18
+- id: cdcf4c5a.dce938
+  type: inject
+  z: b1782abc.430f38
+  name: 05 - Mezanine
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '5'
+  x: 110
+  'y': 960
+  wires:
+    - - 741678fd.3f4f18
+- id: 5f8460fe.a89da
+  type: inject
+  z: b1782abc.430f38
+  name: 06 - Chambre P/M
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '6'
+  x: 130
+  'y': 1000
+  wires:
+    - - 741678fd.3f4f18
+- id: 883e7994.d94b68
+  type: inject
+  z: b1782abc.430f38
+  name: 14 - Salon
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '14'
+  x: 100
+  'y': 1070
+  wires:
+    - - 741678fd.3f4f18
+- id: 930f4fce.94c2d8
+  type: inject
+  z: b1782abc.430f38
+  name: 15 - Hall
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '15'
+  x: 100
+  'y': 1110
+  wires:
+    - - 741678fd.3f4f18
+- id: 558d963e.cb324
+  type: comment
+  z: b1782abc.430f38
+  name: IOTHeaters - Test
+  info: ''
+  x: 120
+  'y': 720
+  wires: []
+- id: aab849a7.ee2658
+  type: mqtt out
+  z: b1782abc.430f38
+  name: actors/iotheaters/switch
+  topic: actors/iotheaters/switch
+  qos: ''
+  retain: ''
+  broker: c38452a5.4f84e8
+  x: 1150
+  'y': 750
+  wires: []
+- id: 741678fd.3f4f18
+  type: change
+  z: b1782abc.430f38
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{}'
+      tot: json
+    - t: set
+      p: payload.id
+      pt: msg
+      to: topic
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 860
+  'y': 750
+  wires:
+    - - aab849a7.ee2658
+      - e790a499.f53248
+- id: 9c1a2185.ace048
+  type: link in
+  z: b1782abc.430f38
+  name: WebRelaysIn
+  links: []
+  x: 525
+  'y': 960
+  wires:
+    - - 741678fd.3f4f18
+- id: c269b719.1c237
+  type: link in
+  z: b1782abc.430f38
+  name: WebRelaysInLatch
+  links:
+    - 7dfb853e.03a1f4
+    - 1fd6723.fc4360e
+  x: 525
+  'y': 1010
+  wires:
+    - - d5867a8d.091
+- id: e790a499.f53248
+  type: debug
+  z: b1782abc.430f38
+  name: ''
+  active: false
+  console: 'false'
+  complete: 'true'
+  x: 1090
+  'y': 800
+  wires: []
+- id: 9a182caa.06e45
+  type: debug
+  z: b1782abc.430f38
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 830
+  'y': 1010
+  wires: []
+- id: 50816b6.a434a94
+  type: inject
+  z: b1782abc.430f38
+  name: 08 - Portail
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: '8'
+  payload: ''
+  payloadType: date
+  x: 480
+  'y': 1050
+  wires:
+    - - d5867a8d.091
+- id: deb0a59.85d1458
+  type: trigger
+  z: b1782abc.430f38
+  name: Portail Clic
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '1'
+  extend: true
+  overrideDelay: false
+  units: s
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 850
+  'y': 1050
+  wires:
+    - - ae57d3a3.e3fe88
+      - 741678fd.3f4f18
+- id: ae57d3a3.e3fe88
+  type: debug
+  z: b1782abc.430f38
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1090
+  'y': 1050
+  wires: []
+- id: d5867a8d.091
+  type: change
+  z: b1782abc.430f38
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: ''
+      tot: date
+    - t: set
+      p: topic
+      pt: msg
+      to: '8'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 650
+  'y': 1050
+  wires:
+    - - deb0a59.85d1458
+      - 9a182caa.06e45
+      - 741678fd.3f4f18
+- id: e2d7dc14.f1a8a8
+  type: comment
+  z: b1782abc.430f38
+  name: Actors - MQTT push
+  info: ''
+  x: 130
+  'y': 170
+  wires: []
+- id: dda2b638.2a5f7
+  type: mqtt in
+  z: b1782abc.430f38
+  name: actors/iotheaters/switch
+  topic: actors/iotheaters/switch
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  inputs: 0
+  x: 140
+  'y': 210
+  wires:
+    - - f8329ea7.84c6d8
+- id: f8329ea7.84c6d8
+  type: http request
+  z: b1782abc.430f38
+  name: Switch Web Relays
+  method: GET
+  ret: txt
+  paytoqs: ignore
+  url: 'http://ioteleinfo.local/relays/set?id={{{payload.id}}}&value=-1'
+  tls: ''
+  persist: false
+  proxy: ''
+  authType: ''
+  senderr: false
+  x: 570
+  'y': 210
+  wires:
+    - - eeed3c1e.9602e8
+- id: eeed3c1e.9602e8
+  type: debug
+  z: b1782abc.430f38
+  name: ''
+  active: false
+  console: 'false'
+  complete: 'true'
+  x: 800
+  'y': 210
+  wires: []
+- id: a9a5a446.2c7cb
+  type: websocket in
+  z: b1782abc.430f38
+  name: WebRelay
+  server: ''
+  client: '26438802.204788'
+  x: 100
+  'y': 330
+  wires:
+    - - 2812070e.894da8
+      - ac2d43ea.e2eaf
+      - 67d26f68.ac9028
+      - c97606c5.d54558
+- id: 1ba94549.ae6bdb
+  type: mqtt out
+  z: b1782abc.430f38
+  name: sensors
+  topic: sensors
+  qos: ''
+  retain: ''
+  broker: c38452a5.4f84e8
+  x: 1140
+  'y': 500
+  wires: []
+- id: 6efd389b.03b1
+  type: switch
+  z: b1782abc.430f38
+  name: sensors value
+  property: sensors
+  propertyType: msg
+  rules:
+    - t: hask
+      v: temperature
+      vt: str
+    - t: hask
+      v: humidity
+      vt: str
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 3
+  x: 440
+  'y': 450
+  wires:
+    - - b629ec5a.2b4f78
+    - - 16258a34.5ce016
+    - - f080b42a.8ae208
+- id: b629ec5a.2b4f78
+  type: function
+  z: b1782abc.430f38
+  name: Sensors-Temperature
+  func: |-
+    var msgres =  {
+        payload: {
+            payload: [
+                { "value": Number(msg.sensors.temperature) },
+                { "type": "temperature", "location": "wr-Garage" }
+            ],
+            measurement: "sensors"
+        }
+    }
+
+    return msgres;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  x: 860
+  'y': 440
+  wires:
+    - - 1ba94549.ae6bdb
+- id: 16258a34.5ce016
+  type: function
+  z: b1782abc.430f38
+  name: Sensors-Humidity
+  func: |-
+    var msgres =  {
+        payload: {
+            payload: [
+                { "value": Number(msg.sensors.humidity) },
+                { "type": "humidity", "location": "wr-Garage" }
+            ],
+            measurement: "sensors"
+        }
+    }
+
+    return msgres;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  x: 850
+  'y': 480
+  wires:
+    - - 1ba94549.ae6bdb
+- id: 2812070e.894da8
+  type: debug
+  z: b1782abc.430f38
+  name: WebRelayDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 300
+  'y': 600
+  wires: []
+- id: f080b42a.8ae208
+  type: debug
+  z: b1782abc.430f38
+  name: SensorsDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 840
+  'y': 520
+  wires: []
+- id: ac2d43ea.e2eaf
+  type: switch
+  z: b1782abc.430f38
+  name: relays
+  property: relays
+  propertyType: msg
+  rules:
+    - t: nnull
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 260
+  'y': 560
+  wires:
+    - - b7f3c41.7550bb8
+      - 7755fd51.b4d8f4
+- id: d66f7b10.e7534
+  type: function
+  z: b1782abc.430f38
+  name: Relays-OnOff
+  func: |-
+    var msgres =  {
+        payload: {
+            payload: [
+                { "value": Number(msg.payload.value) },
+                { "type": "plug-onoff", "location": "wr-Garage-" + msg.payload.id }
+            ],
+            measurement: "sensors"
+        }
+    }
+
+    return msgres;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 840
+  'y': 560
+  wires:
+    - - 1ba94549.ae6bdb
+- id: 7755fd51.b4d8f4
+  type: debug
+  z: b1782abc.430f38
+  name: RelaysDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 840
+  'y': 600
+  wires: []
+- id: 67d26f68.ac9028
+  type: switch
+  z: b1782abc.430f38
+  name: sensors
+  property: sensors
+  propertyType: msg
+  rules:
+    - t: nnull
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 270
+  'y': 440
+  wires:
+    - - 6efd389b.03b1
+- id: c97606c5.d54558
+  type: switch
+  z: b1782abc.430f38
+  name: teleinfo
+  property: teleinfo
+  propertyType: msg
+  rules:
+    - t: nnull
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 270
+  'y': 330
+  wires:
+    - - 4041416e2b11e83f
+      - 59e96ad40da5ad96
+- id: 10349fb3.8e444
+  type: split
+  z: b1782abc.430f38
+  name: ''
+  splt: \n
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: ''
+  x: 600
+  'y': 540
+  wires:
+    - - d66f7b10.e7534
+- id: b7f3c41.7550bb8
+  type: change
+  z: b1782abc.430f38
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: relays
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 440
+  'y': 540
+  wires:
+    - - 10349fb3.8e444
+- id: a04282091d8972bc
+  type: mqtt out
+  z: b1782abc.430f38
+  name: sensors
+  topic: sensors
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1130
+  'y': 360
+  wires: []
+- id: 4041416e2b11e83f
+  type: debug
+  z: b1782abc.430f38
+  name: WSDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 280
+  'y': 370
+  wires: []
+- id: 59e96ad40da5ad96
+  type: function
+  z: b1782abc.430f38
+  name: Pre-process
+  func: |-
+    function isNumeric(n) { 
+          return !isNaN(parseFloat(n)) && isFinite(n); 
+    }
+
+    var msgs = []
+
+    //if(msg.teleinfo.IINST) {
+    //    msgs.push( { topic: "IINST", payload: msg.teleinfo.IINST } )
+    //}
+
+    // Check all key/value
+    var keys = Object.keys(msg.teleinfo);
+    for(var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var value = isNumeric(msg.teleinfo[key]) ? Number(msg.teleinfo[key]) : msg.teleinfo[key]
+        
+        global.set("tidhome_teleinfo." + key, value);
+        
+        if(isNumeric(value))
+            msgs.push( { topic: key, payload: value } )
+    }
+
+    return msgs
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 460
+  'y': 330
+  wires:
+    - - 09eeee4ada393189
+      - 92f6a23eb338c0e1
+- id: 92f6a23eb338c0e1
+  type: debug
+  z: b1782abc.430f38
+  name: PreProcessDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 480
+  'y': 370
+  wires: []
+- id: 09eeee4ada393189
+  type: rbe
+  z: b1782abc.430f38
+  name: ''
+  func: rbe
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: payload
+  topi: topic
+  x: 640
+  'y': 330
+  wires:
+    - - 1596cc938fc8a912
+      - 6299a688f8ee5bde
+- id: 1596cc938fc8a912
+  type: function
+  z: b1782abc.430f38
+  name: Insert Query
+  func: |-
+    fields = { "value": Number(msg.payload) }
+    tags =   { "type": "teleinfo-" + msg.topic, "location": "main" }
+
+    var msgres =  {
+        payload: {
+            payload: [ fields, tags ],
+            measurement: "sensors"
+        }
+    }
+
+    return msgres;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 820
+  'y': 370
+  wires:
+    - - a04282091d8972bc
+      - 5dddd6af5b562c6d
+- id: 5dddd6af5b562c6d
+  type: debug
+  z: b1782abc.430f38
+  name: StorageDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1150
+  'y': 410
+  wires: []
+- id: 06838726b26da1b0
+  type: function
+  z: b1782abc.430f38
+  name: Insert Wh Total
+  func: |-
+    var teleinfoHC = global.get("tidhome_teleinfo.HCHC")
+    var teleinfoHP = global.get("tidhome_teleinfo.HCHP")
+
+    var value = Number(teleinfoHC + teleinfoHP)
+
+    fields = { "value": value }
+    tags =   { "type": "teleinfo-Wh-Total", "location": "main" }
+
+    var msgres =  {
+        payload: {
+            payload: [ fields, tags ],
+            measurement: "sensors"
+        }
+    }
+
+    return msgres;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 960
+  'y': 330
+  wires:
+    - - a04282091d8972bc
+      - 3e4d792744058a92
+- id: 6299a688f8ee5bde
+  type: switch
+  z: b1782abc.430f38
+  name: ''
+  property: topic
+  propertyType: msg
+  rules:
+    - t: eq
+      v: HCHC
+      vt: str
+    - t: eq
+      v: HCHP
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 800
+  'y': 330
+  wires:
+    - - 06838726b26da1b0
+    - - 06838726b26da1b0
+- id: 3e4d792744058a92
+  type: debug
+  z: b1782abc.430f38
+  name: StorageDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1150
+  'y': 310
+  wires: []
+- id: 8175abc180c732e4
+  type: mqtt in
+  z: b1782abc.430f38
+  name: actors/iotheaters/set
+  topic: actors/iotheaters/set
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: false
+  inputs: 0
+  x: 130
+  'y': 260
+  wires:
+    - - 6b78b06d6d132a3b
+- id: bf76f115523ab776
+  type: debug
+  z: b1782abc.430f38
+  name: ''
+  active: false
+  console: 'false'
+  complete: 'true'
+  x: 800
+  'y': 260
+  wires: []
+- id: 046ac47846e9e56f
+  type: http request
+  z: b1782abc.430f38
+  name: Set Web Relays
+  method: GET
+  ret: txt
+  paytoqs: ignore
+  url: >-
+    http://ioteleinfo.local/relays/set?id={{{payload.id}}}&state={{{payload.value}}}
+  tls: ''
+  persist: false
+  proxy: ''
+  authType: ''
+  senderr: false
+  x: 560
+  'y': 260
+  wires:
+    - - bf76f115523ab776
+- id: 6b78b06d6d132a3b
+  type: delay
+  z: b1782abc.430f38
+  name: ''
+  pauseType: rate
+  timeout: '500'
+  timeoutUnits: milliseconds
+  rate: '1'
+  nbRateUnits: '0.1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 350
+  'y': 260
+  wires:
+    - - 046ac47846e9e56f
