@@ -1,0 +1,235 @@
+- id: 237573f3.977b64
+  type: tab
+  label: Sensors-Zigbee
+  disabled: false
+  info: ''
+- id: c5f01a10.120958
+  type: debug
+  z: 237573f3.977b64
+  name: ZigBeeConfig
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: payload.name
+  targetType: msg
+  statusVal: ''
+  statusType: auto
+  x: 1110
+  'y': 180
+  wires: []
+- id: da797c2a.8ca438
+  type: inject
+  z: 237573f3.977b64
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '1'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 120
+  'y': 180
+  wires:
+    - []
+- id: 3cf7ed11.f942ea
+  type: comment
+  z: 237573f3.977b64
+  name: ZigBee Devices
+  info: ''
+  x: 100
+  'y': 140
+  wires: []
+- id: e40e5bbf.43be98
+  type: comment
+  z: 237573f3.977b64
+  name: ZigBee Events Listening
+  info: ''
+  x: 130
+  'y': 230
+  wires: []
+- id: 701631b4.93c578
+  type: split
+  z: 237573f3.977b64
+  name: ''
+  splt: \n
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: ''
+  x: 780
+  'y': 180
+  wires:
+    - []
+- id: 4a04431c.fcc3ec
+  type: catch
+  z: 237573f3.977b64
+  name: ''
+  scope: null
+  uncaught: false
+  x: 110
+  'y': 90
+  wires:
+    - - 60b06b25.f9c98c
+- id: 60b06b25.f9c98c
+  type: link out
+  z: 237573f3.977b64
+  name: General CatchAll
+  links:
+    - 1bf42829.b3e0b8
+  x: 265
+  'y': 90
+  wires: []
+- id: 2b11a227.b0ca06
+  type: mqtt in
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/bridge/logging
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 160
+  'y': 270
+  wires:
+    - - a99de8fd.3bf05
+- id: a99de8fd.3bf05
+  type: debug
+  z: 237573f3.977b64
+  name: Bridge as MQTT
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 640
+  'y': 270
+  wires: []
+- id: fde0902d.5c7e88
+  type: mqtt in
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/+
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 120
+  'y': 340
+  wires:
+    - - a111421e.f2a32
+      - d464350ee4482364
+- id: a708e318.e87308
+  type: debug
+  z: 237573f3.977b64
+  name: Remotes
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 620
+  'y': 320
+  wires: []
+- id: a111421e.f2a32
+  type: switch
+  z: 237573f3.977b64
+  name: ''
+  property: topic
+  propertyType: msg
+  rules:
+    - t: cont
+      v: zigbee2mqtt/R
+      vt: str
+    - t: cont
+      v: zigbee2mqtt/S
+      vt: str
+    - t: cont
+      v: zigbee2mqtt/V
+      vt: str
+    - t: cont
+      v: zigbee2mqtt/P
+      vt: str
+    - t: cont
+      v: zigbee2mqtt/M
+      vt: str
+    - t: cont
+      v: zigbee2mqtt/L
+      vt: str
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 7
+  x: 380
+  'y': 380
+  wires:
+    - - a708e318.e87308
+    - - 85a82392.1560b8
+    - - d3c7ec9e.17e778
+    - - da6ef322.b46dd
+    - - 8af56833.cbd7b
+    - - 97b4eca3.a80768
+    - - f5922203.5e8ba
+- id: 85a82392.1560b8
+  type: debug
+  z: 237573f3.977b64
+  name: Sensors
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 620
+  'y': 360
+  wires: []
+- id: d3c7ec9e.17e778
+  type: debug
+  z: 237573f3.977b64
+  name: Volets
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 610
+  'y': 400
+  wires: []
+- id: da6ef322.b46dd
+  type: debug
+  z: 237573f3.977b64
+  name: Plugs
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 610
+  'y': 440
+  wires: []
