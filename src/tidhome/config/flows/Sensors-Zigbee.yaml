@@ -233,3 +233,1024 @@
   x: 610
   'y': 440
   wires: []
+- id: f5922203.5e8ba
+  type: debug
+  z: 237573f3.977b64
+  name: Others
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 610
+  'y': 560
+  wires: []
+- id: 8af56833.cbd7b
+  type: debug
+  z: 237573f3.977b64
+  name: Motion
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 610
+  'y': 480
+  wires: []
+- id: 97b4eca3.a80768
+  type: debug
+  z: 237573f3.977b64
+  name: Lights
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 610
+  'y': 520
+  wires: []
+- id: 378cc77d.34fe
+  type: change
+  z: 237573f3.977b64
+  name: state=TOGGLE
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"TOGGLE"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 740
+  'y': 1300
+  wires:
+    - - 1621fcb5.86df33
+- id: 1621fcb5.86df33
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/P02~Celier~OnOff/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1240
+  'y': 1300
+  wires: []
+- id: 831f3268.666ba
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/P03~Salon~OnOff01/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1250
+  'y': 1140
+  wires: []
+- id: 7545dbe9.bad7e4
+  type: debug
+  z: 237573f3.977b64
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 240
+  'y': 1350
+  wires: []
+- id: 56f59bd0.4be85c
+  type: switch
+  z: 237573f3.977b64
+  name: ''
+  property: payload.action
+  propertyType: msg
+  rules:
+    - t: eq
+      v: 'on'
+      vt: str
+    - t: eq
+      v: 'off'
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 520
+  'y': 1430
+  wires:
+    - - 82918784.6b6d58
+    - - 1b5806ce.1cdb99
+- id: bf3689b6.1a9aa8
+  type: mqtt in
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/R01~ChD~OnOff
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 170
+  'y': 1390
+  wires:
+    - - 7545dbe9.bad7e4
+      - 56f59bd0.4be85c
+- id: 82918784.6b6d58
+  type: change
+  z: 237573f3.977b64
+  name: state=ON
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"ON"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 710
+  'y': 1410
+  wires:
+    - - e7387eae.824b38
+- id: e7387eae.824b38
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/P01~ChD~Lit/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1230
+  'y': 1400
+  wires: []
+- id: 28b226fd.f70f5a
+  type: inject
+  z: 237573f3.977b64
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: P01220vDam
+  payloadType: str
+  x: 720
+  'y': 1370
+  wires:
+    - - 70b16aec.fca994
+- id: 1b5806ce.1cdb99
+  type: change
+  z: 237573f3.977b64
+  name: state=OFF
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"OFF"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 720
+  'y': 1450
+  wires:
+    - - e7387eae.824b38
+- id: 70b16aec.fca994
+  type: change
+  z: 237573f3.977b64
+  name: state=TOGGLE
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"TOGGLE"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 910
+  'y': 1370
+  wires:
+    - - e7387eae.824b38
+- id: 5ea0d18e.5be0f
+  type: mqtt in
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/R06~Salon~Cube
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 180
+  'y': 940
+  wires:
+    - - 6335ea75.a87bd4
+      - '59774785.92416'
+- id: 6335ea75.a87bd4
+  type: debug
+  z: 237573f3.977b64
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 260
+  'y': 900
+  wires: []
+- id: 8977a250.22ff2
+  type: comment
+  z: 237573f3.977b64
+  name: Triggers -> Actions
+  info: ''
+  x: 110
+  'y': 660
+  wires: []
+- id: '59774785.92416'
+  type: switch
+  z: 237573f3.977b64
+  name: Action?
+  property: payload.action
+  propertyType: msg
+  rules:
+    - t: eq
+      v: tap
+      vt: str
+    - t: eq
+      v: rotate_right
+      vt: str
+    - t: eq
+      v: rotate_left
+      vt: str
+    - t: eq
+      v: shake
+      vt: str
+    - t: eq
+      v: side
+      vt: str
+    - t: eq
+      v: action
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 6
+  x: 440
+  'y': 990
+  wires:
+    - - 2a74ef94.59aac
+    - - c4ae1b832667595b
+      - fe18c704095d647f
+    - - c4ae1b832667595b
+      - fe18c704095d647f
+    - - d9a33c04992fc657
+    - []
+    - []
+- id: 2a74ef94.59aac
+  type: switch
+  z: 237573f3.977b64
+  name: Side?
+  property: payload.side
+  propertyType: msg
+  rules:
+    - t: eq
+      v: '0'
+      vt: num
+    - t: eq
+      v: '3'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 660
+  'y': 900
+  wires:
+    - - 274d1df9.f97ce2
+    - - 1888e2d7.750abd
+- id: 2f285578099ecddd
+  type: mqtt in
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/R07~Celier~Chaussures
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 200
+  'y': 1300
+  wires:
+    - - 32d78d55003433bf
+      - 1995c31697716418
+- id: 32d78d55003433bf
+  type: switch
+  z: 237573f3.977b64
+  name: ''
+  property: payload.action
+  propertyType: msg
+  rules:
+    - t: eq
+      v: single
+      vt: str
+    - t: eq
+      v: double
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 520
+  'y': 1300
+  wires:
+    - - 378cc77d.34fe
+    - []
+- id: 1995c31697716418
+  type: debug
+  z: 237573f3.977b64
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 300
+  'y': 1260
+  wires: []
+- id: 567f5722b1de5166
+  type: comment
+  z: 237573f3.977b64
+  name: Shake the cube to toggle cozy light
+  info: ''
+  x: 1240
+  'y': 1100
+  wires: []
+- id: c6bedaf25152623e
+  type: change
+  z: 237573f3.977b64
+  name: state=TOGGLE
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"TOGGLE"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 990
+  'y': 1140
+  wires:
+    - - 831f3268.666ba
+- id: d464350ee4482364
+  type: link out
+  z: 237573f3.977b64
+  name: SensorsEventsOut
+  links:
+    - b8de7c12f584a11d
+    - 133485cb59c0a94a
+  x: 345
+  'y': 470
+  wires: []
+- id: fcf5336f6f22ce51
+  type: function
+  z: 237573f3.977b64
+  name: Store Global
+  func: >-
+    // init (id needed)
+
+    var tidhome = global.get("tidhome") || {}
+
+    // var zigbee = global.get("zigbee") || {}
+
+    global.set("tidhome", tidhome)
+
+    global.set("tidhome.sensors.zigbee." + msg.topic.replace("zigbee2mqtt/",""),
+    msg.payload);
+
+
+    // pass through
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 930
+  'y': 180
+  wires:
+    - []
+- id: 42c65007ee68f7b0
+  type: function
+  z: 237573f3.977b64
+  name: Compute
+  func: >-
+    var sensor_name = msg.topic.replace("zigbee2mqtt/","")
+
+
+    // 0=up, 100=down
+
+    var last_position = global.get("tidhome_cache." + sensor_name +
+    ".last_position") || 0
+
+
+    if(msg.payload.action_angle > 20) {
+        position = Math.min(100, last_position + 25)
+    } else if(msg.payload.action_angle < 20) {
+        position = Math.max(0, last_position - 25)
+    }
+
+
+    global.set("tidhome_cache." + sensor_name + ".last_position", position);
+
+
+    // pass through
+
+    return {
+        payload: {
+            position: position
+            }
+        };
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 950
+  'y': 1050
+  wires:
+    - - a18b7635bb4482ed
+- id: 88336ff6539e9c17
+  type: mqtt in
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/R08~tbd~tbd
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 160
+  'y': 1000
+  wires:
+    - []
+- id: c4ae1b832667595b
+  type: debug
+  z: 237573f3.977b64
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 450
+  'y': 900
+  wires: []
+- id: a18b7635bb4482ed
+  type: debug
+  z: 237573f3.977b64
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1150
+  'y': 1050
+  wires: []
+- id: 32cca13a6da997d8
+  type: debug
+  z: 237573f3.977b64
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 680
+  'y': 940
+  wires: []
+- id: fe18c704095d647f
+  type: switch
+  z: 237573f3.977b64
+  name: Action?
+  property: payload
+  propertyType: msg
+  rules:
+    - t: hask
+      v: action_angle
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 670
+  'y': 980
+  wires:
+    - - 32cca13a6da997d8
+      - 42c65007ee68f7b0
+- id: 1888e2d7.750abd
+  type: change
+  z: 237573f3.977b64
+  name: down
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"CLOSE"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 960
+  'y': 1010
+  wires:
+    - - 6b4297d5511a5e8b
+- id: 274d1df9.f97ce2
+  type: change
+  z: 237573f3.977b64
+  name: up
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{    "state": "OPEN" }'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 960
+  'y': 930
+  wires:
+    - - 6b4297d5511a5e8b
+- id: b2588e29a6469f13
+  type: inject
+  z: 237573f3.977b64
+  name: OPEN
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '{"state":"OPEN"}'
+  payloadType: json
+  x: 960
+  'y': 890
+  wires:
+    - - 6b4297d5511a5e8b
+- id: 470fc1854974e274
+  type: inject
+  z: 237573f3.977b64
+  name: CLOSE
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '{"state":"CLOSE"}'
+  payloadType: json
+  x: 960
+  'y': 970
+  wires:
+    - - 6b4297d5511a5e8b
+- id: 6b4297d5511a5e8b
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/G01~Volets/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1210
+  'y': 950
+  wires: []
+- id: 6ec0d7f989e759a4
+  type: comment
+  z: 237573f3.977b64
+  name: Tap the cube to Open/Close shutters
+  info: ''
+  x: 1230
+  'y': 910
+  wires: []
+- id: 0457c2a6501c8d96
+  type: link in
+  z: 237573f3.977b64
+  name: Cmd-Volets-Position
+  links:
+    - a0f1b25d.56ebd8
+    - fcb36f963325c072
+  x: 815
+  'y': 850
+  wires:
+    - - a2a1c0e8ef9a7dac
+- id: a2a1c0e8ef9a7dac
+  type: function
+  z: 237573f3.977b64
+  name: Compute
+  func: |-
+    // pass through
+    return {
+        payload: {
+            position: msg.payload
+            }
+        };
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 950
+  'y': 850
+  wires:
+    - - 5a581833051f6e11
+      - 6b4297d5511a5e8b
+- id: 5a581833051f6e11
+  type: debug
+  z: 237573f3.977b64
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1140
+  'y': 850
+  wires: []
+- id: d6b0b7d21e99f29e
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/V01~Hall/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1200
+  'y': 810
+  wires: []
+- id: 4343d80627f170c9
+  type: link in
+  z: 237573f3.977b64
+  name: Cmd-Volet-H
+  links:
+    - e7e52fec716f59a2
+    - 3dae35cb9b74126c
+  x: 815
+  'y': 810
+  wires:
+    - - 9065d90dfcd4ac91
+- id: 9065d90dfcd4ac91
+  type: function
+  z: 237573f3.977b64
+  name: Compute
+  func: |-
+    // pass through
+    return {
+        payload: {
+            position: msg.payload
+            }
+        };
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 950
+  'y': 810
+  wires:
+    - - d6b0b7d21e99f29e
+- id: 7b79b431f2370272
+  type: inject
+  z: 237573f3.977b64
+  name: 14h30
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: 30 14 * * *
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payloadType: date
+  x: 110
+  'y': 1650
+  wires:
+    - - 0c25f5688e5a94dd
+- id: d7e801f2cd22de87
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/P04~Aquarium~OnOff/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 630
+  'y': 1650
+  wires: []
+- id: 0c25f5688e5a94dd
+  type: change
+  z: 237573f3.977b64
+  name: state=ON
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"ON"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 320
+  'y': 1650
+  wires:
+    - - d7e801f2cd22de87
+- id: 821fafeae2bba567
+  type: change
+  z: 237573f3.977b64
+  name: state=OFF
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"OFF"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 330
+  'y': 1690
+  wires:
+    - - d7e801f2cd22de87
+- id: 8198cd909f51e2d6
+  type: inject
+  z: 237573f3.977b64
+  name: 22h30
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: 30 22 * * *
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payloadType: date
+  x: 110
+  'y': 1690
+  wires:
+    - - 821fafeae2bba567
+- id: 65276d7be42044b8
+  type: comment
+  z: 237573f3.977b64
+  name: Triggers -> Actions -> Aquarium
+  info: ''
+  x: 150
+  'y': 1610
+  wires: []
+- id: 12ae2abf0a3b5511
+  type: debug
+  z: 237573f3.977b64
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 240
+  'y': 1490
+  wires: []
+- id: b67d79737457a6cc
+  type: switch
+  z: 237573f3.977b64
+  name: ''
+  property: payload.action
+  propertyType: msg
+  rules:
+    - t: eq
+      v: 1_single
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 520
+  'y': 1530
+  wires:
+    - - dc4e2f67d699d410
+- id: 0a13a3ed57757141
+  type: mqtt in
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/R02~ChL~OnOff
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 170
+  'y': 1530
+  wires:
+    - - 12ae2abf0a3b5511
+      - b67d79737457a6cc
+- id: 8e7e4102525abe18
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/P05~ChL~OnOff/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1240
+  'y': 1530
+  wires: []
+- id: dc4e2f67d699d410
+  type: change
+  z: 237573f3.977b64
+  name: state=TOGGLE
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"TOGGLE"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 730
+  'y': 1530
+  wires:
+    - - 8e7e4102525abe18
+- id: f4efc56732fede78
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: zigbee2mqtt/P06~Sapin~OnOff/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1240
+  'y': 1200
+  wires: []
+- id: fbf337296d4e32cb
+  type: change
+  z: 237573f3.977b64
+  name: state=TOGGLE
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"TOGGLE"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 990
+  'y': 1200
+  wires:
+    - - f4efc56732fede78
+- id: d9a33c04992fc657
+  type: switch
+  z: 237573f3.977b64
+  name: Action?
+  property: payload.side
+  propertyType: msg
+  rules:
+    - t: eq
+      v: '0'
+      vt: str
+    - t: eq
+      v: '1'
+      vt: str
+    - t: eq
+      v: '2'
+      vt: str
+    - t: eq
+      v: '3'
+      vt: str
+    - t: eq
+      v: '4'
+      vt: str
+    - t: eq
+      v: '5'
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 6
+  x: 670
+  'y': 1050
+  wires:
+    - []
+    - - c6bedaf25152623e
+    - []
+    - []
+    - - fbf337296d4e32cb
+    - []
