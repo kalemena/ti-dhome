@@ -1254,3 +1254,67 @@
     - []
     - - fbf337296d4e32cb
     - []
+- id: ffe166d90a3516ef
+  type: sunrise
+  z: 237573f3.977b64
+  name: ''
+  lat: '48.5'
+  lon: '-4.5'
+  start: sunrise
+  end: nauticalDusk
+  soff: 0
+  eoff: '0'
+  x: 120
+  'y': 740
+  wires:
+    - []
+    - - e11a69e231b1a9bc
+- id: e11a69e231b1a9bc
+  type: switch
+  z: 237573f3.977b64
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: eq
+      v: '1'
+      vt: num
+    - t: eq
+      v: '0'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 430
+  'y': 740
+  wires:
+    - []
+    - - 1888e2d7.750abd
+      - 374f9d5b08b0b89c
+- id: 374f9d5b08b0b89c
+  type: function
+  z: 237573f3.977b64
+  name: Night !
+  func: |-
+    msg.payload = "This is night !"
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 960
+  'y': 690
+  wires:
+    - - 972003cb36092dcb
+- id: 972003cb36092dcb
+  type: mqtt out
+  z: 237573f3.977b64
+  name: notifications/telegram
+  topic: notifications/telegram
+  qos: ''
+  retain: ''
+  broker: c38452a5.4f84e8
+  x: 1180
+  'y': 690
+  wires: []
