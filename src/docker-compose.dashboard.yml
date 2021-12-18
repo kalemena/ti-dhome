@@ -21,7 +21,7 @@ services:
       HOST_ETC: /rootfs/etc
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:8.3.3
     # build: ./etc/grafana
     restart: always
     # user: "${UID}:${GID}"
