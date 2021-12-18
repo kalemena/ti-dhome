@@ -29,7 +29,8 @@ sensors:
       location: Freebox
       description: Freebox et Routeur
     - id: 9
-      location: Cuisine~Lavage
-      description: Lave-vaisselle
+      location: Salon-Poêle
+      description: Poêle
+
       enabled: false
 
