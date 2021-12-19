@@ -1261,9 +1261,9 @@
   lat: '48.5'
   lon: '-4.5'
   start: sunrise
-  end: nauticalDusk
-  soff: 0
-  eoff: '0'
+  end: sunset
+  soff: '-10'
+  eoff: '20'
   x: 120
   'y': 740
   wires:
