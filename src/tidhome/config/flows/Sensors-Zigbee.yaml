@@ -106,7 +106,7 @@
   type: debug
   z: 237573f3.977b64
   name: Bridge as MQTT
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -1113,28 +1113,11 @@
   x: 240
   'y': 1490
   wires: []
-- id: b67d79737457a6cc
-  type: switch
-  z: 237573f3.977b64
-  name: ''
-  property: payload.action
-  propertyType: msg
-  rules:
-    - t: eq
-      v: 1_single
-      vt: str
-  checkall: 'true'
-  repair: false
-  outputs: 1
-  x: 520
-  'y': 1530
-  wires:
-    - - dc4e2f67d699d410
 - id: 0a13a3ed57757141
   type: mqtt in
   z: 237573f3.977b64
   name: ''
-  topic: zigbee2mqtt/R02~ChL~OnOff
+  topic: zigbee2mqtt/R09~ChL~OnOff
   qos: '2'
   datatype: json
   broker: c38452a5.4f84e8
@@ -1146,7 +1129,7 @@
   'y': 1530
   wires:
     - - 12ae2abf0a3b5511
-      - b67d79737457a6cc
+      - d55417cc3f9bf246
 - id: 8e7e4102525abe18
   type: mqtt out
   z: 237573f3.977b64
@@ -1163,25 +1146,6 @@
   x: 1240
   'y': 1530
   wires: []
-- id: dc4e2f67d699d410
-  type: change
-  z: 237573f3.977b64
-  name: state=TOGGLE
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '{"state":"TOGGLE"}'
-      tot: json
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 730
-  'y': 1530
-  wires:
-    - - 8e7e4102525abe18
 - id: f4efc56732fede78
   type: mqtt out
   z: 237573f3.977b64
@@ -1318,3 +1282,62 @@
   x: 1180
   'y': 690
   wires: []
+- id: d55417cc3f9bf246
+  type: switch
+  z: 237573f3.977b64
+  name: ''
+  property: payload.action
+  propertyType: msg
+  rules:
+    - t: eq
+      v: 'on'
+      vt: str
+    - t: eq
+      v: 'off'
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 520
+  'y': 1530
+  wires:
+    - - dd01ed9bfd12e568
+    - - fe5c8dff90afd042
+- id: dd01ed9bfd12e568
+  type: change
+  z: 237573f3.977b64
+  name: state=ON
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"ON"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 710
+  'y': 1510
+  wires:
+    - - 8e7e4102525abe18
+- id: fe5c8dff90afd042
+  type: change
+  z: 237573f3.977b64
+  name: state=OFF
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"OFF"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 720
+  'y': 1550
+  wires:
+    - - 8e7e4102525abe18
