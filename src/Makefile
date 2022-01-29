@@ -5,6 +5,7 @@
 init: init-env init-images init-influxdb init-telegraf init-grafana
 
 init-env:
+	echo "Initialize: Folders ..."
 	cp src/.env-example src/.env
 
 init-images:
@@ -15,7 +16,6 @@ init-influxdb:
 	echo "Initialize: Setup InfluxDB ..."
 	# For information only
 	mkdir -p etc/influxdb
-	docker run --rm influxdb:1.8.6 influxd config | tee etc/influxdb/influxdb-default.conf > /dev/null
 	cp -n etc/influxdb/influxdb-default.conf etc/influxdb/influxdb.conf
 	# Volumes
 	# mkdir -p var/lib/influxdb
@@ -37,7 +37,6 @@ init-influxdb2:
 	echo "Initialize: Setup InfluxDB ..."
 	# For information only
 	mkdir -p etc/influxdb2
-	docker run --rm influxdb:2.0.7 influxd print-config > etc/influxdb2/config-default.yml
 	cp -n etc/influxdb2/config-default.yml etc/influxdb2/config.yml
 	# Volumes
 	#docker-compose up -d influxdb2
