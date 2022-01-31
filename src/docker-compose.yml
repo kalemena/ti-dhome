@@ -1,5 +1,8 @@
 version: '3.7'
 
+network:
+  default:
+
 volumes:
   influxdb-data:
   influxdb2-data:
