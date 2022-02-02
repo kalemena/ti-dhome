@@ -85,7 +85,7 @@ services:
     build: .
     restart: always
     ports:
-     - "${NODERED_PORT:-1880}:1880"
+     - 1880
     volumes:
      - ./etc/tidhome:/etc/tidhome
      - ./tidhome:/opt/tidhome
