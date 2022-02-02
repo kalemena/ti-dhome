@@ -105,10 +105,13 @@ services:
   # tools:
   #   build: https://github.com/kalemena/attestation-covid19.git 
 
-  # web:
-  #   image: nginx
-  #   restart: always
-  #   ports:
-  #    - "80:80"
-  #   volumes:
-  #    - ./web/www:/usr/share/nginx/html
+  gateway:
+    image: nginx
+    restart: always
+    ports:
+     - "80:80"
+    volumes:
+     - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+     - ./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+     # - ./web/www:/usr/share/nginx/html
+     - /var/log/nginx:/var/log/nginx
