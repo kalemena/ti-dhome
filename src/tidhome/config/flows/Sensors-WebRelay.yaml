@@ -18,8 +18,8 @@
   x: 360
   'y': 90
   wires:
-    - - aed3b5e8.2bdba
-      - 7c54b8f2.2432a
+    - - 7c54b8f2.2432a
+      - 7e2f7c263a132298
 - id: 1757f9f9.180a86
   type: inject
   z: b1782abc.430f38
@@ -46,17 +46,6 @@
   x: 810
   'y': 60
   wires: []
-- id: aed3b5e8.2bdba
-  type: file function
-  z: b1782abc.430f38
-  name: Parse WebRelays
-  filename: /opt/tidhome/functions/Parse-WebRelays.js
-  reloadfile: true
-  outputs: 1
-  x: 550
-  'y': 90
-  wires:
-    - - bf66c587.e16b18
 - id: 220263b.bb9aa1c
   type: catch
   z: b1782abc.430f38
@@ -87,7 +76,7 @@
   complete: 'false'
   statusVal: ''
   statusType: auto
-  x: 530
+  x: 540
   'y': 140
   wires: []
 - id: a7d2ebd0.4c12a
@@ -968,3 +957,70 @@
   'y': 260
   wires:
     - - 046ac47846e9e56f
+- id: 3fd6e413e89631e8
+  type: delay
+  z: b1782abc.430f38
+  name: ''
+  pauseType: delay
+  timeout: '5'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 540
+  'y': 1190
+  wires:
+    - []
+- id: 7e2f7c263a132298
+  type: function
+  z: b1782abc.430f38
+  name: Parse WebRelays
+  func: |-
+    // name: Parse web relays
+    // outputs: 1
+    var outputMsgs = []
+    var displayMsg = ""
+    timestampH = new Date().toISOString()
+    timestamp = new Date().getTime()
+
+    for (var i in msg.payload.relays) {
+        
+        relayId = msg.payload.relays[i].id
+        relayDesc = msg.payload.relays[i].description
+        relayValue = msg.payload.relays[i].value
+        type = 'toggle'
+        entry = 0
+        
+        var msgS = {}
+        msgS.topic = 'sensors/iotheaters/nodes/' + relayId + '/entries/' + entry + '/events/' + type;
+        msgS.payload = { 
+            "gateway":"iotheaters",
+            "id": relayId,
+            "entry": entry,
+            "type": type,
+            "value": relayValue,
+            "timestamp": timestamp,
+            "timestamp-human": timestampH
+        }
+        displayMsg += relayDesc + "(" + relayId + ")=" + relayValue + "; "
+        outputMsgs.push(msgS);
+    }
+
+    node.status({ fill:"blue", shape:"dot", text: displayMsg });
+
+    return [ outputMsgs ];
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 560
+  'y': 80
+  wires:
+    - - bf66c587.e16b18
