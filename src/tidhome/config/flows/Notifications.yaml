@@ -46,8 +46,8 @@
   z: 8627a08f.2f4c18
   darksky: 56c5e5e6.d3610c
   name: Weather Forecast
-  lon: '-45.574204'
-  lat: '480.4778124'
+  lon: '-4.5'
+  lat: '48.5'
   date: ''
   time: ''
   mode: message
