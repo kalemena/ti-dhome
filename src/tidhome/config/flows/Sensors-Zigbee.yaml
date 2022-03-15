@@ -1226,8 +1226,8 @@
   lon: '-4.5'
   start: sunrise
   end: sunset
-  soff: '-10'
-  eoff: '20'
+  soff: '0'
+  eoff: '15'
   x: 120
   'y': 740
   wires:
