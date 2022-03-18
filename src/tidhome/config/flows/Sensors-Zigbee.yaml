@@ -1227,7 +1227,7 @@
   start: sunrise
   end: sunset
   soff: '0'
-  eoff: '15'
+  eoff: '10'
   x: 120
   'y': 740
   wires:
