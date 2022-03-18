@@ -189,7 +189,6 @@
   wires:
     - - f6373746.83f598
       - e7e9239c.0be1c
-      - 796c897.a1f1278
       - 09304e7665f8b8b8
 - id: fd76b359.51ec38
   type: inject
@@ -254,66 +253,6 @@
   'y': 80
   wires:
     - - 7ddfd97.7160228
-- id: 796c897.a1f1278
-  type: country statistics
-  z: 8627a08f.2f4c18
-  name: France
-  infected: true
-  deaths: true
-  recovered: true
-  active: false
-  critical: false
-  todaycases: false
-  todaydeaths: false
-  casepermilion: true
-  regionFilter: true
-  deathspermilion: false
-  regionList: '["FR","US","GB","DE","CA"]'
-  regionListType: json
-  x: 310
-  'y': 410
-  wires:
-    - - 9bc6fdda.21edd8
-      - 39621e4afac92901
-- id: 9bc6fdda.21edd8
-  type: function
-  z: 8627a08f.2f4c18
-  name: Covid19
-  func: |-
-    var outputMsgs = []
-
-    /*
-    // plenty messages
-    var keys = Object.keys(msg.covid);
-    for (const country of keys) {
-      var message = "COVID " + "[" + msg.covid[country].countryinfo.country  + "](" + msg.covid[country].countryinfo.flagurl + "): \n" +
-        "Cas     = " + msg.covid[country].cases + "\n" +
-        "Morts   = " + msg.covid[country].deaths + "\n" +
-        "Sorties = " + msg.covid[country].recovered + "\n";
-        
-      outputMsgs.push({ topic: country, payload: message, photo: msg.covid[country].countryinfo.flagurl });
-    }
-    */
-
-    // single message
-    var message = "COVID: \n";
-    message += "Cas\tMorts\tSortie\n";
-    var keys = Object.keys(msg.covid);
-    for (const country of keys) {
-      message += msg.covid[country].countryinfo.country + ": " 
-        + msg.covid[country].cases + "\t" + msg.covid[country].deaths + "\t" + msg.covid[country].recovered + "\n";
-    }
-    outputMsgs.push({ topic: "covid", payload: message });
-
-    return [ outputMsgs ];
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  x: 730
-  'y': 410
-  wires:
-    - - 57bdbb93.d54314
 - id: 7ddfd97.7160228
   type: link out
   z: 8627a08f.2f4c18
@@ -500,21 +439,6 @@
   broker: c38452a5.4f84e8
   x: 1120
   'y': 630
-  wires: []
-- id: 39621e4afac92901
-  type: debug
-  z: 8627a08f.2f4c18
-  name: ''
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 720
-  'y': 450
   wires: []
 - id: 09304e7665f8b8b8
   type: change
