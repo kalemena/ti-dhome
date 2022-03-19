@@ -8,8 +8,8 @@
   z: f96b3a53.67de8
   name: CurrentCost
   serial: 36396f66.41717
-  x: 130
-  'y': 110
+  x: 110
+  'y': 120
   wires:
     - - e9003ce.5c1f84
 - id: e9003ce.5c1f84
@@ -19,8 +19,8 @@
   property: payload
   attr: ''
   chr: ''
-  x: 340
-  'y': 110
+  x: 210
+  'y': 160
   wires:
     - - 1da3548.6a44bac
 - id: 57c57a10.955624
@@ -31,7 +31,7 @@
   qos: ''
   retain: ''
   broker: c38452a5.4f84e8
-  x: 1070
+  x: 1060
   'y': 110
   wires: []
 - id: a44c6fd5.e88c1
@@ -40,8 +40,8 @@
   name: ''
   scope: null
   uncaught: false
-  x: 120
-  'y': 70
+  x: 100
+  'y': 80
   wires:
     - - 4a641f47.46cb08
 - id: 4a641f47.46cb08
@@ -50,8 +50,8 @@
   name: General CatchAll
   links:
     - 1bf42829.b3e0b8
-  x: 275
-  'y': 70
+  x: 255
+  'y': 80
   wires: []
 - id: ef7af4f7.f7274
   type: debug
@@ -207,8 +207,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 570
-  'y': 250
+  x: 500
+  'y': 330
   wires: []
 - id: 1da3548.6a44bac
   type: switch
@@ -227,8 +227,8 @@
   checkall: 'true'
   repair: false
   outputs: 3
-  x: 540
-  'y': 110
+  x: 340
+  'y': 120
   wires:
     - - 75611bae5888eb02
     - - 5e8cddc7.be4dec
@@ -245,13 +245,13 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 570
-  'y': 200
+  x: 500
+  'y': 290
   wires: []
 - id: 75611bae5888eb02
   type: function
   z: f96b3a53.67de8
-  name: Parse CurrentCost
+  name: 'sensor Type, "1" = electricity'
   func: >-
     // name: Parse CurrentCost
 
@@ -342,8 +342,44 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 800
-  'y': 110
+  x: 560
+  'y': 70
   wires:
     - - 57c57a10.955624
       - 65932785.3642e
+      - d44841c75e0acc24
+- id: d44841c75e0acc24
+  type: trigger
+  z: f96b3a53.67de8
+  name: Watchdog
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '60'
+  extend: true
+  overrideDelay: false
+  units: s
+  reset: ''
+  bytopic: topic
+  topic: topic
+  outputs: 1
+  x: 1020
+  'y': 50
+  wires:
+    - - 92124dd055692a09
+- id: 92124dd055692a09
+  type: debug
+  z: f96b3a53.67de8
+  name: ''
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1190
+  'y': 50
+  wires: []
