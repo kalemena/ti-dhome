@@ -208,3 +208,39 @@
   wires:
     - - 9826adfd.b0d9b
       - f20c9be2.db11d8
+      - e056629cc98f1ea1
+- id: e056629cc98f1ea1
+  type: trigger
+  z: d06e385b.de11c8
+  name: Watchdog
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '1'
+  extend: true
+  overrideDelay: false
+  units: hr
+  reset: ''
+  bytopic: topic
+  topic: topic
+  outputs: 1
+  x: 520
+  'y': 290
+  wires:
+    - - 98dfd3e21cde4eac
+- id: 98dfd3e21cde4eac
+  type: debug
+  z: d06e385b.de11c8
+  name: JL W Debug
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 710
+  'y': 290
+  wires: []
