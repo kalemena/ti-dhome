@@ -495,6 +495,7 @@
   func: |-
     var msgres =  {
         payload: {
+            topic: "teleinfo-temperature-wr-Garage",
             payload: [
                 { "value": Number(msg.sensors.temperature) },
                 { "type": "temperature", "location": "wr-Garage" }
@@ -508,10 +509,12 @@
   noerr: 0
   initialize: ''
   finalize: ''
+  libs: []
   x: 860
   'y': 440
   wires:
     - - 1ba94549.ae6bdb
+      - 7828567a6b1e35ab
 - id: 16258a34.5ce016
   type: function
   z: b1782abc.430f38
@@ -519,6 +522,7 @@
   func: |-
     var msgres =  {
         payload: {
+            topic: "teleinfo-humidity-wr-Garage",
             payload: [
                 { "value": Number(msg.sensors.humidity) },
                 { "type": "humidity", "location": "wr-Garage" }
@@ -532,10 +536,12 @@
   noerr: 0
   initialize: ''
   finalize: ''
+  libs: []
   x: 850
   'y': 480
   wires:
     - - 1ba94549.ae6bdb
+      - 7828567a6b1e35ab
 - id: 2812070e.894da8
   type: debug
   z: b1782abc.430f38
@@ -795,6 +801,7 @@
     tags =   { "type": "teleinfo-" + msg.topic, "location": "main" }
 
     var msgres =  {
+        topic: "teleinfo-" + msg.topic,
         payload: {
             payload: [ fields, tags ],
             measurement: "sensors"
@@ -812,6 +819,7 @@
   wires:
     - - a04282091d8972bc
       - 5dddd6af5b562c6d
+      - 7828567a6b1e35ab
 - id: 5dddd6af5b562c6d
   type: debug
   z: b1782abc.430f38
@@ -841,6 +849,7 @@
     tags =   { "type": "teleinfo-Wh-Total", "location": "main" }
 
     var msgres =  {
+        topic: "teleinfo-Wh-Total",
         payload: {
             payload: [ fields, tags ],
             measurement: "sensors"
@@ -858,6 +867,7 @@
   wires:
     - - a04282091d8972bc
       - 3e4d792744058a92
+      - 7828567a6b1e35ab
 - id: 6299a688f8ee5bde
   type: switch
   z: b1782abc.430f38
@@ -1024,3 +1034,38 @@
   'y': 80
   wires:
     - - bf66c587.e16b18
+- id: 7828567a6b1e35ab
+  type: trigger
+  z: b1782abc.430f38
+  name: Watchdog
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '5'
+  extend: true
+  overrideDelay: false
+  units: min
+  reset: ''
+  bytopic: topic
+  topic: topic
+  outputs: 1
+  x: 1130
+  'y': 250
+  wires:
+    - - 5b354d74db3c3466
+- id: 5b354d74db3c3466
+  type: debug
+  z: b1782abc.430f38
+  name: WR W Debug
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1180
+  'y': 200
+  wires: []
