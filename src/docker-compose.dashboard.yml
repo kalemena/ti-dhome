@@ -21,10 +21,8 @@ services:
       HOST_ETC: /rootfs/etc
 
   grafana:
-    image: grafana/grafana:8.3.3
-    # build: ./etc/grafana
+    image: grafana/grafana:8.4.4
     restart: always
-    # user: "${UID}:${GID}"
     ports:
       - "3000:3000"
     volumes:
