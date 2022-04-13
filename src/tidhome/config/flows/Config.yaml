@@ -1,6 +1,6 @@
 - id: 112e9cf8.590b23
   type: tab
-  label: Configuration
+  label: Config
   disabled: false
   info: ''
 - id: f26be183.4f807
@@ -15,7 +15,7 @@
   payload: ''
   payloadType: date
   x: 100
-  'y': 300
+  'y': 440
   wires:
     - - 94e381cf.c2bab
 - id: af26e828.9b92
@@ -29,7 +29,7 @@
   complete: 'true'
   targetType: full
   x: 870
-  'y': 320
+  'y': 440
   wires: []
 - id: 77ded097.d4bc6
   type: yaml
@@ -37,7 +37,7 @@
   property: payload
   name: ''
   x: 460
-  'y': 300
+  'y': 440
   wires:
     - - 87655eff.6eacc
 - id: 94e381cf.c2bab
@@ -49,7 +49,7 @@
   chunk: false
   sendError: false
   x: 290
-  'y': 300
+  'y': 440
   wires:
     - - 77ded097.d4bc6
 - id: ea98f666.7ddaa
@@ -58,7 +58,7 @@
   name: Sensors - Configuration
   info: ''
   x: 140
-  'y': 260
+  'y': 400
   wires: []
 - id: d4efc750.434898
   type: catch
@@ -86,47 +86,17 @@
   to: ''
   reg: false
   x: 630
-  'y': 300
+  'y': 440
   wires:
     - - af26e828.9b92
-- id: d18b1e8a.48615
-  type: change
-  z: 112e9cf8.590b23
-  name: ''
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: tidhome
-      tot: global
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 620
-  'y': 340
-  wires:
-    - - af26e828.9b92
-- id: 9e12968e.6ff6b8
-  type: inject
-  z: 112e9cf8.590b23
-  name: Check
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: '1'
-  topic: ''
-  payload: ''
-  payloadType: date
-  x: 90
-  'y': 340
-  wires:
-    - - d18b1e8a.48615
 - id: aa1dfa0a.c912b
   type: inject
   z: 112e9cf8.590b23
   name: Alarms
+  props:
+    - p: payload
+    - p: topic
+      vt: str
   repeat: '3600'
   crontab: ''
   once: true
@@ -135,7 +105,7 @@
   payload: '["iotpower","iotheaters","rfm868usb"]'
   payloadType: json
   x: 100
-  'y': 380
+  'y': 560
   wires:
     - - 9bca5b14.acefe8
 - id: 9bca5b14.acefe8
@@ -226,21 +196,11 @@
   noerr: 0
   initialize: ''
   finalize: ''
-  x: 650
-  'y': 380
+  libs: []
+  x: 320
+  'y': 560
   wires:
-    - - f33af95f.a4de3
-- id: f33af95f.a4de3
-  type: mqtt out
-  z: 112e9cf8.590b23
-  name: notifications/telegram
-  topic: notifications/telegram
-  qos: ''
-  retain: ''
-  broker: c38452a5.4f84e8
-  x: 910
-  'y': 380
-  wires: []
+    - - ecb2912f7071e62b
 - id: 650449d4.5383f8
   type: comment
   z: 112e9cf8.590b23
@@ -259,19 +219,8 @@
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 880
-  'y': 180
-  wires: []
-- id: 7cd8cb74.d3227c
-  type: mqtt out
-  z: 112e9cf8.590b23
-  name: notifications/telegram
-  topic: notifications/telegram
-  qos: ''
-  retain: ''
-  broker: c38452a5.4f84e8
-  x: 920
-  'y': 130
+  x: 870
+  'y': 250
   wires: []
 - id: 41e3caeb.c73014
   type: delay
@@ -288,10 +237,10 @@
   randomUnits: seconds
   drop: true
   outputs: 1
-  x: 720
-  'y': 130
+  x: 710
+  'y': 200
   wires:
-    - - 7cd8cb74.d3227c
+    - - 84b1892ac15ea678
 - id: 2d2c7365.5aa924
   type: file
   z: 112e9cf8.590b23
@@ -301,8 +250,8 @@
   createDir: false
   overwriteFile: 'false'
   encoding: none
-  x: 670
-  'y': 180
+  x: 660
+  'y': 250
   wires:
     - - 29f69392.4ebc64
 - id: a24eb884.8fa9a
@@ -332,7 +281,110 @@
     - 98c9017f.76bca
     - 4d670d8450380ac6
   x: 225
-  'y': 170
+  'y': 240
   wires:
     - - 41e3caeb.c73014
       - 2d2c7365.5aa924
+- id: efba45ee82a7b481
+  type: comment
+  z: 112e9cf8.590b23
+  name: Sensors - Alerts
+  info: ''
+  x: 120
+  'y': 520
+  wires: []
+- id: 8011356333a316f0
+  type: comment
+  z: 112e9cf8.590b23
+  name: Schedulers
+  info: ''
+  x: 100
+  'y': 640
+  wires: []
+- id: f2f40dc3da630cc9
+  type: sunrise
+  z: 112e9cf8.590b23
+  name: ''
+  lat: '48.5'
+  lon: '-4.5'
+  start: sunrise
+  end: sunset
+  soff: '0'
+  eoff: '5'
+  x: 110
+  'y': 690
+  wires:
+    - []
+    - - 5f629250b70e5979
+- id: 5f629250b70e5979
+  type: switch
+  z: 112e9cf8.590b23
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: eq
+      v: '1'
+      vt: num
+    - t: eq
+      v: '0'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 290
+  'y': 700
+  wires:
+    - []
+    - - 7735f46c01861b34
+- id: 7735f46c01861b34
+  type: function
+  z: 112e9cf8.590b23
+  name: Night !
+  func: |-
+    msg.payload = "This is night !"
+    msg.action = "CLOSE"
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 690
+  wires:
+    - - fecb20f01567e4a8
+- id: 84b1892ac15ea678
+  type: link out
+  z: 112e9cf8.590b23
+  name: ''
+  mode: link
+  links:
+    - d741d05ac62a3f88
+    - 2f30621f40aa8285
+  x: 835
+  'y': 200
+  wires: []
+- id: ecb2912f7071e62b
+  type: link out
+  z: 112e9cf8.590b23
+  name: ''
+  mode: link
+  links:
+    - d741d05ac62a3f88
+    - 2f30621f40aa8285
+  x: 485
+  'y': 560
+  wires: []
+- id: fecb20f01567e4a8
+  type: link out
+  z: 112e9cf8.590b23
+  name: ''
+  mode: link
+  links:
+    - d741d05ac62a3f88
+    - f576c3026a84db30
+    - 2f30621f40aa8285
+  x: 585
+  'y': 690
+  wires: []
