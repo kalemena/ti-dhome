@@ -6,7 +6,8 @@ endif::[]
 
 = Ti-DHome
 
-This is a Home automation project. Pronounced "Ti d'Homme" stands for *little man* in French. +
+This is a Home automation project. +
+Pronounced "Ti d'Homme" stands for *little man* in French, or as short for *petite domotique*. +
 This GIT project is a hat project with a set of sub-projects enabling Home Automation.
 
 image:schema-architecture.png[Overview]
