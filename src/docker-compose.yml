@@ -102,9 +102,6 @@ services:
     env_file:
      - .env
 
-  # tools:
-  #   build: https://github.com/kalemena/attestation-covid19.git 
-
   gateway:
     image: nginx
     restart: always
