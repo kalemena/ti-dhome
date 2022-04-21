@@ -17,7 +17,7 @@ services:
     image: koenkk/zigbee2mqtt
     restart: always
     ports:
-      - "8181:8181"
+      - 8181
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./tidhome/data:/app/data
@@ -34,11 +34,10 @@ services:
 
   influxdb:
     image: influxdb:1.8.6
-    # user: "${UID}:${GID}"
     restart: always
     ports:
-      - "8083:8083"
-      - "8086:8086"
+      - 8083
+      - 8086
     volumes: 
       - ./etc/influxdb/scripts:/docker-entrypoint-initdb.d
       # - ./var/lib/influxdb:/var/lib/influxdb:rw
