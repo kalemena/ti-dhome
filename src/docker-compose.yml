@@ -109,5 +109,5 @@ services:
     volumes:
      - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
      - ./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-     # - ./web/www:/usr/share/nginx/html
-     - /var/log/nginx:/var/log/nginx
+     - ./usr/share/nginx/html:/usr/share/nginx/html
+     # - /var/log/nginx:/var/log/nginx
