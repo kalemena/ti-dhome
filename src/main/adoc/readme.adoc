@@ -1,7 +1,7 @@
 :toc:
 
 ifdef::env-github[]
-:imagesdir: /src/main/adoc
+:imagesdir: /src/main/adoc/images
 endif::[]
 
 = Ti-DHome
