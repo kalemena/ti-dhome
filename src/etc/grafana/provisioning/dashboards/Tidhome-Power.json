@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -22,12 +25,15 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -49,6 +55,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -88,7 +95,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.3.3",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Total",
@@ -114,7 +121,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(5m) fill(null)",
+          "query": "SELECT mean(\"value\")/1000 FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(5m) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
@@ -165,7 +172,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHC') AND $timeFilter GROUP BY time(5m) fill(null)",
+          "query": "SELECT mean(\"value\")/1000.0 FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHC') AND $timeFilter GROUP BY time(5m) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "C",
@@ -216,7 +223,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHP') AND $timeFilter GROUP BY time(5m) fill(null)",
+          "query": "SELECT mean(\"value\")/1000 FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHP') AND $timeFilter GROUP BY time(5m) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "B",
@@ -257,6 +264,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -296,7 +304,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.3.3",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Total",
@@ -322,7 +330,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value_15m\" FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND time > now() -169h AND time <= now()-168h",
+          "query": "SELECT \"value_15m\" /1000 FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND time > now() -169h AND time <= now()-168h",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
@@ -373,7 +381,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value_15m\" FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-HCHC') AND time > now() -169h AND time <= now()-168h",
+          "query": "SELECT \"value_15m\" /1000 FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-HCHC') AND time > now() -169h AND time <= now()-168h",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "C",
@@ -424,7 +432,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value_15m\" FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-HCHP') AND time > now() -169h AND time <= now()-168h",
+          "query": "SELECT \"value_15m\" /1000 FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-HCHP') AND time > now() -169h AND time <= now()-168h",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "B",
@@ -465,6 +473,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -504,7 +513,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.3.3",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Total",
@@ -530,7 +539,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value_15m\" FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND time > now() -721h AND time <= now()-720h",
+          "query": "SELECT \"value_15m\" /1000 FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND time > now() -721h AND time <= now()-720h",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "A",
@@ -581,7 +590,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value_15m\" FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-HCHC') AND time > now() -721h AND time <= now()-720h",
+          "query": "SELECT \"value_15m\" /1000 FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-HCHC') AND time > now() -721h AND time <= now()-720h",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "C",
@@ -632,7 +641,7 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value_15m\" FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-HCHP') AND time > now() -721h AND time <= now()-720h",
+          "query": "SELECT \"value_15m\" /1000 FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-HCHP') AND time > now() -721h AND time <= now()-720h",
           "queryType": "randomWalk",
           "rawQuery": true,
           "refId": "B",
@@ -665,6 +674,10 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -750,7 +763,8 @@
           "placement": "right"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
@@ -877,7 +891,8 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
@@ -999,7 +1014,8 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
@@ -1129,7 +1145,8 @@
           "placement": "right"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
@@ -1257,7 +1274,8 @@
           "placement": "right"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.4",
@@ -1352,7 +1370,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.3",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "24h ago (Wh)",
@@ -1463,7 +1481,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 34,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1476,7 +1494,5 @@
   "timepicker": {},
   "timezone": "",
   "title": "Tidhome - Power",
-  "uid": "YjE61Qdnz",
-  "version": 31,
   "weekStart": ""
 }
