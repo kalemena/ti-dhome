@@ -1428,9 +1428,8 @@
     - t: set
       p: topics
       pt: msg
-      to: >-
-        ["V02~Cuisine","V03~Terrasse-Cuisine","V04~Terrasse-SaM","V05~BW-Droite","V06~BW-Milieu","V07~BW~Gauche"]
-      tot: json
+      to: tidhome.groups.shuttersA
+      tot: global
   action: ''
   property: ''
   from: ''
