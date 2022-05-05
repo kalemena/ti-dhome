@@ -2,11 +2,15 @@
 # Initialize Environment
 ##########################
 
-init: init-env init-images init-influxdb init-telegraf init-grafana
+init: init-env init-config init-images init-influxdb init-telegraf init-grafana
 
 init-env:
 	echo "Initialize: Folders ..."
-	cp src/.env-example src/.env
+	cp .env-example src/.env
+
+init-config:
+	echo "Initialize: Configuration Defaults ..."
+	cp etc/tidhome/ti-dhome.yaml.example etc/tidhome/ti-dhome.yaml
 
 init-images:
 	echo "Initialize: Pull Images ..."
