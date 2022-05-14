@@ -10,3 +10,7 @@ services:
   nodered:
     extra_hosts:
       ioteleinfo.local: ${IOT_WEBRELAY_IP}
+
+  gateway:
+    extra_hosts:
+      ioteleinfo.local: ${IOT_WEBRELAY_IP}
