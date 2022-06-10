@@ -902,53 +902,16 @@
   x: 1140
   'y': 850
   wires: []
-- id: d6b0b7d21e99f29e
-  type: mqtt out
-  z: 237573f3.977b64
-  name: ''
-  topic: zigbee2mqtt/V01~Hall/set
-  qos: ''
-  retain: ''
-  respTopic: ''
-  contentType: ''
-  userProps: ''
-  correl: ''
-  expiry: ''
-  broker: c38452a5.4f84e8
-  x: 520
-  'y': 2230
-  wires: []
 - id: 4343d80627f170c9
   type: link in
   z: 237573f3.977b64
-  name: Cmd-Volet-H
+  name: Zigbee-GroupB
   links:
     - e7e52fec716f59a2
-    - 3dae35cb9b74126c
   x: 135
   'y': 2230
   wires:
-    - - 9065d90dfcd4ac91
-- id: 9065d90dfcd4ac91
-  type: function
-  z: 237573f3.977b64
-  name: Compute
-  func: |-
-    // pass through
-    return {
-        payload: {
-            position: msg.payload
-            }
-        };
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 270
-  'y': 2230
-  wires:
-    - - d6b0b7d21e99f29e
+    - - 5ff54aa28a48a69b
 - id: 7b79b431f2370272
   type: inject
   z: 237573f3.977b64
@@ -967,22 +930,6 @@
   'y': 1810
   wires:
     - - 0c25f5688e5a94dd
-- id: d7e801f2cd22de87
-  type: mqtt out
-  z: 237573f3.977b64
-  name: ''
-  topic: zigbee2mqtt/P04~Aquarium~OnOff/set
-  qos: ''
-  retain: ''
-  respTopic: ''
-  contentType: ''
-  userProps: ''
-  correl: ''
-  expiry: ''
-  broker: c38452a5.4f84e8
-  x: 630
-  'y': 1810
-  wires: []
 - id: 0c25f5688e5a94dd
   type: change
   z: 237573f3.977b64
@@ -998,10 +945,10 @@
   from: ''
   to: ''
   reg: false
-  x: 320
+  x: 280
   'y': 1810
   wires:
-    - - d7e801f2cd22de87
+    - - 202fbe5871e17867
 - id: 821fafeae2bba567
   type: change
   z: 237573f3.977b64
@@ -1017,10 +964,10 @@
   from: ''
   to: ''
   reg: false
-  x: 330
+  x: 290
   'y': 1850
   wires:
-    - - d7e801f2cd22de87
+    - - 202fbe5871e17867
 - id: 8198cd909f51e2d6
   type: inject
   z: 237573f3.977b64
@@ -1253,7 +1200,7 @@
   x: 100
   'y': 2060
   wires:
-    - - 1731c4bfa24e14af
+    - - 6125ee9d06132b9e
 - id: bb32a909665cb2a1
   type: function
   z: 237573f3.977b64
@@ -1278,7 +1225,7 @@
   finalize: ''
   libs: []
   x: 840
-  'y': 2060
+  'y': 2070
   wires:
     - - fcaa4989aed7cefb
     - - b4ea625be1d52582
@@ -1287,7 +1234,7 @@
   z: 237573f3.977b64
   name: ''
   pauseType: delay
-  timeout: '6'
+  timeout: '4'
   timeoutUnits: seconds
   rate: '1'
   nbRateUnits: '1'
@@ -1299,7 +1246,7 @@
   allowrate: false
   outputs: 1
   x: 840
-  'y': 2120
+  'y': 2130
   wires:
     - - bb32a909665cb2a1
 - id: 76df2179d1645b64
@@ -1315,8 +1262,8 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1200
-  'y': 2060
+  x: 1170
+  'y': 2070
   wires: []
 - id: fbadbc9c65b425ab
   type: inject
@@ -1334,18 +1281,18 @@
   x: 100
   'y': 2110
   wires:
-    - - 1731c4bfa24e14af
+    - - 6125ee9d06132b9e
 - id: f576c3026a84db30
   type: link in
   z: 237573f3.977b64
-  name: Zigbee-Shutters
+  name: Zigbee-GroupA
   links:
     - 1e78a35a02bb00d7
     - fecb20f01567e4a8
   x: 135
   'y': 2010
   wires:
-    - - 1731c4bfa24e14af
+    - - 6125ee9d06132b9e
 - id: 1e78a35a02bb00d7
   type: link out
   z: 237573f3.977b64
@@ -1381,8 +1328,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1050
-  'y': 2060
+  x: 1020
+  'y': 2070
   wires:
     - - 76df2179d1645b64
 - id: c790a3e82c6d73a9
@@ -1404,27 +1351,7 @@
   x: 100
   'y': 2160
   wires:
-    - - 1731c4bfa24e14af
-- id: 1b7714a62c5a1ffe
-  type: change
-  z: 237573f3.977b64
-  name: ''
-  rules:
-    - t: set
-      p: topics
-      pt: msg
-      to: tidhome.groups.shuttersA
-      tot: global
-      dc: true
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 640
-  'y': 2060
-  wires:
-    - - bb32a909665cb2a1
+    - - 6125ee9d06132b9e
 - id: c417e909269f35d0
   type: change
   z: 237573f3.977b64
@@ -1440,10 +1367,10 @@
   from: ''
   to: ''
   reg: false
-  x: 420
+  x: 600
   'y': 2060
   wires:
-    - - 1b7714a62c5a1ffe
+    - - bb32a909665cb2a1
 - id: 1731c4bfa24e14af
   type: switch
   z: 237573f3.977b64
@@ -1463,7 +1390,7 @@
   checkall: 'false'
   repair: false
   outputs: 3
-  x: 260
+  x: 440
   'y': 2100
   wires:
     - - c417e909269f35d0
@@ -1484,10 +1411,10 @@
   from: ''
   to: ''
   reg: false
-  x: 430
+  x: 610
   'y': 2100
   wires:
-    - - 1b7714a62c5a1ffe
+    - - bb32a909665cb2a1
 - id: 03e32f259d5a2f71
   type: change
   z: 237573f3.977b64
@@ -1498,7 +1425,104 @@
   from: ''
   to: ''
   reg: false
-  x: 430
+  x: 610
   'y': 2140
   wires:
-    - - 1b7714a62c5a1ffe
+    - - bb32a909665cb2a1
+- id: 6125ee9d06132b9e
+  type: change
+  z: 237573f3.977b64
+  name: Group A
+  rules:
+    - t: set
+      p: topics
+      pt: msg
+      to: tidhome.groups.groupA
+      tot: global
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 270
+  'y': 2100
+  wires:
+    - - 1731c4bfa24e14af
+- id: 5ff54aa28a48a69b
+  type: change
+  z: 237573f3.977b64
+  name: Group B
+  rules:
+    - t: set
+      p: topics
+      pt: msg
+      to: tidhome.groups.groupB
+      tot: global
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 270
+  'y': 2230
+  wires:
+    - - 1731c4bfa24e14af
+- id: 6a40ac79b063b25b
+  type: mqtt out
+  z: 237573f3.977b64
+  name: ''
+  topic: ''
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 800
+  'y': 1830
+  wires: []
+- id: 202fbe5871e17867
+  type: change
+  z: 237573f3.977b64
+  name: Group C
+  rules:
+    - t: set
+      p: topics
+      pt: msg
+      to: tidhome.groups.groupC
+      tot: global
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 450
+  'y': 1830
+  wires:
+    - - 625b0b8308561072
+- id: 625b0b8308561072
+  type: function
+  z: 237573f3.977b64
+  name: State
+  func: |-
+
+    return {
+        payload: {
+            "state": msg.payload.state
+        },
+        topic: "zigbee2mqtt/" + msg.topics.pop(0) + "/set"
+    }
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 630
+  'y': 1830
+  wires:
+    - - 6a40ac79b063b25b
