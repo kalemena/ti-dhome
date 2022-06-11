@@ -559,3 +559,17 @@
   x: 320
   'y': 200
   wires: []
+- id: 2f30621f40aa8285
+  type: link in
+  z: f6aef2f1.dd52e8
+  name: Notifications-Telegram
+  links:
+    - 84b1892ac15ea678
+    - ecb2912f7071e62b
+    - fecb20f01567e4a8
+    - e7a7cb7a8df21f27
+    - 0a19614dac750dc9
+  x: 205
+  'y': 210
+  wires:
+    - - e8dfc067.c65a1

@@ -37,10 +37,11 @@
   noerr: 0
   initialize: ''
   finalize: ''
+  libs: []
   x: 740
   'y': 370
   wires:
-    - - 57bdbb93.d54314
+    - - 0a19614dac750dc9
 - id: 45d9a893.f40ca8
   type: darksky
   z: 8627a08f.2f4c18
@@ -69,7 +70,7 @@
   x: 320
   'y': 160
   wires:
-    - - 57bdbb93.d54314
+    - - 0a19614dac750dc9
 - id: 4881ab4d.cbd20c
   type: simpletime
   z: 8627a08f.2f4c18
@@ -149,7 +150,7 @@
   x: 770
   'y': 290
   wires:
-    - - 57bdbb93.d54314
+    - - 0a19614dac750dc9
 - id: f6373746.83f598
   type: readdir
   z: 8627a08f.2f4c18
@@ -209,18 +210,7 @@
   x: 110
   'y': 200
   wires:
-    - - 57bdbb93.d54314
-- id: 57bdbb93.d54314
-  type: mqtt out
-  z: 8627a08f.2f4c18
-  name: notifications/telegram
-  topic: notifications/telegram
-  qos: ''
-  retain: ''
-  broker: c38452a5.4f84e8
-  x: 1110
-  'y': 200
-  wires: []
+    - []
 - id: 4271c741.d9a258
   type: comment
   z: 8627a08f.2f4c18
@@ -318,7 +308,7 @@
   'y': 580
   wires:
     - - fdfde972.bdcf78
-      - 9c972788.21f68
+      - e7a7cb7a8df21f27
 - id: c92f4659.822398
   type: change
   z: 8627a08f.2f4c18
@@ -370,17 +360,6 @@
   x: 110
   'y': 480
   wires: []
-- id: 9c972788.21f68
-  type: mqtt out
-  z: 8627a08f.2f4c18
-  name: notifications/telegram
-  topic: notifications/telegram
-  qos: ''
-  retain: ''
-  broker: c38452a5.4f84e8
-  x: 940
-  'y': 580
-  wires: []
 - id: 09304e7665f8b8b8
   type: change
   z: 8627a08f.2f4c18
@@ -399,7 +378,7 @@
   x: 310
   'y': 230
   wires:
-    - - 57bdbb93.d54314
+    - - 0a19614dac750dc9
 - id: 281623751d7a9995
   type: change
   z: 8627a08f.2f4c18
@@ -467,3 +446,23 @@
   'y': 580
   wires:
     - - ff64d0d5.cdd1b
+- id: e7a7cb7a8df21f27
+  type: link out
+  z: 8627a08f.2f4c18
+  name: ''
+  mode: link
+  links:
+    - 2f30621f40aa8285
+  x: 855
+  'y': 580
+  wires: []
+- id: 0a19614dac750dc9
+  type: link out
+  z: 8627a08f.2f4c18
+  name: ''
+  mode: link
+  links:
+    - 2f30621f40aa8285
+  x: 1015
+  'y': 240
+  wires: []
