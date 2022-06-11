@@ -145,6 +145,7 @@
   noerr: 0
   initialize: ''
   finalize: ''
+  libs: []
   x: 770
   'y': 290
   wires:
@@ -284,26 +285,9 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1070
-  'y': 590
+  x: 890
+  'y': 540
   wires: []
-- id: 132697ab.0077b8
-  type: switch
-  z: 8627a08f.2f4c18
-  name: Exclude some...
-  property: article
-  propertyType: msg
-  rules:
-    - t: cont
-      v: smartphone
-      vt: str
-  checkall: 'false'
-  repair: false
-  outputs: 6
-  x: 550
-  'y': 590
-  wires:
-    - - 701f7f10.809c28
 - id: b0f7a636.7693f
   type: json
   z: 8627a08f.2f4c18
@@ -311,7 +295,7 @@
   property: article
   action: ''
   pretty: false
-  x: 250
+  x: 260
   'y': 520
   wires:
     - - c92f4659.822398
@@ -330,8 +314,8 @@
   from: ''
   to: ''
   reg: false
-  x: 910
-  'y': 630
+  x: 730
+  'y': 580
   wires:
     - - fdfde972.bdcf78
       - 9c972788.21f68
@@ -350,39 +334,10 @@
   from: ''
   to: ''
   reg: false
-  x: 390
+  x: 400
   'y': 520
   wires:
-    - - 56ecadef.e60ecc
-- id: 56ecadef.e60ecc
-  type: template
-  z: 8627a08f.2f4c18
-  name: includes
-  field: payload
-  fieldType: msg
-  format: handlebars
-  syntax: plain
-  template: |-
-    lego
-  output: str
-  x: 230
-  'y': 590
-  wires:
-    - - b022e313.4cffd8
-- id: b022e313.4cffd8
-  type: split
-  z: 8627a08f.2f4c18
-  name: ''
-  splt: \n
-  spltType: str
-  arraySplt: 1
-  arraySpltType: len
-  stream: false
-  addname: ''
-  x: 380
-  'y': 590
-  wires:
-    - - 132697ab.0077b8
+    - - 281623751d7a9995
 - id: ff64d0d5.cdd1b
   type: trigger
   z: 8627a08f.2f4c18
@@ -393,13 +348,14 @@
   op2type: pay
   duration: '1'
   extend: true
+  overrideDelay: false
   units: s
   reset: ''
   bytopic: topic
   topic: topic
   outputs: 1
-  x: 740
-  'y': 630
+  x: 560
+  'y': 580
   wires:
     - - 683d83e8.058ebc
 - id: c86e3fdb.b856e8
@@ -414,21 +370,6 @@
   x: 110
   'y': 480
   wires: []
-- id: 701f7f10.809c28
-  type: debug
-  z: 8627a08f.2f4c18
-  name: Exclude
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 740
-  'y': 580
-  wires: []
 - id: 9c972788.21f68
   type: mqtt out
   z: 8627a08f.2f4c18
@@ -437,8 +378,8 @@
   qos: ''
   retain: ''
   broker: c38452a5.4f84e8
-  x: 1120
-  'y': 630
+  x: 940
+  'y': 580
   wires: []
 - id: 09304e7665f8b8b8
   type: change
@@ -459,3 +400,70 @@
   'y': 230
   wires:
     - - 57bdbb93.d54314
+- id: 281623751d7a9995
+  type: change
+  z: 8627a08f.2f4c18
+  name: Includes / Excludes
+  rules:
+    - t: set
+      p: excludes
+      pt: msg
+      to: tidhome.groups.groupE
+      tot: global
+      dc: true
+    - t: set
+      p: includes
+      pt: msg
+      to: tidhome.groups.groupD
+      tot: global
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 200
+  'y': 580
+  wires:
+    - - d3071673871eba6a
+- id: d3071673871eba6a
+  type: function
+  z: 8627a08f.2f4c18
+  name: Filtering
+  func: |-
+    pass=false
+
+    // Includes
+    for(var includeIdx in msg.includes) {
+        var include = msg.includes[includeIdx]
+        
+        if(msg.article.indexOf(include) !== -1 ) {
+            pass = true
+            msg.include = include
+        }
+    }
+
+    // Excludes
+    if(pass == true) {
+        for(var excludeIdx in msg.excludes) {
+            var exclude = msg.excludes[excludeIdx]
+            
+            if(msg.article.indexOf(exclude) !== -1 ) {
+                pass = false
+                msg.exclude = exclude
+            }
+        }
+    }
+
+    if(pass == true)
+        return msg
+        
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 400
+  'y': 580
+  wires:
+    - - ff64d0d5.cdd1b
