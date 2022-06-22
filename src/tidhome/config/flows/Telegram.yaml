@@ -225,30 +225,27 @@
       v: up
       vt: str
     - t: cont
-      v: mid
-      vt: str
-    - t: cont
       v: down
       vt: str
     - t: else
   checkall: 'false'
   repair: false
-  outputs: 4
+  outputs: 3
   x: 260
-  'y': 520
+  'y': 540
   wires:
     - - 6f1b9a71afbd13ec
-    - - 7997e1892ec98091
     - - 8608c6bea9d4521a
     - - acc99ab81795114d
 - id: a0f1b25d.56ebd8
   type: link out
   z: f6aef2f1.dd52e8
   name: ''
+  mode: link
   links:
-    - 0457c2a6501c8d96
-  x: 585
-  'y': 500
+    - f576c3026a84db30
+  x: 765
+  'y': 530
   wires: []
 - id: 3f7706b3.bd9a5a
   type: debug
@@ -263,7 +260,7 @@
   statusVal: ''
   statusType: auto
   x: 620
-  'y': 620
+  'y': 610
   wires: []
 - id: ec21e2dfc2fb77be
   type: switch
@@ -293,7 +290,7 @@
     if(isNumeric(msg.payload.content)) {
         var position = Number(msg.payload.content)
         return {
-            payload: position
+            position: position
         };
     }
   outputs: 1
@@ -302,17 +299,17 @@
   finalize: ''
   libs: []
   x: 420
-  'y': 620
+  'y': 610
   wires:
     - - 3f7706b3.bd9a5a
-      - a0f1b25d.56ebd8
+      - 6e5fe766309ce370
 - id: 6f1b9a71afbd13ec
   type: change
   z: f6aef2f1.dd52e8
   name: up = 0
   rules:
     - t: set
-      p: payload
+      p: position
       pt: msg
       to: '0'
       tot: num
@@ -322,35 +319,16 @@
   to: ''
   reg: false
   x: 420
-  'y': 500
+  'y': 530
   wires:
-    - - a0f1b25d.56ebd8
-- id: 7997e1892ec98091
-  type: change
-  z: f6aef2f1.dd52e8
-  name: mid = 35
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '35'
-      tot: num
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 430
-  'y': 540
-  wires:
-    - - a0f1b25d.56ebd8
+    - - 6e5fe766309ce370
 - id: 8608c6bea9d4521a
   type: change
   z: f6aef2f1.dd52e8
   name: down = 100
   rules:
     - t: set
-      p: payload
+      p: position
       pt: msg
       to: '100'
       tot: num
@@ -360,9 +338,9 @@
   to: ''
   reg: false
   x: 440
-  'y': 580
+  'y': 570
   wires:
-    - - a0f1b25d.56ebd8
+    - - 6e5fe766309ce370
 - id: f4319bb765b32dae
   type: telegram command
   z: f6aef2f1.dd52e8
@@ -559,6 +537,16 @@
   x: 320
   'y': 200
   wires: []
+- id: c81f8f99a238d079
+  type: link out
+  z: f6aef2f1.dd52e8
+  name: ''
+  mode: link
+  links:
+    - e084ff66fb81099d
+  x: 395
+  'y': 1020
+  wires: []
 - id: 2f30621f40aa8285
   type: link in
   z: f6aef2f1.dd52e8
@@ -573,3 +561,22 @@
   'y': 210
   wires:
     - - e8dfc067.c65a1
+- id: 6e5fe766309ce370
+  type: change
+  z: f6aef2f1.dd52e8
+  name: POSITION
+  rules:
+    - t: set
+      p: action
+      pt: msg
+      to: POSITION
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 640
+  'y': 530
+  wires:
+    - - a0f1b25d.56ebd8

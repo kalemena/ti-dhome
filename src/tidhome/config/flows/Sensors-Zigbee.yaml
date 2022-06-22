@@ -856,52 +856,6 @@
   x: 1230
   'y': 910
   wires: []
-- id: 0457c2a6501c8d96
-  type: link in
-  z: 237573f3.977b64
-  name: Cmd-Volets-Position
-  links:
-    - a0f1b25d.56ebd8
-    - fcb36f963325c072
-  x: 815
-  'y': 850
-  wires:
-    - - a2a1c0e8ef9a7dac
-- id: a2a1c0e8ef9a7dac
-  type: function
-  z: 237573f3.977b64
-  name: Compute
-  func: |-
-    // pass through
-    return {
-        payload: {
-            position: msg.payload
-            }
-        };
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 950
-  'y': 850
-  wires:
-    - - 5a581833051f6e11
-- id: 5a581833051f6e11
-  type: debug
-  z: 237573f3.977b64
-  name: ''
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 1140
-  'y': 850
-  wires: []
 - id: 4343d80627f170c9
   type: link in
   z: 237573f3.977b64
@@ -1289,6 +1243,7 @@
   links:
     - 1e78a35a02bb00d7
     - fecb20f01567e4a8
+    - a0f1b25d.56ebd8
   x: 135
   'y': 2010
   wires:
