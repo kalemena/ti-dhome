@@ -28,8 +28,8 @@
   name: Send
   bot: 4fc69d2d.235124
   outputs: 1
-  x: 870
-  'y': 160
+  x: 880
+  'y': 210
   wires:
     - - fa16035d.0f0fd8
 - id: fa16035d.0f0fd8
@@ -42,8 +42,8 @@
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 1030
-  'y': 160
+  x: 1040
+  'y': 210
   wires: []
 - id: 20133b84.b44ca4
   type: mqtt in
@@ -58,7 +58,6 @@
   'y': 160
   wires:
     - - e8dfc067.c65a1
-      - efdc44ad7838b791
 - id: b52ace9b.c4f7f
   type: function
   z: f6aef2f1.dd52e8
@@ -76,8 +75,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 680
-  'y': 160
+  x: 690
+  'y': 210
   wires:
     - - d020562c.8333a8
 - id: 586ca451.0700d4
@@ -91,12 +90,12 @@
 - id: e8dfc067.c65a1
   type: credentials
   z: f6aef2f1.dd52e8
-  name: K
+  name: K-C
   props:
     - value: telegramrecipients
       type: msg
   x: 320
-  'y': 160
+  'y': 210
   wires:
     - - ec21e2dfc2fb77be
 - id: f7290145.4541
@@ -109,7 +108,7 @@
   hasresponse: false
   outputs: 2
   x: 90
-  'y': 350
+  'y': 400
   wires:
     - - 2a90a04d.2f6e98
     - []
@@ -120,7 +119,7 @@
   bot: 4fc69d2d.235124
   outputs: 1
   x: 450
-  'y': 300
+  'y': 350
   wires:
     - - 20cc8013.f8d02
 - id: 2a90a04d.2f6e98
@@ -149,7 +148,7 @@
   initialize: ''
   finalize: ''
   x: 270
-  'y': 300
+  'y': 350
   wires:
     - - 42720d76.713b3c
 - id: 20cc8013.f8d02
@@ -163,7 +162,7 @@
   complete: 'true'
   targetType: full
   x: 620
-  'y': 300
+  'y': 350
   wires: []
 - id: 118b2ea9.b320d1
   type: telegram command
@@ -177,7 +176,7 @@
   removeregexcommand: false
   outputs: 1
   x: 90
-  'y': 300
+  'y': 350
   wires:
     - - 2a90a04d.2f6e98
 - id: a7974ba.f02b438
@@ -186,13 +185,13 @@
   name: HELP
   info: ''
   x: 90
-  'y': 260
+  'y': 310
   wires: []
 - id: 37f44010.1082a
   type: telegram command
   z: f6aef2f1.dd52e8
-  name: /volets
-  command: /volets
+  name: /vol
+  command: /vol
   description: ''
   registercommand: false
   language: ''
@@ -203,7 +202,7 @@
   removeregexcommand: false
   outputs: 1
   x: 90
-  'y': 510
+  'y': 560
   wires:
     - - 6e059c3f.301864
 - id: 8d0d171f.e98ce
@@ -212,7 +211,7 @@
   name: Ouverture/Fermeture - Volets
   info: ''
   x: 160
-  'y': 470
+  'y': 520
   wires: []
 - id: 6e059c3f.301864
   type: switch
@@ -232,7 +231,7 @@
   repair: false
   outputs: 3
   x: 260
-  'y': 540
+  'y': 590
   wires:
     - - 6f1b9a71afbd13ec
     - - 8608c6bea9d4521a
@@ -245,7 +244,7 @@
   links:
     - f576c3026a84db30
   x: 765
-  'y': 530
+  'y': 580
   wires: []
 - id: 3f7706b3.bd9a5a
   type: debug
@@ -260,7 +259,7 @@
   statusVal: ''
   statusType: auto
   x: 620
-  'y': 610
+  'y': 660
   wires: []
 - id: ec21e2dfc2fb77be
   type: switch
@@ -273,8 +272,8 @@
   checkall: 'true'
   repair: false
   outputs: 1
-  x: 470
-  'y': 160
+  x: 480
+  'y': 210
   wires:
     - - b52ace9b.c4f7f
 - id: acc99ab81795114d
@@ -299,7 +298,7 @@
   finalize: ''
   libs: []
   x: 420
-  'y': 610
+  'y': 660
   wires:
     - - 3f7706b3.bd9a5a
       - 6e5fe766309ce370
@@ -319,7 +318,7 @@
   to: ''
   reg: false
   x: 420
-  'y': 530
+  'y': 580
   wires:
     - - 6e5fe766309ce370
 - id: 8608c6bea9d4521a
@@ -338,7 +337,7 @@
   to: ''
   reg: false
   x: 440
-  'y': 570
+  'y': 620
   wires:
     - - 6e5fe766309ce370
 - id: f4319bb765b32dae
@@ -356,7 +355,7 @@
   removeregexcommand: false
   outputs: 1
   x: 90
-  'y': 710
+  'y': 760
   wires:
     - - 6493b109d45dc1c7
 - id: 6493b109d45dc1c7
@@ -380,7 +379,7 @@
   repair: false
   outputs: 4
   x: 260
-  'y': 710
+  'y': 760
   wires:
     - - 5892c03f96d976bc
     - []
@@ -402,7 +401,7 @@
   to: ''
   reg: false
   x: 420
-  'y': 700
+  'y': 750
   wires:
     - - e7e52fec716f59a2
 - id: f3bac08e3f55f2aa
@@ -421,7 +420,7 @@
   to: ''
   reg: false
   x: 440
-  'y': 740
+  'y': 790
   wires:
     - - e7e52fec716f59a2
 - id: e7e52fec716f59a2
@@ -431,7 +430,7 @@
   links:
     - 4343d80627f170c9
   x: 585
-  'y': 700
+  'y': 750
   wires: []
 - id: 873226ce114ec6aa
   type: telegram command
@@ -448,7 +447,7 @@
   removeregexcommand: false
   outputs: 1
   x: 90
-  'y': 840
+  'y': 890
   wires:
     - - 7c59f8a6fede21fe
       - 03874918a788dc4d
@@ -473,7 +472,7 @@
   repair: false
   outputs: 4
   x: 260
-  'y': 840
+  'y': 890
   wires:
     - - 793f6369000801a1
     - - d8336f52c2dabcac
@@ -487,7 +486,7 @@
     - 32ea48f887dcaf01
     - 1289ec8160b383c0
   x: 395
-  'y': 820
+  'y': 870
   wires: []
 - id: d8336f52c2dabcac
   type: link out
@@ -497,7 +496,7 @@
     - f59fd05791a47896
     - 8b59b8b09ecd5508
   x: 395
-  'y': 860
+  'y': 910
   wires: []
 - id: 2945bb0883a55a36
   type: link out
@@ -507,7 +506,7 @@
     - b08009e947680796
     - fd31e45552eeb4e5
   x: 395
-  'y': 900
+  'y': 950
   wires: []
 - id: 03874918a788dc4d
   type: debug
@@ -522,7 +521,7 @@
   statusVal: ''
   statusType: auto
   x: 260
-  'y': 940
+  'y': 990
   wires: []
 - id: efdc44ad7838b791
   type: debug
@@ -545,18 +544,18 @@
   links:
     - e084ff66fb81099d
   x: 395
-  'y': 1020
+  'y': 1070
   wires: []
 - id: 2f30621f40aa8285
   type: link in
   z: f6aef2f1.dd52e8
-  name: Notifications-Telegram
+  name: Telegram-To-K
   links:
+    - 0a19614dac750dc9
     - 84b1892ac15ea678
+    - e7a7cb7a8df21f27
     - ecb2912f7071e62b
     - fecb20f01567e4a8
-    - e7a7cb7a8df21f27
-    - 0a19614dac750dc9
   x: 205
   'y': 210
   wires:
@@ -577,6 +576,27 @@
   to: ''
   reg: false
   x: 640
-  'y': 530
+  'y': 580
   wires:
     - - a0f1b25d.56ebd8
+- id: c80c722c5806b680
+  type: link in
+  z: f6aef2f1.dd52e8
+  name: Telegram-To-All
+  links:
+    - 1ba3302a5169676e
+  x: 205
+  'y': 250
+  wires:
+    - - 469af85aaf8fe04b
+- id: 469af85aaf8fe04b
+  type: credentials
+  z: f6aef2f1.dd52e8
+  name: K-CM
+  props:
+    - value: telegramrecipients
+      type: msg
+  x: 320
+  'y': 250
+  wires:
+    - - ec21e2dfc2fb77be
