@@ -453,6 +453,7 @@
   mode: link
   links:
     - 2f30621f40aa8285
+    - 69a45c84848a65e9
   x: 855
   'y': 580
   wires: []
@@ -463,6 +464,66 @@
   mode: link
   links:
     - 2f30621f40aa8285
+    - 69a45c84848a65e9
   x: 1015
   'y': 240
+  wires: []
+- id: cfeca9401ab2c043
+  type: inject
+  z: 8627a08f.2f4c18
+  name: Special
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: 00 17 * * 2
+  once: false
+  onceDelay: '5'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 100
+  'y': 420
+  wires:
+    - - 56e78fae0d72374d
+- id: 56e78fae0d72374d
+  type: function
+  z: 8627a08f.2f4c18
+  name: Week Color
+  func: >-
+    currentdate = new Date();
+
+    var oneJan = new Date(currentdate.getFullYear(),0,1);
+
+    var numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 *
+    1000));
+
+    var weekNb = Math.ceil(( currentdate.getDay() + 1 + numberOfDays) / 7);
+
+
+
+
+    msg.payload = "Sortir la poubelle " + (((weekNb-1) % 2 == 0) ? "Jaune" :
+    "Verte") + " :-D"
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 760
+  'y': 420
+  wires:
+    - - 1ba3302a5169676e
+- id: 1ba3302a5169676e
+  type: link out
+  z: 8627a08f.2f4c18
+  name: ''
+  mode: link
+  links:
+    - c80c722c5806b680
+  x: 1015
+  'y': 420
   wires: []
