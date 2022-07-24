@@ -510,7 +510,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 860
+  x: 850
   'y': 440
   wires:
     - - 1ba94549.ae6bdb
@@ -537,7 +537,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 850
+  x: 840
   'y': 480
   wires:
     - - 1ba94549.ae6bdb
@@ -569,7 +569,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 840
+  x: 830
   'y': 520
   wires: []
 - id: ac2d43ea.e2eaf
@@ -609,7 +609,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 840
+  x: 830
   'y': 560
   wires:
     - - 1ba94549.ae6bdb
@@ -625,7 +625,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 840
+  x: 830
   'y': 600
   wires: []
 - id: 67d26f68.ac9028
@@ -967,26 +967,6 @@
   'y': 260
   wires:
     - - 046ac47846e9e56f
-- id: 3fd6e413e89631e8
-  type: delay
-  z: b1782abc.430f38
-  name: ''
-  pauseType: delay
-  timeout: '5'
-  timeoutUnits: seconds
-  rate: '1'
-  nbRateUnits: '1'
-  rateUnits: second
-  randomFirst: '1'
-  randomLast: '5'
-  randomUnits: seconds
-  drop: false
-  allowrate: false
-  outputs: 1
-  x: 540
-  'y': 1190
-  wires:
-    - []
 - id: 7e2f7c263a132298
   type: function
   z: b1782abc.430f38
