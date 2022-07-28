@@ -748,6 +748,11 @@
         
         if(isNumeric(value))
             msgs.push( { topic: key, payload: value } )
+            
+        if( key == 'PAPP' ) {
+            var displayMsg = "PAPP: " + value + "W"
+            node.status({ fill:"blue", shape:"dot", text: displayMsg });
+        }
     }
 
     return msgs
@@ -773,7 +778,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 480
+  x: 610
   'y': 370
   wires: []
 - id: 09eeee4ada393189
