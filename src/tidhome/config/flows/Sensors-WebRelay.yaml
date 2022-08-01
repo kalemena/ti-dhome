@@ -462,8 +462,8 @@
   qos: ''
   retain: ''
   broker: c38452a5.4f84e8
-  x: 1140
-  'y': 500
+  x: 1200
+  'y': 520
   wires: []
 - id: 6efd389b.03b1
   type: switch
@@ -705,8 +705,8 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1130
-  'y': 360
+  x: 1260
+  'y': 340
   wires: []
 - id: 4041416e2b11e83f
   type: debug
@@ -795,8 +795,7 @@
   x: 640
   'y': 330
   wires:
-    - - 1596cc938fc8a912
-      - 6299a688f8ee5bde
+    - - 6299a688f8ee5bde
 - id: 1596cc938fc8a912
   type: function
   z: b1782abc.430f38
@@ -819,7 +818,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 820
+  x: 950
   'y': 370
   wires:
     - - a04282091d8972bc
@@ -837,42 +836,74 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1150
-  'y': 410
+  x: 1220
+  'y': 430
   wires: []
 - id: 06838726b26da1b0
   type: function
   z: b1782abc.430f38
-  name: Insert Wh Total
+  name: Insert Wh HC/HP/Total
   func: |-
     var teleinfoHC = global.get("tidhome_teleinfo.HCHC")
     var teleinfoHP = global.get("tidhome_teleinfo.HCHP")
+    var teleinfoTotal = Number(teleinfoHC + teleinfoHP)
 
-    var value = Number(teleinfoHC + teleinfoHP)
+    // HCHC
+    fieldsHC = { "value": teleinfoHC }
+    tagsHC =   { "type": "teleinfo-HCHC", "location": "main" }
 
-    fields = { "value": value }
-    tags =   { "type": "teleinfo-Wh-Total", "location": "main" }
-
-    var msgres =  {
-        topic: "teleinfo-Wh-Total",
+    var msgHCHC =  {
+        topic: "teleinfo-HCHC",
         payload: {
-            payload: [ fields, tags ],
+            payload: [ fieldsHC, tagsHC ],
             measurement: "sensors"
         }
     }
 
-    return msgres;
-  outputs: 1
+    // HPHP
+    fieldsHP = { "value": teleinfoHP }
+    tagsHP =   { "type": "teleinfo-HCHP", "location": "main" }
+
+    var msgHCHP =  {
+        topic: "teleinfo-HCHP",
+        payload: {
+            payload: [ fieldsHP, tagsHP ],
+            measurement: "sensors"
+        }
+    }
+
+    // Total
+    fieldsTotal = { "value": teleinfoTotal }
+    tagsTotal =   { "type": "teleinfo-Wh-Total", "location": "main" }
+
+    var msgTotal =  {
+        topic: "teleinfo-Wh-Total",
+        payload: {
+            payload: [ fieldsTotal, tagsTotal ],
+            measurement: "sensors"
+        }
+    }
+
+    return [
+        msgHCHC,
+        msgHCHP,
+        msgTotal
+        ]
+  outputs: 3
   noerr: 0
   initialize: ''
   finalize: ''
   libs: []
-  x: 960
-  'y': 330
+  x: 980
+  'y': 320
   wires:
     - - a04282091d8972bc
       - 3e4d792744058a92
       - 7828567a6b1e35ab
+    - - a04282091d8972bc
+      - 3e4d792744058a92
+    - - a04282091d8972bc
+      - 3e4d792744058a92
 - id: 6299a688f8ee5bde
   type: switch
   z: b1782abc.430f38
@@ -886,19 +917,21 @@
     - t: eq
       v: HCHP
       vt: str
+    - t: else
   checkall: 'true'
   repair: false
-  outputs: 2
+  outputs: 3
   x: 800
   'y': 330
   wires:
     - - 06838726b26da1b0
     - - 06838726b26da1b0
+    - - 1596cc938fc8a912
 - id: 3e4d792744058a92
   type: debug
   z: b1782abc.430f38
   name: StorageDebug
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -906,8 +939,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1150
-  'y': 310
+  x: 1280
+  'y': 300
   wires: []
 - id: 8175abc180c732e4
   type: mqtt in
@@ -1035,8 +1068,8 @@
   bytopic: topic
   topic: topic
   outputs: 1
-  x: 1130
-  'y': 250
+  x: 1200
+  'y': 470
   wires:
     - - 5b354d74db3c3466
 - id: 5b354d74db3c3466
@@ -1051,6 +1084,25 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1180
-  'y': 200
+  x: 1400
+  'y': 470
   wires: []
+- id: ab79a07ef277d349
+  type: change
+  z: b1782abc.430f38
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: ''
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1010
+  'y': 230
+  wires:
+    - []
