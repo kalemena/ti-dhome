@@ -26,7 +26,6 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1663357055204,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -97,7 +96,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.0.8",
       "targets": [
         {
           "alias": "Total",
@@ -306,7 +305,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.0.8",
       "targets": [
         {
           "alias": "Total",
@@ -515,7 +514,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.0.8",
       "targets": [
         {
           "alias": "Total",
@@ -724,7 +723,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.0.8",
       "targets": [
         {
           "alias": "Total",
@@ -839,7 +838,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.0.8",
       "targets": [
         {
           "alias": "$tag_type",
@@ -954,7 +953,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.0.8",
       "targets": [
         {
           "alias": "",
@@ -1592,8 +1591,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -1787,6 +1785,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 43,
+  "version": 46,
   "weekStart": ""
 }
