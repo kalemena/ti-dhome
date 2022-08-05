@@ -1,4 +1,4 @@
-FROM kalemena/node-red:2.2.2
+FROM kalemena/node-red:3.0.1
 
 RUN npm i \
         node-red-contrib-simpletime \
