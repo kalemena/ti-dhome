@@ -1233,264 +1233,9 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 26
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "alias": "",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT non_negative_derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(5m) fill(null)",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "teleinfo-Wh-Total"
-            }
-          ]
-        }
-      ],
-      "title": "Power Consumption Wh (5min)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P9CF86E8970E5E639"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 26
-      },
-      "id": 3,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT non_negative_derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(15m) fill(null)",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "teleinfo-Wh-Total"
-            }
-          ]
-        }
-      ],
-      "title": "Power Consumption Wh (15min)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P9CF86E8970E5E639"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 26
       },
       "id": 4,
       "options": {
@@ -1510,7 +1255,7 @@
       },
       "targets": [
         {
-          "alias": "main",
+          "alias": "main-Total",
           "datasource": {
             "type": "influxdb",
             "uid": "P9CF86E8970E5E639"
@@ -1535,7 +1280,109 @@
           "query": "SELECT non_negative_derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(1h) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
-          "refId": "A",
+          "refId": "Total",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "teleinfo-Wh-Total"
+            }
+          ]
+        },
+        {
+          "alias": "main-HCHP",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P9CF86E8970E5E639"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sensors",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHP') AND $timeFilter GROUP BY time(1h) fill(null)",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "refId": "HCHP",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "teleinfo-Wh-Total"
+            }
+          ]
+        },
+        {
+          "alias": "main-HCHC",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P9CF86E8970E5E639"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sensors",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(value)) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHC') AND $timeFilter GROUP BY time(1h) fill(null)",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "refId": "HCHC",
           "resultFormat": "time_series",
           "select": [
             [
@@ -1565,7 +1412,7 @@
             "type": "influxdb",
             "uid": "P9CF86E8970E5E639"
           },
-          "hide": false,
+          "hide": true,
           "query": "SELECT non_negative_derivative(\"value_15m\",1h) FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY \"location\"",
           "rawQuery": true,
           "refId": "B",
@@ -1591,7 +1438,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -1602,7 +1450,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 36
       },
       "id": 7,
       "options": {
@@ -1620,7 +1468,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.0.8",
       "targets": [
         {
           "alias": "24h ago (Wh)",
@@ -1785,6 +1633,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 46,
+  "version": 50,
   "weekStart": ""
 }
