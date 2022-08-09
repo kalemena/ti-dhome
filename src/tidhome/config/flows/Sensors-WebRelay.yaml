@@ -3,6 +3,49 @@
   label: Sensors-WebRelay
   disabled: false
   info: ''
+- id: add1e3abafaf542e
+  type: junction
+  z: b1782abc.430f38
+  x: 990
+  'y': 480
+  wires:
+    - - 1ba94549.ae6bdb
+- id: a170f2c794c496b3
+  type: junction
+  z: b1782abc.430f38
+  x: 990
+  'y': 450
+  wires:
+    - - 7828567a6b1e35ab
+- id: 791c3a2e3d633446
+  type: junction
+  z: b1782abc.430f38
+  x: 1100
+  'y': 450
+  wires:
+    - - 7828567a6b1e35ab
+      - 5dddd6af5b562c6d
+- id: 0edaade20969311b
+  type: junction
+  z: b1782abc.430f38
+  x: 1140
+  'y': 290
+  wires:
+    - - 3e4d792744058a92
+- id: 2045b9456783765b
+  type: junction
+  z: b1782abc.430f38
+  x: 1140
+  'y': 330
+  wires:
+    - - a04282091d8972bc
+- id: 24374a202cb2eaec
+  type: junction
+  z: b1782abc.430f38
+  x: 370
+  'y': 900
+  wires:
+    - - 741678fd.3f4f18
 - id: e2c89ae6.57aa1
   type: http request
   z: b1782abc.430f38
@@ -94,7 +137,7 @@
   x: 110
   'y': 800
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: 6c6e6c5d.0ac7ac
   type: inject
   z: b1782abc.430f38
@@ -110,7 +153,7 @@
   x: 100
   'y': 760
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: bb55b46b.570be8
   type: inject
   z: b1782abc.430f38
@@ -126,7 +169,7 @@
   x: 120
   'y': 840
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: 9f42607e.9d9368
   type: inject
   z: b1782abc.430f38
@@ -142,7 +185,7 @@
   x: 120
   'y': 880
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: abc37c81.f3592
   type: inject
   z: b1782abc.430f38
@@ -158,7 +201,7 @@
   x: 120
   'y': 920
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: cdcf4c5a.dce938
   type: inject
   z: b1782abc.430f38
@@ -174,7 +217,7 @@
   x: 110
   'y': 960
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: 5f8460fe.a89da
   type: inject
   z: b1782abc.430f38
@@ -190,7 +233,7 @@
   x: 130
   'y': 1000
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: 883e7994.d94b68
   type: inject
   z: b1782abc.430f38
@@ -206,7 +249,7 @@
   x: 100
   'y': 1070
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: 930f4fce.94c2d8
   type: inject
   z: b1782abc.430f38
@@ -222,7 +265,7 @@
   x: 100
   'y': 1110
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: 558d963e.cb324
   type: comment
   z: b1782abc.430f38
@@ -239,8 +282,8 @@
   qos: ''
   retain: ''
   broker: c38452a5.4f84e8
-  x: 1150
-  'y': 750
+  x: 940
+  'y': 760
   wires: []
 - id: 741678fd.3f4f18
   type: change
@@ -262,8 +305,8 @@
   from: ''
   to: ''
   reg: false
-  x: 860
-  'y': 750
+  x: 650
+  'y': 760
   wires:
     - - aab849a7.ee2658
       - e790a499.f53248
@@ -272,10 +315,10 @@
   z: b1782abc.430f38
   name: WebRelaysIn
   links: []
-  x: 525
-  'y': 960
+  x: 295
+  'y': 760
   wires:
-    - - 741678fd.3f4f18
+    - - 24374a202cb2eaec
 - id: c269b719.1c237
   type: link in
   z: b1782abc.430f38
@@ -283,8 +326,8 @@
   links:
     - 7dfb853e.03a1f4
     - 1fd6723.fc4360e
-  x: 525
-  'y': 1010
+  x: 435
+  'y': 1000
   wires:
     - - d5867a8d.091
 - id: e790a499.f53248
@@ -294,8 +337,8 @@
   active: false
   console: 'false'
   complete: 'true'
-  x: 1090
-  'y': 800
+  x: 880
+  'y': 810
   wires: []
 - id: 9a182caa.06e45
   type: debug
@@ -309,8 +352,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 830
-  'y': 1010
+  x: 740
+  'y': 1000
   wires: []
 - id: 50816b6.a434a94
   type: inject
@@ -327,8 +370,8 @@
   topic: '8'
   payload: ''
   payloadType: date
-  x: 480
-  'y': 1050
+  x: 390
+  'y': 1040
   wires:
     - - d5867a8d.091
 - id: deb0a59.85d1458
@@ -347,8 +390,8 @@
   bytopic: all
   topic: topic
   outputs: 1
-  x: 850
-  'y': 1050
+  x: 760
+  'y': 1040
   wires:
     - - ae57d3a3.e3fe88
       - 741678fd.3f4f18
@@ -364,8 +407,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1090
-  'y': 1050
+  x: 1000
+  'y': 1040
   wires: []
 - id: d5867a8d.091
   type: change
@@ -387,8 +430,8 @@
   from: ''
   to: ''
   reg: false
-  x: 650
-  'y': 1050
+  x: 560
+  'y': 1040
   wires:
     - - deb0a59.85d1458
       - 9a182caa.06e45
@@ -513,8 +556,8 @@
   x: 850
   'y': 440
   wires:
-    - - 1ba94549.ae6bdb
-      - 7828567a6b1e35ab
+    - - add1e3abafaf542e
+      - a170f2c794c496b3
 - id: 16258a34.5ce016
   type: function
   z: b1782abc.430f38
@@ -540,8 +583,8 @@
   x: 840
   'y': 480
   wires:
-    - - 1ba94549.ae6bdb
-      - 7828567a6b1e35ab
+    - - add1e3abafaf542e
+      - a170f2c794c496b3
 - id: 2812070e.894da8
   type: debug
   z: b1782abc.430f38
@@ -706,7 +749,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1260
-  'y': 340
+  'y': 330
   wires: []
 - id: 4041416e2b11e83f
   type: debug
@@ -822,8 +865,7 @@
   'y': 370
   wires:
     - - a04282091d8972bc
-      - 5dddd6af5b562c6d
-      - 7828567a6b1e35ab
+      - 791c3a2e3d633446
 - id: 5dddd6af5b562c6d
   type: debug
   z: b1782abc.430f38
@@ -897,13 +939,13 @@
   x: 980
   'y': 320
   wires:
-    - - a04282091d8972bc
-      - 3e4d792744058a92
-      - 7828567a6b1e35ab
-    - - a04282091d8972bc
-      - 3e4d792744058a92
-    - - a04282091d8972bc
-      - 3e4d792744058a92
+    - - 791c3a2e3d633446
+      - 0edaade20969311b
+      - 2045b9456783765b
+    - - 0edaade20969311b
+      - 2045b9456783765b
+    - - 0edaade20969311b
+      - 2045b9456783765b
 - id: 6299a688f8ee5bde
   type: switch
   z: b1782abc.430f38
@@ -940,7 +982,7 @@
   statusVal: ''
   statusType: auto
   x: 1280
-  'y': 300
+  'y': 290
   wires: []
 - id: 8175abc180c732e4
   type: mqtt in
