@@ -56,7 +56,13 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 2,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -66,25 +72,31 @@
                 "value": null
               },
               {
+                "color": "yellow",
+                "value": 500
+              },
+              {
+                "color": "orange",
+                "value": 3000
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 6000
               }
             ]
-          }
+          },
+          "unit": "watt"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
-        "w": 2,
+        "h": 10,
+        "w": 6,
         "x": 0,
         "y": 1
       },
-      "id": 9,
+      "id": 20,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -93,13 +105,13 @@
           "fields": "",
           "values": false
         },
-        "text": {},
-        "textMode": "value_and_name"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
-      "pluginVersion": "9.0.8",
+      "pluginVersion": "9.1.5",
       "targets": [
         {
-          "alias": "Total",
+          "alias": "",
           "datasource": {
             "type": "influxdb",
             "uid": "P9CF86E8970E5E639"
@@ -122,112 +134,10 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"value\")/1000 FROM \"sensors\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY time(5m) fill(null)",
+          "query": "SELECT mean(value) FROM \"sensors\" WHERE (\"type\" = 'teleinfo-PAPP') AND $timeFilter GROUP BY time(1m) fill(null)",
           "queryType": "randomWalk",
           "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "teleinfo-Wh-Total"
-            }
-          ]
-        },
-        {
-          "alias": "HC",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"value\")/1000.0 FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHC') AND $timeFilter GROUP BY time(5m) fill(null)",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "teleinfo-Wh-Total"
-            }
-          ]
-        },
-        {
-          "alias": "HP",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"value\")/1000 FROM \"sensors\" WHERE (\"type\" = 'teleinfo-HCHP') AND $timeFilter GROUP BY time(5m) fill(null)",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "B",
+          "refId": "TotalLastMonth",
           "resultFormat": "time_series",
           "select": [
             [
@@ -252,7 +162,142 @@
           ]
         }
       ],
-      "title": "NOW - Index (kWh)",
+      "title": "PAPP (W)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P9CF86E8970E5E639"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 9,
+        "x": 6,
+        "y": 1
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "alias": "$tag_type",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P9CF86E8970E5E639"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "type"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "sensors",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"value\"  / 1000 FROM \"sensors\" WHERE (\"type\" =~ /^$teleinfoWh$/) AND $timeFilter GROUP BY \"type\"",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  " / 1000"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=~",
+              "value": "/^$teleinfoWh$/"
+            }
+          ]
+        }
+      ],
+      "title": "Index (kWh)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -286,7 +331,7 @@
       "gridPos": {
         "h": 14,
         "w": 2,
-        "x": 2,
+        "x": 16,
         "y": 1
       },
       "id": 12,
@@ -305,7 +350,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.0.8",
+      "pluginVersion": "9.1.5",
       "targets": [
         {
           "alias": "Total",
@@ -495,7 +540,7 @@
       "gridPos": {
         "h": 14,
         "w": 2,
-        "x": 4,
+        "x": 18,
         "y": 1
       },
       "id": 14,
@@ -514,7 +559,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.0.8",
+      "pluginVersion": "9.1.5",
       "targets": [
         {
           "alias": "Total",
@@ -704,7 +749,7 @@
       "gridPos": {
         "h": 14,
         "w": 2,
-        "x": 8,
+        "x": 21,
         "y": 1
       },
       "id": 21,
@@ -723,7 +768,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.0.8",
+      "pluginVersion": "9.1.5",
       "targets": [
         {
           "alias": "Total",
@@ -793,240 +838,6 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P9CF86E8970E5E639"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 2,
-        "x": 10,
-        "y": 1
-      },
-      "id": 19,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.0.8",
-      "targets": [
-        {
-          "alias": "$tag_type",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "type"
-              ],
-              "type": "tag"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT \"value\"  / 1000 FROM \"sensors\" WHERE (\"type\" =~ /^$teleinfoWh$/) AND $timeFilter GROUP BY \"type\"",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=~",
-              "value": "/^$teleinfoWh$/"
-            }
-          ]
-        }
-      ],
-      "title": "Month ago - Index (kWh)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P9CF86E8970E5E639"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 2,
-        "x": 12,
-        "y": 1
-      },
-      "id": 20,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.0.8",
-      "targets": [
-        {
-          "alias": "",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT \"value_15m\" / 1000 FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" =~ /^$teleinfoWh$/) AND time > now() -721h AND time <= now()-720h",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "TotalLastMonth",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "teleinfo-Wh-Total"
-            }
-          ]
-        }
-      ],
-      "title": "Month ago - Index (kWh)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "gauge"
-    },
-    {
       "collapsed": false,
       "datasource": {
         "type": "datasource",
@@ -1054,6 +865,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1114,7 +927,8 @@
             "mean"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -1187,6 +1001,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1246,7 +1062,8 @@
             "mean"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -1421,181 +1238,10 @@
       ],
       "title": "Power Consumption Wh (1h)",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P9CF86E8970E5E639"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 24,
-        "x": 0,
-        "y": 36
-      },
-      "id": 7,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "max"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.0.8",
-      "targets": [
-        {
-          "alias": "24h ago (Wh)",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"value_15m\") FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND time > now() -25h AND time <= now()-24h",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "teleinfo-Wh-Total"
-            }
-          ]
-        },
-        {
-          "alias": "Recent (Wh)",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"value_15m\") FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND time > now() -1h AND time <= now()",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "teleinfo-Wh-Total"
-            }
-          ]
-        }
-      ],
-      "title": "Power Consumption Wh",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "Recent (Wh)",
-              "operator": "-",
-              "reducer": "sum",
-              "right": "24h ago (Wh)"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "stat"
     }
   ],
   "refresh": false,
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1633,6 +1279,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 50,
+  "version": 56,
   "weekStart": ""
 }
