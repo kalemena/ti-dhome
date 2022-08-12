@@ -195,21 +195,6 @@
   'y': 280
   wires:
     - - 6166ef2d.f866f8
-- id: 7e7b6653.045208
-  type: debug
-  z: f96b3a53.67de8
-  name: CCDebug
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 500
-  'y': 330
-  wires: []
 - id: 1da3548.6a44bac
   type: switch
   z: f96b3a53.67de8
@@ -232,7 +217,7 @@
   wires:
     - - 75611bae5888eb02
     - - 5e8cddc7.be4dec
-    - - 7e7b6653.045208
+    - - 5e8cddc7.be4dec
 - id: 5e8cddc7.be4dec
   type: debug
   z: f96b3a53.67de8
@@ -245,8 +230,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 500
-  'y': 290
+  x: 490
+  'y': 140
   wires: []
 - id: 75611bae5888eb02
   type: function
