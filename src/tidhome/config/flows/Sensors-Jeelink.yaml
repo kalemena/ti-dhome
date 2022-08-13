@@ -52,8 +52,8 @@
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 920
-  'y': 170
+  x: 1140
+  'y': 190
   wires: []
 - id: 823b2da3.07a708
   type: function
@@ -80,6 +80,7 @@
   'y': 210
   wires:
     - - 9502284c.4f29f8
+      - b10f5d4d.ca99e8
 - id: 9502284c.4f29f8
   type: mqtt out
   z: d06e385b.de11c8
@@ -89,7 +90,7 @@
   retain: ''
   broker: c38452a5.4f84e8
   x: 1140
-  'y': 210
+  'y': 230
   wires: []
 - id: 9826adfd.b0d9b
   type: switch
@@ -115,11 +116,8 @@
   'y': 220
   wires:
     - - 823b2da3.07a708
-      - b10f5d4d.ca99e8
     - - 823b2da3.07a708
-      - b10f5d4d.ca99e8
     - - 823b2da3.07a708
-      - b10f5d4d.ca99e8
     - - eefff2a7.d27e98
 - id: eefff2a7.d27e98
   type: debug
