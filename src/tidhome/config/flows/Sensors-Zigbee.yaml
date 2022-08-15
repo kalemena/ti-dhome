@@ -293,7 +293,7 @@
   from: ''
   to: ''
   reg: false
-  x: 740
+  x: 720
   'y': 1460
   wires:
     - - 1621fcb5.86df33
@@ -327,7 +327,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1250
-  'y': 1240
+  'y': 1140
   wires: []
 - id: 7545dbe9.bad7e4
   type: debug
@@ -631,7 +631,7 @@
   name: Shake the cube to toggle cozy light
   info: ''
   x: 1240
-  'y': 1200
+  'y': 1100
   wires: []
 - id: c6bedaf25152623e
   type: change
@@ -649,7 +649,7 @@
   to: ''
   reg: false
   x: 990
-  'y': 1240
+  'y': 1140
   wires:
     - - 831f3268.666ba
 - id: d464350ee4482364
@@ -727,7 +727,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 950
+  x: 970
   'y': 1050
   wires:
     - - a18b7635bb4482ed
@@ -759,8 +759,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 450
-  'y': 900
+  x: 660
+  'y': 860
   wires: []
 - id: a18b7635bb4482ed
   type: debug
@@ -774,7 +774,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1150
+  x: 1170
   'y': 1050
   wires: []
 - id: 32cca13a6da997d8
@@ -1010,7 +1010,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1240
-  'y': 1300
+  'y': 1200
   wires: []
 - id: fbf337296d4e32cb
   type: change
@@ -1028,7 +1028,7 @@
   to: ''
   reg: false
   x: 990
-  'y': 1300
+  'y': 1200
   wires:
     - - f4efc56732fede78
 - id: d9a33c04992fc657
@@ -1134,7 +1134,7 @@
   links:
     - c81f8f99a238d079
   x: 805
-  'y': 1270
+  'y': 1170
   wires:
     - - c6bedaf25152623e
       - fbf337296d4e32cb
