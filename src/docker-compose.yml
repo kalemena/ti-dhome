@@ -6,6 +6,7 @@ networks:
 volumes:
   influxdb-data:
   influxdb2-data:
+  victoria-metrics-data:
 
 services:
 
@@ -78,7 +79,14 @@ services:
   #     DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN:-secret-auth-token}
   #     # Retention
   #     DOCKER_INFLUXDB_INIT_RETENTION: ${DOCKER_INFLUXDB_INIT_RETENTION:-4w}
-            
+
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:latest
+    ports:
+      - 8428:8428
+    volumes:
+      - victoria-metrics-data:/victoria-metrics-data
+
   nodered:
     #image: kalemena/node-red:latest
     build: .
