@@ -1045,7 +1045,33 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Heures Creuses",
+                  "Heures Pleines"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 10,
@@ -1072,7 +1098,7 @@
       },
       "targets": [
         {
-          "alias": "main-Total",
+          "alias": "Total",
           "datasource": {
             "type": "influxdb",
             "uid": "P9CF86E8970E5E639"
@@ -1122,7 +1148,7 @@
           ]
         },
         {
-          "alias": "main-HCHP",
+          "alias": "Heures Pleines",
           "datasource": {
             "type": "influxdb",
             "uid": "P9CF86E8970E5E639"
@@ -1173,7 +1199,7 @@
           ]
         },
         {
-          "alias": "main-HCHC",
+          "alias": "Heures Creuses",
           "datasource": {
             "type": "influxdb",
             "uid": "P9CF86E8970E5E639"
@@ -1279,6 +1305,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 56,
+  "version": 58,
   "weekStart": ""
 }
