@@ -192,6 +192,148 @@
           "color": {
             "mode": "thresholds"
           },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 500
+              },
+              {
+                "color": "orange",
+                "value": 3000
+              },
+              {
+                "color": "red",
+                "value": 6000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 6,
+        "y": 1
+      },
+      "id": 21,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P9CF86E8970E5E639"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "1h"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sensors",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"value\") FROM \"sensors\" WHERE (\"type\" = 'power-inst' AND \"location\" = 'cc-0-Chauffage') AND $timeFilter GROUP BY time(1h) fill(null)",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "refId": "TotalLastMonth",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "power-inst"
+            },
+            {
+              "condition": "AND",
+              "key": "location",
+              "operator": "=",
+              "value": "cc-0-Chauffage"
+            }
+          ]
+        }
+      ],
+      "title": "CCost (W)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P9CF86E8970E5E639"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -205,22 +347,60 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "none"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-Wh-Total"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHC"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Creuses"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHP"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Pleines"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 11,
-        "w": 9,
-        "x": 6,
+        "h": 12,
+        "w": 4,
+        "x": 16,
         "y": 1
       },
       "id": 19,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "vertical",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
