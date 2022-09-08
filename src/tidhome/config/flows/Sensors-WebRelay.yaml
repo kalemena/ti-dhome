@@ -24,18 +24,17 @@
   'y': 450
   wires:
     - - 7828567a6b1e35ab
-      - 5dddd6af5b562c6d
 - id: 0edaade20969311b
   type: junction
   z: b1782abc.430f38
-  x: 1140
+  x: 1150
   'y': 290
   wires:
     - - 3e4d792744058a92
 - id: 2045b9456783765b
   type: junction
   z: b1782abc.430f38
-  x: 1140
+  x: 1150
   'y': 330
   wires:
     - - a04282091d8972bc
@@ -844,8 +843,8 @@
   z: b1782abc.430f38
   name: Insert Query
   func: |-
-    fields = { "value": Number(msg.payload) }
-    tags =   { "type": "teleinfo-" + msg.topic, "location": "main" }
+    let fields = { "value": Number(msg.payload) }
+    let tags =   { "type": "teleinfo-" + msg.topic, "location": "main" }
 
     var msgres =  {
         topic: "teleinfo-" + msg.topic,
@@ -866,11 +865,12 @@
   wires:
     - - a04282091d8972bc
       - 791c3a2e3d633446
+      - 5dddd6af5b562c6d
 - id: 5dddd6af5b562c6d
   type: debug
   z: b1782abc.430f38
   name: StorageDebug
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -891,8 +891,8 @@
     var teleinfoTotal = Number(teleinfoHC + teleinfoHP)
 
     // HCHC
-    fieldsHC = { "value": teleinfoHC }
-    tagsHC =   { "type": "teleinfo-HCHC", "location": "main" }
+    let fieldsHC = { "value": teleinfoHC }
+    let tagsHC =   { "type": "teleinfo-HCHC", "location": "main" }
 
     var msgHCHC =  {
         topic: "teleinfo-HCHC",
@@ -903,8 +903,8 @@
     }
 
     // HPHP
-    fieldsHP = { "value": teleinfoHP }
-    tagsHP =   { "type": "teleinfo-HCHP", "location": "main" }
+    let fieldsHP = { "value": teleinfoHP }
+    let tagsHP =   { "type": "teleinfo-HCHP", "location": "main" }
 
     var msgHCHP =  {
         topic: "teleinfo-HCHP",
@@ -915,8 +915,8 @@
     }
 
     // Total
-    fieldsTotal = { "value": teleinfoTotal }
-    tagsTotal =   { "type": "teleinfo-Wh-Total", "location": "main" }
+    let fieldsTotal = { "value": teleinfoTotal }
+    let tagsTotal =   { "type": "teleinfo-Wh-Total", "location": "main" }
 
     var msgTotal =  {
         topic: "teleinfo-Wh-Total",
@@ -944,8 +944,10 @@
       - 2045b9456783765b
     - - 0edaade20969311b
       - 2045b9456783765b
+      - 791c3a2e3d633446
     - - 0edaade20969311b
       - 2045b9456783765b
+      - 791c3a2e3d633446
 - id: 6299a688f8ee5bde
   type: switch
   z: b1782abc.430f38
@@ -960,7 +962,7 @@
       v: HCHP
       vt: str
     - t: else
-  checkall: 'true'
+  checkall: 'false'
   repair: false
   outputs: 3
   x: 800
@@ -973,7 +975,7 @@
   type: debug
   z: b1782abc.430f38
   name: StorageDebug
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
