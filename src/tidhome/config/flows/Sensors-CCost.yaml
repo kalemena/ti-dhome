@@ -244,21 +244,21 @@
 
     var outputMsgs = []
 
-    timestampH = new Date().toISOString()
+    var timestampH = new Date().toISOString()
 
-    timestamp = new Date().getTime()
+    var timestamp = new Date().getTime()
 
 
     // temperature
 
     if(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {
         // sensors/iotpower/nodes/1/entries/1/events/temperature
-        type = 'temperature'
-        nodeid = 1 // Bureau
-        entry = 1
-        value = msg.payload.msg.tmpr[0]
+        let type = 'temperature'
+        let nodeid = 1 // Bureau
+        let entry = 1
+        let value = msg.payload.msg.tmpr[0]
         
-        var msgT = {}
+        let msgT = {}
         msgT.topic = 'sensors/iotpower/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;
         msgT.payload = { 
             "gateway":"iotpower",
@@ -269,7 +269,7 @@
             "timestamp": timestamp,
             "timestamp-human": timestampH
         }
-        displayMsg = msgT.payload.id + "/" + msgT.payload.type + "=" + msgT.payload.value
+        let displayMsg = msgT.payload.id + "/" + msgT.payload.type + "=" + msgT.payload.value
         node.status({ fill:"orange", shape:"dot", text: displayMsg });
         outputMsgs.push(msgT);
         // node.warn("CC event temp:\n" + JSON.stringify(msgT))
@@ -281,12 +281,12 @@
     if(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] !=
     undefined) {
         // sensors/iotpower/nodes/.../entries/0/events/watts
-        type = 'watts'
-        nodeid = parseInt(msg.payload.msg.sensor[0])
-        entry = 0
-        value = msg.payload.msg.ch1[0].watts[0]
+        let type = 'watts'
+        let nodeid = parseInt(msg.payload.msg.sensor[0])
+        let entry = 0
+        let value = msg.payload.msg.ch1[0].watts[0]
         
-        var msgP = {}
+        let msgP = {}
         msgP.topic = 'sensors/iotpower/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;
         msgP.payload = { 
             "gateway":"iotpower",
@@ -297,7 +297,7 @@
             "timestamp": timestamp,
             "timestamp-human": timestampH
         }
-        displayMsg = msgP.payload.id + "/" + msgP.payload.type + "=" + msgP.payload.value
+        let displayMsg = msgP.payload.id + "/" + msgP.payload.type + "=" + msgP.payload.value
         node.status({ fill:"blue", shape:"dot", text: displayMsg });
         outputMsgs.push(msgP);
         // node.warn("CC event:\n" + JSON.stringify(msg))
