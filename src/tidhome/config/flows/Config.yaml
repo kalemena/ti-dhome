@@ -237,8 +237,8 @@
   randomUnits: seconds
   drop: true
   outputs: 1
-  x: 710
-  'y': 200
+  x: 680
+  'y': 210
   wires:
     - - 84b1892ac15ea678
 - id: 2d2c7365.5aa924
@@ -310,7 +310,7 @@
   start: sunrise
   end: sunset
   soff: '0'
-  eoff: '5'
+  eoff: '15'
   x: 110
   'y': 690
   wires:
@@ -333,7 +333,7 @@
   repair: false
   outputs: 2
   x: 290
-  'y': 700
+  'y': 690
   wires:
     - []
     - - 7735f46c01861b34
@@ -362,8 +362,9 @@
   links:
     - d741d05ac62a3f88
     - 2f30621f40aa8285
-  x: 835
-  'y': 200
+    - 69a45c84848a65e9
+  x: 805
+  'y': 210
   wires: []
 - id: ecb2912f7071e62b
   type: link out
@@ -373,6 +374,7 @@
   links:
     - d741d05ac62a3f88
     - 2f30621f40aa8285
+    - 69a45c84848a65e9
   x: 485
   'y': 560
   wires: []
@@ -385,6 +387,7 @@
     - d741d05ac62a3f88
     - f576c3026a84db30
     - 2f30621f40aa8285
+    - 69a45c84848a65e9
   x: 585
   'y': 690
   wires: []
