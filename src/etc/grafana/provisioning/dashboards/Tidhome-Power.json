@@ -90,8 +90,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 6,
+        "h": 7,
+        "w": 4,
         "x": 0,
         "y": 1
       },
@@ -162,7 +162,7 @@
           ]
         }
       ],
-      "title": "PAPP (W)",
+      "title": "Total (W)",
       "transformations": [
         {
           "id": "calculateField",
@@ -226,8 +226,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 6,
+        "h": 7,
+        "w": 4,
         "x": 6,
         "y": 1
       },
@@ -304,7 +304,7 @@
           ]
         }
       ],
-      "title": "CCost (W)",
+      "title": "Chauffage (W)",
       "transformations": [
         {
           "id": "calculateField",
@@ -390,9 +390,9 @@
         ]
       },
       "gridPos": {
-        "h": 12,
+        "h": 7,
         "w": 4,
-        "x": 16,
+        "x": 11,
         "y": 1
       },
       "id": 19,
@@ -509,7 +509,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 7,
         "w": 2,
         "x": 20,
         "y": 1
@@ -718,7 +718,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 7,
         "w": 2,
         "x": 22,
         "y": 1
@@ -908,7 +908,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 8
       },
       "id": 6,
       "panels": [],
@@ -973,10 +973,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 7,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 9
       },
       "id": 16,
       "options": {
@@ -1135,10 +1135,10 @@
         ]
       },
       "gridPos": {
-        "h": 10,
+        "h": 7,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 16
       },
       "id": 4,
       "options": {
@@ -1309,198 +1309,308 @@
               "value": "teleinfo-Wh-Total"
             }
           ]
-        },
-        {
-          "alias": "$tag_location (aggregated)",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
-          },
-          "hide": true,
-          "query": "SELECT non_negative_derivative(\"value_15m\",1h) FROM \"one_year\".\"sensors_15m\" WHERE (\"type\" = 'teleinfo-Wh-Total') AND $timeFilter GROUP BY \"location\"",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series"
         }
       ],
       "title": "Power Consumption Wh (1h)",
       "type": "timeseries"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 23
       },
       "id": 23,
-      "panels": [
+      "panels": [],
+      "title": "CurrentCost",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P9CF86E8970E5E639"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "cc-0-Chauffage"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last",
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
         {
+          "alias": "$tag_location",
           "datasource": {
             "type": "influxdb",
             "uid": "P9CF86E8970E5E639"
           },
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "cc-0-Chauffage"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 35
-          },
-          "id": 24,
-          "options": {
-            "legend": {
-              "calcs": [
-                "last",
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
+          "groupBy": [
             {
-              "alias": "$tag_location",
-              "datasource": {
-                "type": "influxdb",
-                "uid": "P9CF86E8970E5E639"
-              },
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
+              "params": [
+                "$__interval"
               ],
-              "measurement": "sensors",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'power-inst' AND \"location\" =~ /^$ccostLocation$/ ) AND $timeFilter GROUP BY location, time(1m) fill(null)",
-              "queryType": "randomWalk",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
               ],
-              "tags": [
-                {
-                  "key": "type",
-                  "operator": "=",
-                  "value": "teleinfo-Wh-Total"
-                }
-              ]
+              "type": "fill"
             }
           ],
-          "title": "CCost (1min)",
-          "type": "timeseries"
+          "measurement": "sensors",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"sensors\" WHERE (\"type\" = 'power-inst' AND \"location\" =~ /^$ccostLocation$/ ) AND $timeFilter GROUP BY location, time(1m) fill(null)",
+          "queryType": "randomWalk",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "teleinfo-Wh-Total"
+            }
+          ]
         }
       ],
-      "title": "CurrentCost",
-      "type": "row"
+      "title": "CCost (1min)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "cc-0-Chauffage"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 25,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last",
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "builder",
+          "expr": "sensors_value{type=\"power-inst\", location=\"cc-0-Chauffage\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CCost (1min)",
+      "type": "timeseries"
     }
   ],
   "refresh": "30s",
@@ -1534,7 +1644,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -1565,6 +1675,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 69,
+  "version": 74,
   "weekStart": ""
 }
