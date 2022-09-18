@@ -1,6 +1,6 @@
 - id: d88a69c4.1942c8
   type: tab
-  label: InfluxDB
+  label: DB
   disabled: false
   info: ''
 - id: cc675ec4.106d
@@ -85,14 +85,14 @@
 - id: f9ad7f8e.736a08
   type: influxdb in
   z: d88a69c4.1942c8
-  influxdb: ab73d852ece55e2a
+  influxdb: 786c015f0b3c18d1
   name: ''
   query: ''
   rawOutput: false
   precision: ''
   retentionPolicy: ''
   org: organisation
-  x: 720
+  x: 730
   'y': 560
   wires:
     - - fe17bda8.2a07a8
@@ -165,7 +165,7 @@
 - id: d596b2444fd43e3c
   type: influxdb in
   z: d88a69c4.1942c8
-  influxdb: ab73d852ece55e2a
+  influxdb: 786c015f0b3c18d1
   name: HCHC
   query: >-
     SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHC') AND
@@ -338,6 +338,7 @@
   wires:
     - - bf874566.5d9478
       - 1dcfd422.bd14fc
+      - 5aec7656638b8a7b
 - id: 1dcfd422.bd14fc
   type: debug
   z: d88a69c4.1942c8
@@ -399,7 +400,7 @@
 - id: 473a6d075dc99456
   type: influxdb in
   z: d88a69c4.1942c8
-  influxdb: ab73d852ece55e2a
+  influxdb: 786c015f0b3c18d1
   name: HCHP
   query: >-
     SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHP') AND
@@ -433,3 +434,18 @@
   'y': 810
   wires:
     - []
+- id: 5aec7656638b8a7b
+  type: influxdb out
+  z: d88a69c4.1942c8
+  influxdb: 786c015f0b3c18d1
+  name: ''
+  measurement: ''
+  precision: ''
+  retentionPolicy: ''
+  database: ''
+  retentionPolicyV18Flux: ''
+  org: ''
+  bucket: ''
+  x: 550
+  'y': 300
+  wires: []
