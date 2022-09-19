@@ -1602,9 +1602,9 @@
             "type": "prometheus",
             "uid": "tDwkp27Vz"
           },
-          "editorMode": "builder",
-          "expr": "sensors_value{type=\"power-inst\", location=\"cc-0-Chauffage\"}",
-          "legendFormat": "__auto",
+          "editorMode": "code",
+          "expr": "sensors_value{type=\"power-inst\", location=~\"cc-.+\"}",
+          "legendFormat": "{{location}}",
           "range": true,
           "refId": "A"
         }
@@ -1675,6 +1675,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 74,
+  "version": 76,
   "weekStart": ""
 }
