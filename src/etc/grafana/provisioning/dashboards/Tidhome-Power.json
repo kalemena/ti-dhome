@@ -1087,6 +1087,105 @@
     },
     {
       "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 29,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last",
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "avg_over_time(sensors_value{type=\"teleinfo-PAPP\"}[1m])",
+          "instant": false,
+          "legendFormat": "W",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "PAPP W (1min)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
         "type": "influxdb",
         "uid": "P9CF86E8970E5E639"
       },
@@ -1172,7 +1271,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 23
       },
       "id": 4,
       "options": {
@@ -1354,7 +1453,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 30
       },
       "id": 23,
       "panels": [],
@@ -1448,7 +1547,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 31
       },
       "id": 24,
       "options": {
@@ -1586,7 +1685,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 38
       },
       "id": 25,
       "options": {
@@ -1686,6 +1785,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 82,
+  "version": 85,
   "weekStart": ""
 }
