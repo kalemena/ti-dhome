@@ -48,8 +48,8 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "P9CF86E8970E5E639"
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
       },
       "fieldConfig": {
         "defaults": {
@@ -64,6 +64,8 @@
             }
           ],
           "mappings": [],
+          "max": 9000,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -72,7 +74,7 @@
                 "value": null
               },
               {
-                "color": "yellow",
+                "color": "#EAB839",
                 "value": 500
               },
               {
@@ -95,7 +97,7 @@
         "x": 0,
         "y": 1
       },
-      "id": 20,
+      "id": 26,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -111,55 +113,18 @@
       "pluginVersion": "9.1.5",
       "targets": [
         {
-          "alias": "",
           "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
           },
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"sensors\" WHERE (\"type\" = 'teleinfo-PAPP') AND $timeFilter GROUP BY time(1h) fill(null)",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "TotalLastMonth",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "teleinfo-Wh-Total"
-            }
-          ]
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_value{type=\"teleinfo-PAPP\"}[30s]",
+          "format": "time_series",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
         }
       ],
       "title": "Total (W)",
@@ -184,8 +149,8 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "P9CF86E8970E5E639"
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
       },
       "fieldConfig": {
         "defaults": {
@@ -200,6 +165,8 @@
             }
           ],
           "mappings": [],
+          "max": 9000,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -228,10 +195,10 @@
       "gridPos": {
         "h": 7,
         "w": 4,
-        "x": 6,
+        "x": 4,
         "y": 1
       },
-      "id": 21,
+      "id": 27,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -247,61 +214,17 @@
       "pluginVersion": "9.1.5",
       "targets": [
         {
-          "alias": "",
           "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
           },
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"sensors\" WHERE (\"type\" = 'power-inst' AND \"location\" = 'cc-0-Chauffage') AND $timeFilter GROUP BY time(1h) fill(null)",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "TotalLastMonth",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "power-inst"
-            },
-            {
-              "condition": "AND",
-              "key": "location",
-              "operator": "=",
-              "value": "cc-0-Chauffage"
-            }
-          ]
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "sensors_value{type=\"power-inst\", location=\"cc-0-Chauffage\"}",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
         }
       ],
       "title": "Chauffage (W)",
@@ -318,6 +241,117 @@
             "reduce": {
               "reducer": "sum"
             }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [],
+          "max": 1500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 100
+              },
+              {
+                "color": "orange",
+                "value": 500
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 1
+      },
+      "id": 28,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_value{type=\"power-inst\", location=~\"cc-.+\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Conso (W)",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "cc-1-Bureau",
+                "cc-3-Celier~Lavage",
+                "cc-4-Celier-Séchage",
+                "cc-5-Salon~TV",
+                "cc-6-Celier~Frigo",
+                "cc-7-Aquarium",
+                "cc-8-Freebox",
+                "cc-9-Salon-Poêle"
+              ]
+            }
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "cc-(.*)",
+            "renamePattern": "$1"
           }
         }
       ],
@@ -392,7 +426,7 @@
       "gridPos": {
         "h": 7,
         "w": 4,
-        "x": 11,
+        "x": 16,
         "y": 1
       },
       "id": 19,
@@ -1487,6 +1521,7 @@
         }
       ],
       "title": "CCost (1min)",
+      "transformations": [],
       "type": "timeseries"
     },
     {
@@ -1545,32 +1580,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "cc-0-Chauffage"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1610,6 +1620,7 @@
         }
       ],
       "title": "CCost (1min)",
+      "transformations": [],
       "type": "timeseries"
     }
   ],
@@ -1675,6 +1686,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 76,
+  "version": 82,
   "weekStart": ""
 }
