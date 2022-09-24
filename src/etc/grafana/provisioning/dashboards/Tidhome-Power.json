@@ -495,7 +495,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(((sensors_value{type=~\"teleinfo-HCHC\"} - (sensors_value{type=~\"teleinfo-HCHC\"} offset 2d)) / 1000) * $kWhHC)",
+          "expr": "(((sensors_value{type=~\"teleinfo-HCHC\"} - (sensors_value{type=~\"teleinfo-HCHC\"} offset 3d)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -510,7 +510,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(((sensors_value{type=~\"teleinfo-HCHP\"} - (sensors_value{type=~\"teleinfo-HCHP\"} offset 2d)) / 1000) * $kWhHP)",
+          "expr": "(((sensors_value{type=~\"teleinfo-HCHP\"} - (sensors_value{type=~\"teleinfo-HCHP\"} offset 3d)) / 1000) * $kWhHP)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -1299,7 +1299,7 @@
       "type": "timeseries"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1307,108 +1307,109 @@
         "y": 25
       },
       "id": 23,
-      "panels": [],
-      "title": "CurrentCost",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "tDwkp27Vz"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 26
-      },
-      "id": 25,
-      "options": {
-        "legend": {
-          "calcs": [
-            "last",
-            "min",
-            "max",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "tDwkp27Vz"
           },
-          "editorMode": "code",
-          "expr": "sensors_value{type=\"power-inst\", location=~\"cc-.+\"}[2m]",
-          "legendFormat": "{{location}}",
-          "range": true,
-          "refId": "A"
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 26
+          },
+          "id": 25,
+          "options": {
+            "legend": {
+              "calcs": [
+                "last",
+                "min",
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "sensors_value{type=\"power-inst\", location=~\"cc-.+\"}[2m]",
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "CCost (1min)",
+          "transformations": [],
+          "type": "timeseries"
         }
       ],
-      "title": "CCost (1min)",
-      "transformations": [],
-      "type": "timeseries"
+      "title": "CurrentCost",
+      "type": "row"
     },
     {
       "collapsed": true,
@@ -1416,7 +1417,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 26
       },
       "id": 38,
       "panels": [
