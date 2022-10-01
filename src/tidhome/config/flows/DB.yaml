@@ -47,7 +47,7 @@
     for (var i = 0; i < nodes.length; i++) {
         if(nodes[i].id === msg.payload.id) {
             // found node
-            entryStr = (msg.payload.entry != undefined) ? ('-' + msg.payload.entry) : ''
+            let entryStr = (msg.payload.entry != undefined) ? ('-' + msg.payload.entry) : ''
             global.set(topicNodesPrefix + '[' + i + '].' + msg.payload.type + entryStr, msg.payload.value);
             global.set(topicNodesPrefix + '[' + i + '].timestamp', msg.payload.timestamp);
         }

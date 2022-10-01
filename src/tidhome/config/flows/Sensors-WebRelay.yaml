@@ -7,42 +7,29 @@
   type: junction
   z: b1782abc.430f38
   x: 990
-  'y': 480
+  'y': 540
   wires:
     - - 1ba94549.ae6bdb
 - id: a170f2c794c496b3
   type: junction
   z: b1782abc.430f38
   x: 990
-  'y': 450
-  wires:
-    - - 7828567a6b1e35ab
-- id: 791c3a2e3d633446
-  type: junction
-  z: b1782abc.430f38
-  x: 1100
-  'y': 450
+  'y': 510
   wires:
     - - 7828567a6b1e35ab
 - id: 0edaade20969311b
   type: junction
   z: b1782abc.430f38
-  x: 1150
-  'y': 290
+  x: 1190
+  'y': 790
   wires:
     - - 3e4d792744058a92
-- id: 2045b9456783765b
-  type: junction
-  z: b1782abc.430f38
-  x: 1150
-  'y': 330
-  wires:
-    - - a04282091d8972bc
+      - a04282091d8972bc
 - id: 24374a202cb2eaec
   type: junction
   z: b1782abc.430f38
   x: 370
-  'y': 900
+  'y': 1110
   wires:
     - - 741678fd.3f4f18
 - id: e2c89ae6.57aa1
@@ -134,7 +121,7 @@
   onceDelay: ''
   topic: '1'
   x: 110
-  'y': 800
+  'y': 1010
   wires:
     - - 24374a202cb2eaec
 - id: 6c6e6c5d.0ac7ac
@@ -150,7 +137,7 @@
   onceDelay: ''
   topic: '0'
   x: 100
-  'y': 760
+  'y': 970
   wires:
     - - 24374a202cb2eaec
 - id: bb55b46b.570be8
@@ -166,7 +153,7 @@
   onceDelay: ''
   topic: '2'
   x: 120
-  'y': 840
+  'y': 1050
   wires:
     - - 24374a202cb2eaec
 - id: 9f42607e.9d9368
@@ -182,7 +169,7 @@
   onceDelay: ''
   topic: '3'
   x: 120
-  'y': 880
+  'y': 1090
   wires:
     - - 24374a202cb2eaec
 - id: abc37c81.f3592
@@ -198,7 +185,7 @@
   onceDelay: ''
   topic: '4'
   x: 120
-  'y': 920
+  'y': 1130
   wires:
     - - 24374a202cb2eaec
 - id: cdcf4c5a.dce938
@@ -214,7 +201,7 @@
   onceDelay: ''
   topic: '5'
   x: 110
-  'y': 960
+  'y': 1170
   wires:
     - - 24374a202cb2eaec
 - id: 5f8460fe.a89da
@@ -230,7 +217,7 @@
   onceDelay: ''
   topic: '6'
   x: 130
-  'y': 1000
+  'y': 1210
   wires:
     - - 24374a202cb2eaec
 - id: 883e7994.d94b68
@@ -246,7 +233,7 @@
   onceDelay: ''
   topic: '14'
   x: 100
-  'y': 1070
+  'y': 1280
   wires:
     - - 24374a202cb2eaec
 - id: 930f4fce.94c2d8
@@ -262,7 +249,7 @@
   onceDelay: ''
   topic: '15'
   x: 100
-  'y': 1110
+  'y': 1320
   wires:
     - - 24374a202cb2eaec
 - id: 558d963e.cb324
@@ -271,7 +258,7 @@
   name: IOTHeaters - Test
   info: ''
   x: 120
-  'y': 720
+  'y': 930
   wires: []
 - id: aab849a7.ee2658
   type: mqtt out
@@ -280,9 +267,14 @@
   topic: actors/iotheaters/switch
   qos: ''
   retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
   broker: c38452a5.4f84e8
   x: 960
-  'y': 900
+  'y': 1110
   wires: []
 - id: 741678fd.3f4f18
   type: change
@@ -305,7 +297,7 @@
   to: ''
   reg: false
   x: 670
-  'y': 900
+  'y': 1110
   wires:
     - - aab849a7.ee2658
       - e790a499.f53248
@@ -315,7 +307,7 @@
   name: WebRelaysIn
   links: []
   x: 295
-  'y': 760
+  'y': 970
   wires:
     - - 24374a202cb2eaec
 - id: c269b719.1c237
@@ -326,7 +318,7 @@
     - 7dfb853e.03a1f4
     - 1fd6723.fc4360e
   x: 245
-  'y': 1150
+  'y': 1360
   wires:
     - - d5867a8d.091
 - id: e790a499.f53248
@@ -337,7 +329,7 @@
   console: 'false'
   complete: 'true'
   x: 900
-  'y': 860
+  'y': 1070
   wires: []
 - id: 9a182caa.06e45
   type: debug
@@ -352,7 +344,7 @@
   statusVal: ''
   statusType: auto
   x: 640
-  'y': 1010
+  'y': 1220
   wires: []
 - id: 50816b6.a434a94
   type: inject
@@ -370,7 +362,7 @@
   payload: ''
   payloadType: date
   x: 200
-  'y': 1190
+  'y': 1400
   wires:
     - - d5867a8d.091
 - id: deb0a59.85d1458
@@ -390,7 +382,7 @@
   topic: topic
   outputs: 1
   x: 660
-  'y': 970
+  'y': 1180
   wires:
     - - ae57d3a3.e3fe88
       - 741678fd.3f4f18
@@ -407,7 +399,7 @@
   statusVal: ''
   statusType: auto
   x: 900
-  'y': 970
+  'y': 1180
   wires: []
 - id: d5867a8d.091
   type: change
@@ -430,7 +422,7 @@
   to: ''
   reg: false
   x: 370
-  'y': 1190
+  'y': 1400
   wires:
     - - deb0a59.85d1458
       - 9a182caa.06e45
@@ -467,8 +459,10 @@
   tls: ''
   persist: false
   proxy: ''
+  insecureHTTPParser: false
   authType: ''
   senderr: false
+  headers: []
   x: 570
   'y': 210
   wires:
@@ -490,7 +484,7 @@
   server: ''
   client: '26438802.204788'
   x: 100
-  'y': 330
+  'y': 380
   wires:
     - - 2812070e.894da8
       - ac2d43ea.e2eaf
@@ -504,8 +498,8 @@
   qos: ''
   retain: ''
   broker: c38452a5.4f84e8
-  x: 1200
-  'y': 520
+  x: 1110
+  'y': 570
   wires: []
 - id: 6efd389b.03b1
   type: switch
@@ -525,7 +519,7 @@
   repair: false
   outputs: 3
   x: 490
-  'y': 450
+  'y': 510
   wires:
     - - b629ec5a.2b4f78
     - - 16258a34.5ce016
@@ -553,7 +547,7 @@
   finalize: ''
   libs: []
   x: 850
-  'y': 440
+  'y': 500
   wires:
     - - add1e3abafaf542e
       - a170f2c794c496b3
@@ -580,7 +574,7 @@
   finalize: ''
   libs: []
   x: 840
-  'y': 480
+  'y': 540
   wires:
     - - add1e3abafaf542e
       - a170f2c794c496b3
@@ -597,7 +591,7 @@
   statusVal: ''
   statusType: auto
   x: 300
-  'y': 600
+  'y': 660
   wires: []
 - id: f080b42a.8ae208
   type: debug
@@ -612,7 +606,7 @@
   statusVal: ''
   statusType: auto
   x: 830
-  'y': 520
+  'y': 580
   wires: []
 - id: ac2d43ea.e2eaf
   type: switch
@@ -626,7 +620,7 @@
   repair: false
   outputs: 1
   x: 260
-  'y': 560
+  'y': 620
   wires:
     - - b7f3c41.7550bb8
       - 7755fd51.b4d8f4
@@ -652,7 +646,7 @@
   finalize: ''
   libs: []
   x: 830
-  'y': 560
+  'y': 620
   wires:
     - - 1ba94549.ae6bdb
 - id: 7755fd51.b4d8f4
@@ -668,7 +662,7 @@
   statusVal: ''
   statusType: auto
   x: 830
-  'y': 600
+  'y': 660
   wires: []
 - id: 67d26f68.ac9028
   type: switch
@@ -682,7 +676,7 @@
   repair: false
   outputs: 1
   x: 270
-  'y': 440
+  'y': 500
   wires:
     - - 6efd389b.03b1
 - id: c97606c5.d54558
@@ -697,10 +691,9 @@
   repair: false
   outputs: 1
   x: 270
-  'y': 330
+  'y': 380
   wires:
-    - - 4041416e2b11e83f
-      - 59e96ad40da5ad96
+    - - 1f15f03f0befad41
 - id: 10349fb3.8e444
   type: split
   z: b1782abc.430f38
@@ -712,7 +705,7 @@
   stream: false
   addname: ''
   x: 650
-  'y': 540
+  'y': 600
   wires:
     - - d66f7b10.e7534
 - id: b7f3c41.7550bb8
@@ -731,7 +724,7 @@
   to: ''
   reg: false
   x: 490
-  'y': 540
+  'y': 600
   wires:
     - - 10349fb3.8e444
 - id: a04282091d8972bc
@@ -747,13 +740,13 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1260
-  'y': 330
+  x: 1300
+  'y': 810
   wires: []
 - id: 4041416e2b11e83f
   type: debug
   z: b1782abc.430f38
-  name: WSDebug
+  name: WSTeleinfoDebug
   active: false
   tosidebar: true
   console: false
@@ -762,114 +755,160 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 280
-  'y': 370
+  x: 190
+  'y': 840
   wires: []
-- id: 59e96ad40da5ad96
-  type: function
-  z: b1782abc.430f38
-  name: Pre-process
-  func: |-
-    function isNumeric(n) { 
-          return !isNaN(parseFloat(n)) && isFinite(n); 
-    }
-
-    var msgs = []
-
-    //if(msg.teleinfo.IINST) {
-    //    msgs.push( { topic: "IINST", payload: msg.teleinfo.IINST } )
-    //}
-
-    // Check all key/value
-    var keys = Object.keys(msg.teleinfo);
-    for(var i = 0; i < keys.length; i++) {
-        var key = keys[i];
-        var value = isNumeric(msg.teleinfo[key]) ? Number(msg.teleinfo[key]) : msg.teleinfo[key]
-        
-        global.set("tidhome_teleinfo." + key, value);
-        
-        if(isNumeric(value))
-            msgs.push( { topic: key, payload: value } )
-            
-        if( key == 'PAPP' ) {
-            var displayMsg = "PAPP: " + value + "W"
-            node.status({ fill:"blue", shape:"dot", text: displayMsg });
-        }
-    }
-
-    return msgs
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 460
-  'y': 330
-  wires:
-    - - 09eeee4ada393189
-      - 92f6a23eb338c0e1
-- id: 92f6a23eb338c0e1
-  type: debug
-  z: b1782abc.430f38
-  name: PreProcessDebug
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 610
-  'y': 370
-  wires: []
-- id: 09eeee4ada393189
-  type: rbe
-  z: b1782abc.430f38
-  name: ''
-  func: rbe
-  gap: ''
-  start: ''
-  inout: out
-  septopics: true
-  property: payload
-  topi: topic
-  x: 640
-  'y': 330
-  wires:
-    - - 6299a688f8ee5bde
-- id: 1596cc938fc8a912
-  type: function
-  z: b1782abc.430f38
-  name: Insert Query
-  func: |-
-    let fields = { "value": Number(msg.payload) }
-    let tags =   { "type": "teleinfo-" + msg.topic, "location": "main" }
-
-    var msgres =  {
-        topic: "teleinfo-" + msg.topic,
-        payload: {
-            payload: [ fields, tags ],
-            measurement: "sensors"
-        }
-    }
-
-    return msgres;
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 950
-  'y': 370
-  wires:
-    - - a04282091d8972bc
-      - 791c3a2e3d633446
-      - 5dddd6af5b562c6d
-- id: 5dddd6af5b562c6d
+- id: 3e4d792744058a92
   type: debug
   z: b1782abc.430f38
   name: StorageDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1320
+  'y': 770
+  wires: []
+- id: 8175abc180c732e4
+  type: mqtt in
+  z: b1782abc.430f38
+  name: actors/iotheaters/set
+  topic: actors/iotheaters/set
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: false
+  inputs: 0
+  x: 130
+  'y': 260
+  wires:
+    - - 6b78b06d6d132a3b
+- id: bf76f115523ab776
+  type: debug
+  z: b1782abc.430f38
+  name: ''
+  active: false
+  console: 'false'
+  complete: 'true'
+  x: 800
+  'y': 260
+  wires: []
+- id: 046ac47846e9e56f
+  type: http request
+  z: b1782abc.430f38
+  name: Set Web Relays
+  method: GET
+  ret: txt
+  paytoqs: ignore
+  url: >-
+    http://ioteleinfo.local/relays/set?id={{{payload.id}}}&state={{{payload.value}}}
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 560
+  'y': 260
+  wires:
+    - - bf76f115523ab776
+- id: 6b78b06d6d132a3b
+  type: delay
+  z: b1782abc.430f38
+  name: ''
+  pauseType: rate
+  timeout: '500'
+  timeoutUnits: milliseconds
+  rate: '1'
+  nbRateUnits: '0.1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 350
+  'y': 260
+  wires:
+    - - 046ac47846e9e56f
+- id: 7e2f7c263a132298
+  type: function
+  z: b1782abc.430f38
+  name: Parse WebRelays
+  func: |-
+    // name: Parse web relays
+    // outputs: 1
+    var outputMsgs = []
+    var displayMsg = ""
+    var timestampH = new Date().toISOString()
+    var timestamp = new Date().getTime()
+
+    for (var i in msg.payload.relays) {
+        
+        let relayId = msg.payload.relays[i].id
+        let relayDesc = msg.payload.relays[i].description
+        let relayValue = msg.payload.relays[i].value
+        let type = 'toggle'
+        let entry = 0
+        
+        var msgS = {}
+        msgS.topic = 'sensors/iotheaters/nodes/' + relayId + '/entries/' + entry + '/events/' + type;
+        msgS.payload = { 
+            "gateway":"iotheaters",
+            "id": relayId,
+            "entry": entry,
+            "type": type,
+            "value": relayValue,
+            "timestamp": timestamp,
+            "timestamp-human": timestampH
+        }
+        displayMsg += relayDesc + "(" + relayId + ")=" + relayValue + "; "
+        outputMsgs.push(msgS);
+    }
+
+    node.status({ fill:"blue", shape:"dot", text: displayMsg });
+
+    return [ outputMsgs ];
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 560
+  'y': 80
+  wires:
+    - - bf66c587.e16b18
+- id: 7828567a6b1e35ab
+  type: trigger
+  z: b1782abc.430f38
+  name: Watchdog
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '5'
+  extend: true
+  overrideDelay: false
+  units: min
+  reset: ''
+  bytopic: topic
+  topic: topic
+  outputs: 1
+  x: 1110
+  'y': 510
+  wires:
+    - - 5b354d74db3c3466
+- id: 5b354d74db3c3466
+  type: debug
+  z: b1782abc.430f38
+  name: WR W Debug
   active: true
   tosidebar: true
   console: false
@@ -878,10 +917,124 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1220
-  'y': 430
+  x: 1320
+  'y': 510
   wires: []
-- id: 06838726b26da1b0
+- id: c65cb5485f659160
+  type: split
+  z: b1782abc.430f38
+  name: ''
+  splt: \n
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: topic
+  x: 280
+  'y': 800
+  wires:
+    - - 9f6adedc9ca772ef
+- id: bec90f8452d9f39a
+  type: change
+  z: b1782abc.430f38
+  name: keys
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: teleinfo
+      tot: msg
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 150
+  'y': 800
+  wires:
+    - - c65cb5485f659160
+- id: 96a4ca6603fc71d9
+  type: link in
+  z: b1782abc.430f38
+  name: Sensors-WebRelays-Teleinfo
+  links:
+    - 1f15f03f0befad41
+  x: 55
+  'y': 800
+  wires:
+    - - bec90f8452d9f39a
+      - 4041416e2b11e83f
+- id: 174f858dfae1238b
+  type: comment
+  z: b1782abc.430f38
+  name: Teleinfo Events
+  info: ''
+  x: 120
+  'y': 750
+  wires: []
+- id: 1f15f03f0befad41
+  type: link out
+  z: b1782abc.430f38
+  name: link out 1
+  mode: link
+  links:
+    - 96a4ca6603fc71d9
+  x: 425
+  'y': 380
+  wires: []
+- id: 7acfda68aa284e84
+  type: delay
+  z: b1782abc.430f38
+  name: ''
+  pauseType: queue
+  timeout: '30'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: true
+  allowrate: false
+  outputs: 1
+  x: 460
+  'y': 750
+  wires:
+    - []
+- id: 9f6adedc9ca772ef
+  type: switch
+  z: b1782abc.430f38
+  name: ''
+  property: topic
+  propertyType: msg
+  rules:
+    - t: eq
+      v: HCHC
+      vt: str
+    - t: eq
+      v: HCHP
+      vt: str
+    - t: eq
+      v: PAPP
+      vt: str
+    - t: eq
+      v: PTEC
+      vt: str
+    - t: else
+  checkall: 'false'
+  repair: false
+  outputs: 5
+  x: 650
+  'y': 800
+  wires:
+    - - 83829b3a37df4617
+    - - 83829b3a37df4617
+    - - 37aa0a253b8b6972
+    - - ad886e91c50e5db5
+    - - 7e1ec77294b7e482
+- id: 83829b3a37df4617
   type: function
   z: b1782abc.430f38
   name: Insert Wh HC/HP/Total
@@ -936,217 +1089,75 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 980
-  'y': 320
+  x: 1020
+  'y': 760
   wires:
-    - - 791c3a2e3d633446
-      - 0edaade20969311b
-      - 2045b9456783765b
     - - 0edaade20969311b
-      - 2045b9456783765b
-      - 791c3a2e3d633446
     - - 0edaade20969311b
-      - 2045b9456783765b
-      - 791c3a2e3d633446
-- id: 6299a688f8ee5bde
-  type: switch
-  z: b1782abc.430f38
-  name: ''
-  property: topic
-  propertyType: msg
-  rules:
-    - t: eq
-      v: HCHC
-      vt: str
-    - t: eq
-      v: HCHP
-      vt: str
-    - t: else
-  checkall: 'false'
-  repair: false
-  outputs: 3
-  x: 800
-  'y': 330
-  wires:
-    - - 06838726b26da1b0
-    - - 06838726b26da1b0
-    - - 1596cc938fc8a912
-- id: 3e4d792744058a92
-  type: debug
-  z: b1782abc.430f38
-  name: StorageDebug
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 1280
-  'y': 290
-  wires: []
-- id: 8175abc180c732e4
-  type: mqtt in
-  z: b1782abc.430f38
-  name: actors/iotheaters/set
-  topic: actors/iotheaters/set
-  qos: '2'
-  datatype: json
-  broker: c38452a5.4f84e8
-  nl: false
-  rap: false
-  inputs: 0
-  x: 130
-  'y': 260
-  wires:
-    - - 6b78b06d6d132a3b
-- id: bf76f115523ab776
-  type: debug
-  z: b1782abc.430f38
-  name: ''
-  active: false
-  console: 'false'
-  complete: 'true'
-  x: 800
-  'y': 260
-  wires: []
-- id: 046ac47846e9e56f
-  type: http request
-  z: b1782abc.430f38
-  name: Set Web Relays
-  method: GET
-  ret: txt
-  paytoqs: ignore
-  url: >-
-    http://ioteleinfo.local/relays/set?id={{{payload.id}}}&state={{{payload.value}}}
-  tls: ''
-  persist: false
-  proxy: ''
-  authType: ''
-  senderr: false
-  x: 560
-  'y': 260
-  wires:
-    - - bf76f115523ab776
-- id: 6b78b06d6d132a3b
-  type: delay
-  z: b1782abc.430f38
-  name: ''
-  pauseType: rate
-  timeout: '500'
-  timeoutUnits: milliseconds
-  rate: '1'
-  nbRateUnits: '0.1'
-  rateUnits: second
-  randomFirst: '1'
-  randomLast: '5'
-  randomUnits: seconds
-  drop: false
-  allowrate: false
-  outputs: 1
-  x: 350
-  'y': 260
-  wires:
-    - - 046ac47846e9e56f
-- id: 7e2f7c263a132298
+    - - 0edaade20969311b
+- id: ad886e91c50e5db5
   type: function
   z: b1782abc.430f38
-  name: Parse WebRelays
+  name: PTEC
   func: |-
-    // name: Parse web relays
-    // outputs: 1
-    var outputMsgs = []
-    var displayMsg = ""
-    timestampH = new Date().toISOString()
-    timestamp = new Date().getTime()
-
-    for (var i in msg.payload.relays) {
-        
-        relayId = msg.payload.relays[i].id
-        relayDesc = msg.payload.relays[i].description
-        relayValue = msg.payload.relays[i].value
-        type = 'toggle'
-        entry = 0
-        
-        var msgS = {}
-        msgS.topic = 'sensors/iotheaters/nodes/' + relayId + '/entries/' + entry + '/events/' + type;
-        msgS.payload = { 
-            "gateway":"iotheaters",
-            "id": relayId,
-            "entry": entry,
-            "type": type,
-            "value": relayValue,
-            "timestamp": timestamp,
-            "timestamp-human": timestampH
-        }
-        displayMsg += relayDesc + "(" + relayId + ")=" + relayValue + "; "
-        outputMsgs.push(msgS);
-    }
-
-    node.status({ fill:"blue", shape:"dot", text: displayMsg });
-
-    return [ outputMsgs ];
+    // convert to current hour costs to boolean
+    let valueInt = (msg.payload == 'HC..') ? 1 : 0
+    global.set("tidhome_teleinfo.PTEC_HC", valueInt);
+    return { topic: "PTEC_HC", payload: valueInt }
   outputs: 1
   noerr: 0
   initialize: ''
   finalize: ''
   libs: []
-  x: 560
-  'y': 80
+  x: 810
+  'y': 830
   wires:
-    - - bf66c587.e16b18
-- id: 7828567a6b1e35ab
-  type: trigger
+    - - 37aa0a253b8b6972
+- id: 37aa0a253b8b6972
+  type: function
   z: b1782abc.430f38
-  name: Watchdog
-  op1: ''
-  op2: ''
-  op1type: nul
-  op2type: pay
-  duration: '5'
-  extend: true
-  overrideDelay: false
-  units: min
-  reset: ''
-  bytopic: topic
-  topic: topic
+  name: Insert Query
+  func: |-
+    let fields = { "value": Number(msg.payload) }
+    let tags =   { "type": "teleinfo-" + msg.topic, "location": "main" }
+
+    var msgres =  {
+        topic: "teleinfo-" + msg.topic,
+        payload: {
+            payload: [ fields, tags ],
+            measurement: "sensors"
+        }
+    }
+
+    return msgres;
   outputs: 1
-  x: 1200
-  'y': 470
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 990
+  'y': 810
   wires:
-    - - 5b354d74db3c3466
-- id: 5b354d74db3c3466
-  type: debug
+    - - 0edaade20969311b
+- id: 7e1ec77294b7e482
+  type: function
   z: b1782abc.430f38
-  name: WR W Debug
-  active: true
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 1410
-  'y': 470
-  wires: []
-- id: ab79a07ef277d349
-  type: change
-  z: b1782abc.430f38
-  name: ''
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: ''
-      tot: str
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 1010
-  'y': 230
+  name: IsNumeric
+  func: |
+    function isNumeric(n) { 
+        return !isNaN(parseFloat(n)) && isFinite(n); 
+    }
+
+    // convert to numeric if possible
+    if (isNumeric(msg.payload)) {
+        return { topic: msg.topic, payload: msg.payload }
+    }
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 820
+  'y': 870
   wires:
-    - []
+    - - 37aa0a253b8b6972
