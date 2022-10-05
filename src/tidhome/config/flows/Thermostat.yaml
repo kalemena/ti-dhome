@@ -423,7 +423,7 @@
   topic: ''
   payload: arret
   payloadType: str
-  x: 360
+  x: 370
   'y': 740
   wires:
     - - 962e06cafd534c99

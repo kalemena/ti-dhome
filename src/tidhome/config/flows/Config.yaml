@@ -21,14 +21,16 @@
 - id: af26e828.9b92
   type: debug
   z: 112e9cf8.590b23
-  name: Debug
+  name: Config-Sensors-Debug
   active: false
   tosidebar: true
   console: true
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 870
+  statusVal: ''
+  statusType: auto
+  x: 920
   'y': 440
   wires: []
 - id: 77ded097.d4bc6
@@ -80,6 +82,7 @@
       pt: global
       to: payload
       tot: msg
+      dc: true
   action: ''
   property: ''
   from: ''
@@ -212,14 +215,16 @@
 - id: 29f69392.4ebc64
   type: debug
   z: 112e9cf8.590b23
-  name: Debug
+  name: Config-Log-Debug
   active: false
   tosidebar: true
   console: true
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 870
+  statusVal: ''
+  statusType: auto
+  x: 910
   'y': 250
   wires: []
 - id: 41e3caeb.c73014
@@ -257,7 +262,8 @@
 - id: a24eb884.8fa9a
   type: link out
   z: 112e9cf8.590b23
-  name: General CatchAll
+  name: Config-CatchAll-Out
+  mode: link
   links:
     - 1bf42829.b3e0b8
   x: 835
@@ -266,20 +272,18 @@
 - id: 1bf42829.b3e0b8
   type: link in
   z: 112e9cf8.590b23
-  name: errors/catchall
+  name: Config-CatchAll-In
   links:
-    - 139fba02.9e88fe
+    - 4a641f47.46cb08
+    - 4d670d8450380ac6
+    - 5d10dd0b.1db574
+    - 60b06b25.f9c98c
     - 64dacb8b.d2f3e4
     - 7ddfd97.7160228
     - 950a0758.599f88
+    - 98c9017f.76bca
     - a24eb884.8fa9a
     - da805bda.a8c0b
-    - 60b06b25.f9c98c
-    - 4a641f47.46cb08
-    - e89ea7a2.3f6668
-    - 5d10dd0b.1db574
-    - 98c9017f.76bca
-    - 4d670d8450380ac6
   x: 225
   'y': 240
   wires:
@@ -357,37 +361,31 @@
 - id: 84b1892ac15ea678
   type: link out
   z: 112e9cf8.590b23
-  name: ''
+  name: Config-CatchAll-Notif-Out
   mode: link
   links:
-    - d741d05ac62a3f88
     - 2f30621f40aa8285
-    - 69a45c84848a65e9
   x: 805
   'y': 210
   wires: []
 - id: ecb2912f7071e62b
   type: link out
   z: 112e9cf8.590b23
-  name: ''
+  name: Config-Sensors-Alarm-Out
   mode: link
   links:
-    - d741d05ac62a3f88
     - 2f30621f40aa8285
-    - 69a45c84848a65e9
   x: 485
   'y': 560
   wires: []
 - id: fecb20f01567e4a8
   type: link out
   z: 112e9cf8.590b23
-  name: ''
+  name: Config-Schedulers-Out
   mode: link
   links:
-    - d741d05ac62a3f88
-    - f576c3026a84db30
     - 2f30621f40aa8285
-    - 69a45c84848a65e9
+    - f576c3026a84db30
   x: 585
   'y': 690
   wires: []

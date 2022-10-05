@@ -523,29 +523,6 @@
   x: 260
   'y': 990
   wires: []
-- id: efdc44ad7838b791
-  type: debug
-  z: f6aef2f1.dd52e8
-  name: Status
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  x: 320
-  'y': 200
-  wires: []
-- id: c81f8f99a238d079
-  type: link out
-  z: f6aef2f1.dd52e8
-  name: ''
-  mode: link
-  links:
-    - e084ff66fb81099d
-  x: 395
-  'y': 1070
-  wires: []
 - id: 2f30621f40aa8285
   type: link in
   z: f6aef2f1.dd52e8

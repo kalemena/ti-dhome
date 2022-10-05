@@ -259,7 +259,7 @@
   name: Dealabs
   url: 'https://www.dealabs.com/rss/hot'
   interval: 15
-  x: 110
+  x: 100
   'y': 520
   wires:
     - - b0f7a636.7693f
@@ -275,7 +275,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 890
+  x: 880
   'y': 540
   wires: []
 - id: b0f7a636.7693f
@@ -285,7 +285,7 @@
   property: article
   action: ''
   pretty: false
-  x: 260
+  x: 250
   'y': 520
   wires:
     - - c92f4659.822398
@@ -304,7 +304,7 @@
   from: ''
   to: ''
   reg: false
-  x: 730
+  x: 720
   'y': 580
   wires:
     - - fdfde972.bdcf78
@@ -324,7 +324,7 @@
   from: ''
   to: ''
   reg: false
-  x: 400
+  x: 390
   'y': 520
   wires:
     - - 281623751d7a9995
@@ -344,7 +344,7 @@
   bytopic: topic
   topic: topic
   outputs: 1
-  x: 560
+  x: 550
   'y': 580
   wires:
     - - 683d83e8.058ebc
@@ -357,7 +357,7 @@
     Search keywords
     Sort topics
     Send Telegram notification
-  x: 110
+  x: 100
   'y': 480
   wires: []
 - id: 09304e7665f8b8b8
@@ -401,7 +401,7 @@
   from: ''
   to: ''
   reg: false
-  x: 200
+  x: 190
   'y': 580
   wires:
     - - d3071673871eba6a
@@ -442,7 +442,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 400
+  x: 390
   'y': 580
   wires:
     - - 43e6adab33a9f460
@@ -454,7 +454,7 @@
   links:
     - 2f30621f40aa8285
     - 69a45c84848a65e9
-  x: 855
+  x: 845
   'y': 580
   wires: []
 - id: 0a19614dac750dc9
@@ -492,16 +492,14 @@
   z: 8627a08f.2f4c18
   name: Week Color
   func: >-
-    currentdate = new Date();
+    let currentdate = new Date();
 
     var oneJan = new Date(currentdate.getFullYear(),0,1);
 
-    var numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 *
-    1000));
+    var numberOfDays = Math.floor((currentdate.getSeconds() -
+    oneJan.getSeconds()) / (24 * 60 * 60));
 
     var weekNb = Math.ceil(( currentdate.getDay() + 1 + numberOfDays) / 7);
-
-
 
 
     msg.payload = "Sortir la poubelle " + (((weekNb-1) % 2 == 0) ? "Jaune" :
@@ -526,4 +524,113 @@
     - c80c722c5806b680
   x: 1015
   'y': 420
+  wires: []
+- id: d62a5899f21cd167
+  type: feedparse
+  z: 8627a08f.2f4c18
+  name: LeMondeInformatique
+  url: >-
+    https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml
+  interval: 15
+  x: 140
+  'y': 660
+  wires:
+    - - 8a909bab8256258f
+- id: 8a909bab8256258f
+  type: function
+  z: 8627a08f.2f4c18
+  name: '> 6h'
+  func: |
+    msg.dateStr = msg.article.date
+    msg.date = new Date(msg.dateStr)
+    msg.dateNow = new Date()
+    msg.render = "[" + msg.article.title + "](" + msg.article.link + ")" 
+
+    if(msg.date.getTime() > (msg.dateNow.getTime() - 1000 * 3600 * 6)) {
+        return msg
+    }
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 380
+  'y': 660
+  wires:
+    - - 43e6adab33a9f460
+- id: a45b26df013cae0c
+  type: feedparse
+  z: 8627a08f.2f4c18
+  name: FranceTVInfo-Sciences
+  url: 'https://www.francetvinfo.fr/sciences.rss'
+  interval: 15
+  x: 140
+  'y': 700
+  wires:
+    - - 8a909bab8256258f
+- id: fce9560bc4c3314b
+  type: debug
+  z: 8627a08f.2f4c18
+  name: News
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 880
+  'y': 620
+  wires: []
+- id: 080dbe7f6708bea1
+  type: change
+  z: 8627a08f.2f4c18
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: render
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 720
+  'y': 660
+  wires:
+    - - fce9560bc4c3314b
+      - 7a96ec2943dd38cc
+- id: 43e6adab33a9f460
+  type: trigger
+  z: 8627a08f.2f4c18
+  name: Watchdog
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '1'
+  extend: true
+  overrideDelay: false
+  units: s
+  reset: ''
+  bytopic: topic
+  topic: topic
+  outputs: 1
+  x: 550
+  'y': 660
+  wires:
+    - - 080dbe7f6708bea1
+- id: 7a96ec2943dd38cc
+  type: link out
+  z: 8627a08f.2f4c18
+  name: ''
+  mode: link
+  links:
+    - 2f30621f40aa8285
+    - 69a45c84848a65e9
+  x: 845
+  'y': 660
   wires: []

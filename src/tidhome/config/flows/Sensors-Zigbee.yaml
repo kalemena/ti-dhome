@@ -192,7 +192,7 @@
   type: debug
   z: 237573f3.977b64
   name: Sensors
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false

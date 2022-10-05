@@ -1172,13 +1172,12 @@
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
 
-    // Keep global
-    global.set("tidhome_teleinfo." + msg.topic, msg.payload)
-
     // convert to numeric if possible
     if (isNumeric(msg.payload)) {
+        global.set("tidhome_teleinfo." + msg.topic, Number(msg.payload))
         return { topic: msg.topic, payload: Number(msg.payload) }
     } else {
+        global.set("tidhome_teleinfo." + msg.topic, msg.payload)
         return msg
     }
   outputs: 1
