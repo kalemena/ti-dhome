@@ -3,21 +3,15 @@
   label: Sensors-Zigbee
   disabled: false
   info: ''
-- id: c5f01a10.120958
-  type: debug
+- id: 30f85ff48f067eed
+  type: junction
   z: 237573f3.977b64
-  name: ZigBeeConfig
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: payload.name
-  targetType: msg
-  statusVal: ''
-  statusType: auto
-  x: 1110
-  'y': 180
-  wires: []
+  x: 510
+  'y': 650
+  wires:
+    - - d464350ee4482364
+      - 19b35f3c24c461f3
+      - 74c7927ff4ba8967
 - id: da797c2a.8ca438
   type: inject
   z: 237573f3.977b64
@@ -53,20 +47,6 @@
   x: 130
   'y': 230
   wires: []
-- id: 701631b4.93c578
-  type: split
-  z: 237573f3.977b64
-  name: ''
-  splt: \n
-  spltType: str
-  arraySplt: 1
-  arraySpltType: len
-  stream: false
-  addname: ''
-  x: 780
-  'y': 180
-  wires:
-    - []
 - id: 4a04431c.fcc3ec
   type: catch
   z: 237573f3.977b64
@@ -133,7 +113,7 @@
   'y': 340
   wires:
     - - a111421e.f2a32
-      - d464350ee4482364
+      - 30f85ff48f067eed
 - id: a708e318.e87308
   type: debug
   z: 237573f3.977b64
@@ -192,7 +172,7 @@
   type: debug
   z: 237573f3.977b64
   name: Sensors
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
@@ -510,7 +490,7 @@
   name: Triggers -> Actions
   info: ''
   x: 110
-  'y': 660
+  'y': 830
   wires: []
 - id: '59774785.92416'
   type: switch
@@ -656,41 +636,12 @@
   type: link out
   z: 237573f3.977b64
   name: SensorsEventsOut
+  mode: link
   links:
-    - b8de7c12f584a11d
     - 133485cb59c0a94a
-  x: 345
-  'y': 470
+  x: 575
+  'y': 690
   wires: []
-- id: fcf5336f6f22ce51
-  type: function
-  z: 237573f3.977b64
-  name: Store Global
-  func: >-
-    // init (id needed)
-
-    var tidhome = global.get("tidhome") || {}
-
-    // var zigbee = global.get("zigbee") || {}
-
-    global.set("tidhome", tidhome)
-
-    global.set("tidhome.sensors.zigbee." + msg.topic.replace("zigbee2mqtt/",""),
-    msg.payload);
-
-
-    // pass through
-
-    return msg;
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 930
-  'y': 180
-  wires:
-    - []
 - id: 42c65007ee68f7b0
   type: function
   z: 237573f3.977b64
@@ -1481,3 +1432,205 @@
   'y': 1830
   wires:
     - - 6a40ac79b063b25b
+- id: 19b35f3c24c461f3
+  type: debug
+  z: 237573f3.977b64
+  name: ZigbeeDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 640
+  'y': 610
+  wires: []
+- id: 74c7927ff4ba8967
+  type: function
+  z: 237573f3.977b64
+  name: Name?
+  func: |-
+    msg.sensor_name = msg.topic.replace("zigbee2mqtt/","")
+    return msg
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 620
+  'y': 650
+  wires:
+    - - c84474e1397f451b
+- id: d9be3a912e78e6ae
+  type: mqtt out
+  z: 237573f3.977b64
+  name: sensors
+  topic: sensors
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 1350
+  'y': 690
+  wires: []
+- id: c84474e1397f451b
+  type: split
+  z: 237573f3.977b64
+  name: ''
+  splt: \n
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: topic
+  x: 770
+  'y': 650
+  wires:
+    - - 0d42917b315ef570
+- id: 742f21995d2933d4
+  type: function
+  z: 237573f3.977b64
+  name: Store Global
+  func: >-
+    global.set("tidhome_zigbee." + msg.sensor_name + "." + msg.topic,
+    msg.payload)
+
+    return msg
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 790
+  'y': 730
+  wires:
+    - - 52700d8efecfd4aa
+      - fceb63cff2a35ce6
+- id: 52700d8efecfd4aa
+  type: debug
+  z: 237573f3.977b64
+  name: ZigbeeDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1010
+  'y': 700
+  wires: []
+- id: 73543382a5b7bdf9
+  type: function
+  z: 237573f3.977b64
+  name: Insert X
+  func: >-
+    let fields = { "value": Number(msg.payload) }
+
+    let tags = { "type": "zigbee-" + msg.topic, "location": msg.sensor_name }
+
+
+    var msgres = {
+        topic: "zigbee-" + msg.topic,
+        payload: {
+            payload: [fields, tags],
+            measurement: "sensors"
+        }
+    }
+
+
+    node.status({ fill: "blue", shape: "dot", text: msg.sensor_name + "/" +
+    msg.topic + ": " + Number(msg.payload) });
+
+
+    return msgres
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 1190
+  'y': 740
+  wires:
+    - - 97d3797852213d2c
+      - d9be3a912e78e6ae
+- id: 0d42917b315ef570
+  type: function
+  z: 237573f3.977b64
+  name: IsNumeric
+  func: |-
+    function isNumeric(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    // convert to numeric if possible
+    if (isNumeric(msg.payload)) {
+        msg.payload = Number(msg.payload)
+    }
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 780
+  'y': 690
+  wires:
+    - - 742f21995d2933d4
+- id: fceb63cff2a35ce6
+  type: switch
+  z: 237573f3.977b64
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: istype
+      v: number
+      vt: number
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 980
+  'y': 740
+  wires:
+    - - 73543382a5b7bdf9
+    - - 57c69d69fe19c4b3
+- id: 57c69d69fe19c4b3
+  type: debug
+  z: 237573f3.977b64
+  name: ZigbeeDebug
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1010
+  'y': 780
+  wires: []
+- id: 97d3797852213d2c
+  type: debug
+  z: 237573f3.977b64
+  name: ZigbeeDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1370
+  'y': 740
+  wires: []

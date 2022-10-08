@@ -28,8 +28,8 @@
   name: Send
   bot: 4fc69d2d.235124
   outputs: 1
-  x: 880
-  'y': 210
+  x: 870
+  'y': 180
   wires:
     - - fa16035d.0f0fd8
 - id: fa16035d.0f0fd8
@@ -42,22 +42,9 @@
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 1040
-  'y': 210
+  x: 1030
+  'y': 180
   wires: []
-- id: 20133b84.b44ca4
-  type: mqtt in
-  z: f6aef2f1.dd52e8
-  name: notifications/telegram
-  topic: notifications/telegram
-  qos: '2'
-  datatype: auto
-  broker: c38452a5.4f84e8
-  inputs: 0
-  x: 140
-  'y': 160
-  wires:
-    - - e8dfc067.c65a1
 - id: b52ace9b.c4f7f
   type: function
   z: f6aef2f1.dd52e8
@@ -75,8 +62,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 690
-  'y': 210
+  x: 680
+  'y': 180
   wires:
     - - d020562c.8333a8
 - id: 586ca451.0700d4
@@ -94,8 +81,8 @@
   props:
     - value: telegramrecipients
       type: msg
-  x: 320
-  'y': 210
+  x: 310
+  'y': 180
   wires:
     - - ec21e2dfc2fb77be
 - id: f7290145.4541
@@ -272,8 +259,8 @@
   checkall: 'true'
   repair: false
   outputs: 1
-  x: 480
-  'y': 210
+  x: 470
+  'y': 180
   wires:
     - - b52ace9b.c4f7f
 - id: acc99ab81795114d
@@ -534,8 +521,8 @@
     - ecb2912f7071e62b
     - fecb20f01567e4a8
     - 7a96ec2943dd38cc
-  x: 205
-  'y': 210
+  x: 195
+  'y': 180
   wires:
     - - e8dfc067.c65a1
 - id: 6e5fe766309ce370
@@ -563,8 +550,8 @@
   name: Telegram-To-All
   links:
     - 1ba3302a5169676e
-  x: 205
-  'y': 250
+  x: 195
+  'y': 220
   wires:
     - - 469af85aaf8fe04b
 - id: 469af85aaf8fe04b
@@ -574,7 +561,7 @@
   props:
     - value: telegramrecipients
       type: msg
-  x: 320
-  'y': 250
+  x: 310
+  'y': 220
   wires:
     - - ec21e2dfc2fb77be
