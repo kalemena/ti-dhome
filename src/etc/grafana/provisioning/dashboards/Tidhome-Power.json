@@ -811,7 +811,7 @@
           "refId": "E"
         }
       ],
-      "title": "Power Consumption Wh (1d)",
+      "title": "Total Daily (Wh)",
       "transformations": [
         {
           "id": "filterByValue",
@@ -1034,7 +1034,7 @@
           "refId": "E"
         }
       ],
-      "title": "Power Consumption Wh (1h)",
+      "title": "Total Hourly (Wh)",
       "transformations": [
         {
           "id": "filterByValue",
@@ -1077,7 +1077,7 @@
               },
               {
                 "color": "red",
-                "value": 30
+                "value": 40
               }
             ]
           },
@@ -1655,14 +1655,14 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg_over_time(sensors_value{type=\"teleinfo-PAPP\"}[3m])",
+          "expr": "avg_over_time(sensors_value{type=\"teleinfo-PAPP\"}[5m])",
           "instant": false,
           "legendFormat": "W",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "PAPP W (1min)",
+      "title": "PAPP W (5min)",
       "type": "timeseries"
     },
     {
@@ -1755,7 +1755,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "sensors_value{type=\"power-inst\", location=~\"cc-.+\"}[2m]",
+          "expr": "sensors_value{type=\"power-inst\", location=~\"cc-.+\"}[1m]",
           "legendFormat": "{{location}}",
           "range": true,
           "refId": "A"
@@ -1818,7 +1818,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30",
-        "query": "9d",
+        "query": "11d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -1832,6 +1832,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 151,
+  "version": 157,
   "weekStart": ""
 }
