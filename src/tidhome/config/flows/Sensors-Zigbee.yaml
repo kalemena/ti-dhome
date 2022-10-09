@@ -6,46 +6,40 @@
 - id: 30f85ff48f067eed
   type: junction
   z: 237573f3.977b64
-  x: 510
-  'y': 650
+  x: 230
+  'y': 230
   wires:
-    - - d464350ee4482364
-      - 19b35f3c24c461f3
+    - - 19b35f3c24c461f3
       - 74c7927ff4ba8967
-- id: da797c2a.8ca438
-  type: inject
+- id: 0c53d09c8dbc9543
+  type: junction
   z: 237573f3.977b64
-  name: ''
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: ''
-  once: true
-  onceDelay: '1'
-  topic: ''
-  payload: ''
-  payloadType: date
-  x: 120
-  'y': 180
+  x: 560
+  'y': 520
   wires:
-    - []
-- id: 3cf7ed11.f942ea
-  type: comment
+    - - fe18c704095d647f
+      - c4ae1b832667595b
+- id: e741c0dd196047b8
+  type: junction
   z: 237573f3.977b64
-  name: ZigBee Devices
-  info: ''
-  x: 100
-  'y': 140
-  wires: []
+  x: 860
+  'y': 950
+  wires:
+    - - e7387eae.824b38
+- id: aa5bee841bccbe83
+  type: junction
+  z: 237573f3.977b64
+  x: 860
+  'y': 1050
+  wires:
+    - - 8e7e4102525abe18
 - id: e40e5bbf.43be98
   type: comment
   z: 237573f3.977b64
-  name: ZigBee Events Listening
+  name: ZigBee Events
   info: ''
-  x: 130
-  'y': 230
+  x: 100
+  'y': 100
   wires: []
 - id: 4a04431c.fcc3ec
   type: catch
@@ -54,7 +48,7 @@
   scope: null
   uncaught: false
   x: 110
-  'y': 90
+  'y': 40
   wires:
     - - 60b06b25.f9c98c
 - id: 60b06b25.f9c98c
@@ -64,7 +58,7 @@
   links:
     - 1bf42829.b3e0b8
   x: 265
-  'y': 90
+  'y': 40
   wires: []
 - id: 2b11a227.b0ca06
   type: mqtt in
@@ -79,13 +73,13 @@
   rh: 0
   inputs: 0
   x: 160
-  'y': 270
+  'y': 140
   wires:
     - - a99de8fd.3bf05
 - id: a99de8fd.3bf05
   type: debug
   z: 237573f3.977b64
-  name: Bridge as MQTT
+  name: ZigbeeDebug-All
   active: false
   tosidebar: true
   console: false
@@ -94,8 +88,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 640
-  'y': 270
+  x: 400
+  'y': 140
   wires: []
 - id: fde0902d.5c7e88
   type: mqtt in
@@ -110,154 +104,9 @@
   rh: 0
   inputs: 0
   x: 120
-  'y': 340
+  'y': 230
   wires:
-    - - a111421e.f2a32
-      - 30f85ff48f067eed
-- id: a708e318.e87308
-  type: debug
-  z: 237573f3.977b64
-  name: Remotes
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 620
-  'y': 320
-  wires: []
-- id: a111421e.f2a32
-  type: switch
-  z: 237573f3.977b64
-  name: ''
-  property: topic
-  propertyType: msg
-  rules:
-    - t: cont
-      v: zigbee2mqtt/R
-      vt: str
-    - t: cont
-      v: zigbee2mqtt/S
-      vt: str
-    - t: cont
-      v: zigbee2mqtt/V
-      vt: str
-    - t: cont
-      v: zigbee2mqtt/P
-      vt: str
-    - t: cont
-      v: zigbee2mqtt/M
-      vt: str
-    - t: cont
-      v: zigbee2mqtt/L
-      vt: str
-    - t: else
-  checkall: 'true'
-  repair: false
-  outputs: 7
-  x: 380
-  'y': 380
-  wires:
-    - - a708e318.e87308
-    - - 85a82392.1560b8
-    - - d3c7ec9e.17e778
-    - - da6ef322.b46dd
-    - - 8af56833.cbd7b
-    - - 97b4eca3.a80768
-    - - f5922203.5e8ba
-- id: 85a82392.1560b8
-  type: debug
-  z: 237573f3.977b64
-  name: Sensors
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 620
-  'y': 360
-  wires: []
-- id: d3c7ec9e.17e778
-  type: debug
-  z: 237573f3.977b64
-  name: Volets
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 610
-  'y': 400
-  wires: []
-- id: da6ef322.b46dd
-  type: debug
-  z: 237573f3.977b64
-  name: Plugs
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 610
-  'y': 440
-  wires: []
-- id: f5922203.5e8ba
-  type: debug
-  z: 237573f3.977b64
-  name: Others
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 610
-  'y': 560
-  wires: []
-- id: 8af56833.cbd7b
-  type: debug
-  z: 237573f3.977b64
-  name: Motion
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 610
-  'y': 480
-  wires: []
-- id: 97b4eca3.a80768
-  type: debug
-  z: 237573f3.977b64
-  name: Lights
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 610
-  'y': 520
-  wires: []
+    - - 30f85ff48f067eed
 - id: 378cc77d.34fe
   type: change
   z: 237573f3.977b64
@@ -274,7 +123,7 @@
   to: ''
   reg: false
   x: 720
-  'y': 1460
+  'y': 820
   wires:
     - - 1621fcb5.86df33
 - id: 1621fcb5.86df33
@@ -291,7 +140,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1240
-  'y': 1460
+  'y': 820
   wires: []
 - id: 831f3268.666ba
   type: mqtt out
@@ -307,7 +156,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1250
-  'y': 1140
+  'y': 730
   wires: []
 - id: 7545dbe9.bad7e4
   type: debug
@@ -322,7 +171,7 @@
   statusVal: ''
   statusType: auto
   x: 240
-  'y': 1510
+  'y': 870
   wires: []
 - id: 56f59bd0.4be85c
   type: switch
@@ -341,7 +190,7 @@
   repair: false
   outputs: 2
   x: 520
-  'y': 1590
+  'y': 950
   wires:
     - - 82918784.6b6d58
     - - 1b5806ce.1cdb99
@@ -358,7 +207,7 @@
   rh: 0
   inputs: 0
   x: 170
-  'y': 1550
+  'y': 910
   wires:
     - - 7545dbe9.bad7e4
       - 56f59bd0.4be85c
@@ -378,9 +227,9 @@
   to: ''
   reg: false
   x: 710
-  'y': 1570
+  'y': 930
   wires:
-    - - e7387eae.824b38
+    - - e741c0dd196047b8
 - id: e7387eae.824b38
   type: mqtt out
   z: 237573f3.977b64
@@ -395,7 +244,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1230
-  'y': 1560
+  'y': 920
   wires: []
 - id: 28b226fd.f70f5a
   type: inject
@@ -411,7 +260,7 @@
   payload: P01220vDam
   payloadType: str
   x: 720
-  'y': 1530
+  'y': 890
   wires:
     - - 70b16aec.fca994
 - id: 1b5806ce.1cdb99
@@ -430,9 +279,9 @@
   to: ''
   reg: false
   x: 720
-  'y': 1610
+  'y': 970
   wires:
-    - - e7387eae.824b38
+    - - e741c0dd196047b8
 - id: 70b16aec.fca994
   type: change
   z: 237573f3.977b64
@@ -449,7 +298,7 @@
   to: ''
   reg: false
   x: 910
-  'y': 1530
+  'y': 890
   wires:
     - - e7387eae.824b38
 - id: 5ea0d18e.5be0f
@@ -465,7 +314,7 @@
   rh: 0
   inputs: 0
   x: 180
-  'y': 940
+  'y': 480
   wires:
     - - 6335ea75.a87bd4
       - '59774785.92416'
@@ -482,7 +331,7 @@
   statusVal: ''
   statusType: auto
   x: 260
-  'y': 900
+  'y': 440
   wires: []
 - id: 8977a250.22ff2
   type: comment
@@ -490,7 +339,7 @@
   name: Triggers -> Actions
   info: ''
   x: 110
-  'y': 830
+  'y': 370
   wires: []
 - id: '59774785.92416'
   type: switch
@@ -521,13 +370,11 @@
   repair: false
   outputs: 6
   x: 440
-  'y': 990
+  'y': 530
   wires:
     - - 2a74ef94.59aac
-    - - c4ae1b832667595b
-      - fe18c704095d647f
-    - - c4ae1b832667595b
-      - fe18c704095d647f
+    - - 0c53d09c8dbc9543
+    - - 0c53d09c8dbc9543
     - - d9a33c04992fc657
     - []
     - []
@@ -548,7 +395,7 @@
   repair: false
   outputs: 2
   x: 660
-  'y': 900
+  'y': 440
   wires:
     - - 274d1df9.f97ce2
     - - 1888e2d7.750abd
@@ -565,10 +412,9 @@
   rh: 0
   inputs: 0
   x: 200
-  'y': 1460
+  'y': 820
   wires:
     - - 32d78d55003433bf
-      - 1995c31697716418
 - id: 32d78d55003433bf
   type: switch
   z: 237573f3.977b64
@@ -586,32 +432,17 @@
   repair: false
   outputs: 2
   x: 520
-  'y': 1460
+  'y': 820
   wires:
     - - 378cc77d.34fe
     - []
-- id: 1995c31697716418
-  type: debug
-  z: 237573f3.977b64
-  name: ''
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 300
-  'y': 1420
-  wires: []
 - id: 567f5722b1de5166
   type: comment
   z: 237573f3.977b64
   name: Shake the cube to toggle cozy light
   info: ''
   x: 1240
-  'y': 1100
+  'y': 640
   wires: []
 - id: c6bedaf25152623e
   type: change
@@ -629,19 +460,9 @@
   to: ''
   reg: false
   x: 990
-  'y': 1140
+  'y': 730
   wires:
     - - 831f3268.666ba
-- id: d464350ee4482364
-  type: link out
-  z: 237573f3.977b64
-  name: SensorsEventsOut
-  mode: link
-  links:
-    - 133485cb59c0a94a
-  x: 575
-  'y': 690
-  wires: []
 - id: 42c65007ee68f7b0
   type: function
   z: 237573f3.977b64
@@ -679,7 +500,7 @@
   finalize: ''
   libs: []
   x: 970
-  'y': 1050
+  'y': 590
   wires:
     - - a18b7635bb4482ed
 - id: 88336ff6539e9c17
@@ -695,7 +516,7 @@
   rh: 0
   inputs: 0
   x: 160
-  'y': 1000
+  'y': 540
   wires:
     - []
 - id: c4ae1b832667595b
@@ -711,7 +532,7 @@
   statusVal: ''
   statusType: auto
   x: 660
-  'y': 860
+  'y': 480
   wires: []
 - id: a18b7635bb4482ed
   type: debug
@@ -726,22 +547,7 @@
   statusVal: ''
   statusType: auto
   x: 1170
-  'y': 1050
-  wires: []
-- id: 32cca13a6da997d8
-  type: debug
-  z: 237573f3.977b64
-  name: ''
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 680
-  'y': 940
+  'y': 590
   wires: []
 - id: fe18c704095d647f
   type: switch
@@ -757,10 +563,9 @@
   repair: false
   outputs: 1
   x: 670
-  'y': 980
+  'y': 520
   wires:
-    - - 32cca13a6da997d8
-      - 42c65007ee68f7b0
+    - - 42c65007ee68f7b0
 - id: 1888e2d7.750abd
   type: change
   z: 237573f3.977b64
@@ -777,7 +582,7 @@
   to: ''
   reg: false
   x: 970
-  'y': 970
+  'y': 510
   wires:
     - - 1e78a35a02bb00d7
 - id: 274d1df9.f97ce2
@@ -796,7 +601,7 @@
   to: ''
   reg: false
   x: 960
-  'y': 930
+  'y': 470
   wires:
     - - 1e78a35a02bb00d7
 - id: 6ec0d7f989e759a4
@@ -805,7 +610,7 @@
   name: Tap the cube to Open/Close shutters
   info: ''
   x: 1230
-  'y': 910
+  'y': 450
   wires: []
 - id: 4343d80627f170c9
   type: link in
@@ -814,7 +619,7 @@
   links:
     - e7e52fec716f59a2
   x: 135
-  'y': 2230
+  'y': 1560
   wires:
     - - 5ff54aa28a48a69b
 - id: 7b79b431f2370272
@@ -832,7 +637,7 @@
   topic: ''
   payloadType: date
   x: 110
-  'y': 1810
+  'y': 1170
   wires:
     - - 0c25f5688e5a94dd
 - id: 0c25f5688e5a94dd
@@ -851,7 +656,7 @@
   to: ''
   reg: false
   x: 280
-  'y': 1810
+  'y': 1170
   wires:
     - - 202fbe5871e17867
 - id: 821fafeae2bba567
@@ -870,7 +675,7 @@
   to: ''
   reg: false
   x: 290
-  'y': 1850
+  'y': 1210
   wires:
     - - 202fbe5871e17867
 - id: 8198cd909f51e2d6
@@ -888,7 +693,7 @@
   topic: ''
   payloadType: date
   x: 110
-  'y': 1850
+  'y': 1210
   wires:
     - - 821fafeae2bba567
 - id: 65276d7be42044b8
@@ -897,7 +702,7 @@
   name: Triggers -> Actions -> Aquarium
   info: ''
   x: 150
-  'y': 1770
+  'y': 1130
   wires: []
 - id: 12ae2abf0a3b5511
   type: debug
@@ -912,7 +717,7 @@
   statusVal: ''
   statusType: auto
   x: 240
-  'y': 1650
+  'y': 1010
   wires: []
 - id: 0a13a3ed57757141
   type: mqtt in
@@ -927,7 +732,7 @@
   rh: 0
   inputs: 0
   x: 170
-  'y': 1690
+  'y': 1050
   wires:
     - - 12ae2abf0a3b5511
       - d55417cc3f9bf246
@@ -945,7 +750,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1240
-  'y': 1690
+  'y': 1050
   wires: []
 - id: f4efc56732fede78
   type: mqtt out
@@ -961,7 +766,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1240
-  'y': 1200
+  'y': 680
   wires: []
 - id: fbf337296d4e32cb
   type: change
@@ -979,7 +784,7 @@
   to: ''
   reg: false
   x: 990
-  'y': 1200
+  'y': 680
   wires:
     - - f4efc56732fede78
 - id: d9a33c04992fc657
@@ -1011,7 +816,7 @@
   repair: false
   outputs: 6
   x: 670
-  'y': 1050
+  'y': 590
   wires:
     - - 274d1df9.f97ce2
     - []
@@ -1036,7 +841,7 @@
   repair: false
   outputs: 2
   x: 520
-  'y': 1690
+  'y': 1050
   wires:
     - - dd01ed9bfd12e568
     - - fe5c8dff90afd042
@@ -1056,9 +861,9 @@
   to: ''
   reg: false
   x: 710
-  'y': 1670
+  'y': 1030
   wires:
-    - - 8e7e4102525abe18
+    - - aa5bee841bccbe83
 - id: fe5c8dff90afd042
   type: change
   z: 237573f3.977b64
@@ -1075,17 +880,17 @@
   to: ''
   reg: false
   x: 720
-  'y': 1710
+  'y': 1070
   wires:
-    - - 8e7e4102525abe18
+    - - aa5bee841bccbe83
 - id: e084ff66fb81099d
   type: link in
   z: 237573f3.977b64
   name: Cmd-Light-Salon
   links:
     - c81f8f99a238d079
-  x: 805
-  'y': 1170
+  x: 715
+  'y': 710
   wires:
     - - c6bedaf25152623e
       - fbf337296d4e32cb
@@ -1103,7 +908,7 @@
   onceDelay: 0.1
   topic: ''
   x: 100
-  'y': 2060
+  'y': 1390
   wires:
     - - 6125ee9d06132b9e
 - id: bb32a909665cb2a1
@@ -1130,7 +935,7 @@
   finalize: ''
   libs: []
   x: 840
-  'y': 2070
+  'y': 1400
   wires:
     - - fcaa4989aed7cefb
     - - b4ea625be1d52582
@@ -1151,7 +956,7 @@
   allowrate: false
   outputs: 1
   x: 840
-  'y': 2130
+  'y': 1460
   wires:
     - - bb32a909665cb2a1
 - id: 76df2179d1645b64
@@ -1168,7 +973,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 1170
-  'y': 2070
+  'y': 1400
   wires: []
 - id: fbadbc9c65b425ab
   type: inject
@@ -1184,7 +989,7 @@
   onceDelay: 0.1
   topic: ''
   x: 100
-  'y': 2110
+  'y': 1440
   wires:
     - - 6125ee9d06132b9e
 - id: f576c3026a84db30
@@ -1196,7 +1001,7 @@
     - fecb20f01567e4a8
     - a0f1b25d.56ebd8
   x: 135
-  'y': 2010
+  'y': 1340
   wires:
     - - 6125ee9d06132b9e
 - id: 1e78a35a02bb00d7
@@ -1206,8 +1011,8 @@
   mode: link
   links:
     - f576c3026a84db30
-  x: 1155
-  'y': 960
+  x: 1115
+  'y': 490
   wires: []
 - id: ae90c12d0555d3f3
   type: comment
@@ -1215,7 +1020,7 @@
   name: Triggers => Actions -> Shutters
   info: ''
   x: 150
-  'y': 1960
+  'y': 1290
   wires: []
 - id: fcaa4989aed7cefb
   type: function
@@ -1235,7 +1040,7 @@
   finalize: ''
   libs: []
   x: 1020
-  'y': 2070
+  'y': 1400
   wires:
     - - 76df2179d1645b64
 - id: c790a3e82c6d73a9
@@ -1255,7 +1060,7 @@
   onceDelay: 0.1
   topic: ''
   x: 100
-  'y': 2160
+  'y': 1490
   wires:
     - - 6125ee9d06132b9e
 - id: c417e909269f35d0
@@ -1274,7 +1079,7 @@
   to: ''
   reg: false
   x: 600
-  'y': 2060
+  'y': 1390
   wires:
     - - bb32a909665cb2a1
 - id: 1731c4bfa24e14af
@@ -1297,7 +1102,7 @@
   repair: false
   outputs: 3
   x: 440
-  'y': 2100
+  'y': 1430
   wires:
     - - c417e909269f35d0
     - - 77c1b9ba74072a83
@@ -1318,7 +1123,7 @@
   to: ''
   reg: false
   x: 610
-  'y': 2100
+  'y': 1430
   wires:
     - - bb32a909665cb2a1
 - id: 03e32f259d5a2f71
@@ -1332,7 +1137,7 @@
   to: ''
   reg: false
   x: 610
-  'y': 2140
+  'y': 1470
   wires:
     - - bb32a909665cb2a1
 - id: 6125ee9d06132b9e
@@ -1352,7 +1157,7 @@
   to: ''
   reg: false
   x: 270
-  'y': 2100
+  'y': 1430
   wires:
     - - 1731c4bfa24e14af
 - id: 5ff54aa28a48a69b
@@ -1372,7 +1177,7 @@
   to: ''
   reg: false
   x: 270
-  'y': 2230
+  'y': 1560
   wires:
     - - 1731c4bfa24e14af
 - id: 6a40ac79b063b25b
@@ -1389,7 +1194,7 @@
   expiry: ''
   broker: c38452a5.4f84e8
   x: 800
-  'y': 1830
+  'y': 1190
   wires: []
 - id: 202fbe5871e17867
   type: change
@@ -1408,7 +1213,7 @@
   to: ''
   reg: false
   x: 450
-  'y': 1830
+  'y': 1190
   wires:
     - - 625b0b8308561072
 - id: 625b0b8308561072
@@ -1429,14 +1234,14 @@
   finalize: ''
   libs: []
   x: 630
-  'y': 1830
+  'y': 1190
   wires:
     - - 6a40ac79b063b25b
 - id: 19b35f3c24c461f3
   type: debug
   z: 237573f3.977b64
   name: ZigbeeDebug
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -1444,8 +1249,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 640
-  'y': 610
+  x: 360
+  'y': 210
   wires: []
 - id: 74c7927ff4ba8967
   type: function
@@ -1459,8 +1264,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 620
-  'y': 650
+  x: 340
+  'y': 250
   wires:
     - - c84474e1397f451b
 - id: d9be3a912e78e6ae
@@ -1476,8 +1281,8 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1350
-  'y': 690
+  x: 1090
+  'y': 250
   wires: []
 - id: c84474e1397f451b
   type: split
@@ -1489,8 +1294,8 @@
   arraySpltType: len
   stream: false
   addname: topic
-  x: 770
-  'y': 650
+  x: 490
+  'y': 250
   wires:
     - - 0d42917b315ef570
 - id: 742f21995d2933d4
@@ -1507,8 +1312,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 790
-  'y': 730
+  x: 510
+  'y': 290
   wires:
     - - 52700d8efecfd4aa
       - fceb63cff2a35ce6
@@ -1516,7 +1321,7 @@
   type: debug
   z: 237573f3.977b64
   name: ZigbeeDebug
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -1524,8 +1329,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1010
-  'y': 700
+  x: 720
+  'y': 210
   wires: []
 - id: 73543382a5b7bdf9
   type: function
@@ -1556,8 +1361,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1190
-  'y': 740
+  x: 860
+  'y': 250
   wires:
     - - 97d3797852213d2c
       - d9be3a912e78e6ae
@@ -1581,8 +1386,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 780
-  'y': 690
+  x: 340
+  'y': 290
   wires:
     - - 742f21995d2933d4
 - id: fceb63cff2a35ce6
@@ -1599,8 +1404,8 @@
   checkall: 'true'
   repair: false
   outputs: 2
-  x: 980
-  'y': 740
+  x: 690
+  'y': 250
   wires:
     - - 73543382a5b7bdf9
     - - 57c69d69fe19c4b3
@@ -1616,8 +1421,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1010
-  'y': 780
+  x: 880
+  'y': 300
   wires: []
 - id: 97d3797852213d2c
   type: debug
@@ -1631,6 +1436,6 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1370
-  'y': 740
+  x: 1110
+  'y': 210
   wires: []
