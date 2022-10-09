@@ -92,7 +92,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 6,
         "w": 4,
         "x": 0,
         "y": 1
@@ -193,7 +193,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 6,
         "w": 3,
         "x": 4,
         "y": 1
@@ -551,112 +551,6 @@
         "type": "prometheus",
         "uid": "tDwkp27Vz"
       },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "Live",
-              "url": "http://ioteleinfo.local/index.html"
-            }
-          ],
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "color": "orange",
-                  "index": 0,
-                  "text": "Heures Pleines"
-                },
-                "1": {
-                  "color": "green",
-                  "index": 1,
-                  "text": "Heures Creuses"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "bool_yes_no"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 3,
-        "x": 15,
-        "y": 1
-      },
-      "id": 41,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "editorMode": "builder",
-          "exemplar": true,
-          "expr": "sensors_value{type=\"teleinfo-PTEC_HC\"}",
-          "format": "time_series",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Periode",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "tDwkp27Vz"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -751,10 +645,10 @@
         ]
       },
       "gridPos": {
-        "h": 6,
-        "w": 9,
+        "h": 11,
+        "w": 6,
         "x": 15,
-        "y": 6
+        "y": 1
       },
       "id": 40,
       "options": {
@@ -765,7 +659,7 @@
             "mean"
           ],
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
@@ -833,6 +727,371 @@
         }
       ],
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "orange",
+                  "index": 0,
+                  "text": "Heures Pleines"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "Heures Creuses"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bool_yes_no"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 21,
+        "y": 1
+      },
+      "id": 41,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "builder",
+          "exemplar": true,
+          "expr": "sensors_value{type=\"teleinfo-PTEC_HC\"}",
+          "format": "time_series",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Periode",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-Wh-Total"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHC"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Creuses"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHP"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Pleines"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 21,
+        "y": 6
+      },
+      "id": 30,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC|teleinfo-Wh-Total\"} / 1000",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Index (kWh)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "Largest consumers: Car, Hot Water, Heating",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [],
+          "max": 9000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 2000
+              },
+              {
+                "color": "red",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Car Charging"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Water Heater"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l3"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heaters"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 7,
+        "x": 0,
+        "y": 7
+      },
+      "id": 44,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_value{type=~\"zigbee-power_l.*\"}",
+          "instant": true,
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Consumers (W)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "gauge"
     },
     {
       "collapsed": false,
@@ -1450,8 +1709,16 @@
                 "value": null
               },
               {
+                "color": "#EAB839",
+                "value": 500
+              },
+              {
+                "color": "orange",
+                "value": 1000
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 2000
               }
             ]
           },
@@ -1502,7 +1769,7 @@
         "x": 21,
         "y": 13
       },
-      "id": 30,
+      "id": 43,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -1526,7 +1793,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC|teleinfo-Wh-Total\"} / 1000",
+          "expr": "(sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC|teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC|teleinfo-Wh-Total\"} offset $day30)) / 1000",
           "instant": true,
           "interval": "",
           "legendFormat": "{{type}}",
@@ -1534,7 +1801,7 @@
           "refId": "A"
         }
       ],
-      "title": "Index (kWh)",
+      "title": "365 days (kWh)",
       "transformations": [
         {
           "id": "calculateField",
@@ -1619,12 +1886,50 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l3"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heaters"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Water Heater"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Car Charging"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 15,
+        "h": 17,
         "w": 12,
         "x": 0,
         "y": 20
@@ -1657,12 +1962,36 @@
           "exemplar": false,
           "expr": "avg_over_time(sensors_value{type=\"teleinfo-PAPP\"}[5m])",
           "instant": false,
-          "legendFormat": "W",
+          "legendFormat": "Total",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(sensors_value{type=~\"zigbee-power_l.*\",location=\"C01~Garage~PowerMeter\"}[5m])",
+          "hide": false,
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(sensors_value{type=\"power-inst\", location=\"cc-0-Chauffage\"}[1m])",
+          "hide": false,
+          "legendFormat": "CCost-Heaters",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "title": "PAPP W (5min)",
+      "title": "Total (W)",
       "type": "timeseries"
     },
     {
@@ -1725,7 +2054,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 15,
+        "h": 17,
         "w": 12,
         "x": 12,
         "y": 20
@@ -1761,13 +2090,31 @@
           "refId": "A"
         }
       ],
-      "title": "CCost (1min)",
+      "title": "Outlets (W)",
       "transformations": [
         {
           "id": "renameByRegex",
           "options": {
             "regex": "cc-(.*)",
             "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "1-Bureau",
+                "3-Celier~Lavage",
+                "4-Celier-Séchage",
+                "5-Salon~TV",
+                "6-Celier~Frigo",
+                "7-Aquarium",
+                "8-Freebox",
+                "9-Salon-Poêle"
+              ]
+            }
           }
         }
       ],
@@ -1818,7 +2165,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30",
-        "query": "11d",
+        "query": "12d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -1832,6 +2179,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 157,
+  "version": 172,
   "weekStart": ""
 }
