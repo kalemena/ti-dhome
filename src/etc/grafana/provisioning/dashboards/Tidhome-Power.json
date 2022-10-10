@@ -227,7 +227,7 @@
           "refId": "A"
         }
       ],
-      "title": "Heating (W)",
+      "title": "Non-Heating (W)",
       "transformations": [
         {
           "id": "calculateField",
@@ -1036,6 +1036,18 @@
                 "value": "Heaters"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Car+Water+Heating"
+              }
+            ]
           }
         ]
       },
@@ -1067,7 +1079,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_value{type=~\"zigbee-power_l.*\"}",
+          "expr": "sensors_value{type=~\"zigbee-power.*\",location=\"C01~Garage~PowerMeter\"}",
           "instant": true,
           "legendFormat": "{{type}}",
           "range": false,
@@ -1874,6 +1886,7 @@
             }
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1925,6 +1938,18 @@
                 "value": "Car Charging"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Car+Water+Heating"
+              }
+            ]
           }
         ]
       },
@@ -1972,7 +1997,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "avg_over_time(sensors_value{type=~\"zigbee-power_l.*\",location=\"C01~Garage~PowerMeter\"}[5m])",
+          "expr": "avg_over_time(sensors_value{type=~\"zigbee-power.*\",location=\"C01~Garage~PowerMeter\"}[5m])",
           "hide": false,
           "legendFormat": "{{type}}",
           "range": true,
@@ -1991,7 +2016,7 @@
           "refId": "C"
         }
       ],
-      "title": "Total (W)",
+      "title": "Consumers (W)",
       "type": "timeseries"
     },
     {
@@ -2165,7 +2190,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30",
-        "query": "12d",
+        "query": "13d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -2179,6 +2204,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 172,
+  "version": 182,
   "weekStart": ""
 }
