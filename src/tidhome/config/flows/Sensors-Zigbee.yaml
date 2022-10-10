@@ -1302,10 +1302,10 @@
   type: function
   z: 237573f3.977b64
   name: Store Global
-  func: >-
-    global.set("tidhome_zigbee." + msg.sensor_name + "." + msg.topic,
-    msg.payload)
-
+  func: |-
+    var uniqueName = "tidhome_zigbee." + msg.sensor_name + "." + msg.topic
+    msg.unique_name = uniqueName
+    global.set(uniqueName, msg.payload)
     return msg
   outputs: 1
   noerr: 0
@@ -1321,7 +1321,7 @@
   type: debug
   z: 237573f3.977b64
   name: ZigbeeDebug
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
@@ -1413,7 +1413,7 @@
   type: debug
   z: 237573f3.977b64
   name: ZigbeeDebug
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
