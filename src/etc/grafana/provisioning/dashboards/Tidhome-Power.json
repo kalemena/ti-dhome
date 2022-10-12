@@ -1119,7 +1119,7 @@
       },
       "id": 6,
       "panels": [],
-      "title": "Teleinfo",
+      "title": "Energy",
       "type": "row"
     },
     {
@@ -1838,7 +1838,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 25
       },
       "id": 23,
       "panels": [],
@@ -1957,7 +1957,7 @@
         "h": 17,
         "w": 12,
         "x": 0,
-        "y": 20
+        "y": 26
       },
       "id": 29,
       "options": {
@@ -2082,7 +2082,7 @@
         "h": 17,
         "w": 12,
         "x": 12,
-        "y": 20
+        "y": 26
       },
       "id": 25,
       "options": {
@@ -2190,7 +2190,15 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30",
-        "query": "13d",
+        "query": "17d",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "365 Day",
+        "name": "day365",
+        "query": "15d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -2204,6 +2212,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 182,
+  "version": 188,
   "weekStart": ""
 }
