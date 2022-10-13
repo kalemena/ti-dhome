@@ -1937,7 +1937,7 @@
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_value{type=\"zigbee-energy_l1\", location=\"C01~Garage~PowerMeter\"}[1h] offset -1h))[1h:1h])",
           "hide": false,
-          "legendFormat": "Car Charging",
+          "legendFormat": "1-Car Charging",
           "range": true,
           "refId": "A"
         },
@@ -1949,7 +1949,7 @@
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_value{type=\"zigbee-energy_l2\", location=\"C01~Garage~PowerMeter\"}[1h] offset -1h))[1h:1h])",
           "hide": false,
-          "legendFormat": "Water Heater",
+          "legendFormat": "2-Water Heater",
           "range": true,
           "refId": "B"
         },
@@ -1961,7 +1961,7 @@
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_value{type=\"zigbee-energy_l3\", location=\"C01~Garage~PowerMeter\"}[1h] offset -1h))[1h:1h])",
           "hide": false,
-          "legendFormat": "Heaters",
+          "legendFormat": "3-Heaters",
           "range": true,
           "refId": "C"
         }
@@ -2044,7 +2044,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Car Charging"
+                "value": "1-Car Charging"
               }
             ]
           },
@@ -2056,7 +2056,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Water Heater"
+                "value": "2-Water Heater"
               }
             ]
           },
@@ -2068,7 +2068,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Heaters"
+                "value": "3-Heaters"
               }
             ]
           }
@@ -2210,7 +2210,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Heaters"
+                "value": "3-Heaters"
               }
             ]
           },
@@ -2222,7 +2222,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Water Heater"
+                "value": "2-Water Heater"
               }
             ]
           },
@@ -2234,7 +2234,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Car Charging"
+                "value": "1-Car Charging"
               }
             ]
           },
