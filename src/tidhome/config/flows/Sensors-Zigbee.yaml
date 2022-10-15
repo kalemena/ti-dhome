@@ -33,6 +33,14 @@
   'y': 1050
   wires:
     - - 8e7e4102525abe18
+- id: 5c6102c856185de0
+  type: junction
+  z: 237573f3.977b64
+  x: 960
+  'y': 250
+  wires:
+    - - 78c90ae53c32e0c1
+      - 5cb273112e37d0f8
 - id: e40e5bbf.43be98
   type: comment
   z: 237573f3.977b64
@@ -79,7 +87,7 @@
 - id: a99de8fd.3bf05
   type: debug
   z: 237573f3.977b64
-  name: ZigbeeDebug-All
+  name: ZDebug-All
   active: false
   tosidebar: true
   console: false
@@ -88,7 +96,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 400
+  x: 380
   'y': 140
   wires: []
 - id: fde0902d.5c7e88
@@ -607,9 +615,9 @@
 - id: 6ec0d7f989e759a4
   type: comment
   z: 237573f3.977b64
-  name: Tap the cube to Open/Close shutters
+  name: Shake the cube to Open/Close shutters
   info: ''
-  x: 1230
+  x: 1250
   'y': 450
   wires: []
 - id: 4343d80627f170c9
@@ -1240,8 +1248,8 @@
 - id: 19b35f3c24c461f3
   type: debug
   z: 237573f3.977b64
-  name: ZigbeeDebug
-  active: true
+  name: ZDebugEvent
+  active: false
   tosidebar: true
   console: false
   tostatus: false
@@ -1268,22 +1276,6 @@
   'y': 250
   wires:
     - - c84474e1397f451b
-- id: d9be3a912e78e6ae
-  type: mqtt out
-  z: 237573f3.977b64
-  name: sensors
-  topic: sensors
-  qos: ''
-  retain: ''
-  respTopic: ''
-  contentType: ''
-  userProps: ''
-  correl: ''
-  expiry: ''
-  broker: c38452a5.4f84e8
-  x: 1090
-  'y': 250
-  wires: []
 - id: c84474e1397f451b
   type: split
   z: 237573f3.977b64
@@ -1315,23 +1307,7 @@
   x: 510
   'y': 290
   wires:
-    - - 52700d8efecfd4aa
-      - fceb63cff2a35ce6
-- id: 52700d8efecfd4aa
-  type: debug
-  z: 237573f3.977b64
-  name: ZigbeeDebug
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 720
-  'y': 210
-  wires: []
+    - - fceb63cff2a35ce6
 - id: 73543382a5b7bdf9
   type: function
   z: 237573f3.977b64
@@ -1361,11 +1337,10 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 860
+  x: 850
   'y': 250
   wires:
-    - - 97d3797852213d2c
-      - d9be3a912e78e6ae
+    - - 5c6102c856185de0
 - id: 0d42917b315ef570
   type: function
   z: 237573f3.977b64
@@ -1404,15 +1379,16 @@
   checkall: 'true'
   repair: false
   outputs: 2
-  x: 690
-  'y': 250
+  x: 680
+  'y': 290
   wires:
     - - 73543382a5b7bdf9
+      - 5c530aa567a3608b
     - - 57c69d69fe19c4b3
 - id: 57c69d69fe19c4b3
   type: debug
   z: 237573f3.977b64
-  name: ZigbeeDebug
+  name: ZDebug
   active: false
   tosidebar: true
   console: false
@@ -1421,13 +1397,59 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 880
-  'y': 300
+  x: 850
+  'y': 310
   wires: []
-- id: 97d3797852213d2c
+- id: 78c90ae53c32e0c1
+  type: link out
+  z: 237573f3.977b64
+  name: link out 1
+  mode: link
+  links:
+    - e72a9a6d97ae5b4a
+  x: 1025
+  'y': 250
+  wires: []
+- id: 5c530aa567a3608b
+  type: function
+  z: 237573f3.977b64
+  name: Insert X
+  func: >-
+    var fieldName = "zigbee_" + msg.topic
+
+    var fields = { [fieldName] : Number(msg.payload) }
+
+
+    var tags = { "location": msg.sensor_name }
+
+
+    var msgres = {
+        topic: fieldName,
+        payload: {
+            payload: [fields, tags],
+            measurement: "sensors"
+        }
+    }
+
+
+    node.status({ fill: "blue", shape: "dot", text: msg.sensor_name + "/" +
+    msg.topic + ": " + Number(msg.payload) });
+
+
+    return msgres
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 850
+  'y': 200
+  wires:
+    - - 5c6102c856185de0
+- id: 5cb273112e37d0f8
   type: debug
   z: 237573f3.977b64
-  name: ZigbeeDebug
+  name: ZDebug
   active: false
   tosidebar: true
   console: false
@@ -1436,6 +1458,6 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1110
-  'y': 210
+  x: 1070
+  'y': 200
   wires: []
