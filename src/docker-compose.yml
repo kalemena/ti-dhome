@@ -86,6 +86,9 @@ services:
       - 8428:8428
     volumes:
       - victoria-metrics-data:/victoria-metrics-data
+    command:
+      - "--retentionPeriod=3y"
+      # - "--storageDataPath=/storage"
 
   nodered:
     #image: kalemena/node-red:latest

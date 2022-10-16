@@ -2595,7 +2595,7 @@
           "editorMode": "code",
           "expr": "avg_over_time(sensors_value{type=\"power-inst\", location=\"cc-0-Chauffage\"}[1m])",
           "hide": false,
-          "legendFormat": "CCost-Heaters",
+          "legendFormat": "CCost-Non-Heating",
           "range": true,
           "refId": "C"
         }
@@ -2774,7 +2774,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30",
-        "query": "19d",
+        "query": "20d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2782,7 +2782,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "19d",
+        "query": "20d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -2796,6 +2796,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 195,
+  "version": 198,
   "weekStart": ""
 }
