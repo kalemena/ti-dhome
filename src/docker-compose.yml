@@ -60,6 +60,7 @@ services:
 
   victoriametrics:
     image: victoriametrics/victoria-metrics:latest
+    restart: always
     ports:
       - 8428:8428
     volumes:
