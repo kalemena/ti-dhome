@@ -57,7 +57,7 @@
   type: debug
   z: f96b3a53.67de8
   name: CCDebug
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -100,8 +100,8 @@
   qos: ''
   retain: ''
   broker: c38452a5.4f84e8
-  x: 1170
-  'y': 240
+  x: 1160
+  'y': 260
   wires: []
 - id: 99e6cd73.0c8e88
   type: switch
@@ -332,32 +332,12 @@
   wires:
     - - 57c57a10.955624
       - 65932785.3642e
-      - d44841c75e0acc24
-- id: d44841c75e0acc24
-  type: trigger
-  z: f96b3a53.67de8
-  name: Watchdog
-  op1: ''
-  op2: ''
-  op1type: nul
-  op2type: pay
-  duration: '5'
-  extend: true
-  overrideDelay: false
-  units: min
-  reset: ''
-  bytopic: topic
-  topic: topic
-  outputs: 1
-  x: 970
-  'y': 80
-  wires:
-    - - 92124dd055692a09
+      - 92124dd055692a09
 - id: 92124dd055692a09
   type: debug
   z: f96b3a53.67de8
   name: CC W Debug
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
@@ -365,6 +345,6 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1160
+  x: 980
   'y': 80
   wires: []
