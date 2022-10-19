@@ -5,8 +5,8 @@ sensors:
     
     nodes:
     - id: 0
-      location: Chauffage
-      description: Tous les chauffages
+      location: Non-chauffage
+      description: Autres que chauffage
     - id: 1
       location: Bureau
       description: Ordinateurs/écrans
@@ -14,7 +14,7 @@ sensors:
       location: Celier~Lavage
       description: Lave-Linge
     - id: 4
-      location: Celier-Séchage
+      location: Celier~Séchage
       description: Sèche-Linge
     - id: 5
       location: Salon~TV
@@ -29,7 +29,7 @@ sensors:
       location: Freebox
       description: Freebox et Routeur
     - id: 9
-      location: Salon-Poêle
+      location: Salon~Poêle
       description: Poêle
 
       enabled: false
