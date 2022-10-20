@@ -59,7 +59,7 @@
   type: function
   z: d06e385b.de11c8
   name: query insert
-  func: |-
+  func: >-
     var msgres =  {
         payload: {
             payload: [
@@ -69,6 +69,11 @@
             measurement: "sensors"
         }
     }
+
+
+    node.status({ fill: "blue", shape: "dot", text: msg.topic + ": " +
+    Number(msg.payload.value) });
+
 
     return msgres;
   outputs: 1
@@ -132,7 +137,7 @@
   statusVal: ''
   statusType: auto
   x: 930
-  'y': 250
+  'y': 270
   wires: []
 - id: 3d01e9886263c391
   type: function

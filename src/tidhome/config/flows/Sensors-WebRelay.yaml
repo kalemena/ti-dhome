@@ -977,14 +977,20 @@
   type: function
   z: b1782abc.430f38
   name: Insert Wh HC/HP/Total
-  func: |-
+  func: >-
     var teleinfoHC = Number(global.get("tidhome_teleinfo.HCHC"))
+
     var teleinfoHP = Number(global.get("tidhome_teleinfo.HCHP"))
+
     var teleinfoTotal = Number(teleinfoHC) + Number(teleinfoHP)
 
+
     // HCHC
+
     let fieldsHC = { "value": Number(teleinfoHC) }
+
     let tagsHC =   { "type": "teleinfo-HCHC", "location": "main" }
+
 
     var msgHCHC =  {
         topic: "teleinfo-HCHC",
@@ -994,9 +1000,13 @@
         }
     }
 
+
     // HPHP
+
     let fieldsHP = { "value": Number(teleinfoHP) }
+
     let tagsHP =   { "type": "teleinfo-HCHP", "location": "main" }
+
 
     var msgHCHP =  {
         topic: "teleinfo-HCHP",
@@ -1006,9 +1016,13 @@
         }
     }
 
+
     // Total
+
     let fieldsTotal = { "value": Number(teleinfoTotal) }
+
     let tagsTotal =   { "type": "teleinfo-Wh-Total", "location": "main" }
+
 
     var msgTotal =  {
         topic: "teleinfo-Wh-Total",
@@ -1017,6 +1031,11 @@
             measurement: "sensors"
         }
     }
+
+
+    node.status({ fill: "blue", shape: "dot", text: "HP: " + teleinfoHP + " /
+    HC: " + teleinfoHC });
+
 
     return [
         msgHCHC,
@@ -1029,7 +1048,7 @@
   finalize: ''
   libs: []
   x: 1120
-  'y': 690
+  'y': 680
   wires:
     - - 0edaade20969311b
     - - 0edaade20969311b
@@ -1047,7 +1066,7 @@
   finalize: ''
   libs: []
   x: 1070
-  'y': 780
+  'y': 740
   wires:
     - - 37aa0a253b8b6972
 - id: 37aa0a253b8b6972
@@ -1094,6 +1113,7 @@
 
     // convert to numeric if possible
     if (isNumeric(msg.payload)) {
+        node.status({ fill: "blue", shape: "dot", text: msg.topic + ": " + Number(msg.payload) });
         return { topic: msg.topic, payload: Number(msg.payload) }
     }
   outputs: 1

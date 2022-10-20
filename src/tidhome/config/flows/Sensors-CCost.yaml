@@ -57,7 +57,7 @@
   type: debug
   z: f96b3a53.67de8
   name: CCDebug
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
@@ -88,6 +88,7 @@
   noerr: 0
   initialize: ''
   finalize: ''
+  libs: []
   x: 1000
   'y': 240
   wires:
