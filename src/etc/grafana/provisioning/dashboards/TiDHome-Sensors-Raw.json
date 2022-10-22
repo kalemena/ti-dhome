@@ -29,179 +29,409 @@
   "liveNow": false,
   "panels": [
     {
-      "collapsed": false,
       "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
       },
       "gridPos": {
-        "h": 1,
-        "w": 24,
+        "h": 17,
+        "w": 5,
         "x": 0,
         "y": 0
       },
-      "id": 17,
-      "panels": [],
-      "repeat": "type",
+      "id": 21,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 8,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.1.5",
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
           },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_battery[1h]",
+          "hide": false,
+          "legendFormat": "{{location}}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Now $type",
-      "type": "row"
+      "title": "Batteries (%)",
+      "type": "bargauge"
     },
     {
-      "colors": [
-        "#299c46",
-        "#ED8128",
-        "#d44a3a",
-        "#4040a0"
-      ],
       "datasource": {
-        "type": "influxdb",
-        "uid": "P9CF86E8970E5E639"
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
       },
-      "description": "",
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 1
-      },
-      "id": 13,
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 5000,
-      "nullPointMode": "connected",
-      "polystat": {
-        "animationSpeed": 2500,
-        "columnAutoSize": true,
-        "columns": "",
-        "defaultClickThrough": "",
-        "defaultClickThroughNewTab": false,
-        "defaultClickThroughSanitize": false,
-        "displayLimit": 100,
-        "ellipseCharacters": 18,
-        "ellipseEnabled": false,
-        "fontAutoColor": true,
-        "fontAutoScale": true,
-        "fontSize": 12,
-        "fontType": "Roboto",
-        "globalDecimals": 2,
-        "globalDisplayMode": "all",
-        "globalDisplayTextTriggeredEmpty": "OK",
-        "globalOperatorName": "avg",
-        "globalUnitFormat": "short",
-        "gradientEnabled": true,
-        "hexagonSortByDirection": 1,
-        "hexagonSortByField": "name",
-        "maxMetrics": 0,
-        "polygonBorderColor": "#000000",
-        "polygonBorderSize": 2,
-        "polygonGlobalFillColor": "#0a55a1",
-        "radius": "",
-        "radiusAutoSize": true,
-        "regexPattern": "",
-        "rowAutoSize": true,
-        "rows": "",
-        "shape": "hexagon_pointed_top",
-        "tooltipDisplayMode": "all",
-        "tooltipDisplayTextTriggeredEmpty": "OK",
-        "tooltipEnabled": true,
-        "tooltipFontSize": 12,
-        "tooltipFontType": "Roboto",
-        "tooltipPrimarySortDirection": 2,
-        "tooltipPrimarySortField": "thresholdLevel",
-        "tooltipSecondarySortDirection": 2,
-        "tooltipSecondarySortField": "value",
-        "tooltipTimestampEnabled": true,
-        "valueEnabled": true
-      },
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "savedComposites": [],
-      "savedOverrides": [],
-      "targets": [
-        {
-          "alias": "$tag_location",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P9CF86E8970E5E639"
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
           },
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            }
-          ],
-          "hide": false,
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(value) FROM \"sensors\" WHERE (\"type\" =~ /^$type$/ AND \"location\" =~ /.*TH.*/) AND $timeFilter GROUP BY \"location\",time(1h)",
-          "queryType": "randomWalk",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
               {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
+                "color": "red",
+                "value": null
               },
               {
-                "params": [],
-                "type": "mean"
+                "color": "green",
+                "value": 20
               }
             ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 5,
+        "x": 5,
+        "y": 0
+      },
+      "id": 23,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
           ],
-          "tags": [
-            {
-              "key": "type",
-              "operator": "=",
-              "value": "temperature"
-            },
-            {
-              "condition": "AND",
-              "key": "location",
-              "operator": "=~",
-              "value": "/^$location$/"
-            }
-          ]
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "(sensors_zigbee_linkquality / 2.55) < 100",
+          "hide": false,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "A"
         }
       ],
-      "title": "Temperature",
-      "type": "grafana-polystat-panel",
-      "valueMaps": [
+      "title": "Link Quality (%)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 3,
+        "x": 10,
+        "y": 0
+      },
+      "id": 24,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 8,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
         {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_temperature{ location =~ \"S.*\" }",
+          "hide": false,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "A"
         }
-      ]
+      ],
+      "title": "Temperature (°C)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 4,
+        "x": 13,
+        "y": 0
+      },
+      "id": 25,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 8,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_humidity{ location =~ \"S.*\" }",
+          "hide": false,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Humidity (%H)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "pressurehpa"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 4,
+        "x": 17,
+        "y": 0
+      },
+      "id": 26,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 8,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_pressure",
+          "hide": false,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Pressure (%H)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "lux"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "id": 22,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 8,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_illuminance_lux",
+          "hide": false,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Luminosity (Lux)",
+      "type": "bargauge"
     },
     {
       "collapsed": false,
@@ -213,7 +443,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 17
       },
       "id": 11,
       "panels": [],
@@ -292,7 +522,7 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 18
       },
       "id": 18,
       "options": {
@@ -320,7 +550,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "sensors_value{type=\"temperature\"}",
+          "expr": "sensors_zigbee_temperature",
           "interval": "",
           "legendFormat": "{{location}}",
           "range": true,
@@ -432,7 +662,7 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 18
       },
       "id": 19,
       "options": {
@@ -459,8 +689,8 @@
             "type": "prometheus",
             "uid": "tDwkp27Vz"
           },
-          "editorMode": "builder",
-          "expr": "sensors_value{type=\"humidity\"}",
+          "editorMode": "code",
+          "expr": "sensors_zigbee_humidity",
           "interval": "",
           "legendFormat": "{{location}}",
           "range": true,
@@ -518,7 +748,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "temperature"
           ],
@@ -577,13 +807,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "TiDHome-Sensors-Raw",
   "uid": "mZjQcZUGz",
-  "version": 23,
+  "version": 28,
   "weekStart": ""
 }
