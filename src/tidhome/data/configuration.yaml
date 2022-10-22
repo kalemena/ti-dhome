@@ -1,0 +1,18 @@
+homeassistant: false
+availability:
+  active:
+    timeout: 10
+  passive:
+    timeout: 120
+
+permit_join: false
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mqtt:1883
+serial:
+  port: /dev/ttyACM0
+  adapter: deconz
+frontend:
+  port: 8181
+advanced:
+  log_level: debug
