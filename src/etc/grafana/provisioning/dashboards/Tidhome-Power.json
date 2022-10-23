@@ -570,6 +570,47 @@
           "hide": false,
           "refId": "30 days",
           "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(((sensors_value{type=~\"teleinfo-HCHC\"} - (sensors_value{type=~\"teleinfo-HCHC\"} offset $day365)) / 1000) * $kWhHC)",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HC €",
+          "range": false,
+          "refId": "THC365"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(((sensors_value{type=~\"teleinfo-HCHP\"} - (sensors_value{type=~\"teleinfo-HCHP\"} offset $day365)) / 1000) * $kWhHP)",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HP €",
+          "range": false,
+          "refId": "THP365"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$THC365 + $THP365",
+          "hide": false,
+          "refId": "x days",
+          "type": "math"
         }
       ],
       "title": "Cost HCHP (€)",
@@ -679,9 +720,24 @@
           "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": "$day30 days",
+          "legendFormat": "30 days",
           "range": false,
           "refId": "THBase30"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(((sensors_value{type=~\"teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-Wh-Total\"} offset $day365)) / 1000) * $kWhBase)",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "$day365 days",
+          "range": false,
+          "refId": "THBase365"
         }
       ],
       "title": "Cost if Base (€)",
@@ -1251,7 +1307,7 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 4,
+        "w": 3,
         "x": 0,
         "y": 14
       },
@@ -1377,8 +1433,8 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 4,
-        "x": 4,
+        "w": 3,
+        "x": 3,
         "y": 14
       },
       "id": 32,
@@ -1502,8 +1558,8 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 4,
-        "x": 8,
+        "w": 3,
+        "x": 6,
         "y": 14
       },
       "id": 35,
@@ -1547,7 +1603,133 @@
           "refId": "A"
         }
       ],
-      "title": "$day30 days (kWh)",
+      "title": "30 days (kWh)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "kwatth"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-Wh-Total"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHC"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Creuses"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHP"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Pleines"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 3,
+        "x": 9,
+        "y": 14
+      },
+      "id": 66,
+      "options": {
+        "displayLabels": [
+          "percent",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC\"} - (sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC\"} offset $day365)) / 1000",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "$day365 days (kWh)",
       "transformations": [
         {
           "id": "calculateField",
@@ -1627,7 +1809,7 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 4,
+        "w": 3,
         "x": 12,
         "y": 14
       },
@@ -1787,8 +1969,8 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 4,
-        "x": 16,
+        "w": 3,
+        "x": 15,
         "y": 14
       },
       "id": 50,
@@ -1948,11 +2130,172 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 4,
-        "x": 20,
+        "w": 3,
+        "x": 18,
         "y": 14
       },
       "id": 54,
+      "options": {
+        "displayLabels": [
+          "percent",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": []
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=~\"zigbee-energy_l.*\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l.*\", location=\"C01~Garage~PowerMeter\"} offset $day30z))",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "((sensors_value{type=~\"teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-Wh-Total\"} offset $day30)) / 1000)",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "Day30Total"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} offset $day30z))",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "Day30Consumers"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$Day30Total - $Day30Consumers",
+          "hide": false,
+          "refId": "Rest",
+          "type": "math"
+        }
+      ],
+      "title": "$day30z days (kWh)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "kwatth"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-energy_l1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "1-Car Charging"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-energy_l2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "2-Water Heater"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-energy_l3"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "3-Heaters"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 3,
+        "x": 21,
+        "y": 14
+      },
+      "id": 68,
       "options": {
         "displayLabels": [
           "percent",
@@ -2077,7 +2420,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
+        "w": 3,
         "x": 0,
         "y": 24
       },
@@ -2166,8 +2509,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
-        "x": 4,
+        "w": 3,
+        "x": 3,
         "y": 24
       },
       "id": 58,
@@ -2256,8 +2599,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
-        "x": 8,
+        "w": 3,
+        "x": 6,
         "y": 24
       },
       "id": 59,
@@ -2312,7 +2655,97 @@
           "type": "math"
         }
       ],
-      "title": "Cost $day30  days (€)",
+      "title": "Cost 30 days (€)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyEUR"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 9,
+        "y": 24
+      },
+      "id": 67,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day365)) / 1000) * $kWhHC)",
+          "legendFormat": "HC",
+          "range": true,
+          "refId": "cHC"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day365)) / 1000) * $kWhHP)",
+          "hide": false,
+          "legendFormat": "HP",
+          "range": true,
+          "refId": "cHP"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$cHC + $cHP",
+          "hide": false,
+          "refId": "Total",
+          "type": "math"
+        }
+      ],
+      "title": "Cost $day365 days (€)",
       "type": "stat"
     },
     {
@@ -2403,7 +2836,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
+        "w": 3,
         "x": 12,
         "y": 24
       },
@@ -2561,8 +2994,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
-        "x": 16,
+        "w": 3,
+        "x": 15,
         "y": 24
       },
       "id": 63,
@@ -2720,11 +3153,170 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
-        "x": 20,
+        "w": 3,
+        "x": 18,
         "y": 24
       },
       "id": 65,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day30z)) * 0.155",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "All"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day30z)) * $kWhHC",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "1-2"
+        }
+      ],
+      "title": "$day30z days (~ €)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 500
+              },
+              {
+                "color": "orange",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "currencyEUR"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-energy"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Car+Water+Heating"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-energy_l1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "1-Car Charging"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-energy_l2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "2-Water Heater"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-energy_l3"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "3-Heaters"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 21,
+        "y": 24
+      },
+      "id": 69,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -2906,7 +3498,7 @@
             "h": 6,
             "w": 15,
             "x": 0,
-            "y": 15
+            "y": 19
           },
           "id": 39,
           "options": {
@@ -3112,7 +3704,7 @@
             "h": 12,
             "w": 9,
             "x": 15,
-            "y": 15
+            "y": 19
           },
           "id": 40,
           "options": {
@@ -3257,7 +3849,7 @@
             "h": 6,
             "w": 15,
             "x": 0,
-            "y": 21
+            "y": 25
           },
           "id": 45,
           "options": {
@@ -3475,7 +4067,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 32
+            "y": 20
           },
           "id": 29,
           "options": {
@@ -3579,7 +4171,6 @@
                 }
               },
               "mappings": [],
-              "max": 2000,
               "noValue": "0",
               "thresholds": {
                 "mode": "absolute",
@@ -3601,7 +4192,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 32
+            "y": 20
           },
           "id": 25,
           "options": {
@@ -3704,7 +4295,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30",
-        "query": "27d",
+        "query": "30d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3712,7 +4303,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "27d",
+        "query": "32d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3720,7 +4311,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30z",
-        "query": "13d",
+        "query": "18d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -3734,6 +4325,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 237,
+  "version": 243,
   "weekStart": ""
 }
