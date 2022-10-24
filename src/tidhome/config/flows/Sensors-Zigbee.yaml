@@ -1298,6 +1298,7 @@
     var uniqueName = "tidhome_zigbee." + msg.sensor_name + "." + msg.topic
     msg.unique_name = uniqueName
     global.set(uniqueName, msg.payload)
+    global.set("tidhome_zigbee." + msg.sensor_name + ".ts", Date.now())
     return msg
   outputs: 1
   noerr: 0
@@ -1308,10 +1309,11 @@
   'y': 290
   wires:
     - - fceb63cff2a35ce6
+      - a7356557b8298259
 - id: 73543382a5b7bdf9
   type: function
   z: 237573f3.977b64
-  name: Insert X
+  name: sensors_value
   func: >-
     let fields = { "value": Number(msg.payload) }
 
@@ -1413,7 +1415,7 @@
 - id: 5c530aa567a3608b
   type: function
   z: 237573f3.977b64
-  name: Insert X
+  name: sensors_zigbee_X
   func: >-
     var fieldName = "zigbee_" + msg.topic
 
