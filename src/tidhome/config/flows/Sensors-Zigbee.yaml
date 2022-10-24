@@ -36,7 +36,7 @@
 - id: 5c6102c856185de0
   type: junction
   z: 237573f3.977b64
-  x: 960
+  x: 1010
   'y': 250
   wires:
     - - 78c90ae53c32e0c1
@@ -980,7 +980,7 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1170
+  x: 1180
   'y': 1400
   wires: []
 - id: fbadbc9c65b425ab
@@ -1074,19 +1074,19 @@
 - id: c417e909269f35d0
   type: change
   z: 237573f3.977b64
-  name: 0=OPEN
+  name: 100=OPEN
   rules:
     - t: set
       p: position
       pt: msg
-      to: '0'
+      to: '100'
       tot: str
   action: ''
   property: ''
   from: ''
   to: ''
   reg: false
-  x: 600
+  x: 610
   'y': 1390
   wires:
     - - bb32a909665cb2a1
@@ -1118,19 +1118,19 @@
 - id: 77c1b9ba74072a83
   type: change
   z: 237573f3.977b64
-  name: 100=CLOSE
+  name: 0=CLOSE
   rules:
     - t: set
       p: position
       pt: msg
-      to: '100'
+      to: '0'
       tot: str
   action: ''
   property: ''
   from: ''
   to: ''
   reg: false
-  x: 610
+  x: 600
   'y': 1430
   wires:
     - - bb32a909665cb2a1
@@ -1337,7 +1337,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 850
+  x: 870
   'y': 250
   wires:
     - - 5c6102c856185de0
@@ -1407,7 +1407,7 @@
   mode: link
   links:
     - e72a9a6d97ae5b4a
-  x: 1025
+  x: 1075
   'y': 250
   wires: []
 - id: 5c530aa567a3608b
@@ -1442,7 +1442,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 850
+  x: 880
   'y': 200
   wires:
     - - 5c6102c856185de0
@@ -1458,6 +1458,6 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1070
+  x: 1120
   'y': 200
   wires: []
