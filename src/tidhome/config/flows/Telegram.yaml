@@ -189,7 +189,7 @@
   removeregexcommand: false
   outputs: 1
   x: 90
-  'y': 560
+  'y': 590
   wires:
     - - 6e059c3f.301864
 - id: 8d0d171f.e98ce
@@ -292,26 +292,7 @@
 - id: 6f1b9a71afbd13ec
   type: change
   z: f6aef2f1.dd52e8
-  name: up = 0
-  rules:
-    - t: set
-      p: position
-      pt: msg
-      to: '0'
-      tot: num
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 420
-  'y': 580
-  wires:
-    - - 6e5fe766309ce370
-- id: 8608c6bea9d4521a
-  type: change
-  z: f6aef2f1.dd52e8
-  name: down = 100
+  name: up = 100
   rules:
     - t: set
       p: position
@@ -323,7 +304,26 @@
   from: ''
   to: ''
   reg: false
-  x: 440
+  x: 430
+  'y': 580
+  wires:
+    - - 6e5fe766309ce370
+- id: 8608c6bea9d4521a
+  type: change
+  z: f6aef2f1.dd52e8
+  name: down = 0
+  rules:
+    - t: set
+      p: position
+      pt: msg
+      to: '0'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 430
   'y': 620
   wires:
     - - 6e5fe766309ce370
