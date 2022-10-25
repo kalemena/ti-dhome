@@ -1463,3 +1463,38 @@
   x: 1120
   'y': 200
   wires: []
+- id: a7356557b8298259
+  type: switch
+  z: 237573f3.977b64
+  name: ''
+  property: sensor_name
+  propertyType: msg
+  rules:
+    - t: regex
+      v: ^S.*
+      vt: str
+      case: false
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 680
+  'y': 340
+  wires:
+    - - b8ba0185a07f3b41
+    - []
+- id: b8ba0185a07f3b41
+  type: debug
+  z: 237573f3.977b64
+  name: ZDebug
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 850
+  'y': 350
+  wires: []
