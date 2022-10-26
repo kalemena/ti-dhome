@@ -3498,7 +3498,7 @@
             "h": 6,
             "w": 15,
             "x": 0,
-            "y": 19
+            "y": 15
           },
           "id": 39,
           "options": {
@@ -3704,7 +3704,7 @@
             "h": 12,
             "w": 9,
             "x": 15,
-            "y": 19
+            "y": 15
           },
           "id": 40,
           "options": {
@@ -3849,7 +3849,7 @@
             "h": 6,
             "w": 15,
             "x": 0,
-            "y": 25
+            "y": 21
           },
           "id": 45,
           "options": {
@@ -4067,7 +4067,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 20
+            "y": 28
           },
           "id": 29,
           "options": {
@@ -4192,7 +4192,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 20
+            "y": 28
           },
           "id": 25,
           "options": {
@@ -4303,7 +4303,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "32d",
+        "query": "33d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -4311,7 +4311,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30z",
-        "query": "18d",
+        "query": "20d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4325,6 +4325,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 243,
+  "version": 247,
   "weekStart": ""
 }
