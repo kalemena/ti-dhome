@@ -85,7 +85,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "sensors_zigbee_battery[1h]",
+          "expr": "sort_by_label(sensors_zigbee_battery[1h],\"location\")",
           "hide": false,
           "legendFormat": "{{location}}",
           "range": true,
@@ -152,7 +152,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "(sensors_zigbee_linkquality / 2.55) < 100",
+          "expr": "sort_by_label((sensors_zigbee_linkquality / 2.55) < 100, \"location\")",
           "hide": false,
           "legendFormat": "{{location}}",
           "range": true,
@@ -220,10 +220,12 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "sensors_zigbee_temperature{ location =~ \"S.*\" }",
+          "exemplar": false,
+          "expr": "sort_by_label(sensors_zigbee_temperature{ location =~ \"S.*\" }[2h], \"location\")",
           "hide": false,
+          "instant": true,
           "legendFormat": "{{location}}",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -288,7 +290,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "sensors_zigbee_humidity{ location =~ \"S.*\" }",
+          "expr": "sort_by_label(sensors_zigbee_humidity{ location =~ \"S.*\" },\"location\")",
           "hide": false,
           "legendFormat": "{{location}}",
           "range": true,
@@ -356,7 +358,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "sensors_zigbee_pressure",
+          "expr": "sort_by_label(sensors_zigbee_pressure,\"location\")",
           "hide": false,
           "legendFormat": "{{location}}",
           "range": true,
@@ -423,7 +425,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "sensors_zigbee_illuminance_lux",
+          "expr": "sort_by_label(sensors_zigbee_illuminance_lux,\"location\")",
           "hide": false,
           "legendFormat": "{{location}}",
           "range": true,
@@ -814,6 +816,6 @@
   "timezone": "",
   "title": "TiDHome-Sensors-Raw",
   "uid": "mZjQcZUGz",
-  "version": 28,
+  "version": 33,
   "weekStart": ""
 }
