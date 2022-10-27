@@ -445,7 +445,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 2
       },
       "id": 11,
       "panels": [],
@@ -524,7 +524,7 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 3
       },
       "id": 18,
       "options": {
@@ -664,7 +664,7 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 3
       },
       "id": 19,
       "options": {
@@ -778,44 +778,17 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "cc-0-Chauffage",
-          "value": "cc-0-Chauffage"
-        },
-        "datasource": {
-          "type": "influxdb",
-          "uid": "P9CF86E8970E5E639"
-        },
-        "definition": "SHOW TAG VALUES WITH KEY = \"location\"",
-        "hide": 0,
-        "includeAll": false,
-        "label": "",
-        "multi": true,
-        "name": "location",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"location\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
       }
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "TiDHome-Sensors-Raw",
   "uid": "mZjQcZUGz",
-  "version": 33,
+  "version": 41,
   "weekStart": ""
 }
