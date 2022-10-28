@@ -29,411 +29,510 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "tDwkp27Vz"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 20
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 17,
-        "w": 5,
+        "h": 1,
+        "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 21,
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 8,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
+      "id": 31,
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "tDwkp27Vz"
           },
-          "editorMode": "code",
-          "expr": "sort_by_label(sensors_zigbee_battery[1h],\"location\")",
-          "hide": false,
-          "legendFormat": "{{location}}",
-          "range": true,
-          "refId": "A"
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 20
+                  }
+                ]
+              },
+              "unit": "celsius"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 19,
+            "w": 4,
+            "x": 0,
+            "y": 1
+          },
+          "id": 24,
+          "options": {
+            "displayMode": "gradient",
+            "minVizHeight": 8,
+            "minVizWidth": 0,
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sort_by_label(sensors_zigbee_temperature{ location =~ \"S.*\" }[2h], \"location\")",
+              "hide": false,
+              "instant": true,
+              "legendFormat": "{{location}}",
+              "range": false,
+              "refId": "A"
+            }
+          ],
+          "title": "Temperature (°C)",
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 20
+                  }
+                ]
+              },
+              "unit": "humidity"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 19,
+            "w": 4,
+            "x": 4,
+            "y": 1
+          },
+          "id": 25,
+          "options": {
+            "displayMode": "gradient",
+            "minVizHeight": 8,
+            "minVizWidth": 0,
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "sort_by_label(sensors_zigbee_humidity{ location =~ \"S.*\" }[2h],\"location\")",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Humidity (%H)",
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 20
+                  }
+                ]
+              },
+              "unit": "pressurehpa"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 19,
+            "w": 4,
+            "x": 8,
+            "y": 1
+          },
+          "id": 26,
+          "options": {
+            "displayMode": "gradient",
+            "minVizHeight": 8,
+            "minVizWidth": 0,
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "sort_by_label(sensors_zigbee_pressure{ location =~ \"S.*\" }[2h],\"location\")",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Pressure (%H)",
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 20
+                  }
+                ]
+              },
+              "unit": "lux"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 19,
+            "w": 4,
+            "x": 12,
+            "y": 1
+          },
+          "id": 22,
+          "options": {
+            "displayMode": "gradient",
+            "minVizHeight": 8,
+            "minVizWidth": 0,
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "sort_by_label(sensors_zigbee_illuminance_lux{ location =~ \"[SM].*\" }[2h],\"location\")",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Luminosity (Lux)",
+          "type": "bargauge"
         }
       ],
-      "title": "Batteries (%)",
-      "type": "bargauge"
+      "title": "Values Now",
+      "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "tDwkp27Vz"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 20
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 17,
-        "w": 5,
-        "x": 5,
-        "y": 0
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
       },
-      "id": 23,
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
+      "id": 29,
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "tDwkp27Vz"
           },
-          "editorMode": "code",
-          "expr": "sort_by_label((sensors_zigbee_linkquality / 2.55) < 100, \"location\")",
-          "hide": false,
-          "legendFormat": "{{location}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Link Quality (%)",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "tDwkp27Vz"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
               },
-              {
-                "color": "green",
-                "value": 20
-              }
-            ]
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 20
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
           },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 17,
-        "w": 3,
-        "x": 10,
-        "y": 0
-      },
-      "id": 24,
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 8,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
+          "gridPos": {
+            "h": 25,
+            "w": 8,
+            "x": 0,
+            "y": 2
+          },
+          "id": 21,
+          "options": {
+            "displayMode": "gradient",
+            "minVizHeight": 8,
+            "minVizWidth": 0,
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true,
+            "text": {
+              "valueSize": 1
+            }
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "sort_by_label(sensors_zigbee_battery[24h],\"location\")",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "A"
+            }
           ],
-          "fields": "",
-          "values": false
+          "title": "Batteries (%)",
+          "type": "bargauge"
         },
-        "showUnfilled": true
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "tDwkp27Vz"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sort_by_label(sensors_zigbee_temperature{ location =~ \"S.*\" }[2h], \"location\")",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Temperature (°C)",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "tDwkp27Vz"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
               },
-              {
-                "color": "green",
-                "value": 20
-              }
-            ]
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 20
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
           },
-          "unit": "humidity"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 17,
-        "w": 4,
-        "x": 13,
-        "y": 0
-      },
-      "id": 25,
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 8,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
+          "gridPos": {
+            "h": 25,
+            "w": 6,
+            "x": 8,
+            "y": 2
+          },
+          "id": 27,
+          "options": {
+            "displayMode": "gradient",
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "sort_by_label((time() - timestamp(sensors_zigbee_linkquality)) > (60*60), \"location\")",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "B"
+            }
           ],
-          "fields": "",
-          "values": false
+          "title": "Time Since",
+          "type": "bargauge"
         },
-        "showUnfilled": true
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "tDwkp27Vz"
           },
-          "editorMode": "code",
-          "expr": "sort_by_label(sensors_zigbee_humidity{ location =~ \"S.*\" },\"location\")",
-          "hide": false,
-          "legendFormat": "{{location}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Humidity (%H)",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "tDwkp27Vz"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
               },
-              {
-                "color": "green",
-                "value": 20
-              }
-            ]
-          },
-          "unit": "pressurehpa"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 17,
-        "w": 4,
-        "x": 17,
-        "y": 0
-      },
-      "id": 26,
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 8,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "editorMode": "code",
-          "expr": "sort_by_label(sensors_zigbee_pressure,\"location\")",
-          "hide": false,
-          "legendFormat": "{{location}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Pressure (%H)",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "tDwkp27Vz"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 20
+                  }
+                ]
               },
-              {
-                "color": "green",
-                "value": 20
-              }
-            ]
+              "unit": "percent"
+            },
+            "overrides": []
           },
-          "unit": "lux"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 3,
-        "x": 21,
-        "y": 0
-      },
-      "id": 22,
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 8,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
+          "gridPos": {
+            "h": 25,
+            "w": 7,
+            "x": 14,
+            "y": 2
+          },
+          "id": 23,
+          "options": {
+            "displayMode": "gradient",
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "sort_by_label((sensors_zigbee_linkquality[24h] / 2.55) < 100, \"location\")",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "A"
+            }
           ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "editorMode": "code",
-          "expr": "sort_by_label(sensors_zigbee_illuminance_lux,\"location\")",
-          "hide": false,
-          "legendFormat": "{{location}}",
-          "range": true,
-          "refId": "A"
+          "title": "Link Quality (%)",
+          "type": "bargauge"
         }
       ],
-      "title": "Luminosity (Lux)",
-      "type": "bargauge"
+      "title": "Maintenance",
+      "type": "row"
     },
     {
       "collapsed": false,
