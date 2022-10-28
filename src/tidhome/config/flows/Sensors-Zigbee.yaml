@@ -15,7 +15,7 @@
   type: junction
   z: 237573f3.977b64
   x: 560
-  'y': 520
+  'y': 480
   wires:
     - - fe18c704095d647f
       - c4ae1b832667595b
@@ -26,13 +26,6 @@
   'y': 950
   wires:
     - - e7387eae.824b38
-- id: aa5bee841bccbe83
-  type: junction
-  z: 237573f3.977b64
-  x: 860
-  'y': 1050
-  wires:
-    - - 8e7e4102525abe18
 - id: 5c6102c856185de0
   type: junction
   z: 237573f3.977b64
@@ -41,6 +34,20 @@
   wires:
     - - 78c90ae53c32e0c1
       - 5cb273112e37d0f8
+- id: 7f3cf2681e6ff375
+  type: junction
+  z: 237573f3.977b64
+  x: 880
+  'y': 440
+  wires:
+    - - 274d1df9.f97ce2
+- id: 86cbb5a82f8c295f
+  type: junction
+  z: 237573f3.977b64
+  x: 880
+  'y': 480
+  wires:
+    - - 1888e2d7.750abd
 - id: e40e5bbf.43be98
   type: comment
   z: 237573f3.977b64
@@ -163,7 +170,7 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1250
+  x: 1300
   'y': 730
   wires: []
 - id: 7545dbe9.bad7e4
@@ -329,7 +336,7 @@
 - id: 6335ea75.a87bd4
   type: debug
   z: 237573f3.977b64
-  name: ''
+  name: ZDebugR06
   active: false
   tosidebar: true
   console: false
@@ -338,7 +345,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 260
+  x: 240
   'y': 440
   wires: []
 - id: 8977a250.22ff2
@@ -352,7 +359,7 @@
 - id: '59774785.92416'
   type: switch
   z: 237573f3.977b64
-  name: Action?
+  name: Cube action?
   property: payload.action
   propertyType: msg
   rules:
@@ -377,8 +384,8 @@
   checkall: 'true'
   repair: false
   outputs: 6
-  x: 440
-  'y': 530
+  x: 430
+  'y': 480
   wires:
     - - 2a74ef94.59aac
     - - 0c53d09c8dbc9543
@@ -389,7 +396,7 @@
 - id: 2a74ef94.59aac
   type: switch
   z: 237573f3.977b64
-  name: Side?
+  name: Tap Side?
   property: payload.side
   propertyType: msg
   rules:
@@ -402,11 +409,11 @@
   checkall: 'true'
   repair: false
   outputs: 2
-  x: 660
+  x: 670
   'y': 440
   wires:
-    - - 274d1df9.f97ce2
-    - - 1888e2d7.750abd
+    - - 7f3cf2681e6ff375
+    - - 86cbb5a82f8c295f
 - id: 2f285578099ecddd
   type: mqtt in
   z: 237573f3.977b64
@@ -449,7 +456,7 @@
   z: 237573f3.977b64
   name: Shake the cube to toggle cozy light
   info: ''
-  x: 1240
+  x: 1290
   'y': 640
   wires: []
 - id: c6bedaf25152623e
@@ -467,7 +474,7 @@
   from: ''
   to: ''
   reg: false
-  x: 990
+  x: 1040
   'y': 730
   wires:
     - - 831f3268.666ba
@@ -507,30 +514,14 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 970
+  x: 1020
   'y': 590
   wires:
     - - a18b7635bb4482ed
-- id: 88336ff6539e9c17
-  type: mqtt in
-  z: 237573f3.977b64
-  name: ''
-  topic: zigbee2mqtt/R08~tbd~tbd
-  qos: '2'
-  datatype: json
-  broker: c38452a5.4f84e8
-  nl: false
-  rap: true
-  rh: 0
-  inputs: 0
-  x: 160
-  'y': 540
-  wires:
-    - []
 - id: c4ae1b832667595b
   type: debug
   z: 237573f3.977b64
-  name: ''
+  name: ZDebugR06Rotate
   active: false
   tosidebar: true
   console: false
@@ -539,7 +530,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 660
+  x: 700
   'y': 480
   wires: []
 - id: a18b7635bb4482ed
@@ -554,13 +545,13 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1170
+  x: 1220
   'y': 590
   wires: []
 - id: fe18c704095d647f
   type: switch
   z: 237573f3.977b64
-  name: Action?
+  name: Rotate action?
   property: payload
   propertyType: msg
   rules:
@@ -570,7 +561,7 @@
   checkall: 'true'
   repair: false
   outputs: 1
-  x: 670
+  x: 690
   'y': 520
   wires:
     - - 42c65007ee68f7b0
@@ -589,8 +580,8 @@
   from: ''
   to: ''
   reg: false
-  x: 970
-  'y': 510
+  x: 1020
+  'y': 480
   wires:
     - - 1e78a35a02bb00d7
 - id: 274d1df9.f97ce2
@@ -608,8 +599,8 @@
   from: ''
   to: ''
   reg: false
-  x: 960
-  'y': 470
+  x: 1010
+  'y': 440
   wires:
     - - 1e78a35a02bb00d7
 - id: 6ec0d7f989e759a4
@@ -617,7 +608,7 @@
   z: 237573f3.977b64
   name: Shake the cube to Open/Close shutters
   info: ''
-  x: 1250
+  x: 1300
   'y': 450
   wires: []
 - id: 4343d80627f170c9
@@ -712,54 +703,6 @@
   x: 150
   'y': 1130
   wires: []
-- id: 12ae2abf0a3b5511
-  type: debug
-  z: 237573f3.977b64
-  name: ''
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 240
-  'y': 1010
-  wires: []
-- id: 0a13a3ed57757141
-  type: mqtt in
-  z: 237573f3.977b64
-  name: ''
-  topic: zigbee2mqtt/R09~ChL~OnOff
-  qos: '2'
-  datatype: json
-  broker: c38452a5.4f84e8
-  nl: false
-  rap: true
-  rh: 0
-  inputs: 0
-  x: 170
-  'y': 1050
-  wires:
-    - - 12ae2abf0a3b5511
-      - d55417cc3f9bf246
-- id: 8e7e4102525abe18
-  type: mqtt out
-  z: 237573f3.977b64
-  name: ''
-  topic: zigbee2mqtt/P05~ChL~OnOff/set
-  qos: ''
-  retain: ''
-  respTopic: ''
-  contentType: ''
-  userProps: ''
-  correl: ''
-  expiry: ''
-  broker: c38452a5.4f84e8
-  x: 1240
-  'y': 1050
-  wires: []
 - id: f4efc56732fede78
   type: mqtt out
   z: 237573f3.977b64
@@ -773,7 +716,7 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1240
+  x: 1290
   'y': 680
   wires: []
 - id: fbf337296d4e32cb
@@ -791,14 +734,14 @@
   from: ''
   to: ''
   reg: false
-  x: 990
+  x: 1040
   'y': 680
   wires:
     - - f4efc56732fede78
 - id: d9a33c04992fc657
   type: switch
   z: 237573f3.977b64
-  name: Action?
+  name: Shake action?
   property: payload.side
   propertyType: msg
   rules:
@@ -823,74 +766,15 @@
   checkall: 'true'
   repair: false
   outputs: 6
-  x: 670
+  x: 690
   'y': 590
   wires:
-    - - 274d1df9.f97ce2
-    - []
-    - []
-    - - 1888e2d7.750abd
+    - - 7f3cf2681e6ff375
     - - fbf337296d4e32cb
-    - []
-- id: d55417cc3f9bf246
-  type: switch
-  z: 237573f3.977b64
-  name: ''
-  property: payload.action
-  propertyType: msg
-  rules:
-    - t: eq
-      v: 'on'
-      vt: str
-    - t: eq
-      v: 'off'
-      vt: str
-  checkall: 'true'
-  repair: false
-  outputs: 2
-  x: 520
-  'y': 1050
-  wires:
-    - - dd01ed9bfd12e568
-    - - fe5c8dff90afd042
-- id: dd01ed9bfd12e568
-  type: change
-  z: 237573f3.977b64
-  name: state=ON
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '{"state":"ON"}'
-      tot: json
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 710
-  'y': 1030
-  wires:
-    - - aa5bee841bccbe83
-- id: fe5c8dff90afd042
-  type: change
-  z: 237573f3.977b64
-  name: state=OFF
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '{"state":"OFF"}'
-      tot: json
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 720
-  'y': 1070
-  wires:
-    - - aa5bee841bccbe83
+    - - fbf337296d4e32cb
+    - - 86cbb5a82f8c295f
+    - - fbf337296d4e32cb
+    - - fbf337296d4e32cb
 - id: e084ff66fb81099d
   type: link in
   z: 237573f3.977b64
@@ -1019,7 +903,7 @@
   mode: link
   links:
     - f576c3026a84db30
-  x: 1115
+  x: 1165
   'y': 490
   wires: []
 - id: ae90c12d0555d3f3
