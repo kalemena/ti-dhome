@@ -3847,32 +3847,7 @@
           },
           "unit": "kwatth"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "2-Water Heater"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 6,
@@ -4091,7 +4066,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 28
+            "y": 16
           },
           "id": 29,
           "options": {
@@ -4215,7 +4190,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 28
+            "y": 16
           },
           "id": 25,
           "options": {
@@ -4326,7 +4301,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "37d",
+        "query": "41d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -4334,7 +4309,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30z",
-        "query": "24d",
+        "query": "28d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4348,6 +4323,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 251,
+  "version": 270,
   "weekStart": ""
 }
