@@ -1097,7 +1097,22 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * 0.155",
+          "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * $kWhHC",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "1-2"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=~\"zigbee-energy_l3\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * 0.155",
           "instant": true,
           "interval": "",
           "legendFormat": "{{type}}",
@@ -1111,16 +1126,16 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * $kWhHC",
+          "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * 0.155",
           "hide": false,
           "instant": true,
           "interval": "",
           "legendFormat": "{{type}}",
           "range": false,
-          "refId": "1-2"
+          "refId": "A"
         }
       ],
-      "title": "7 days (~base €)",
+      "title": "7 days (~ €)",
       "transformations": [
         {
           "id": "calculateField",
@@ -1820,7 +1835,9 @@
               "displayMode": "list",
               "placement": "bottom",
               "showLegend": true,
-              "values": []
+              "values": [
+                "percent"
+              ]
             },
             "pieType": "donut",
             "reduceOptions": {
@@ -2861,7 +2878,22 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
+              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{type}}",
+              "range": false,
+              "refId": "1-2"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_value{type=~\"zigbee-energy_l3\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
@@ -2875,13 +2907,13 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
+              "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
               "hide": false,
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
               "range": false,
-              "refId": "1-2"
+              "refId": "A"
             }
           ],
           "title": "1 day (~ €)",
@@ -3019,7 +3051,22 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * 0.155",
+              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * $kWhHC",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{type}}",
+              "range": false,
+              "refId": "1-2"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_value{type=~\"zigbee-energy_l3\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * 0.155",
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
@@ -3033,13 +3080,13 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * $kWhHC",
+              "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day7)) * 0.155",
               "hide": false,
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
               "range": false,
-              "refId": "1-2"
+              "refId": "A"
             }
           ],
           "title": "7 days (~ €)",
@@ -3178,7 +3225,22 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day30z)) * 0.155",
+              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day30)) * $kWhHC",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{type}}",
+              "range": false,
+              "refId": "1-2"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_value{type=~\"zigbee-energy_l3\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day30)) * 0.155",
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
@@ -3192,13 +3254,13 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day30z)) * $kWhHC",
+              "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day30)) * 0.155",
               "hide": false,
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
               "range": false,
-              "refId": "1-2"
+              "refId": "A"
             }
           ],
           "title": "$day30z days (~ €)",
@@ -4001,7 +4063,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4066,7 +4129,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 16
+            "y": 28
           },
           "id": 29,
           "options": {
@@ -4106,11 +4169,11 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "avg_over_time(sensors_value{type=~\"zigbee-power.*\",location=\"C01~Garage~PowerMeter\"}[5m])",
+              "expr": "avg_over_time(sensors_value{type=\"power-inst\", location=\"cc-0-Non-chauffage\"}[1m])",
               "hide": false,
-              "legendFormat": "{{type}}",
+              "legendFormat": "CCost-Non-Heating",
               "range": true,
-              "refId": "B"
+              "refId": "C"
             },
             {
               "datasource": {
@@ -4118,11 +4181,11 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "avg_over_time(sensors_value{type=\"power-inst\", location=\"cc-0-Non-chauffage\"}[1m])",
+              "expr": "avg_over_time(sensors_value{type=~\"zigbee-power.*\",location=\"C01~Garage~PowerMeter\"}[5m])",
               "hide": false,
-              "legendFormat": "CCost-Non-Heating",
+              "legendFormat": "{{type}}",
               "range": true,
-              "refId": "C"
+              "refId": "B"
             }
           ],
           "title": "Consumers (W)",
@@ -4175,7 +4238,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4190,7 +4254,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 16
+            "y": 28
           },
           "id": 25,
           "options": {
@@ -4301,7 +4365,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "41d",
+        "query": "43d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -4309,7 +4373,7 @@
         "hide": 2,
         "label": "30 Day",
         "name": "day30z",
-        "query": "28d",
+        "query": "30d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4323,6 +4387,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 270,
+  "version": 277,
   "weekStart": ""
 }
