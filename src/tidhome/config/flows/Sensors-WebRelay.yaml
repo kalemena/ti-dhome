@@ -9,8 +9,8 @@
   x: 1120
   'y': 530
   wires:
-    - - 1ba94549.ae6bdb
-      - 5b354d74db3c3466
+    - - 5b354d74db3c3466
+      - 217fc7c76bf682ea
 - id: 0edaade20969311b
   type: junction
   z: b1782abc.430f38
@@ -18,7 +18,7 @@
   'y': 770
   wires:
     - - 3e4d792744058a92
-      - 1ba94549.ae6bdb
+      - 217fc7c76bf682ea
 - id: 24374a202cb2eaec
   type: junction
   z: b1782abc.430f38
@@ -26,6 +26,14 @@
   'y': 1020
   wires:
     - - 741678fd.3f4f18
+- id: ce07888f46a79c45
+  type: junction
+  z: b1782abc.430f38
+  x: 1010
+  'y': 700
+  wires:
+    - - 83829b3a37df4617
+      - 937e6892618fdb6b
 - id: e2c89ae6.57aa1
   type: http request
   z: b1782abc.430f38
@@ -485,17 +493,6 @@
       - ac2d43ea.e2eaf
       - 67d26f68.ac9028
       - c97606c5.d54558
-- id: 1ba94549.ae6bdb
-  type: mqtt out
-  z: b1782abc.430f38
-  name: sensors
-  topic: sensors
-  qos: ''
-  retain: ''
-  broker: c38452a5.4f84e8
-  x: 1490
-  'y': 440
-  wires: []
 - id: 6efd389b.03b1
   type: switch
   z: b1782abc.430f38
@@ -640,7 +637,7 @@
   x: 990
   'y': 380
   wires:
-    - - 1ba94549.ae6bdb
+    - - 217fc7c76bf682ea
 - id: 7755fd51.b4d8f4
   type: debug
   z: b1782abc.430f38
@@ -966,10 +963,10 @@
   x: 900
   'y': 750
   wires:
-    - - 83829b3a37df4617
-      - ad886e91c50e5db5
-    - - 83829b3a37df4617
-      - c2ddd96f5d157965
+    - - ad886e91c50e5db5
+      - ce07888f46a79c45
+    - - c2ddd96f5d157965
+      - ce07888f46a79c45
     - - 37aa0a253b8b6972
     - []
     - - 7e1ec77294b7e482
@@ -1047,8 +1044,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1120
-  'y': 680
+  x: 1170
+  'y': 670
   wires:
     - - 0edaade20969311b
     - - 0edaade20969311b
@@ -1074,12 +1071,14 @@
   z: b1782abc.430f38
   name: Insert X
   func: >-
+    // sensors_value
+
     let fields = { "value": Number(msg.payload) }
 
     let tags =   { "type": "teleinfo-" + msg.topic, "location": "main" }
 
 
-    var msgres =  {
+    var msgres1 =  {
         topic: "teleinfo-" + msg.topic,
         payload: {
             payload: [ fields, tags ],
@@ -1088,19 +1087,43 @@
     }
 
 
+    // sensors_teleinfo_X
+
+    let namedFieldName = "teleinfo_" + msg.topic
+
+    let namedFields = { [namedFieldName]: Number(msg.payload) }
+
+    var namedTags = { "location": "main" }
+
+
+    var msgres2 = {
+        topic: namedFieldName,
+        payload: {
+            payload: [namedFields, namedTags],
+            measurement: "sensors"
+        }
+    }
+
+
+    // live info
+
     node.status({ fill: "blue", shape: "dot", text: msg.topic + ": " +
-    Number(msg.payload) + " W" });
+    Number(msg.payload) });
 
 
-    return msgres;
-  outputs: 1
+    return [
+        msgres1,
+        msgres2
+    ]
+  outputs: 2
   noerr: 0
   initialize: ''
   finalize: ''
   libs: []
-  x: 1230
+  x: 1260
   'y': 760
   wires:
+    - - 0edaade20969311b
     - - 0edaade20969311b
 - id: 7e1ec77294b7e482
   type: function
@@ -1222,6 +1245,73 @@
   finalize: ''
   libs: []
   x: 1070
-  'y': 740
+  'y': 780
   wires:
     - - 37aa0a253b8b6972
+- id: 217fc7c76bf682ea
+  type: link out
+  z: b1782abc.430f38
+  name: link out 2
+  mode: link
+  links:
+    - e72a9a6d97ae5b4a
+  x: 1445
+  'y': 400
+  wires: []
+- id: 1ba94549.ae6bdb
+  type: mqtt out
+  z: b1782abc.430f38
+  name: sensors
+  topic: sensors
+  qos: ''
+  retain: ''
+  broker: c38452a5.4f84e8
+  x: 1490
+  'y': 440
+  wires: []
+- id: 937e6892618fdb6b
+  type: function
+  z: b1782abc.430f38
+  name: Insert Wh HC/HP/Total
+  func: >-
+    var teleinfoHC = Number(global.get("tidhome_teleinfo.HCHC"))
+
+    var teleinfoHP = Number(global.get("tidhome_teleinfo.HCHP"))
+
+    var teleinfoTotal = Number(teleinfoHC) + Number(teleinfoHP)
+
+
+    // Index fields
+
+    let fieldsHC = { 
+        "teleinfo_HCHC": Number(teleinfoHC),
+        "teleinfo_HCHP": Number(teleinfoHP),
+        "teleinfo_Wh_Total": Number(teleinfoTotal)    
+    }
+
+    let tagsHC =   { "location": "main" }
+
+
+    var msg =  {
+        topic: "teleinfo",
+        payload: {
+            payload: [ fieldsHC, tagsHC ],
+            measurement: "sensors"
+        }
+    }
+
+
+    node.status({ fill: "blue", shape: "dot", text: "HP: " + teleinfoHP + " /
+    HC: " + teleinfoHC });
+
+
+    return msg
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 1170
+  'y': 610
+  wires:
+    - - 0edaade20969311b

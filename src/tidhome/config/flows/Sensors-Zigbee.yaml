@@ -48,6 +48,14 @@
   'y': 480
   wires:
     - - 1888e2d7.750abd
+- id: af4c7c829d66b4c1
+  type: junction
+  z: 237573f3.977b64
+  x: 760
+  'y': 280
+  wires:
+    - - 73543382a5b7bdf9
+      - 5c530aa567a3608b
 - id: e40e5bbf.43be98
   type: comment
   z: 237573f3.977b64
@@ -890,8 +898,8 @@
   name: Zigbee-GroupA
   links:
     - 1e78a35a02bb00d7
-    - fecb20f01567e4a8
     - a0f1b25d.56ebd8
+    - fecb20f01567e4a8
   x: 135
   'y': 1340
   wires:
@@ -1261,15 +1269,18 @@
     - t: istype
       v: number
       vt: number
+    - t: istype
+      v: boolean
+      vt: boolean
     - t: else
   checkall: 'true'
   repair: false
-  outputs: 2
+  outputs: 3
   x: 680
   'y': 290
   wires:
-    - - 73543382a5b7bdf9
-      - 5c530aa567a3608b
+    - - af4c7c829d66b4c1
+    - - af4c7c829d66b4c1
     - - 57c69d69fe19c4b3
 - id: 57c69d69fe19c4b3
   type: debug
@@ -1363,7 +1374,7 @@
   repair: false
   outputs: 2
   x: 680
-  'y': 340
+  'y': 350
   wires:
     - - b8ba0185a07f3b41
     - []
@@ -1371,7 +1382,7 @@
   type: debug
   z: 237573f3.977b64
   name: ZDebug
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false

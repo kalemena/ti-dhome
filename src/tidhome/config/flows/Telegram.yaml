@@ -36,13 +36,13 @@
   type: debug
   z: f6aef2f1.dd52e8
   name: Status
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 1030
+  x: 1040
   'y': 180
   wires: []
 - id: b52ace9b.c4f7f
@@ -519,8 +519,8 @@
     - 84b1892ac15ea678
     - e7a7cb7a8df21f27
     - ecb2912f7071e62b
-    - fecb20f01567e4a8
     - 7a96ec2943dd38cc
+    - 920a6d44fc9d1a0a
   x: 195
   'y': 180
   wires:
