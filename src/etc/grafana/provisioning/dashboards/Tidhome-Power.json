@@ -225,13 +225,14 @@
             "type": "prometheus",
             "uid": "tDwkp27Vz"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_value{type=\"power-inst\", location=\"cc-0-Non-chauffage\"}",
+          "expr": "sensors_ccost_PAPP{location=\"cc-0-Non-chauffage\"}",
+          "hide": false,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "title": "Non-Heating (W)",
@@ -1261,12 +1262,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_value{type=\"power-inst\", location=~\"cc-[1-9].+\"}",
+          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}",
+          "hide": false,
           "instant": true,
           "interval": "",
           "legendFormat": "{{location}}",
           "range": false,
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "title": "Outlets (W)",
@@ -3624,30 +3626,6 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "delta(sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC|teleinfo-Wh-Total\"}[1h])",
-          "hide": true,
-          "legendFormat": "{{type}}",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-Wh-Total\"}[1d] offset -1d))[1d:1d])",
-          "hide": true,
-          "legendFormat": "{{type}}",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-Wh-Total\"}[1h] offset -1h))[1h:1h])",
           "hide": false,
           "legendFormat": "Total",
@@ -4097,7 +4075,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4271,7 +4250,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4397,7 +4377,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "44d",
+        "query": "46d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4411,6 +4391,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 288,
+  "version": 298,
   "weekStart": ""
 }

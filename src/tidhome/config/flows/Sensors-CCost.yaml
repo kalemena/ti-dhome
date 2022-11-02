@@ -3,6 +3,13 @@
   label: Sensors-CCost
   disabled: false
   info: ''
+- id: 983b112c63f7357f
+  type: junction
+  z: f96b3a53.67de8
+  x: 1130
+  'y': 260
+  wires:
+    - - bd608bdcef55352f
 - id: 81a1739b.736d1
   type: serial in
   z: f96b3a53.67de8
@@ -73,7 +80,7 @@
   z: f96b3a53.67de8
   name: power-inst
   func: |-
-    var msgres =  {
+    var msgres1 =  {
         payload: {
             payload: [
                 { "value": Number(msg.payload.value) },
@@ -83,8 +90,21 @@
         }
     }
 
-    return msgres;
-  outputs: 1
+    var msgres2 = {
+        payload: {
+            payload: [
+                { "ccost_PAPP": Number(msg.payload.value) },
+                { "location": msg.payload.name }
+            ],
+            measurement: "sensors"
+        }
+    }
+
+    return [
+        msgres1,
+        msgres2
+    ]
+  outputs: 2
   noerr: 0
   initialize: ''
   finalize: ''
@@ -92,18 +112,9 @@
   x: 1000
   'y': 240
   wires:
-    - - 6166ef2d.f866f8
-- id: 6166ef2d.f866f8
-  type: mqtt out
-  z: f96b3a53.67de8
-  name: sensors
-  topic: sensors
-  qos: ''
-  retain: ''
-  broker: c38452a5.4f84e8
-  x: 1160
-  'y': 260
-  wires: []
+    - - 983b112c63f7357f
+    - - 983b112c63f7357f
+      - b49e71f589d30da2
 - id: 99e6cd73.0c8e88
   type: switch
   z: f96b3a53.67de8
@@ -176,8 +187,8 @@
   type: function
   z: f96b3a53.67de8
   name: temperature
-  func: |-
-    var msgres =  {
+  func: |
+    var msgres1 =  {
         payload: {
             payload: [
                 { "value": Number(msg.payload.value) },
@@ -187,15 +198,30 @@
         }
     }
 
-    return msgres;
-  outputs: 1
+    var msgres2 = {
+        payload: {
+            payload: [
+                { "ccost_temperature": Number(msg.payload.value) },
+                { "location": "cc-Bureau" }
+            ],
+            measurement: "sensors"
+        }
+    }
+
+    return [
+        msgres1,
+        msgres2
+    ]
+  outputs: 2
   noerr: 0
   initialize: ''
   finalize: ''
+  libs: []
   x: 1000
   'y': 280
   wires:
-    - - 6166ef2d.f866f8
+    - - 983b112c63f7357f
+    - - 983b112c63f7357f
 - id: 1da3548.6a44bac
   type: switch
   z: f96b3a53.67de8
@@ -348,4 +374,29 @@
   statusType: auto
   x: 980
   'y': 80
+  wires: []
+- id: bd608bdcef55352f
+  type: link out
+  z: f96b3a53.67de8
+  name: link out 3
+  mode: link
+  links:
+    - e72a9a6d97ae5b4a
+  x: 1175
+  'y': 260
+  wires: []
+- id: b49e71f589d30da2
+  type: debug
+  z: f96b3a53.67de8
+  name: CCDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1220
+  'y': 220
   wires: []

@@ -871,8 +871,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1510
-  'y': 580
+  x: 1300
+  'y': 530
   wires: []
 - id: c65cb5485f659160
   type: split
@@ -1257,17 +1257,6 @@
     - e72a9a6d97ae5b4a
   x: 1445
   'y': 400
-  wires: []
-- id: 1ba94549.ae6bdb
-  type: mqtt out
-  z: b1782abc.430f38
-  name: sensors
-  topic: sensors
-  qos: ''
-  retain: ''
-  broker: c38452a5.4f84e8
-  x: 1490
-  'y': 440
   wires: []
 - id: 937e6892618fdb6b
   type: function
