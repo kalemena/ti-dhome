@@ -125,12 +125,13 @@
           },
           "editorMode": "builder",
           "exemplar": true,
-          "expr": "sensors_value{type=\"teleinfo-PTEC_HC\"}",
+          "expr": "sensors_teleinfo_PTEC_HC",
           "format": "time_series",
+          "hide": false,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "title": "Periode",
@@ -854,12 +855,43 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC|teleinfo-Wh-Total\"} / 1000",
+          "expr": "sensors_teleinfo_HCHC / 1000",
+          "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": "{{type}}",
+          "legendFormat": "Heures Creuses",
           "range": false,
-          "refId": "A"
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_teleinfo_HCHP / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Heures Pleines",
+          "range": false,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_teleinfo_Wh_Total / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Total",
+          "range": false,
+          "refId": "D"
         }
       ],
       "title": "Index (kWh)",
@@ -954,12 +986,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_value{type=\"teleinfo-PAPP\"}[30s]",
+          "expr": "sensors_teleinfo_PAPP[30s]",
           "format": "time_series",
+          "hide": false,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "title": "Total (W)",
@@ -4064,8 +4097,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4239,8 +4271,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4380,6 +4411,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 283,
+  "version": 288,
   "weekStart": ""
 }
