@@ -186,7 +186,7 @@
           "id": "filterFieldsByName",
           "options": {
             "include": {
-              "pattern": "S.*|Time"
+              "pattern": "Time|^[S].*"
             }
           }
         }
@@ -302,9 +302,121 @@
           }
         },
         {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "Time|^[SM].*"
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "tDwkp27Vz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 50,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "lux"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 34,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_illuminance_lux",
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Illuminance (Lux)",
+      "transformations": [
+        {
           "id": "renameByRegex",
           "options": {
-            "regex": "cc-(.*)",
+            "regex": "zigbee2mqtt/(.*)",
             "renamePattern": "$1"
           }
         },
@@ -312,22 +424,7 @@
           "id": "filterFieldsByName",
           "options": {
             "include": {
-              "names": [
-                "Time",
-                "Bureau",
-                "wr-Garage",
-                "S01~SdBBas~THP",
-                "S02~ChBas~THP",
-                "S03~SdBHaut~THP",
-                "S04~ChD~Commode~THP",
-                "S05~Hall~TH",
-                "S06~ChL~Etagere~THP",
-                "S07~Salon~THP",
-                "S08~Mezzanine~THP",
-                "S09~Bureau~THP",
-                "S10~ChJeux~THP",
-                "S11~Salon~Display~THL"
-              ]
+              "pattern": "Time|^[SM].*"
             }
           }
         }
@@ -398,7 +495,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 31
       },
       "id": 33,
       "options": {
@@ -443,7 +540,7 @@
           "id": "filterFieldsByName",
           "options": {
             "include": {
-              "pattern": "Time|M.*"
+              "pattern": "Time|^M.*"
             }
           }
         }
@@ -456,7 +553,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 41
       },
       "id": 31,
       "panels": [
@@ -493,7 +590,7 @@
             "h": 19,
             "w": 4,
             "x": 0,
-            "y": 1
+            "y": 2
           },
           "id": 24,
           "options": {
@@ -563,7 +660,7 @@
             "h": 19,
             "w": 4,
             "x": 4,
-            "y": 1
+            "y": 2
           },
           "id": 25,
           "options": {
@@ -631,7 +728,7 @@
             "h": 19,
             "w": 4,
             "x": 8,
-            "y": 1
+            "y": 2
           },
           "id": 26,
           "options": {
@@ -698,7 +795,7 @@
             "h": 19,
             "w": 4,
             "x": 12,
-            "y": 1
+            "y": 2
           },
           "id": 22,
           "options": {
@@ -779,7 +876,7 @@
             "h": 19,
             "w": 4,
             "x": 16,
-            "y": 1
+            "y": 2
           },
           "id": 32,
           "options": {
@@ -824,7 +921,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 42
       },
       "id": 29,
       "panels": [
@@ -860,7 +957,7 @@
             "h": 25,
             "w": 8,
             "x": 0,
-            "y": 2
+            "y": 3
           },
           "id": 21,
           "options": {
@@ -931,7 +1028,7 @@
             "h": 25,
             "w": 6,
             "x": 8,
-            "y": 2
+            "y": 3
           },
           "id": 27,
           "options": {
@@ -998,7 +1095,7 @@
             "h": 25,
             "w": 7,
             "x": 14,
-            "y": 2
+            "y": 3
           },
           "id": 23,
           "options": {
@@ -1043,39 +1140,7 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": [
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "temperature"
-          ],
-          "value": [
-            "temperature"
-          ]
-        },
-        "datasource": {
-          "type": "influxdb",
-          "uid": "P9CF86E8970E5E639"
-        },
-        "definition": "SHOW TAG VALUES WITH KEY = \"type\"",
-        "hide": 0,
-        "includeAll": false,
-        "label": "",
-        "multi": true,
-        "name": "type",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"type\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      }
-    ]
+    "list": []
   },
   "time": {
     "from": "now-7d",
@@ -1085,6 +1150,6 @@
   "timezone": "",
   "title": "TiDHome-Sensors-Raw",
   "uid": "mZjQcZUGz",
-  "version": 60,
+  "version": 63,
   "weekStart": ""
 }
