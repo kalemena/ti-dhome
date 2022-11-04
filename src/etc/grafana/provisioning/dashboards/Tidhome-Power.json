@@ -2211,7 +2211,7 @@
               "type": "math"
             }
           ],
-          "title": "$day30 days (kWh)",
+          "title": "30 days (kWh)",
           "transformations": [
             {
               "id": "calculateField",
@@ -2328,7 +2328,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy_l.*\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l.*\", location=\"C01~Garage~PowerMeter\"} offset $day30))",
+              "expr": "(sensors_value{type=~\"zigbee-energy_l.*\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l.*\", location=\"C01~Garage~PowerMeter\"} offset $day365))",
               "hide": false,
               "instant": true,
               "interval": "",
@@ -2342,7 +2342,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "((sensors_value{type=~\"teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-Wh-Total\"} offset $day30)) / 1000)",
+              "expr": "((sensors_value{type=~\"teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-Wh-Total\"} offset $day365)) / 1000)",
               "hide": true,
               "legendFormat": "__auto",
               "range": true,
@@ -2354,7 +2354,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} offset $day30))",
+              "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} offset $day365))",
               "hide": true,
               "legendFormat": "__auto",
               "range": true,
@@ -2372,7 +2372,7 @@
               "type": "math"
             }
           ],
-          "title": "$day30 days (kWh)",
+          "title": "$day365 days (kWh)",
           "transformations": [
             {
               "id": "calculateField",
@@ -3250,7 +3250,7 @@
               "refId": "A"
             }
           ],
-          "title": "$day30 days (~ €)",
+          "title": "30 days (~ €)",
           "transformations": [
             {
               "id": "calculateField",
@@ -3386,7 +3386,22 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day30)) * 0.155",
+              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day365)) * $kWhHC",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{type}}",
+              "range": false,
+              "refId": "1-2"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_value{type=~\"zigbee-energy_l3\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day365)) * 0.155",
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
@@ -3400,16 +3415,16 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day30)) * $kWhHC",
+              "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day365)) * 0.155",
               "hide": false,
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
               "range": false,
-              "refId": "1-2"
+              "refId": "A"
             }
           ],
-          "title": "$day30 days (~ €)",
+          "title": "$day365 days (~ €)",
           "transformations": [
             {
               "id": "calculateField",
@@ -4326,7 +4341,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "46d",
+        "query": "35d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4340,6 +4355,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 304,
+  "version": 307,
   "weekStart": ""
 }
