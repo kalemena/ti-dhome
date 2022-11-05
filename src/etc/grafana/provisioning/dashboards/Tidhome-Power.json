@@ -377,11 +377,54 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_value{type=~\"zigbee-power.*\",location=\"C01~Garage~PowerMeter\"}",
+          "expr": "sensors_zigbee_power{location=\"C01~Garage~PowerMeter\"}",
+          "hide": false,
           "instant": true,
-          "legendFormat": "{{type}}",
+          "legendFormat": "Car+Water+Heating",
           "range": false,
-          "refId": "A"
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_l1{location=\"C01~Garage~PowerMeter\"}",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Car Charging",
+          "range": false,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_l2{location=\"C01~Garage~PowerMeter\"}",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Water Heater",
+          "range": false,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_l3{location=\"C01~Garage~PowerMeter\"}",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Heaters",
+          "range": false,
+          "refId": "E"
         }
       ],
       "title": "Consumers (W)",
@@ -3774,6 +3817,18 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1d] offset -1d))[1d:1d])",
+          "hide": true,
+          "legendFormat": "Total",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-Wh-Total\"}[1d] offset -1d))[1d:1d])",
           "hide": false,
           "legendFormat": "Total",
@@ -4041,7 +4096,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4106,7 +4162,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 28
+            "y": 16
           },
           "id": 29,
           "options": {
@@ -4135,10 +4191,25 @@
               "editorMode": "code",
               "exemplar": false,
               "expr": "avg_over_time(sensors_value{type=\"teleinfo-PAPP\"}[5m])",
+              "hide": false,
               "instant": false,
               "legendFormat": "Total",
               "range": true,
               "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg_over_time(sensors_teleinfo_PAPP[5m])",
+              "hide": true,
+              "instant": false,
+              "legendFormat": "Total",
+              "range": true,
+              "refId": "D"
             },
             {
               "datasource": {
@@ -4215,7 +4286,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4230,7 +4302,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 28
+            "y": 16
           },
           "id": 25,
           "options": {
@@ -4341,7 +4413,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "35d",
+        "query": "36d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4355,6 +4427,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 307,
+  "version": 315,
   "weekStart": ""
 }
