@@ -42,7 +42,7 @@
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 870
+  x: 420
   'y': 160
   wires: []
 - id: dcd509f1.d56dd
@@ -67,7 +67,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 440
+  x: 260
   'y': 160
   wires:
     - - 14def27.355280e
@@ -133,14 +133,13 @@
   name: SELECT * FROM "sensors" WHERE "type" = 'temp' AND "value" > 22
   props:
     - p: query
-      v: SELECT * FROM "sensors" WHERE "type" = 'temp' AND "value" > 22
+      v: SELECT * FROM "sensors_ccost_PAPP" WHERE "value" > 22
       vt: str
   repeat: ''
   crontab: ''
   once: false
   onceDelay: 0.1
   topic: ''
-  payloadType: str
   x: 290
   'y': 560
   wires:
@@ -170,119 +169,6 @@
   'y': 600
   wires:
     - - f9ad7f8e.736a08
-- id: d596b2444fd43e3c
-  type: influxdb in
-  z: d88a69c4.1942c8
-  influxdb: 786c015f0b3c18d1
-  name: HCHC
-  query: >-
-    SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHC') AND
-    time >= now() - 120s GROUP BY time(1s) fill(null)
-  rawOutput: false
-  precision: ''
-  retentionPolicy: ''
-  org: ''
-  x: 270
-  'y': 690
-  wires:
-    - - 82533b700edc1266
-      - df07ff3921d0b25e
-- id: df07ff3921d0b25e
-  type: function
-  z: d88a69c4.1942c8
-  name: HCHC
-  func: |-
-
-    var newIdx = msg.payload.length -1
-
-    var msgRes = {
-        payload: {
-            HCHC_old_value: parseFloat(msg.payload[0].distinct),
-            HCHC_old_date: new Date(msg.payload[0].time),
-            HCHC_new_value: parseFloat(msg.payload[newIdx].distinct),
-            HCHC_new_date: new Date(msg.payload[newIdx].time)
-        },
-        topic: 'HCHC'
-    }
-
-    return msgRes
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 480
-  'y': 690
-  wires:
-    - - c1a0255e668d8275
-      - c2c63f155fdffef0
-- id: d4a3070811472f1d
-  type: function
-  z: d88a69c4.1942c8
-  name: HCHP
-  func: |-
-    var newIdx = msg.payload.length -1
-
-    var msgRes = {
-        payload: {
-            HCHP_old_value: parseFloat(msg.payload[0].distinct),
-            HCHP_old_date: new Date(msg.payload[0].time),
-            HCHP_new_value: parseFloat(msg.payload[newIdx].distinct),
-            HCHP_new_date: new Date(msg.payload[newIdx].time)
-        },
-        topic: 'HCHP'
-    }
-
-    return msgRes
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 480
-  'y': 770
-  wires:
-    - - c1a0255e668d8275
-      - c2c63f155fdffef0
-- id: c1a0255e668d8275
-  type: debug
-  z: d88a69c4.1942c8
-  name: ''
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  x: 520
-  'y': 730
-  wires: []
-- id: a40455ca98b5996a
-  type: debug
-  z: d88a69c4.1942c8
-  name: ''
-  active: true
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  x: 690
-  'y': 770
-  wires: []
-- id: 82533b700edc1266
-  type: debug
-  z: d88a69c4.1942c8
-  name: ''
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  x: 310
-  'y': 730
-  wires: []
 - id: bf874566.5d9478
   type: influxdb out
   z: d88a69c4.1942c8
@@ -361,86 +247,6 @@
   x: 510
   'y': 380
   wires: []
-- id: d3720c7fdd188cb1
-  type: inject
-  z: d88a69c4.1942c8
-  name: ''
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  payload: ''
-  payloadType: date
-  x: 100
-  'y': 690
-  wires:
-    - - d596b2444fd43e3c
-      - 473a6d075dc99456
-- id: c2c63f155fdffef0
-  type: join
-  z: d88a69c4.1942c8
-  name: ''
-  mode: custom
-  build: object
-  property: payload
-  propertyType: msg
-  key: topic
-  joiner: \n
-  joinerType: str
-  accumulate: false
-  timeout: ''
-  count: '2'
-  reduceRight: false
-  reduceExp: ''
-  reduceInit: ''
-  reduceInitType: ''
-  reduceFixup: ''
-  x: 690
-  'y': 730
-  wires:
-    - - a40455ca98b5996a
-- id: 473a6d075dc99456
-  type: influxdb in
-  z: d88a69c4.1942c8
-  influxdb: 786c015f0b3c18d1
-  name: HCHP
-  query: >-
-    SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHP') AND
-    time >= now() - 120s GROUP BY time(1s) fill(null)
-  rawOutput: false
-  precision: ''
-  retentionPolicy: ''
-  org: ''
-  x: 270
-  'y': 770
-  wires:
-    - - 82533b700edc1266
-      - d4a3070811472f1d
-- id: 841410ae48e9f842
-  type: influxdb in
-  z: d88a69c4.1942c8
-  influxdb: ab73d852ece55e2a
-  name: HCHP
-  query: >-
-    // SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHC')
-    AND time >= now() - 1m GROUP BY time(1s) fill(null) ORDER BY time DESC
-
-
-    SELECT distinct("value") FROM "sensors" WHERE ("type" = 'teleinfo-HCHP') AND
-    time >= now() - 120s GROUP BY time(1s) fill(null)
-  rawOutput: false
-  precision: ''
-  retentionPolicy: ''
-  org: ''
-  x: 270
-  'y': 810
-  wires:
-    - []
 - id: 5aec7656638b8a7b
   type: influxdb out
   z: d88a69c4.1942c8
@@ -463,6 +269,7 @@
   links:
     - 78c90ae53c32e0c1
     - 217fc7c76bf682ea
+    - bd608bdcef55352f
   x: 125
   'y': 390
   wires:
