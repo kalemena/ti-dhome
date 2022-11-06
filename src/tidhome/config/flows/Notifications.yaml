@@ -3,6 +3,34 @@
   label: Notifications
   disabled: false
   info: ''
+- id: 14836b671335a268
+  type: junction
+  z: 8627a08f.2f4c18
+  x: 1000
+  'y': 350
+  wires:
+    - - 1ba3302a5169676e
+- id: 9b8a085fde86105d
+  type: junction
+  z: 8627a08f.2f4c18
+  x: 920
+  'y': 380
+  wires:
+    - - 920a6d44fc9d1a0a
+- id: b76bac03ba68e5e8
+  type: junction
+  z: 8627a08f.2f4c18
+  x: 910
+  'y': 660
+  wires:
+    - - 920a6d44fc9d1a0a
+- id: 6c21ca7aee31ecb2
+  type: junction
+  z: 8627a08f.2f4c18
+  x: 920
+  'y': 210
+  wires:
+    - - 14836b671335a268
 - id: cb68db5a.bdbca8
   type: inject
   z: 8627a08f.2f4c18
@@ -15,13 +43,13 @@
   payload: ''
   payloadType: date
   x: 100
-  'y': 160
+  'y': 370
   wires:
     - - 436b2017.90da28
 - id: 8b517c2b.d93ed8
   type: function
   z: 8627a08f.2f4c18
-  name: Meteo
+  name: Render Meteo
   func: |-
     var message = msg.payload.detail + '\n' + 
         "temp=" + msg.data.currently.temperature + "°C (" + msg.payload.mintemp + "°C to " + msg.payload.maxtemp + "°C) \n" +
@@ -38,10 +66,10 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 740
-  'y': 370
+  x: 780
+  'y': 280
   wires:
-    - - 0a19614dac750dc9
+    - - 14836b671335a268
 - id: 45d9a893.f40ca8
   type: darksky
   z: 8627a08f.2f4c18
@@ -54,8 +82,8 @@
   mode: message
   lang: fr
   units: si
-  x: 520
-  'y': 370
+  x: 510
+  'y': 280
   wires:
     - - 8b517c2b.d93ed8
 - id: 436b2017.90da28
@@ -67,16 +95,19 @@
     return msg;
   outputs: 1
   noerr: 0
-  x: 320
-  'y': 160
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 290
+  'y': 370
   wires:
-    - - 0a19614dac750dc9
+    - - 9b8a085fde86105d
 - id: 4881ab4d.cbd20c
   type: simpletime
   z: 8627a08f.2f4c18
   name: now
   x: 610
-  'y': 290
+  'y': 240
   wires:
     - - 57125e6f.c04dd
 - id: f9f7f04d.3b6e58
@@ -91,8 +122,8 @@
   temp: ''
   skip: '0'
   strings: true
-  x: 490
-  'y': 290
+  x: 470
+  'y': 240
   wires:
     - - 4881ab4d.cbd20c
 - id: 57125e6f.c04dd
@@ -103,7 +134,7 @@
     if (msg.payload.date !== undefined) {
         
         var message, bdom, bmonth, byear;
-        bparsed = msg.payload.date.split('/');
+        let bparsed = msg.payload.date.split('/');
         
         if(bparsed.length == 3) {
             // year/month/day
@@ -147,20 +178,20 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 770
-  'y': 290
+  x: 790
+  'y': 240
   wires:
-    - - 0a19614dac750dc9
+    - - 14836b671335a268
 - id: f6373746.83f598
   type: readdir
   z: 8627a08f.2f4c18
-  name: Daily CSVs
+  name: Saints and World Days
   dir: /etc/tidhome/daily-events
   as: multi
   recursive: false
   outproperty: filename
   x: 320
-  'y': 270
+  'y': 200
   wires:
     - - 8e4b9462.126df
 - id: 8e4b9462.126df
@@ -171,8 +202,8 @@
   format: utf8
   chunk: false
   sendError: false
-  x: 360
-  'y': 310
+  x: 320
+  'y': 240
   wires:
     - - f9f7f04d.3b6e58
 - id: f5632272.86a6b8
@@ -187,30 +218,11 @@
   topic: ''
   payloadType: str
   x: 100
-  'y': 240
+  'y': 160
   wires:
     - - f6373746.83f598
       - e7e9239c.0be1c
       - 09304e7665f8b8b8
-- id: fd76b359.51ec38
-  type: inject
-  z: 8627a08f.2f4c18
-  name: Night
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: 00 22 * * *
-  once: false
-  onceDelay: '5'
-  topic: ''
-  payload: Good night!
-  payloadType: str
-  x: 110
-  'y': 200
-  wires:
-    - []
 - id: 4271c741.d9a258
   type: comment
   z: 8627a08f.2f4c18
@@ -230,8 +242,9 @@
   noerr: 0
   initialize: ''
   finalize: ''
-  x: 320
-  'y': 370
+  libs: []
+  x: 290
+  'y': 280
   wires:
     - - 45d9a893.f40ca8
 - id: b24260ef.c5b1e8
@@ -260,105 +273,31 @@
   url: 'https://www.dealabs.com/rss/hot'
   interval: 15
   x: 100
-  'y': 520
+  'y': 490
   wires:
-    - - b0f7a636.7693f
-- id: fdfde972.bdcf78
-  type: debug
-  z: 8627a08f.2f4c18
-  name: Deals
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 880
-  'y': 540
-  wires: []
+    - - 281623751d7a9995
 - id: b0f7a636.7693f
   type: json
   z: 8627a08f.2f4c18
   name: ''
-  property: article
+  property: articleToParse
   action: ''
   pretty: false
-  x: 250
-  'y': 520
+  x: 150
+  'y': 540
   wires:
-    - - c92f4659.822398
-- id: 683d83e8.058ebc
-  type: change
-  z: 8627a08f.2f4c18
-  name: ''
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: topic
-      tot: msg
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 720
-  'y': 580
-  wires:
-    - - fdfde972.bdcf78
-      - e7a7cb7a8df21f27
-- id: c92f4659.822398
-  type: change
-  z: 8627a08f.2f4c18
-  name: lowercase
-  rules:
-    - t: set
-      p: article
-      pt: msg
-      to: "$lowercase(article)\t"
-      tot: jsonata
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 390
-  'y': 520
-  wires:
-    - - 281623751d7a9995
-- id: ff64d0d5.cdd1b
-  type: trigger
-  z: 8627a08f.2f4c18
-  name: Watchdog
-  op1: ''
-  op2: ''
-  op1type: nul
-  op2type: pay
-  duration: '1'
-  extend: true
-  overrideDelay: false
-  units: s
-  reset: ''
-  bytopic: topic
-  topic: topic
-  outputs: 1
-  x: 550
-  'y': 580
-  wires:
-    - - 683d83e8.058ebc
+    - - e1f67923cf085d92
 - id: c86e3fdb.b856e8
   type: comment
   z: 8627a08f.2f4c18
-  name: Dealabs
+  name: RSS Feeds
   info: |-
     Listen to Dealabs HotDeals
     Search keywords
     Sort topics
     Send Telegram notification
-  x: 100
-  'y': 480
+  x: 110
+  'y': 450
   wires: []
 - id: 09304e7665f8b8b8
   type: change
@@ -375,10 +314,10 @@
   from: ''
   to: ''
   reg: false
-  x: 310
-  'y': 230
+  x: 280
+  'y': 160
   wires:
-    - - 0a19614dac750dc9
+    - - 6c21ca7aee31ecb2
 - id: 281623751d7a9995
   type: change
   z: 8627a08f.2f4c18
@@ -396,27 +335,33 @@
       to: tidhome.groups.groupD
       tot: global
       dc: true
+    - t: set
+      p: articleToParse
+      pt: msg
+      to: article
+      tot: msg
+      dc: true
   action: ''
   property: ''
   from: ''
   to: ''
   reg: false
-  x: 190
-  'y': 580
+  x: 280
+  'y': 490
   wires:
-    - - d3071673871eba6a
+    - - b0f7a636.7693f
 - id: d3071673871eba6a
   type: function
   z: 8627a08f.2f4c18
   name: Filtering
   func: |-
-    pass=false
+    let pass=false
 
     // Includes
     for(var includeIdx in msg.includes) {
         var include = msg.includes[includeIdx]
         
-        if(msg.article.indexOf(include) !== -1 ) {
+        if (msg.articleToParse.indexOf(include) !== -1 ) {
             pass = true
             msg.include = include
         }
@@ -427,7 +372,7 @@
         for(var excludeIdx in msg.excludes) {
             var exclude = msg.excludes[excludeIdx]
             
-            if(msg.article.indexOf(exclude) !== -1 ) {
+            if (msg.articleToParse.indexOf(exclude) !== -1 ) {
                 pass = false
                 msg.exclude = exclude
             }
@@ -442,36 +387,14 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 390
-  'y': 580
+  x: 460
+  'y': 540
   wires:
-    - - 43e6adab33a9f460
-- id: e7a7cb7a8df21f27
-  type: link out
-  z: 8627a08f.2f4c18
-  name: ''
-  mode: link
-  links:
-    - 2f30621f40aa8285
-    - 69a45c84848a65e9
-  x: 845
-  'y': 580
-  wires: []
-- id: 0a19614dac750dc9
-  type: link out
-  z: 8627a08f.2f4c18
-  name: ''
-  mode: link
-  links:
-    - 2f30621f40aa8285
-    - 69a45c84848a65e9
-  x: 1015
-  'y': 240
-  wires: []
+    - - 8a909bab8256258f
 - id: cfeca9401ab2c043
   type: inject
   z: 8627a08f.2f4c18
-  name: Special
+  name: Sortir la poubelle ...
   props:
     - p: payload
     - p: topic
@@ -483,14 +406,14 @@
   topic: ''
   payload: ''
   payloadType: date
-  x: 100
-  'y': 420
+  x: 140
+  'y': 320
   wires:
     - - 56e78fae0d72374d
 - id: 56e78fae0d72374d
   type: function
   z: 8627a08f.2f4c18
-  name: Week Color
+  name: Verte ou Jaune ?
   func: >-
     let currentdate = new Date();
 
@@ -511,19 +434,19 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 760
-  'y': 420
+  x: 790
+  'y': 320
   wires:
-    - - 1ba3302a5169676e
+    - - 14836b671335a268
 - id: 1ba3302a5169676e
   type: link out
   z: 8627a08f.2f4c18
-  name: ''
+  name: Telegram CM
   mode: link
   links:
     - c80c722c5806b680
-  x: 1015
-  'y': 420
+  x: 1055
+  'y': 350
   wires: []
 - id: d62a5899f21cd167
   type: feedparse
@@ -533,13 +456,13 @@
     https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml
   interval: 15
   x: 140
-  'y': 660
+  'y': 600
   wires:
     - - 8a909bab8256258f
 - id: 8a909bab8256258f
   type: function
   z: 8627a08f.2f4c18
-  name: '> 6h'
+  name: '> 6h & Render'
   func: |
     msg.dateStr = msg.article.date
     msg.date = new Date(msg.dateStr)
@@ -554,8 +477,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 380
-  'y': 660
+  x: 450
+  'y': 600
   wires:
     - - 43e6adab33a9f460
 - id: a45b26df013cae0c
@@ -565,7 +488,7 @@
   url: 'https://www.francetvinfo.fr/sciences.rss'
   interval: 15
   x: 140
-  'y': 700
+  'y': 640
   wires:
     - - 8a909bab8256258f
 - id: fce9560bc4c3314b
@@ -580,13 +503,13 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 880
-  'y': 620
+  x: 780
+  'y': 640
   wires: []
 - id: 080dbe7f6708bea1
   type: change
   z: 8627a08f.2f4c18
-  name: ''
+  name: Assign news
   rules:
     - t: set
       p: payload
@@ -598,15 +521,15 @@
   from: ''
   to: ''
   reg: false
-  x: 720
-  'y': 660
+  x: 800
+  'y': 600
   wires:
     - - fce9560bc4c3314b
-      - 7a96ec2943dd38cc
+      - 920a6d44fc9d1a0a
 - id: 43e6adab33a9f460
   type: trigger
   z: 8627a08f.2f4c18
-  name: Watchdog
+  name: Rate Limit
   op1: ''
   op2: ''
   op1type: nul
@@ -619,18 +542,129 @@
   bytopic: topic
   topic: topic
   outputs: 1
-  x: 550
-  'y': 660
+  x: 630
+  'y': 600
   wires:
     - - 080dbe7f6708bea1
-- id: 7a96ec2943dd38cc
-  type: link out
+- id: e1f67923cf085d92
+  type: change
+  z: 8627a08f.2f4c18
+  name: LowerCase
+  rules:
+    - t: set
+      p: articleToParse
+      pt: msg
+      to: $lowercase(articleToParse)
+      tot: jsonata
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 300
+  'y': 540
+  wires:
+    - - d3071673871eba6a
+- id: 8011356333a316f0
+  type: comment
+  z: 8627a08f.2f4c18
+  name: Schedulers
+  info: ''
+  x: 100
+  'y': 720
+  wires: []
+- id: f2f40dc3da630cc9
+  type: sunrise
   z: 8627a08f.2f4c18
   name: ''
+  lat: '48.5'
+  lon: '-4.5'
+  start: sunrise
+  end: sunset
+  soff: '0'
+  eoff: '15'
+  x: 110
+  'y': 770
+  wires:
+    - []
+    - - 5f629250b70e5979
+- id: 5f629250b70e5979
+  type: switch
+  z: 8627a08f.2f4c18
+  name: Day or Night ?
+  property: payload
+  propertyType: msg
+  rules:
+    - t: eq
+      v: '1'
+      vt: num
+    - t: eq
+      v: '0'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 300
+  'y': 770
+  wires:
+    - []
+    - - 7735f46c01861b34
+- id: 7735f46c01861b34
+  type: function
+  z: 8627a08f.2f4c18
+  name: Shutters down !
+  func: |-
+    return [
+        {
+            payload: "This is night !"
+        },
+        {
+            action: "CLOSE"
+        }
+    ]
+  outputs: 2
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 510
+  'y': 770
+  wires:
+    - - b76bac03ba68e5e8
+    - - fecb20f01567e4a8
+- id: fecb20f01567e4a8
+  type: link out
+  z: 8627a08f.2f4c18
+  name: Config-Schedulers-Out
+  mode: link
+  links:
+    - f576c3026a84db30
+  x: 705
+  'y': 780
+  wires: []
+- id: 920a6d44fc9d1a0a
+  type: link out
+  z: 8627a08f.2f4c18
+  name: Telegram C
   mode: link
   links:
     - 2f30621f40aa8285
-    - 69a45c84848a65e9
-  x: 845
-  'y': 660
+  x: 1055
+  'y': 440
+  wires: []
+- id: 20def1f1498e3e18
+  type: comment
+  z: 8627a08f.2f4c18
+  name: To Telegram C
+  info: ''
+  x: 1110
+  'y': 400
+  wires: []
+- id: 040cebcfbd0283a1
+  type: comment
+  z: 8627a08f.2f4c18
+  name: To Telegram CM
+  info: ''
+  x: 1120
+  'y': 310
   wires: []
