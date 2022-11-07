@@ -297,67 +297,6 @@
   x: 120
   'y': 520
   wires: []
-- id: 8011356333a316f0
-  type: comment
-  z: 112e9cf8.590b23
-  name: Schedulers
-  info: ''
-  x: 100
-  'y': 640
-  wires: []
-- id: f2f40dc3da630cc9
-  type: sunrise
-  z: 112e9cf8.590b23
-  name: ''
-  lat: '48.5'
-  lon: '-4.5'
-  start: sunrise
-  end: sunset
-  soff: '0'
-  eoff: '15'
-  x: 110
-  'y': 690
-  wires:
-    - []
-    - - 5f629250b70e5979
-- id: 5f629250b70e5979
-  type: switch
-  z: 112e9cf8.590b23
-  name: ''
-  property: payload
-  propertyType: msg
-  rules:
-    - t: eq
-      v: '1'
-      vt: num
-    - t: eq
-      v: '0'
-      vt: num
-  checkall: 'true'
-  repair: false
-  outputs: 2
-  x: 290
-  'y': 690
-  wires:
-    - []
-    - - 7735f46c01861b34
-- id: 7735f46c01861b34
-  type: function
-  z: 112e9cf8.590b23
-  name: Night !
-  func: |-
-    msg.payload = "This is night !"
-    msg.action = "CLOSE"
-    return msg;
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 480
-  'y': 690
-  wires:
-    - - fecb20f01567e4a8
 - id: 84b1892ac15ea678
   type: link out
   z: 112e9cf8.590b23
@@ -377,15 +316,4 @@
     - 2f30621f40aa8285
   x: 485
   'y': 560
-  wires: []
-- id: fecb20f01567e4a8
-  type: link out
-  z: 112e9cf8.590b23
-  name: Config-Schedulers-Out
-  mode: link
-  links:
-    - 2f30621f40aa8285
-    - f576c3026a84db30
-  x: 585
-  'y': 690
   wires: []
