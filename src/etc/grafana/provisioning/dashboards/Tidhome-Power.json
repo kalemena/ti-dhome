@@ -3635,11 +3635,11 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-Wh-Total\"}[1h] offset -1h))[1h:1h])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1h] offset -1h))[1h:1h])",
           "hide": false,
           "legendFormat": "Total",
           "range": true,
-          "refId": "C"
+          "refId": "Teleinfo-Total"
         },
         {
           "datasource": {
@@ -3647,11 +3647,11 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-HCHP\"}[1h] offset -1h))[1h:1h])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1h] offset -1h))[1h:1h])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
-          "refId": "D"
+          "refId": "Teleinfo-HCHP"
         },
         {
           "datasource": {
@@ -3659,11 +3659,11 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-HCHC\"}[1h] offset -1h))[1h:1h])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1h] offset -1h))[1h:1h])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
-          "refId": "E"
+          "refId": "Teleinfo-HCHC"
         }
       ],
       "title": "Total Hourly (Wh)",
@@ -4413,7 +4413,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "36d",
+        "query": "40d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4427,6 +4427,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 315,
+  "version": 325,
   "weekStart": ""
 }
