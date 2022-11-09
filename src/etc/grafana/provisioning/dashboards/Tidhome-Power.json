@@ -1,4 +1,121 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_VICTORIAMETRICS",
+      "label": "VictoriaMetrics",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "DS_EXPRESSION",
+      "label": "Expression",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "__expr__"
+    },
+    {
+      "name": "VAR_KWHHP",
+      "type": "constant",
+      "label": "kWhHP",
+      "value": "0.1841",
+      "description": ""
+    },
+    {
+      "name": "VAR_KWHHC",
+      "type": "constant",
+      "label": "kWhHC",
+      "value": "0.1470",
+      "description": ""
+    },
+    {
+      "name": "VAR_KWHBASE",
+      "type": "constant",
+      "label": "kWhHP",
+      "value": "0.174",
+      "description": ""
+    },
+    {
+      "name": "VAR_DAY1",
+      "type": "constant",
+      "label": "1 Day",
+      "value": "1d",
+      "description": ""
+    },
+    {
+      "name": "VAR_DAY7",
+      "type": "constant",
+      "label": "7 Day",
+      "value": "7d",
+      "description": ""
+    },
+    {
+      "name": "VAR_DAY30",
+      "type": "constant",
+      "label": "30 Day",
+      "value": "30d",
+      "description": ""
+    },
+    {
+      "name": "VAR_DAY60",
+      "type": "constant",
+      "label": "60 Day",
+      "value": "60d",
+      "description": ""
+    },
+    {
+      "name": "VAR_DAY365",
+      "type": "constant",
+      "label": "365 Day",
+      "value": "100d",
+      "description": ""
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "__expr__",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.1.5"
+    },
+    {
+      "type": "panel",
+      "id": "piechart",
+      "name": "Pie chart",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -25,7 +142,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": null,
   "links": [],
   "liveNow": true,
   "panels": [
@@ -49,7 +166,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -121,7 +238,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "builder",
           "exemplar": true,
@@ -156,7 +273,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -223,7 +340,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -257,7 +374,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "Largest consumers: Car, Hot Water, Heating",
       "fieldConfig": {
@@ -373,7 +490,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -387,7 +504,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -401,7 +518,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -415,7 +532,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -449,7 +566,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -497,7 +614,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -512,7 +629,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -526,9 +643,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$THC1 + $THP1",
           "hide": false,
@@ -538,7 +654,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -553,7 +669,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -567,9 +683,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$THC7 + $THP7",
           "hide": false,
@@ -579,7 +694,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -594,7 +709,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -608,9 +723,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$THC30 + $THP30",
           "hide": false,
@@ -620,7 +734,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -635,7 +749,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -649,9 +763,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$THC60 + $THP60",
           "hide": false,
@@ -661,7 +774,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -676,7 +789,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -690,9 +803,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$THC365 + $THP365",
           "hide": false,
@@ -722,7 +834,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -769,7 +881,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -784,7 +896,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -799,7 +911,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -834,7 +946,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -922,7 +1034,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -937,7 +1049,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -952,7 +1064,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -987,7 +1099,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1053,7 +1165,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1088,7 +1200,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1149,7 +1261,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1164,7 +1276,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1179,7 +1291,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1194,7 +1306,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1213,7 +1325,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1279,7 +1391,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1320,7 +1432,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1442,7 +1554,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1h]))[1h:1h])",
@@ -1454,7 +1566,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1h]))[1h:1h])",
@@ -1466,7 +1578,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1h]))[1h:1h])",
@@ -1502,7 +1614,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1624,7 +1736,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1d]))[1d:1d])",
@@ -1636,7 +1748,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1d]))[1d:1d])",
@@ -1648,7 +1760,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1d]))[1d:1d])",
@@ -1684,7 +1796,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1806,7 +1918,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1w]))[1w:1w])",
@@ -1818,7 +1930,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1w]))[1w:1w])",
@@ -1830,7 +1942,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1w]))[1w:1w])",
@@ -1867,7 +1979,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1925,7 +2037,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1940,7 +2052,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1959,7 +2071,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2010,7 +2122,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2023,7 +2135,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2036,9 +2148,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$cHC + $cHP",
           "hide": false,
@@ -2052,7 +2163,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2110,7 +2221,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2125,7 +2236,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2159,7 +2270,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2210,7 +2321,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "avg(((sensors_teleinfo_HCHC - (sensors_teleinfo_HCHC offset $day7)) / 1000) * $kWhHC)",
@@ -2221,7 +2332,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "avg(((sensors_teleinfo_HCHP - (sensors_teleinfo_HCHP offset $day7)) / 1000) * $kWhHP)",
@@ -2232,9 +2343,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$cHC + $cHP",
           "hide": false,
@@ -2248,7 +2358,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2342,7 +2452,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2356,7 +2466,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2376,7 +2486,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -2428,7 +2538,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day30)) / 1000) * $kWhHC)",
@@ -2439,7 +2549,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day30)) / 1000) * $kWhHP)",
@@ -2450,9 +2560,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$cHC + $cHP",
           "hide": false,
@@ -2466,7 +2575,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -2561,7 +2670,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2575,7 +2684,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2595,7 +2704,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -2647,7 +2756,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day60)) / 1000) * $kWhHC)",
@@ -2658,7 +2767,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day60)) / 1000) * $kWhHP)",
@@ -2669,9 +2778,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$cHC + $cHP",
           "hide": false,
@@ -2685,7 +2793,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -2780,7 +2888,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2794,7 +2902,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2814,7 +2922,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "${DS_VICTORIAMETRICS}"
       },
       "description": "",
       "fieldConfig": {
@@ -2866,7 +2974,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day365)) / 1000) * $kWhHC)",
@@ -2877,7 +2985,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
           "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day365)) / 1000) * $kWhHP)",
@@ -2888,9 +2996,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$cHC + $cHP",
           "hide": false,
@@ -2914,7 +3021,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -2976,7 +3083,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 15
+            "y": 36
           },
           "id": 45,
           "options": {
@@ -2999,7 +3106,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
@@ -3011,7 +3118,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
@@ -3023,7 +3130,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
@@ -3035,7 +3142,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
@@ -3071,7 +3178,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -3133,7 +3240,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 21
+            "y": 42
           },
           "id": 84,
           "options": {
@@ -3156,7 +3263,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
@@ -3168,7 +3275,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
@@ -3180,7 +3287,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
@@ -3192,7 +3299,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
@@ -3228,7 +3335,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -3290,7 +3397,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 21
+            "y": 42
           },
           "id": 85,
           "options": {
@@ -3313,7 +3420,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
@@ -3325,7 +3432,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
@@ -3337,7 +3444,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
@@ -3349,7 +3456,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
@@ -3385,7 +3492,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -3408,7 +3515,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 27
+            "y": 48
           },
           "id": 49,
           "options": {
@@ -3440,7 +3547,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3455,7 +3562,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3470,7 +3577,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3485,7 +3592,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg((sensors_teleinfo_Wh_Total - (sensors_teleinfo_Wh_Total offset $day1)) / 1000)",
@@ -3497,7 +3604,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1))",
@@ -3508,9 +3615,8 @@
             },
             {
               "datasource": {
-                "name": "Expression",
                 "type": "__expr__",
-                "uid": "__expr__"
+                "uid": "${DS_EXPRESSION}"
               },
               "expression": "$Day1Total - $Day1Consumers",
               "hide": false,
@@ -3525,7 +3631,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -3563,7 +3669,7 @@
             "h": 8,
             "w": 3,
             "x": 3,
-            "y": 27
+            "y": 48
           },
           "id": 64,
           "options": {
@@ -3585,7 +3691,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3600,7 +3706,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3615,7 +3721,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3630,7 +3736,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3665,7 +3771,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -3688,7 +3794,7 @@
             "h": 8,
             "w": 3,
             "x": 6,
-            "y": 27
+            "y": 48
           },
           "id": 71,
           "options": {
@@ -3720,7 +3826,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3735,7 +3841,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3750,7 +3856,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3765,7 +3871,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg((sensors_teleinfo_Wh_Total - (sensors_teleinfo_Wh_Total offset $day7)) / 1000)",
@@ -3777,7 +3883,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1))",
@@ -3788,9 +3894,8 @@
             },
             {
               "datasource": {
-                "name": "Expression",
                 "type": "__expr__",
-                "uid": "__expr__"
+                "uid": "${DS_EXPRESSION}"
               },
               "expression": "$Day1Total - $Day1Consumers",
               "hide": false,
@@ -3805,7 +3910,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -3843,7 +3948,7 @@
             "h": 8,
             "w": 3,
             "x": 9,
-            "y": 27
+            "y": 48
           },
           "id": 72,
           "options": {
@@ -3865,7 +3970,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3880,7 +3985,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3895,7 +4000,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3910,7 +4015,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3945,7 +4050,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "description": "",
           "fieldConfig": {
@@ -4006,7 +4111,7 @@
             "h": 8,
             "w": 3,
             "x": 12,
-            "y": 27
+            "y": 48
           },
           "id": 54,
           "options": {
@@ -4038,7 +4143,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4053,7 +4158,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "((sensors_value{type=~\"teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-Wh-Total\"} offset $day30)) / 1000)",
@@ -4065,7 +4170,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} offset $day30))",
@@ -4076,9 +4181,8 @@
             },
             {
               "datasource": {
-                "name": "Expression",
                 "type": "__expr__",
-                "uid": "__expr__"
+                "uid": "${DS_EXPRESSION}"
               },
               "expression": "$Day30Total - $Day30Consumers",
               "hide": false,
@@ -4108,7 +4212,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "description": "",
           "fieldConfig": {
@@ -4196,7 +4300,7 @@
             "h": 8,
             "w": 3,
             "x": 15,
-            "y": 27
+            "y": 48
           },
           "id": 65,
           "options": {
@@ -4218,7 +4322,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4233,7 +4337,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4247,7 +4351,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4282,7 +4386,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "description": "",
           "fieldConfig": {
@@ -4343,7 +4447,7 @@
             "h": 8,
             "w": 3,
             "x": 18,
-            "y": 27
+            "y": 48
           },
           "id": 68,
           "options": {
@@ -4375,7 +4479,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4390,7 +4494,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "((sensors_value{type=~\"teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-Wh-Total\"} offset $day365)) / 1000)",
@@ -4402,7 +4506,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} offset $day365))",
@@ -4413,9 +4517,8 @@
             },
             {
               "datasource": {
-                "name": "Expression",
                 "type": "__expr__",
-                "uid": "__expr__"
+                "uid": "${DS_EXPRESSION}"
               },
               "expression": "$Day30Total - $Day30Consumers",
               "hide": false,
@@ -4445,7 +4548,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "description": "",
           "fieldConfig": {
@@ -4533,7 +4636,7 @@
             "h": 8,
             "w": 3,
             "x": 21,
-            "y": 27
+            "y": 48
           },
           "id": 69,
           "options": {
@@ -4555,7 +4658,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4570,7 +4673,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4584,7 +4687,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4633,7 +4736,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -4716,7 +4819,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -4730,7 +4833,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg_over_time(sensors_ccost_PAPP{location=\"cc-0-Non-chauffage\"}[1m])",
@@ -4742,7 +4845,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg_over_time(sensors_zigbee_power_l1{location=\"C01~Garage~PowerMeter\"}[5m])",
@@ -4754,7 +4857,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg_over_time(sensors_zigbee_power_l2{location=\"C01~Garage~PowerMeter\"}[5m])",
@@ -4766,7 +4869,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg_over_time(sensors_zigbee_power_l3{location=\"C01~Garage~PowerMeter\"}[5m])",
@@ -4778,7 +4881,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "avg_over_time(sensors_zigbee_power{location=\"C01~Garage~PowerMeter\"}[5m])",
@@ -4794,7 +4897,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "${DS_VICTORIAMETRICS}"
           },
           "description": "",
           "fieldConfig": {
@@ -4877,7 +4980,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "${DS_VICTORIAMETRICS}"
               },
               "editorMode": "code",
               "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}[1m]",
@@ -4914,67 +5017,163 @@
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhHP",
-        "query": "0.1841",
+        "query": "${VAR_KWHHP}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_KWHHP}",
+          "text": "${VAR_KWHHP}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_KWHHP}",
+            "text": "${VAR_KWHHP}",
+            "selected": false
+          }
+        ]
       },
       {
         "description": "Cost of kWh during low cost hours",
         "hide": 2,
         "label": "kWhHC",
         "name": "kWhHC",
-        "query": "0.1470",
+        "query": "${VAR_KWHHC}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_KWHHC}",
+          "text": "${VAR_KWHHC}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_KWHHC}",
+            "text": "${VAR_KWHHC}",
+            "selected": false
+          }
+        ]
       },
       {
         "description": "Cost of kWh normal price",
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhBase",
-        "query": "0.174",
+        "query": "${VAR_KWHBASE}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_KWHBASE}",
+          "text": "${VAR_KWHBASE}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_KWHBASE}",
+            "text": "${VAR_KWHBASE}",
+            "selected": false
+          }
+        ]
       },
       {
         "hide": 2,
         "label": "1 Day",
         "name": "day1",
-        "query": "1d",
+        "query": "${VAR_DAY1}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_DAY1}",
+          "text": "${VAR_DAY1}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_DAY1}",
+            "text": "${VAR_DAY1}",
+            "selected": false
+          }
+        ]
       },
       {
         "hide": 2,
         "label": "7 Day",
         "name": "day7",
-        "query": "7d",
+        "query": "${VAR_DAY7}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_DAY7}",
+          "text": "${VAR_DAY7}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_DAY7}",
+            "text": "${VAR_DAY7}",
+            "selected": false
+          }
+        ]
       },
       {
         "hide": 2,
         "label": "30 Day",
         "name": "day30",
-        "query": "30d",
+        "query": "${VAR_DAY30}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_DAY30}",
+          "text": "${VAR_DAY30}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_DAY30}",
+            "text": "${VAR_DAY30}",
+            "selected": false
+          }
+        ]
       },
       {
         "hide": 2,
         "label": "60 Day",
         "name": "day60",
-        "query": "60d",
+        "query": "${VAR_DAY60}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_DAY60}",
+          "text": "${VAR_DAY60}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_DAY60}",
+            "text": "${VAR_DAY60}",
+            "selected": false
+          }
+        ]
       },
       {
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "90d",
+        "query": "${VAR_DAY365}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_DAY365}",
+          "text": "${VAR_DAY365}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_DAY365}",
+            "text": "${VAR_DAY365}",
+            "selected": false
+          }
+        ]
       }
     ]
   },
@@ -4986,6 +5185,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 418,
+  "version": 422,
   "weekStart": ""
 }
