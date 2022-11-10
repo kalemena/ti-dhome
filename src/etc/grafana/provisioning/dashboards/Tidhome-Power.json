@@ -3810,22 +3810,10 @@
           },
           "editorMode": "code",
           "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1d] offset -1d))[1d:1d])",
-          "hide": true,
-          "legendFormat": "Total",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-Wh-Total\"}[1d] offset -1d))[1d:1d])",
           "hide": false,
           "legendFormat": "Total",
           "range": true,
-          "refId": "C"
+          "refId": "Total"
         },
         {
           "datasource": {
@@ -3833,11 +3821,11 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-HCHP\"}[1d] offset -1d))[1d:1d])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1d] offset -1d))[1d:1d])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
-          "refId": "D"
+          "refId": "Heures Pleines"
         },
         {
           "datasource": {
@@ -3845,11 +3833,11 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_value{type=\"teleinfo-HCHC\"}[1d] offset -1d))[1d:1d])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1d] offset -1d))[1d:1d])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
-          "refId": "E"
+          "refId": "Heures Creuses"
         }
       ],
       "title": "Total Daily (kWh)",
@@ -4294,7 +4282,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "sensors_value{type=\"power-inst\", location=~\"cc-[1-9].+\"}[1m]",
+              "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}[1m]",
               "legendFormat": "{{location}}",
               "range": true,
               "refId": "A"
@@ -4392,6 +4380,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 329,
+  "version": 333,
   "weekStart": ""
 }
