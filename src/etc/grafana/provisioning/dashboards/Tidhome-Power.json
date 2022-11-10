@@ -4088,7 +4088,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4098,56 +4099,7 @@
               },
               "unit": "watt"
             },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-power_l3"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "3-Heaters"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-power_l2"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "2-Water Heater"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-power_l1"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "1-Car Charging"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-power"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Car+Water+Heating"
-                  }
-                ]
-              }
-            ]
+            "overrides": []
           },
           "gridPos": {
             "h": 17,
@@ -4181,12 +4133,12 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg_over_time(sensors_value{type=\"teleinfo-PAPP\"}[5m])",
+              "expr": "avg_over_time(sensors_teleinfo_PAPP{}[5m])",
               "hide": false,
               "instant": false,
               "legendFormat": "Total",
               "range": true,
-              "refId": "A"
+              "refId": "Teleinfo-Total"
             },
             {
               "datasource": {
@@ -4194,25 +4146,11 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "exemplar": false,
-              "expr": "avg_over_time(sensors_teleinfo_PAPP[5m])",
-              "hide": true,
-              "instant": false,
-              "legendFormat": "Total",
-              "range": true,
-              "refId": "D"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "expr": "avg_over_time(sensors_value{type=\"power-inst\", location=\"cc-0-Non-chauffage\"}[1m])",
+              "expr": "avg_over_time(sensors_ccost_PAPP{location=\"cc-0-Non-chauffage\"}[1m])",
               "hide": false,
               "legendFormat": "CCost-Non-Heating",
               "range": true,
-              "refId": "C"
+              "refId": "CCost-Non-Heating"
             },
             {
               "datasource": {
@@ -4220,11 +4158,47 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "avg_over_time(sensors_value{type=~\"zigbee-power.*\",location=\"C01~Garage~PowerMeter\"}[5m])",
+              "expr": "avg_over_time(sensors_zigbee_power_l1{location=\"C01~Garage~PowerMeter\"}[5m])",
               "hide": false,
-              "legendFormat": "{{type}}",
+              "legendFormat": "1-Car Charging",
               "range": true,
-              "refId": "B"
+              "refId": "1-Car Charging"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg_over_time(sensors_zigbee_power_l2{location=\"C01~Garage~PowerMeter\"}[5m])",
+              "hide": false,
+              "legendFormat": "2-Water Heater",
+              "range": true,
+              "refId": "2-Water Heater"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg_over_time(sensors_zigbee_power_l3{location=\"C01~Garage~PowerMeter\"}[5m])",
+              "hide": false,
+              "legendFormat": "3-Heaters",
+              "range": true,
+              "refId": "3-Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg_over_time(sensors_zigbee_power{location=\"C01~Garage~PowerMeter\"}[5m])",
+              "hide": false,
+              "legendFormat": "Car+Water+Heating",
+              "range": true,
+              "refId": "Car+Water+Heating"
             }
           ],
           "title": "Consumers (W)",
@@ -4277,7 +4251,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4417,6 +4392,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 327,
+  "version": 329,
   "weekStart": ""
 }
