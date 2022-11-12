@@ -732,7 +732,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day1)) / 1000) * $kWhBase)",
+          "expr": "avg(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day1)) / 1000) * $kWhBase)",
           "hide": false,
           "instant": true,
           "interval": "",
@@ -747,7 +747,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day7)) / 1000) * $kWhBase)",
+          "expr": "avg(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day7)) / 1000) * $kWhBase)",
           "hide": false,
           "instant": true,
           "interval": "",
@@ -2791,42 +2791,6 @@
                     "value": "Car+Water+Heating"
                   }
                 ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-energy_l1"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "1-Car Charging"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-energy_l2"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "2-Water Heater"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-energy_l3"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "3-Heaters"
-                  }
-                ]
               }
             ]
           },
@@ -2860,13 +2824,13 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l[1-2]\", location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
+              "expr": "(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
               "hide": false,
               "instant": true,
               "interval": "",
-              "legendFormat": "{{type}}",
+              "legendFormat": "1-Car Charging",
               "range": false,
-              "refId": "1-2"
+              "refId": "1-Car Charging"
             },
             {
               "datasource": {
@@ -2875,12 +2839,13 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy_l3\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
+              "expr": "(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
+              "hide": false,
               "instant": true,
               "interval": "",
-              "legendFormat": "{{type}}",
+              "legendFormat": "2-Water Heater",
               "range": false,
-              "refId": "All"
+              "refId": "2-Water Heater"
             },
             {
               "datasource": {
@@ -2889,13 +2854,28 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy(_l3)?\", location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
+              "expr": "(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
               "hide": false,
               "instant": true,
               "interval": "",
-              "legendFormat": "{{type}}",
+              "legendFormat": "3-Heaters",
               "range": false,
-              "refId": "A"
+              "refId": "3-Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Car+Water+Heating",
+              "range": false,
+              "refId": "Car+Water+Heating"
             }
           ],
           "title": "1 day (~ €)",
@@ -4340,6 +4320,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 344,
+  "version": 346,
   "weekStart": ""
 }
