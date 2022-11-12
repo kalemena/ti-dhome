@@ -1594,31 +1594,31 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC\"} - (sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC\"} offset $day30)) / 1000",
+              "expr": "(sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day30)) / 1000",
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
               "range": false,
               "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day30)) / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{type}}",
+              "range": false,
+              "refId": "B"
             }
           ],
           "title": "30 days (kWh)",
-          "transformations": [
-            {
-              "id": "calculateField",
-              "options": {
-                "binary": {
-                  "left": "sensors {type: teleinfo-HCHC}",
-                  "reducer": "sum",
-                  "right": "sensors {type: teleinfo-HCHP}"
-                },
-                "mode": "binary",
-                "reduce": {
-                  "reducer": "sum"
-                }
-              }
-            }
-          ],
+          "transformations": [],
           "type": "piechart"
         },
         {
@@ -1720,31 +1720,31 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC\"} - (sensors_value{type=~\"teleinfo-HCHP|teleinfo-HCHC\"} offset $day365)) / 1000",
+              "expr": "((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day365)) / 1000)",
               "instant": true,
               "interval": "",
               "legendFormat": "{{type}}",
               "range": false,
               "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day365)) / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{type}}",
+              "range": false,
+              "refId": "B"
             }
           ],
           "title": "$day365 days (kWh)",
-          "transformations": [
-            {
-              "id": "calculateField",
-              "options": {
-                "binary": {
-                  "left": "sensors {type: teleinfo-HCHC}",
-                  "reducer": "sum",
-                  "right": "sensors {type: teleinfo-HCHP}"
-                },
-                "mode": "binary",
-                "reduce": {
-                  "reducer": "sum"
-                }
-              }
-            }
-          ],
+          "transformations": [],
           "type": "piechart"
         },
         {
@@ -1777,30 +1777,6 @@
                   {
                     "id": "displayName",
                     "value": "1-Car Charging"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-energy_l2"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "2-Water Heater"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "zigbee-energy_l3"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "3-Heaters"
                   }
                 ]
               }
@@ -1846,13 +1822,13 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sensors_value{type=~\"zigbee-energy_l.*\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy_l.*\", location=\"C01~Garage~PowerMeter\"} offset $day1))",
+              "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day1))",
               "hide": false,
               "instant": true,
               "interval": "",
-              "legendFormat": "{{type}}",
+              "legendFormat": "1-Car Charging",
               "range": false,
-              "refId": "A"
+              "refId": "1-Car Charging"
             },
             {
               "datasource": {
@@ -1860,7 +1836,37 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "((sensors_value{type=~\"teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-Wh-Total\"} offset $day1)) / 1000)",
+              "exemplar": false,
+              "expr": "avg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day1))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "2-Water Heater",
+              "range": false,
+              "refId": "2-Water Heater"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day1))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "3-Heaters",
+              "range": false,
+              "refId": "3-Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg((sensors_teleinfo_Wh_Total - (sensors_teleinfo_Wh_Total offset $day1)) / 1000)",
               "hide": true,
               "legendFormat": "__auto",
               "range": true,
@@ -1872,7 +1878,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "(sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} - (sensors_value{type=~\"zigbee-energy\", location=\"C01~Garage~PowerMeter\"} offset $day1))",
+              "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1))",
               "hide": true,
               "legendFormat": "__auto",
               "range": true,
@@ -1891,22 +1897,7 @@
             }
           ],
           "title": "1 day (kWh)",
-          "transformations": [
-            {
-              "id": "calculateField",
-              "options": {
-                "binary": {
-                  "left": "sensors {type: teleinfo-HCHC}",
-                  "reducer": "sum",
-                  "right": "sensors {type: teleinfo-HCHP}"
-                },
-                "mode": "binary",
-                "reduce": {
-                  "reducer": "sum"
-                }
-              }
-            }
-          ],
+          "transformations": [],
           "type": "piechart"
         },
         {
@@ -4045,7 +4036,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4207,7 +4199,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4347,6 +4340,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 340,
+  "version": 344,
   "weekStart": ""
 }
