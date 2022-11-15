@@ -1374,22 +1374,7 @@
             }
           ],
           "title": "1 day (kWh)",
-          "transformations": [
-            {
-              "id": "calculateField",
-              "options": {
-                "binary": {
-                  "left": "sensors {type: teleinfo-HCHC}",
-                  "reducer": "sum",
-                  "right": "sensors {type: teleinfo-HCHP}"
-                },
-                "mode": "binary",
-                "reduce": {
-                  "reducer": "sum"
-                }
-              }
-            }
-          ],
+          "transformations": [],
           "type": "piechart"
         },
         {
@@ -1419,6 +1404,95 @@
             "h": 10,
             "w": 3,
             "x": 3,
+            "y": 14
+          },
+          "id": 75,
+          "options": {
+            "displayLabels": [
+              "percent",
+              "value"
+            ],
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "pieType": "donut",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "((sensors_teleinfo_HCHC{} offset $day1) - (sensors_teleinfo_HCHC{} offset $day2)) / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Heures Creuses",
+              "range": false,
+              "refId": "HCHC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "((sensors_teleinfo_HCHP{} offset $day1) - (sensors_teleinfo_HCHP{} offset $day2)) / 1000",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Heure Pleines",
+              "range": false,
+              "refId": "HCHP"
+            }
+          ],
+          "title": "2 days ago (kWh)",
+          "transformations": [],
+          "type": "piechart"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "unit": "kwatth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 3,
+            "x": 6,
             "y": 14
           },
           "id": 70,
@@ -1513,6 +1587,110 @@
                   "viz": false
                 }
               },
+              "decimals": 0,
+              "mappings": [],
+              "unit": "kwatth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 3,
+            "x": 9,
+            "y": 14
+          },
+          "id": 77,
+          "options": {
+            "displayLabels": [
+              "percent",
+              "value"
+            ],
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "pieType": "donut",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "((sensors_teleinfo_HCHC{} offset $day7) - (sensors_teleinfo_HCHC{} offset $day14)) / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Heures Creuses",
+              "range": false,
+              "refId": "HCHC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "((sensors_teleinfo_HCHP{} offset $day7) - (sensors_teleinfo_HCHP{} offset $day14)) / 1000",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Heure Pleines",
+              "range": false,
+              "refId": "HCHP"
+            }
+          ],
+          "title": "1 week ago (kWh)",
+          "transformations": [
+            {
+              "id": "calculateField",
+              "options": {
+                "binary": {
+                  "left": "sensors {type: teleinfo-HCHC}",
+                  "reducer": "sum",
+                  "right": "sensors {type: teleinfo-HCHP}"
+                },
+                "mode": "binary",
+                "reduce": {
+                  "reducer": "sum"
+                }
+              }
+            }
+          ],
+          "type": "piechart"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                }
+              },
               "mappings": [],
               "unit": "kwatth"
             },
@@ -1558,7 +1736,7 @@
           "gridPos": {
             "h": 10,
             "w": 3,
-            "x": 6,
+            "x": 12,
             "y": 14
           },
           "id": 35,
@@ -1684,7 +1862,7 @@
           "gridPos": {
             "h": 10,
             "w": 3,
-            "x": 9,
+            "x": 18,
             "y": 14
           },
           "id": 66,
@@ -1755,6 +1933,564 @@
           "fieldConfig": {
             "defaults": {
               "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 0,
+            "y": 24
+          },
+          "id": 57,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(((sensors_teleinfo_HCHC - (sensors_teleinfo_HCHC offset $day1)) / 1000) * $kWhHC)",
+              "instant": false,
+              "legendFormat": "HC",
+              "range": true,
+              "refId": "cHC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(((sensors_teleinfo_HCHP - (sensors_teleinfo_HCHP offset $day1)) / 1000) * $kWhHP)",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "HP",
+              "range": true,
+              "refId": "cHP"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$cHC + $cHP",
+              "hide": false,
+              "refId": "Total",
+              "type": "math"
+            }
+          ],
+          "title": "Cost 1 day (€)",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 3,
+            "y": 24
+          },
+          "id": 76,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(((sensors_teleinfo_HCHC offset $day1 - (sensors_teleinfo_HCHC offset $day2)) / 1000) * $kWhHC)",
+              "instant": false,
+              "legendFormat": "HC",
+              "range": true,
+              "refId": "cHC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(((sensors_teleinfo_HCHP offset $day1 - (sensors_teleinfo_HCHP offset $day2)) / 1000) * $kWhHP)",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "HP",
+              "range": true,
+              "refId": "cHP"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$cHC + $cHP",
+              "hide": false,
+              "refId": "Total",
+              "type": "math"
+            }
+          ],
+          "title": "Cost 2 days ago (€)",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 6,
+            "y": 24
+          },
+          "id": 58,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg(((sensors_teleinfo_HCHC - (sensors_teleinfo_HCHC offset $day7)) / 1000) * $kWhHC)",
+              "legendFormat": "HC",
+              "range": true,
+              "refId": "cHC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg(((sensors_teleinfo_HCHP - (sensors_teleinfo_HCHP offset $day7)) / 1000) * $kWhHP)",
+              "hide": false,
+              "legendFormat": "HP",
+              "range": true,
+              "refId": "cHP"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$cHC + $cHP",
+              "hide": false,
+              "refId": "Total",
+              "type": "math"
+            }
+          ],
+          "title": "Cost 7 days (€)",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 9,
+            "y": 24
+          },
+          "id": 78,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg(((sensors_teleinfo_HCHC offset $day7 - (sensors_teleinfo_HCHC offset $day14)) / 1000) * $kWhHC)",
+              "legendFormat": "HC",
+              "range": true,
+              "refId": "cHC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg(((sensors_teleinfo_HCHP offset $day7 - (sensors_teleinfo_HCHP offset $day14)) / 1000) * $kWhHP)",
+              "hide": false,
+              "legendFormat": "HP",
+              "range": true,
+              "refId": "cHP"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$cHC + $cHP",
+              "hide": false,
+              "refId": "Total",
+              "type": "math"
+            }
+          ],
+          "title": "Cost 1 week ago (€)",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 12,
+            "y": 24
+          },
+          "id": 59,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day30)) / 1000) * $kWhHC)",
+              "legendFormat": "HC",
+              "range": true,
+              "refId": "cHC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day30)) / 1000) * $kWhHP)",
+              "hide": false,
+              "legendFormat": "HP",
+              "range": true,
+              "refId": "cHP"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$cHC + $cHP",
+              "hide": false,
+              "refId": "Total",
+              "type": "math"
+            }
+          ],
+          "title": "Cost 30 days (€)",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 18,
+            "y": 24
+          },
+          "id": 67,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day365)) / 1000) * $kWhHC)",
+              "legendFormat": "HC",
+              "range": true,
+              "refId": "cHC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day365)) / 1000) * $kWhHP)",
+              "hide": false,
+              "legendFormat": "HP",
+              "range": true,
+              "refId": "cHP"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$cHC + $cHP",
+              "hide": false,
+              "refId": "Total",
+              "type": "math"
+            }
+          ],
+          "title": "Cost $day365 days (€)",
+          "type": "stat"
+        }
+      ],
+      "title": "Energy (kWh) & Costs (€) - Teleinfo",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 74,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
                 "mode": "palette-classic"
               },
               "custom": {
@@ -1772,8 +2508,8 @@
           "gridPos": {
             "h": 10,
             "w": 3,
-            "x": 12,
-            "y": 14
+            "x": 0,
+            "y": 31
           },
           "id": 49,
           "options": {
@@ -1912,8 +2648,148 @@
           "gridPos": {
             "h": 10,
             "w": 3,
-            "x": 15,
-            "y": 14
+            "x": 3,
+            "y": 31
+          },
+          "id": 79,
+          "options": {
+            "displayLabels": [
+              "percent",
+              "value"
+            ],
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true,
+              "values": [
+                "percent"
+              ]
+            },
+            "pieType": "donut",
+            "reduceOptions": {
+              "calcs": [],
+              "fields": "",
+              "values": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day1 - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day2))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "1-Car Charging",
+              "range": false,
+              "refId": "1-Car Charging"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day1 - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day2))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "2-Water Heater",
+              "range": false,
+              "refId": "2-Water Heater"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day1 - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day2))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "3-Heaters",
+              "range": false,
+              "refId": "3-Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg((sensors_teleinfo_Wh_Total offset $day1 - (sensors_teleinfo_Wh_Total offset $day2)) / 1000)",
+              "hide": true,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "Day1Total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1 - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day2))",
+              "hide": true,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "Day1Consumers"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$Day1Total - $Day1Consumers",
+              "hide": false,
+              "refId": "Rest",
+              "type": "math"
+            }
+          ],
+          "title": "2 days ago (kWh)",
+          "transformations": [],
+          "type": "piechart"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                }
+              },
+              "mappings": [],
+              "unit": "kwatth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 3,
+            "x": 6,
+            "y": 31
           },
           "id": 71,
           "options": {
@@ -2048,6 +2924,147 @@
               "mappings": [],
               "unit": "kwatth"
             },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 3,
+            "x": 9,
+            "y": 31
+          },
+          "id": 81,
+          "options": {
+            "displayLabels": [
+              "percent",
+              "value"
+            ],
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true,
+              "values": [
+                "percent"
+              ]
+            },
+            "pieType": "donut",
+            "reduceOptions": {
+              "calcs": [],
+              "fields": "",
+              "values": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day7) - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day14))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "1-Car Charging",
+              "range": false,
+              "refId": "1-Car Charging"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day7) - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day14))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "2-Water Heater",
+              "range": false,
+              "refId": "2-Water Heater"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day7) - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day14))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "3-Heaters",
+              "range": false,
+              "refId": "3-Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg(((sensors_teleinfo_Wh_Total offset $day7) - (sensors_teleinfo_Wh_Total offset $day14)) / 1000)",
+              "hide": true,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "Day1Total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "expr": "avg((sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day7) - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day14))",
+              "hide": true,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "Day1Consumers"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$Day1Total - $Day1Consumers",
+              "hide": false,
+              "refId": "Rest",
+              "type": "math"
+            }
+          ],
+          "title": "1 week ago (kWh)",
+          "transformations": [],
+          "type": "piechart"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                }
+              },
+              "mappings": [],
+              "unit": "kwatth"
+            },
             "overrides": [
               {
                 "matcher": {
@@ -2090,8 +3107,8 @@
           "gridPos": {
             "h": 10,
             "w": 3,
-            "x": 18,
-            "y": 14
+            "x": 12,
+            "y": 31
           },
           "id": 54,
           "options": {
@@ -2251,8 +3268,8 @@
           "gridPos": {
             "h": 10,
             "w": 3,
-            "x": 21,
-            "y": 14
+            "x": 18,
+            "y": 31
           },
           "id": 68,
           "options": {
@@ -2359,368 +3376,6 @@
               "color": {
                 "mode": "thresholds"
               },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "currencyEUR"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 3,
-            "x": 0,
-            "y": 24
-          },
-          "id": 57,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "center",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "textMode": "value_and_name"
-          },
-          "pluginVersion": "9.1.5",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "avg(((sensors_teleinfo_HCHC - (sensors_teleinfo_HCHC offset $day1)) / 1000) * $kWhHC)",
-              "instant": false,
-              "legendFormat": "HC",
-              "range": true,
-              "refId": "cHC"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "avg(((sensors_teleinfo_HCHP - (sensors_teleinfo_HCHP offset $day1)) / 1000) * $kWhHP)",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "HP",
-              "range": true,
-              "refId": "cHP"
-            },
-            {
-              "datasource": {
-                "name": "Expression",
-                "type": "__expr__",
-                "uid": "__expr__"
-              },
-              "expression": "$cHC + $cHP",
-              "hide": false,
-              "refId": "Total",
-              "type": "math"
-            }
-          ],
-          "title": "Cost 1 day (€)",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "currencyEUR"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 3,
-            "x": 3,
-            "y": 24
-          },
-          "id": 58,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "center",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "textMode": "value_and_name"
-          },
-          "pluginVersion": "9.1.5",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "expr": "avg(((sensors_teleinfo_HCHC - (sensors_teleinfo_HCHC offset $day7)) / 1000) * $kWhHC)",
-              "legendFormat": "HC",
-              "range": true,
-              "refId": "cHC"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "expr": "avg(((sensors_teleinfo_HCHP - (sensors_teleinfo_HCHP offset $day7)) / 1000) * $kWhHP)",
-              "hide": false,
-              "legendFormat": "HP",
-              "range": true,
-              "refId": "cHP"
-            },
-            {
-              "datasource": {
-                "name": "Expression",
-                "type": "__expr__",
-                "uid": "__expr__"
-              },
-              "expression": "$cHC + $cHP",
-              "hide": false,
-              "refId": "Total",
-              "type": "math"
-            }
-          ],
-          "title": "Cost 7 days (€)",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "currencyEUR"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 3,
-            "x": 6,
-            "y": 24
-          },
-          "id": 59,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "center",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "textMode": "value_and_name"
-          },
-          "pluginVersion": "9.1.5",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day30)) / 1000) * $kWhHC)",
-              "legendFormat": "HC",
-              "range": true,
-              "refId": "cHC"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day30)) / 1000) * $kWhHP)",
-              "hide": false,
-              "legendFormat": "HP",
-              "range": true,
-              "refId": "cHP"
-            },
-            {
-              "datasource": {
-                "name": "Expression",
-                "type": "__expr__",
-                "uid": "__expr__"
-              },
-              "expression": "$cHC + $cHP",
-              "hide": false,
-              "refId": "Total",
-              "type": "math"
-            }
-          ],
-          "title": "Cost 30 days (€)",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "currencyEUR"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 3,
-            "x": 9,
-            "y": 24
-          },
-          "id": 67,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "center",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "textMode": "value_and_name"
-          },
-          "pluginVersion": "9.1.5",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day365)) / 1000) * $kWhHC)",
-              "legendFormat": "HC",
-              "range": true,
-              "refId": "cHC"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "tDwkp27Vz"
-              },
-              "editorMode": "code",
-              "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day365)) / 1000) * $kWhHP)",
-              "hide": false,
-              "legendFormat": "HP",
-              "range": true,
-              "refId": "cHP"
-            },
-            {
-              "datasource": {
-                "name": "Expression",
-                "type": "__expr__",
-                "uid": "__expr__"
-              },
-              "expression": "$cHC + $cHP",
-              "hide": false,
-              "refId": "Total",
-              "type": "math"
-            }
-          ],
-          "title": "Cost $day365 days (€)",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
               "decimals": 2,
               "mappings": [],
               "thresholds": {
@@ -2751,8 +3406,8 @@
           "gridPos": {
             "h": 6,
             "w": 3,
-            "x": 12,
-            "y": 24
+            "x": 0,
+            "y": 41
           },
           "id": 64,
           "options": {
@@ -2891,8 +3546,148 @@
           "gridPos": {
             "h": 6,
             "w": 3,
-            "x": 15,
-            "y": 24
+            "x": 3,
+            "y": 41
+          },
+          "id": 80,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day1 - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day2)) * $kWhHC",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "1-Car Charging",
+              "range": false,
+              "refId": "1-Car Charging"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day1 - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day2)) * $kWhHC",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "2-Water Heater",
+              "range": false,
+              "refId": "2-Water Heater"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day1 - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day2)) * 0.155",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "3-Heaters",
+              "range": false,
+              "refId": "3-Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1 - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day2)) * 0.155",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Car+Water+Heating",
+              "range": false,
+              "refId": "Car+Water+Heating"
+            }
+          ],
+          "title": "2 days ago (~ €)",
+          "transformations": [
+            {
+              "id": "calculateField",
+              "options": {
+                "binary": {
+                  "left": "sensors {type: teleinfo-HCHC}",
+                  "reducer": "sum",
+                  "right": "sensors {type: teleinfo-HCHP}"
+                },
+                "mode": "binary",
+                "reduce": {
+                  "reducer": "sum"
+                }
+              }
+            }
+          ],
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 2,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 500
+                  },
+                  {
+                    "color": "orange",
+                    "value": 1000
+                  },
+                  {
+                    "color": "red",
+                    "value": 2000
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 6,
+            "y": 41
           },
           "id": 72,
           "options": {
@@ -2973,6 +3768,146 @@
             }
           ],
           "title": "7 day (~ €)",
+          "transformations": [
+            {
+              "id": "calculateField",
+              "options": {
+                "binary": {
+                  "left": "sensors {type: teleinfo-HCHC}",
+                  "reducer": "sum",
+                  "right": "sensors {type: teleinfo-HCHP}"
+                },
+                "mode": "binary",
+                "reduce": {
+                  "reducer": "sum"
+                }
+              }
+            }
+          ],
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 2,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 500
+                  },
+                  {
+                    "color": "orange",
+                    "value": 1000
+                  },
+                  {
+                    "color": "red",
+                    "value": 2000
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 9,
+            "y": 41
+          },
+          "id": 82,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day7 - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day14)) * $kWhHC",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "1-Car Charging",
+              "range": false,
+              "refId": "1-Car Charging"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day7 - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day14)) * $kWhHC",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "2-Water Heater",
+              "range": false,
+              "refId": "2-Water Heater"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day7 - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day14)) * 0.155",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "3-Heaters",
+              "range": false,
+              "refId": "3-Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "tDwkp27Vz"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day7 - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day14)) * 0.155",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Car+Water+Heating",
+              "range": false,
+              "refId": "Car+Water+Heating"
+            }
+          ],
+          "title": "1 week ago (~ €)",
           "transformations": [
             {
               "id": "calculateField",
@@ -3081,8 +4016,8 @@
           "gridPos": {
             "h": 6,
             "w": 3,
-            "x": 18,
-            "y": 24
+            "x": 12,
+            "y": 41
           },
           "id": 65,
           "options": {
@@ -3255,8 +4190,8 @@
           "gridPos": {
             "h": 6,
             "w": 3,
-            "x": 21,
-            "y": 24
+            "x": 18,
+            "y": 41
           },
           "id": 69,
           "options": {
@@ -3340,7 +4275,7 @@
           "type": "stat"
         }
       ],
-      "title": "Energy (kWh) & Costs (€)",
+      "title": "Energy (kWh) & Costs (€) - Consumers",
       "type": "row"
     },
     {
@@ -3353,7 +4288,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 15
       },
       "id": 6,
       "panels": [],
@@ -3462,7 +4397,7 @@
         "h": 6,
         "w": 15,
         "x": 0,
-        "y": 15
+        "y": 16
       },
       "id": 39,
       "options": {
@@ -3644,7 +4579,7 @@
         "h": 12,
         "w": 9,
         "x": 15,
-        "y": 15
+        "y": 16
       },
       "id": 40,
       "options": {
@@ -3789,7 +4724,7 @@
         "h": 6,
         "w": 15,
         "x": 0,
-        "y": 21
+        "y": 22
       },
       "id": 45,
       "options": {
@@ -3887,7 +4822,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 28
       },
       "id": 23,
       "panels": [
@@ -3937,7 +4872,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3953,7 +4889,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 16
+            "y": 44
           },
           "id": 29,
           "options": {
@@ -4099,7 +5035,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4114,7 +5051,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 16
+            "y": 44
           },
           "id": 25,
           "options": {
@@ -4207,9 +5144,25 @@
       },
       {
         "hide": 2,
+        "label": "2 Day",
+        "name": "day2",
+        "query": "2d",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
         "label": "7 Day",
         "name": "day7",
         "query": "7d",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "14 Day",
+        "name": "day14",
+        "query": "14d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -4225,7 +5178,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "42d",
+        "query": "44d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4239,6 +5192,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 351,
+  "version": 355,
   "weekStart": ""
 }
