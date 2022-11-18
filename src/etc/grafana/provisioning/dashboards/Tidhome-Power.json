@@ -1419,7 +1419,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1h] offset -1h))[1h:1h])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1h]))[1h:1h])",
           "hide": false,
           "legendFormat": "Total",
           "range": true,
@@ -1431,7 +1431,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1h] offset -1h))[1h:1h])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1h]))[1h:1h])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1443,7 +1443,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1h] offset -1h))[1h:1h])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1h]))[1h:1h])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1601,7 +1601,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1d] offset -1d))[1d:1d])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1d]))[1d:1d])",
           "hide": false,
           "legendFormat": "Total",
           "range": true,
@@ -1613,7 +1613,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1d] offset -1d))[1d:1d])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1d]))[1d:1d])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1625,7 +1625,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1d] offset -1d))[1d:1d])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1d]))[1d:1d])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1783,7 +1783,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1w] offset -1d))[1w:1w])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1w]))[1w:1w])",
           "hide": false,
           "legendFormat": "Total",
           "range": true,
@@ -1795,7 +1795,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1w] offset -1d))[1w:1w])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1w]))[1w:1w])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1807,7 +1807,7 @@
             "uid": "tDwkp27Vz"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1w] offset -1d))[1w:1w])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1w]))[1w:1w])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -2730,7 +2730,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 15
           },
           "id": 45,
           "options": {
@@ -2756,7 +2756,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1h] offset -1h))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
               "hide": false,
               "legendFormat": "Car+Water+Heating",
               "range": true,
@@ -2768,7 +2768,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1h] offset -1h))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
               "hide": false,
               "legendFormat": "1-Car Charging",
               "range": true,
@@ -2780,7 +2780,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1h] offset -1h))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
               "hide": false,
               "legendFormat": "2-Water Heater",
               "range": true,
@@ -2792,7 +2792,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1h] offset -1h))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
               "hide": false,
               "legendFormat": "3-Heaters",
               "range": true,
@@ -2887,7 +2887,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 42
+            "y": 21
           },
           "id": 84,
           "options": {
@@ -2913,7 +2913,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d] offset -1d))[1d:1d])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
               "hide": false,
               "legendFormat": "Car+Water+Heating",
               "range": true,
@@ -2925,7 +2925,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d] offset -1d))[1d:1d])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
               "hide": false,
               "legendFormat": "1-Car Charging",
               "range": true,
@@ -2937,7 +2937,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d] offset -1d))[1d:1d])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
               "hide": false,
               "legendFormat": "2-Water Heater",
               "range": true,
@@ -2949,7 +2949,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d] offset -1d))[1d:1d])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
               "hide": false,
               "legendFormat": "3-Heaters",
               "range": true,
@@ -3044,7 +3044,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 42
+            "y": 21
           },
           "id": 85,
           "options": {
@@ -3070,7 +3070,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1w] offset -1w))[1w:1w])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
               "hide": false,
               "legendFormat": "Car+Water+Heating",
               "range": true,
@@ -3082,7 +3082,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1w] offset -1w))[1w:1w])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
               "hide": false,
               "legendFormat": "1-Car Charging",
               "range": true,
@@ -3094,7 +3094,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1w] offset -1w))[1w:1w])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
               "hide": false,
               "legendFormat": "2-Water Heater",
               "range": true,
@@ -3106,7 +3106,7 @@
                 "uid": "tDwkp27Vz"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1w] offset -1w))[1w:1w])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
               "hide": false,
               "legendFormat": "3-Heaters",
               "range": true,
@@ -3162,7 +3162,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 48
+            "y": 27
           },
           "id": 49,
           "options": {
@@ -3317,7 +3317,7 @@
             "h": 8,
             "w": 3,
             "x": 3,
-            "y": 48
+            "y": 27
           },
           "id": 64,
           "options": {
@@ -3442,7 +3442,7 @@
             "h": 8,
             "w": 3,
             "x": 6,
-            "y": 48
+            "y": 27
           },
           "id": 71,
           "options": {
@@ -3597,7 +3597,7 @@
             "h": 8,
             "w": 3,
             "x": 9,
-            "y": 48
+            "y": 27
           },
           "id": 72,
           "options": {
@@ -3760,7 +3760,7 @@
             "h": 8,
             "w": 3,
             "x": 12,
-            "y": 48
+            "y": 27
           },
           "id": 54,
           "options": {
@@ -3950,7 +3950,7 @@
             "h": 8,
             "w": 3,
             "x": 15,
-            "y": 48
+            "y": 27
           },
           "id": 65,
           "options": {
@@ -4097,7 +4097,7 @@
             "h": 8,
             "w": 3,
             "x": 18,
-            "y": 48
+            "y": 27
           },
           "id": 68,
           "options": {
@@ -4287,7 +4287,7 @@
             "h": 8,
             "w": 3,
             "x": 21,
-            "y": 48
+            "y": 27
           },
           "id": 69,
           "options": {
@@ -4736,20 +4736,20 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "48d",
+        "query": "50d",
         "skipUrlSync": false,
         "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-14d",
+    "from": "now-15d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 368,
+  "version": 373,
   "weekStart": ""
 }
