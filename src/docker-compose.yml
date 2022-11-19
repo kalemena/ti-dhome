@@ -5,7 +5,6 @@ networks:
 
 volumes:
   influxdb-data:
-  influxdb2-data:
   victoria-metrics-data:
 
 services:

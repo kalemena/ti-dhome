@@ -89,9 +89,9 @@ Check link:https://github.com/kalemena/docker-node-red[Ti-Dhome - Docker Node-Re
 ==== Databases & Monitoring
 
 Use any, as appropriate for your use-case. +
-Ti-Dhome uses link:https://www.influxdata.com/products/influxdb-overview/[InfluxDB] to store Timeseries on sensors metrics. +
+Ti-Dhome uses link:https://github.com/VictoriaMetrics/VictoriaMetrics[Victoria Metrics] to store Timeseries on sensors metrics. +
 
-InfluxDB is generally used in stack with monitoring of system, with link:https://github.com/influxdata/telegraf[Telegraf] and link:https://grafana.com/[Grafana]. +
+Victoria Metrics is generally used in stack with monitoring of system, with link:https://github.com/influxdata/telegraf[Telegraf] and link:https://grafana.com/[Grafana]. +
 
 ==== IoT Gateways
 

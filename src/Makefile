@@ -58,11 +58,3 @@ init-grafana: init-defaults
 	echo "Initialize: Setup Grafana ..."
 	# mkdir -p var/lib/grafana
 	# mkdir -p var/log/grafana
-
-##########################
-# Test Environment
-##########################
-
-test.influxdb:
-	docker-compose exec influxdb influx
-
