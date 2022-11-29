@@ -624,6 +624,47 @@
           },
           "editorMode": "code",
           "exemplar": false,
+          "expr": "(((sensors_value{type=~\"teleinfo-HCHC\"} - (sensors_value{type=~\"teleinfo-HCHC\"} offset $day60)) / 1000) * $kWhHC)",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HC €",
+          "range": false,
+          "refId": "THC60"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(((sensors_value{type=~\"teleinfo-HCHP\"} - (sensors_value{type=~\"teleinfo-HCHP\"} offset $day60)) / 1000) * $kWhHP)",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HP €",
+          "range": false,
+          "refId": "THP60"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$THC60 + $THP60",
+          "hide": false,
+          "refId": "60 days",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "tDwkp27Vz"
+          },
+          "editorMode": "code",
+          "exemplar": false,
           "expr": "(((sensors_value{type=~\"teleinfo-HCHC\"} - (sensors_value{type=~\"teleinfo-HCHC\"} offset $day365)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
@@ -871,7 +912,7 @@
         ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 5,
         "w": 4,
         "x": 20,
         "y": 1
@@ -1098,10 +1139,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 4,
         "x": 20,
-        "y": 7
+        "y": 6
       },
       "id": 48,
       "options": {
@@ -2730,7 +2771,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 15
           },
           "id": 45,
           "options": {
@@ -2887,7 +2928,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 42
+            "y": 21
           },
           "id": 84,
           "options": {
@@ -3044,7 +3085,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 42
+            "y": 21
           },
           "id": 85,
           "options": {
@@ -3162,7 +3203,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 48
+            "y": 27
           },
           "id": 49,
           "options": {
@@ -3317,7 +3358,7 @@
             "h": 8,
             "w": 3,
             "x": 3,
-            "y": 48
+            "y": 27
           },
           "id": 64,
           "options": {
@@ -3442,7 +3483,7 @@
             "h": 8,
             "w": 3,
             "x": 6,
-            "y": 48
+            "y": 27
           },
           "id": 71,
           "options": {
@@ -3597,7 +3638,7 @@
             "h": 8,
             "w": 3,
             "x": 9,
-            "y": 48
+            "y": 27
           },
           "id": 72,
           "options": {
@@ -3760,7 +3801,7 @@
             "h": 8,
             "w": 3,
             "x": 12,
-            "y": 48
+            "y": 27
           },
           "id": 54,
           "options": {
@@ -3950,7 +3991,7 @@
             "h": 8,
             "w": 3,
             "x": 15,
-            "y": 48
+            "y": 27
           },
           "id": 65,
           "options": {
@@ -4097,7 +4138,7 @@
             "h": 8,
             "w": 3,
             "x": 18,
-            "y": 48
+            "y": 27
           },
           "id": 68,
           "options": {
@@ -4287,7 +4328,7 @@
             "h": 8,
             "w": 3,
             "x": 21,
-            "y": 48
+            "y": 27
           },
           "id": 69,
           "options": {
@@ -4430,8 +4471,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4447,7 +4487,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 16
+            "y": 4
           },
           "id": 29,
           "options": {
@@ -4593,8 +4633,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4609,7 +4648,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 16
+            "y": 4
           },
           "id": 25,
           "options": {
@@ -4702,25 +4741,9 @@
       },
       {
         "hide": 2,
-        "label": "2 Day",
-        "name": "day2",
-        "query": "2d",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
         "label": "7 Day",
         "name": "day7",
         "query": "7d",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "14 Day",
-        "name": "day14",
-        "query": "14d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -4736,7 +4759,15 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "64d",
+        "query": "72d",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "60 Day",
+        "name": "day60",
+        "query": "60d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4750,6 +4781,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 391,
+  "version": 403,
   "weekStart": ""
 }
