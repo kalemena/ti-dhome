@@ -56,7 +56,8 @@ Hardware used for sensors/actors:
 * link:https://aeotec.com/z-wave-usb-stick/[ZWave] or link:https://phoscon.de/en/conbee2[ZigBee] USB sticks as gateways (with minimal footprint) to proprietary devices
 * link:https://github.com/kalemena/ti-dhome-web-relay-board[DIY Web relays board]
 * link:https://github.com/kalemena/ti-dhome-sensors[DIY Arduino sensors 866Mhz] (15+ low cost sensors)
-* Few cheap components (for EDF téléinfo which is Electric French Main power counters)
+* link:https://kalemena.github.io/iot-tools/#sensors_teleinfo[Téléinfo (Electric French Main power counters)]
+* Few cheap components
 
 === Dashboard
 
