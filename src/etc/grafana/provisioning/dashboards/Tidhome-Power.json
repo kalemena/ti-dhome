@@ -744,8 +744,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 2,
+        "h": 5,
+        "w": 3,
         "x": 18,
         "y": 1
       },
@@ -766,21 +766,6 @@
       },
       "pluginVersion": "9.1.5",
       "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day1)) / 1000) * $kWhBase)",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "1 day",
-          "range": false,
-          "refId": "THBase1"
-        },
         {
           "datasource": {
             "type": "prometheus",
@@ -825,21 +810,6 @@
           "legendFormat": "60 days",
           "range": false,
           "refId": "THBase60"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "tDwkp27Vz"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(((sensors_value{type=~\"teleinfo-Wh-Total\"} - (sensors_value{type=~\"teleinfo-Wh-Total\"} offset $day365)) / 1000) * $kWhBase)",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "$day365 days",
-          "range": false,
-          "refId": "THBase365"
         }
       ],
       "title": "Cost if Base (€)",
@@ -928,8 +898,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 4,
-        "x": 20,
+        "w": 3,
+        "x": 21,
         "y": 1
       },
       "id": 30,
@@ -1155,8 +1125,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 4,
-        "x": 20,
+        "w": 6,
+        "x": 18,
         "y": 6
       },
       "id": 48,
@@ -5016,6 +4986,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 416,
+  "version": 418,
   "weekStart": ""
 }
