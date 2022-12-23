@@ -61,7 +61,11 @@ Hardware used for sensors/actors:
 
 === Dashboard
 
-A simple Dashboard uses Grafana and InfluxDB as storage.
+INFO: A simple Dashboard using Grafana and Victoria Metrics as storage.
+
+image:dashboard-power-iinst.png[Dashboard Power - instant,640,240,link=/src/main/adoc/images/dashboard-power-iinst.png]
+
+
 
 image:dashboard-power-1.png[Dashboard Power,320,240]
 image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
