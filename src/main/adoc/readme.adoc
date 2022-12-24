@@ -65,6 +65,16 @@ TIP: A simple Dashboard using Grafana and Victoria Metrics as storage.
 
 image:dashboard-power-iinst.png[Dashboard Power - instant,1024]
 
+* Shown on this dashboard :
+** *Periode* : "Heures Pleines" or "Heures Creuses" stands for high/low cost hours
+** *Total* : Teleinfo - i.e. Electricity provider serial info of current consumption
+** *Non-Heating* : Clamp meter on non-heating part of the house
+** *Consumers* : Clamp meters on various elements
+** *Outlets* : Wall plugs
+** *Cost HCHP* : Computed costs, taking Low/High hours into account
+** *Cost if Base* : Computed costs, if using a contract without Low/High hours
+** *Index* : Rolling indexes, if need to provide
+** *X days* : Costs for the selected period and for the bigger consumers
 
 
 image:dashboard-power-1.png[Dashboard Power,320,240]
