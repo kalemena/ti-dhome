@@ -61,9 +61,9 @@ Hardware used for sensors/actors:
 
 === Dashboard
 
-INFO: A simple Dashboard using Grafana and Victoria Metrics as storage.
+TIP: A simple Dashboard using Grafana and Victoria Metrics as storage.
 
-image:dashboard-power-iinst.png[Dashboard Power - instant,640,240,link=/src/main/adoc/images/dashboard-power-iinst.png]
+image:dashboard-power-iinst.png[Dashboard Power - instant,1024]
 
 
 
