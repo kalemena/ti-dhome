@@ -76,6 +76,8 @@ image:dashboard-power-iinst.png[Dashboard Power - instant,1024]
 ** *Index* : Rolling indexes
 ** *X days* : Costs for the selected period and for the bigger consumers
 
+image:dashboard-power-energy[Dashboard Power - Energy,1024]
+
 
 image:dashboard-power-1.png[Dashboard Power,320,240]
 image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
