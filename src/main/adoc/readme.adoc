@@ -78,6 +78,13 @@ image:dashboard-power-iinst.png[Dashboard Power - instant,1024]
 
 image:dashboard-power-energy[Dashboard Power - Energy,1024]
 
+* Shown on this dashboard :
+** *Total Hourly* : Energy consummed by hour slots (kWh)
+** *Total Daily* : Energy consummed by day slots (kWh)
+** *Total Weekly* : Energy consummed by week slots (kWh) and on 12 weeks
+** *Costs* by day/week/month(s)
+
+
 
 image:dashboard-power-1.png[Dashboard Power,320,240]
 image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
