@@ -76,7 +76,7 @@ image:dashboard-power-iinst.png[Dashboard Power - instant,1024]
 ** *Index* : Rolling indexes
 ** *X days* : Costs for the selected period and for the bigger consumers
 
-image:dashboard-power-energy[Dashboard Power - Energy,1024]
+image:dashboard-power-energy.png[Dashboard Power - Energy,1024]
 
 * Shown on this dashboard :
 ** *Total Hourly* : Energy consummed by hour slots (kWh)
