@@ -84,6 +84,8 @@ image:dashboard-power-energy.png[Dashboard Power - Energy,1024]
 ** *Total Weekly* : Energy consummed by week slots (kWh) and on 12 weeks
 ** *Costs* by day/week/month(s)
 
+image:dashboard-power-energy-consumers.png[Dashboard Power - Consumers,1024]
+
 
 
 image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
