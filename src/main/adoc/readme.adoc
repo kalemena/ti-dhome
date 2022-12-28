@@ -86,6 +86,11 @@ image:dashboard-power-energy.png[Dashboard Power - Energy,1024]
 
 image:dashboard-power-energy-consumers.png[Dashboard Power - Consumers,1024]
 
+* Shown on this dashboard :
+** *Consumers Hourly* : Energy consummed by hour slots (kWh)
+** *Consumers Daily* : Energy consummed by day slots (kWh)
+** *Total Weekly* : Energy consummed by week slots (kWh) and on 12 weeks
+** *Costs* by day/week/month(s)
 
 
 image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
