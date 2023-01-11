@@ -2970,32 +2970,7 @@
               },
               "unit": "kwatth"
             },
-            "overrides": [
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "3-Heaters"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
-              }
-            ]
+            "overrides": []
           },
           "gridPos": {
             "h": 6,
@@ -4719,7 +4694,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 57
           },
           "id": 29,
           "options": {
@@ -4881,7 +4856,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 57
           },
           "id": 25,
           "options": {
@@ -5000,7 +4975,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "110d",
+        "query": "120d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -5010,10 +4985,12 @@
     "from": "now-30d",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {
+    "hidden": false
+  },
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 432,
+  "version": 438,
   "weekStart": ""
 }
