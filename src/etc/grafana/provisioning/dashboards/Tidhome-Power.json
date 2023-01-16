@@ -4677,8 +4677,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4840,8 +4839,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4975,7 +4973,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "120d",
+        "query": "130d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4991,6 +4989,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 438,
+  "version": 441,
   "weekStart": ""
 }
