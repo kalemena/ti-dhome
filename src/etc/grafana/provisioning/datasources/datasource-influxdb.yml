@@ -14,7 +14,6 @@ datasources:
     type: 'influxdb'
     access: 'proxy'
     editable: true
-    is_default: true
     url: 'http://influxdb:8086'
     database: 'telegraf'
     version: 1
@@ -24,7 +23,6 @@ datasources:
     type: 'influxdb'
     access: 'proxy'
     editable: true
-    is_default: true
     url: 'http://influxdb:8086'
     database: 'covid19'
     version: 1
@@ -34,7 +32,6 @@ datasources:
     type: 'influxdb'
     access: 'proxy'
     editable: true
-    is_default: true
     url: 'http://influxdb:8086'
     database: 'sensors'
     version: 1
