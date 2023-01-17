@@ -116,7 +116,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -218,7 +218,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -368,7 +368,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -492,7 +492,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -764,7 +764,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -917,7 +917,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1048,7 +1048,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1144,7 +1144,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1274,7 +1274,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2005,7 +2005,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2205,7 +2205,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2423,7 +2423,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2642,7 +2642,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2861,7 +2861,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -3581,7 +3581,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.2",
           "targets": [
             {
               "datasource": {
@@ -3861,7 +3861,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.2",
           "targets": [
             {
               "datasource": {
@@ -4214,7 +4214,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.2",
           "targets": [
             {
               "datasource": {
@@ -4551,7 +4551,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.2",
           "targets": [
             {
               "datasource": {
@@ -4989,6 +4989,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 441,
+  "version": 443,
   "weekStart": ""
 }
