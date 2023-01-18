@@ -1,0 +1,19 @@
+# config file version
+apiVersion: 1
+
+# list of datasources that should be deleted from the database
+deleteDatasources:
+  - name: VictoriaMetrics
+    orgId: 1
+
+# list of datasources to insert/update depending
+# whats available in the database
+datasources:
+  - name: 'VictoriaMetrics'
+    org_id: 1
+    type: 'prometheus'
+    access: 'proxy'
+    is_default: true
+    url: 'http://victoriametrics:8428'
+    version: 1
+
