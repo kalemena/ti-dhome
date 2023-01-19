@@ -6,6 +6,7 @@ networks:
 volumes:
   influxdb-data:
   victoria-metrics-data:
+  grafana-data:
 
 services:
 
@@ -89,6 +90,42 @@ services:
     #  - FLOWS=/opt/tidhome/flows/tidhome-flows.json
     env_file:
      - .env
+
+  telegraf:
+    image: telegraf
+    # network_mode: host
+    hostname: telegraf
+    restart: always
+    user: telegraf:998
+    volumes:
+      - ./etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/rootfs/sys:ro
+      - /proc:/rootfs/proc:ro
+      - /etc:/rootfs/etc:ro      
+    environment:
+      HOST_PROC: /rootfs/proc
+      HOST_SYS: /rootfs/sys
+      HOST_ETC: /rootfs/etc
+
+  grafana:
+    image: grafana/grafana:9.1.5
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      # - ./etc/grafana:/etc/grafana
+      # - ./var/lib/grafana:/var/lib/grafana
+      # - ./var/log/grafana:/var/log/grafana
+      - grafana-data:/var/lib/grafana
+      - ./etc/grafana/provisioning/:/etc/grafana/provisioning/
+      - ./etc/grafana/canvas/:/usr/share/grafana/public/img/bg/:ro
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-default}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-password}
+      GF_INSTALL_PLUGINS: grafana-worldmap-panel,grafana-polystat-panel
+    env_file:
+      - .env
 
   gateway:
     image: nginx
