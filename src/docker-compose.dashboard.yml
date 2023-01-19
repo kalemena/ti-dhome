@@ -33,6 +33,7 @@ services:
       # - ./var/log/grafana:/var/log/grafana
       - grafana-data:/var/lib/grafana
       - ./etc/grafana/provisioning/:/etc/grafana/provisioning/
+      - ./etc/grafana/canvas/:/usr/share/grafana/public/img/bg/:ro
     environment:
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-default}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-password}
