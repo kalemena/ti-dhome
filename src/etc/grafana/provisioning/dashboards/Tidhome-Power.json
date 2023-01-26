@@ -236,22 +236,7 @@
         }
       ],
       "title": "Non-Heating (W)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
+      "transformations": [],
       "type": "gauge"
     },
     {
@@ -2976,7 +2961,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 15
+            "y": 36
           },
           "id": 45,
           "options": {
@@ -3133,7 +3118,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 21
+            "y": 42
           },
           "id": 84,
           "options": {
@@ -3290,7 +3275,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 21
+            "y": 42
           },
           "id": 85,
           "options": {
@@ -3409,7 +3394,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 27
+            "y": 48
           },
           "id": 49,
           "options": {
@@ -3564,7 +3549,7 @@
             "h": 8,
             "w": 3,
             "x": 3,
-            "y": 27
+            "y": 48
           },
           "id": 64,
           "options": {
@@ -3689,7 +3674,7 @@
             "h": 8,
             "w": 3,
             "x": 6,
-            "y": 27
+            "y": 48
           },
           "id": 71,
           "options": {
@@ -3844,7 +3829,7 @@
             "h": 8,
             "w": 3,
             "x": 9,
-            "y": 27
+            "y": 48
           },
           "id": 72,
           "options": {
@@ -4007,7 +3992,7 @@
             "h": 8,
             "w": 3,
             "x": 12,
-            "y": 27
+            "y": 48
           },
           "id": 54,
           "options": {
@@ -4197,7 +4182,7 @@
             "h": 8,
             "w": 3,
             "x": 15,
-            "y": 27
+            "y": 48
           },
           "id": 65,
           "options": {
@@ -4344,7 +4329,7 @@
             "h": 8,
             "w": 3,
             "x": 18,
-            "y": 27
+            "y": 48
           },
           "id": 68,
           "options": {
@@ -4534,7 +4519,7 @@
             "h": 8,
             "w": 3,
             "x": 21,
-            "y": 27
+            "y": 48
           },
           "id": 69,
           "options": {
@@ -4973,7 +4958,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "136d",
+        "query": "144d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4989,6 +4974,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 9,
+  "version": 18,
   "weekStart": ""
 }
