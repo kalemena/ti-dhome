@@ -116,7 +116,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -218,7 +218,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -353,7 +353,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -477,7 +477,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -749,7 +749,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -902,7 +902,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -1033,7 +1033,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -1129,7 +1129,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -1259,7 +1259,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -1990,7 +1990,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -2190,7 +2190,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -2408,7 +2408,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -2627,7 +2627,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -2846,7 +2846,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.3.8",
       "targets": [
         {
           "datasource": {
@@ -2944,8 +2944,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3044,6 +3043,15 @@
                       }
                     },
                     "fieldName": "Total"
+                  },
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 20
+                      }
+                    },
+                    "fieldName": "Car+Water+Heating"
                   }
                 ],
                 "match": "any",
@@ -3101,8 +3109,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3258,8 +3265,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3524,8 +3530,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -3804,8 +3809,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -4108,8 +4112,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -4445,8 +4448,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -4958,7 +4960,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "144d",
+        "query": "150d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4974,6 +4976,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 18,
+  "version": 4,
   "weekStart": ""
 }
