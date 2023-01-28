@@ -158,92 +158,6 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "Live",
-              "url": "http://ioteleinfo.local/index.html"
-            }
-          ],
-          "mappings": [],
-          "max": 9000,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 500
-              },
-              {
-                "color": "orange",
-                "value": 3000
-              },
-              {
-                "color": "red",
-                "value": 6000
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 3,
-        "x": 4,
-        "y": 1
-      },
-      "id": 27,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.3.8",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_ccost_PAPP{location=\"cc-0-Non-chauffage\"}",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "B"
-        }
-      ],
-      "title": "Non-Heating (W)",
-      "transformations": [],
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
       "description": "Largest consumers: Car, Hot Water, Heating",
       "fieldConfig": {
         "defaults": {
@@ -336,8 +250,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 9,
-        "x": 7,
+        "w": 12,
+        "x": 4,
         "y": 1
       },
       "id": 44,
@@ -363,7 +277,7 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "sensors_zigbee_power{location=\"C01~Garage~PowerMeter\"}",
-          "hide": false,
+          "hide": true,
           "instant": true,
           "legendFormat": "Car+Water+Heating",
           "range": false,
@@ -379,7 +293,7 @@
           "expr": "sensors_zigbee_power_l1{location=\"C01~Garage~PowerMeter\"}",
           "hide": false,
           "instant": true,
-          "legendFormat": "Car Charging",
+          "legendFormat": "Car",
           "range": false,
           "refId": "C"
         },
@@ -393,7 +307,7 @@
           "expr": "sensors_zigbee_power_l2{location=\"C01~Garage~PowerMeter\"}",
           "hide": false,
           "instant": true,
-          "legendFormat": "Water Heater",
+          "legendFormat": "Water",
           "range": false,
           "refId": "D"
         },
@@ -410,6 +324,20 @@
           "legendFormat": "Heaters",
           "range": false,
           "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_ccost_PAPP{location=\"cc-0-Non-chauffage\"}",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Others",
+          "range": false,
+          "refId": "A"
         }
       ],
       "title": "Consumers (W)",
@@ -1184,6 +1112,7 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $__range)) * 0.155",
+          "hide": false,
           "instant": true,
           "interval": "",
           "legendFormat": "Car+Water+Heating",
@@ -2944,7 +2873,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2954,7 +2884,34 @@
               },
               "unit": "kwatth"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "1-Car Charging",
+                      "2-Water Heater",
+                      "3-Heaters"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 6,
@@ -3109,7 +3066,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3265,7 +3223,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3530,7 +3489,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -3571,7 +3531,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
@@ -3809,7 +3769,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -3850,7 +3811,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
@@ -4112,7 +4073,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -4202,7 +4164,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
@@ -4448,7 +4410,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -4538,7 +4501,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.6",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
@@ -4664,7 +4627,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4680,7 +4644,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 57
+            "y": 37
           },
           "id": 29,
           "options": {
@@ -4826,7 +4790,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4841,7 +4806,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 57
+            "y": 37
           },
           "id": 25,
           "options": {
@@ -4960,7 +4925,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "150d",
+        "query": "155d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4976,6 +4941,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 4,
+  "version": 10,
   "weekStart": ""
 }
