@@ -51,7 +51,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "celsius"
         },
         "overrides": []
       },
@@ -196,196 +197,6 @@
             {
               "background": {
                 "color": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S01~SdBBas~THP\"}",
-                  "fixed": "#D9D9D9"
-                }
-              },
-              "border": {
-                "color": {
-                  "fixed": "dark-green"
-                }
-              },
-              "config": {
-                "align": "center",
-                "color": {
-                  "fixed": "#000000"
-                },
-                "size": 20,
-                "text": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S01~SdBBas~THP\"}",
-                  "fixed": "",
-                  "mode": "field"
-                },
-                "valign": "middle"
-              },
-              "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
-              },
-              "name": "Element 4",
-              "placement": {
-                "height": 55,
-                "left": 1201,
-                "top": 383,
-                "width": 80
-              },
-              "type": "metric-value"
-            },
-            {
-              "background": {
-                "color": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S02~ChBas~THP\"}",
-                  "fixed": "#D9D9D9"
-                }
-              },
-              "border": {
-                "color": {
-                  "fixed": "dark-green"
-                }
-              },
-              "config": {
-                "align": "center",
-                "color": {
-                  "fixed": "#000000"
-                },
-                "size": 20,
-                "text": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S02~ChBas~THP\"}",
-                  "fixed": "",
-                  "mode": "field"
-                },
-                "valign": "middle"
-              },
-              "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
-              },
-              "name": "Element 5",
-              "placement": {
-                "height": 55,
-                "left": 1505,
-                "top": 421,
-                "width": 80
-              },
-              "type": "metric-value"
-            },
-            {
-              "background": {
-                "color": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S05~Hall~TH\"}",
-                  "fixed": "#D9D9D9"
-                }
-              },
-              "border": {
-                "color": {
-                  "fixed": "dark-green"
-                }
-              },
-              "config": {
-                "align": "center",
-                "color": {
-                  "fixed": "#000000"
-                },
-                "size": 20,
-                "text": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S05~Hall~TH\"}",
-                  "fixed": "",
-                  "mode": "field"
-                },
-                "valign": "middle"
-              },
-              "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
-              },
-              "name": "Element 6",
-              "placement": {
-                "height": 55,
-                "left": 1039,
-                "top": 449,
-                "width": 80
-              },
-              "type": "metric-value"
-            },
-            {
-              "background": {
-                "color": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S07~Salon~THP\"}",
-                  "fixed": "#D9D9D9"
-                }
-              },
-              "border": {
-                "color": {
-                  "fixed": "dark-green"
-                }
-              },
-              "config": {
-                "align": "center",
-                "color": {
-                  "fixed": "#000000"
-                },
-                "size": 20,
-                "text": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S07~Salon~THP\"}",
-                  "fixed": "",
-                  "mode": "field"
-                },
-                "valign": "middle"
-              },
-              "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
-              },
-              "name": "Element 7",
-              "placement": {
-                "height": 55,
-                "left": 712,
-                "top": 908,
-                "width": 80
-              },
-              "type": "metric-value"
-            },
-            {
-              "background": {
-                "color": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S11~Salon~Display~THL\"}",
-                  "fixed": "#D9D9D9"
-                }
-              },
-              "border": {
-                "color": {
-                  "fixed": "dark-green"
-                }
-              },
-              "config": {
-                "align": "center",
-                "color": {
-                  "fixed": "#000000"
-                },
-                "size": 20,
-                "text": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S11~Salon~Display~THL\"}",
-                  "fixed": "",
-                  "mode": "field"
-                },
-                "valign": "middle"
-              },
-              "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
-              },
-              "name": "Element 8",
-              "placement": {
-                "height": 55,
-                "left": 712,
-                "top": 846,
-                "width": 80
-              },
-              "type": "metric-value"
-            },
-            {
-              "background": {
-                "color": {
                   "field": "{__name__=\"sensors_zigbee_humidity\", db=\"sensors\", location=\"S01~SdBBas~THP\"}",
                   "fixed": "#D9D9D9"
                 }
@@ -412,7 +223,7 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "Element 9",
+              "name": "SdBB-H",
               "placement": {
                 "height": 47,
                 "left": 1201,
@@ -424,6 +235,44 @@
             {
               "background": {
                 "color": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S01~SdBBas~THP\"}",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S01~SdBBas~THP\"}",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "SdBB-T",
+              "placement": {
+                "height": 55,
+                "left": 1201,
+                "top": 383,
+                "width": 80
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
                   "field": "{__name__=\"sensors_zigbee_humidity\", db=\"sensors\", location=\"S02~ChBas~THP\"}",
                   "fixed": "#D9D9D9"
                 }
@@ -450,7 +299,7 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "Element 10",
+              "name": "ChB-H",
               "placement": {
                 "height": 47,
                 "left": 1502,
@@ -462,6 +311,44 @@
             {
               "background": {
                 "color": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S02~ChBas~THP\"}",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S02~ChBas~THP\"}",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "ChB-T",
+              "placement": {
+                "height": 55,
+                "left": 1505,
+                "top": 421,
+                "width": 80
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
                   "field": "{__name__=\"sensors_zigbee_humidity\", db=\"sensors\", location=\"S05~Hall~TH\"}",
                   "fixed": "#D9D9D9"
                 }
@@ -488,7 +375,7 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "Element 11",
+              "name": "Hall-H",
               "placement": {
                 "height": 47,
                 "left": 1038,
@@ -500,6 +387,44 @@
             {
               "background": {
                 "color": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S05~Hall~TH\"}",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S05~Hall~TH\"}",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Hall-T",
+              "placement": {
+                "height": 55,
+                "left": 1039,
+                "top": 449,
+                "width": 80
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
                   "field": "{__name__=\"sensors_zigbee_humidity\", db=\"sensors\", location=\"S07~Salon~THP\"}",
                   "fixed": "#D9D9D9"
                 }
@@ -526,12 +451,50 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "Element 12",
+              "name": "Salon-S-H",
               "placement": {
                 "height": 47,
                 "left": 802,
                 "top": 910,
                 "width": 87
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S07~Salon~THP\"}",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S07~Salon~THP\"}",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Salon-S-T",
+              "placement": {
+                "height": 55,
+                "left": 712,
+                "top": 908,
+                "width": 80
               },
               "type": "metric-value"
             },
@@ -564,12 +527,50 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "Element 13",
+              "name": "Salon-D-H",
               "placement": {
                 "height": 47,
                 "left": 799,
                 "top": 848,
                 "width": 87
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S11~Salon~Display~THL\"}",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S11~Salon~Display~THL\"}",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Salon-D-T",
+              "placement": {
+                "height": 55,
+                "left": 712,
+                "top": 846,
+                "width": 80
               },
               "type": "metric-value"
             }
@@ -635,6 +636,6 @@
   "timezone": "",
   "title": "TiDhome-Map",
   "uid": "xcVs6Fa4k",
-  "version": 12,
+  "version": 14,
   "weekStart": ""
 }
