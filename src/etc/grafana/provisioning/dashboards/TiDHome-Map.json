@@ -80,6 +80,10 @@
               "fixed": "dark-green"
             }
           },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
           "elements": [
             {
               "background": {
@@ -576,6 +580,12 @@
             }
           ],
           "name": "Element 1678567711806",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "top": 0,
+            "width": 100
+          },
           "type": "frame"
         },
         "showAdvancedTypes": false
@@ -616,9 +626,22 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "Humidity"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_power{location=~\"P.*\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "Power"
         }
       ],
       "title": "RdC",
+      "transparent": true,
       "type": "canvas"
     }
   ],
@@ -636,6 +659,6 @@
   "timezone": "",
   "title": "TiDhome-Map",
   "uid": "xcVs6Fa4k",
-  "version": 14,
+  "version": 16,
   "weekStart": ""
 }
