@@ -28,6 +28,7 @@ services:
     privileged: true
     environment:
       - TZ=Europe/Paris
+      # - DEBUG=zigbee-herdsman*
     networks:
       default:
         aliases:
