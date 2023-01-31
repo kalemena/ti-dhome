@@ -45,14 +45,10 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -71,7 +67,9 @@
               "fixed": "transparent"
             },
             "image": {
-              "fixed": "img/bg/dashboard-home-floor.png"
+              "field": "",
+              "fixed": "img/bg/dashboard-home-floor.png",
+              "mode": "fixed"
             },
             "size": "cover"
           },
@@ -79,10 +77,6 @@
             "color": {
               "fixed": "dark-green"
             }
-          },
-          "constraint": {
-            "horizontal": "left",
-            "vertical": "top"
           },
           "elements": [
             {
@@ -128,6 +122,11 @@
                 "color": {
                   "field": "Value",
                   "fixed": "#D9D9D9"
+                },
+                "image": {
+                  "field": "{__name__=\"sensors_zigbee_pressure\", db=\"sensors\", location=\"S04~ChD~Commode~THP\"}",
+                  "fixed": "",
+                  "mode": "fixed"
                 }
               },
               "border": {
@@ -149,14 +148,14 @@
                 "valign": "middle"
               },
               "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
+                "horizontal": "center",
+                "vertical": "center"
               },
               "name": "Garage-H",
               "placement": {
                 "height": 49,
-                "left": 857,
-                "top": 142,
+                "left": -244.5,
+                "top": 227.5,
                 "width": 91
               },
               "type": "metric-value"
@@ -543,7 +542,6 @@
             {
               "background": {
                 "color": {
-                  "field": "{__name__=\"sensors_zigbee_temperature\", db=\"sensors\", location=\"S11~Salon~Display~THL\"}",
                   "fixed": "#D9D9D9"
                 }
               },
@@ -571,24 +569,18 @@
               },
               "name": "Salon-D-T",
               "placement": {
-                "height": 55,
-                "left": 712,
-                "top": 846,
-                "width": 80
+                "height": 52,
+                "left": 714,
+                "top": 844,
+                "width": 76
               },
               "type": "metric-value"
             }
           ],
           "name": "Element 1678567711806",
-          "placement": {
-            "height": 100,
-            "left": 0,
-            "top": 0,
-            "width": 100
-          },
           "type": "frame"
         },
-        "showAdvancedTypes": false
+        "showAdvancedTypes": true
       },
       "pluginVersion": "9.3.8",
       "targets": [
@@ -645,6 +637,7 @@
       "type": "canvas"
     }
   ],
+  "refresh": false,
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -659,6 +652,6 @@
   "timezone": "",
   "title": "TiDhome-Map",
   "uid": "xcVs6Fa4k",
-  "version": 16,
+  "version": 19,
   "weekStart": ""
 }
