@@ -2907,8 +2907,8 @@
                   "options": {
                     "mode": "exclude",
                     "names": [
-                      "1-Car Charging",
                       "2-Water Heater",
+                      "1-Car Charging",
                       "3-Heaters"
                     ],
                     "prefix": "All except:",
@@ -2932,7 +2932,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 15
           },
           "id": 45,
           "options": {
@@ -4945,7 +4945,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "160d",
+        "query": "165d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4961,6 +4961,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 24,
+  "version": 47,
   "weekStart": ""
 }
