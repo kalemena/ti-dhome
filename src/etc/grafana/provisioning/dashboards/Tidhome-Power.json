@@ -1198,12 +1198,27 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}",
-          "hide": false,
+          "hide": true,
           "instant": true,
           "interval": "",
           "legendFormat": "{{location}}",
           "range": false,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power{location=~\"P.+\"}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "A"
         }
       ],
       "title": "Outlets (W)",
@@ -1211,8 +1226,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "cc-(.*)",
-            "renamePattern": "$1"
+            "regex": "P(.*)~(.*)~OnOff",
+            "renamePattern": "$2"
           }
         }
       ],
