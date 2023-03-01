@@ -277,7 +277,7 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "sensors_zigbee_power{location=\"C01~Garage~PowerMeter\"}",
-          "hide": true,
+          "hide": false,
           "instant": true,
           "legendFormat": "Car+Water+Heating",
           "range": false,
@@ -4644,7 +4644,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 57
           },
           "id": 29,
           "options": {
@@ -4806,7 +4806,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 57
           },
           "id": 25,
           "options": {
@@ -4834,21 +4834,26 @@
               },
               "editorMode": "code",
               "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}[1m]",
+              "hide": false,
               "legendFormat": "{{location}}",
               "range": true,
               "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sensors_zigbee_power{location=~\"P.+\"}[1m]",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "B"
             }
           ],
           "title": "Outlets (W)",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "cc-(.*)",
-                "renamePattern": "$1"
-              }
-            }
-          ],
+          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -4925,7 +4930,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "155d",
+        "query": "160d",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4941,6 +4946,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 10,
+  "version": 24,
   "weekStart": ""
 }
