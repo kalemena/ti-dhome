@@ -249,8 +249,8 @@
         ]
       },
       "gridPos": {
-        "h": 7,
-        "w": 12,
+        "h": 6,
+        "w": 14,
         "x": 4,
         "y": 1
       },
@@ -335,7 +335,7 @@
           "expr": "sensors_ccost_PAPP{location=\"cc-0-Non-chauffage\"}",
           "hide": false,
           "instant": true,
-          "legendFormat": "Others",
+          "legendFormat": "Non-Heaters",
           "range": false,
           "refId": "A"
         }
@@ -387,7 +387,7 @@
       "gridPos": {
         "h": 12,
         "w": 2,
-        "x": 16,
+        "x": 18,
         "y": 1
       },
       "id": 36,
@@ -658,8 +658,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 3,
-        "x": 18,
+        "w": 4,
+        "x": 20,
         "y": 1
       },
       "id": 51,
@@ -726,159 +726,6 @@
         }
       ],
       "title": "Cost if Base (€)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-Wh-Total"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Total"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-HCHC"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Heures Creuses"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-HCHP"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Heures Pleines"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 3,
-        "x": 21,
-        "y": 1
-      },
-      "id": 30,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value_and_name"
-      },
-      "pluginVersion": "9.3.8",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_teleinfo_HCHC / 1000",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Heures Creuses",
-          "range": false,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_teleinfo_HCHP / 1000",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Heures Pleines",
-          "range": false,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_teleinfo_Wh_Total / 1000",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Total",
-          "range": false,
-          "refId": "D"
-        }
-      ],
-      "title": "Index (kWh)",
       "transformations": [
         {
           "id": "calculateField",
@@ -1038,8 +885,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 6,
-        "x": 18,
+        "w": 4,
+        "x": 20,
         "y": 6
       },
       "id": 48,
@@ -1170,10 +1017,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
-        "w": 12,
+        "h": 6,
+        "w": 14,
         "x": 4,
-        "y": 8
+        "y": 7
       },
       "id": 28,
       "options": {
@@ -1203,7 +1050,7 @@
           "interval": "",
           "legendFormat": "{{location}}",
           "range": false,
-          "refId": "B"
+          "refId": "CurrentCost"
         },
         {
           "datasource": {
@@ -1218,7 +1065,7 @@
           "interval": "",
           "legendFormat": "{{location}}",
           "range": false,
-          "refId": "A"
+          "refId": "Zigbee Plugs"
         }
       ],
       "title": "Outlets (W)",
@@ -1862,7 +1709,7 @@
           "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": "Heures Creuses",
+          "legendFormat": "HC",
           "range": false,
           "refId": "HCHC"
         },
@@ -1876,7 +1723,7 @@
           "expr": "(sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day1)) / 1000",
           "instant": true,
           "interval": "",
-          "legendFormat": "Heure Pleines",
+          "legendFormat": "HP",
           "range": false,
           "refId": "HCHP"
         }
@@ -2047,7 +1894,7 @@
           "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": "Heures Creuses",
+          "legendFormat": "HC",
           "range": false,
           "refId": "HCHC"
         },
@@ -2061,7 +1908,7 @@
           "expr": "(sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day7)) / 1000",
           "instant": true,
           "interval": "",
-          "legendFormat": "Heure Pleines",
+          "legendFormat": "HP",
           "range": false,
           "refId": "HCHP"
         }
@@ -2932,7 +2779,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 15
+            "y": 36
           },
           "id": 45,
           "options": {
@@ -3125,7 +2972,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 21
+            "y": 42
           },
           "id": 88,
           "options": {
@@ -3268,7 +3115,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 27
+            "y": 48
           },
           "id": 84,
           "options": {
@@ -3425,7 +3272,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 27
+            "y": 48
           },
           "id": 85,
           "options": {
@@ -3544,7 +3391,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 33
+            "y": 54
           },
           "id": 49,
           "options": {
@@ -3699,7 +3546,7 @@
             "h": 8,
             "w": 3,
             "x": 3,
-            "y": 33
+            "y": 54
           },
           "id": 64,
           "options": {
@@ -3824,7 +3671,7 @@
             "h": 8,
             "w": 3,
             "x": 6,
-            "y": 33
+            "y": 54
           },
           "id": 71,
           "options": {
@@ -3979,7 +3826,7 @@
             "h": 8,
             "w": 3,
             "x": 9,
-            "y": 33
+            "y": 54
           },
           "id": 72,
           "options": {
@@ -4142,7 +3989,7 @@
             "h": 8,
             "w": 3,
             "x": 12,
-            "y": 33
+            "y": 54
           },
           "id": 54,
           "options": {
@@ -4332,7 +4179,7 @@
             "h": 8,
             "w": 3,
             "x": 15,
-            "y": 33
+            "y": 54
           },
           "id": 65,
           "options": {
@@ -4479,7 +4326,7 @@
             "h": 8,
             "w": 3,
             "x": 18,
-            "y": 33
+            "y": 54
           },
           "id": 68,
           "options": {
@@ -4669,7 +4516,7 @@
             "h": 8,
             "w": 3,
             "x": 21,
-            "y": 33
+            "y": 54
           },
           "id": 69,
           "options": {
@@ -4855,7 +4702,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 45
           },
           "id": 29,
           "options": {
@@ -5016,7 +4863,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 45
           },
           "id": 25,
           "options": {
@@ -5068,6 +4915,173 @@
         }
       ],
       "title": "Power Timeline (W)",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 90,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-Wh-Total"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Total"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-HCHC"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Heures Creuses"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-HCHP"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Heures Pleines"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 38
+          },
+          "id": 30,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.3.8",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sensors_teleinfo_HCHC / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Heures Creuses",
+              "range": false,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sensors_teleinfo_HCHP / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Heures Pleines",
+              "range": false,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sensors_teleinfo_Wh_Total / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Total",
+              "range": false,
+              "refId": "D"
+            }
+          ],
+          "title": "Index (kWh)",
+          "transformations": [
+            {
+              "id": "calculateField",
+              "options": {
+                "binary": {
+                  "left": "sensors {type: teleinfo-HCHC}",
+                  "reducer": "sum",
+                  "right": "sensors {type: teleinfo-HCHP}"
+                },
+                "mode": "binary",
+                "reduce": {
+                  "reducer": "sum"
+                }
+              }
+            }
+          ],
+          "type": "stat"
+        }
+      ],
+      "title": "Troubleshooting",
       "type": "row"
     }
   ],
@@ -5156,6 +5170,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 47,
+  "version": 52,
   "weekStart": ""
 }
