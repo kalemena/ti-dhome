@@ -3092,13 +3092,183 @@
               },
               "unit": "kwatth"
             },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "1-Car Charging",
+                      "2-Water Heater",
+                      "3-Heaters"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 21
+          },
+          "id": 88,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=~\"P.*\"}[1h]))[1h:1h])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "Plugs"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "increase(sensors_zigbee_energy{location=~\"P.*\"}[1h])",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Consumers Hourly (Wh)",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 90000000
+                      }
+                    },
+                    "fieldName": "Total"
+                  },
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 20
+                      }
+                    },
+                    "fieldName": "Car+Water+Heating"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": -1,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "kwatth"
+            },
             "overrides": []
           },
           "gridPos": {
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 42
+            "y": 27
           },
           "id": 84,
           "options": {
@@ -3255,7 +3425,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 42
+            "y": 27
           },
           "id": 85,
           "options": {
@@ -3374,7 +3544,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 48
+            "y": 33
           },
           "id": 49,
           "options": {
@@ -3529,7 +3699,7 @@
             "h": 8,
             "w": 3,
             "x": 3,
-            "y": 48
+            "y": 33
           },
           "id": 64,
           "options": {
@@ -3654,7 +3824,7 @@
             "h": 8,
             "w": 3,
             "x": 6,
-            "y": 48
+            "y": 33
           },
           "id": 71,
           "options": {
@@ -3809,7 +3979,7 @@
             "h": 8,
             "w": 3,
             "x": 9,
-            "y": 48
+            "y": 33
           },
           "id": 72,
           "options": {
@@ -3972,7 +4142,7 @@
             "h": 8,
             "w": 3,
             "x": 12,
-            "y": 48
+            "y": 33
           },
           "id": 54,
           "options": {
@@ -4162,7 +4332,7 @@
             "h": 8,
             "w": 3,
             "x": 15,
-            "y": 48
+            "y": 33
           },
           "id": 65,
           "options": {
@@ -4309,7 +4479,7 @@
             "h": 8,
             "w": 3,
             "x": 18,
-            "y": 48
+            "y": 33
           },
           "id": 68,
           "options": {
@@ -4499,7 +4669,7 @@
             "h": 8,
             "w": 3,
             "x": 21,
-            "y": 48
+            "y": 33
           },
           "id": 69,
           "options": {
@@ -4642,8 +4812,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4653,13 +4822,40 @@
               },
               "unit": "watt"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "Total",
+                      "1-Car Charging",
+                      "2-Water Heater"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 57
+            "y": 37
           },
           "id": 29,
           "options": {
@@ -4805,8 +5001,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4821,7 +5016,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 57
+            "y": 37
           },
           "id": 25,
           "options": {
