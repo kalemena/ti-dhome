@@ -51,7 +51,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "",
+      "description": "Current High/Low Cost power period",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -364,7 +364,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "",
+      "description": "This is the Cost computed with Low/High hours Energy Prices",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -637,6 +637,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "This is the Cost computed with Base Energy Prices",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -749,6 +750,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Current Total Power consumption",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -976,6 +978,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Current Power on outlets",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5170,6 +5173,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 52,
+  "version": 55,
   "weekStart": ""
 }
