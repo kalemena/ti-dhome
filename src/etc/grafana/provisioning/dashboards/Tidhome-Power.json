@@ -1101,6 +1101,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Energy Consumed hour by hour (kWh)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1283,6 +1284,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Energy Consumed day by by (kWh)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1465,6 +1467,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Energy Consumed week by week (kWh)",
       "fieldConfig": {
         "defaults": {
           "color": {
