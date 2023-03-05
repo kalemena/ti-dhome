@@ -4905,7 +4905,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 50
+            "y": 38
           },
           "id": 29,
           "options": {
@@ -5036,7 +5036,7 @@
                   "type": "linear"
                 },
                 "showPoints": "auto",
-                "spanNulls": false,
+                "spanNulls": true,
                 "stacking": {
                   "group": "A",
                   "mode": "none"
@@ -5046,7 +5046,6 @@
                 }
               },
               "mappings": [],
-              "noValue": "0",
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5059,7 +5058,8 @@
                     "value": 80
                   }
                 ]
-              }
+              },
+              "unit": "watt"
             },
             "overrides": []
           },
@@ -5067,7 +5067,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 50
+            "y": 38
           },
           "id": 25,
           "options": {
@@ -5374,6 +5374,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 62,
+  "version": 65,
   "weekStart": ""
 }
