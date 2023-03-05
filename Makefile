@@ -2,7 +2,7 @@ THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
 SHELL := /bin/bash
 
-.PHONY: 
+.PHONY: backup
 
 all: 
 
