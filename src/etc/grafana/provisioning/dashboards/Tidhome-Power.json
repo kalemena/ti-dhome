@@ -4493,6 +4493,7 @@
                 }
               },
               "mappings": [],
+              "max": 0.4,
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4872,34 +4873,7 @@
               },
               "unit": "watt"
             },
-            "overrides": [
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "Total",
-                      "1-Car Charging",
-                      "2-Water Heater"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
-              }
-            ]
+            "overrides": []
           },
           "gridPos": {
             "h": 17,
@@ -5200,7 +5174,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 51
+            "y": 39
           },
           "id": 30,
           "options": {
@@ -5374,6 +5348,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 65,
+  "version": 68,
   "weekStart": ""
 }
