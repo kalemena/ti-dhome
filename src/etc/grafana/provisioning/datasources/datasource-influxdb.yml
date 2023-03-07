@@ -18,15 +18,6 @@ datasources:
     database: 'telegraf'
     version: 1
 
-  - name: 'InfluxDB-Covid19'
-    org_id: 1
-    type: 'influxdb'
-    access: 'proxy'
-    editable: true
-    url: 'http://influxdb:8086'
-    database: 'covid19'
-    version: 1
-
   - name: 'InfluxDB-Sensors'
     org_id: 1
     type: 'influxdb'
