@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -57,7 +57,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -159,7 +159,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
           "expr": "quantile_over_time(.5, sensors_zigbee_temperature[30m])",
@@ -172,7 +172,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
           "expr": "sensors_zigbee_temperature",
@@ -213,7 +213,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -299,7 +299,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
           "expr": "sensors_zigbee_humidity",
@@ -332,7 +332,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -418,7 +418,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
           "expr": "sensors_zigbee_illuminance_lux",
@@ -451,7 +451,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "tDwkp27Vz"
+        "uid": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -534,7 +534,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
           "expr": "sensors_zigbee_occupancy",
@@ -577,7 +577,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -590,7 +590,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -606,7 +607,7 @@
             "h": 19,
             "w": 4,
             "x": 0,
-            "y": 2
+            "y": 42
           },
           "id": 24,
           "options": {
@@ -623,12 +624,12 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -646,7 +647,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -659,7 +660,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -675,7 +677,7 @@
             "h": 19,
             "w": 4,
             "x": 4,
-            "y": 2
+            "y": 42
           },
           "id": 25,
           "options": {
@@ -692,12 +694,12 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "expr": "sort_by_label(sensors_zigbee_humidity{ location =~ \"S.*\" }[2h],\"location\")",
@@ -713,7 +715,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -726,7 +728,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -742,7 +745,7 @@
             "h": 19,
             "w": 4,
             "x": 8,
-            "y": 2
+            "y": 42
           },
           "id": 26,
           "options": {
@@ -759,12 +762,12 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "expr": "sort_by_label(sensors_zigbee_pressure{ location =~ \"S.*\" }[2h],\"location\")",
@@ -780,7 +783,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "fieldConfig": {
             "defaults": {
@@ -792,7 +795,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -808,7 +812,7 @@
             "h": 19,
             "w": 4,
             "x": 12,
-            "y": 2
+            "y": 42
           },
           "id": 22,
           "options": {
@@ -825,12 +829,12 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "expr": "sort_by_label(sensors_zigbee_illuminance_lux{ location =~ \"[SM].*\" }[2h],\"location\")",
@@ -846,7 +850,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "fieldConfig": {
             "defaults": {
@@ -872,7 +876,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -888,7 +893,7 @@
             "h": 19,
             "w": 4,
             "x": 16,
-            "y": 2
+            "y": 42
           },
           "id": 32,
           "options": {
@@ -905,12 +910,12 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "expr": "sort_by_label(sensors_zigbee_occupancy{ location =~ \"[SM].*\" }[2h],\"location\")",
@@ -940,7 +945,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "fieldConfig": {
             "defaults": {
@@ -952,7 +957,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -968,7 +974,7 @@
             "h": 25,
             "w": 8,
             "x": 0,
-            "y": 3
+            "y": 43
           },
           "id": 21,
           "options": {
@@ -988,12 +994,12 @@
               "valueSize": 1
             }
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "expr": "sort_by_label(sensors_zigbee_battery[24h],\"location\")",
@@ -1009,7 +1015,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -1022,7 +1028,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -1038,7 +1045,7 @@
             "h": 25,
             "w": 6,
             "x": 8,
-            "y": 3
+            "y": 43
           },
           "id": 27,
           "options": {
@@ -1055,12 +1062,12 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "expr": "sort_by_label((time() - timestamp(sensors_zigbee_linkquality)) > (60*60), \"location\")",
@@ -1076,7 +1083,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "tDwkp27Vz"
+            "uid": "VictoriaMetrics"
           },
           "fieldConfig": {
             "defaults": {
@@ -1088,7 +1095,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -1104,7 +1112,7 @@
             "h": 25,
             "w": 7,
             "x": 14,
-            "y": 3
+            "y": 43
           },
           "id": 23,
           "options": {
@@ -1121,12 +1129,12 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.1.5",
+          "pluginVersion": "9.3.8",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "tDwkp27Vz"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "expr": "sort_by_label((sensors_zigbee_linkquality[24h] / 2.55) < 100, \"location\")",
@@ -1159,6 +1167,6 @@
   "timezone": "",
   "title": "TiDHome-Sensors-Raw",
   "uid": "mZjQcZUGz",
-  "version": 65,
+  "version": 3,
   "weekStart": ""
 }
