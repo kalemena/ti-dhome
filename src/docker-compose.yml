@@ -124,7 +124,7 @@ services:
     environment:
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-default}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-password}
-      GF_INSTALL_PLUGINS: grafana-worldmap-panel,grafana-polystat-panel
+      GF_INSTALL_PLUGINS: grafana-polystat-panel,volkovlabs-echarts-panel
     env_file:
       - .env
 
