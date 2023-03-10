@@ -51,7 +51,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "Current High/Low Cost power period",
+      "description": "High/Low power cost period",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -116,7 +116,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -158,7 +158,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "Largest consumers: Car, Hot Water, Heating",
+      "description": "Largest consumers: Car, Water heating, Electric heating",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -267,7 +267,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -364,7 +364,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "This is the Cost computed with Low/High hours Energy Prices",
+      "description": "Costs computed with Low/High hours energy prices",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -405,7 +405,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -637,7 +637,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "This is the Cost computed with Base Energy Prices",
+      "description": "Costs computed with Base energy prices",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -678,7 +678,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -810,7 +810,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -852,7 +852,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "",
+      "description": "Costs approximate for the big consumers and for the selected period",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -906,7 +906,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1038,7 +1038,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1787,7 +1787,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1987,7 +1987,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -2205,7 +2205,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -2424,7 +2424,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -2643,7 +2643,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -2741,8 +2741,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2934,8 +2933,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3091,8 +3089,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3357,8 +3354,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -3637,8 +3633,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -3941,8 +3936,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -4278,8 +4272,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -4498,8 +4491,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4629,8 +4621,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4739,8 +4730,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4862,8 +4852,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5024,8 +5013,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5120,8 +5108,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5264,7 +5251,8 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 37,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -5348,6 +5336,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 68,
+  "version": 74,
   "weekStart": ""
 }
