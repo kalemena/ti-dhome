@@ -125,6 +125,7 @@ services:
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-default}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-password}
       GF_INSTALL_PLUGINS: grafana-polystat-panel,volkovlabs-echarts-panel
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/Tidhome-Power.json
     env_file:
       - .env
 
