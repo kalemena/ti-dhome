@@ -3395,7 +3395,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.3",
           "targets": [
             {
               "datasource": {
@@ -3595,7 +3595,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1))",
+              "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day7))",
               "hide": true,
               "legendFormat": "__auto",
               "range": true,
@@ -3674,7 +3674,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.3",
           "targets": [
             {
               "datasource": {
@@ -4026,7 +4026,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.3",
           "targets": [
             {
               "datasource": {
@@ -4362,7 +4362,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.3",
           "targets": [
             {
               "datasource": {
@@ -5336,6 +5336,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 74,
+  "version": 79,
   "weekStart": ""
 }
