@@ -1084,12 +1084,48 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 9,
+        "x": 0,
+        "y": 13
+      },
+      "id": 96,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 600
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "return {\n  tooltip: {\n    trigger: 'item',\n    formatter: '{b}: {c} kWh ({d}%)'\n  },\n  legend: {\n    data: [\n      'HP',\n      'HC',\n      'Car',\n      'Water',\n      'Heaters',\n      'Others'\n    ]\n  },\n  series: [\n    {\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      label: {\n        position: 'inner',\n        fontSize: 14\n      },\n      labelLine: {\n        show: false\n      },\n      data: [\n        { value: 75, name: 'HP' },\n        { value: 104, name: 'HC' }\n      ]\n    },\n    {\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        formatter: '{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}  ',\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          a: {\n            color: '#6E7079',\n            lineHeight: 22,\n            align: 'center'\n          },\n          hr: {\n            borderColor: '#8C8D8E',\n            width: '100%',\n            borderWidth: 1,\n            height: 0\n          },\n          b: {\n            color: '#4C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          c: {\n            color: '#9C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          per: {\n            color: '#fff',\n            backgroundColor: '#4C5058',\n            padding: [3, 4],\n            borderRadius: 4\n          }\n        }\n      },\n      data: [\n        { value: 31.5, name: 'Car' },\n        { value: 51.4, name: 'Water' },\n        { value: 33.9, name: 'Heaters' },\n        { value: 62.2, name: 'Others' }\n      ]\n    }\n  ]\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas"
+      },
+      "title": "Energy (kWh)",
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 25
       },
       "id": 53,
       "panels": [],
@@ -1199,7 +1235,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 26
       },
       "id": 39,
       "options": {
@@ -1382,7 +1418,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 33
       },
       "id": 40,
       "options": {
@@ -1565,7 +1601,7 @@
         "h": 6,
         "w": 12,
         "x": 12,
-        "y": 21
+        "y": 33
       },
       "id": 83,
       "options": {
@@ -1673,7 +1709,7 @@
         "h": 8,
         "w": 2,
         "x": 0,
-        "y": 27
+        "y": 39
       },
       "id": 42,
       "options": {
@@ -1770,7 +1806,7 @@
         "h": 8,
         "w": 2,
         "x": 2,
-        "y": 27
+        "y": 39
       },
       "id": 57,
       "options": {
@@ -1858,7 +1894,7 @@
         "h": 8,
         "w": 3,
         "x": 4,
-        "y": 27
+        "y": 39
       },
       "id": 70,
       "options": {
@@ -1970,7 +2006,7 @@
         "h": 8,
         "w": 2,
         "x": 7,
-        "y": 27
+        "y": 39
       },
       "id": 58,
       "options": {
@@ -2090,7 +2126,7 @@
         "h": 8,
         "w": 3,
         "x": 9,
-        "y": 27
+        "y": 39
       },
       "id": 35,
       "options": {
@@ -2188,7 +2224,7 @@
         "h": 8,
         "w": 2,
         "x": 12,
-        "y": 27
+        "y": 39
       },
       "id": 59,
       "options": {
@@ -2309,7 +2345,7 @@
         "h": 8,
         "w": 3,
         "x": 14,
-        "y": 27
+        "y": 39
       },
       "id": 86,
       "options": {
@@ -2407,7 +2443,7 @@
         "h": 8,
         "w": 2,
         "x": 17,
-        "y": 27
+        "y": 39
       },
       "id": 87,
       "options": {
@@ -2528,7 +2564,7 @@
         "h": 8,
         "w": 3,
         "x": 19,
-        "y": 27
+        "y": 39
       },
       "id": 66,
       "options": {
@@ -2626,7 +2662,7 @@
         "h": 8,
         "w": 2,
         "x": 22,
-        "y": 27
+        "y": 39
       },
       "id": 67,
       "options": {
@@ -2689,7 +2725,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 47
       },
       "id": 74,
       "panels": [
@@ -2741,7 +2777,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2784,7 +2821,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 25
           },
           "id": 45,
           "options": {
@@ -2933,7 +2970,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2949,7 +2987,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 42
+            "y": 31
           },
           "id": 84,
           "options": {
@@ -3089,7 +3127,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3105,7 +3144,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 42
+            "y": 31
           },
           "id": 85,
           "options": {
@@ -3224,7 +3263,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 48
+            "y": 37
           },
           "id": 49,
           "options": {
@@ -3354,7 +3393,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -3378,7 +3418,7 @@
             "h": 8,
             "w": 3,
             "x": 3,
-            "y": 48
+            "y": 37
           },
           "id": 64,
           "options": {
@@ -3503,7 +3543,7 @@
             "h": 8,
             "w": 3,
             "x": 6,
-            "y": 48
+            "y": 37
           },
           "id": 71,
           "options": {
@@ -3633,7 +3673,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -3657,7 +3698,7 @@
             "h": 8,
             "w": 3,
             "x": 9,
-            "y": 48
+            "y": 37
           },
           "id": 72,
           "options": {
@@ -3820,7 +3861,7 @@
             "h": 8,
             "w": 3,
             "x": 12,
-            "y": 48
+            "y": 37
           },
           "id": 54,
           "options": {
@@ -3936,7 +3977,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -4009,7 +4051,7 @@
             "h": 8,
             "w": 3,
             "x": 15,
-            "y": 48
+            "y": 37
           },
           "id": 65,
           "options": {
@@ -4156,7 +4198,7 @@
             "h": 8,
             "w": 3,
             "x": 18,
-            "y": 48
+            "y": 37
           },
           "id": 68,
           "options": {
@@ -4272,7 +4314,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -4345,7 +4388,7 @@
             "h": 8,
             "w": 3,
             "x": 21,
-            "y": 48
+            "y": 37
           },
           "id": 69,
           "options": {
@@ -4438,7 +4481,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 48
       },
       "id": 92,
       "panels": [
@@ -4507,7 +4550,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 37
+            "y": 45
           },
           "id": 88,
           "options": {
@@ -4637,7 +4680,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 43
+            "y": 51
           },
           "id": 93,
           "options": {
@@ -4746,7 +4789,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 43
+            "y": 51
           },
           "id": 94,
           "options": {
@@ -4802,7 +4845,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 49
       },
       "id": 23,
       "panels": [
@@ -4868,7 +4911,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 38
+            "y": 46
           },
           "id": 29,
           "options": {
@@ -5029,7 +5072,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 38
+            "y": 46
           },
           "id": 25,
           "options": {
@@ -5089,7 +5132,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 50
       },
       "id": 90,
       "panels": [
@@ -5108,7 +5151,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5161,7 +5205,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 39
+            "y": 30
           },
           "id": 30,
           "options": {
@@ -5178,7 +5222,7 @@
             },
             "textMode": "value_and_name"
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.3",
           "targets": [
             {
               "datasource": {
@@ -5336,6 +5380,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 79,
+  "version": 85,
   "weekStart": ""
 }
