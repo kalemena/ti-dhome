@@ -2142,6 +2142,31 @@
                     "value": "Heures Pleines"
                   }
                 ]
+              },
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "Heures Pleines",
+                      "Heures Creuses"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
               }
             ]
           },
@@ -2207,6 +2232,214 @@
             }
           ],
           "title": "Total Hourly (Wh)",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 90000000
+                      }
+                    },
+                    "fieldName": "Total"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "description": "Energy Consumed day by by (kWh)",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": -1,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watth"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-Wh-Total"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Total"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-HCHC"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Heures Creuses"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-HCHP"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Heures Pleines"
+                  }
+                ]
+              },
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "Heures Pleines",
+                      "Heures Creuses"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 36
+          },
+          "id": 40,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1d]))[1d:1d])",
+              "hide": false,
+              "legendFormat": "Total",
+              "range": true,
+              "refId": "Total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1d]))[1d:1d])",
+              "hide": false,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "Heures Pleines"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1d]))[1d:1d])",
+              "hide": false,
+              "legendFormat": "Heures Creuses",
+              "range": true,
+              "refId": "Heures Creuses"
+            }
+          ],
+          "title": "Total Daily (kWh)",
           "transformations": [
             {
               "id": "filterByValue",
@@ -2321,7 +2554,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 42
           },
           "id": 45,
           "options": {
@@ -2390,7 +2623,7 @@
               "refId": "3-Heaters"
             }
           ],
-          "title": "Consumers Hourly (Wh)",
+          "title": "Clamps Hourly (Wh)",
           "transformations": [
             {
               "id": "filterByValue",
@@ -2413,6 +2646,190 @@
                       }
                     },
                     "fieldName": "Car+Water+Heating"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": -1,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "kwatth"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "1-Car Charging",
+                      "2-Water Heater",
+                      "3-Heaters"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 48
+          },
+          "id": 84,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
+              "hide": false,
+              "legendFormat": "Car+Water+Heating",
+              "range": true,
+              "refId": "Car+Water+Heating"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
+              "hide": false,
+              "legendFormat": "1-Car Charging",
+              "range": true,
+              "refId": "1-Car Charging"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
+              "hide": false,
+              "legendFormat": "2-Water Heater",
+              "range": true,
+              "refId": "2-Water Heater"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
+              "hide": false,
+              "legendFormat": "3-Heaters",
+              "range": true,
+              "refId": "3-Heaters"
+            }
+          ],
+          "title": "Clamps Daily (Wh)",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 90000000
+                      }
+                    },
+                    "fieldName": "Total"
                   }
                 ],
                 "match": "any",
@@ -2488,7 +2905,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 42
+            "y": 54
           },
           "id": 88,
           "options": {
@@ -2522,7 +2939,7 @@
               "refId": "Plugs"
             }
           ],
-          "title": "Consumers Hourly (Wh)",
+          "title": "Plugs Hourly (Wh)",
           "transformations": [
             {
               "id": "filterByValue",
@@ -2559,373 +2976,6 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "description": "Energy Consumed day by by (kWh)",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "watth"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-Wh-Total"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Total"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHC"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Creuses"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHP"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Pleines"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 12,
-            "x": 0,
-            "y": 48
-          },
-          "id": 40,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "Total",
-              "range": true,
-              "refId": "Total"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "Heures Pleines",
-              "range": true,
-              "refId": "Heures Pleines"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "Heures Creuses",
-              "range": true,
-              "refId": "Heures Creuses"
-            }
-          ],
-          "title": "Total Daily (kWh)",
-          "transformations": [
-            {
-              "id": "filterByValue",
-              "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
-              }
-            }
-          ],
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "description": "Energy Consumed week by week (kWh)",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "watth"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-Wh-Total"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Total"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHC"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Creuses"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHP"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Pleines"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 12,
-            "x": 12,
-            "y": 48
-          },
-          "id": 83,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1w]))[1w:1w])",
-              "hide": false,
-              "legendFormat": "Total",
-              "range": true,
-              "refId": "Total"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1w]))[1w:1w])",
-              "hide": false,
-              "legendFormat": "Heures Pleines",
-              "range": true,
-              "refId": "Heures Pleines"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1w]))[1w:1w])",
-              "hide": false,
-              "legendFormat": "Heures Creuses",
-              "range": true,
-              "refId": "Heures Creuses"
-            }
-          ],
-          "timeFrom": "12w",
-          "title": "Total Weekly (kWh)",
-          "transformations": [
-            {
-              "id": "filterByValue",
-              "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
-              }
-            }
-          ],
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2984,322 +3034,7 @@
           },
           "gridPos": {
             "h": 6,
-            "w": 12,
-            "x": 0,
-            "y": 54
-          },
-          "id": 84,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "Car+Water+Heating",
-              "range": true,
-              "refId": "Car+Water+Heating"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "1-Car Charging",
-              "range": true,
-              "refId": "1-Car Charging"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "2-Water Heater",
-              "range": true,
-              "refId": "2-Water Heater"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "3-Heaters",
-              "range": true,
-              "refId": "3-Heaters"
-            }
-          ],
-          "title": "Consumers Daily (Wh)",
-          "transformations": [
-            {
-              "id": "filterByValue",
-              "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
-              }
-            }
-          ],
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "kwatth"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 12,
-            "x": 12,
-            "y": 54
-          },
-          "id": 85,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
-              "hide": false,
-              "legendFormat": "Car+Water+Heating",
-              "range": true,
-              "refId": "Car+Water+Heating"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
-              "hide": false,
-              "legendFormat": "1-Car Charging",
-              "range": true,
-              "refId": "1-Car Charging"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
-              "hide": false,
-              "legendFormat": "2-Water Heater",
-              "range": true,
-              "refId": "2-Water Heater"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1w]))[1w:1w])",
-              "hide": false,
-              "legendFormat": "3-Heaters",
-              "range": true,
-              "refId": "3-Heaters"
-            }
-          ],
-          "timeFrom": "12w",
-          "title": "Consumers Weekly (Wh)",
-          "transformations": [
-            {
-              "id": "filterByValue",
-              "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
-              }
-            }
-          ],
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "kwatth"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 12,
+            "w": 24,
             "x": 0,
             "y": 60
           },
@@ -3334,118 +3069,7 @@
               "refId": "Plugs"
             }
           ],
-          "title": "Consumers Daily (Wh)",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "P(.*)~(.*)~OnOff",
-                "renamePattern": "$2"
-              }
-            }
-          ],
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "kwatth"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 12,
-            "x": 12,
-            "y": 60
-          },
-          "id": 94,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1w])[1w:1w])",
-              "hide": false,
-              "legendFormat": "{{location}}",
-              "range": true,
-              "refId": "Plugs"
-            }
-          ],
-          "timeFrom": "12w",
-          "title": "Consumers Weekly (Wh)",
+          "title": "Plugs Daily (Wh)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -4836,7 +4460,7 @@
           "type": "stat"
         }
       ],
-      "title": "Energy (kWh) & Costs (€) - Consumers Clamps",
+      "title": "Energy (kWh) & Costs (€) - Clamps/Plugs",
       "type": "row"
     },
     {
@@ -4846,19 +4470,6 @@
         "w": 24,
         "x": 0,
         "y": 30
-      },
-      "id": 92,
-      "panels": [],
-      "title": "Energy (kWh) & Costs (€) - Consumers Plugs",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 31
       },
       "id": 23,
       "panels": [
@@ -4925,7 +4536,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 40
+            "y": 32
           },
           "id": 29,
           "options": {
@@ -5087,7 +4698,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 40
+            "y": 32
           },
           "id": 25,
           "options": {
@@ -5147,7 +4758,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 31
       },
       "id": 90,
       "panels": [
@@ -5508,6 +5119,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 9,
+  "version": 12,
   "weekStart": ""
 }
