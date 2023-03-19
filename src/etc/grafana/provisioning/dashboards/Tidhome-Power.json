@@ -1232,197 +1232,6 @@
         "x": 3,
         "y": 13
       },
-      "id": 71,
-      "options": {
-        "displayLabels": [
-          "percent",
-          "value"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true,
-          "values": [
-            "percent"
-          ]
-        },
-        "pieType": "donut",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day7))",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "1-Car Charging",
-          "range": false,
-          "refId": "1-Car Charging"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day7))",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "2-Water Heater",
-          "range": false,
-          "refId": "2-Water Heater"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day7))",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "3-Heaters",
-          "range": false,
-          "refId": "3-Heaters"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $day7)",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "Plugs"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "avg((sensors_teleinfo_Wh_Total - (sensors_teleinfo_Wh_Total offset $day7)) / 1000)",
-          "hide": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "Total"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day7))",
-          "hide": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "TotalClamps"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $day7))",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "TotalPlugs"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$Total - $TotalClamps - $TotalPlugs",
-          "hide": false,
-          "refId": "Rest",
-          "type": "math"
-        }
-      ],
-      "title": "7 day (kWh)",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "P(.*)~OnOff",
-            "renamePattern": "$1"
-          }
-        }
-      ],
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": [],
-          "unit": "kwatth"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "P07~Celier~SL~OnOff {db=\"sensors\", location=\"P07~Celier~SL~OnOff\"}"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "SL"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 3,
-        "x": 6,
-        "y": 13
-      },
       "id": 97,
       "options": {
         "displayLabels": [
@@ -1598,6 +1407,135 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "teleinfo-Wh-Total"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHC"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Creuses"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHP"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Pleines"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 2,
+        "x": 6,
+        "y": 13
+      },
+      "id": 86,
+      "options": {
+        "displayLabels": [
+          "percent",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day60)) / 1000",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day60)) / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "60 days (kWh)",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "kwatth"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
               "options": "zigbee-energy_l1"
             },
             "properties": [
@@ -1636,7 +1574,7 @@
       "gridPos": {
         "h": 8,
         "w": 3,
-        "x": 9,
+        "x": 8,
         "y": 13
       },
       "id": 68,
@@ -1741,10 +1679,99 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyEUR"
+        },
+        "overrides": []
+      },
       "gridPos": {
-        "h": 15,
-        "w": 12,
-        "x": 12,
+        "h": 8,
+        "w": 3,
+        "x": 11,
+        "y": 13
+      },
+      "id": 58,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "avg(((sensors_teleinfo_HCHC - (sensors_teleinfo_HCHC offset $day7)) / 1000) * $kWhHC)",
+          "legendFormat": "HC",
+          "range": true,
+          "refId": "cHC"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "avg(((sensors_teleinfo_HCHP - (sensors_teleinfo_HCHP offset $day7)) / 1000) * $kWhHP)",
+          "hide": false,
+          "legendFormat": "HP",
+          "range": true,
+          "refId": "cHP"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$cHC + $cHP",
+          "hide": false,
+          "refId": "Total",
+          "type": "math"
+        }
+      ],
+      "title": "Cost 7 days (€)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 10,
+        "x": 14,
         "y": 13
       },
       "id": 101,
@@ -1761,7 +1788,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    dataCenter.push({ value: value, name: s.refId });\n  }\n  if (fieldsOuter.includes(s.refId) || s.refId.includes(\"OnOff\")) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    dataOuter.push({ value: value, name: s.refId });\n  }\n});\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    formatter: '{b}: {c} kWh ({d}%)'\n  },\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        formatter: '{b}\\n{c} kWh\\n{d}%',\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        formatter: '{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}  ',\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          a: {\n            color: '#6E7079',\n            lineHeight: 22,\n            align: 'center'\n          },\n          hr: {\n            borderColor: '#8C8D8E',\n            width: '100%',\n            borderWidth: 1,\n            height: 0\n          },\n          b: {\n            color: '#4C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          c: {\n            color: '#9C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          per: {\n            color: '#fff',\n            backgroundColor: '#4C5058',\n            padding: [3, 4],\n            borderRadius: 4\n          }\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
+        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    dataCenter.push({ value: value, name: s.refId });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2') \n    } else {\n      device = s.refId\n    }\n    dataOuter.push({ value: value, name: device });\n\n    console.error(s);\n  }\n});\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    formatter: '{b}: {c} kWh ({d}%)'\n  },\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        formatter: '{b}\\n{c} kWh\\n{d}%',\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        formatter: '{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}  ',\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          a: {\n            color: '#6E7079',\n            lineHeight: 22,\n            align: 'center'\n          },\n          hr: {\n            borderColor: '#8C8D8E',\n            width: '100%',\n            borderWidth: 1,\n            height: 0\n          },\n          b: {\n            color: '#4C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          c: {\n            color: '#9C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          per: {\n            color: '#fff',\n            backgroundColor: '#4C5058',\n            padding: [3, 4],\n            borderRadius: 4\n          }\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -1925,32 +1952,18 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
           },
-          "decimals": 2,
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 0,
           "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 500
-              },
-              {
-                "color": "orange",
-                "value": 1000
-              },
-              {
-                "color": "red",
-                "value": 2000
-              }
-            ]
-          },
-          "unit": "currencyEUR"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -1960,11 +1973,200 @@
         "x": 0,
         "y": 21
       },
-      "id": 64,
+      "id": 42,
+      "options": {
+        "displayLabels": [
+          "percent",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day1)) / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HC",
+          "range": false,
+          "refId": "HCHC"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day1)) / 1000",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HP",
+          "range": false,
+          "refId": "HCHP"
+        }
+      ],
+      "title": "1 day (kWh)",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 3,
+        "y": 21
+      },
+      "id": 35,
+      "options": {
+        "displayLabels": [
+          "percent",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day30)) / 1000",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HC",
+          "range": false,
+          "refId": "HCHC"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day30)) / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HP",
+          "range": false,
+          "refId": "HCHP"
+        }
+      ],
+      "title": "30 days (kWh)",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyEUR"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 2,
+        "x": 6,
+        "y": 21
+      },
+      "id": 87,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -1983,14 +2185,10 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "1-Car Charging",
-          "range": false,
-          "refId": "1-Car Charging"
+          "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day60)) / 1000) * $kWhHC)",
+          "legendFormat": "HC",
+          "range": true,
+          "refId": "cHC"
         },
         {
           "datasource": {
@@ -1998,64 +2196,155 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
+          "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day60)) / 1000) * $kWhHP)",
           "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "2-Water Heater",
-          "range": false,
-          "refId": "2-Water Heater"
+          "legendFormat": "HP",
+          "range": true,
+          "refId": "cHP"
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
+          "expression": "$cHC + $cHP",
           "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "3-Heaters",
-          "range": false,
-          "refId": "3-Heaters"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Car+Water+Heating",
-          "range": false,
-          "refId": "Car+Water+Heating"
+          "refId": "Total",
+          "type": "math"
         }
       ],
-      "title": "1 day (~ €)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
+      "title": "Cost 60 days (€)",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "kwatth"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-Wh-Total"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHC"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Creuses"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "teleinfo-HCHP"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heures Pleines"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 8,
+        "y": 21
+      },
+      "id": 66,
+      "options": {
+        "displayLabels": [
+          "percent",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day365)) / 1000)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day365)) / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "$day365 days (kWh)",
+      "transformations": [],
+      "type": "piechart"
     },
     {
       "datasource": {
@@ -2097,7 +2386,7 @@
       "gridPos": {
         "h": 7,
         "w": 3,
-        "x": 3,
+        "x": 11,
         "y": 21
       },
       "id": 72,
@@ -2179,6 +2468,146 @@
         }
       ],
       "title": "7 day (~ €)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 500
+              },
+              {
+                "color": "orange",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "currencyEUR"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 0,
+        "y": 28
+      },
+      "id": 64,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "1-Car Charging",
+          "range": false,
+          "refId": "1-Car Charging"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day1)) * $kWhHC",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "2-Water Heater",
+          "range": false,
+          "refId": "2-Water Heater"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "3-Heaters",
+          "range": false,
+          "refId": "3-Heaters"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1)) * 0.155",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Car+Water+Heating",
+          "range": false,
+          "refId": "Car+Water+Heating"
+        }
+      ],
+      "title": "1 day (~ €)",
       "transformations": [
         {
           "id": "calculateField",
@@ -2287,8 +2716,8 @@
       "gridPos": {
         "h": 7,
         "w": 3,
-        "x": 6,
-        "y": 21
+        "x": 3,
+        "y": 28
       },
       "id": 65,
       "options": {
@@ -2461,8 +2890,8 @@
       "gridPos": {
         "h": 7,
         "w": 3,
-        "x": 9,
-        "y": 21
+        "x": 8,
+        "y": 28
       },
       "id": 69,
       "options": {
@@ -2553,98 +2982,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "unit": "kwatth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 2,
-        "x": 0,
-        "y": 28
-      },
-      "id": 42,
-      "options": {
-        "displayLabels": [
-          "percent",
-          "value"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true,
-          "values": [
-            "percent"
-          ]
-        },
-        "pieType": "donut",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day1)) / 1000",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC",
-          "range": false,
-          "refId": "HCHC"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day1)) / 1000",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP",
-          "range": false,
-          "refId": "HCHP"
-        }
-      ],
-      "title": "1 day (kWh)",
-      "transformations": [],
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
             "mode": "thresholds"
           },
           "mappings": [],
@@ -2666,10 +3003,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 2,
-        "x": 2,
-        "y": 28
+        "h": 7,
+        "w": 3,
+        "x": 0,
+        "y": 35
       },
       "id": 57,
       "options": {
@@ -2735,293 +3072,6 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "unit": "kwatth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 3,
-        "x": 4,
-        "y": 28
-      },
-      "id": 70,
-      "options": {
-        "displayLabels": [
-          "percent",
-          "value"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true,
-          "values": [
-            "percent"
-          ]
-        },
-        "pieType": "donut",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day7)) / 1000",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC",
-          "range": false,
-          "refId": "HCHC"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day7)) / 1000",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP",
-          "range": false,
-          "refId": "HCHP"
-        }
-      ],
-      "title": "7 day (kWh)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "currencyEUR"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 2,
-        "x": 7,
-        "y": 28
-      },
-      "id": 58,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value_and_name"
-      },
-      "pluginVersion": "9.4.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "avg(((sensors_teleinfo_HCHC - (sensors_teleinfo_HCHC offset $day7)) / 1000) * $kWhHC)",
-          "legendFormat": "HC",
-          "range": true,
-          "refId": "cHC"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "avg(((sensors_teleinfo_HCHP - (sensors_teleinfo_HCHP offset $day7)) / 1000) * $kWhHP)",
-          "hide": false,
-          "legendFormat": "HP",
-          "range": true,
-          "refId": "cHP"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$cHC + $cHP",
-          "hide": false,
-          "refId": "Total",
-          "type": "math"
-        }
-      ],
-      "title": "Cost 7 days (€)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": [],
-          "unit": "kwatth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 3,
-        "x": 9,
-        "y": 28
-      },
-      "id": 35,
-      "options": {
-        "displayLabels": [
-          "percent",
-          "value"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true,
-          "values": [
-            "percent"
-          ]
-        },
-        "pieType": "donut",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day30)) / 1000",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC",
-          "range": false,
-          "refId": "HCHC"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day30)) / 1000",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP",
-          "range": false,
-          "refId": "HCHP"
-        }
-      ],
-      "title": "30 days (kWh)",
-      "transformations": [],
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3047,10 +3097,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 2,
-        "x": 12,
-        "y": 28
+        "h": 7,
+        "w": 3,
+        "x": 3,
+        "y": 35
       },
       "id": 59,
       "options": {
@@ -3116,135 +3166,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": [],
-          "unit": "kwatth"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-Wh-Total"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Total"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-HCHC"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Heures Creuses"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-HCHP"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Heures Pleines"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 3,
-        "x": 14,
-        "y": 28
-      },
-      "id": 86,
-      "options": {
-        "displayLabels": [
-          "percent",
-          "value"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true,
-          "values": [
-            "percent"
-          ]
-        },
-        "pieType": "donut",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day60)) / 1000",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{type}}",
-          "range": false,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day60)) / 1000",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{type}}",
-          "range": false,
-          "refId": "B"
-        }
-      ],
-      "title": "60 days (kWh)",
-      "transformations": [],
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
             "mode": "thresholds"
           },
           "mappings": [],
@@ -3266,229 +3187,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 2,
-        "x": 17,
-        "y": 28
-      },
-      "id": 87,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value_and_name"
-      },
-      "pluginVersion": "9.4.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "(((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day60)) / 1000) * $kWhHC)",
-          "legendFormat": "HC",
-          "range": true,
-          "refId": "cHC"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "(((sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day60)) / 1000) * $kWhHP)",
-          "hide": false,
-          "legendFormat": "HP",
-          "range": true,
-          "refId": "cHP"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$cHC + $cHP",
-          "hide": false,
-          "refId": "Total",
-          "type": "math"
-        }
-      ],
-      "title": "Cost 60 days (€)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": [],
-          "unit": "kwatth"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-Wh-Total"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Total"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-HCHC"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Heures Creuses"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "teleinfo-HCHP"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Heures Pleines"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 3,
-        "x": 19,
-        "y": 28
-      },
-      "id": 66,
-      "options": {
-        "displayLabels": [
-          "percent",
-          "value"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true,
-          "values": [
-            "percent"
-          ]
-        },
-        "pieType": "donut",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "((sensors_value{type=\"teleinfo-HCHC\"} - (sensors_value{type=\"teleinfo-HCHC\"} offset $day365)) / 1000)",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{type}}",
-          "range": false,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_value{type=\"teleinfo-HCHP\"} - (sensors_value{type=\"teleinfo-HCHP\"} offset $day365)) / 1000",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{type}}",
-          "range": false,
-          "refId": "B"
-        }
-      ],
-      "title": "$day365 days (kWh)",
-      "transformations": [],
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "currencyEUR"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 2,
-        "x": 22,
-        "y": 28
+        "x": 8,
+        "y": 35
       },
       "id": 67,
       "options": {
@@ -3551,7 +3253,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 42
       },
       "id": 53,
       "panels": [
@@ -4594,7 +4296,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 43
       },
       "id": 23,
       "panels": [
@@ -4881,7 +4583,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 44
       },
       "id": 90,
       "panels": [
@@ -5240,6 +4942,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 27,
+  "version": 29,
   "weekStart": ""
 }
