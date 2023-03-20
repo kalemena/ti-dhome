@@ -2979,6 +2979,188 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "",
+      "gridPos": {
+        "h": 18,
+        "w": 10,
+        "x": 14,
+        "y": 31
+      },
+      "id": 102,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 600
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    dataCenter.push({ value: value, name: s.refId });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n    } else {\n      device = s.refId\n    }\n    dataOuter.push({ value: value, name: device });\n\n    console.error(s);\n  }\n});\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    formatter: '{b}: {c} kWh ({d}%)'\n  },\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        formatter: '{b}\\n{c} kWh\\n{d}%',\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        formatter: '{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}  ',\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          a: {\n            color: '#6E7079',\n            lineHeight: 22,\n            align: 'center'\n          },\n          hr: {\n            borderColor: '#8C8D8E',\n            width: '100%',\n            borderWidth: 1,\n            height: 0\n          },\n          b: {\n            color: '#4C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          c: {\n            color: '#9C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          per: {\n            color: '#fff',\n            backgroundColor: '#4C5058',\n            padding: [3, 4],\n            borderRadius: 4\n          }\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas"
+      },
+      "pluginVersion": "9.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day1)) / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HC",
+          "range": false,
+          "refId": "HC"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day1)) / 1000",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HP",
+          "range": false,
+          "refId": "HP"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $day1))",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Car",
+          "range": false,
+          "refId": "Car"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $day1))",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Water",
+          "range": false,
+          "refId": "Water"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $day1))",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Heaters",
+          "range": false,
+          "refId": "Heaters"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $day1)",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "Plugs"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$HC + $HP",
+          "hide": true,
+          "refId": "Total",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $day1))",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "TotalClamps",
+          "range": false,
+          "refId": "TotalClamps"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $day1))",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "TotalPlugs",
+          "range": false,
+          "refId": "TotalPlugs"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$Total - $TotalClamps - $TotalPlugs",
+          "hide": false,
+          "refId": "Others",
+          "type": "math"
+        }
+      ],
+      "title": "1 day (kWh)",
+      "transformations": [],
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3253,7 +3435,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 49
       },
       "id": 53,
       "panels": [
@@ -4296,7 +4478,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 50
       },
       "id": 23,
       "panels": [
@@ -4583,7 +4765,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 44
+        "y": 51
       },
       "id": 90,
       "panels": [
@@ -4942,6 +5124,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 29,
+  "version": 31,
   "weekStart": ""
 }
