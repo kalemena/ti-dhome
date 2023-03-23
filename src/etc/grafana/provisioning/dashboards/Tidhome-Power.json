@@ -385,7 +385,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    dataCenter.push({ value: value, name: s.refId });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n    } else {\n      device = s.refId\n    }\n    dataOuter.push({ value: value, name: device });\n  }\n});\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    formatter: '{b}: {c} kWh ({d}%)'\n  },\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        formatter: '{b}\\n{c} kWh\\n{d}%',\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          a: {\n            color: '#6E7079',\n            lineHeight: 22,\n            align: 'center'\n          },\n          hr: {\n            borderColor: '#8C8D8E',\n            width: '100%',\n            borderWidth: 1,\n            height: 0\n          },\n          b: {\n            color: '#4C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          c: {\n            color: '#9C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          per: {\n            color: '#fff',\n            backgroundColor: '#4C5058',\n            padding: [3, 4],\n            borderRadius: 4\n          }\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
+        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    if (s.refId.includes(\"HC\")) {\n      cost = 0.1615\n    } else {\n      cost = 0.2228\n    }\n    valueCost = Math.round(value * cost * 10) / 10\n    dataCenter.push({ value: value, name: s.refId, cost: valueCost });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n      cost = 0.2062\n    } else if (s.refId.includes(\"Others\")) {\n      device = s.refId\n      cost = 0.2062\n    } else {\n      device = s.refId\n      cost = 0.1615\n    }\n    valueCost = Math.round(value * cost * 10) / 10\n    dataOuter.push({ value: value, name: device, cost: valueCost });\n  }\n});\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        formatter: '{b}\\n{c} kWh\\n{d}%',\n        /*formatter: function (params) {\n          return `${params.name}\n              ${params.data.value} kWh (${params.percent}%)\n              ${params.data.cost} €`;\n        },*/\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name}} {per|${params.percent}%}\n              {values|${params.data.value} kWh / ${params.data.cost} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          hr: {\n            borderColor: '#8C8D8E',\n            width: '100%',\n            borderWidth: 1,\n            height: 0\n          },\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 20\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 20\n          },\n          per: {\n            color: '#fff',\n            backgroundColor: '#4C5058',\n            padding: [3, 4],\n            borderRadius: 4\n          }\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -1027,179 +1027,12 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "",
-      "gridPos": {
-        "h": 16,
-        "w": 11,
-        "x": 13,
-        "y": 18
-      },
-      "id": 103,
-      "options": {
-        "baidu": {
-          "callback": "bmapReady",
-          "key": ""
-        },
-        "editor": {
-          "format": "auto",
-          "height": 600
-        },
-        "gaode": {
-          "key": "",
-          "plugin": "AMap.Scale,AMap.ToolBar"
-        },
-        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    dataCenter.push({ value: value, name: s.refId });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n    } else {\n      device = s.refId\n    }\n    dataOuter.push({ value: value, name: device });\n  }\n});\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    formatter: '{b}: {c} € ({d}%)'\n  },\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        formatter: '{b}\\n{c} €\\n{d}%',\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        formatter: [\n          '{b|{b}：}{c|{c} €}',\n          '{per|{d}%}'\n        ].join('\\n'),\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          a: {\n            color: '#6E7079',\n            lineHeight: 22,\n            align: 'center'\n          },\n          hr: {\n            borderColor: '#8C8D8E',\n            width: '100%',\n            borderWidth: 1,\n            height: 0\n          },\n          b: {\n            color: '#4C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          c: {\n            color: '#9C5058',\n            fontSize: 14,\n            fontWeight: 'bold',\n            lineHeight: 33\n          },\n          per: {\n            color: '#fff',\n            backgroundColor: '#4C5058',\n            padding: [3, 4],\n            borderRadius: 4\n          }\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
-        "google": {
-          "callback": "gmapReady",
-          "key": ""
-        },
-        "map": "none",
-        "renderer": "canvas"
-      },
-      "pluginVersion": "9.1.5",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $nbDays)) / 1000) * $kWhHC",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC",
-          "range": false,
-          "refId": "HC"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $nbDays)) / 1000) * $kWhHP",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP",
-          "range": false,
-          "refId": "HP"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $nbDays)) * $kWhHC",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Car",
-          "range": false,
-          "refId": "Car"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $nbDays)) * $kWhHC",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Water",
-          "range": false,
-          "refId": "Water"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $nbDays)) * $kWhHC",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Heaters",
-          "range": false,
-          "refId": "Heaters"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays)) * $kWhBase",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "Plugs"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$HC + $HP",
-          "hide": true,
-          "refId": "Total",
-          "type": "math"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sum(sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays)))",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "TotalPlugs",
-          "range": false,
-          "refId": "TotalPlugs"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$Total - ($Car + $Water + $Heaters) - ($TotalPlugs * $kWhBase)",
-          "hide": false,
-          "refId": "Others",
-          "type": "math"
-        }
-      ],
-      "title": "$nbDays days (€)",
-      "transformations": [],
-      "type": "volkovlabs-echarts-panel"
-    },
-    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 18
       },
       "id": 53,
       "panels": [
@@ -1331,7 +1164,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 35
+            "y": 19
           },
           "id": 39,
           "options": {
@@ -1539,7 +1372,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 42
+            "y": 26
           },
           "id": 40,
           "options": {
@@ -1711,7 +1544,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 48
+            "y": 32
           },
           "id": 45,
           "options": {
@@ -1904,7 +1737,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 54
+            "y": 38
           },
           "id": 84,
           "options": {
@@ -2062,7 +1895,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 60
+            "y": 44
           },
           "id": 88,
           "options": {
@@ -2193,7 +2026,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 66
+            "y": 50
           },
           "id": 93,
           "options": {
@@ -2248,7 +2081,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 19
       },
       "id": 23,
       "panels": [
@@ -2315,7 +2148,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 36
+            "y": 20
           },
           "id": 29,
           "options": {
@@ -2477,7 +2310,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 36
+            "y": 20
           },
           "id": 25,
           "options": {
@@ -2537,7 +2370,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 20
       },
       "id": 90,
       "panels": [
@@ -2999,6 +2832,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 60,
+  "version": 62,
   "weekStart": ""
 }
