@@ -588,7 +588,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 5,
         "w": 4,
         "x": 0,
         "y": 3
@@ -648,116 +648,6 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "Current Power on outlets",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "Live",
-              "url": "http://ioteleinfo.local/index.html"
-            }
-          ],
-          "mappings": [],
-          "max": 2500,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 100
-              },
-              {
-                "color": "orange",
-                "value": 500
-              },
-              {
-                "color": "red",
-                "value": 1000
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 9,
-        "x": 4,
-        "y": 8
-      },
-      "id": 28,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "CurrentCost"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_zigbee_power{location=~\"P.+\"}",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "Zigbee Plugs"
-        }
-      ],
-      "title": "Outlets (W)",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "P(.*)~(.*)~OnOff",
-            "renamePattern": "$2"
-          }
-        }
-      ],
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
       "description": "Costs computed with Low/High hours energy prices",
       "fieldConfig": {
         "defaults": {
@@ -779,10 +669,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 4,
         "x": 0,
-        "y": 10
+        "y": 8
       },
       "id": 36,
       "options": {
@@ -1031,6 +921,116 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Current Power on outlets",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [],
+          "max": 2500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 100
+              },
+              {
+                "color": "orange",
+                "value": 500
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 9,
+        "x": 4,
+        "y": 8
+      },
+      "id": 28,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "CurrentCost"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power{location=~\"P.+\"}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "Zigbee Plugs"
+        }
+      ],
+      "title": "Outlets (W)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "P(.*)~(.*)~OnOff",
+            "renamePattern": "$2"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
       "description": "",
       "gridPos": {
         "h": 16,
@@ -1169,21 +1169,6 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "TotalClamps",
-          "range": false,
-          "refId": "TotalClamps"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
           "expr": "(sum(sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays)))",
           "hide": true,
           "instant": true,
@@ -1198,7 +1183,7 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$Total - ($TotalClamps + $TotalPlugs) * $kWhBase",
+          "expression": "$Total - ($Car + $Water + $Heaters) - ($TotalPlugs * $kWhBase)",
           "hide": false,
           "refId": "Others",
           "type": "math"
@@ -2625,7 +2610,7 @@
             "h": 6,
             "w": 3,
             "x": 0,
-            "y": 74
+            "y": 37
           },
           "id": 30,
           "options": {
@@ -2738,7 +2723,7 @@
             "h": 6,
             "w": 3,
             "x": 3,
-            "y": 74
+            "y": 37
           },
           "id": 51,
           "options": {
@@ -2835,11 +2820,20 @@
   "templating": {
     "list": [
       {
+        "description": "Cost of kWh normal price",
+        "hide": 2,
+        "label": "kWhHP",
+        "name": "kWhBase",
+        "query": "0.2062",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
         "description": "Cost of kWh during high cost hours",
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhHP",
-        "query": "0.1841",
+        "query": "0.2228",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2848,16 +2842,55 @@
         "hide": 2,
         "label": "kWhHC",
         "name": "kWhHC",
-        "query": "0.1470",
+        "query": "0.1615",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
-        "description": "Cost of kWh normal price",
         "hide": 2,
-        "label": "kWhHP",
-        "name": "kWhBase",
-        "query": "0.174",
+        "label": "kWhTBHC",
+        "name": "kWhTBHC",
+        "query": "0,0970",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "kWhTBH9",
+        "name": "kWhTBHP",
+        "query": "0,1249",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "kWhTWHC",
+        "name": "kWhTWHC",
+        "query": "0,1140",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "kWhTWHP",
+        "name": "kWhTWHP",
+        "query": "0,1508",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "kWhTRHC",
+        "name": "kWhTRHC",
+        "query": "0,1216",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "kWhTRHP",
+        "name": "kWhTRHP",
+        "query": "0,6712",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2897,13 +2930,13 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "170d",
+        "query": "180d",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "15d",
           "value": "15d"
         },
@@ -2966,6 +2999,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 53,
+  "version": 60,
   "weekStart": ""
 }
