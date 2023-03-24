@@ -385,7 +385,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    if (s.refId.includes(\"HC\")) {\n      cost = 0.1615\n    } else {\n      cost = 0.2228\n    }\n    valueCost = Math.round(value * cost * 10) / 10\n    dataCenter.push({ value: value, name: s.refId, cost: valueCost });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Math.round(value * 10) / 10\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n      cost = 0.2062\n    } else if (s.refId.includes(\"Others\")) {\n      device = s.refId\n      cost = 0.2062\n    } else {\n      device = s.refId\n      cost = 0.1615\n    }\n    valueCost = Math.round(value * cost * 10) / 10\n    dataOuter.push({ value: value, name: device, cost: valueCost });\n  }\n});\n\nreturn {\n  /*tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },*/\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          return `${params.name}\\n${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n        },\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name}\\n${params.percent}%}\\n{values|${params.data.value} kWh / ${params.data.cost} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        fontSize: 12,\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 20\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 20\n          }\n        }\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
+        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Number(value).toFixed(2)\n    if (s.refId.includes(\"HC\")) {\n      cost = 0.1615\n    } else {\n      cost = 0.2228\n    }\n    valueCost = Number(value * cost).toFixed(2)\n    dataCenter.push({ value: value, name: s.refId, cost: valueCost });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Number(value).toFixed(2)\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n      cost = 0.2062\n    } else if (s.refId.includes(\"Others\")) {\n      device = s.refId\n      cost = 0.2062\n    } else {\n      device = s.refId\n      cost = 0.1615\n    }\n    valueCost = Number(value * cost).toFixed(2)\n    dataOuter.push({ value: value, name: device, cost: valueCost });\n  }\n});\n\nreturn {\n  /*tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },*/\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          return `${params.name}\\n${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n        },\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name}\\n${params.percent}%}\\n{values|${params.data.value} kWh / ${params.data.cost} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        fontSize: 12,\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 20\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 20\n          }\n        }\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -1042,6 +1042,103 @@
             "uid": "VictoriaMetrics"
           },
           "description": "Energy Consumed hour by hour (kWh)",
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 19
+          },
+          "id": 105,
+          "interval": "1h",
+          "options": {
+            "baidu": {
+              "callback": "bmapReady",
+              "key": ""
+            },
+            "editor": {
+              "format": "auto",
+              "height": 600
+            },
+            "gaode": {
+              "key": "",
+              "plugin": "AMap.Scale,AMap.ToolBar"
+            },
+            "getOption": "const series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'Ad',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "google": {
+              "callback": "gmapReady",
+              "key": ""
+            },
+            "map": "none",
+            "renderer": "canvas"
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1h]))[1h])",
+              "hide": true,
+              "legendFormat": "Total",
+              "range": true,
+              "refId": "Teleinfo-Total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1h]))[1h])",
+              "hide": false,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "Teleinfo-HCHP"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1h]))[1h])",
+              "hide": false,
+              "legendFormat": "Heures Creuses",
+              "range": true,
+              "refId": "Teleinfo-HCHC"
+            }
+          ],
+          "title": "Total Hourly (Wh)",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 90000000
+                      }
+                    },
+                    "fieldName": "Total"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "transparent": true,
+          "type": "volkovlabs-echarts-panel"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "description": "Energy Consumed hour by hour (kWh)",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -1052,29 +1149,16 @@
                 "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
+                "fillOpacity": 80,
                 "gradientMode": "none",
                 "hideFrom": {
                   "legend": false,
                   "tooltip": false,
                   "viz": false
                 },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
                 "lineWidth": 1,
-                "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
                 },
                 "thresholdsStyle": {
                   "mode": "off"
@@ -1085,7 +1169,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1131,31 +1216,6 @@
                     "value": "Heures Pleines"
                   }
                 ]
-              },
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "Heures Pleines",
-                      "Heures Creuses"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
               }
             ]
           },
@@ -1163,24 +1223,30 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 19
+            "y": 26
           },
           "id": 39,
+          "interval": "1h",
           "options": {
+            "barRadius": 0,
+            "barWidth": 0.97,
+            "fullHighlight": false,
+            "groupWidth": 0.7,
             "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
+            "orientation": "auto",
+            "showValue": "auto",
+            "stacking": "normal",
             "tooltip": {
-              "mode": "multi",
+              "mode": "single",
               "sort": "none"
-            }
+            },
+            "xTickLabelRotation": 0,
+            "xTickLabelSpacing": 0
           },
           "targets": [
             {
@@ -1190,7 +1256,7 @@
               },
               "editorMode": "code",
               "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1h]))[1h:1h])",
-              "hide": false,
+              "hide": true,
               "legendFormat": "Total",
               "range": true,
               "refId": "Teleinfo-Total"
@@ -1241,7 +1307,7 @@
               }
             }
           ],
-          "type": "timeseries"
+          "type": "barchart"
         },
         {
           "datasource": {
@@ -1292,7 +1358,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1370,7 +1437,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 26
+            "y": 33
           },
           "id": 40,
           "options": {
@@ -1498,7 +1565,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1541,7 +1609,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 32
+            "y": 39
           },
           "id": 45,
           "options": {
@@ -1690,7 +1758,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1733,7 +1802,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 38
+            "y": 45
           },
           "id": 84,
           "options": {
@@ -1874,7 +1943,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1890,7 +1960,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 44
+            "y": 51
           },
           "id": 88,
           "options": {
@@ -2004,7 +2074,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2020,7 +2091,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 50
+            "y": 57
           },
           "id": 93,
           "options": {
@@ -2125,7 +2196,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2286,7 +2358,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2635,7 +2708,7 @@
       "type": "row"
     }
   ],
-  "refresh": "1m",
+  "refresh": false,
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2822,6 +2895,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 68,
+  "version": 73,
   "weekStart": ""
 }
