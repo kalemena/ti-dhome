@@ -3,7 +3,9 @@ apiVersion: 1
 
 # list of datasources that should be deleted from the database
 deleteDatasources:
-  - name: InfluxDB
+  - name: InfluxDB-Telegraf
+    orgId: 1
+  - name: InfluxDB-Sensors
     orgId: 1
 
 # list of datasources to insert/update depending
