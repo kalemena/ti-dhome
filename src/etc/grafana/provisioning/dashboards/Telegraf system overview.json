@@ -118,7 +118,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -214,7 +214,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -310,7 +310,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -406,7 +406,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -502,7 +502,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -597,7 +597,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -692,7 +692,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -788,7 +788,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -884,7 +884,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -981,7 +981,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.8",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -1014,7 +1014,7 @@
       "type": "stat"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "datasource": {
         "type": "datasource",
         "uid": "grafana"
@@ -1026,887 +1026,7 @@
         "y": 5
       },
       "id": 62045,
-      "panels": [
-        {
-          "aliasColors": [],
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editable": true,
-          "error": false,
-          "fieldConfig": {
-            "defaults": {
-              "links": []
-            },
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 0,
-          "grid": [],
-          "gridPos": {
-            "h": 8,
-            "w": 24,
-            "x": 0,
-            "y": 6
-          },
-          "height": "300",
-          "hiddenSeries": false,
-          "id": 28239,
-          "interval": "$inter",
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": true,
-            "min": true,
-            "rightSide": false,
-            "show": true,
-            "sort": "current",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "options": {
-            "alertThreshold": true
-          },
-          "percentage": false,
-          "pluginVersion": "9.3.8",
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "$tag_host: $col",
-              "col": "user",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_user{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: user",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_user) as user from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_user"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "system",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_system{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: system",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_system) as system from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "C",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_system"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "softirq",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_softirq{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: softirq",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_softirq) as softirq from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "D",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_softirq"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "steal",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_steal{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: steal",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_steal) as steal from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "E",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_steal"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "nice",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_nice{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: nice",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_nice) as nice from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "F",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_nice"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "irq",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_irq{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: irq",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_irq) as irq from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "G",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_irq"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "iowait",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_iowait{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: iowait",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_iowait) as iowait from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "H",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_iowait"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "guest",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_guest{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: guest",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_guest) as guest from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "I",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_guest"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "guest_nice",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(cpu_usage_guest_nice{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "hide": false,
-              "interval": "$inter",
-              "legendFormat": "{{host}}: guest_nice",
-              "measurement": "cpu",
-              "policy": "default",
-              "query": "select mean(usage_guest_nice) as guest_nice from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
-              "rawQuery": true,
-              "refId": "J",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "usage_guest_nice"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
-            }
-          ],
-          "thresholds": [],
-          "timeRegions": [],
-          "title": "CPU usage",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "cumulative"
-          },
-          "type": "graph",
-          "xaxis": {
-            "mode": "time",
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "logBase": 1,
-              "max": 100,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false
-          }
-        },
-        {
-          "aliasColors": [],
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editable": true,
-          "error": false,
-          "fieldConfig": {
-            "defaults": {
-              "links": []
-            },
-            "overrides": []
-          },
-          "fill": 0,
-          "fillGradient": 0,
-          "grid": [],
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 14
-          },
-          "height": "350",
-          "hiddenSeries": false,
-          "id": 54694,
-          "interval": "$inter",
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "options": {
-            "alertThreshold": true
-          },
-          "percentage": false,
-          "pluginVersion": "9.3.8",
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "$tag_host: $col",
-              "col": "short",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(system_load1{host =~ \"$server$\"}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: short",
-              "measurement": "system",
-              "policy": "default",
-              "query": "select mean(load1) as short from \"system\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), * ORDER BY asc",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "load1"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "medium",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(system_load5{host =~ \"$server$\"}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: medium",
-              "measurement": "system",
-              "policy": "default",
-              "query": "select mean(load5) as medium from \"system\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), * ORDER BY asc",
-              "rawQuery": true,
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "load5"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "long",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(system_load15{host =~ \"$server$\"}) by (host)",
-              "function": "mean",
-              "g": true,
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: long",
-              "measurement": "system",
-              "policy": "default",
-              "query": "select mean(load15) as long from \"system\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), * ORDER BY asc",
-              "rawQuery": true,
-              "refId": "C",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "load15"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            }
-          ],
-          "thresholds": [],
-          "timeRegions": [],
-          "title": "Load averages",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "cumulative"
-          },
-          "type": "graph",
-          "xaxis": {
-            "mode": "time",
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false
-          }
-        },
-        {
-          "aliasColors": [],
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editable": true,
-          "error": false,
-          "fieldConfig": {
-            "defaults": {
-              "links": []
-            },
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 14
-          },
-          "height": "350",
-          "hiddenSeries": false,
-          "id": 61852,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": true,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "options": {
-            "alertThreshold": true
-          },
-          "percentage": false,
-          "pluginVersion": "9.3.8",
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "$tag_host: $col",
-              "col": "running",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(processes_running{host =~ \"$server$\"}) by (host)",
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: running",
-              "measurement": "processes",
-              "policy": "default",
-              "query": "select mean(running) as running from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
-              "rawQuery": true,
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "running"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "blocked",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(processes_blocked{host =~ \"$server$\"}) by (host)",
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: blocked",
-              "measurement": "processes",
-              "policy": "default",
-              "query": "select mean(blocked) as blocked from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
-              "rawQuery": true,
-              "refId": "C",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "blocked"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "sleeping",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(processes_sleeping{host =~ \"$server$\"}) by (host)",
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: sleeping",
-              "measurement": "processes",
-              "policy": "default",
-              "query": "select mean(sleeping) as sleeping from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
-              "rawQuery": true,
-              "refId": "D",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "sleeping"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "stopped",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(processes_stopped{host =~ \"$server$\"}) by (host)",
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: stopped",
-              "measurement": "processes",
-              "policy": "default",
-              "query": "select mean(stopped) as stopped from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
-              "rawQuery": true,
-              "refId": "E",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "stopped"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "zombies",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(processes_zombies{host =~ \"$server$\"}) by (host)",
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: zombies",
-              "measurement": "processes",
-              "policy": "default",
-              "query": "select mean(zombies) as zombies from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
-              "rawQuery": true,
-              "refId": "F",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "zombies"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "paging",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(processes_paging{host =~ \"$server$\"}) by (host)",
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: paging",
-              "measurement": "processes",
-              "policy": "default",
-              "query": "select mean(paging) as paging from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
-              "rawQuery": true,
-              "refId": "G",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "paging"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            },
-            {
-              "alias": "$tag_host: $col",
-              "col": "unknown",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "dsType": "prometheus",
-              "expr": "median(processes_unknown{host =~ \"$server$\"}) by (host)",
-              "groupBy": " by (host)",
-              "interval": "$inter",
-              "legendFormat": "{{host}}: unknown",
-              "measurement": "processes",
-              "policy": "default",
-              "query": "select mean(unknown) as unknown from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
-              "rawQuery": true,
-              "refId": "H",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "unknown"
-                    ],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": "{host =~ \"$server$\"}"
-            }
-          ],
-          "thresholds": [],
-          "timeRegions": [],
-          "title": "Processes",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "mode": "time",
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false
-          }
-        }
-      ],
+      "panels": [],
       "targets": [
         {
           "datasource": {
@@ -1920,6 +1040,889 @@
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 28239,
+      "interval": "$inter",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "$tag_host: $col",
+          "col": "user",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_user{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: user",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_user) as user from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_user"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "system",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_system{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: system",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_system) as system from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_system"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "softirq",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_softirq{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: softirq",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_softirq) as softirq from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_softirq"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "steal",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_steal{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: steal",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_steal) as steal from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_steal"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "nice",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_nice{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: nice",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_nice) as nice from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_nice"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "irq",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_irq{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: irq",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_irq) as irq from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_irq"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "iowait",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_iowait{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: iowait",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_iowait) as iowait from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_iowait"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "guest",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_guest{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: guest",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_guest) as guest from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "I",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_guest"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "guest_nice",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(cpu_usage_guest_nice{host =~ \"$server$\",cpu = 'cpu-total'}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "hide": false,
+          "interval": "$inter",
+          "legendFormat": "{{host}}: guest_nice",
+          "measurement": "cpu",
+          "policy": "default",
+          "query": "select mean(usage_guest_nice) as guest_nice from \"cpu\" WHERE \"host\" =~ /$server$/ and cpu = 'cpu-total' AND $timeFilter GROUP BY time($interval), *",
+          "rawQuery": true,
+          "refId": "J",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_guest_nice"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\",cpu = 'cpu-total'}"
+        }
+      ],
+      "title": "CPU usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "id": 54694,
+      "interval": "$inter",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "$tag_host: $col",
+          "col": "short",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(system_load1{host =~ \"$server$\"}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: short",
+          "measurement": "system",
+          "policy": "default",
+          "query": "select mean(load1) as short from \"system\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), * ORDER BY asc",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "load1"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "medium",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(system_load5{host =~ \"$server$\"}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: medium",
+          "measurement": "system",
+          "policy": "default",
+          "query": "select mean(load5) as medium from \"system\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), * ORDER BY asc",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "load5"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "long",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(system_load15{host =~ \"$server$\"}) by (host)",
+          "function": "mean",
+          "g": true,
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: long",
+          "measurement": "system",
+          "policy": "default",
+          "query": "select mean(load15) as long from \"system\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), * ORDER BY asc",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "load15"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        }
+      ],
+      "title": "Load averages",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "id": 61852,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "$tag_host: $col",
+          "col": "running",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(processes_running{host =~ \"$server$\"}) by (host)",
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: running",
+          "measurement": "processes",
+          "policy": "default",
+          "query": "select mean(running) as running from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "running"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "blocked",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(processes_blocked{host =~ \"$server$\"}) by (host)",
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: blocked",
+          "measurement": "processes",
+          "policy": "default",
+          "query": "select mean(blocked) as blocked from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "blocked"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "sleeping",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(processes_sleeping{host =~ \"$server$\"}) by (host)",
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: sleeping",
+          "measurement": "processes",
+          "policy": "default",
+          "query": "select mean(sleeping) as sleeping from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "sleeping"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "stopped",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(processes_stopped{host =~ \"$server$\"}) by (host)",
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: stopped",
+          "measurement": "processes",
+          "policy": "default",
+          "query": "select mean(stopped) as stopped from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
+          "rawQuery": true,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "stopped"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "zombies",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(processes_zombies{host =~ \"$server$\"}) by (host)",
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: zombies",
+          "measurement": "processes",
+          "policy": "default",
+          "query": "select mean(zombies) as zombies from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
+          "rawQuery": true,
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "zombies"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "paging",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(processes_paging{host =~ \"$server$\"}) by (host)",
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: paging",
+          "measurement": "processes",
+          "policy": "default",
+          "query": "select mean(paging) as paging from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
+          "rawQuery": true,
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "paging"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        },
+        {
+          "alias": "$tag_host: $col",
+          "col": "unknown",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "dsType": "prometheus",
+          "expr": "median(processes_unknown{host =~ \"$server$\"}) by (host)",
+          "groupBy": " by (host)",
+          "interval": "$inter",
+          "legendFormat": "{{host}}: unknown",
+          "measurement": "processes",
+          "policy": "default",
+          "query": "select mean(unknown) as unknown from \"processes\" WHERE host =~ /$server$/ AND $timeFilter GROUP BY time($interval), host ORDER BY asc",
+          "rawQuery": true,
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "unknown"
+                ],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": "{host =~ \"$server$\"}"
+        }
+      ],
+      "title": "Processes",
+      "type": "timeseries"
+    },
+    {
       "collapsed": true,
       "datasource": {
         "type": "datasource",
@@ -1929,7 +1932,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 23
       },
       "id": 62046,
       "panels": [
@@ -2210,7 +2213,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 24
       },
       "id": 62047,
       "panels": [
@@ -2632,7 +2635,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 25
       },
       "id": 62048,
       "panels": [
@@ -2774,7 +2777,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 26
       },
       "id": 62049,
       "panels": [
@@ -3196,7 +3199,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 27
       },
       "id": 62050,
       "panels": [
@@ -3368,7 +3371,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 28
       },
       "id": 62051,
       "panels": [
@@ -5342,7 +5345,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 29
       },
       "id": 62052,
       "panels": [
@@ -5853,7 +5856,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 30
       },
       "id": 62053,
       "panels": [
@@ -6505,7 +6508,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 31
       },
       "id": 62054,
       "panels": [
@@ -6848,7 +6851,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 32
       },
       "id": 62055,
       "panels": [
@@ -7362,7 +7365,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 33
       },
       "id": 62056,
       "panels": [
@@ -7720,7 +7723,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 34
       },
       "id": 62057,
       "panels": [
@@ -8201,7 +8204,8 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 37,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "prometheus",
@@ -8235,7 +8239,7 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "10s",
           "value": "10s"
         },
