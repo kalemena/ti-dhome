@@ -654,6 +654,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 3,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -687,6 +688,7 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value_and_name"
       },
       "pluginVersion": "9.4.7",
@@ -893,7 +895,7 @@
           },
           "expression": "$THC365 + $THP365",
           "hide": false,
-          "refId": "x days",
+          "refId": "365 days",
           "type": "math"
         }
       ],
@@ -1169,8 +1171,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1358,8 +1359,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1565,8 +1565,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1758,8 +1757,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2822,13 +2820,13 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "180d",
+        "query": "190d",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "15d",
           "value": "15d"
         },
@@ -2891,6 +2889,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 78,
+  "version": 81,
   "weekStart": ""
 }
