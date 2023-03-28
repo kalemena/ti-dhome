@@ -1237,89 +1237,6 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "kwatth"
-            },
-            "overrides": [
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "2-Water Heater",
-                      "1-Car Charging",
-                      "3-Heaters"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
-              }
-            ]
-          },
           "gridPos": {
             "h": 6,
             "w": 24,
@@ -1327,21 +1244,27 @@
             "y": 33
           },
           "id": 45,
+          "interval": "1h",
           "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
+            "baidu": {
+              "callback": "bmapReady",
+              "key": ""
             },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
+            "editor": {
+              "format": "auto",
+              "height": 600
+            },
+            "gaode": {
+              "key": "",
+              "plugin": "AMap.Scale,AMap.ToolBar"
+            },
+            "getOption": "const series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'Ad',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], Number(d * 1000).toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "google": {
+              "callback": "gmapReady",
+              "key": ""
+            },
+            "map": "none",
+            "renderer": "canvas"
           },
           "targets": [
             {
@@ -1350,8 +1273,8 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
-              "hide": false,
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1h]))[1h])",
+              "hide": true,
               "legendFormat": "Car+Water+Heating",
               "range": true,
               "refId": "Car+Water+Heating"
@@ -1362,7 +1285,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1h]))[1h])",
               "hide": false,
               "legendFormat": "1-Car Charging",
               "range": true,
@@ -1374,7 +1297,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1h]))[1h])",
               "hide": false,
               "legendFormat": "2-Water Heater",
               "range": true,
@@ -1386,7 +1309,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1h]))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1h]))[1h])",
               "hide": false,
               "legendFormat": "3-Heaters",
               "range": true,
@@ -1423,95 +1346,12 @@
               }
             }
           ],
-          "type": "timeseries"
+          "type": "volkovlabs-echarts-panel"
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "kwatth"
-            },
-            "overrides": [
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "1-Car Charging",
-                      "2-Water Heater",
-                      "3-Heaters"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
-              }
-            ]
           },
           "gridPos": {
             "h": 6,
@@ -1519,22 +1359,28 @@
             "x": 0,
             "y": 39
           },
-          "id": 84,
+          "id": 107,
+          "interval": "1d",
           "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
+            "baidu": {
+              "callback": "bmapReady",
+              "key": ""
             },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
+            "editor": {
+              "format": "auto",
+              "height": 600
+            },
+            "gaode": {
+              "key": "",
+              "plugin": "AMap.Scale,AMap.ToolBar"
+            },
+            "getOption": "const series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'Ad',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], Number(d * 1000).toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "google": {
+              "callback": "gmapReady",
+              "key": ""
+            },
+            "map": "none",
+            "renderer": "canvas"
           },
           "targets": [
             {
@@ -1543,8 +1389,8 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
-              "hide": false,
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
+              "hide": true,
               "legendFormat": "Car+Water+Heating",
               "range": true,
               "refId": "Car+Water+Heating"
@@ -1555,7 +1401,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
               "hide": false,
               "legendFormat": "1-Car Charging",
               "range": true,
@@ -1567,7 +1413,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
               "hide": false,
               "legendFormat": "2-Water Heater",
               "range": true,
@@ -1579,7 +1425,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d]))[1d:1d])",
+              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
               "hide": false,
               "legendFormat": "3-Heaters",
               "range": true,
@@ -1600,6 +1446,15 @@
                       }
                     },
                     "fieldName": "Total"
+                  },
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 20
+                      }
+                    },
+                    "fieldName": "Car+Water+Heating"
                   }
                 ],
                 "match": "any",
@@ -1607,7 +1462,7 @@
               }
             }
           ],
-          "type": "timeseries"
+          "type": "volkovlabs-echarts-panel"
         },
         {
           "datasource": {
@@ -2421,7 +2276,7 @@
       "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2608,6 +2463,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 84,
+  "version": 87,
   "weekStart": ""
 }
