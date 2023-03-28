@@ -1140,114 +1140,35 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "description": "Energy Consumed hour by hour (kWh)",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "fillOpacity": 80,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineWidth": 1,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "watth"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-Wh-Total"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Total"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHC"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Creuses"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHP"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Pleines"
-                  }
-                ]
-              }
-            ]
-          },
+          "description": "Energy Consumed daily (kWh)",
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
             "y": 26
           },
-          "id": 39,
-          "interval": "1h",
+          "id": 106,
+          "interval": "1d",
           "options": {
-            "barRadius": 0,
-            "barWidth": 0.97,
-            "fullHighlight": false,
-            "groupWidth": 0.7,
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
+            "baidu": {
+              "callback": "bmapReady",
+              "key": ""
             },
-            "orientation": "auto",
-            "showValue": "auto",
-            "stacking": "normal",
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
+            "editor": {
+              "format": "auto",
+              "height": 600
             },
-            "xTickLabelRotation": 0,
-            "xTickLabelSpacing": 0
+            "gaode": {
+              "key": "",
+              "plugin": "AMap.Scale,AMap.ToolBar"
+            },
+            "getOption": "const series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId.replace(\"Teleinfo-HC\", \"\"),\n    type: 'bar',\n    stack: 'Ad',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "google": {
+              "callback": "gmapReady",
+              "key": ""
+            },
+            "map": "none",
+            "renderer": "canvas"
           },
           "targets": [
             {
@@ -1256,7 +1177,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1h]))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1d]))[1d])",
               "hide": true,
               "legendFormat": "Total",
               "range": true,
@@ -1268,7 +1189,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1h]))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1d]))[1d])",
               "hide": false,
               "legendFormat": "Heures Pleines",
               "range": true,
@@ -1280,14 +1201,14 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1h]))[1h:1h])",
+              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1d]))[1d])",
               "hide": false,
               "legendFormat": "Heures Creuses",
               "range": true,
               "refId": "Teleinfo-HCHC"
             }
           ],
-          "title": "Total Hourly (Wh)",
+          "title": "Total Daily (Wh)",
           "transformations": [
             {
               "id": "filterByValue",
@@ -1308,214 +1229,8 @@
               }
             }
           ],
-          "type": "barchart"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "description": "Energy Consumed day by by (kWh)",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "watth"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-Wh-Total"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Total"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHC"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Creuses"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHP"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Pleines"
-                  }
-                ]
-              },
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "Heures Pleines",
-                      "Heures Creuses"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 33
-          },
-          "id": 40,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "Total",
-              "range": true,
-              "refId": "Total"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "Heures Pleines",
-              "range": true,
-              "refId": "Heures Pleines"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{}[1d]))[1d:1d])",
-              "hide": false,
-              "legendFormat": "Heures Creuses",
-              "range": true,
-              "refId": "Heures Creuses"
-            }
-          ],
-          "title": "Total Daily (kWh)",
-          "transformations": [
-            {
-              "id": "filterByValue",
-              "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
-              }
-            }
-          ],
-          "type": "timeseries"
+          "transparent": true,
+          "type": "volkovlabs-echarts-panel"
         },
         {
           "datasource": {
@@ -1565,7 +1280,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1608,7 +1324,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 39
+            "y": 33
           },
           "id": 45,
           "options": {
@@ -1757,7 +1473,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1800,7 +1517,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 45
+            "y": 39
           },
           "id": 84,
           "options": {
@@ -1941,7 +1658,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1957,7 +1675,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 51
+            "y": 45
           },
           "id": 88,
           "options": {
@@ -2071,7 +1789,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2087,7 +1806,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 57
+            "y": 51
           },
           "id": 93,
           "options": {
@@ -2889,6 +2608,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 81,
+  "version": 84,
   "weekStart": ""
 }
