@@ -2410,7 +2410,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "190d",
+        "query": "205d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2479,6 +2479,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 90,
+  "version": 99,
   "weekStart": ""
 }
