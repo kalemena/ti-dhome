@@ -1254,7 +1254,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "VictoriaMetrics"
+            "uid": "P4169E866C3094E38"
           },
           "fieldConfig": {
             "defaults": {
@@ -1268,7 +1268,7 @@
                 "axisPlacement": "auto",
                 "barAlignment": -1,
                 "drawStyle": "line",
-                "fillOpacity": 0,
+                "fillOpacity": 9,
                 "gradientMode": "none",
                 "hideFrom": {
                   "legend": false,
@@ -1295,7 +1295,6 @@
                 }
               },
               "mappings": [],
-              "max": 0.4,
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1314,12 +1313,13 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 6,
+            "h": 7,
             "w": 24,
             "x": 0,
             "y": 32
           },
-          "id": 88,
+          "id": 110,
+          "interval": "1h",
           "options": {
             "legend": {
               "calcs": [
@@ -1340,12 +1340,11 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "VictoriaMetrics"
+                "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1h])[1h:1h])",
+              "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1h])[1h]) < 4",
               "hide": false,
-              "interval": "",
               "legendFormat": "{{location}}",
               "range": true,
               "refId": "Plugs"
@@ -1354,30 +1353,10 @@
           "title": "Plugs Hourly (Wh)",
           "transformations": [
             {
-              "id": "filterByValue",
+              "id": "renameByRegex",
               "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  },
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 20
-                      }
-                    },
-                    "fieldName": "Car+Water+Heating"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
+                "regex": "P(.*)~(.*)~OnOff",
+                "renamePattern": "$2"
               }
             }
           ],
@@ -1407,7 +1386,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 20
+            "y": 40
           },
           "id": 106,
           "interval": "1d",
@@ -1503,7 +1482,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 27
+            "y": 47
           },
           "id": 107,
           "interval": "1d",
@@ -1613,7 +1592,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "VictoriaMetrics"
+            "uid": "P4169E866C3094E38"
           },
           "fieldConfig": {
             "defaults": {
@@ -1625,29 +1604,16 @@
                 "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
-                "barAlignment": -1,
-                "drawStyle": "line",
-                "fillOpacity": 0,
+                "fillOpacity": 80,
                 "gradientMode": "none",
                 "hideFrom": {
                   "legend": false,
                   "tooltip": false,
                   "viz": false
                 },
-                "lineInterpolation": "linear",
-                "lineStyle": {
-                  "fill": "solid"
-                },
                 "lineWidth": 1,
-                "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
                 },
                 "thresholdsStyle": {
                   "mode": "off"
@@ -1675,10 +1641,15 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 33
+            "y": 53
           },
           "id": 93,
+          "interval": "1d",
           "options": {
+            "barRadius": 0,
+            "barWidth": 0.97,
+            "fullHighlight": false,
+            "groupWidth": 0.7,
             "legend": {
               "calcs": [
                 "min",
@@ -1689,19 +1660,24 @@
               "placement": "right",
               "showLegend": true
             },
+            "orientation": "auto",
+            "showValue": "auto",
+            "stacking": "normal",
             "tooltip": {
-              "mode": "multi",
+              "mode": "single",
               "sort": "none"
-            }
+            },
+            "xTickLabelRotation": 0,
+            "xTickLabelSpacing": 0
           },
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "VictoriaMetrics"
+                "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1d])[1d:1d])",
+              "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1d])[1d])",
               "hide": false,
               "legendFormat": "{{location}}",
               "range": true,
@@ -1718,7 +1694,7 @@
               }
             }
           ],
-          "type": "timeseries"
+          "type": "barchart"
         }
       ],
       "title": "Energy Timeline Daily (kWh)",
@@ -2292,7 +2268,7 @@
       "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2479,6 +2455,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 99,
+  "version": 101,
   "weekStart": ""
 }
