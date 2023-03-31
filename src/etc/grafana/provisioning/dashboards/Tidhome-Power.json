@@ -1029,12 +1029,357 @@
       "type": "gauge"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 18
+      },
+      "id": 53,
+      "panels": [],
+      "title": "Energy Timeline Daily (kWh)",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "description": "Energy Consumed daily (kWh)",
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 106,
+      "interval": "1d",
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 600
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId.replace(\"Teleinfo-HC\", \"\"),\n    type: 'bar',\n    stack: 'Ad',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-HC\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1d]))[1d])",
+          "hide": true,
+          "legendFormat": "Total",
+          "range": true,
+          "refId": "Teleinfo-Total"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1d]))[1d])",
+          "hide": false,
+          "legendFormat": "Heures Pleines",
+          "range": true,
+          "refId": "Teleinfo-HCHP"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1d]))[1d])",
+          "hide": false,
+          "legendFormat": "Heures Creuses",
+          "range": true,
+          "refId": "Teleinfo-HCHC"
+        }
+      ],
+      "title": "Total Daily (Wh)",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 90000000
+                  }
+                },
+                "fieldName": "Total"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 107,
+      "interval": "1d",
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 600
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'Ad',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], Number(d * 1000).toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
+          "hide": true,
+          "legendFormat": "Car+Water+Heating",
+          "range": true,
+          "refId": "Car+Water+Heating"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
+          "hide": false,
+          "legendFormat": "1-Car Charging",
+          "range": true,
+          "refId": "1-Car Charging"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
+          "hide": false,
+          "legendFormat": "2-Water Heater",
+          "range": true,
+          "refId": "2-Water Heater"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
+          "hide": false,
+          "legendFormat": "3-Heaters",
+          "range": true,
+          "refId": "3-Heaters"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1d])[1d])",
+          "hide": true,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "Plugs"
+        }
+      ],
+      "title": "Clamps Daily (Wh)",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 90000000
+                  }
+                },
+                "fieldName": "Total"
+              },
+              {
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 20
+                  }
+                },
+                "fieldName": "Car+Water+Heating"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 93,
+      "interval": "1d",
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1d])[1d])",
+          "hide": false,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "Plugs"
+        }
+      ],
+      "title": "Plugs Daily (Wh)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "P(.*)~(.*)~OnOff",
+            "renamePattern": "$2"
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 38
       },
       "id": 109,
       "panels": [
@@ -1254,7 +1599,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P4169E866C3094E38"
+            "uid": "VictoriaMetrics"
           },
           "fieldConfig": {
             "defaults": {
@@ -1299,8 +1644,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1340,7 +1684,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P4169E866C3094E38"
+                "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
               "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1h])[1h]) < 4",
@@ -1372,341 +1716,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
-      },
-      "id": 53,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "description": "Energy Consumed daily (kWh)",
-          "gridPos": {
-            "h": 7,
-            "w": 24,
-            "x": 0,
-            "y": 40
-          },
-          "id": 106,
-          "interval": "1d",
-          "options": {
-            "baidu": {
-              "callback": "bmapReady",
-              "key": ""
-            },
-            "editor": {
-              "format": "auto",
-              "height": 600
-            },
-            "gaode": {
-              "key": "",
-              "plugin": "AMap.Scale,AMap.ToolBar"
-            },
-            "getOption": "const series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId.replace(\"Teleinfo-HC\", \"\"),\n    type: 'bar',\n    stack: 'Ad',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
-            "google": {
-              "callback": "gmapReady",
-              "key": ""
-            },
-            "map": "none",
-            "renderer": "canvas"
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[1d]))[1d])",
-              "hide": true,
-              "legendFormat": "Total",
-              "range": true,
-              "refId": "Teleinfo-Total"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[1d]))[1d])",
-              "hide": false,
-              "legendFormat": "Heures Pleines",
-              "range": true,
-              "refId": "Teleinfo-HCHP"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[1d]))[1d])",
-              "hide": false,
-              "legendFormat": "Heures Creuses",
-              "range": true,
-              "refId": "Teleinfo-HCHC"
-            }
-          ],
-          "title": "Total Daily (Wh)",
-          "transformations": [
-            {
-              "id": "filterByValue",
-              "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
-              }
-            }
-          ],
-          "transparent": true,
-          "type": "volkovlabs-echarts-panel"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 47
-          },
-          "id": 107,
-          "interval": "1d",
-          "options": {
-            "baidu": {
-              "callback": "bmapReady",
-              "key": ""
-            },
-            "editor": {
-              "format": "auto",
-              "height": 600
-            },
-            "gaode": {
-              "key": "",
-              "plugin": "AMap.Scale,AMap.ToolBar"
-            },
-            "getOption": "const series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'Ad',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], Number(d * 1000).toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
-            "google": {
-              "callback": "gmapReady",
-              "key": ""
-            },
-            "map": "none",
-            "renderer": "canvas"
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
-              "hide": true,
-              "legendFormat": "Car+Water+Heating",
-              "range": true,
-              "refId": "Car+Water+Heating"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
-              "hide": false,
-              "legendFormat": "1-Car Charging",
-              "range": true,
-              "refId": "1-Car Charging"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
-              "hide": false,
-              "legendFormat": "2-Water Heater",
-              "range": true,
-              "refId": "2-Water Heater"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[1d]))[1d])",
-              "hide": false,
-              "legendFormat": "3-Heaters",
-              "range": true,
-              "refId": "3-Heaters"
-            }
-          ],
-          "title": "Clamps Daily (Wh)",
-          "transformations": [
-            {
-              "id": "filterByValue",
-              "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  },
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 20
-                      }
-                    },
-                    "fieldName": "Car+Water+Heating"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
-              }
-            }
-          ],
-          "type": "volkovlabs-echarts-panel"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "fillOpacity": 80,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineWidth": 1,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "kwatth"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 53
-          },
-          "id": 93,
-          "interval": "1d",
-          "options": {
-            "barRadius": 0,
-            "barWidth": 0.97,
-            "fullHighlight": false,
-            "groupWidth": 0.7,
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "orientation": "auto",
-            "showValue": "auto",
-            "stacking": "normal",
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            },
-            "xTickLabelRotation": 0,
-            "xTickLabelSpacing": 0
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P4169E866C3094E38"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1d])[1d])",
-              "hide": false,
-              "legendFormat": "{{location}}",
-              "range": true,
-              "refId": "Plugs"
-            }
-          ],
-          "title": "Plugs Daily (Wh)",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "P(.*)~(.*)~OnOff",
-                "renamePattern": "$2"
-              }
-            }
-          ],
-          "type": "barchart"
-        }
-      ],
-      "title": "Energy Timeline Daily (kWh)",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 20
+        "y": 39
       },
       "id": 23,
       "panels": [
@@ -1756,8 +1766,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1918,8 +1927,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1995,7 +2003,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 40
       },
       "id": 90,
       "panels": [
@@ -2268,7 +2276,7 @@
       "type": "row"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2392,9 +2400,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "15d",
-          "value": "15d"
+          "selected": true,
+          "text": "30d",
+          "value": "30d"
         },
         "hide": 0,
         "includeAll": false,
@@ -2413,12 +2421,12 @@
             "value": "7d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "15d",
             "value": "15d"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "30d",
             "value": "30d"
           },
@@ -2455,6 +2463,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 101,
+  "version": 105,
   "weekStart": ""
 }
