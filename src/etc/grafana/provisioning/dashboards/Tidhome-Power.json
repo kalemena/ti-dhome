@@ -1144,7 +1144,7 @@
         "uid": "VictoriaMetrics"
       },
       "gridPos": {
-        "h": 6,
+        "h": 12,
         "w": 24,
         "x": 0,
         "y": 26
@@ -1228,7 +1228,7 @@
           },
           "editorMode": "code",
           "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1d])[1d])",
-          "hide": true,
+          "hide": false,
           "legendFormat": "{{location}}",
           "range": true,
           "refId": "Plugs"
@@ -1265,113 +1265,6 @@
         }
       ],
       "type": "volkovlabs-echarts-panel"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "kwatth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
-        "y": 32
-      },
-      "id": 93,
-      "interval": "1d",
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.97,
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [
-            "min",
-            "max",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "normal",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[1d])[1d])",
-          "hide": false,
-          "legendFormat": "{{location}}",
-          "range": true,
-          "refId": "Plugs"
-        }
-      ],
-      "title": "Plugs Daily (Wh)",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "P(.*)~(.*)~OnOff",
-            "renamePattern": "$2"
-          }
-        }
-      ],
-      "type": "barchart"
     },
     {
       "collapsed": true,
@@ -2463,6 +2356,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 108,
+  "version": 112,
   "weekStart": ""
 }
