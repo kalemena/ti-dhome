@@ -43,7 +43,7 @@
       },
       "id": 18,
       "panels": [],
-      "title": "Instant",
+      "title": "Summary",
       "type": "row"
     },
     {
@@ -249,7 +249,7 @@
         ]
       },
       "gridPos": {
-        "h": 7,
+        "h": 6,
         "w": 9,
         "x": 4,
         "y": 1
@@ -366,7 +366,7 @@
       },
       "description": "",
       "gridPos": {
-        "h": 17,
+        "h": 15,
         "w": 11,
         "x": 13,
         "y": 1
@@ -648,6 +648,116 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Current Power on outlets",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [],
+          "max": 2500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 100
+              },
+              {
+                "color": "orange",
+                "value": 500
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 9,
+        "x": 4,
+        "y": 7
+      },
+      "id": 28,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "CurrentCost"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power{location=~\"P.+\"}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "Zigbee Plugs"
+        }
+      ],
+      "title": "Outlets (W)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "P(.*)~(.*)~OnOff",
+            "renamePattern": "$2"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
       "description": "Costs computed with Low/High hours energy prices",
       "fieldConfig": {
         "defaults": {
@@ -670,7 +780,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 4,
         "x": 0,
         "y": 8
@@ -919,122 +1029,12 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "Current Power on outlets",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "Live",
-              "url": "http://ioteleinfo.local/index.html"
-            }
-          ],
-          "mappings": [],
-          "max": 2500,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 100
-              },
-              {
-                "color": "orange",
-                "value": 500
-              },
-              {
-                "color": "red",
-                "value": 1000
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 9,
-        "x": 4,
-        "y": 8
-      },
-      "id": 28,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "CurrentCost"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_zigbee_power{location=~\"P.+\"}",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "Zigbee Plugs"
-        }
-      ],
-      "title": "Outlets (W)",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "P(.*)~(.*)~OnOff",
-            "renamePattern": "$2"
-          }
-        }
-      ],
-      "type": "gauge"
-    },
-    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 16
       },
       "id": 53,
       "panels": [],
@@ -1051,7 +1051,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 17
       },
       "id": 106,
       "interval": "1d",
@@ -1147,7 +1147,7 @@
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 24
       },
       "id": 107,
       "interval": "1d",
@@ -1272,7 +1272,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 36
       },
       "id": 109,
       "panels": [
@@ -1609,7 +1609,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 37
       },
       "id": 23,
       "panels": [
@@ -1896,7 +1896,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 38
       },
       "id": 90,
       "panels": [
@@ -2356,6 +2356,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 112,
+  "version": 117,
   "weekStart": ""
 }
