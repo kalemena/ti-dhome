@@ -2,6 +2,7 @@ FROM kalemena/node-red:3.0.2
 
 RUN npm i \
         node-red-contrib-simpletime \
+        node-red-contrib-moment \
         node-red-node-suncalc \
         node-red-contrib-file-function-ext \
         node-red-contrib-string \
