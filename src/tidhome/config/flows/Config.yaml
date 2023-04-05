@@ -38,7 +38,7 @@
   z: 112e9cf8.590b23
   property: payload
   name: ''
-  x: 460
+  x: 470
   'y': 440
   wires:
     - - 87655eff.6eacc
@@ -108,9 +108,9 @@
   payload: '["iotpower","iotheaters","rfm868usb"]'
   payloadType: json
   x: 100
-  'y': 560
+  'y': 620
   wires:
-    - - 9bca5b14.acefe8
+    - []
 - id: 9bca5b14.acefe8
   type: function
   z: 112e9cf8.590b23
@@ -201,7 +201,7 @@
   finalize: ''
   libs: []
   x: 320
-  'y': 560
+  'y': 620
   wires:
     - - ecb2912f7071e62b
 - id: 650449d4.5383f8
@@ -295,7 +295,7 @@
   name: Sensors - Alerts
   info: ''
   x: 120
-  'y': 520
+  'y': 580
   wires: []
 - id: 84b1892ac15ea678
   type: link out
@@ -315,5 +315,5 @@
   links:
     - 2f30621f40aa8285
   x: 485
-  'y': 560
+  'y': 620
   wires: []
