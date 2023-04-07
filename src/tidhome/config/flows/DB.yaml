@@ -7,7 +7,7 @@
   type: junction
   z: d88a69c4.1942c8
   x: 240
-  'y': 360
+  'y': 320
   wires:
     - - 7e3ea563.cfecfc
       - 2b444ab.4ee2eb6
@@ -90,85 +90,14 @@
   x: 255
   'y': 80
   wires: []
-- id: f9ad7f8e.736a08
-  type: influxdb in
-  z: d88a69c4.1942c8
-  influxdb: 786c015f0b3c18d1
-  name: ''
-  query: ''
-  rawOutput: false
-  precision: ''
-  retentionPolicy: ''
-  org: organisation
-  x: 730
-  'y': 560
-  wires:
-    - - fe17bda8.2a07a8
-- id: 266e0143.d568d6
-  type: comment
-  z: d88a69c4.1942c8
-  name: Selects
-  info: ''
-  x: 90
-  'y': 500
-  wires: []
-- id: fe17bda8.2a07a8
-  type: debug
-  z: d88a69c4.1942c8
-  name: ''
-  active: true
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 1030
-  'y': 560
-  wires: []
-- id: 7ad1b802.d1df98
-  type: inject
-  z: d88a69c4.1942c8
-  name: SELECT * FROM "sensors" WHERE "type" = 'temp' AND "value" > 22
-  props:
-    - p: query
-      v: SELECT * FROM "sensors_ccost_PAPP" WHERE "value" > 22
-      vt: str
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  x: 290
-  'y': 560
-  wires:
-    - - f9ad7f8e.736a08
 - id: 716819cb.d00088
   type: comment
   z: d88a69c4.1942c8
   name: insert - events
   info: ''
   x: 110
-  'y': 300
+  'y': 260
   wires: []
-- id: ea4448b9.c62a4
-  type: inject
-  z: d88a69c4.1942c8
-  name: SELECT * FROM "one_month"."downsampled_sensors"
-  props:
-    - p: query
-      v: SELECT * FROM "one_month"."downsampled_sensors"
-      vt: str
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  x: 240
-  'y': 600
-  wires:
-    - - f9ad7f8e.736a08
 - id: bf874566.5d9478
   type: influxdb out
   z: d88a69c4.1942c8
@@ -182,7 +111,7 @@
   org: ''
   bucket: ''
   x: 540
-  'y': 340
+  'y': 300
   wires: []
 - id: 2b444ab.4ee2eb6
   type: debug
@@ -197,7 +126,7 @@
   statusVal: ''
   statusType: auto
   x: 330
-  'y': 390
+  'y': 350
   wires: []
 - id: 363803a4.b81044
   type: mqtt in
@@ -211,7 +140,7 @@
   rap: false
   inputs: 0
   x: 90
-  'y': 340
+  'y': 300
   wires:
     - - ed8532c35449ea5d
 - id: 7e3ea563.cfecfc
@@ -227,7 +156,7 @@
   finalize: ''
   libs: []
   x: 330
-  'y': 340
+  'y': 300
   wires:
     - - bf874566.5d9478
       - 1dcfd422.bd14fc
@@ -245,7 +174,7 @@
   statusVal: ''
   statusType: auto
   x: 510
-  'y': 380
+  'y': 340
   wires: []
 - id: 5aec7656638b8a7b
   type: influxdb out
@@ -260,7 +189,7 @@
   org: ''
   bucket: ''
   x: 550
-  'y': 300
+  'y': 260
   wires: []
 - id: e72a9a6d97ae5b4a
   type: link in
@@ -271,6 +200,6 @@
     - 217fc7c76bf682ea
     - bd608bdcef55352f
   x: 125
-  'y': 390
+  'y': 350
   wires:
     - - ed8532c35449ea5d
