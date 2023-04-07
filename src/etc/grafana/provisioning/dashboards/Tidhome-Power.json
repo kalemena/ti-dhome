@@ -1523,6 +1523,21 @@
               "legendFormat": "60 days",
               "range": false,
               "refId": "THBase60"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day180)) / 1000) * $kWhBase)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "180 days",
+              "range": false,
+              "refId": "THBase180"
             }
           ],
           "title": "Cost if Base (€)",
@@ -1953,15 +1968,23 @@
       },
       {
         "hide": 2,
+        "label": "180 Day",
+        "name": "day180",
+        "query": "180d",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "220d",
+        "query": "180d",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "30d",
           "value": "30d"
         },
@@ -2062,6 +2085,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 141,
+  "version": 7,
   "weekStart": ""
 }
