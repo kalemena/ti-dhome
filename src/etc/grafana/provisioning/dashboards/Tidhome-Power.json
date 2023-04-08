@@ -974,6 +974,47 @@
           },
           "editorMode": "code",
           "exemplar": false,
+          "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day180)) / 1000) * $kWhHC)",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HC €",
+          "range": false,
+          "refId": "THC180"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg(((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day180)) / 1000) * $kWhHP)",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HP €",
+          "range": false,
+          "refId": "THP180"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$THC180 + $THP180",
+          "hide": false,
+          "refId": "180 days",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
           "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day365)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
