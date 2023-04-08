@@ -1538,6 +1538,21 @@
               "legendFormat": "180 days",
               "range": false,
               "refId": "THBase180"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(((sensors_teleinfo_Wh_Total{} @ 1682865193 - (sensors_teleinfo_Wh_Total{} @ 1672552800)) / 1000) * $kWhBase)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "2023",
+              "range": false,
+              "refId": "2023"
             }
           ],
           "title": "Cost if Base (€)",
