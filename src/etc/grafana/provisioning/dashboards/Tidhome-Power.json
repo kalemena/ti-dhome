@@ -1048,6 +1048,47 @@
           "hide": false,
           "refId": "365 days",
           "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} @ 1672552800)) / 1000) * $kWhHC)",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HC €",
+          "range": false,
+          "refId": "THC2023"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg(((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} @ 1672552800)) / 1000) * $kWhHP)",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HP €",
+          "range": false,
+          "refId": "THP2023"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$THC2023 + $THP2023",
+          "hide": false,
+          "refId": "2023",
+          "type": "math"
         }
       ],
       "title": "Cost (€)",
