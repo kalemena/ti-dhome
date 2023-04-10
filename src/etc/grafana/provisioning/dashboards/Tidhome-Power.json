@@ -717,7 +717,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}",
+          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"} @ now()",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -732,7 +732,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_power{location=~\"P.+\"}",
+          "expr": "sensors_zigbee_power{location=~\"P.+\"} @ now()",
           "hide": false,
           "instant": true,
           "interval": "",
@@ -2182,6 +2182,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 7,
+  "version": 10,
   "weekStart": ""
 }
