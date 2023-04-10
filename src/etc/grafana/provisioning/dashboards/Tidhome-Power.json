@@ -615,7 +615,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_teleinfo_PAPP[30s]",
+          "expr": "sensors_teleinfo_PAPP @ now()",
           "format": "time_series",
           "hide": false,
           "instant": true,
