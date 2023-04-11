@@ -11,6 +11,22 @@
   wires:
     - - 7e3ea563.cfecfc
       - 2b444ab.4ee2eb6
+- id: 994a7a64bc1c7656
+  type: junction
+  z: d88a69c4.1942c8
+  x: 100
+  'y': 970
+  wires:
+    - - '9581410703628258'
+      - 6e5458755ca35f1b
+      - 9147ca10781b15f4
+- id: 204ba00bb6a13bac
+  type: junction
+  z: d88a69c4.1942c8
+  x: 360
+  'y': 1010
+  wires:
+    - - cc2f0f7f0427b58c
 - id: cc675ec4.106d
   type: comment
   z: d88a69c4.1942c8
@@ -203,3 +219,137 @@
   'y': 350
   wires:
     - - ed8532c35449ea5d
+- id: 9aa81642091a436b
+  type: inject
+  z: d88a69c4.1942c8
+  name: Init
+  props: []
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: 0.1
+  topic: ''
+  x: 90
+  'y': 470
+  wires:
+    - - f4df2ed060031650
+      - a5ea9f561f8a2b2a
+      - 432439ee8b7f21ec
+- id: f4df2ed060031650
+  type: file in
+  z: d88a69c4.1942c8
+  name: EDF - Tempo 2022
+  filename: /etc/tidhome/EDF-Tempo-2022.csv
+  filenameType: str
+  format: utf8
+  chunk: false
+  sendError: false
+  encoding: utf8
+  allProps: false
+  x: 300
+  'y': 470
+  wires:
+    - - 302e9d35b9f224cd
+- id: 302e9d35b9f224cd
+  type: csv
+  z: d88a69c4.1942c8
+  name: ''
+  sep: ','
+  hdrin: true
+  hdrout: ''
+  multi: mult
+  ret: \n
+  temp: ''
+  skip: '0'
+  strings: true
+  include_empty_strings: false
+  include_null_values: false
+  x: 470
+  'y': 470
+  wires:
+    - - 598f547a1ac99cb2
+- id: eb9dbd2cca4b2e93
+  type: debug
+  z: d88a69c4.1942c8
+  name: Config-EDF
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 790
+  'y': 550
+  wires: []
+- id: 598f547a1ac99cb2
+  type: function
+  z: d88a69c4.1942c8
+  name: store global
+  func: |-
+
+    for (var j = 0; j < msg.payload.length; j++) {
+        let dayData = msg.payload[j]
+        global.set('edf.tempo.' + dayData.date, dayData);
+    }
+
+    return null;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 610
+  'y': 470
+  wires:
+    - - eb9dbd2cca4b2e93
+- id: a5ea9f561f8a2b2a
+  type: change
+  z: d88a69c4.1942c8
+  name: store facts
+  rules:
+    - t: set
+      p: edf.costs.base
+      pt: global
+      to: '20.62'
+      tot: num
+    - t: set
+      p: edf.costs.hc
+      pt: global
+      to: '16.15'
+      tot: num
+    - t: set
+      p: edf.costs.hp
+      pt: global
+      to: '22.28'
+      tot: num
+    - t: set
+      p: edf.tempo.colors
+      pt: global
+      to: '{"blue":0,"white":0,"red":0}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 280
+  'y': 550
+  wires:
+    - - eb9dbd2cca4b2e93
+- id: 432439ee8b7f21ec
+  type: file in
+  z: d88a69c4.1942c8
+  name: EDF - Tempo 2023
+  filename: /etc/tidhome/EDF-Tempo-2023.csv
+  filenameType: str
+  format: utf8
+  chunk: false
+  sendError: false
+  encoding: utf8
+  allProps: false
+  x: 300
+  'y': 510
+  wires:
+    - - 302e9d35b9f224cd
