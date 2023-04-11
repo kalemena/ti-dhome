@@ -219,6 +219,204 @@
   'y': 350
   wires:
     - - ed8532c35449ea5d
+- id: c7ee104a98cf18f3
+  type: moment
+  z: d88a69c4.1942c8
+  name: Parse Epoch
+  topic: ''
+  input: payload.timestamp
+  inputType: msg
+  inTz: Europe/Paris
+  adjAmount: 0
+  adjType: days
+  adjDir: add
+  format: YYYY-MM-DD
+  locale: POSIX
+  output: payload.isoDate
+  outputType: msg
+  outTz: Europe/Paris
+  x: 430
+  'y': 710
+  wires:
+    - - 2366bd1e3e03afb8
+      - b3652a8e55e370f4
+      - b4b61009fc7b0feb
+- id: 2366bd1e3e03afb8
+  type: function
+  z: d88a69c4.1942c8
+  name: Tempo
+  func: >-
+    msg.topic = "tempo"
+
+
+    var datesTempo = global.get("edf.tempo")
+
+
+    if (datesTempo[msg.payload.isoDate] != undefined) {
+        msg.payload.color = datesTempo[msg.payload.isoDate].color
+    } else {
+        msg.payload.color = 'blue'
+    }
+
+
+    global.set('edf.tempo.colors.' + msg.payload.color, 1);
+
+
+    switch (msg.payload.period) {
+
+        case 'HC':
+
+            switch (msg.payload.color) {
+                case "blue":
+                    msg.payload.costUnit = Number(0.0970)
+                    break;
+
+                case "white":
+                    msg.payload.costUnit = Number(0.1140)
+                    break;
+
+                case 'red':
+                    msg.payload.costUnit = Number(0.1216)
+                    break;
+            }        
+            
+            break;
+
+        case 'HP':
+
+            switch (msg.payload.color) {
+                case "blue":
+                    msg.payload.costUnit = Number(0.1249)
+                    break;
+
+                case "white":
+                    msg.payload.costUnit = Number(0.1508)
+                    break;
+
+                case 'red':
+                    msg.payload.costUnit = Number(0.6712)
+                    break;
+            }
+
+            break;    
+    }
+
+
+    global.set('edf.tempo.colors.' + msg.payload.color + "-" +
+    msg.payload.period, msg.payload.costUnit);
+
+
+    msg.payload.cost = msg.payload.costUnit * Number(msg.payload.value) / 1000
+
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 610
+  'y': 710
+  wires:
+    - - 7733c07030c21098
+- id: 3bee84a27e6cd59c
+  type: function
+  z: d88a69c4.1942c8
+  name: scroll energy
+  func: |-
+
+    // Trigger as many as days
+    //for (var dayEnergy in msg.payload.data.result[0].values) {
+    for (var j = 0; j < msg.payload.data.result[0].values.length; j++) {
+        let dayData = msg.payload.data.result[0].values[j]
+        node.send(
+            [
+                { 
+                    payload: {
+                        timestamp: dayData[0] * 1000,
+                        value: Number(dayData[1]),
+                        period: msg.period
+                    }
+                }
+            ]);
+    }
+
+    return null;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 240
+  'y': 710
+  wires:
+    - - c7ee104a98cf18f3
+- id: 7733c07030c21098
+  type: Topic Frequencies
+  z: d88a69c4.1942c8
+  name: Freqs
+  units: hours
+  interval: 1
+  reportUnits: minutes
+  reportInterval: 1
+  topicKey: topic
+  valueKey: payload.cost
+  alignToClock: true
+  generator: internal
+  x: 820
+  'y': 750
+  wires:
+    - - ab9d4b85d889183c
+      - fbbf19c3b6f8e430
+    - []
+- id: b3652a8e55e370f4
+  type: function
+  z: d88a69c4.1942c8
+  name: HC/HP
+  func: |-
+    msg.topic = "hchp"
+
+    switch (msg.payload.period) {
+        case 'HC':
+            msg.payload.costUnit = Number(0.1615)
+            break;
+
+        case 'HP':
+            msg.payload.costUnit = Number(0.2228)
+            break;    
+    }
+
+    msg.payload.cost = msg.payload.costUnit * Number(msg.payload.value) / 1000
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 620
+  'y': 750
+  wires:
+    - - 7733c07030c21098
+- id: b4b61009fc7b0feb
+  type: function
+  z: d88a69c4.1942c8
+  name: Base
+  func: |-
+    msg.topic = "base"
+    msg.payload.costUnit = Number(0.2062)
+    msg.payload.cost = msg.payload.costUnit * Number(msg.payload.value) / 1000
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 610
+  'y': 790
+  wires:
+    - - 7733c07030c21098
 - id: 9aa81642091a436b
   type: inject
   z: d88a69c4.1942c8
@@ -338,6 +536,14 @@
   'y': 550
   wires:
     - - eb9dbd2cca4b2e93
+- id: 3c9ba4b57c4a6219
+  type: comment
+  z: d88a69c4.1942c8
+  name: Mathematics - power
+  info: ''
+  x: 130
+  'y': 420
+  wires: []
 - id: 432439ee8b7f21ec
   type: file in
   z: d88a69c4.1942c8
@@ -353,3 +559,235 @@
   'y': 510
   wires:
     - - 302e9d35b9f224cd
+- id: 1eb90a76313ade10
+  type: comment
+  z: d88a69c4.1942c8
+  name: 'Mathematics - power - formula #1 - query_range'
+  info: ''
+  x: 220
+  'y': 630
+  wires: []
+- id: '9581410703628258'
+  type: function
+  z: d88a69c4.1942c8
+  name: Base
+  func: |-
+    msg.topic = "base"
+    msg.costUnit = Number(0.2062)
+
+    if (msg.payload.data.result[0].values.length > 0) {
+        let dayData = msg.payload.data.result[0].values[0]
+        let daykWh = Number(dayData[1])
+
+        let dayCost = msg.costUnit * daykWh
+
+        return {
+            cost: dayCost,
+            topic: msg.topic
+        }
+    }
+
+    return null
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 220
+  'y': 970
+  wires:
+    - - 204ba00bb6a13bac
+- id: ab9d4b85d889183c
+  type: debug
+  z: d88a69c4.1942c8
+  name: 'Debug #1'
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 980
+  'y': 750
+  wires: []
+- id: 61321c793b31fe9b
+  type: http request
+  z: d88a69c4.1942c8
+  name: Fetch DB
+  method: GET
+  ret: obj
+  paytoqs: ignore
+  url: ''
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 560
+  'y': 670
+  wires:
+    - - 3bee84a27e6cd59c
+      - b9eaf33614dd786a
+- id: b9eaf33614dd786a
+  type: debug
+  z: d88a69c4.1942c8
+  name: 'Debug Fetch #1'
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 740
+  'y': 670
+  wires: []
+- id: 6e5458755ca35f1b
+  type: function
+  z: d88a69c4.1942c8
+  name: HC/HP
+  func: |-
+    msg.topic = "hchp"
+
+    switch (msg.period) {
+        case 'HC':
+            msg.costUnit = Number(0.1615)
+            break;
+
+        case 'HP':
+            msg.costUnit = Number(0.2228)
+            break;    
+    }
+
+    if (msg.payload.data.result[0].values.length > 0) {
+        let dayData = msg.payload.data.result[0].values[0]
+        let daykWh = Number(dayData[1])
+
+        let dayCost = msg.costUnit * daykWh
+
+        return {
+            cost: dayCost,
+            topic: msg.topic
+        }
+    }
+
+    return null
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 230
+  'y': 1010
+  wires:
+    - - 204ba00bb6a13bac
+- id: 9147ca10781b15f4
+  type: function
+  z: d88a69c4.1942c8
+  name: Tempo
+  func: >-
+    msg.topic = "tempo"
+
+
+    var datesTempo = global.get("edf.tempo")
+
+
+    if (datesTempo[msg.dateISO] != undefined) {
+        msg.color = datesTempo[msg.dateISO].color
+    } else {
+        msg.color = 'blue'
+    }
+
+
+    switch (msg.period) {
+
+        case 'HC':
+
+            switch (msg.color) {
+                case "blue":
+                    msg.costUnit = Number(0.0970)
+                    break;
+
+                case "white":
+                    msg.costUnit = Number(0.1140)
+                    break;
+
+                case 'red':
+                    msg.costUnit = Number(0.1216)
+                    break;
+            }        
+            
+            break;
+
+        case 'HP':
+
+            switch (msg.color) {
+                case "blue":
+                    msg.costUnit = Number(0.1249)
+                    break;
+
+                case "white":
+                    msg.costUnit = Number(0.1508)
+                    break;
+
+                case 'red':
+                    msg.costUnit = Number(0.6712)
+                    break;
+            }
+
+            break;    
+    }
+
+
+    global.set('edf.tempo.colors.' + msg.color + "-" + msg.period,
+    msg.costUnit);
+
+
+    if (msg.payload.data.result[0].values.length > 0) {
+        let dayData = msg.payload.data.result[0].values[0]
+        let daykWh = Number(dayData[1])
+
+        let dayCost = msg.costUnit * daykWh
+
+        return {
+            cost: dayCost,
+            topic: msg.topic
+        }
+    }
+
+
+    return null
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 220
+  'y': 1050
+  wires:
+    - - 204ba00bb6a13bac
+- id: fbbf19c3b6f8e430
+  type: change
+  z: d88a69c4.1942c8
+  name: ''
+  rules:
+    - t: set
+      p: edf.costs.formula1
+      pt: global
+      to: topics
+      tot: msg
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1040
+  'y': 800
+  wires:
+    - []
