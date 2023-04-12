@@ -433,6 +433,26 @@
     - - f4df2ed060031650
       - a5ea9f561f8a2b2a
       - 432439ee8b7f21ec
+- id: 0d6fb4c44fbd1fd0
+  type: moment
+  z: d88a69c4.1942c8
+  name: dateISO
+  topic: ''
+  input: timeFrom
+  inputType: msg
+  inTz: Europe/Paris
+  adjAmount: 0
+  adjType: days
+  adjDir: add
+  format: YYYY-MM-DD
+  locale: POSIX
+  output: dateISO
+  outputType: msg
+  outTz: Europe/Paris
+  x: 400
+  'y': 870
+  wires:
+    - - 3c57121b8d27c57c
 - id: f4df2ed060031650
   type: file in
   z: d88a69c4.1942c8
@@ -567,6 +587,232 @@
   x: 220
   'y': 630
   wires: []
+- id: ac63d8bf1ed66e71
+  type: comment
+  z: d88a69c4.1942c8
+  name: 'Mathematics - power - formula #2 - scroll+offset'
+  info: ''
+  x: 220
+  'y': 830
+  wires: []
+- id: 669a0be35b7df1bb
+  type: http request
+  z: d88a69c4.1942c8
+  name: Test
+  method: GET
+  ret: obj
+  paytoqs: ignore
+  url: ''
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 320
+  'y': 1390
+  wires:
+    - - 17c1515c8dff7968
+- id: ed9787063e2e4728
+  type: inject
+  z: d88a69c4.1942c8
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 130
+  'y': 1390
+  wires:
+    - - d67c89962880b051
+- id: 17c1515c8dff7968
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 3
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 600
+  'y': 1390
+  wires: []
+- id: d67c89962880b051
+  type: function
+  z: d88a69c4.1942c8
+  name: function 1
+  func: |-
+    msg.vmQuery = 'sensors_zigbee_energy_l1{location="C01~Garage~PowerMeter"}'
+    msg.vmURL = "http://victoriametrics:8428/api/v1/query_range"
+    msg.vmRangeStart = "2023-04-25T06:00:01.000Z"
+    msg.vmRangeEnd = "2023-04-30T06:00:01.000Z"
+
+    msg.url = msg.vmURL 
+        + "?query=" + msg.vmQuery 
+        + "&start=" + msg.vmRangeStart
+        + "&end=" + msg.vmRangeEnd
+        + "&step=1d"
+        
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 210
+  'y': 1440
+  wires:
+    - - 669a0be35b7df1bb
+- id: 15eee1a293c595fd
+  type: inject
+  z: d88a69c4.1942c8
+  name: ''
+  props:
+    - p: timeStart
+      v: '1667282400000'
+      vt: num
+    - p: timeStart2022Nov
+      v: '1667282400000'
+      vt: num
+    - p: timeStart2023
+      v: '1672552800000'
+      vt: num
+    - p: timeEnd
+      v: ''
+      vt: date
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  x: 90
+  'y': 870
+  wires:
+    - - ae0d4edaa0a1ecc3
+- id: 81d9d4e81ec82ddf
+  type: debug
+  z: d88a69c4.1942c8
+  name: 'Debug Fetch #2'
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 620
+  'y': 920
+  wires: []
+- id: ae0d4edaa0a1ecc3
+  type: function
+  z: d88a69c4.1942c8
+  name: scroll days
+  func: |-
+
+    let timeDay1 = msg.timeStart
+    let timeEnd = msg.timeEnd
+
+    while (timeDay1 < timeEnd) {
+        // day1 => day2 = 1 full day
+        let timeDay2 = timeDay1 + Number(86400 * 1000)
+
+        node.send(
+            [
+                {
+                    timeFrom: timeDay1,
+                    timeTo: timeDay2,
+                    timeEnd: timeEnd,
+                    period: 'HC'
+                },
+                {
+                    timeFrom: timeDay1,
+                    timeTo: timeDay2,
+                    timeEnd: timeEnd,
+                    period: 'HP'
+                }
+            ]);
+
+        // increment
+        timeDay1 = timeDay2
+    }
+
+    return null;
+  outputs: 2
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 240
+  'y': 870
+  wires:
+    - - 0d6fb4c44fbd1fd0
+    - - 0d6fb4c44fbd1fd0
+- id: 3c57121b8d27c57c
+  type: function
+  z: d88a69c4.1942c8
+  name: Query HC/HP
+  func: >-
+    msg.vmQuery = 'avg((sensors_teleinfo_HC' + msg.period + '{} @ ' +
+    (msg.timeTo / 1000) 
+        + '- (sensors_teleinfo_HC' + msg.period + '{} @ ' + (msg.timeFrom / 1000)
+        + ')) / 1000)'
+    msg.vmURL = "http://victoriametrics:8428/api/v1/query_range"
+
+    // msg.vmRangeStart = "2023-04-25T06:00:01.000Z"
+
+    //msg.vmRangeEnd = "2023-04-30T06:00:01.000Z"
+
+
+    msg.url = msg.vmURL 
+        + "?query=" + msg.vmQuery 
+    //    + "&start=" + msg.vmRangeStart
+
+    //    + "&end=" + msg.vmRangeEnd
+
+    //    + "&step=1d"
+        
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 250
+  'y': 920
+  wires:
+    - - 3daae04fa5ad767b
+- id: 3daae04fa5ad767b
+  type: http request
+  z: d88a69c4.1942c8
+  name: Query
+  method: GET
+  ret: obj
+  paytoqs: ignore
+  url: ''
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 430
+  'y': 920
+  wires:
+    - - 81d9d4e81ec82ddf
+      - 994a7a64bc1c7656
 - id: '9581410703628258'
   type: function
   z: d88a69c4.1942c8
@@ -612,6 +858,74 @@
   x: 980
   'y': 750
   wires: []
+- id: d4dcb78a85b8fd01
+  type: function
+  z: d88a69c4.1942c8
+  name: periods
+  func: |-
+    return [ 
+        { 
+            period: 'HC'
+        },
+        {
+            period: 'HP'
+        }
+        ]
+  outputs: 2
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 230
+  'y': 670
+  wires:
+    - - ec27a942cfa78c58
+    - - ec27a942cfa78c58
+- id: 942458445b49915c
+  type: inject
+  z: d88a69c4.1942c8
+  name: ''
+  props: []
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  x: 90
+  'y': 670
+  wires:
+    - - d4dcb78a85b8fd01
+- id: ec27a942cfa78c58
+  type: function
+  z: d88a69c4.1942c8
+  name: Query
+  func: >-
+    msg.vmQuery = 'last_over_time(sum(increase(sensors_teleinfo_HC' + msg.period
+    + '[1d]))[1d])'
+
+    msg.vmURL = "http://victoriametrics:8428/api/v1/query_range"
+
+    msg.vmRangeStart = "2022-11-01T06:00:01.000Z"
+
+    msg.vmRangeEnd = "2023-04-30T06:00:01.000Z"
+
+
+    msg.url = msg.vmURL 
+        + "?query=" + msg.vmQuery 
+        + "&start=" + msg.vmRangeStart
+        + "&end=" + msg.vmRangeEnd
+        + "&step=1d"
+        
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 410
+  'y': 670
+  wires:
+    - - 61321c793b31fe9b
 - id: 61321c793b31fe9b
   type: http request
   z: d88a69c4.1942c8
@@ -686,6 +1000,39 @@
   'y': 1010
   wires:
     - - 204ba00bb6a13bac
+- id: cc2f0f7f0427b58c
+  type: Topic Frequencies
+  z: d88a69c4.1942c8
+  name: Freqs
+  units: hours
+  interval: 1
+  reportUnits: minutes
+  reportInterval: 1
+  topicKey: topic
+  valueKey: cost
+  alignToClock: true
+  generator: internal
+  x: 440
+  'y': 1010
+  wires:
+    - - bb33ba25cd6b92e2
+      - b4f824ad67b0be80
+    - []
+- id: bb33ba25cd6b92e2
+  type: debug
+  z: d88a69c4.1942c8
+  name: 'Debug #2'
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 600
+  'y': 1010
+  wires: []
 - id: 9147ca10781b15f4
   type: function
   z: d88a69c4.1942c8
@@ -789,5 +1136,25 @@
   reg: false
   x: 1040
   'y': 800
+  wires:
+    - []
+- id: b4f824ad67b0be80
+  type: change
+  z: d88a69c4.1942c8
+  name: ''
+  rules:
+    - t: set
+      p: edf.costs.formula2
+      pt: global
+      to: topics
+      tot: msg
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 660
+  'y': 1060
   wires:
     - []
