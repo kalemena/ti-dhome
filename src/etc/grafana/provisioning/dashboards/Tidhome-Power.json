@@ -123,9 +123,9 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sensors_teleinfo_PTEC_HC",
+          "expr": "sensors_teleinfo_PTEC_HC @now()",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -810,7 +810,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg((((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day1)) / 1000) * $kWhHC))",
+          "expr": "avg((((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @now() offset $day1)) / 1000) * $kWhHC))",
           "hide": true,
           "instant": false,
           "interval": "",
@@ -825,7 +825,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg((((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day1)) / 1000) * $kWhHP))",
+          "expr": "avg((((sensors_teleinfo_HCHP{} @now()- (sensors_teleinfo_HCHP{} @now() offset $day1)) / 1000) * $kWhHP))",
           "hide": true,
           "instant": false,
           "interval": "",
@@ -851,7 +851,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day7)) / 1000) * $kWhHC)",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @now()- (sensors_teleinfo_HCHC{} @now() offset $day7)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -866,7 +866,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day7)) / 1000) * $kWhHP)",
+          "expr": "avg(((sensors_teleinfo_HCHP{} @now() - (sensors_teleinfo_HCHP{} @now() offset $day7)) / 1000) * $kWhHP)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -892,7 +892,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day30)) / 1000) * $kWhHC)",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @now() offset $day30)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -907,7 +907,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day30)) / 1000) * $kWhHP)",
+          "expr": "avg(((sensors_teleinfo_HCHP{} @now() - (sensors_teleinfo_HCHP{} @now() offset $day30)) / 1000) * $kWhHP)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -933,7 +933,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day60)) / 1000) * $kWhHC)",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @now() offset $day60)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -948,7 +948,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day60)) / 1000) * $kWhHP)",
+          "expr": "avg(((sensors_teleinfo_HCHP{} @now() - (sensors_teleinfo_HCHP{} @now() offset $day60)) / 1000) * $kWhHP)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -974,7 +974,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day180)) / 1000) * $kWhHC)",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @now() offset $day180)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -989,7 +989,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day180)) / 1000) * $kWhHP)",
+          "expr": "avg(((sensors_teleinfo_HCHP{} @now() - (sensors_teleinfo_HCHP{} @now() offset $day180)) / 1000) * $kWhHP)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -1015,7 +1015,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} offset $day365)) / 1000) * $kWhHC)",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @now() offset $day365)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -1030,7 +1030,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $day365)) / 1000) * $kWhHP)",
+          "expr": "avg(((sensors_teleinfo_HCHP{} @now()- (sensors_teleinfo_HCHP{} @now() offset $day365)) / 1000) * $kWhHP)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -1056,7 +1056,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} - (sensors_teleinfo_HCHC{} @ 1672552800)) / 1000) * $kWhHC)",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @ 1672552800)) / 1000) * $kWhHC)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -1071,7 +1071,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} @ 1672552800)) / 1000) * $kWhHP)",
+          "expr": "avg(((sensors_teleinfo_HCHP{} @now() - (sensors_teleinfo_HCHP{} @ 1672552800)) / 1000) * $kWhHP)",
           "hide": true,
           "instant": true,
           "interval": "",
@@ -1375,8 +1375,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1529,8 +1528,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -1949,7 +1947,7 @@
       "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2182,6 +2180,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 10,
+  "version": 15,
   "weekStart": ""
 }
