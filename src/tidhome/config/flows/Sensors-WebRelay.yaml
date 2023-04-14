@@ -973,7 +973,7 @@
 - id: 83829b3a37df4617
   type: function
   z: b1782abc.430f38
-  name: Insert Wh HC/HP/Total
+  name: Insert Wh HC/HP/Total (sensors_value)
   func: >-
     var teleinfoHC = Number(global.get("tidhome_teleinfo.HCHC"))
 
@@ -1044,7 +1044,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1170
+  x: 1230
   'y': 670
   wires:
     - - 0edaade20969311b
