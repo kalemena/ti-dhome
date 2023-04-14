@@ -1167,7 +1167,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total[${timelineRange}]))[${timelineRange}])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_Wh_Total{location=\"main\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
           "hide": true,
           "legendFormat": "Total",
           "range": true,
@@ -1179,7 +1179,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP[${timelineRange}]))[${timelineRange}])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{location=\"main\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1191,7 +1191,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC[${timelineRange}]))[${timelineRange}])",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{location=\"main\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -2132,7 +2132,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "1d"
           ],
@@ -2180,6 +2180,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 18,
+  "version": 24,
   "weekStart": ""
 }
