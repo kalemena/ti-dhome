@@ -32,8 +32,7 @@
   x: 1010
   'y': 700
   wires:
-    - - 83829b3a37df4617
-      - 937e6892618fdb6b
+    - - 937e6892618fdb6b
 - id: e2c89ae6.57aa1
   type: http request
   z: b1782abc.430f38
@@ -970,86 +969,6 @@
     - - 37aa0a253b8b6972
     - []
     - - 7e1ec77294b7e482
-- id: 83829b3a37df4617
-  type: function
-  z: b1782abc.430f38
-  name: Insert Wh HC/HP/Total (sensors_value)
-  func: >-
-    var teleinfoHC = Number(global.get("tidhome_teleinfo.HCHC"))
-
-    var teleinfoHP = Number(global.get("tidhome_teleinfo.HCHP"))
-
-    var teleinfoTotal = Number(teleinfoHC) + Number(teleinfoHP)
-
-
-    // HCHC
-
-    let fieldsHC = { "value": Number(teleinfoHC) }
-
-    let tagsHC =   { "type": "teleinfo-HCHC", "location": "main" }
-
-
-    var msgHCHC =  {
-        topic: "teleinfo-HCHC",
-        payload: {
-            payload: [ fieldsHC, tagsHC ],
-            measurement: "sensors"
-        }
-    }
-
-
-    // HPHP
-
-    let fieldsHP = { "value": Number(teleinfoHP) }
-
-    let tagsHP =   { "type": "teleinfo-HCHP", "location": "main" }
-
-
-    var msgHCHP =  {
-        topic: "teleinfo-HCHP",
-        payload: {
-            payload: [ fieldsHP, tagsHP ],
-            measurement: "sensors"
-        }
-    }
-
-
-    // Total
-
-    let fieldsTotal = { "value": Number(teleinfoTotal) }
-
-    let tagsTotal =   { "type": "teleinfo-Wh-Total", "location": "main" }
-
-
-    var msgTotal =  {
-        topic: "teleinfo-Wh-Total",
-        payload: {
-            payload: [ fieldsTotal, tagsTotal ],
-            measurement: "sensors"
-        }
-    }
-
-
-    node.status({ fill: "blue", shape: "dot", text: "HP: " + teleinfoHP + " /
-    HC: " + teleinfoHC });
-
-
-    return [
-        msgHCHC,
-        msgHCHP,
-        msgTotal
-        ]
-  outputs: 3
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 1230
-  'y': 670
-  wires:
-    - - 0edaade20969311b
-    - - 0edaade20969311b
-    - - 0edaade20969311b
 - id: ad886e91c50e5db5
   type: function
   z: b1782abc.430f38
@@ -1301,6 +1220,6 @@
   finalize: ''
   libs: []
   x: 1170
-  'y': 610
+  'y': 670
   wires:
     - - 0edaade20969311b
