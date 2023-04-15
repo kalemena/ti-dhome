@@ -764,9 +764,9 @@
   z: d88a69c4.1942c8
   name: Query HC/HP
   func: >-
-    msg.vmQuery = 'avg((sensors_teleinfo_HC' + msg.period + '{} @ ' +
-    (msg.timeTo / 1000) 
-        + '- (sensors_teleinfo_HC' + msg.period + '{} @ ' + (msg.timeFrom / 1000)
+    msg.vmQuery = 'avg((sensors_teleinfo_HC' + msg.period +
+    '{db="sensors",location="main"} @ ' + (msg.timeTo / 1000) 
+        + '- (sensors_teleinfo_HC' + msg.period + '{db="sensors",location="main"} @ ' + (msg.timeFrom / 1000)
         + ')) / 1000)'
     msg.vmURL = "http://victoriametrics:8428/api/v1/query_range"
 
@@ -901,7 +901,7 @@
   name: Query
   func: >-
     msg.vmQuery = 'last_over_time(sum(increase(sensors_teleinfo_HC' + msg.period
-    + '[1d]))[1d])'
+    + '{db="sensors",location="main"}[1d]))[1d])'
 
     msg.vmURL = "http://victoriametrics:8428/api/v1/query_range"
 
