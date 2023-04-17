@@ -559,9 +559,9 @@
 - id: 3c9ba4b57c4a6219
   type: comment
   z: d88a69c4.1942c8
-  name: Mathematics - power
+  name: Mathematics - power - config
   info: ''
-  x: 130
+  x: 160
   'y': 420
   wires: []
 - id: 432439ee8b7f21ec
@@ -595,92 +595,16 @@
   x: 220
   'y': 830
   wires: []
-- id: 669a0be35b7df1bb
-  type: http request
-  z: d88a69c4.1942c8
-  name: Test
-  method: GET
-  ret: obj
-  paytoqs: ignore
-  url: ''
-  tls: ''
-  persist: false
-  proxy: ''
-  insecureHTTPParser: false
-  authType: ''
-  senderr: false
-  headers: []
-  x: 320
-  'y': 1390
-  wires:
-    - - 17c1515c8dff7968
-- id: ed9787063e2e4728
-  type: inject
-  z: d88a69c4.1942c8
-  name: ''
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  payload: ''
-  payloadType: date
-  x: 130
-  'y': 1390
-  wires:
-    - - d67c89962880b051
-- id: 17c1515c8dff7968
-  type: debug
-  z: d88a69c4.1942c8
-  name: debug 3
-  active: true
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 600
-  'y': 1390
-  wires: []
-- id: d67c89962880b051
-  type: function
-  z: d88a69c4.1942c8
-  name: function 1
-  func: |-
-    msg.vmQuery = 'sensors_zigbee_energy_l1{location="C01~Garage~PowerMeter"}'
-    msg.vmURL = "http://victoriametrics:8428/api/v1/query_range"
-    msg.vmRangeStart = "2023-04-25T06:00:01.000Z"
-    msg.vmRangeEnd = "2023-04-30T06:00:01.000Z"
-
-    msg.url = msg.vmURL 
-        + "?query=" + msg.vmQuery 
-        + "&start=" + msg.vmRangeStart
-        + "&end=" + msg.vmRangeEnd
-        + "&step=1d"
-        
-    return msg;
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 210
-  'y': 1440
-  wires:
-    - - 669a0be35b7df1bb
 - id: 15eee1a293c595fd
   type: inject
   z: d88a69c4.1942c8
   name: ''
   props:
     - p: timeStart
-      v: '1667282400000'
+      v: '1652382872000'
+      vt: num
+    - p: timeStart2022May
+      v: '1652382872000'
       vt: num
     - p: timeStart2022Nov
       v: '1667282400000'
@@ -847,7 +771,7 @@
   type: debug
   z: d88a69c4.1942c8
   name: 'Debug #1'
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
@@ -901,13 +825,13 @@
   name: Query
   func: >-
     msg.vmQuery = 'last_over_time(sum(increase(sensors_teleinfo_HC' + msg.period
-    + '{db="sensors",location="main"}[1d]))[1d])'
+    + '{location="test2"}[1d]))[1d])'
 
-    msg.vmURL = "http://victoriametrics:8428/api/v1/query_range"
+    msg.vmURL = "http://vmtest:8428/api/v1/query_range"
 
-    msg.vmRangeStart = "2022-11-01T06:00:01.000Z"
+    msg.vmRangeStart = "2022-05-01T06:00:01.000Z"
 
-    msg.vmRangeEnd = "2023-04-30T06:00:01.000Z"
+    msg.vmRangeEnd = "2023-05-01T06:00:01.000Z"
 
 
     msg.url = msg.vmURL 
@@ -1022,7 +946,7 @@
   type: debug
   z: d88a69c4.1942c8
   name: 'Debug #2'
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
