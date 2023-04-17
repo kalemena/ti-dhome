@@ -1082,3 +1082,215 @@
   'y': 1060
   wires:
     - []
+- id: 2f1435aa52216529
+  type: influxdb in
+  z: d88a69c4.1942c8
+  influxdb: ab73d852ece55e2a
+  name: ''
+  query: ''
+  rawOutput: false
+  precision: ''
+  retentionPolicy: ''
+  org: organisation
+  x: 570
+  'y': 1280
+  wires:
+    - - 31d4c60c99b0208d
+      - 94456dde279c5af3
+- id: 600a0dc30b4724a1
+  type: inject
+  z: d88a69c4.1942c8
+  name: ''
+  props:
+    - p: payload
+    - p: sensorRangeStart
+      v: '2022-01-01T00:00:01Z'
+      vt: str
+    - p: sensorRangeEnd
+      v: '2022-04-01T00:00:01Z'
+      vt: str
+    - p: sensorLocation
+      v: test2
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: 'teleinfo-HCHC,teleinfo-HCHP'
+  payloadType: str
+  x: 90
+  'y': 1280
+  wires:
+    - - 4c488d9575a6e94c
+- id: 31d4c60c99b0208d
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 4
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 780
+  'y': 1280
+  wires: []
+- id: 94456dde279c5af3
+  type: function
+  z: d88a69c4.1942c8
+  name: scroll index
+  func: |-
+
+    // Trigger as many hours returned
+    for (var j = 0; j < msg.payload.length; j++) {
+        let dayData = msg.payload[j]
+        node.send(
+            [
+                { 
+                    payload: dayData,
+                    sensorLocation: msg.sensorLocation
+                }
+            ]);
+    }
+
+    return null;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 240
+  'y': 1330
+  wires:
+    - - 7f535297d99add72
+- id: 3d6ee2d23f34e21a
+  type: http request
+  z: d88a69c4.1942c8
+  name: Query
+  method: POST
+  ret: txt
+  paytoqs: ignore
+  url: ''
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 600
+  'y': 1330
+  wires:
+    - - 49d8bb928d09dc81
+- id: 7f535297d99add72
+  type: function
+  z: d88a69c4.1942c8
+  name: Query Insert VM
+  func: >-
+
+    msg.vmURL = "http://vmtest:8428/api/v1/import/prometheus"
+
+    // msg.vmRangeStart = "2023-04-25T06:00:01.000Z"
+
+    //msg.vmRangeEnd = "2023-04-30T06:00:01.000Z"
+
+
+    msg.payload.type.replace('-','_')
+
+
+    let value = Number(msg.payload.value_1h)
+
+    value = parseInt(value)
+
+
+    msg.url = msg.vmURL 
+        + "?timestamp=" + new Date(msg.payload.time).getTime()
+    msg.payload = 'sensors_' + msg.payload.type.replace('-', '_') +
+    '{location="' + msg.sensorLocation + '"} ' + value
+        
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 420
+  'y': 1330
+  wires:
+    - - 2e653028b735a592
+      - 3d6ee2d23f34e21a
+- id: 2e653028b735a592
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 6
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 610
+  'y': 1370
+  wires: []
+- id: 49d8bb928d09dc81
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 8
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 740
+  'y': 1330
+  wires: []
+- id: d9d97a5f6d025491
+  type: function
+  z: d88a69c4.1942c8
+  name: Query Influx
+  func: |-
+    msg.query = "select * from five_years.sensors_1h WHERE "
+        + "type='" + msg.payload + "' "
+        + "AND time > '" + msg.sensorRangeStart + "' "
+        + "AND time < '" + msg.sensorRangeEnd + "'"
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 390
+  'y': 1280
+  wires:
+    - - 2f1435aa52216529
+- id: 4c488d9575a6e94c
+  type: split
+  z: d88a69c4.1942c8
+  name: HC/HP
+  splt: ','
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: ''
+  x: 230
+  'y': 1280
+  wires:
+    - - d9d97a5f6d025491
+- id: f71dc1879ec3e214
+  type: comment
+  z: d88a69c4.1942c8
+  name: Migrate - power - InfluxDB
+  info: ''
+  x: 150
+  'y': 1240
+  wires: []
