@@ -16,14 +16,14 @@
   x: 920
   'y': 380
   wires:
-    - - 920a6d44fc9d1a0a
+    - - 65b304e893e9cfd1
 - id: b76bac03ba68e5e8
   type: junction
   z: 8627a08f.2f4c18
   x: 910
   'y': 660
   wires:
-    - - 920a6d44fc9d1a0a
+    - - 65b304e893e9cfd1
 - id: 6c21ca7aee31ecb2
   type: junction
   z: 8627a08f.2f4c18
@@ -31,6 +31,13 @@
   'y': 210
   wires:
     - - 14836b671335a268
+- id: 65b304e893e9cfd1
+  type: junction
+  z: 8627a08f.2f4c18
+  x: 1000
+  'y': 440
+  wires:
+    - - 920a6d44fc9d1a0a
 - id: cb68db5a.bdbca8
   type: inject
   z: 8627a08f.2f4c18
@@ -525,7 +532,7 @@
   'y': 600
   wires:
     - - fce9560bc4c3314b
-      - 920a6d44fc9d1a0a
+      - b76bac03ba68e5e8
 - id: 43e6adab33a9f460
   type: trigger
   z: 8627a08f.2f4c18

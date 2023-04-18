@@ -216,7 +216,7 @@
   type: debug
   z: 112e9cf8.590b23
   name: Config-Log-Debug
-  active: false
+  active: true
   tosidebar: true
   console: true
   tostatus: false
