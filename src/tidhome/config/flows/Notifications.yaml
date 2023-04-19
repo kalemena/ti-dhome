@@ -108,7 +108,7 @@
   x: 290
   'y': 370
   wires:
-    - - 9b8a085fde86105d
+    - - 8fbe8d922b5f1997
 - id: 4881ab4d.cbd20c
   type: simpletime
   z: 8627a08f.2f4c18
@@ -541,10 +541,10 @@
   op2: ''
   op1type: nul
   op2type: pay
-  duration: '1'
+  duration: '5'
   extend: true
   overrideDelay: false
-  units: s
+  units: min
   reset: ''
   bytopic: topic
   topic: topic
@@ -578,7 +578,7 @@
   name: Schedulers
   info: ''
   x: 100
-  'y': 720
+  'y': 790
   wires: []
 - id: f2f40dc3da630cc9
   type: sunrise
@@ -591,7 +591,7 @@
   soff: '0'
   eoff: '15'
   x: 110
-  'y': 770
+  'y': 840
   wires:
     - []
     - - 5f629250b70e5979
@@ -612,7 +612,7 @@
   repair: false
   outputs: 2
   x: 300
-  'y': 770
+  'y': 840
   wires:
     - []
     - - 7735f46c01861b34
@@ -635,7 +635,7 @@
   finalize: ''
   libs: []
   x: 510
-  'y': 770
+  'y': 840
   wires:
     - - b76bac03ba68e5e8
     - - fecb20f01567e4a8
@@ -647,7 +647,7 @@
   links:
     - f576c3026a84db30
   x: 705
-  'y': 780
+  'y': 850
   wires: []
 - id: 920a6d44fc9d1a0a
   type: link out
