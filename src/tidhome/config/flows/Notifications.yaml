@@ -675,3 +675,45 @@
   x: 1120
   'y': 310
   wires: []
+- id: e9131fd2804af10b
+  type: feedparse
+  z: 8627a08f.2f4c18
+  name: TechRadar-Computing
+  url: 'https://www.techradar.com/rss/news/computing'
+  interval: 15
+  ignorefirst: false
+  x: 140
+  'y': 680
+  wires:
+    - - 8a909bab8256258f
+- id: a212439a732896f1
+  type: feedparse
+  z: 8627a08f.2f4c18
+  name: TechRadar-Tech
+  url: 'https://www.techradar.com/rss/news/world-of-tech'
+  interval: 15
+  ignorefirst: false
+  x: 120
+  'y': 720
+  wires:
+    - - 8a909bab8256258f
+- id: 8fbe8d922b5f1997
+  type: trigger
+  z: 8627a08f.2f4c18
+  name: Rate Limit
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '5'
+  extend: true
+  overrideDelay: false
+  units: min
+  reset: ''
+  bytopic: topic
+  topic: topic
+  outputs: 1
+  x: 530
+  'y': 370
+  wires:
+    - - 9b8a085fde86105d
