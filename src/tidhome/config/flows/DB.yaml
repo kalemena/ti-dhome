@@ -1304,3 +1304,502 @@
   x: 150
   'y': 1240
   wires: []
+- id: 34b91b78d80e9b18
+  type: file in
+  z: d88a69c4.1942c8
+  name: EDF - Timeline miss
+  filename: /etc/tidhome/EDF-Migration-holes.csv
+  filenameType: str
+  format: utf8
+  chunk: false
+  sendError: false
+  encoding: utf8
+  allProps: false
+  x: 270
+  'y': 1450
+  wires:
+    - - d7c8b9aa4ece1574
+- id: d7c8b9aa4ece1574
+  type: csv
+  z: d88a69c4.1942c8
+  name: ''
+  sep: ','
+  hdrin: true
+  hdrout: ''
+  multi: mult
+  ret: \n
+  temp: ''
+  skip: '0'
+  strings: true
+  include_empty_strings: false
+  include_null_values: false
+  x: 440
+  'y': 1450
+  wires:
+    - - b0e9f1b5a6dca969
+      - 205520c7b4338967
+- id: 09cec3590c9481ab
+  type: inject
+  z: d88a69c4.1942c8
+  name: ''
+  props:
+    - p: sensorLocation
+      v: test
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  x: 90
+  'y': 1450
+  wires:
+    - - 34b91b78d80e9b18
+- id: b0e9f1b5a6dca969
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 9
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'false'
+  statusVal: ''
+  statusType: auto
+  x: 590
+  'y': 1450
+  wires: []
+- id: 205520c7b4338967
+  type: split
+  z: d88a69c4.1942c8
+  name: ''
+  splt: \n
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: ''
+  x: 220
+  'y': 1490
+  wires:
+    - - 1df7fa1d5bbf8fe0
+- id: e6dfbafc8c3042c3
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 10
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 590
+  'y': 1490
+  wires: []
+- id: 1df7fa1d5bbf8fe0
+  type: function
+  z: d88a69c4.1942c8
+  name: Query Insert VM
+  func: >-
+    msg.vmURL = "http://vmtest:8428/api/v1/import/prometheus"
+
+
+    let indexHC = parseInt(Number(msg.payload.IndexHC))
+
+    let indexHP = parseInt(Number(msg.payload.IndexHP))
+
+
+    let incHC = parseInt(Number(msg.payload.HC))
+
+    let incHP = parseInt(Number(msg.payload.HP))
+
+
+    let url = msg.vmURL + "?timestamp=" + (new
+    Date(msg.payload.timestamp).getTime())
+
+    let payloadHC = 'sensors_teleinfo_HCHC{location="' + msg.sensorLocation +
+    '"} ' + Number(indexHC + incHC)
+
+    let payloadHP = 'sensors_teleinfo_HCHP{location="' + msg.sensorLocation +
+    '"} ' + Number(indexHP + incHP)
+
+
+    return [
+        {
+            url: url,
+            payload: payloadHC
+        },
+        {
+            url: url,
+            payload: payloadHP
+        }
+    ]
+  outputs: 2
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 390
+  'y': 1490
+  wires:
+    - - fb7400d80e8fad49
+    - - fb7400d80e8fad49
+- id: b2ef45d51966e389
+  type: comment
+  z: d88a69c4.1942c8
+  name: Migrate - power - fix timeline
+  info: ''
+  x: 160
+  'y': 1410
+  wires: []
+- id: 1eae10dbef23d854
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 11
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 360
+  'y': 1530
+  wires: []
+- id: 8f1a3faa6d1e85ef
+  type: http request
+  z: d88a69c4.1942c8
+  name: Query
+  method: POST
+  ret: txt
+  paytoqs: ignore
+  url: ''
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 220
+  'y': 1530
+  wires:
+    - - 1eae10dbef23d854
+- id: a44be782cf95fa64
+  type: influxdb in
+  z: d88a69c4.1942c8
+  influxdb: ab73d852ece55e2a
+  name: ''
+  query: ''
+  rawOutput: false
+  precision: ''
+  retentionPolicy: ''
+  org: organisation
+  x: 570
+  'y': 1600
+  wires:
+    - - e462087481339fba
+      - dfac1e036667f158
+- id: b4b276be4ca6c350
+  type: inject
+  z: d88a69c4.1942c8
+  name: ''
+  props:
+    - p: payload
+    - p: sensorRangeStart
+      v: '2022-01-09T00:00:01Z'
+      vt: str
+    - p: sensorRangeEnd
+      v: '2022-01-26T00:00:01Z'
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: 'teleinfo-HCHP,teleinfo-HCHC'
+  payloadType: str
+  x: 90
+  'y': 1600
+  wires:
+    - - a39d60e2d87c48f8
+- id: e462087481339fba
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 12
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 750
+  'y': 1600
+  wires: []
+- id: 1d29eef22cdeb1fa
+  type: function
+  z: d88a69c4.1942c8
+  name: Query Influx
+  func: |-
+    msg.query = "select * from five_years.sensors_1h WHERE "
+    //msg.query = "select * from one_year.sensors_15m WHERE "
+        + "type='" + msg.payload + "' "
+        + "AND time > '" + msg.sensorRangeStart + "' "
+        + "AND time < '" + msg.sensorRangeEnd + "'"
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 390
+  'y': 1600
+  wires:
+    - - a44be782cf95fa64
+- id: dfac1e036667f158
+  type: function
+  z: d88a69c4.1942c8
+  name: scroll results
+  func: |-
+    function sleep(ms) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+        });
+    }   
+
+    let timeCurrent = -1
+    let timeExpected = -1
+    let lastData = {}
+
+    // Trigger as many hours returned
+    for (var j = 0; j < msg.payload.length; j++) {
+
+        let dataCurrent = msg.payload[j]
+        let timeCurrent = new Date(dataCurrent.time).getTime()
+
+        // expected time => 1st output
+        if (timeCurrent == timeExpected) {
+            node.send(
+                [
+                    {
+                        payload: dataCurrent,
+                        time: timeCurrent,
+                        timeExpected: timeExpected
+                    },
+                    {
+
+                    }
+                ]);
+        }    
+
+        // unexpected time => 2nd output
+        if (timeExpected != -1 && timeCurrent != timeExpected) {        
+            node.send(
+                [
+                    {
+                        
+                    },
+                    {
+                        payload: lastData,
+                        payloadNext: dataCurrent,
+                        time: timeCurrent,
+                        timeExpected: timeExpected
+                    }
+                ]);
+         
+        } 
+
+        await sleep(10);
+        
+        timeExpected = timeCurrent + 1000 * 3600
+        lastData = msg.payload[j]
+    }
+
+    return null;
+  outputs: 2
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 190
+  'y': 1640
+  wires:
+    - - 034a4bfbb3140f71
+    - - 638b50610f0faf86
+- id: 034a4bfbb3140f71
+  type: function
+  z: d88a69c4.1942c8
+  name: Query Insert VM
+  func: >-
+    let url = "http://vmtest:8428/api/v1/import/prometheus" 
+        + "?timestamp=" + (new Date(msg.time).getTime())
+
+    let index = parseInt(Number(msg.payload.value_1h))
+
+    let location = msg.payload.location
+
+    let type = msg.payload.type.replace('-','_')
+
+
+    let payload = 'sensors_' + type + '{location="' + location + '"} ' +
+    Number(index)
+
+
+    return {
+            url: url,
+            payload: payload,
+            time: msg.time
+        }
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 570
+  'y': 1640
+  wires:
+    - - b7188dfa2b77d2ef
+      - f269b91f7730372a
+- id: 638b50610f0faf86
+  type: function
+  z: d88a69c4.1942c8
+  name: iterate range
+  func: |-
+    let timeDay1 = msg.timeExpected
+    let timeEnd = msg.time
+    let type = msg.payload.type
+
+    while (timeDay1 < timeEnd) {
+        // day1 => day2 = 1 full day
+        let timeDay2 = timeDay1 + Number(3600 * 1000)
+
+        let index = parseInt(Number(msg.payload.value_1h))
+        let indexNext = parseInt(Number(msg.payloadNext.value_1h))
+        let indexFinal = index
+
+        let time = timeDay1
+        let nbDaysToEnd = parseInt((timeEnd - time) / (86400 * 1000))
+        let hourOfDay = new Date(msg.time).getHours()
+        
+        switch(type) {
+            case 'teleinfo-HCHP':
+                //indexFinal = index + ((indexNext - index) * (timeEnd - timeDay1) / (3600*1000))
+                break;
+
+            case 'teleinfo-HCHC':
+                //indexFinal = index + ((indexNext - index) * (timeEnd - timeDay1) / (3600 * 1000))
+                break;
+
+        }    
+
+        msg.payload.value_1h = indexFinal
+
+        if (nbDaysToEnd > 5)
+        node.send(
+            {
+                time: time,
+                timeExpected: msg.timeExpected,
+                nbDaysToEnd: nbDaysToEnd,
+                hourOfDay: hourOfDay,
+                payload: msg.payload
+            });
+
+        // increment
+        timeDay1 = timeDay2
+    }
+
+    return null;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 370
+  'y': 1670
+  wires:
+    - - 034a4bfbb3140f71
+      - e120dcdddef571ed
+- id: a39d60e2d87c48f8
+  type: split
+  z: d88a69c4.1942c8
+  name: HC/HP
+  splt: ','
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: ''
+  x: 230
+  'y': 1600
+  wires:
+    - - 1d29eef22cdeb1fa
+- id: b7188dfa2b77d2ef
+  type: http request
+  z: d88a69c4.1942c8
+  name: Query
+  method: POST
+  ret: txt
+  paytoqs: ignore
+  url: ''
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 640
+  'y': 1690
+  wires:
+    - - 31014155a5dbb16d
+- id: 31014155a5dbb16d
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 17
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 780
+  'y': 1690
+  wires: []
+- id: e120dcdddef571ed
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 18
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 550
+  'y': 1730
+  wires: []
+- id: f269b91f7730372a
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 19
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 750
+  'y': 1640
+  wires: []
