@@ -27,6 +27,14 @@
   'y': 1010
   wires:
     - - cc2f0f7f0427b58c
+- id: fb7400d80e8fad49
+  type: junction
+  z: d88a69c4.1942c8
+  x: 500
+  'y': 1490
+  wires:
+    - - e6dfbafc8c3042c3
+      - 8f1a3faa6d1e85ef
 - id: cc675ec4.106d
   type: comment
   z: d88a69c4.1942c8
@@ -1104,20 +1112,20 @@
   props:
     - p: payload
     - p: sensorRangeStart
-      v: '2022-01-01T00:00:01Z'
+      v: '2022-08-01T00:00:01Z'
       vt: str
     - p: sensorRangeEnd
-      v: '2022-04-01T00:00:01Z'
+      v: '2022-10-01T00:00:01Z'
       vt: str
     - p: sensorLocation
-      v: test2
+      v: test
       vt: str
   repeat: ''
   crontab: ''
   once: false
   onceDelay: 0.1
   topic: ''
-  payload: 'teleinfo-HCHC,teleinfo-HCHP'
+  payload: 'teleinfo-HCHP,teleinfo-HCHC'
   payloadType: str
   x: 90
   'y': 1280
@@ -1143,7 +1151,6 @@
   z: d88a69c4.1942c8
   name: scroll index
   func: |-
-
     // Trigger as many hours returned
     for (var j = 0; j < msg.payload.length; j++) {
         let dayData = msg.payload[j]
@@ -1181,7 +1188,7 @@
   authType: ''
   senderr: false
   headers: []
-  x: 600
+  x: 580
   'y': 1330
   wires:
     - - 49d8bb928d09dc81
@@ -1201,13 +1208,15 @@
     msg.payload.type.replace('-','_')
 
 
+    //let value = Number(msg.payload.value_15m)
+
     let value = Number(msg.payload.value_1h)
 
     value = parseInt(value)
 
 
-    msg.url = msg.vmURL 
-        + "?timestamp=" + new Date(msg.payload.time).getTime()
+    msg.url = msg.vmURL + "?timestamp=" + new Date(msg.payload.time).getTime()
+
     msg.payload = 'sensors_' + msg.payload.type.replace('-', '_') +
     '{location="' + msg.sensorLocation + '"} ' + value
         
@@ -1220,13 +1229,13 @@
   x: 420
   'y': 1330
   wires:
-    - - 2e653028b735a592
-      - 3d6ee2d23f34e21a
+    - - 3d6ee2d23f34e21a
+      - 2e653028b735a592
 - id: 2e653028b735a592
   type: debug
   z: d88a69c4.1942c8
   name: debug 6
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -1234,8 +1243,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 610
-  'y': 1370
+  x: 590
+  'y': 1390
   wires: []
 - id: 49d8bb928d09dc81
   type: debug
@@ -1249,7 +1258,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 740
+  x: 720
   'y': 1330
   wires: []
 - id: d9d97a5f6d025491
@@ -1258,6 +1267,7 @@
   name: Query Influx
   func: |-
     msg.query = "select * from five_years.sensors_1h WHERE "
+    //msg.query = "select * from one_year.sensors_15m WHERE "
         + "type='" + msg.payload + "' "
         + "AND time > '" + msg.sensorRangeStart + "' "
         + "AND time < '" + msg.sensorRangeEnd + "'"
