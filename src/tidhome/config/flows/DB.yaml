@@ -1481,9 +1481,11 @@
         let nbDaysToEnd = parseInt((timeEnd - time) / (86400 * 1000))
         let hourOfDay = new Date(msg.time).getHours()
         
+        let indexAdd = 0
+
         switch(type) {
             case 'teleinfo-HCHP':
-                //indexFinal = index + ((indexNext - index) * (timeEnd - timeDay1) / (3600*1000))
+                // indexAdd = (indexNext - index) 
                 break;
 
             case 'teleinfo-HCHC':
@@ -1514,8 +1516,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 410
-  'y': 1360
+  x: 320
+  'y': 1370
   wires:
     - - 034a4bfbb3140f71
       - e120dcdddef571ed
