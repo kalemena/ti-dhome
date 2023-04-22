@@ -1304,10 +1304,10 @@
   props:
     - p: payload
     - p: sensorRangeStart
-      v: '2022-01-09T00:00:01Z'
+      v: '2022-01-01T00:00:01Z'
       vt: str
     - p: sensorRangeEnd
-      v: '2022-01-26T00:00:01Z'
+      v: '2022-02-01T00:00:01Z'
       vt: str
   repeat: ''
   crontab: ''
@@ -1382,7 +1382,12 @@
             node.send(
                 [
                     {
-                        payload: dataCurrent,
+                        payload: {
+                            time: dataCurrent.time,
+                            value: dataCurrent.value_1h,
+                            location: dataCurrent.location,
+                            type: dataCurrent.type
+                        },
                         time: timeCurrent,
                         timeExpected: timeExpected
                     },
@@ -1432,9 +1437,9 @@
   name: Query Insert VM
   func: >-
     let url = "http://vmtest:8428/api/v1/import/prometheus" 
-        + "?timestamp=" + (new Date(msg.time).getTime())
+        + "?timestamp=" + (new Date(msg.payload.time).getTime())
 
-    let index = parseInt(Number(msg.payload.value_1h))
+    let index = parseInt(Number(msg.payload.value))
 
     let location = msg.payload.location
 
