@@ -1469,6 +1469,9 @@
     let timeEnd = msg.time
     let type = msg.payload.type
 
+    let idxSpan = msg.payloadNext.value_1h - msg.payload.value_1h
+    let nbDaysSpan = parseInt((timeEnd - timeDay1) / (86400 * 1000))
+
     while (timeDay1 < timeEnd) {
         // day1 => day2 = 1 full day
         let timeDay2 = timeDay1 + Number(3600 * 1000)
@@ -1482,28 +1485,35 @@
         let hourOfDay = new Date(msg.time).getHours()
         
         let indexAdd = 0
-
+        let indexPerDay = (idxSpan / nbDaysSpan)
+        
         switch(type) {
             case 'teleinfo-HCHP':
-                // indexAdd = (indexNext - index) 
+                indexAdd = (indexPerDay) * (nbDaysSpan - nbDaysToEnd)
                 break;
 
             case 'teleinfo-HCHC':
-                //indexFinal = index + ((indexNext - index) * (timeEnd - timeDay1) / (3600 * 1000))
+                indexAdd = (indexPerDay) * (nbDaysSpan - nbDaysToEnd)
                 break;
 
         }    
 
-        msg.payload.value_1h = indexFinal
-
-        if (nbDaysToEnd > 5)
+        let payload = {
+            time: time,
+            value: index + indexAdd,
+            location: msg.payload.location,
+            type: msg.payload.type
+        }  
+        
         node.send(
             {
                 time: time,
                 timeExpected: msg.timeExpected,
+                idxSpan: idxSpan,
+                nbDaysSpan: nbDaysSpan,
                 nbDaysToEnd: nbDaysToEnd,
                 hourOfDay: hourOfDay,
-                payload: msg.payload
+                payload: payload
             });
 
         // increment
