@@ -1263,7 +1263,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"}[${timelineRange}]))[${timelineRange}])",
+          "expr": "last_over_time(sum(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
           "hide": true,
           "legendFormat": "Car+Water+Heating",
           "range": true,
@@ -1275,7 +1275,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"}[${timelineRange}]))[${timelineRange}])",
+          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
           "hide": false,
           "legendFormat": "1-Car Charging",
           "range": true,
@@ -1287,7 +1287,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"}[${timelineRange}]))[${timelineRange}])",
+          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
           "hide": false,
           "legendFormat": "2-Water Heater",
           "range": true,
@@ -1299,7 +1299,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"}[${timelineRange}]))[${timelineRange}])",
+          "expr": "last_over_time(sum(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
           "hide": false,
           "legendFormat": "3-Heaters",
           "range": true,
@@ -1311,7 +1311,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\"}[${timelineRange}])[${timelineRange}])",
+          "expr": "last_over_time(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[${timelineRange}])[${timelineRange}])",
           "hide": false,
           "legendFormat": "{{location}}",
           "range": true,
