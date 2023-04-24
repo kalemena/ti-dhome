@@ -320,6 +320,7 @@
           ],
           "tags": [
             {
+              "condition": "AND",
               "key": "location",
               "operator": "=",
               "value": "main-hp"
@@ -511,9 +512,13 @@
       "id": 8,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
@@ -527,7 +532,7 @@
             "type": "prometheus",
             "uid": "-Z8FNkU4z"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "expr": "sensors_teleinfo_HCHC{location=\"$location\"}",
           "legendFormat": "HC",
           "range": true,
@@ -538,8 +543,8 @@
             "type": "prometheus",
             "uid": "-Z8FNkU4z"
           },
-          "editorMode": "builder",
-          "expr": "sensors_teleinfo_HCHP{$location=\"$location\"}",
+          "editorMode": "code",
+          "expr": "sensors_teleinfo_HCHP{location=\"$location\"}",
           "hide": false,
           "legendFormat": "HP",
           "range": true,
@@ -550,12 +555,12 @@
       "type": "timeseries"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 23
       },
       "id": 12,
       "panels": [
@@ -864,12 +869,12 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
-            "1h"
+            "1d"
           ],
           "value": [
-            "1h"
+            "1d"
           ]
         },
         "hide": 0,
@@ -879,12 +884,12 @@
         "name": "timelineRange",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "1h",
             "value": "1h"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1d",
             "value": "1d"
           },
@@ -901,12 +906,12 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
-            "test2"
+            "test"
           ],
           "value": [
-            "test2"
+            "test"
           ]
         },
         "hide": 0,
@@ -921,7 +926,7 @@
             "value": "main"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "test",
             "value": "test"
           },
@@ -931,12 +936,17 @@
             "value": "test1"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "test2",
             "value": "test2"
+          },
+          {
+            "selected": false,
+            "text": "test3",
+            "value": "test3"
           }
         ],
-        "query": "main,test,test1,test2",
+        "query": "main,test,test1,test2,test3",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -951,6 +961,6 @@
   "timezone": "",
   "title": "Tests",
   "uid": "7eExoIUVk",
-  "version": 11,
+  "version": 20,
   "weekStart": ""
 }
