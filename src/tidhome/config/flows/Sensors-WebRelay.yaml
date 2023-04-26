@@ -953,47 +953,50 @@
   propertyType: msg
   rules:
     - t: eq
-      v: HCHC
+      v: BBRHCJB
       vt: str
     - t: eq
-      v: HCHP
+      v: BBRHPJB
       vt: str
     - t: eq
-      v: PAPP
+      v: BBRHCJW
       vt: str
     - t: eq
-      v: PTEC
+      v: BBRHPJW
+      vt: str
+    - t: eq
+      v: BBRHCJR
+      vt: str
+    - t: eq
+      v: BBRHPJR
       vt: str
     - t: else
   checkall: 'false'
   repair: false
-  outputs: 5
-  x: 900
-  'y': 750
+  outputs: 7
+  x: 910
+  'y': 760
   wires:
-    - - ad886e91c50e5db5
-      - ce07888f46a79c45
-    - - c2ddd96f5d157965
-      - ce07888f46a79c45
-    - - 37aa0a253b8b6972
-    - []
+    - - ce07888f46a79c45
+    - - ce07888f46a79c45
+    - - ce07888f46a79c45
+    - - ce07888f46a79c45
+    - - ce07888f46a79c45
+    - - ce07888f46a79c45
     - - 7e1ec77294b7e482
 - id: ad886e91c50e5db5
   type: function
   z: b1782abc.430f38
-  name: HC
-  func: |-
-    global.set("tidhome_teleinfo.PTEC_HC", 1);
-    return { topic: "PTEC_HC", payload: 1 }
-  outputs: 1
+  name: Global Period
+  func: '// global.set("tidhome_teleinfo.PTEC_HC", 1)'
+  outputs: 0
   noerr: 0
   initialize: ''
   finalize: ''
   libs: []
-  x: 1070
-  'y': 740
-  wires:
-    - - 37aa0a253b8b6972
+  x: 1160
+  'y': 780
+  wires: []
 - id: 37aa0a253b8b6972
   type: function
   z: b1782abc.430f38
