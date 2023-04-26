@@ -29,10 +29,19 @@
 - id: ce07888f46a79c45
   type: junction
   z: b1782abc.430f38
-  x: 1010
-  'y': 700
+  x: 1020
+  'y': 720
   wires:
     - - 937e6892618fdb6b
+      - ad886e91c50e5db5
+      - 7e1ec77294b7e482
+- id: d3527fbdf76f20c4
+  type: junction
+  z: b1782abc.430f38
+  x: 830
+  'y': 720
+  wires:
+    - - 9f6adedc9ca772ef
 - id: e2c89ae6.57aa1
   type: http request
   z: b1782abc.430f38
@@ -1039,8 +1048,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1260
-  'y': 760
+  x: 1300
+  'y': 830
   wires:
     - - 0edaade20969311b
     - - 0edaade20969311b
@@ -1063,8 +1072,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1080
-  'y': 820
+  x: 1140
+  'y': 830
   wires:
     - - 37aa0a253b8b6972
 - id: 4d497c789965be0b
@@ -1150,23 +1159,8 @@
   x: 900
   'y': 670
   wires:
-    - - 9f6adedc9ca772ef
-- id: c2ddd96f5d157965
-  type: function
-  z: b1782abc.430f38
-  name: HP
-  func: |-
-    global.set("tidhome_teleinfo.PTEC_HC", 0);
-    return { topic: "PTEC_HC", payload: 0 }
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 1070
-  'y': 780
-  wires:
-    - - 37aa0a253b8b6972
+    - - d3527fbdf76f20c4
+      - 8108d50cd2c5b67c
 - id: 217fc7c76bf682ea
   type: link out
   z: b1782abc.430f38
@@ -1180,38 +1174,46 @@
 - id: 937e6892618fdb6b
   type: function
   z: b1782abc.430f38
-  name: Insert Wh HC/HP/Total
-  func: >-
-    var teleinfoHC = Number(global.get("tidhome_teleinfo.HCHC"))
+  name: Insert Wh Total
+  func: |-
+    var periods = [
+        "BBRHPJB",
+        "BBRHCJB",
+        "BBRHPJW",
+        "BBRHCJW",
+        "BBRHPJR",
+        "BBRHCJR"
+    ]
 
-    var teleinfoHP = Number(global.get("tidhome_teleinfo.HCHP"))
+    let text = ""
+    let teleinfoTotal = 0
+    let fields = {}
 
-    var teleinfoTotal = Number(teleinfoHC) + Number(teleinfoHP)
-
-
-    // Index fields
-
-    let fieldsHC = { 
-        "teleinfo_HCHC": Number(teleinfoHC),
-        "teleinfo_HCHP": Number(teleinfoHP),
-        "teleinfo_Wh_Total": Number(teleinfoTotal)    
+    for(var period in periods) {
+        // get index from memory
+        let idxPeriod = Number(global.get("tidhome_teleinfo." + periods[period]))
+        // set DB index for an update
+        fields["teleinfo_" + periods[period]] = idxPeriod
+        // compute total
+        teleinfoTotal += idxPeriod
+        // message for debug
+        text += ((text.length > 0) ? " / " : "") + periods[period].substring(3) + ': ' + idxPeriod
     }
 
-    let tagsHC =   { "location": "main" }
+    // Index fields
+    fields["teleinfo_Wh_Total"] = Number(teleinfoTotal)    
 
+    let tags =   { "location": "main" }
 
     var msg =  {
         topic: "teleinfo",
         payload: {
-            payload: [ fieldsHC, tagsHC ],
+            payload: [ fields, tags ],
             measurement: "sensors"
         }
     }
 
-
-    node.status({ fill: "blue", shape: "dot", text: "HP: " + teleinfoHP + " /
-    HC: " + teleinfoHC });
-
+    node.status({ fill: "blue", shape: "dot", text: text });
 
     return msg
   outputs: 1
@@ -1219,7 +1221,87 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1170
-  'y': 670
+  x: 1160
+  'y': 720
   wires:
     - - 0edaade20969311b
+      - c13f189db6400be2
+- id: 8108d50cd2c5b67c
+  type: function
+  z: b1782abc.430f38
+  name: BBR HC/HP
+  func: |-
+    // update period as integer (1=HPJB, 2=HCJB, 3=HPJW, ...)
+    let period = -1
+    let topic = 'PTEC_int'
+    if(msg.topic.startsWith('BBR')) {
+        switch(msg.topic) {
+            case 'BBRHPJB':
+                period = 1
+                break
+            case 'BBRHCJB':
+                period = 2
+                break
+            case 'BBRHPJW':
+                period = 3
+                break
+            case 'BBRHCJW':
+                period = 4
+                break
+            case 'BBRHPJR':
+                period = 5
+                break
+            case 'BBRHCJR':
+                period = 6
+                break
+        }
+
+        if(period > 0) {
+            global.set("tidhome_teleinfo." + topic, Number(period))
+
+            return {
+                topic: topic,
+                payload: period
+            }
+        }
+    }
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 1120
+  'y': 670
+  wires:
+    - - 74c89456e710ef6d
+      - 37aa0a253b8b6972
+- id: 74c89456e710ef6d
+  type: debug
+  z: b1782abc.430f38
+  name: WR-Teleinfo-Periods-Debug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1360
+  'y': 670
+  wires: []
+- id: c13f189db6400be2
+  type: debug
+  z: b1782abc.430f38
+  name: WR-Teleinfo-Total-Debug
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1420
+  'y': 720
+  wires: []
