@@ -1196,6 +1196,18 @@
           "legendFormat": "Heures Creuses",
           "range": true,
           "refId": "Teleinfo-HCHC"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time(sum(increase(sensors_teleinfo_BBRJBHP{location=\"main\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
+          "hide": false,
+          "legendFormat": "Heures Pleines",
+          "range": true,
+          "refId": "Teleinfo-BBRJBHP"
         }
       ],
       "title": "Total Daily (Wh)",
@@ -1428,7 +1440,7 @@
             "h": 6,
             "w": 3,
             "x": 0,
-            "y": 45
+            "y": 37
           },
           "id": 30,
           "options": {
@@ -1540,7 +1552,7 @@
             "h": 6,
             "w": 3,
             "x": 3,
-            "y": 45
+            "y": 37
           },
           "id": 51,
           "options": {
@@ -1730,7 +1742,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 73
+            "y": 38
           },
           "id": 29,
           "interval": "1m",
@@ -1892,7 +1904,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 73
+            "y": 38
           },
           "id": 25,
           "options": {
