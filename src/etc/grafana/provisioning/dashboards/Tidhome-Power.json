@@ -67,15 +67,35 @@
           "mappings": [
             {
               "options": {
-                "0": {
-                  "color": "orange",
-                  "index": 0,
-                  "text": "Heures Pleines"
-                },
                 "1": {
-                  "color": "green",
+                  "color": "dark-blue",
+                  "index": 0,
+                  "text": "Bleu - Heures Pleines"
+                },
+                "2": {
+                  "color": "super-light-blue",
                   "index": 1,
-                  "text": "Heures Creuses"
+                  "text": "Bleu - Heures Creuses"
+                },
+                "3": {
+                  "color": "#a9a2a2",
+                  "index": 2,
+                  "text": "Blanc - Heures Pleines"
+                },
+                "4": {
+                  "color": "#f5f4f4",
+                  "index": 3,
+                  "text": "Blanc - Heures Creuses"
+                },
+                "5": {
+                  "color": "dark-red",
+                  "index": 4,
+                  "text": "Rouge - Heures Pleines"
+                },
+                "6": {
+                  "color": "super-light-red",
+                  "index": 5,
+                  "text": "Rouge - Heures Creuses"
                 }
               },
               "type": "value"
@@ -125,13 +145,13 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sensors_teleinfo_PTEC_HC @now()",
+          "expr": "sensors_teleinfo_PTEC_int @now()",
           "format": "time_series",
           "hide": false,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "B"
+          "refId": "PTEC"
         }
       ],
       "title": "Periode",
