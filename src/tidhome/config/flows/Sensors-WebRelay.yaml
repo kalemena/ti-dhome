@@ -1195,8 +1195,19 @@
     for(var period in periods) {
         // get index from memory
         let idxPeriod = Number(global.get("tidhome_teleinfo." + periods[period]))
+        
         // set DB index for an update
         fields["teleinfo_" + periods[period]] = idxPeriod
+
+        switch (periods[period]) {
+            case "BBRHPJB":
+                fields["teleinfo_HCHP"] = idxPeriod
+                break
+            case "BBRHCJB":
+                fields["teleinfo_HCHC"] = idxPeriod
+                break
+        }
+
         // compute total
         teleinfoTotal += idxPeriod
         // message for debug
