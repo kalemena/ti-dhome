@@ -1243,7 +1243,7 @@
 - id: 8108d50cd2c5b67c
   type: function
   z: b1782abc.430f38
-  name: BBR HC/HP
+  name: int(PTEC)
   func: |-
     // update period as integer (1=HPJB, 2=HCJB, 3=HPJW, ...)
     let period = -1
@@ -1284,8 +1284,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1120
-  'y': 670
+  x: 1050
+  'y': 620
   wires:
     - - 74c89456e710ef6d
       - 37aa0a253b8b6972
@@ -1301,14 +1301,14 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1360
-  'y': 670
+  x: 1260
+  'y': 620
   wires: []
 - id: c13f189db6400be2
   type: debug
   z: b1782abc.430f38
   name: WR-Teleinfo-Total-Debug
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
