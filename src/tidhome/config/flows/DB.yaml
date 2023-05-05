@@ -1494,11 +1494,13 @@
         
         switch(type) {
             case 'teleinfo-HCHP':
-                indexAdd = (indexPerDay) * (nbDaysSpan - nbDaysToEnd)
+                indexAdd = indexPerDay * (nbDaysSpan - nbDaysToEnd -1)
+                //    + indexPerDay * (hourOfDay -4) 
                 break;
 
             case 'teleinfo-HCHC':
-                indexAdd = (indexPerDay) * (nbDaysSpan - nbDaysToEnd)
+                indexAdd = indexPerDay * (nbDaysSpan - nbDaysToEnd -1) 
+                //    + indexPerDay * (hourOfDay + 4) % 8 
                 break;
 
         }    
@@ -1613,4 +1615,91 @@
   statusType: auto
   x: 750
   'y': 1280
+  wires: []
+- id: fa15a90e2d41fcc5
+  type: influxdb in
+  z: d88a69c4.1942c8
+  influxdb: ab73d852ece55e2a
+  name: ''
+  query: ''
+  rawOutput: false
+  precision: ''
+  retentionPolicy: ''
+  org: organisation
+  x: 570
+  'y': 1600
+  wires:
+    - - 5d88733ca3fb552f
+- id: a84ec359edea51b7
+  type: inject
+  z: d88a69c4.1942c8
+  name: ''
+  props:
+    - p: payload
+    - p: sensorRangeStart
+      v: '2023-05-26T00:00:01Z'
+      vt: str
+    - p: sensorRangeEnd
+      v: '2023-05-28T00:00:01Z'
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: 'teleinfo-BBRHCJB,teleinfo-BBRHPJB'
+  payloadType: str
+  x: 90
+  'y': 1600
+  wires:
+    - - fb93b812d63609cf
+- id: 9156506e3b4d479f
+  type: function
+  z: d88a69c4.1942c8
+  name: Query Influx
+  func: |-
+    msg.query = "select * from five_years.sensors_1h WHERE "
+    //msg.query = "select * from one_year.sensors_15m WHERE "
+        + "type='" + msg.payload + "' "
+        + "AND time > '" + msg.sensorRangeStart + "' "
+        + "AND time < '" + msg.sensorRangeEnd + "'"
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 390
+  'y': 1600
+  wires:
+    - - fa15a90e2d41fcc5
+- id: fb93b812d63609cf
+  type: split
+  z: d88a69c4.1942c8
+  name: HC/HP
+  splt: ','
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: ''
+  x: 230
+  'y': 1600
+  wires:
+    - - 9156506e3b4d479f
+- id: 5d88733ca3fb552f
+  type: debug
+  z: d88a69c4.1942c8
+  name: debug 20
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 750
+  'y': 1600
   wires: []
