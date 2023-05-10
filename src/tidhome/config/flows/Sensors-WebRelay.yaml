@@ -14,8 +14,8 @@
 - id: 0edaade20969311b
   type: junction
   z: b1782abc.430f38
-  x: 1400
-  'y': 770
+  x: 1380
+  'y': 710
   wires:
     - - 3e4d792744058a92
       - 217fc7c76bf682ea
@@ -29,19 +29,19 @@
 - id: ce07888f46a79c45
   type: junction
   z: b1782abc.430f38
-  x: 1020
-  'y': 720
+  x: 890
+  'y': 760
   wires:
     - - 937e6892618fdb6b
-      - ad886e91c50e5db5
-      - 7e1ec77294b7e482
-- id: d3527fbdf76f20c4
+      - 8108d50cd2c5b67c
+- id: a5756da99a56965e
   type: junction
   z: b1782abc.430f38
-  x: 830
-  'y': 720
+  x: 1090
+  'y': 830
   wires:
-    - - 9f6adedc9ca772ef
+    - - 7e1ec77294b7e482
+      - 74c89456e710ef6d
 - id: e2c89ae6.57aa1
   type: http request
   z: b1782abc.430f38
@@ -752,8 +752,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1510
-  'y': 770
+  x: 1500
+  'y': 700
   wires: []
 - id: 8175abc180c732e4
   type: mqtt in
@@ -952,51 +952,19 @@
   property: topic
   propertyType: msg
   rules:
-    - t: eq
-      v: BBRHCJB
-      vt: str
-    - t: eq
-      v: BBRHPJB
-      vt: str
-    - t: eq
-      v: BBRHCJW
-      vt: str
-    - t: eq
-      v: BBRHPJW
-      vt: str
-    - t: eq
-      v: BBRHCJR
-      vt: str
-    - t: eq
-      v: BBRHPJR
+    - t: cont
+      v: BBRH
       vt: str
     - t: else
   checkall: 'false'
   repair: false
-  outputs: 7
-  x: 910
-  'y': 760
+  outputs: 2
+  x: 780
+  'y': 770
   wires:
     - - ce07888f46a79c45
-    - - ce07888f46a79c45
-    - - ce07888f46a79c45
-    - - ce07888f46a79c45
-    - - ce07888f46a79c45
-    - - ce07888f46a79c45
-    - - 7e1ec77294b7e482
-- id: ad886e91c50e5db5
-  type: function
-  z: b1782abc.430f38
-  name: Global Period
-  func: '// global.set("tidhome_teleinfo.PTEC_HC", 1)'
-  outputs: 0
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 1160
-  'y': 670
-  wires: []
+      - a5756da99a56965e
+    - - a5756da99a56965e
 - id: 37aa0a253b8b6972
   type: function
   z: b1782abc.430f38
@@ -1051,8 +1019,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1300
-  'y': 830
+  x: 1320
+  'y': 850
   wires:
     - - 0edaade20969311b
     - - 0edaade20969311b
@@ -1075,8 +1043,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1140
-  'y': 830
+  x: 1180
+  'y': 850
   wires:
     - - 37aa0a253b8b6972
 - id: 4d497c789965be0b
@@ -1162,8 +1130,7 @@
   x: 900
   'y': 670
   wires:
-    - - d3527fbdf76f20c4
-      - 8108d50cd2c5b67c
+    - - 9f6adedc9ca772ef
 - id: 217fc7c76bf682ea
   type: link out
   z: b1782abc.430f38
@@ -1177,7 +1144,7 @@
 - id: 937e6892618fdb6b
   type: function
   z: b1782abc.430f38
-  name: Insert Wh Total
+  name: Indexes Wh
   func: |-
     var periods = [
         "BBRHPJB",
@@ -1196,15 +1163,26 @@
         // get index from memory
         let idxPeriod = Number(global.get("tidhome_teleinfo." + periods[period]))
         
-        // set DB index for an update
-        fields["teleinfo_" + periods[period]] = idxPeriod
-
         switch (periods[period]) {
             case "BBRHPJB":
-                fields["teleinfo_HCHP"] = idxPeriod
+                if (idxPeriod > 0) { 
+                    // set DB index for an update
+                    fields["teleinfo_" + periods[period]] = idxPeriod
+
+                    fields["teleinfo_HCHP"] = idxPeriod
+                }
                 break
             case "BBRHCJB":
-                fields["teleinfo_HCHC"] = idxPeriod
+                if (idxPeriod > 0) { 
+                    // set DB index for an update
+                    fields["teleinfo_" + periods[period]] = idxPeriod
+
+                    fields["teleinfo_HCHC"] = idxPeriod
+                }
+                break
+            default:
+                // set DB index for an update
+                fields["teleinfo_" + periods[period]] = idxPeriod
                 break
         }
 
@@ -1235,11 +1213,25 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1160
-  'y': 720
+  x: 1100
+  'y': 710
   wires:
     - - 0edaade20969311b
-      - c13f189db6400be2
+- id: 74c89456e710ef6d
+  type: debug
+  z: b1782abc.430f38
+  name: WR-Teleinfo-Periods-Debug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1240
+  'y': 810
+  wires: []
 - id: 8108d50cd2c5b67c
   type: function
   z: b1782abc.430f38
@@ -1284,38 +1276,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1050
-  'y': 620
+  x: 1000
+  'y': 770
   wires:
-    - - 74c89456e710ef6d
-      - 37aa0a253b8b6972
-- id: 74c89456e710ef6d
-  type: debug
-  z: b1782abc.430f38
-  name: WR-Teleinfo-Periods-Debug
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 1260
-  'y': 620
-  wires: []
-- id: c13f189db6400be2
-  type: debug
-  z: b1782abc.430f38
-  name: WR-Teleinfo-Total-Debug
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 1420
-  'y': 720
-  wires: []
+    - - a5756da99a56965e
