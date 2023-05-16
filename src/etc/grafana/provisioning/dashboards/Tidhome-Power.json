@@ -1205,7 +1205,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHP{location=\"main\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
+          "expr": "increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1217,7 +1217,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "last_over_time(sum(increase(sensors_teleinfo_HCHC{location=\"main\",db=\"sensors\"}[${timelineRange}]))[${timelineRange}])",
+          "expr": "increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -2130,7 +2130,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "30d",
           "value": "30d"
         },
@@ -2183,7 +2183,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1d",
           "value": "1d"
         },
@@ -2217,9 +2217,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "tempo",
-          "value": "tempo"
+          "selected": false,
+          "text": "kWh",
+          "value": "kWh"
         },
         "description": "Base, Blue or Tempo",
         "hide": 0,
@@ -2229,12 +2229,12 @@
         "name": "timelineTotal",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "kWh",
             "value": "kWh"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "tempo",
             "value": "tempo"
           },
@@ -2257,7 +2257,7 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-11d",
     "to": "now"
   },
   "timepicker": {
@@ -2266,6 +2266,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 88,
+  "version": 98,
   "weekStart": ""
 }
