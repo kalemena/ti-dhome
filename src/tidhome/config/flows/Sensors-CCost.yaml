@@ -324,7 +324,7 @@
             "timestamp": timestamp,
             "timestamp-human": timestampH
         }
-        let displayMsg = msgP.payload.id + "/" + msgP.payload.type + "=" + msgP.payload.value
+        let displayMsg = msgP.payload.id + " => " + msgP.payload.value + " " + msgP.payload.type
         node.status({ fill:"blue", shape:"dot", text: displayMsg });
         outputMsgs.push(msgP);
         // node.warn("CC event:\n" + JSON.stringify(msg))
