@@ -405,7 +405,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HC\", \"HP\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Number(value).toFixed(2)\n    if (s.refId.includes(\"HC\")) {\n      cost = 0.10\n    } else {\n      cost = 0.12\n    }\n    valueCost = Number(value * cost).toFixed(2)\n    dataCenter.push({ value: value, name: s.refId, cost: valueCost });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Number(value).toFixed(2)\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n      cost = 0.2062\n    } else {\n      switch (s.refId) {\n        case 'Car':\n        case 'Water':\n          cost = 0.0970\n          break\n        case 'Others':\n          cost = 0.12\n          break\n      }\n      device = s.refId\n    }\n    valueCost = Number(value * cost).toFixed(2)\n    dataOuter.push({ value: value, name: device, cost: valueCost });\n  }\n});\n\nreturn {\n  /*tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },*/\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          return `${params.name}\\n${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n        },\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name}\\n${params.percent}%}\\n{values|${params.data.value} kWh / ${params.data.cost} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        fontSize: 12,\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          }\n        }\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
+        "getOption": "const dataCenter = []\nconst dataOuter = []\n\nconst fieldsCenter = [\"HP\", \"HC\", \"HPJW\", \"HCJW\"]\nconst fieldsOuter = [\"Car\", \"Water\", \"Heaters\", \"Plugs\", \"Others\"]\n\ndata.series.map((s) => {\n  if (fieldsCenter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Number(value).toFixed(2)\n    if (s.refId.includes(\"HC\")) {\n      cost = 0.10\n    } else {\n      cost = 0.12\n    }\n    valueCost = Number(value * cost).toFixed(2)\n    dataCenter.push({ value: value, name: s.refId, cost: valueCost });\n  }\n  if (fieldsOuter.includes(s.refId)) {\n    value = s.fields.find((f) => f.type === 'number').values.buffer;\n    value = Number(value).toFixed(2)\n    if (s.fields[0].name.includes('OnOff')) {\n      device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n      cost = 0.2062\n    } else {\n      switch (s.refId) {\n        case 'Car':\n        case 'Water':\n          cost = 0.0970\n          break\n        case 'Others':\n          cost = 0.12\n          break\n      }\n      device = s.refId\n    }\n    valueCost = Number(value * cost).toFixed(2)\n    dataOuter.push({ value: value, name: device, cost: valueCost });\n  }\n});\n\nreturn {\n  /*tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },*/\n  /*legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: [0, '35%'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          return `${params.name}\\n${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n        },\n        fontSize: 12\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['45%', '60%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name}\\n${params.percent}%}\\n{values|${params.data.value} kWh / ${params.data.cost} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        fontSize: 12,\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          }\n        }\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -420,6 +420,21 @@
       },
       "pluginVersion": "9.1.5",
       "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $nbDays)) / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HP",
+          "range": false,
+          "refId": "HP"
+        },
         {
           "datasource": {
             "type": "prometheus",
@@ -442,12 +457,28 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_HCHP{} - (sensors_teleinfo_HCHP{} offset $nbDays)) / 1000",
+          "expr": "(sensors_teleinfo_BBRHPJW{} - (sensors_teleinfo_BBRHPJW{} offset 16d)) / 1000",
+          "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": "HP",
+          "legendFormat": "HPJW",
           "range": false,
-          "refId": "HP"
+          "refId": "HPJW"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sensors_teleinfo_BBRHCJW{} - (sensors_teleinfo_BBRHCJW{} offset 16d)) / 1000",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HCJW",
+          "range": false,
+          "refId": "HCJW"
         },
         {
           "datasource": {
@@ -1210,7 +1241,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "var tooltipCallback = (args) => {\n  return args.marker + ' ' + args.value[1] + '<br />' + args.seriesId\n}\n\nconst series = data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n\n  return {\n    name: s.refId.replace(\"Teleinfo-BBR\", \"\"),\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    /*tooltip: {\n      trigger: 'item',\n      formatter: tooltipCallback\n    }*/\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.2062 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.1615 / 1000) + (totalHP * 0.2228 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * 0.1249 / 1000)\n            + (totalBBR['HCJB'] * 0.0970 / 1000)\n            + (totalBBR['HPJW'] * 0.1508 / 1000)\n            + (totalBBR['HCJW'] * 0.1140 / 1000)\n            + (totalBBR['HPJR'] * 0.6712 / 1000)\n            + (totalBBR['HCJR'] * 0.1216 / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 90,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1249 },\n  HCJB: { color: '#87CEFA', cost: 0.0970 },\n  HPJW: { color: '#B0C4DE', cost: 0.1508 },\n  HCJW: { color: '#F8F8FF', cost: 0.1140 },\n  HPJR: { color: '#B22222', cost: 0.6712 },\n  HCJR: { color: '#F08080', cost: 0.1216 }\n}\n\nvar tooltipCallback = (args) => {\n  return args.marker + ' ' + args.value[1] + '<br />' + args.seriesId\n}\n\nconst series = data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    /*tooltip: {\n      trigger: 'item',\n      formatter: tooltipCallback\n    }*/\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.2062 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.1615 / 1000) + (totalHP * 0.2228 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost  / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 90,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -2208,7 +2239,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "30d",
           "value": "30d"
         },
@@ -2266,7 +2297,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1d",
           "value": "1d"
         },
@@ -2300,7 +2331,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "kWh",
           "value": "kWh"
         },
@@ -2340,7 +2371,7 @@
     ]
   },
   "time": {
-    "from": "now-13d",
+    "from": "now-30d",
     "to": "now"
   },
   "timepicker": {
@@ -2349,6 +2380,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 120,
+  "version": 129,
   "weekStart": ""
 }
