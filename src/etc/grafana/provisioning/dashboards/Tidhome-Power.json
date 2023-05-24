@@ -981,39 +981,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day30)) / 1000) * $kWhHC)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC €",
-          "range": false,
-          "refId": "THC30"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day30)) / 1000) * $kWhHP)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP €",
-          "range": false,
-          "refId": "THP30"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$THC30 + $THP30",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day30)) / 1000) * $kWhHC) + \navg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day30)) / 1000) * $kWhHP)",
           "hide": false,
-          "refId": "30 days",
-          "type": "math"
+          "instant": true,
+          "interval": "",
+          "legendFormat": "30 days",
+          "range": false,
+          "refId": "30d"
         },
         {
           "datasource": {
@@ -1022,39 +996,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day60)) / 1000) * $kWhHC)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC €",
-          "range": false,
-          "refId": "THC60"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day60)) / 1000) * $kWhHP)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP €",
-          "range": false,
-          "refId": "THP60"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$THC60 + $THP60",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day60)) / 1000) * $kWhHC) + \navg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day60)) / 1000) * $kWhHP)",
           "hide": false,
-          "refId": "60 days",
-          "type": "math"
+          "instant": true,
+          "interval": "",
+          "legendFormat": "60 days",
+          "range": false,
+          "refId": "60d"
         },
         {
           "datasource": {
@@ -1063,39 +1011,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day180)) / 1000) * $kWhHC)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC €",
-          "range": false,
-          "refId": "THC180"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day180)) / 1000) * $kWhHP)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP €",
-          "range": false,
-          "refId": "THP180"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$THC180 + $THP180",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day180)) / 1000) * $kWhHC) + \navg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day180)) / 1000) * $kWhHP)",
           "hide": false,
-          "refId": "180 days",
-          "type": "math"
+          "instant": true,
+          "interval": "",
+          "legendFormat": "180 days",
+          "range": false,
+          "refId": "180d"
         },
         {
           "datasource": {
@@ -1104,39 +1026,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day365)) / 1000) * $kWhHC)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC €",
-          "range": false,
-          "refId": "THC365"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} @end()- (sensors_teleinfo_HCHP{} @end() offset $day365)) / 1000) * $kWhHP)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP €",
-          "range": false,
-          "refId": "THP365"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$THC365 + $THP365",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day365)) / 1000) * $kWhHC) +\navg(((sensors_teleinfo_HCHP{} @end()- (sensors_teleinfo_HCHP{} @end() offset $day365)) / 1000) * $kWhHP)",
           "hide": false,
-          "refId": "365 days",
-          "type": "math"
+          "instant": true,
+          "interval": "",
+          "legendFormat": "365 days",
+          "range": false,
+          "refId": "365d"
         },
         {
           "datasource": {
@@ -1145,39 +1041,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @ 1672552800)) / 1000) * $kWhHC)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HC €",
-          "range": false,
-          "refId": "THC2023"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHP{} @now() - (sensors_teleinfo_HCHP{} @ 1672552800)) / 1000) * $kWhHP)",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "HP €",
-          "range": false,
-          "refId": "THP2023"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$THC2023 + $THP2023",
+          "expr": "avg(((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @ 1672552800)) / 1000) * $kWhHC) +\navg(((sensors_teleinfo_HCHP{} @now() - (sensors_teleinfo_HCHP{} @ 1672552800)) / 1000) * $kWhHP)",
           "hide": false,
-          "refId": "2023",
-          "type": "math"
+          "instant": true,
+          "interval": "",
+          "legendFormat": "2023",
+          "range": false,
+          "refId": "2023"
         }
       ],
       "title": "Cost (€)",
@@ -2331,7 +2201,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "kWh",
           "value": "kWh"
         },
@@ -2380,6 +2250,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 132,
+  "version": 137,
   "weekStart": ""
 }
