@@ -1116,12 +1116,11 @@
 
     // convert to numeric if possible
     if (isNumeric(msg.payload)) {
-        global.set("tidhome_teleinfo." + msg.topic, Number(msg.payload))
-        return { topic: msg.topic, payload: Number(msg.payload) }
-    } else {
-        global.set("tidhome_teleinfo." + msg.topic, msg.payload)
-        return msg
+        msg.payload = Number(msg.payload)
     }
+
+    global.set("tidhome_teleinfo." + msg.topic, msg.payload)
+    return { topic: msg.topic, payload: msg.payload }
   outputs: 1
   noerr: 0
   initialize: ''
