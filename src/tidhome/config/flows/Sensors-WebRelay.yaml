@@ -896,6 +896,7 @@
   'y': 670
   wires:
     - - 344955f96799a3bd
+      - 549ac02050217f3d
 - id: bec90f8452d9f39a
   type: change
   z: b1782abc.430f38
@@ -1216,6 +1217,7 @@
   'y': 710
   wires:
     - - 0edaade20969311b
+      - 2c1277c0c3ca0af4
 - id: 74c89456e710ef6d
   type: debug
   z: b1782abc.430f38
@@ -1279,3 +1281,53 @@
   'y': 770
   wires:
     - - a5756da99a56965e
+- id: 2c1277c0c3ca0af4
+  type: delay
+  z: b1782abc.430f38
+  name: ''
+  pauseType: timed
+  timeout: '5'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: minute
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: true
+  allowrate: false
+  outputs: 1
+  x: 1120
+  'y': 670
+  wires:
+    - - def6a6773d9dd88d
+- id: def6a6773d9dd88d
+  type: debug
+  z: b1782abc.430f38
+  name: Debug Rate Limiter
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1220
+  'y': 630
+  wires: []
+- id: 549ac02050217f3d
+  type: debug
+  z: b1782abc.430f38
+  name: WR-TeleinfoDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 940
+  'y': 630
+  wires: []
