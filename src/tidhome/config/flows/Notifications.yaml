@@ -59,7 +59,7 @@
   name: Render Meteo
   func: |-
     var message = msg.payload.detail + '\n' + 
-        "temp=" + msg.data.currently.temperature + "°C (" + msg.payload.mintemp + "°C to " + msg.payload.maxtemp + "°C) \n" +
+        "temp=" + msg.data.currently.temperature + "°C\n" +
         "humidity=" + (msg.payload.humidity * 100) + "%\n" +
         "pressure=" + msg.data.currently.pressure + "hPa\n" +
         "windspeed=" + msg.payload.windspeed + "km/h\n" +
@@ -77,22 +77,6 @@
   'y': 280
   wires:
     - - 14836b671335a268
-- id: 45d9a893.f40ca8
-  type: darksky
-  z: 8627a08f.2f4c18
-  darksky: 56c5e5e6.d3610c
-  name: Weather Forecast
-  lon: '-4.5'
-  lat: '48.5'
-  date: ''
-  time: ''
-  mode: message
-  lang: fr
-  units: si
-  x: 510
-  'y': 280
-  wires:
-    - - 8b517c2b.d93ed8
 - id: 436b2017.90da28
   type: function
   z: 8627a08f.2f4c18
@@ -253,7 +237,7 @@
   x: 290
   'y': 280
   wires:
-    - - 45d9a893.f40ca8
+    - - bfc03cc380492275
 - id: b24260ef.c5b1e8
   type: catch
   z: 8627a08f.2f4c18
@@ -717,3 +701,17 @@
   'y': 370
   wires:
     - - 9b8a085fde86105d
+- id: bfc03cc380492275
+  type: openweathermap
+  z: 8627a08f.2f4c18
+  name: Brest/France
+  wtype: current
+  lon: ''
+  lat: ''
+  city: Brest
+  country: FR
+  language: en
+  x: 490
+  'y': 280
+  wires:
+    - - 8b517c2b.d93ed8
