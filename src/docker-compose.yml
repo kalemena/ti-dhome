@@ -60,7 +60,7 @@ services:
       INFLUXDB_USER_PASSWORD: ${INFLUXDB_USER_PASSWORD:-password}
 
   victoriametrics:
-    image: victoriametrics/victoria-metrics:v1.87.5
+    image: victoriametrics/victoria-metrics:v1.87.6
     restart: always
     ports:
       - 8428:8428
