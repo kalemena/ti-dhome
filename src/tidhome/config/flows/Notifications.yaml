@@ -59,9 +59,9 @@
   name: Render Meteo
   func: |-
     var message = msg.payload.detail + '\n' + 
-        "temp=" + msg.data.currently.temperature + "°C\n" +
+        "temp=" + msg.payload.tempc + "°C\n" +
         "humidity=" + (msg.payload.humidity * 100) + "%\n" +
-        "pressure=" + msg.data.currently.pressure + "hPa\n" +
+        "pressure=" + msg.payload.pressure + "hPa\n" +
         "windspeed=" + msg.payload.windspeed + "km/h\n" +
         "winddirection=" + msg.payload.winddirection + "\n" + 
         "clouds=" + (msg.payload.clouds * 100) + "%";
@@ -212,8 +212,8 @@
   'y': 160
   wires:
     - - f6373746.83f598
-      - e7e9239c.0be1c
       - 09304e7665f8b8b8
+      - e7e9239c.0be1c
 - id: 4271c741.d9a258
   type: comment
   z: 8627a08f.2f4c18
