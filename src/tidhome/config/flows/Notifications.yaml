@@ -60,11 +60,11 @@
   func: |-
     var message = msg.payload.detail + '\n' + 
         "temp=" + msg.payload.tempc + "°C\n" +
-        "humidity=" + (msg.payload.humidity * 100) + "%\n" +
+        "humidity=" + msg.payload.humidity + "%\n" +
         "pressure=" + msg.payload.pressure + "hPa\n" +
         "windspeed=" + msg.payload.windspeed + "km/h\n" +
         "winddirection=" + msg.payload.winddirection + "\n" + 
-        "clouds=" + (msg.payload.clouds * 100) + "%";
+        "clouds=" + msg.payload.clouds + "%";
         
     msg.payload = message
     return msg;
