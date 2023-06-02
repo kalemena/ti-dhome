@@ -875,7 +875,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 4,
         "x": 0,
         "y": 8
@@ -927,6 +927,21 @@
           "legendFormat": "$day7",
           "range": true,
           "refId": "7 days"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day30)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day30)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day30)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day30)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day30)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day30)) / 1000) * $kWhTBHP))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day30",
+          "range": true,
+          "refId": "30d"
         },
         {
           "datasource": {
@@ -990,10 +1005,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 4,
         "x": 0,
-        "y": 11
+        "y": 12
       },
       "id": 36,
       "options": {
@@ -1013,21 +1028,6 @@
       },
       "pluginVersion": "9.4.7",
       "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day30)) / 1000) * $kWhHC) + \navg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day30)) / 1000) * $kWhHP)",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "30 days",
-          "range": false,
-          "refId": "30d"
-        },
         {
           "datasource": {
             "type": "prometheus",
@@ -2040,8 +2040,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2295,7 +2294,7 @@
       "type": "row"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2427,7 +2426,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "30d",
           "value": "30d"
         },
@@ -2519,7 +2518,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "kWh",
           "value": "kWh"
         },
@@ -2558,7 +2557,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "percent",
           "value": "percent"
         },
@@ -2602,6 +2601,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 176,
+  "version": 181,
   "weekStart": ""
 }
