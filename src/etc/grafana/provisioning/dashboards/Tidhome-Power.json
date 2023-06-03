@@ -1237,7 +1237,7 @@
           "refId": "Teleinfo-BBRHCJR"
         }
       ],
-      "title": "Total Daily (Wh)",
+      "title": "Total ${nbDays} (${timelineTotal})",
       "transformations": [
         {
           "id": "filterByValue",
@@ -1362,7 +1362,7 @@
           "refId": "Plugs"
         }
       ],
-      "title": "Clamps Daily (Wh)",
+      "title": "Clamps ${nbDays} (${timelineTotal})",
       "transformations": [
         {
           "id": "filterByValue",
@@ -2426,7 +2426,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "30d",
           "value": "30d"
         },
@@ -2485,6 +2485,40 @@
       {
         "current": {
           "selected": false,
+          "text": "percent",
+          "value": "percent"
+        },
+        "description": "Show donut values as",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Donut Value As",
+        "multi": false,
+        "name": "donutValueAs",
+        "options": [
+          {
+            "selected": true,
+            "text": "percent",
+            "value": "percent"
+          },
+          {
+            "selected": false,
+            "text": "kWh",
+            "value": "kWh"
+          },
+          {
+            "selected": false,
+            "text": "€",
+            "value": "€"
+          }
+        ],
+        "query": "percent,kWh,€",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
           "text": "1d",
           "value": "1d"
         },
@@ -2518,7 +2552,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "kWh",
           "value": "kWh"
         },
@@ -2554,40 +2588,6 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": "percent",
-          "value": "percent"
-        },
-        "description": "Show donut values as",
-        "hide": 0,
-        "includeAll": false,
-        "label": "Donut Value As",
-        "multi": false,
-        "name": "donutValueAs",
-        "options": [
-          {
-            "selected": true,
-            "text": "percent",
-            "value": "percent"
-          },
-          {
-            "selected": false,
-            "text": "kWh",
-            "value": "kWh"
-          },
-          {
-            "selected": false,
-            "text": "€",
-            "value": "€"
-          }
-        ],
-        "query": "percent,kWh,€",
-        "queryValue": "",
-        "skipUrlSync": false,
-        "type": "custom"
       }
     ]
   },
@@ -2601,6 +2601,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 184,
+  "version": 188,
   "weekStart": ""
 }
