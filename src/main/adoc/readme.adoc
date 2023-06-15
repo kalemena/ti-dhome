@@ -63,13 +63,10 @@ Hardware used for sensors/actors:
 
 TIP: A simple Dashboard using Grafana and Victoria Metrics as storage.
 
-image:dashboard-power-iinst.png[Dashboard Power - instant,1024]
 
-* Shown on this dashboard :
-** *Periode* : Current power cost period. "Heures Pleines" or "Heures Creuses" stands for high/low cost hours
-** *Total* : Electricity provider serial info of current consumption. (Teleinfo - serial info)
-** *Non-Heating* : Clamp meter on non-heating part of the house (CurrentCost clamp)
-** *Consumers* : Clamp meters on various elements (Zigbee clamps)
+.Overview
+image:dashboard-power-overview.png[Dashboard Power - overview,1024]
+
 ** *Outlets* : Wall plugs (CurrentCost or Zigbee plugs)
 ** *Cost HCHP* : Computed costs, taking Low/High hours of Teleinfo into account
 ** *Cost if Base* : Computed standard costs, to compare with case of Low/High hours contract
