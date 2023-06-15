@@ -67,27 +67,21 @@ TIP: A simple Dashboard using Grafana and Victoria Metrics as storage.
 .Overview
 image:dashboard-power-overview.png[Dashboard Power - overview,1024]
 
+* Summary :
+** *Periode* : Power cost period. "Heures Pleines" or "Heures Creuses" stands for high/low cost hours
+** *Total (W)* : Power level at the moment
+** *Costs (€)* : Computed costs, taking Low/High hours prices into account
+** *Consumers* : Clamp meters on various elements (Zigbee clamps onto electric car, water heater, heaters)
 ** *Outlets* : Wall plugs (CurrentCost or Zigbee plugs)
-** *Cost HCHP* : Computed costs, taking Low/High hours of Teleinfo into account
-** *Cost if Base* : Computed standard costs, to compare with case of Low/High hours contract
-** *Index* : Rolling indexes
-** *X days* : Costs for the selected period and for the bigger consumers
+** *X days* : Energy consumption (in kWh, percent, or € cost), for the selected period (1d,7d,30d,etc), and by categories
 
-image:dashboard-power-energy.png[Dashboard Power - Energy,1024]
+* Energy Timeline Xd (kWh or € cost):
+** *Bars* : Energy consummed by hour, day, or week slots and for each of the 6 *Periode* costs (EDF provider contract)
+** *Total* : At top of each bar, total as kWh, or € cost
 
-* Shown on this dashboard :
-** *Total Hourly* : Energy consummed by hour slots (kWh)
-** *Total Daily* : Energy consummed by day slots (kWh)
-** *Total Weekly* : Energy consummed by week slots (kWh) and on 12 weeks
-** *Costs* by day/week/month(s)
-
-image:dashboard-power-energy-consumers.png[Dashboard Power - Consumers,1024]
-
-* Shown on this dashboard :
-** *Consumers Hourly* : Energy consummed by hour slots (kWh)
-** *Consumers Daily* : Energy consummed by day slots (kWh)
-** *Total Weekly* : Energy consummed by week slots (kWh) and on 12 weeks
-** *Costs* by day/week/month(s)
+* Clamps Timeline Xd (kWh or € cost):
+** *Bars* : Energy consummed by hour, day, or week slots and for each of the 6 *Periode* costs (EDF provider contract)
+** *Total* : At top of each bar, total as kWh, or € cost
 
 
 image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
