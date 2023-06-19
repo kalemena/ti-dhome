@@ -1264,7 +1264,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "VictoriaMetrics"
+        "uid": "P4169E866C3094E38"
       },
       "gridPos": {
         "h": 14,
@@ -1287,7 +1287,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const series = data.series.map((s) => {\n\n  // console.log(s)\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  /*sTime = sTime.map(function (x) { \n    const tempDate = new Date(x);\n    return tempDate.getUTCDate();\n  });*/\n\n  return {\n    name: s.refId.includes(\"Plugs\") ? s.name.replace(/P(.*)~(.*)~OnOff/, '$2') : s.refId,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n      series.forEach(serie => {\n        // console.log(serie.data[params.dataIndex])\n        total += parseInt(serie.data[params.dataIndex][1]);\n      })\n      return \"                 \" + (total / 1000).toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = data.series.map((s) => {\n  if (s.refId.includes(\"Plugs\")) {\n    return s.name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  } else {\n    return s.refId\n  }\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 90,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "getOption": "const series = data.series.map((s) => {\n\n  // console.log(s)\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  /*sTime = sTime.map(function (x) { \n    const tempDate = new Date(x);\n    return tempDate.getUTCDate();\n  });*/\n\n  var tooltipCallback = (args) => {\n    console.log(args)\n    let date = new Date(parseInt(args.data[0]))\n    return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n  }\n\n  return {\n    name: s.refId.includes(\"Plugs\") ? s.name.replace(/P(.*)~(.*)~OnOff/, '$2') : s.refId,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    /*tooltip: {\n      trigger: 'item',\n      // formater: tooltipCallback\n    },*/\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n      series.forEach(serie => {\n        //console.log(serie.data[params.dataIndex])\n        //console.log(\"index = \" + params.dataIndex)\n        //console.log(\"data = \" + serie.data)\n        if (serie.data.length >= params.dataIndex) {\n          //let val = parseInt(serie.data[params.dataIndex][1])\n        }\n        //if (!isNaN(parseFloat(n)) && isFinite(n) )\n        //total += parseInt(serie.data[params.dataIndex][1]);\n      })\n      return \"                 \" + (total / 1000).toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = data.series.map((s) => {\n  if (s.refId.includes(\"Plugs\")) {\n    return s.name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  } else {\n    return s.refId\n  }\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n    // formater: tooltipCallback\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 90,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -1472,7 +1472,7 @@
             "h": 6,
             "w": 3,
             "x": 0,
-            "y": 66
+            "y": 74
           },
           "id": 30,
           "options": {
@@ -1584,7 +1584,7 @@
             "h": 6,
             "w": 3,
             "x": 3,
-            "y": 66
+            "y": 74
           },
           "id": 51,
           "options": {
@@ -1758,8 +1758,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1800,7 +1799,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 43
+            "y": 51
           },
           "id": 29,
           "interval": "1m",
@@ -1946,8 +1945,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1963,7 +1961,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 43
+            "y": 51
           },
           "id": 25,
           "options": {
@@ -2057,7 +2055,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 44
+            "y": 52
           },
           "id": 112,
           "options": {
@@ -2296,7 +2294,7 @@
       "type": "row"
     }
   ],
-  "refresh": false,
+  "refresh": "1m",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2428,7 +2426,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "30d",
           "value": "30d"
         },
@@ -2486,7 +2484,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "percent",
           "value": "percent"
         },
@@ -2520,7 +2518,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1d",
           "value": "1d"
         },
@@ -2554,7 +2552,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "kWh",
           "value": "kWh"
         },
@@ -2603,6 +2601,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 190,
+  "version": 198,
   "weekStart": ""
 }
