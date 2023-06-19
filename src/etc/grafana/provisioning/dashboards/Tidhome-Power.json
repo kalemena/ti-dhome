@@ -875,7 +875,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 8,
         "w": 4,
         "x": 0,
         "y": 8
@@ -950,97 +950,12 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day365)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_HCHP{} @end() offset $day365)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhTBHP))",
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhTBHP))",
           "hide": false,
           "instant": false,
           "interval": "",
-          "legendFormat": "$day7",
+          "legendFormat": "$day60",
           "range": true,
-          "refId": "365 days"
-        }
-      ],
-      "title": "Cost (€)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "Costs computed with Low/High hours energy prices",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 3,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "currencyEUR"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 12
-      },
-      "id": 36,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "value_and_name"
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day60)) / 1000) * $kWhHC) + \navg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day60)) / 1000) * $kWhHP)",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "60 days",
-          "range": false,
           "refId": "60d"
         },
         {
@@ -1264,7 +1179,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P4169E866C3094E38"
+        "uid": "VictoriaMetrics"
       },
       "gridPos": {
         "h": 14,
@@ -2452,12 +2367,12 @@
             "value": "15d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "30d",
             "value": "30d"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "60d",
             "value": "60d"
           },
@@ -2484,7 +2399,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "percent",
           "value": "percent"
         },
@@ -2564,12 +2479,12 @@
         "name": "timelineTotal",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "kWh",
             "value": "kWh"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "tempo",
             "value": "tempo"
           },
@@ -2592,7 +2507,7 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-90d",
     "to": "now"
   },
   "timepicker": {
@@ -2601,6 +2516,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 198,
+  "version": 206,
   "weekStart": ""
 }
