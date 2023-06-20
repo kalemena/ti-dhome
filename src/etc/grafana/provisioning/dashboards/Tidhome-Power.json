@@ -965,13 +965,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day180)) / 1000) * $kWhHC) + \navg(((sensors_teleinfo_HCHP{} @end() - (sensors_teleinfo_HCHP{} @end() offset $day180)) / 1000) * $kWhHP)",
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day365)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_HCHP{} @end() offset $day365)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhTBHP))",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "interval": "",
-          "legendFormat": "180 days",
-          "range": false,
-          "refId": "180d"
+          "legendFormat": "$day7",
+          "range": true,
+          "refId": "365 days"
         },
         {
           "datasource": {
@@ -980,27 +980,12 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day365)) / 1000) * $kWhHC) +\navg(((sensors_teleinfo_HCHP{} @end()- (sensors_teleinfo_HCHP{} @end() offset $day365)) / 1000) * $kWhHP)",
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1672552800)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1672552800)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhTBHP))",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "interval": "",
-          "legendFormat": "365 days",
-          "range": false,
-          "refId": "365d"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(((sensors_teleinfo_HCHC{} @now() - (sensors_teleinfo_HCHC{} @ 1672552800)) / 1000) * $kWhHC) +\navg(((sensors_teleinfo_HCHP{} @now() - (sensors_teleinfo_HCHP{} @ 1672552800)) / 1000) * $kWhHP)",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "2023",
-          "range": false,
+          "legendFormat": "$day7",
+          "range": true,
           "refId": "2023"
         }
       ],
@@ -2341,9 +2326,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "30d",
-          "value": "30d"
+          "selected": false,
+          "text": "60d",
+          "value": "60d"
         },
         "hide": 0,
         "includeAll": false,
@@ -2468,8 +2453,8 @@
       {
         "current": {
           "selected": false,
-          "text": "kWh",
-          "value": "kWh"
+          "text": "tempo",
+          "value": "tempo"
         },
         "description": "Base, Blue or Tempo",
         "hide": 0,
