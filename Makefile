@@ -30,8 +30,12 @@ clean:
 
 backup:
 	docker stop ti-dhome_victoriametrics_1
-	mkdir -p backup/victoriametrics
-	docker run --rm -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(pwd)/backup/victoriametrics:/backup ubuntu bash -c 'cd /victoria-metrics-data && tar czvf /backup/vm.tar.gz .'
+	mkdir -p $(pwd)/backup/victoriametrics
+	docker run --rm -it \
+		-v ti-dhome_victoria-metrics-data:/victoria-metrics-data \
+		-v $(pwd)/backup/victoriametrics:$(pwd)/backup/victoriametrics \
+		-w /victoria-metrics-data ubuntu \
+			tar czvf $(pwd)/backup/victoriametrics/vm.tar.gz .
 	docker start ti-dhome_victoriametrics_1
 
 ###########################
