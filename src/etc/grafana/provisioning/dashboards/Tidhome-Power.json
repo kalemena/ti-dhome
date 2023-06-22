@@ -859,7 +859,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 3,
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1302,314 +1302,6 @@
         "x": 0,
         "y": 41
       },
-      "id": 109,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-Wh-Total"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Total"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHC"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Creuses"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "teleinfo-HCHP"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Heures Pleines"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 3,
-            "x": 0,
-            "y": 74
-          },
-          "id": 30,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "textMode": "value_and_name"
-          },
-          "pluginVersion": "9.4.7",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sensors_teleinfo_HCHC / 1000",
-              "hide": false,
-              "instant": true,
-              "interval": "",
-              "legendFormat": "Heures Creuses",
-              "range": false,
-              "refId": "B"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sensors_teleinfo_HCHP / 1000",
-              "hide": false,
-              "instant": true,
-              "interval": "",
-              "legendFormat": "Heures Pleines",
-              "range": false,
-              "refId": "C"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sensors_teleinfo_Wh_Total / 1000",
-              "hide": false,
-              "instant": true,
-              "interval": "",
-              "legendFormat": "Total",
-              "range": false,
-              "refId": "D"
-            }
-          ],
-          "title": "Index (kWh)",
-          "transformations": [
-            {
-              "id": "calculateField",
-              "options": {
-                "binary": {
-                  "left": "sensors {type: teleinfo-HCHC}",
-                  "reducer": "sum",
-                  "right": "sensors {type: teleinfo-HCHP}"
-                },
-                "mode": "binary",
-                "reduce": {
-                  "reducer": "sum"
-                }
-              }
-            }
-          ],
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "description": "Costs computed with Base energy prices",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              },
-              "unit": "currencyEUR"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 3,
-            "x": 3,
-            "y": 74
-          },
-          "id": 51,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "textMode": "value_and_name"
-          },
-          "pluginVersion": "9.4.7",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "avg(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day7)) / 1000) * $kWhBase)",
-              "hide": false,
-              "instant": true,
-              "interval": "",
-              "legendFormat": "7 days",
-              "range": false,
-              "refId": "THBase7"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day30)) / 1000) * $kWhBase)",
-              "hide": false,
-              "instant": true,
-              "interval": "",
-              "legendFormat": "30 days",
-              "range": false,
-              "refId": "THBase30"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day60)) / 1000) * $kWhBase)",
-              "hide": false,
-              "instant": true,
-              "interval": "",
-              "legendFormat": "60 days",
-              "range": false,
-              "refId": "THBase60"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day180)) / 1000) * $kWhBase)",
-              "hide": false,
-              "instant": true,
-              "interval": "",
-              "legendFormat": "180 days",
-              "range": false,
-              "refId": "THBase180"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(((sensors_teleinfo_Wh_Total{} @ 1682865193 - (sensors_teleinfo_Wh_Total{} @ 1672552800)) / 1000) * $kWhBase)",
-              "hide": false,
-              "instant": true,
-              "interval": "",
-              "legendFormat": "2023",
-              "range": false,
-              "refId": "2023"
-            }
-          ],
-          "title": "Cost if Base (€)",
-          "transformations": [
-            {
-              "id": "calculateField",
-              "options": {
-                "binary": {
-                  "left": "sensors {type: teleinfo-HCHC}",
-                  "reducer": "sum",
-                  "right": "sensors {type: teleinfo-HCHP}"
-                },
-                "mode": "binary",
-                "reduce": {
-                  "reducer": "sum"
-                }
-              }
-            }
-          ],
-          "type": "stat"
-        }
-      ],
-      "title": "Costs",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 42
-      },
       "id": 23,
       "panels": [
         {
@@ -1921,10 +1613,304 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 42
       },
       "id": 115,
       "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-Wh-Total"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Total"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-HCHC"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Heures Creuses"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "teleinfo-HCHP"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Heures Pleines"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 0,
+            "y": 43
+          },
+          "id": 30,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.4.7",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sensors_teleinfo_HCHC / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Heures Creuses",
+              "range": false,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sensors_teleinfo_HCHP / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Heures Pleines",
+              "range": false,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sensors_teleinfo_Wh_Total / 1000",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "Total",
+              "range": false,
+              "refId": "D"
+            }
+          ],
+          "title": "Index (kWh)",
+          "transformations": [
+            {
+              "id": "calculateField",
+              "options": {
+                "binary": {
+                  "left": "sensors {type: teleinfo-HCHC}",
+                  "reducer": "sum",
+                  "right": "sensors {type: teleinfo-HCHP}"
+                },
+                "mode": "binary",
+                "reduce": {
+                  "reducer": "sum"
+                }
+              }
+            }
+          ],
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "description": "Costs computed with Base energy prices",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "currencyEUR"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 3,
+            "y": 43
+          },
+          "id": 51,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "9.4.7",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day7)) / 1000) * $kWhBase)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "7 days",
+              "range": false,
+              "refId": "THBase7"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day30)) / 1000) * $kWhBase)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "30 days",
+              "range": false,
+              "refId": "THBase30"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day60)) / 1000) * $kWhBase)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "60 days",
+              "range": false,
+              "refId": "THBase60"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(((sensors_teleinfo_Wh_Total{} - (sensors_teleinfo_Wh_Total{} offset $day180)) / 1000) * $kWhBase)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "180 days",
+              "range": false,
+              "refId": "THBase180"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(((sensors_teleinfo_Wh_Total{} @ 1682865193 - (sensors_teleinfo_Wh_Total{} @ 1672552800)) / 1000) * $kWhBase)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "2023",
+              "range": false,
+              "refId": "2023"
+            }
+          ],
+          "title": "Cost if Base (€)",
+          "transformations": [
+            {
+              "id": "calculateField",
+              "options": {
+                "binary": {
+                  "left": "sensors {type: teleinfo-HCHC}",
+                  "reducer": "sum",
+                  "right": "sensors {type: teleinfo-HCHP}"
+                },
+                "mode": "binary",
+                "reduce": {
+                  "reducer": "sum"
+                }
+              }
+            }
+          ],
+          "type": "stat"
+        },
         {
           "datasource": {
             "type": "prometheus",
@@ -1955,7 +1941,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 52
+            "y": 49
           },
           "id": 112,
           "options": {
@@ -2194,7 +2180,7 @@
       "type": "row"
     }
   ],
-  "refresh": "1m",
+  "refresh": "30s",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2501,6 +2487,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 206,
+  "version": 215,
   "weekStart": ""
 }
