@@ -16,5 +16,6 @@ RUN npm i \
         node-red-contrib-influxdb \
         node-red-contrib-topic-frequencies \
         node-red-node-feedparser \
+        node-red-contrib-gorules \
         node-red-contrib-flow-manager
         
