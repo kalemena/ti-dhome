@@ -1137,7 +1137,7 @@
           "refId": "Teleinfo-BBRHCJR"
         }
       ],
-      "title": "Total ${nbDays} (${timelineTotal})",
+      "title": "Total (${timelineTotal})",
       "transformations": [
         {
           "id": "filterByValue",
@@ -1166,6 +1166,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Clamps consumption. \nThis does not take cost period into account.",
       "gridPos": {
         "h": 14,
         "w": 24,
@@ -1264,7 +1265,7 @@
           "refId": "Plugs"
         }
       ],
-      "title": "Clamps ${nbDays} (${timelineTotal})",
+      "title": "Clamps (kWh)",
       "transformations": [
         {
           "id": "filterByValue",
@@ -2182,7 +2183,7 @@
       "type": "row"
     }
   ],
-  "refresh": "30s",
+  "refresh": "5m",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -2489,6 +2490,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 218,
+  "version": 222,
   "weekStart": ""
 }
