@@ -1,0 +1,100 @@
+{
+  "contentType": "application/vnd.gorules.decision",
+  "edges": [
+    {
+      "id": "708e3b70-8f61-499a-8aff-f0740e97a37d",
+      "sourceId": "9e1b5702-f5de-49e0-a30a-6dc2a1dd5004",
+      "type": "edge",
+      "targetId": "3f70d1dc-fe3c-44c9-82f6-840613604bf0"
+    },
+    {
+      "id": "df55614e-7ef8-4b4a-b04b-1a57d7bf35e5",
+      "sourceId": "3f70d1dc-fe3c-44c9-82f6-840613604bf0",
+      "type": "edge",
+      "targetId": "19975b73-7367-4881-8342-0d82c0eb0ab4"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "9e1b5702-f5de-49e0-a30a-6dc2a1dd5004",
+      "type": "inputNode",
+      "position": {
+        "x": 230,
+        "y": 290
+      },
+      "name": "Request"
+    },
+    {
+      "id": "3f70d1dc-fe3c-44c9-82f6-840613604bf0",
+      "type": "decisionTableNode",
+      "position": {
+        "x": 500,
+        "y": 290
+      },
+      "name": "Article",
+      "content": {
+        "hitPolicy": "first",
+        "inputs": [
+          {
+            "id": "B4W-37vNsu",
+            "type": "expression",
+            "field": "article.title",
+            "name": "Title"
+          },
+          {
+            "id": "dvTrlnHMx6",
+            "type": "expression",
+            "field": "article.description",
+            "name": "Description"
+          },
+          {
+            "id": "zHHtvNi0jw",
+            "type": "expression",
+            "field": "article.summary",
+            "name": "Summary"
+          },
+          {
+            "id": "EPMCsj-s_T",
+            "type": "expression",
+            "field": "article.link",
+            "name": "Link"
+          },
+          {
+            "id": "Tg7WTVw5-b",
+            "type": "expression",
+            "field": "text",
+            "name": "Flat Text"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "9g3rVYF4PA",
+            "type": "expression",
+            "field": "should.filter",
+            "name": "Should Filter ?"
+          }
+        ],
+        "rules": [
+          {
+            "_id": "HuwSANgo4f",
+            "B4W-37vNsu": "",
+            "dvTrlnHMx6": "",
+            "zHHtvNi0jw": "",
+            "EPMCsj-s_T": "",
+            "Tg7WTVw5-b": "quordle",
+            "9g3rVYF4PA": "yes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "19975b73-7367-4881-8342-0d82c0eb0ab4",
+      "type": "outputNode",
+      "position": {
+        "x": 770,
+        "y": 290
+      },
+      "name": "Response"
+    }
+  ]
+}
