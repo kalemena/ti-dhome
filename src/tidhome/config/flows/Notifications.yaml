@@ -6,24 +6,10 @@
 - id: 14836b671335a268
   type: junction
   z: 8627a08f.2f4c18
-  x: 1000
-  'y': 350
+  x: 980
+  'y': 270
   wires:
     - - 1ba3302a5169676e
-- id: 9b8a085fde86105d
-  type: junction
-  z: 8627a08f.2f4c18
-  x: 920
-  'y': 380
-  wires:
-    - - 65b304e893e9cfd1
-- id: b76bac03ba68e5e8
-  type: junction
-  z: 8627a08f.2f4c18
-  x: 910
-  'y': 660
-  wires:
-    - - 65b304e893e9cfd1
 - id: 6c21ca7aee31ecb2
   type: junction
   z: 8627a08f.2f4c18
@@ -31,13 +17,13 @@
   'y': 210
   wires:
     - - 14836b671335a268
-- id: 65b304e893e9cfd1
+- id: b40f58e74745484e
   type: junction
   z: 8627a08f.2f4c18
-  x: 1000
-  'y': 440
+  x: 514
+  'y': 722
   wires:
-    - - 920a6d44fc9d1a0a
+    - - 31351825673be596
 - id: cb68db5a.bdbca8
   type: inject
   z: 8627a08f.2f4c18
@@ -436,8 +422,8 @@
   mode: link
   links:
     - c80c722c5806b680
-  x: 1055
-  'y': 350
+  x: 1035
+  'y': 270
   wires: []
 - id: d62a5899f21cd167
   type: feedparse
@@ -450,6 +436,7 @@
   'y': 600
   wires:
     - - 8a909bab8256258f
+      - b40f58e74745484e
 - id: 8a909bab8256258f
   type: function
   z: 8627a08f.2f4c18
@@ -482,6 +469,7 @@
   'y': 640
   wires:
     - - 8a909bab8256258f
+      - b40f58e74745484e
 - id: fce9560bc4c3314b
   type: debug
   z: 8627a08f.2f4c18
@@ -516,7 +504,7 @@
   'y': 600
   wires:
     - - fce9560bc4c3314b
-      - b76bac03ba68e5e8
+      - 4da44a73cf53899e
 - id: 43e6adab33a9f460
   type: trigger
   z: 8627a08f.2f4c18
@@ -621,7 +609,7 @@
   x: 510
   'y': 840
   wires:
-    - - b76bac03ba68e5e8
+    - - 4d87ac10f93853bc
     - - fecb20f01567e4a8
 - id: fecb20f01567e4a8
   type: link out
@@ -640,24 +628,24 @@
   mode: link
   links:
     - 2f30621f40aa8285
-  x: 1055
-  'y': 440
+  x: 715
+  'y': 370
   wires: []
 - id: 20def1f1498e3e18
   type: comment
   z: 8627a08f.2f4c18
   name: To Telegram C
   info: ''
-  x: 1110
-  'y': 400
+  x: 820
+  'y': 370
   wires: []
 - id: 040cebcfbd0283a1
   type: comment
   z: 8627a08f.2f4c18
   name: To Telegram CM
   info: ''
-  x: 1120
-  'y': 310
+  x: 1100
+  'y': 230
   wires: []
 - id: e9131fd2804af10b
   type: feedparse
@@ -670,6 +658,7 @@
   'y': 680
   wires:
     - - 8a909bab8256258f
+      - b40f58e74745484e
 - id: a212439a732896f1
   type: feedparse
   z: 8627a08f.2f4c18
@@ -681,6 +670,7 @@
   'y': 720
   wires:
     - - 8a909bab8256258f
+      - b40f58e74745484e
 - id: 8fbe8d922b5f1997
   type: trigger
   z: 8627a08f.2f4c18
@@ -700,7 +690,7 @@
   x: 530
   'y': 370
   wires:
-    - - 9b8a085fde86105d
+    - - 920a6d44fc9d1a0a
 - id: bfc03cc380492275
   type: openweathermap
   z: 8627a08f.2f4c18
@@ -715,3 +705,104 @@
   'y': 280
   wires:
     - - 8b517c2b.d93ed8
+- id: 4d87ac10f93853bc
+  type: link out
+  z: 8627a08f.2f4c18
+  name: Telegram C
+  mode: link
+  links:
+    - 2f30621f40aa8285
+  x: 705
+  'y': 810
+  wires: []
+- id: 4da44a73cf53899e
+  type: link out
+  z: 8627a08f.2f4c18
+  name: Telegram C
+  mode: link
+  links:
+    - 2f30621f40aa8285
+  x: 955
+  'y': 600
+  wires: []
+- id: 286cf49303ab5ee9
+  type: comment
+  z: 8627a08f.2f4c18
+  name: To Telegram C
+  info: ''
+  x: 1060
+  'y': 600
+  wires: []
+- id: 40bb6b4fc46482fe
+  type: comment
+  z: 8627a08f.2f4c18
+  name: To Telegram C
+  info: ''
+  x: 810
+  'y': 810
+  wires: []
+- id: f9fc523d31596f7a
+  type: debug
+  z: 8627a08f.2f4c18
+  name: debug 21
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 990
+  'y': 730
+  wires: []
+- id: 475ad60d47ef850f
+  type: json
+  z: 8627a08f.2f4c18
+  name: ''
+  property: articleCopy
+  action: ''
+  pretty: false
+  x: 530
+  'y': 770
+  wires:
+    - - 1f277bad7ccd171b
+- id: 31351825673be596
+  type: change
+  z: 8627a08f.2f4c18
+  name: Copy article
+  rules:
+    - t: set
+      p: articleCopy
+      pt: msg
+      to: article
+      tot: msg
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 390
+  'y': 770
+  wires:
+    - - 475ad60d47ef850f
+- id: 1f277bad7ccd171b
+  type: change
+  z: 8627a08f.2f4c18
+  name: LowerCase
+  rules:
+    - t: set
+      p: article.flatlc
+      pt: msg
+      to: $lowercase(articleCopy)
+      tot: jsonata
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 680
+  'y': 770
+  wires:
+    - - f9fc523d31596f7a
