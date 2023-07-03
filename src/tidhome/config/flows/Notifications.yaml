@@ -20,8 +20,8 @@
 - id: b40f58e74745484e
   type: junction
   z: 8627a08f.2f4c18
-  x: 514
-  'y': 722
+  x: 290
+  'y': 680
   wires:
     - - 31351825673be596
 - id: cb68db5a.bdbca8
@@ -435,8 +435,7 @@
   x: 140
   'y': 600
   wires:
-    - - 8a909bab8256258f
-      - b40f58e74745484e
+    - - b40f58e74745484e
 - id: 8a909bab8256258f
   type: function
   z: 8627a08f.2f4c18
@@ -468,8 +467,7 @@
   x: 140
   'y': 640
   wires:
-    - - 8a909bab8256258f
-      - b40f58e74745484e
+    - - b40f58e74745484e
 - id: fce9560bc4c3314b
   type: debug
   z: 8627a08f.2f4c18
@@ -482,8 +480,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 780
-  'y': 640
+  x: 990
+  'y': 560
   wires: []
 - id: 080dbe7f6708bea1
   type: change
@@ -657,8 +655,7 @@
   x: 140
   'y': 680
   wires:
-    - - 8a909bab8256258f
-      - b40f58e74745484e
+    - - b40f58e74745484e
 - id: a212439a732896f1
   type: feedparse
   z: 8627a08f.2f4c18
@@ -669,8 +666,7 @@
   x: 120
   'y': 720
   wires:
-    - - 8a909bab8256258f
-      - b40f58e74745484e
+    - - b40f58e74745484e
 - id: 8fbe8d922b5f1997
   type: trigger
   z: 8627a08f.2f4c18
@@ -741,21 +737,6 @@
   x: 810
   'y': 810
   wires: []
-- id: f9fc523d31596f7a
-  type: debug
-  z: 8627a08f.2f4c18
-  name: debug 21
-  active: true
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 990
-  'y': 730
-  wires: []
 - id: 475ad60d47ef850f
   type: json
   z: 8627a08f.2f4c18
@@ -763,8 +744,8 @@
   property: articleCopy
   action: ''
   pretty: false
-  x: 530
-  'y': 770
+  x: 520
+  'y': 680
   wires:
     - - 1f277bad7ccd171b
 - id: 31351825673be596
@@ -783,26 +764,58 @@
   from: ''
   to: ''
   reg: false
-  x: 390
-  'y': 770
+  x: 380
+  'y': 680
   wires:
     - - 475ad60d47ef850f
 - id: 1f277bad7ccd171b
   type: change
   z: 8627a08f.2f4c18
-  name: LowerCase
+  name: LowerCase & assign
   rules:
     - t: set
-      p: article.flatlc
+      p: article.text
       pt: msg
       to: $lowercase(articleCopy)
       tot: jsonata
+    - t: set
+      p: input
+      pt: msg
+      to: article
+      tot: msg
+      dc: true
   action: ''
   property: ''
   from: ''
   to: ''
   reg: false
-  x: 680
-  'y': 770
+  x: 690
+  'y': 680
   wires:
-    - - f9fc523d31596f7a
+    - - ed8bdee63a5d4662
+- id: 1cbd88762507b2d8
+  type: GoRules
+  z: 8627a08f.2f4c18
+  name: RSS Rules
+  ruleFile: /etc/tidhome/rules/RSS-rules.json
+  x: 1000
+  'y': 680
+  wires:
+    - - 8a909bab8256258f
+- id: ed8bdee63a5d4662
+  type: switch
+  z: 8627a08f.2f4c18
+  name: Filter?
+  property: output.filter
+  propertyType: msg
+  rules:
+    - t: eq
+      v: 'yes'
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 860
+  'y': 680
+  wires:
+    - - 1cbd88762507b2d8
