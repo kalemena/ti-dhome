@@ -257,11 +257,11 @@
   type: json
   z: 8627a08f.2f4c18
   name: ''
-  property: articleToParse
+  property: articleCopy
   action: ''
   pretty: false
-  x: 150
-  'y': 540
+  x: 530
+  'y': 490
   wires:
     - - e1f67923cf085d92
 - id: c86e3fdb.b856e8
@@ -298,7 +298,7 @@
 - id: 281623751d7a9995
   type: change
   z: 8627a08f.2f4c18
-  name: Includes / Excludes
+  name: Inc / Ex
   rules:
     - t: set
       p: excludes
@@ -312,21 +312,15 @@
       to: tidhome.groups.groupD
       tot: global
       dc: true
-    - t: set
-      p: articleToParse
-      pt: msg
-      to: article
-      tot: msg
-      dc: true
   action: ''
   property: ''
   from: ''
   to: ''
   reg: false
-  x: 280
+  x: 240
   'y': 490
   wires:
-    - - b0f7a636.7693f
+    - - c5569efa7d734875
 - id: d3071673871eba6a
   type: function
   z: 8627a08f.2f4c18
@@ -338,7 +332,7 @@
     for(var includeIdx in msg.includes) {
         var include = msg.includes[includeIdx]
         
-        if (msg.articleToParse.indexOf(include) !== -1 ) {
+        if (msg.articleCopy.indexOf(include) !== -1 ) {
             pass = true
             msg.include = include
         }
@@ -349,7 +343,7 @@
         for(var excludeIdx in msg.excludes) {
             var exclude = msg.excludes[excludeIdx]
             
-            if (msg.articleToParse.indexOf(exclude) !== -1 ) {
+            if (msg.articleCopy.indexOf(exclude) !== -1 ) {
                 pass = false
                 msg.exclude = exclude
             }
@@ -364,8 +358,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 460
-  'y': 540
+  x: 1010
+  'y': 490
   wires:
     - - 8a909bab8256258f
 - id: cfeca9401ab2c043
@@ -529,17 +523,17 @@
   name: LowerCase
   rules:
     - t: set
-      p: articleToParse
+      p: articleCopy
       pt: msg
-      to: $lowercase(articleToParse)
+      to: $lowercase(articleCopy)
       tot: jsonata
   action: ''
   property: ''
   from: ''
   to: ''
   reg: false
-  x: 300
-  'y': 540
+  x: 670
+  'y': 490
   wires:
     - - d3071673871eba6a
 - id: 8011356333a316f0
@@ -604,8 +598,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 510
-  'y': 840
+  x: 500
+  'y': 880
   wires:
     - - 4d87ac10f93853bc
     - - fecb20f01567e4a8
@@ -616,8 +610,8 @@
   mode: link
   links:
     - f576c3026a84db30
-  x: 705
-  'y': 850
+  x: 695
+  'y': 890
   wires: []
 - id: 920a6d44fc9d1a0a
   type: link out
@@ -708,8 +702,8 @@
   mode: link
   links:
     - 2f30621f40aa8285
-  x: 705
-  'y': 810
+  x: 695
+  'y': 850
   wires: []
 - id: 4da44a73cf53899e
   type: link out
@@ -734,8 +728,8 @@
   z: 8627a08f.2f4c18
   name: To Telegram C
   info: ''
-  x: 810
-  'y': 810
+  x: 800
+  'y': 850
   wires: []
 - id: 475ad60d47ef850f
   type: json
@@ -792,16 +786,16 @@
   x: 690
   'y': 680
   wires:
-    - - ed8bdee63a5d4662
+    - - 1cbd88762507b2d8
 - id: 1cbd88762507b2d8
   type: GoRules
   z: 8627a08f.2f4c18
   name: RSS Rules
   ruleFile: /etc/tidhome/rules/RSS-rules.json
-  x: 1000
+  x: 880
   'y': 680
   wires:
-    - - 8a909bab8256258f
+    - - ed8bdee63a5d4662
 - id: ed8bdee63a5d4662
   type: switch
   z: 8627a08f.2f4c18
@@ -815,7 +809,27 @@
   checkall: 'true'
   repair: false
   outputs: 1
-  x: 860
+  x: 1020
   'y': 680
   wires:
-    - - 1cbd88762507b2d8
+    - - 8a909bab8256258f
+- id: c5569efa7d734875
+  type: change
+  z: 8627a08f.2f4c18
+  name: Copy article
+  rules:
+    - t: set
+      p: articleCopy
+      pt: msg
+      to: article
+      tot: msg
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 390
+  'y': 490
+  wires:
+    - - b0f7a636.7693f
