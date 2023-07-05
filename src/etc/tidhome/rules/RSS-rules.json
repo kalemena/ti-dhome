@@ -36,53 +36,30 @@
         "hitPolicy": "first",
         "inputs": [
           {
-            "id": "B4W-37vNsu",
-            "type": "expression",
-            "field": "article.title",
-            "name": "Title"
-          },
-          {
-            "id": "dvTrlnHMx6",
-            "type": "expression",
-            "field": "article.description",
-            "name": "Description"
-          },
-          {
-            "id": "zHHtvNi0jw",
-            "type": "expression",
-            "field": "article.summary",
-            "name": "Summary"
-          },
-          {
-            "id": "EPMCsj-s_T",
-            "type": "expression",
-            "field": "article.link",
-            "name": "Link"
-          },
-          {
             "id": "Tg7WTVw5-b",
             "type": "expression",
             "field": "text",
-            "name": "Flat Text"
+            "name": "Text"
           }
         ],
         "outputs": [
           {
             "id": "9g3rVYF4PA",
             "type": "expression",
-            "field": "should.filter",
+            "field": "filter",
             "name": "Should Filter ?"
           }
         ],
         "rules": [
           {
             "_id": "HuwSANgo4f",
-            "B4W-37vNsu": "",
-            "dvTrlnHMx6": "",
-            "zHHtvNi0jw": "",
-            "EPMCsj-s_T": "",
-            "Tg7WTVw5-b": "quordle",
-            "9g3rVYF4PA": "yes"
+            "Tg7WTVw5-b": "contains($, \"quordle\")",
+            "9g3rVYF4PA": "\"yes\""
+          },
+          {
+            "_id": "FYbNmJhBxL",
+            "Tg7WTVw5-b": "",
+            "9g3rVYF4PA": "\"no\""
           }
         ]
       }
