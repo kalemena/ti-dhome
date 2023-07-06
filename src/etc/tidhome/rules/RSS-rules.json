@@ -2,16 +2,16 @@
   "contentType": "application/vnd.gorules.decision",
   "edges": [
     {
-      "id": "708e3b70-8f61-499a-8aff-f0740e97a37d",
-      "sourceId": "9e1b5702-f5de-49e0-a30a-6dc2a1dd5004",
-      "type": "edge",
-      "targetId": "3f70d1dc-fe3c-44c9-82f6-840613604bf0"
-    },
-    {
       "id": "df55614e-7ef8-4b4a-b04b-1a57d7bf35e5",
       "sourceId": "3f70d1dc-fe3c-44c9-82f6-840613604bf0",
       "type": "edge",
       "targetId": "19975b73-7367-4881-8342-0d82c0eb0ab4"
+    },
+    {
+      "id": "c11f5e5e-981c-45f9-8330-ca5f9e52f5d5",
+      "sourceId": "9e1b5702-f5de-49e0-a30a-6dc2a1dd5004",
+      "type": "edge",
+      "targetId": "3f70d1dc-fe3c-44c9-82f6-840613604bf0"
     }
   ],
   "nodes": [
@@ -19,7 +19,7 @@
       "id": "9e1b5702-f5de-49e0-a30a-6dc2a1dd5004",
       "type": "inputNode",
       "position": {
-        "x": 230,
+        "x": 280,
         "y": 290
       },
       "name": "Request"
@@ -53,7 +53,7 @@
         "rules": [
           {
             "_id": "HuwSANgo4f",
-            "Tg7WTVw5-b": "contains($, \"quordle\")",
+            "Tg7WTVw5-b": "contains(lower($), \"quordle\")",
             "9g3rVYF4PA": "\"yes\""
           },
           {
@@ -68,7 +68,7 @@
       "id": "19975b73-7367-4881-8342-0d82c0eb0ab4",
       "type": "outputNode",
       "position": {
-        "x": 770,
+        "x": 720,
         "y": 290
       },
       "name": "Response"
