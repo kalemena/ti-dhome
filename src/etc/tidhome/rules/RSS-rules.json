@@ -57,6 +57,16 @@
             "9g3rVYF4PA": "\"yes\""
           },
           {
+            "_id": "jItXpHa6cH",
+            "Tg7WTVw5-b": "contains(lower($), \"ps4\")",
+            "9g3rVYF4PA": "\"yes\""
+          },
+          {
+            "_id": "h06cWoWiYU",
+            "Tg7WTVw5-b": "contains(lower($), \"xbox\")",
+            "9g3rVYF4PA": "\"yes\""
+          },
+          {
             "_id": "FYbNmJhBxL",
             "Tg7WTVw5-b": "",
             "9g3rVYF4PA": "\"no\""

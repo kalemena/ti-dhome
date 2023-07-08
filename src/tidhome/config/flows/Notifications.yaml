@@ -767,6 +767,11 @@
   z: 8627a08f.2f4c18
   name: assign
   rules:
+    - t: move
+      p: articleCopy
+      pt: msg
+      to: article.text
+      tot: msg
     - t: set
       p: input
       pt: msg
