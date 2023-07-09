@@ -458,6 +458,7 @@
   name: FranceTVInfo-Sciences
   url: 'https://www.francetvinfo.fr/sciences.rss'
   interval: 15
+  ignorefirst: false
   x: 140
   'y': 640
   wires:
@@ -466,7 +467,7 @@
   type: debug
   z: 8627a08f.2f4c18
   name: News
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -796,15 +797,16 @@
   'y': 680
   wires:
     - - ed8bdee63a5d4662
+      - 6bd6ba5dcaaf48cb
 - id: ed8bdee63a5d4662
   type: switch
   z: 8627a08f.2f4c18
   name: Filter?
-  property: output.filter
+  property: output.result.filter
   propertyType: msg
   rules:
     - t: eq
-      v: 'yes'
+      v: 'no'
       vt: str
   checkall: 'true'
   repair: false
@@ -813,6 +815,7 @@
   'y': 680
   wires:
     - - 8a909bab8256258f
+      - ca4b12534c8acfd2
 - id: c5569efa7d734875
   type: change
   z: 8627a08f.2f4c18
@@ -833,3 +836,110 @@
   'y': 490
   wires:
     - - b0f7a636.7693f
+- id: 6bd6ba5dcaaf48cb
+  type: debug
+  z: 8627a08f.2f4c18
+  name: debug 21
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 930
+  'y': 720
+  wires: []
+- id: ca4b12534c8acfd2
+  type: debug
+  z: 8627a08f.2f4c18
+  name: debug 22
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1080
+  'y': 680
+  wires: []
+- id: 2347da2f260fa28c
+  type: feedparse-extended
+  z: 8627a08f.2f4c18
+  name: ''
+  url: ''
+  x: 880
+  'y': 1200
+  wires:
+    - []
+- id: 3c34c274d691511d
+  type: inject
+  z: 8627a08f.2f4c18
+  name: '@15min'
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: '900'
+  crontab: ''
+  once: true
+  onceDelay: '15'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 100
+  'y': 1040
+  wires:
+    - - 52c3cf4742e30142
+- id: 52c3cf4742e30142
+  type: change
+  z: 8627a08f.2f4c18
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: tidhome.groups.rss.urls
+      tot: global
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 260
+  'y': 1040
+  wires:
+    - - 05e4cac4db741f9d
+- id: ca6aa5f83b1bf87b
+  type: debug
+  z: 8627a08f.2f4c18
+  name: debug 23
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 540
+  'y': 1040
+  wires: []
+- id: 05e4cac4db741f9d
+  type: split
+  z: 8627a08f.2f4c18
+  name: ''
+  splt: \n
+  spltType: str
+  arraySplt: 1
+  arraySpltType: len
+  stream: false
+  addname: ''
+  x: 410
+  'y': 1040
+  wires:
+    - - ca6aa5f83b1bf87b
