@@ -871,10 +871,10 @@
   z: 8627a08f.2f4c18
   name: ''
   url: ''
-  x: 880
-  'y': 1200
+  x: 580
+  'y': 1040
   wires:
-    - []
+    - - ca6aa5f83b1bf87b
 - id: 3c34c274d691511d
   type: inject
   z: 8627a08f.2f4c18
@@ -926,7 +926,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 540
+  x: 770
   'y': 1040
   wires: []
 - id: 05e4cac4db741f9d
@@ -942,4 +942,4 @@
   x: 410
   'y': 1040
   wires:
-    - - ca6aa5f83b1bf87b
+    - []
