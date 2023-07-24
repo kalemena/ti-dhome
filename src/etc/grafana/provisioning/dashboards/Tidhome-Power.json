@@ -1394,7 +1394,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 51
+            "y": 42
           },
           "id": 29,
           "interval": "1m",
@@ -1556,7 +1556,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 51
+            "y": 42
           },
           "id": 25,
           "options": {
@@ -2315,9 +2315,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "60d",
-          "value": "60d"
+          "selected": true,
+          "text": "30d",
+          "value": "30d"
         },
         "hide": 0,
         "includeAll": false,
@@ -2341,12 +2341,12 @@
             "value": "15d"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "30d",
             "value": "30d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "60d",
             "value": "60d"
           },
@@ -2490,6 +2490,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 222,
+  "version": 230,
   "weekStart": ""
 }
