@@ -866,15 +866,6 @@
   x: 1080
   'y': 680
   wires: []
-- id: 2347da2f260fa28c
-  type: feedparse-extended
-  z: 8627a08f.2f4c18
-  name: ''
-  url: ''
-  x: 580
-  'y': 1040
-  wires:
-    - - ca6aa5f83b1bf87b
 - id: 3c34c274d691511d
   type: inject
   z: 8627a08f.2f4c18
