@@ -872,8 +872,6 @@
   name: '@15min'
   props:
     - p: payload
-    - p: topic
-      vt: str
   repeat: '900'
   crontab: ''
   once: true
@@ -917,7 +915,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 770
+  x: 930
   'y': 1040
   wires: []
 - id: 05e4cac4db741f9d
@@ -934,3 +932,13 @@
   'y': 1040
   wires:
     - []
+- id: aa60ef3c037444c5
+  type: feedparse-ext
+  z: 8627a08f.2f4c18
+  name: RSS Fetch
+  url: ''
+  ignorefirst: false
+  x: 660
+  'y': 1040
+  wires:
+    - - ca6aa5f83b1bf87b
