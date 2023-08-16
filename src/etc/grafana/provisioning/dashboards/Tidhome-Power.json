@@ -980,7 +980,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1672552800)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1672552800)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhTWHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhTWHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhTRHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhTRHP))",
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_HCHC{} @ 1672552800)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_HCHP{} @ 1672552800)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhTWHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhTWHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhTRHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhTRHP))",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -2407,7 +2407,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "1d",
           "value": "1d"
         },
@@ -2481,7 +2481,7 @@
     ]
   },
   "time": {
-    "from": "now-90d",
+    "from": "now-30d",
     "to": "now"
   },
   "timepicker": {
@@ -2490,6 +2490,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 230,
+  "version": 241,
   "weekStart": ""
 }
