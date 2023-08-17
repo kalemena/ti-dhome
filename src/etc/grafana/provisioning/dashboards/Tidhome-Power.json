@@ -2266,6 +2266,42 @@
         "type": "constant"
       },
       {
+        "description": "13h-18h and 20h-8h",
+        "hide": 2,
+        "label": "kWhZFEHC",
+        "name": "kWhZFEHC",
+        "query": "0.1464",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "8h-13h and 18h-20h",
+        "hide": 2,
+        "label": "kWhZFEHP",
+        "name": "kWhZFEHP",
+        "query": "0.2460",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "13h-18h and 20h-8h",
+        "hide": 2,
+        "label": "kWhZFSHC",
+        "name": "kWhZFSHC",
+        "query": "0.2460",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "8h-13h and 18h-20h",
+        "hide": 2,
+        "label": "kWhZFSHP",
+        "name": "kWhZFSHP",
+        "query": "0.7324",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
         "hide": 2,
         "label": "1 Day",
         "name": "day1",
