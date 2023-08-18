@@ -2098,7 +2098,7 @@
               },
               "editorMode": "code",
               "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
-              "hide": false,
+              "hide": true,
               "legendFormat": "Car",
               "range": true,
               "refId": "Car"
@@ -2110,7 +2110,7 @@
               },
               "editorMode": "code",
               "expr": "avg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
-              "hide": false,
+              "hide": true,
               "legendFormat": "Water",
               "range": true,
               "refId": "Water"
@@ -2122,7 +2122,7 @@
               },
               "editorMode": "code",
               "expr": "avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
-              "hide": false,
+              "hide": true,
               "legendFormat": "Heaters",
               "range": true,
               "refId": "Heaters"
@@ -2134,7 +2134,7 @@
               },
               "editorMode": "code",
               "expr": "sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays)",
-              "hide": false,
+              "hide": true,
               "legendFormat": "{{location}}",
               "range": true,
               "refId": "Plugs"
@@ -2146,7 +2146,7 @@
               },
               "editorMode": "code",
               "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
-              "hide": false,
+              "hide": true,
               "legendFormat": "TotalClamps",
               "range": true,
               "refId": "TotalClamps"
@@ -2158,7 +2158,7 @@
               },
               "editorMode": "code",
               "expr": "sum(sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays))",
-              "hide": false,
+              "hide": true,
               "legendFormat": "TotalPlugs",
               "range": true,
               "refId": "TotalPlugs"
@@ -2170,7 +2170,7 @@
                 "uid": "__expr__"
               },
               "expression": "$Total - $TotalClamps - $TotalPlugs",
-              "hide": false,
+              "hide": true,
               "refId": "Other",
               "type": "math"
             }
