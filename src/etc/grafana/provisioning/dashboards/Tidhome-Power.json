@@ -1942,9 +1942,274 @@
           },
           "gridPos": {
             "h": 9,
+            "w": 18,
+            "x": 6,
+            "y": 43
+          },
+          "id": 116,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.4.7",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(sensors_teleinfo_HCHP{db=\"sensors\",location=\"main\"} - sensors_teleinfo_HCHP{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+              "hide": true,
+              "legendFormat": "HP",
+              "range": true,
+              "refId": "HP"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(sensors_teleinfo_HCHC{db=\"sensors\",location=\"main\"} - sensors_teleinfo_HCHC{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+              "hide": true,
+              "legendFormat": "HC",
+              "range": true,
+              "refId": "HC"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+              "hide": true,
+              "legendFormat": "HPJB",
+              "range": true,
+              "refId": "HPJB"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+              "hide": true,
+              "legendFormat": "HPJW",
+              "range": true,
+              "refId": "HPJW"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+              "hide": true,
+              "legendFormat": "HPJR",
+              "range": true,
+              "refId": "HPJR"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$HPJB + $HPJW + $HPJR",
+              "hide": true,
+              "refId": "TotalHP",
+              "type": "math"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(sensors_teleinfo_BBRHCJB{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHCJB{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+              "hide": true,
+              "legendFormat": "HCJB",
+              "range": true,
+              "refId": "HCJB"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(sensors_teleinfo_BBRHCJW{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHCJW{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+              "hide": true,
+              "legendFormat": "HCJW",
+              "range": true,
+              "refId": "HCJW"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(sensors_teleinfo_BBRHCJR{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHCJR{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+              "hide": true,
+              "legendFormat": "HCJR",
+              "range": true,
+              "refId": "HCJR"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$HCJB + $HCJW + $HCJR",
+              "hide": true,
+              "refId": "TotalHC",
+              "type": "math"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$TotalHP + $TotalHC",
+              "hide": true,
+              "refId": "Total",
+              "type": "math"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
+              "hide": false,
+              "legendFormat": "Car",
+              "range": true,
+              "refId": "Car"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "avg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
+              "hide": false,
+              "legendFormat": "Water",
+              "range": true,
+              "refId": "Water"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
+              "hide": false,
+              "legendFormat": "Heaters",
+              "range": true,
+              "refId": "Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays)",
+              "hide": false,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "Plugs"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
+              "hide": false,
+              "legendFormat": "TotalClamps",
+              "range": true,
+              "refId": "TotalClamps"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum(sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays))",
+              "hide": false,
+              "legendFormat": "TotalPlugs",
+              "range": true,
+              "refId": "TotalPlugs"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$Total - $TotalClamps - $TotalPlugs",
+              "hide": false,
+              "refId": "Other",
+              "type": "math"
+            }
+          ],
+          "title": "Range values ($nbDays)",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
             "w": 24,
             "x": 0,
-            "y": 49
+            "y": 52
           },
           "id": 112,
           "options": {
