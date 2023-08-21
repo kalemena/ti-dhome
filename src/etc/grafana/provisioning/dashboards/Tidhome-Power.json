@@ -1070,7 +1070,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}] offset -1d)",
+          "expr": "increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1082,7 +1082,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}] offset -1d)",
+          "expr": "increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1094,7 +1094,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[${timelineRange}] offset -1d)",
+          "expr": "increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1106,7 +1106,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[${timelineRange}] offset -1d)",
+          "expr": "increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1118,7 +1118,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[${timelineRange}] offset -1d)",
+          "expr": "increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1130,7 +1130,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[${timelineRange}] offset -1d)",
+          "expr": "increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[${timelineRange}])",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
