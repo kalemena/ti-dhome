@@ -1208,7 +1208,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}])",
+          "expr": "(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": true,
           "legendFormat": "Car+Water+Heating",
           "range": true,
@@ -1220,7 +1220,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}])",
+          "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "1-Car Charging",
           "range": true,
@@ -1232,7 +1232,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}])",
+          "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "2-Water Heater",
           "range": true,
@@ -1244,7 +1244,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}])",
+          "expr": "(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "3-Heaters",
           "range": true,
@@ -1257,7 +1257,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[${timelineRange}] offset -1d)",
+          "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "instant": true,
           "legendFormat": "{{location}}",
@@ -2616,7 +2616,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "30d",
           "value": "30d"
         },
@@ -2708,7 +2708,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1d",
           "value": "1d"
         },
@@ -2791,6 +2791,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 241,
+  "version": 248,
   "weekStart": ""
 }
