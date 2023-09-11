@@ -53,7 +53,10 @@
   tls: ''
   persist: true
   proxy: ''
+  insecureHTTPParser: false
   authType: ''
+  senderr: false
+  headers: []
   x: 360
   'y': 90
   wires:
