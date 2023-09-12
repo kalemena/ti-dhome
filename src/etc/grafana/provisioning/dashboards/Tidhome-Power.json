@@ -969,7 +969,7 @@
           "hide": false,
           "instant": false,
           "interval": "",
-          "legendFormat": "$day7",
+          "legendFormat": "365 days",
           "range": true,
           "refId": "365 days"
         },
@@ -984,7 +984,7 @@
           "hide": false,
           "instant": false,
           "interval": "",
-          "legendFormat": "$day7",
+          "legendFormat": "2023",
           "range": true,
           "refId": "2023"
         }
@@ -1638,7 +1638,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1791,7 +1792,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1932,7 +1934,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2197,7 +2200,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2794,6 +2798,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 253,
+  "version": 255,
   "weekStart": ""
 }
