@@ -2,7 +2,7 @@
 # Initialize Environment
 ##########################
 
-init: init-env init-config init-images init-influxdb init-telegraf init-grafana
+init: init-env init-config init-images init-telegraf init-grafana
 
 init-env:
 	echo "Initialize: Folders ..."

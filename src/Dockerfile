@@ -13,7 +13,6 @@ RUN npm i \
         node-red-node-openweathermap \
         node-red-contrib-simple-weekly-scheduler \
         node-red-contrib-flatter \
-        node-red-contrib-influxdb \
         node-red-contrib-topic-frequencies \
         node-red-node-feedparser \
         node-red-contrib-feedparser-ext@0.0.2 \

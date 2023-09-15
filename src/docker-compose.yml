@@ -4,7 +4,6 @@ networks:
   default:
 
 volumes:
-  influxdb-data:
   victoria-metrics-data:
   grafana-data:
 
