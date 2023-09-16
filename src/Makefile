@@ -17,13 +17,7 @@ init-images:
 	docker-compose pull
 
 init-defaults:
-	echo "Initialize: Get default config for influxdb, grafana, etc ..."
-	mkdir -p etc/influxdb
-	docker run --rm influxdb:1.8.6 influxd config | tee etc/influxdb/influxdb-default.conf > /dev/null
-
-	mkdir -p etc/influxdb2
-	docker run --rm influxdb:2.0.7 influxd print-config > etc/influxdb2/config-default.yml
-
+	echo "Initialize: Get default config for grafana, etc ..."
 	mkdir -p etc/telegraf
 	docker run --rm telegraf telegraf config | tee etc/telegraf/telegraf-default.conf > /dev/null
 
