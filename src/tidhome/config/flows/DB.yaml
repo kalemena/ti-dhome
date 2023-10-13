@@ -15,7 +15,7 @@
   type: junction
   z: d88a69c4.1942c8
   x: 100
-  'y': 970
+  'y': 1110
   wires:
     - - '9581410703628258'
       - 6e5458755ca35f1b
@@ -24,7 +24,7 @@
   type: junction
   z: d88a69c4.1942c8
   x: 360
-  'y': 1010
+  'y': 1150
   wires:
     - - cc2f0f7f0427b58c
 - id: fb7400d80e8fad49
@@ -228,7 +228,7 @@
   outputType: msg
   outTz: Europe/Paris
   x: 430
-  'y': 710
+  'y': 850
   wires:
     - - 2366bd1e3e03afb8
       - b3652a8e55e370f4
@@ -308,7 +308,7 @@
   finalize: ''
   libs: []
   x: 610
-  'y': 710
+  'y': 850
   wires:
     - - 7733c07030c21098
 - id: 3bee84a27e6cd59c
@@ -340,7 +340,7 @@
   finalize: ''
   libs: []
   x: 240
-  'y': 710
+  'y': 850
   wires:
     - - c7ee104a98cf18f3
 - id: 7733c07030c21098
@@ -356,7 +356,7 @@
   alignToClock: true
   generator: internal
   x: 820
-  'y': 750
+  'y': 890
   wires:
     - - ab9d4b85d889183c
       - fbbf19c3b6f8e430
@@ -387,7 +387,7 @@
   finalize: ''
   libs: []
   x: 620
-  'y': 750
+  'y': 890
   wires:
     - - 7733c07030c21098
 - id: b4b61009fc7b0feb
@@ -406,7 +406,7 @@
   finalize: ''
   libs: []
   x: 610
-  'y': 790
+  'y': 930
   wires:
     - - 7733c07030c21098
 - id: 9aa81642091a436b
@@ -420,7 +420,7 @@
   onceDelay: 0.1
   topic: ''
   x: 90
-  'y': 470
+  'y': 610
   wires:
     - - f4df2ed060031650
       - a5ea9f561f8a2b2a
@@ -442,7 +442,7 @@
   outputType: msg
   outTz: Europe/Paris
   x: 400
-  'y': 870
+  'y': 1010
   wires:
     - - 3c57121b8d27c57c
 - id: f4df2ed060031650
@@ -457,7 +457,7 @@
   encoding: utf8
   allProps: false
   x: 300
-  'y': 470
+  'y': 610
   wires:
     - - 302e9d35b9f224cd
 - id: 302e9d35b9f224cd
@@ -475,7 +475,7 @@
   include_empty_strings: false
   include_null_values: false
   x: 470
-  'y': 470
+  'y': 610
   wires:
     - - 598f547a1ac99cb2
 - id: eb9dbd2cca4b2e93
@@ -491,7 +491,7 @@
   statusVal: ''
   statusType: auto
   x: 790
-  'y': 550
+  'y': 690
   wires: []
 - id: 598f547a1ac99cb2
   type: function
@@ -511,7 +511,7 @@
   finalize: ''
   libs: []
   x: 610
-  'y': 470
+  'y': 610
   wires:
     - - eb9dbd2cca4b2e93
 - id: a5ea9f561f8a2b2a
@@ -545,7 +545,7 @@
   to: ''
   reg: false
   x: 280
-  'y': 550
+  'y': 690
   wires:
     - - eb9dbd2cca4b2e93
 - id: 3c9ba4b57c4a6219
@@ -554,7 +554,7 @@
   name: Mathematics - power - config
   info: ''
   x: 160
-  'y': 420
+  'y': 560
   wires: []
 - id: 432439ee8b7f21ec
   type: file in
@@ -568,7 +568,7 @@
   encoding: utf8
   allProps: false
   x: 300
-  'y': 510
+  'y': 650
   wires:
     - - 302e9d35b9f224cd
 - id: 1eb90a76313ade10
@@ -577,7 +577,7 @@
   name: 'Mathematics - power - formula #1 - query_range'
   info: ''
   x: 220
-  'y': 630
+  'y': 770
   wires: []
 - id: ac63d8bf1ed66e71
   type: comment
@@ -585,7 +585,7 @@
   name: 'Mathematics - power - formula #2 - scroll+offset'
   info: ''
   x: 220
-  'y': 830
+  'y': 970
   wires: []
 - id: 15eee1a293c595fd
   type: inject
@@ -613,7 +613,7 @@
   onceDelay: 0.1
   topic: ''
   x: 90
-  'y': 870
+  'y': 1010
   wires:
     - - ae0d4edaa0a1ecc3
 - id: 81d9d4e81ec82ddf
@@ -629,7 +629,7 @@
   statusVal: ''
   statusType: auto
   x: 620
-  'y': 920
+  'y': 1060
   wires: []
 - id: ae0d4edaa0a1ecc3
   type: function
@@ -671,7 +671,7 @@
   finalize: ''
   libs: []
   x: 240
-  'y': 870
+  'y': 1010
   wires:
     - - 0d6fb4c44fbd1fd0
     - - 0d6fb4c44fbd1fd0
@@ -706,7 +706,7 @@
   finalize: ''
   libs: []
   x: 250
-  'y': 920
+  'y': 1060
   wires:
     - - 3daae04fa5ad767b
 - id: 3daae04fa5ad767b
@@ -725,7 +725,7 @@
   senderr: false
   headers: []
   x: 430
-  'y': 920
+  'y': 1060
   wires:
     - - 81d9d4e81ec82ddf
       - 994a7a64bc1c7656
@@ -756,7 +756,7 @@
   finalize: ''
   libs: []
   x: 220
-  'y': 970
+  'y': 1110
   wires:
     - - 204ba00bb6a13bac
 - id: ab9d4b85d889183c
@@ -772,7 +772,7 @@
   statusVal: ''
   statusType: auto
   x: 980
-  'y': 750
+  'y': 890
   wires: []
 - id: d4dcb78a85b8fd01
   type: function
@@ -793,7 +793,7 @@
   finalize: ''
   libs: []
   x: 230
-  'y': 670
+  'y': 810
   wires:
     - - ec27a942cfa78c58
     - - ec27a942cfa78c58
@@ -808,7 +808,7 @@
   onceDelay: 0.1
   topic: ''
   x: 90
-  'y': 670
+  'y': 810
   wires:
     - - d4dcb78a85b8fd01
 - id: ec27a942cfa78c58
@@ -839,7 +839,7 @@
   finalize: ''
   libs: []
   x: 410
-  'y': 670
+  'y': 810
   wires:
     - - 61321c793b31fe9b
 - id: 61321c793b31fe9b
@@ -858,7 +858,7 @@
   senderr: false
   headers: []
   x: 560
-  'y': 670
+  'y': 810
   wires:
     - - 3bee84a27e6cd59c
       - b9eaf33614dd786a
@@ -875,7 +875,7 @@
   statusVal: ''
   statusType: auto
   x: 740
-  'y': 670
+  'y': 810
   wires: []
 - id: 6e5458755ca35f1b
   type: function
@@ -913,7 +913,7 @@
   finalize: ''
   libs: []
   x: 230
-  'y': 1010
+  'y': 1150
   wires:
     - - 204ba00bb6a13bac
 - id: cc2f0f7f0427b58c
@@ -929,7 +929,7 @@
   alignToClock: true
   generator: internal
   x: 440
-  'y': 1010
+  'y': 1150
   wires:
     - - bb33ba25cd6b92e2
       - b4f824ad67b0be80
@@ -947,7 +947,7 @@
   statusVal: ''
   statusType: auto
   x: 600
-  'y': 1010
+  'y': 1150
   wires: []
 - id: 9147ca10781b15f4
   type: function
@@ -1031,7 +1031,7 @@
   finalize: ''
   libs: []
   x: 220
-  'y': 1050
+  'y': 1190
   wires:
     - - 204ba00bb6a13bac
 - id: fbbf19c3b6f8e430
@@ -1051,7 +1051,7 @@
   to: ''
   reg: false
   x: 1040
-  'y': 800
+  'y': 940
   wires:
     - []
 - id: b4f824ad67b0be80
@@ -1071,7 +1071,7 @@
   to: ''
   reg: false
   x: 660
-  'y': 1060
+  'y': 1200
   wires:
     - []
 - id: 34b91b78d80e9b18
@@ -1258,3 +1258,39 @@
   'y': 1530
   wires:
     - - 1eae10dbef23d854
+- id: b07467b620e87a9b
+  type: comment
+  z: d88a69c4.1942c8
+  name: Solar - OpenDTU
+  info: ''
+  x: 120
+  'y': 440
+  wires: []
+- id: fd3bdcda17442d2e
+  type: mqtt in
+  z: d88a69c4.1942c8
+  name: solar/#
+  topic: solar/#
+  qos: '2'
+  datatype: utf8
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: false
+  inputs: 0
+  x: 90
+  'y': 480
+  wires:
+    - - 7c650ace12c32993
+- id: 7c650ace12c32993
+  type: debug
+  z: d88a69c4.1942c8
+  name: Debug
+  active: true
+  tosidebar: true
+  console: true
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 420
+  'y': 480
+  wires: []
