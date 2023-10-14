@@ -1,10 +1,21 @@
 {
     "node-red": {
         "name": "node-red",
-        "version": "2.1.4",
+        "version": "3.0.2",
         "local": false,
         "user": false,
         "nodes": {
+            "junction": {
+                "name": "junction",
+                "types": [
+                    "junction"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red",
+                "file": "/opt/node-red/node_modules/@node-red/nodes/core/common/05-junction.js"
+            },
             "inject": {
                 "name": "inject",
                 "types": [
@@ -426,7 +437,7 @@
     },
     "node-red-contrib-telegrambot": {
         "name": "node-red-contrib-telegrambot",
-        "version": "10.1.0",
+        "version": "15.1.7",
         "local": false,
         "user": false,
         "nodes": {
@@ -438,7 +449,8 @@
                     "telegram command",
                     "telegram event",
                     "telegram sender",
-                    "telegram reply"
+                    "telegram reply",
+                    "telegram control"
                 ],
                 "enabled": true,
                 "local": false,
@@ -450,7 +462,7 @@
     },
     "node-red-node-serialport": {
         "name": "node-red-node-serialport",
-        "version": "0.15.0",
+        "version": "1.0.1",
         "local": false,
         "user": false,
         "nodes": {
@@ -472,7 +484,7 @@
     },
     "node-red-contrib-credentials": {
         "name": "node-red-contrib-credentials",
-        "version": "0.2.1",
+        "version": "0.2.2",
         "local": false,
         "user": false,
         "nodes": {
@@ -492,8 +504,8 @@
     "node-red-contrib-simple-weekly-scheduler": {
         "name": "node-red-contrib-simple-weekly-scheduler",
         "version": "0.0.14",
-        "local": false,
-        "user": false,
+        "local": true,
+        "user": true,
         "nodes": {
             "time-planner": {
                 "name": "time-planner",
@@ -501,10 +513,10 @@
                     "time-planner"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-contrib-simple-weekly-scheduler",
-                "file": "/opt/node-red/node_modules/node-red-contrib-simple-weekly-scheduler/time-planner.js"
+                "file": "/home/nodered/.node-red/node_modules/node-red-contrib-simple-weekly-scheduler/time-planner.js"
             },
             "time-filter": {
                 "name": "time-filter",
@@ -512,10 +524,10 @@
                     "time-filter"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-contrib-simple-weekly-scheduler",
-                "file": "/opt/node-red/node_modules/node-red-contrib-simple-weekly-scheduler/time-filter.js"
+                "file": "/home/nodered/.node-red/node_modules/node-red-contrib-simple-weekly-scheduler/time-filter.js"
             }
         }
     },
@@ -538,32 +550,11 @@
             }
         }
     },
-    "node-red-node-darksky": {
-        "name": "node-red-node-darksky",
-        "version": "0.1.19",
-        "local": false,
-        "user": false,
-        "nodes": {
-            "darksky": {
-                "name": "darksky",
-                "types": [
-                    "darksky-credentials",
-                    "darksky",
-                    "darksky in"
-                ],
-                "enabled": true,
-                "local": false,
-                "user": false,
-                "module": "node-red-node-darksky",
-                "file": "/opt/node-red/node_modules/node-red-node-darksky/darksky.js"
-            }
-        }
-    },
     "node-red-contrib-readdir": {
         "name": "node-red-contrib-readdir",
         "version": "1.0.1",
-        "local": false,
-        "user": false,
+        "local": true,
+        "user": true,
         "nodes": {
             "readdir": {
                 "name": "readdir",
@@ -571,10 +562,10 @@
                     "readdir"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-contrib-readdir",
-                "file": "/opt/node-red/node_modules/node-red-contrib-readdir/readdir.js"
+                "file": "/home/nodered/.node-red/node_modules/node-red-contrib-readdir/readdir.js"
             }
         }
     },
@@ -616,50 +607,9 @@
             }
         }
     },
-    "node-red-contrib-covid19": {
-        "name": "node-red-contrib-covid19",
-        "version": "2.0.1",
-        "local": false,
-        "user": false,
-        "nodes": {
-            "corona-statistics": {
-                "name": "corona-statistics",
-                "types": [
-                    "country statistics"
-                ],
-                "enabled": true,
-                "local": false,
-                "user": false,
-                "module": "node-red-contrib-covid19",
-                "file": "/opt/node-red/node_modules/node-red-contrib-covid19/corona-statistics.js"
-            },
-            "corona-worldwide": {
-                "name": "corona-worldwide",
-                "types": [
-                    "worldwide"
-                ],
-                "enabled": true,
-                "local": false,
-                "user": false,
-                "module": "node-red-contrib-covid19",
-                "file": "/opt/node-red/node_modules/node-red-contrib-covid19/ww-statistics.js"
-            },
-            "corona-countries": {
-                "name": "corona-countries",
-                "types": [
-                    "affected countries"
-                ],
-                "enabled": true,
-                "local": false,
-                "user": false,
-                "module": "node-red-contrib-covid19",
-                "file": "/opt/node-red/node_modules/node-red-contrib-covid19/countries.js"
-            }
-        }
-    },
     "node-red-contrib-flatter": {
         "name": "node-red-contrib-flatter",
-        "version": "1.1.4",
+        "version": "1.1.5",
         "local": false,
         "user": false,
         "nodes": {
@@ -711,7 +661,7 @@
     },
     "node-red-contrib-topic-frequencies": {
         "name": "node-red-contrib-topic-frequencies",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "local": false,
         "user": false,
         "nodes": {
@@ -728,28 +678,9 @@
             }
         }
     },
-    "node-red-node-feedparser": {
-        "name": "node-red-node-feedparser",
-        "version": "0.2.1",
-        "local": false,
-        "user": false,
-        "nodes": {
-            "feedparse": {
-                "name": "feedparse",
-                "types": [
-                    "feedparse"
-                ],
-                "enabled": true,
-                "local": false,
-                "user": false,
-                "module": "node-red-node-feedparser",
-                "file": "/opt/node-red/node_modules/node-red-node-feedparser/32-feedparse.js"
-            }
-        }
-    },
     "node-red-contrib-flow-manager": {
         "name": "node-red-contrib-flow-manager",
-        "version": "0.7.2",
+        "version": "0.7.4",
         "local": false,
         "user": false,
         "nodes": {
@@ -783,9 +714,58 @@
             }
         }
     },
+    "node-red-node-suncalc": {
+        "name": "node-red-node-suncalc",
+        "version": "1.1.0",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "suncalc": {
+                "name": "suncalc",
+                "types": [
+                    "sunrise"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-node-suncalc",
+                "file": "/opt/node-red/node_modules/node-red-node-suncalc/79-suncalc.js"
+            }
+        }
+    },
+    "node-red-contrib-moment": {
+        "name": "node-red-contrib-moment",
+        "version": "5.0.0",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "moment": {
+                "name": "moment",
+                "types": [
+                    "moment"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-moment",
+                "file": "/opt/node-red/node_modules/node-red-contrib-moment/moment/nrmoment.js"
+            },
+            "humanizer": {
+                "name": "humanizer",
+                "types": [
+                    "humanizer"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-moment",
+                "file": "/opt/node-red/node_modules/node-red-contrib-moment/moment/nrhumanizer.js"
+            }
+        }
+    },
     "node-red-contrib-simpletime": {
         "name": "node-red-contrib-simpletime",
-        "version": "2.10.0",
+        "version": "2.10.4",
         "local": false,
         "user": false,
         "nodes": {
@@ -802,22 +782,137 @@
             }
         }
     },
-    "node-red-node-suncalc": {
-        "name": "node-red-node-suncalc",
-        "version": "1.0.1",
+    "node-red-contrib-throttle": {
+        "name": "node-red-contrib-throttle",
+        "version": "0.1.7",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "throttle": {
+                "name": "throttle",
+                "types": [
+                    "throttle"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-throttle",
+                "file": "/home/nodered/.node-red/node_modules/node-red-contrib-throttle/throttle.js"
+            }
+        }
+    },
+    "node-red-contrib-rate": {
+        "name": "node-red-contrib-rate",
+        "version": "1.2.2",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "rate": {
+                "name": "rate",
+                "types": [
+                    "rate"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-rate",
+                "file": "/home/nodered/.node-red/node_modules/node-red-contrib-rate/rate.js"
+            }
+        }
+    },
+    "node-red-contrib-gorules": {
+        "name": "node-red-contrib-gorules",
+        "version": "0.0.4",
         "local": false,
         "user": false,
         "nodes": {
-            "suncalc": {
-                "name": "suncalc",
+            "gorules": {
+                "name": "gorules",
                 "types": [
-                    "sunrise"
+                    "GoRules"
                 ],
                 "enabled": true,
                 "local": false,
                 "user": false,
-                "module": "node-red-node-suncalc",
-                "file": "/opt/node-red/node_modules/node-red-node-suncalc/79-suncalc.js"
+                "module": "node-red-contrib-gorules",
+                "file": "/opt/node-red/node_modules/node-red-contrib-gorules/gorules.js"
+            }
+        }
+    },
+    "node-red-node-openweathermap": {
+        "name": "node-red-node-openweathermap",
+        "version": "0.5.1",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "openweathermap": {
+                "name": "openweathermap",
+                "types": [
+                    "openweathermap",
+                    "openweathermap in"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-node-openweathermap",
+                "file": "/opt/node-red/node_modules/node-red-node-openweathermap/weather.js"
+            }
+        }
+    },
+    "node-red-node-feedparser": {
+        "name": "node-red-node-feedparser",
+        "version": "0.3.0",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "feedparse": {
+                "name": "feedparse",
+                "types": [
+                    "feedparse"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-node-feedparser",
+                "file": "/opt/node-red/node_modules/node-red-node-feedparser/32-feedparse.js"
+            }
+        }
+    },
+    "node-red-contrib-metric-per-topic": {
+        "name": "node-red-contrib-metric-per-topic",
+        "version": "0.2.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "node-red-contrib-metric-per-topic": {
+                "name": "node-red-contrib-metric-per-topic",
+                "types": [
+                    "Metric per Topic"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-metric-per-topic",
+                "file": "/home/nodered/.node-red/node_modules/node-red-contrib-metric-per-topic/metric-per-topic/metric-per-topic.js"
+            }
+        }
+    },
+    "node-red-contrib-feedparser-ext": {
+        "name": "node-red-contrib-feedparser-ext",
+        "version": "0.0.2",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "feedparse-ext": {
+                "name": "feedparse-ext",
+                "types": [
+                    "feedparse-ext"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-feedparser-ext",
+                "file": "/opt/node-red/node_modules/node-red-contrib-feedparser-ext/32-feedparse.js"
             }
         }
     }

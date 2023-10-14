@@ -8,10 +8,12 @@
                 "view-show-tips": true,
                 "view-snap-grid": true,
                 "view-show-grid": true,
-                "view-show-welcome-tours": true
+                "view-show-welcome-tours": true,
+                "view-store-position": false,
+                "view-store-zoom": false
             },
             "tours": {
-                "welcome": "2.1.0"
+                "welcome": "3.0.1"
             }
         },
         "menu-menu-item-palette": true,

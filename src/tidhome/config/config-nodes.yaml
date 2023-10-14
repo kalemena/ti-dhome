@@ -60,22 +60,20 @@
   willTopic: ''
   willQos: '0'
   willPayload: ''
-- id: 56c5e5e6.d3610c
-  type: darksky-credentials
-  key_identifier: kalemena
 - id: '26438802.204788'
   type: websocket-client
   path: 'ws://ioteleinfo.local:81'
   tls: ''
   wholemsg: 'true'
-  hb: '0'
-- id: ab73d852ece55e2a
+  hb: '300'
+  subprotocol: ''
+- id: 786c015f0b3c18d1
   type: influxdb
-  hostname: influxdb
-  port: '8086'
+  hostname: victoriametrics
+  port: '8428'
   protocol: http
   database: sensors
-  name: sensors
+  name: sensors (VM)
   usetls: false
   tls: ''
   influxdbVersion: 1.x
