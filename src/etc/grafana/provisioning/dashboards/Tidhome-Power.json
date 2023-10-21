@@ -951,7 +951,7 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhTWHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhTWHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhTRHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhTRHP))",
-          "hide": false,
+          "hide": true,
           "instant": false,
           "interval": "",
           "legendFormat": "$day60",
@@ -2820,6 +2820,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 264,
+  "version": 267,
   "weekStart": ""
 }
