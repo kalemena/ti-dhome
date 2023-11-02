@@ -40,9 +40,14 @@ services:
       - 8428:8428
     volumes:
       - victoria-metrics-data:/victoria-metrics-data
+      - ./etc/victoria-metrics/prometheus.yml:/etc/victoria-metrics/prometheus.yml
     command:
       - "--retentionPeriod=3y"
       # - "--storageDataPath=/storage"
+      - "--promscrape.config=/etc/victoria-metrics/prometheus.yml"
+      - "--promscrape.config.strictParse=false"
+    extra_hosts:
+      - "opendtu:${IOT_OPENDTU_IP}"
 
   nodered:
     #image: kalemena/node-red:latest
