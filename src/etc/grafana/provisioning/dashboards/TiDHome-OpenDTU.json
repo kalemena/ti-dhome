@@ -55,8 +55,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -67,7 +66,7 @@
             "h": 3,
             "w": 3,
             "x": 0,
-            "y": 9
+            "y": 17
           },
           "id": 2,
           "options": {
@@ -119,8 +118,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -131,7 +129,7 @@
             "h": 3,
             "w": 3,
             "x": 3,
-            "y": 9
+            "y": 17
           },
           "id": 5,
           "options": {
@@ -185,8 +183,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red",
-                    "value": null
+                    "color": "red"
                   },
                   {
                     "color": "orange",
@@ -214,7 +211,7 @@
             "h": 6,
             "w": 4,
             "x": 6,
-            "y": 9
+            "y": 17
           },
           "id": 9,
           "options": {
@@ -327,8 +324,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-red",
-                    "value": null
+                    "color": "dark-red"
                   },
                   {
                     "color": "orange",
@@ -364,7 +360,7 @@
             "h": 9,
             "w": 14,
             "x": 10,
-            "y": 9
+            "y": 17
           },
           "id": 7,
           "options": {
@@ -414,8 +410,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -426,7 +421,7 @@
             "h": 3,
             "w": 3,
             "x": 0,
-            "y": 12
+            "y": 20
           },
           "id": 4,
           "options": {
@@ -478,8 +473,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -490,7 +484,7 @@
             "h": 3,
             "w": 3,
             "x": 3,
-            "y": 12
+            "y": 20
           },
           "id": 3,
           "options": {
@@ -542,8 +536,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -554,7 +547,7 @@
             "h": 3,
             "w": 3,
             "x": 0,
-            "y": 15
+            "y": 23
           },
           "id": 6,
           "options": {
@@ -606,8 +599,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -619,7 +611,7 @@
             "h": 3,
             "w": 3,
             "x": 3,
-            "y": 15
+            "y": 23
           },
           "id": 11,
           "options": {
@@ -671,8 +663,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -683,7 +674,7 @@
             "h": 3,
             "w": 4,
             "x": 6,
-            "y": 15
+            "y": 23
           },
           "id": 12,
           "options": {
@@ -765,8 +756,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -782,7 +772,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 18
+            "y": 26
           },
           "id": 121,
           "options": {
@@ -1635,12 +1625,313 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 240,
+      "interval": "$bar_chart_interval",
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Power",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {
+          "valueSize": 15
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Time",
+        "xTickLabelRotation": 45,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(opendtu_Power{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[$bar_chart_interval])",
+          "hide": false,
+          "legendFormat": "Power",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Avg Power per Hour",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 252,
+      "interval": "$bar_chart_interval",
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Energy",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {
+          "valueSize": 15
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Time",
+        "xTickLabelRotation": 45,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "increase(opendtu_YieldTotal{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[$bar_chart_interval])",
+          "hide": false,
+          "legendFormat": "Energy",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Avg Energy per Hour",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "unit": "watth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "hideTimeOverride": true,
+      "id": 132,
+      "interval": "1d",
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Energy",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {
+          "valueSize": 15
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Time",
+        "xTickLabelRotation": 30,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "max_over_time(opendtu_YieldDay{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[1d])",
+          "format": "time_series",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": false,
+          "instant": false,
+          "interval": "24h",
+          "legendFormat": "Energy",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "timeFrom": "$bar_chart_duration",
+      "timeShift": "1d",
+      "title": "Per Day (Last $bar_chart_duration)",
+      "transformations": [],
+      "type": "barchart"
+    },
+    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 42
       },
       "id": 227,
       "panels": [
@@ -1691,8 +1982,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -1704,7 +1994,7 @@
             "h": 8,
             "w": 9,
             "x": 0,
-            "y": 10
+            "y": 34
           },
           "id": 22,
           "options": {
@@ -1797,8 +2087,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -1836,7 +2125,7 @@
             "h": 8,
             "w": 9,
             "x": 9,
-            "y": 10
+            "y": 34
           },
           "id": 21,
           "options": {
@@ -1931,8 +2220,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "purple",
-                    "value": null
+                    "color": "purple"
                   }
                 ]
               },
@@ -1944,7 +2232,7 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 10
+            "y": 34
           },
           "id": 86,
           "options": {
@@ -2028,8 +2316,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red",
-                    "value": null
+                    "color": "red"
                   },
                   {
                     "color": "semi-dark-orange",
@@ -2057,7 +2344,7 @@
             "h": 8,
             "w": 15,
             "x": 0,
-            "y": 18
+            "y": 42
           },
           "id": 15,
           "options": {
@@ -2154,8 +2441,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -2167,7 +2453,7 @@
             "h": 8,
             "w": 9,
             "x": 15,
-            "y": 18
+            "y": 42
           },
           "id": 143,
           "options": {
@@ -2251,8 +2537,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "orange",
-                    "value": null
+                    "color": "orange"
                   }
                 ]
               },
@@ -2264,7 +2549,7 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 26
+            "y": 50
           },
           "id": 85,
           "options": {
@@ -2344,8 +2629,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -2357,7 +2641,7 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 26
+            "y": 50
           },
           "id": 87,
           "options": {
@@ -2439,8 +2723,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "yellow",
-                    "value": null
+                    "color": "yellow"
                   },
                   {
                     "color": "green",
@@ -2456,7 +2739,7 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 26
+            "y": 50
           },
           "id": 88,
           "options": {
@@ -2492,223 +2775,6 @@
           ],
           "title": "Efficiency",
           "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "continuous-RdYlGr"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "fillOpacity": 80,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineWidth": 2,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "text",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "watth"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 12,
-            "w": 24,
-            "x": 0,
-            "y": 34
-          },
-          "hideTimeOverride": true,
-          "id": 132,
-          "interval": "1d",
-          "options": {
-            "barRadius": 0,
-            "barWidth": 0.97,
-            "colorByField": "Energy",
-            "fullHighlight": false,
-            "groupWidth": 0.7,
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "orientation": "auto",
-            "showValue": "auto",
-            "stacking": "none",
-            "text": {
-              "valueSize": 15
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            },
-            "xField": "Time",
-            "xTickLabelRotation": 30,
-            "xTickLabelSpacing": 0
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "disableTextWrap": false,
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "max_over_time(opendtu_YieldDay{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[1d])",
-              "format": "time_series",
-              "fullMetaSearch": false,
-              "hide": false,
-              "includeNullMetadata": false,
-              "instant": false,
-              "interval": "24h",
-              "legendFormat": "Energy",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "timeFrom": "$bar_chart_duration",
-          "timeShift": "1d",
-          "title": "Per Day (Last $bar_chart_duration)",
-          "transformations": [],
-          "type": "barchart"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "continuous-RdYlGr"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "fillOpacity": 80,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineWidth": 2,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "text",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "watt"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 12,
-            "w": 24,
-            "x": 0,
-            "y": 46
-          },
-          "hideTimeOverride": false,
-          "id": 166,
-          "interval": "$bar_chart_interval",
-          "options": {
-            "barRadius": 0,
-            "barWidth": 0.97,
-            "colorByField": "Energy",
-            "fullHighlight": false,
-            "groupWidth": 0.7,
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "orientation": "auto",
-            "showValue": "auto",
-            "stacking": "none",
-            "text": {
-              "valueSize": 15
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            },
-            "xField": "Time",
-            "xTickLabelRotation": 30,
-            "xTickLabelSpacing": 0
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "disableTextWrap": false,
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "avg_over_time(opendtu_Power{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[$bar_chart_interval])",
-              "format": "time_series",
-              "fullMetaSearch": false,
-              "hide": false,
-              "includeNullMetadata": false,
-              "instant": false,
-              "interval": "",
-              "legendFormat": "Energy",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "timeFrom": "1d",
-          "title": "Avg Power per Hour (Last 24h)",
-          "transformations": [],
-          "type": "barchart"
         },
         {
           "datasource": {
@@ -2756,8 +2822,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -2825,7 +2890,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 43
       },
       "id": 24,
       "panels": [
@@ -2865,8 +2930,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -2877,7 +2941,7 @@
             "h": 3,
             "w": 5,
             "x": 0,
-            "y": 75
+            "y": 76
           },
           "id": 25,
           "options": {
@@ -2950,8 +3014,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -2963,7 +3026,7 @@
             "h": 3,
             "w": 3,
             "x": 5,
-            "y": 75
+            "y": 76
           },
           "id": 34,
           "options": {
@@ -3013,8 +3076,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -3026,7 +3088,7 @@
             "h": 3,
             "w": 4,
             "x": 8,
-            "y": 75
+            "y": 76
           },
           "id": 47,
           "options": {
@@ -3076,8 +3138,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -3089,7 +3150,7 @@
             "h": 3,
             "w": 4,
             "x": 12,
-            "y": 75
+            "y": 76
           },
           "id": 40,
           "options": {
@@ -3139,8 +3200,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -3152,7 +3212,7 @@
             "h": 3,
             "w": 4,
             "x": 16,
-            "y": 75
+            "y": 76
           },
           "id": 55,
           "options": {
@@ -3204,8 +3264,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -3217,7 +3276,7 @@
             "h": 3,
             "w": 4,
             "x": 20,
-            "y": 75
+            "y": 76
           },
           "id": 154,
           "options": {
@@ -3299,8 +3358,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -3312,7 +3370,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 78
+            "y": 79
           },
           "id": 28,
           "options": {
@@ -3397,8 +3455,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -3410,7 +3467,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 78
+            "y": 79
           },
           "id": 33,
           "options": {
@@ -3497,8 +3554,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -3510,7 +3566,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 86
+            "y": 87
           },
           "id": 64,
           "options": {
@@ -3597,8 +3653,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red",
-                    "value": null
+                    "color": "red"
                   },
                   {
                     "color": "semi-dark-orange",
@@ -3626,7 +3681,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 86
+            "y": 87
           },
           "id": 74,
           "options": {
@@ -3739,7 +3794,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "827",
           "value": "827"
         },
@@ -3920,7 +3975,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {
@@ -3940,6 +3995,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 7,
+  "version": 16,
   "weekStart": ""
 }
