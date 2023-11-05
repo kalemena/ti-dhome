@@ -12,6 +12,8 @@ services:
   mqtt:
     image: eclipse-mosquitto:1.6.15
     restart: always
+    ports:
+      - 1883:1883
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:1.30.2
