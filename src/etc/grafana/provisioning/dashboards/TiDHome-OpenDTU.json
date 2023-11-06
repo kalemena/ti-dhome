@@ -1778,7 +1778,9 @@
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
-          "calcs": [],
+          "calcs": [
+            "max"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1787,7 +1789,7 @@
         "showValue": "auto",
         "stacking": "none",
         "text": {
-          "valueSize": 15
+          "valueSize": 9
         },
         "tooltip": {
           "mode": "single",
@@ -1811,7 +1813,7 @@
           "refId": "A"
         }
       ],
-      "title": "Avg Energy per Hour",
+      "title": "Energy /h",
       "type": "barchart"
     },
     {
@@ -3995,6 +3997,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 16,
+  "version": 21,
   "weekStart": ""
 }
