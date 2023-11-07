@@ -1664,7 +1664,7 @@
               }
             ]
           },
-          "unit": "watt"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -1673,101 +1673,6 @@
         "w": 24,
         "x": 0,
         "y": 9
-      },
-      "id": 240,
-      "interval": "$bar_chart_interval",
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.97,
-        "colorByField": "Power",
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "none",
-        "text": {
-          "valueSize": 15
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "xField": "Time",
-        "xTickLabelRotation": 45,
-        "xTickLabelSpacing": 0
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "avg_over_time(opendtu_Power{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[$bar_chart_interval])",
-          "hide": false,
-          "legendFormat": "Power",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Avg Power per Hour",
-      "type": "barchart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-RdYlGr"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "kwatth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 24,
-        "x": 0,
-        "y": 20
       },
       "id": 252,
       "interval": "$bar_chart_interval",
@@ -1811,6 +1716,18 @@
           "legendFormat": "Energy",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(opendtu_Power{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[$bar_chart_interval])",
+          "hide": true,
+          "legendFormat": "Energy",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Energy /h",
@@ -1864,7 +1781,7 @@
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 20
       },
       "hideTimeOverride": true,
       "id": 132,
@@ -1933,7 +1850,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 32
       },
       "id": 227,
       "panels": [
@@ -2892,7 +2809,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 33
       },
       "id": 24,
       "panels": [
@@ -3997,6 +3914,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 21,
+  "version": 24,
   "weekStart": ""
 }
