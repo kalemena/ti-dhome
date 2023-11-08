@@ -1825,7 +1825,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "max_over_time(opendtu_YieldDay{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[1d])",
+          "expr": "avg_over_time(opendtu_YieldDay{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}[1d])",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -1839,7 +1839,6 @@
         }
       ],
       "timeFrom": "$bar_chart_duration",
-      "timeShift": "1d",
       "title": "Per Day (Last $bar_chart_duration)",
       "transformations": [],
       "type": "barchart"
@@ -3894,7 +3893,7 @@
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
@@ -3914,6 +3913,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 24,
+  "version": 29,
   "weekStart": ""
 }
