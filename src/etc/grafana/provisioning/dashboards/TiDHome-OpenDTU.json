@@ -1900,7 +1900,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1912,7 +1913,7 @@
             "h": 8,
             "w": 9,
             "x": 0,
-            "y": 34
+            "y": 33
           },
           "id": 22,
           "options": {
@@ -2005,7 +2006,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2043,7 +2045,7 @@
             "h": 8,
             "w": 9,
             "x": 9,
-            "y": 34
+            "y": 33
           },
           "id": 21,
           "options": {
@@ -2138,7 +2140,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "purple"
+                    "color": "purple",
+                    "value": null
                   }
                 ]
               },
@@ -2150,7 +2153,7 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 34
+            "y": 33
           },
           "id": 86,
           "options": {
@@ -2234,7 +2237,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "semi-dark-orange",
@@ -2256,13 +2260,39 @@
               },
               "unit": "watt"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "Total DC Power",
+                      "Total AC Power"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
-            "h": 8,
-            "w": 15,
+            "h": 9,
+            "w": 24,
             "x": 0,
-            "y": 42
+            "y": 41
           },
           "id": 15,
           "options": {
@@ -2272,117 +2302,8 @@
                 "max",
                 "mean"
               ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "9.5.1",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "builder",
-              "expr": "opendtu_Power{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}",
-              "interval": "",
-              "legendFormat": "Total AC Power",
-              "range": true,
-              "refId": "A"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "builder",
-              "expr": "opendtu_PowerDC{instance=\"$instance\", serial=\"$serial\"}",
-              "hide": false,
-              "interval": "",
-              "legendFormat": "Total DC Power",
-              "range": true,
-              "refId": "B"
-            }
-          ],
-          "title": "Power",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "text",
-                "mode": "continuous-BlYlRd",
-                "seriesBy": "last"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "dashed"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              },
-              "unit": "celsius"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 9,
-            "x": 15,
-            "y": 42
-          },
-          "id": 143,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
+              "displayMode": "table",
+              "placement": "right",
               "showLegend": true
             },
             "tooltip": {
@@ -2398,14 +2319,40 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "opendtu_Temperature{instance=\"$instance\", serial=\"$serial\"}",
+              "expr": "opendtu_Power{instance=\"$instance\", serial=\"$serial\", type=\"AC\"}",
               "interval": "",
-              "legendFormat": "Temperature",
+              "legendFormat": "Total AC Power",
               "range": true,
               "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "opendtu_PowerDC{instance=\"$instance\", serial=\"$serial\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Total DC Power",
+              "range": true,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "opendtu_Power{instance=\"$instance\", serial=\"$serial\", type=\"DC\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "{{name}}-{{channel}} DC Power",
+              "range": true,
+              "refId": "C"
             }
           ],
-          "title": "Temperature",
+          "title": "Power",
           "type": "timeseries"
         },
         {
@@ -2455,7 +2402,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "orange"
+                    "color": "orange",
+                    "value": null
                   }
                 ]
               },
@@ -2465,7 +2413,7 @@
           },
           "gridPos": {
             "h": 8,
-            "w": 8,
+            "w": 6,
             "x": 0,
             "y": 50
           },
@@ -2547,7 +2495,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2557,8 +2506,8 @@
           },
           "gridPos": {
             "h": 8,
-            "w": 8,
-            "x": 8,
+            "w": 6,
+            "x": 6,
             "y": 50
           },
           "id": 87,
@@ -2592,6 +2541,103 @@
             }
           ],
           "title": "Frequency",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "text",
+                "mode": "continuous-BlYlRd",
+                "seriesBy": "last"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "dashed"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "celsius"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 12,
+            "y": 50
+          },
+          "id": 143,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "mean"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.5.1",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "opendtu_Temperature{instance=\"$instance\", serial=\"$serial\"}",
+              "interval": "",
+              "legendFormat": "Temperature",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Temperature",
           "type": "timeseries"
         },
         {
@@ -2641,7 +2687,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "yellow"
+                    "color": "yellow",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -2655,8 +2702,8 @@
           },
           "gridPos": {
             "h": 8,
-            "w": 8,
-            "x": 16,
+            "w": 6,
+            "x": 18,
             "y": 50
           },
           "id": 88,
@@ -2740,7 +2787,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -2848,7 +2896,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               }
@@ -2859,7 +2908,7 @@
             "h": 3,
             "w": 5,
             "x": 0,
-            "y": 76
+            "y": 68
           },
           "id": 25,
           "options": {
@@ -2932,7 +2981,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -2944,7 +2994,7 @@
             "h": 3,
             "w": 3,
             "x": 5,
-            "y": 76
+            "y": 68
           },
           "id": 34,
           "options": {
@@ -2994,7 +3044,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3006,7 +3057,7 @@
             "h": 3,
             "w": 4,
             "x": 8,
-            "y": 76
+            "y": 68
           },
           "id": 47,
           "options": {
@@ -3056,7 +3107,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3068,7 +3120,7 @@
             "h": 3,
             "w": 4,
             "x": 12,
-            "y": 76
+            "y": 68
           },
           "id": 40,
           "options": {
@@ -3118,7 +3170,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3130,7 +3183,7 @@
             "h": 3,
             "w": 4,
             "x": 16,
-            "y": 76
+            "y": 68
           },
           "id": 55,
           "options": {
@@ -3182,7 +3235,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3194,7 +3248,7 @@
             "h": 3,
             "w": 4,
             "x": 20,
-            "y": 76
+            "y": 68
           },
           "id": 154,
           "options": {
@@ -3276,7 +3330,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3288,7 +3343,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 79
+            "y": 71
           },
           "id": 28,
           "options": {
@@ -3373,7 +3428,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3385,7 +3441,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 79
+            "y": 71
           },
           "id": 33,
           "options": {
@@ -3472,7 +3528,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3484,7 +3541,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 87
+            "y": 79
           },
           "id": 64,
           "options": {
@@ -3571,7 +3628,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "semi-dark-orange",
@@ -3599,7 +3657,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 87
+            "y": 79
           },
           "id": 74,
           "options": {
@@ -3850,7 +3908,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "30",
           "value": "30"
         },
@@ -3871,7 +3929,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "500",
           "value": "500"
         },
@@ -3913,6 +3971,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 29,
+  "version": 34,
   "weekStart": ""
 }
