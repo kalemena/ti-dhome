@@ -16,7 +16,7 @@ services:
       - 1883:1883
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:1.30.2
+    image: koenkk/zigbee2mqtt:1.33.2
     restart: always
     ports:
       - 8181
