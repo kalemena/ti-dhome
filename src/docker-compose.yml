@@ -51,6 +51,17 @@ services:
     extra_hosts:
       - "opendtu:${IOT_OPENDTU_IP}"
 
+  noderedo:
+    # docker ps -aimage: nodered/node-red:3.1.0
+    build: 
+      context: .
+      dockerfile: Dockerfile.official
+    restart: always
+    ports:
+      - 2880:1880
+    volumes:
+      - ./etc/nodered/data:/data
+
   nodered:
     #image: kalemena/node-red:latest
     build: .
