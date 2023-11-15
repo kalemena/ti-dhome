@@ -33,7 +33,7 @@ backup:
 	date
 	docker stop ti-dhome_victoriametrics_1
 	mkdir -p $(WORKSPACE)/backup/victoriametrics
-	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu sh -c 'tar czvf /backup/victoriametrics/vm.tar.gz .'
+	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu sh -c 'tar czvf /backup/victoriametrics/vm-$(DATE).tar.gz .'
 	docker start ti-dhome_victoriametrics_1
 	date
 
