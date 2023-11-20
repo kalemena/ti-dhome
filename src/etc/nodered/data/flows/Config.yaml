@@ -1,0 +1,112 @@
+- id: a7ebb2f7a8ede884
+  type: tab
+  label: Config
+  disabled: false
+  info: ''
+  env: []
+- id: d4efc750.434898
+  type: catch
+  z: a7ebb2f7a8ede884
+  name: ''
+  scope: null
+  uncaught: false
+  x: 110
+  'y': 110
+  wires:
+    - - a24eb884.8fa9a
+- id: 650449d4.5383f8
+  type: comment
+  z: a7ebb2f7a8ede884
+  name: ERRORS Handling
+  info: ''
+  x: 140
+  'y': 70
+  wires: []
+- id: 29f69392.4ebc64
+  type: debug
+  z: a7ebb2f7a8ede884
+  name: Config-Log-Debug
+  active: true
+  tosidebar: true
+  console: true
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1020
+  'y': 280
+  wires: []
+- id: 41e3caeb.c73014
+  type: delay
+  z: a7ebb2f7a8ede884
+  name: ''
+  pauseType: rate
+  timeout: '5'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '30'
+  rateUnits: minute
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: true
+  outputs: 1
+  x: 690
+  'y': 240
+  wires:
+    - - 84b1892ac15ea678
+- id: 2d2c7365.5aa924
+  type: file
+  z: a7ebb2f7a8ede884
+  name: ''
+  filename: /var/log/nodered/flow-errors.log
+  filenameType: str
+  appendNewline: true
+  createDir: false
+  overwriteFile: 'false'
+  encoding: none
+  x: 730
+  'y': 280
+  wires:
+    - - 29f69392.4ebc64
+- id: a24eb884.8fa9a
+  type: link out
+  z: a7ebb2f7a8ede884
+  name: Config-CatchAll-Out
+  mode: link
+  links:
+    - 1bf42829.b3e0b8
+  x: 845
+  'y': 110
+  wires: []
+- id: 1bf42829.b3e0b8
+  type: link in
+  z: a7ebb2f7a8ede884
+  name: Config-CatchAll-In
+  links:
+    - 4a641f47.46cb08
+    - 4d670d8450380ac6
+    - 5d10dd0b.1db574
+    - 60b06b25.f9c98c
+    - 64dacb8b.d2f3e4
+    - 7ddfd97.7160228
+    - 950a0758.599f88
+    - 98c9017f.76bca
+    - a24eb884.8fa9a
+    - da805bda.a8c0b
+  x: 235
+  'y': 270
+  wires:
+    - - 41e3caeb.c73014
+      - 2d2c7365.5aa924
+- id: 84b1892ac15ea678
+  type: link out
+  z: a7ebb2f7a8ede884
+  name: Config-CatchAll-Notif-Out
+  mode: link
+  links:
+    - 2f30621f40aa8285
+  x: 815
+  'y': 240
+  wires: []
