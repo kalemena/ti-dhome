@@ -61,6 +61,7 @@ services:
       - 2880:1880
     volumes:
       - ./etc/nodered/data:/data
+      - /var/log/nodered:/var/log/nodered
 
   nodered:
     #image: kalemena/node-red:latest
