@@ -10,8 +10,8 @@
   name: ''
   scope: null
   uncaught: false
-  x: 110
-  'y': 110
+  x: 120
+  'y': 100
   wires:
     - - a24eb884.8fa9a
 - id: 650449d4.5383f8
@@ -19,8 +19,8 @@
   z: a7ebb2f7a8ede884
   name: ERRORS Handling
   info: ''
-  x: 140
-  'y': 70
+  x: 150
+  'y': 60
   wires: []
 - id: 29f69392.4ebc64
   type: debug
@@ -77,8 +77,8 @@
   mode: link
   links:
     - 1bf42829.b3e0b8
-  x: 845
-  'y': 110
+  x: 855
+  'y': 100
   wires: []
 - id: 1bf42829.b3e0b8
   type: link in
@@ -110,3 +110,91 @@
   x: 815
   'y': 240
   wires: []
+- id: f26be183.4f807
+  type: inject
+  z: a7ebb2f7a8ede884
+  name: Initialize
+  props:
+    - p: payload
+      v: ''
+      vt: date
+    - p: topic
+      v: ''
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '1'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 120
+  'y': 460
+  wires:
+    - - 94e381cf.c2bab
+- id: af26e828.9b92
+  type: debug
+  z: a7ebb2f7a8ede884
+  name: Config-Sensors-Debug
+  active: false
+  tosidebar: true
+  console: true
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1030
+  'y': 460
+  wires: []
+- id: 77ded097.d4bc6
+  type: yaml
+  z: a7ebb2f7a8ede884
+  property: payload
+  name: ''
+  x: 490
+  'y': 460
+  wires:
+    - - 87655eff.6eacc
+- id: 94e381cf.c2bab
+  type: file in
+  z: a7ebb2f7a8ede884
+  name: ti-dhome.yaml
+  filename: /etc/tidhome/ti-dhome.yaml
+  filenameType: str
+  format: utf8
+  chunk: false
+  sendError: false
+  allProps: false
+  x: 310
+  'y': 460
+  wires:
+    - - 77ded097.d4bc6
+- id: ea98f666.7ddaa
+  type: comment
+  z: a7ebb2f7a8ede884
+  name: Sensors - Configuration
+  info: ''
+  x: 160
+  'y': 420
+  wires: []
+- id: 87655eff.6eacc
+  type: change
+  z: a7ebb2f7a8ede884
+  name: ''
+  rules:
+    - t: set
+      p: tidhome
+      pt: global
+      to: payload
+      tot: msg
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 700
+  'y': 460
+  wires:
+    - - af26e828.9b92

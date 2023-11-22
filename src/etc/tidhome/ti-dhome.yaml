@@ -1,4 +1,14 @@
 
+groups:
+
+  groupA:
+  groupB:
+  groupC:
+  groupD:
+  groupE:
+
+  rss:
+    urls:
 sensors:
 
   currentcost:
