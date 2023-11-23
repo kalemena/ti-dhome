@@ -1664,7 +1664,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1817,7 +1818,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1958,7 +1960,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2223,7 +2226,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2489,7 +2493,7 @@
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhBase",
-        "query": "0.2062",
+        "query": "0.2516",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2498,7 +2502,7 @@
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhHP",
-        "query": "0.2228",
+        "query": "0.2700",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2507,7 +2511,7 @@
         "hide": 2,
         "label": "kWhHC",
         "name": "kWhHC",
-        "query": "0.1615",
+        "query": "0.2068",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2515,7 +2519,7 @@
         "hide": 2,
         "label": "kWhTBHC",
         "name": "kWhTBHC",
-        "query": "0.1044",
+        "query": "0.1296",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2523,7 +2527,7 @@
         "hide": 2,
         "label": "kWhTBH9",
         "name": "kWhTBHP",
-        "query": "0.13572",
+        "query": "0.1609",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2531,7 +2535,7 @@
         "hide": 2,
         "label": "kWhTWHC",
         "name": "kWhTWHC",
-        "query": "0.12336",
+        "query": "0.1486",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2539,7 +2543,7 @@
         "hide": 2,
         "label": "kWhTWHP",
         "name": "kWhTWHP",
-        "query": "0.16416",
+        "query": "0.1894",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2547,7 +2551,7 @@
         "hide": 2,
         "label": "kWhTRHC",
         "name": "kWhTRHC",
-        "query": "0.13164",
+        "query": "0.1568",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2555,7 +2559,7 @@
         "hide": 2,
         "label": "kWhTRHP",
         "name": "kWhTRHP",
-        "query": "0.73116",
+        "query": "0.7564",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2645,9 +2649,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "30d",
-          "value": "30d"
+          "selected": true,
+          "text": "180d",
+          "value": "180d"
         },
         "hide": 0,
         "includeAll": false,
@@ -2671,7 +2675,7 @@
             "value": "15d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "30d",
             "value": "30d"
           },
@@ -2686,7 +2690,7 @@
             "value": "90d"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "180d",
             "value": "180d"
           },
@@ -2820,6 +2824,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 267,
+  "version": 274,
   "weekStart": ""
 }
