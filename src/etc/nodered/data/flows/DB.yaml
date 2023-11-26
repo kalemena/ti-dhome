@@ -8,7 +8,7 @@
   type: junction
   z: cf0d480a582294ae
   x: 120
-  'y': 620
+  'y': 1240
   wires:
     - - '9581410703628258'
       - 6e5458755ca35f1b
@@ -17,14 +17,14 @@
   type: junction
   z: cf0d480a582294ae
   x: 380
-  'y': 660
+  'y': 1280
   wires:
     - - cc2f0f7f0427b58c
 - id: fb7400d80e8fad49
   type: junction
   z: cf0d480a582294ae
   x: 520
-  'y': 880
+  'y': 1500
   wires:
     - - e6dfbafc8c3042c3
       - 8f1a3faa6d1e85ef
@@ -45,7 +45,7 @@
   outputType: msg
   outTz: Europe/Paris
   x: 450
-  'y': 360
+  'y': 980
   wires:
     - - 2366bd1e3e03afb8
       - b3652a8e55e370f4
@@ -125,7 +125,7 @@
   finalize: ''
   libs: []
   x: 630
-  'y': 360
+  'y': 980
   wires:
     - - 7733c07030c21098
 - id: 3bee84a27e6cd59c
@@ -157,7 +157,7 @@
   finalize: ''
   libs: []
   x: 260
-  'y': 360
+  'y': 980
   wires:
     - - c7ee104a98cf18f3
 - id: 7733c07030c21098
@@ -173,7 +173,7 @@
   alignToClock: true
   generator: internal
   x: 840
-  'y': 400
+  'y': 1020
   wires:
     - - ab9d4b85d889183c
       - fbbf19c3b6f8e430
@@ -204,7 +204,7 @@
   finalize: ''
   libs: []
   x: 640
-  'y': 400
+  'y': 1020
   wires:
     - - 7733c07030c21098
 - id: b4b61009fc7b0feb
@@ -223,7 +223,7 @@
   finalize: ''
   libs: []
   x: 630
-  'y': 440
+  'y': 1060
   wires:
     - - 7733c07030c21098
 - id: 9aa81642091a436b
@@ -237,7 +237,7 @@
   onceDelay: 0.1
   topic: ''
   x: 110
-  'y': 120
+  'y': 740
   wires:
     - - f4df2ed060031650
       - a5ea9f561f8a2b2a
@@ -259,7 +259,7 @@
   outputType: msg
   outTz: Europe/Paris
   x: 420
-  'y': 520
+  'y': 1140
   wires:
     - - 3c57121b8d27c57c
 - id: f4df2ed060031650
@@ -274,7 +274,7 @@
   encoding: utf8
   allProps: false
   x: 320
-  'y': 120
+  'y': 740
   wires:
     - - 302e9d35b9f224cd
 - id: 302e9d35b9f224cd
@@ -292,7 +292,7 @@
   include_empty_strings: false
   include_null_values: false
   x: 490
-  'y': 120
+  'y': 740
   wires:
     - - 598f547a1ac99cb2
 - id: eb9dbd2cca4b2e93
@@ -308,7 +308,7 @@
   statusVal: ''
   statusType: auto
   x: 810
-  'y': 200
+  'y': 820
   wires: []
 - id: 598f547a1ac99cb2
   type: function
@@ -328,7 +328,7 @@
   finalize: ''
   libs: []
   x: 630
-  'y': 120
+  'y': 740
   wires:
     - - eb9dbd2cca4b2e93
 - id: a5ea9f561f8a2b2a
@@ -362,7 +362,7 @@
   to: ''
   reg: false
   x: 300
-  'y': 200
+  'y': 820
   wires:
     - - eb9dbd2cca4b2e93
 - id: 3c9ba4b57c4a6219
@@ -371,7 +371,7 @@
   name: Mathematics - power - config
   info: ''
   x: 180
-  'y': 70
+  'y': 690
   wires: []
 - id: 432439ee8b7f21ec
   type: file in
@@ -385,7 +385,7 @@
   encoding: utf8
   allProps: false
   x: 320
-  'y': 160
+  'y': 780
   wires:
     - - 302e9d35b9f224cd
 - id: 1eb90a76313ade10
@@ -394,7 +394,7 @@
   name: 'Mathematics - power - formula #1 - query_range'
   info: ''
   x: 240
-  'y': 280
+  'y': 900
   wires: []
 - id: ac63d8bf1ed66e71
   type: comment
@@ -402,7 +402,7 @@
   name: 'Mathematics - power - formula #2 - scroll+offset'
   info: ''
   x: 240
-  'y': 480
+  'y': 1100
   wires: []
 - id: 15eee1a293c595fd
   type: inject
@@ -430,7 +430,7 @@
   onceDelay: 0.1
   topic: ''
   x: 110
-  'y': 520
+  'y': 1140
   wires:
     - - ae0d4edaa0a1ecc3
 - id: 81d9d4e81ec82ddf
@@ -446,7 +446,7 @@
   statusVal: ''
   statusType: auto
   x: 640
-  'y': 570
+  'y': 1190
   wires: []
 - id: ae0d4edaa0a1ecc3
   type: function
@@ -488,7 +488,7 @@
   finalize: ''
   libs: []
   x: 260
-  'y': 520
+  'y': 1140
   wires:
     - - 0d6fb4c44fbd1fd0
     - - 0d6fb4c44fbd1fd0
@@ -523,7 +523,7 @@
   finalize: ''
   libs: []
   x: 270
-  'y': 570
+  'y': 1190
   wires:
     - - 3daae04fa5ad767b
 - id: 3daae04fa5ad767b
@@ -542,7 +542,7 @@
   senderr: false
   headers: []
   x: 450
-  'y': 570
+  'y': 1190
   wires:
     - - 81d9d4e81ec82ddf
       - 994a7a64bc1c7656
@@ -573,7 +573,7 @@
   finalize: ''
   libs: []
   x: 240
-  'y': 620
+  'y': 1240
   wires:
     - - 204ba00bb6a13bac
 - id: ab9d4b85d889183c
@@ -589,7 +589,7 @@
   statusVal: ''
   statusType: auto
   x: 1000
-  'y': 400
+  'y': 1020
   wires: []
 - id: d4dcb78a85b8fd01
   type: function
@@ -610,7 +610,7 @@
   finalize: ''
   libs: []
   x: 250
-  'y': 320
+  'y': 940
   wires:
     - - ec27a942cfa78c58
     - - ec27a942cfa78c58
@@ -625,7 +625,7 @@
   onceDelay: 0.1
   topic: ''
   x: 110
-  'y': 320
+  'y': 940
   wires:
     - - d4dcb78a85b8fd01
 - id: ec27a942cfa78c58
@@ -656,7 +656,7 @@
   finalize: ''
   libs: []
   x: 430
-  'y': 320
+  'y': 940
   wires:
     - - 61321c793b31fe9b
 - id: 61321c793b31fe9b
@@ -675,7 +675,7 @@
   senderr: false
   headers: []
   x: 580
-  'y': 320
+  'y': 940
   wires:
     - - 3bee84a27e6cd59c
       - b9eaf33614dd786a
@@ -692,7 +692,7 @@
   statusVal: ''
   statusType: auto
   x: 760
-  'y': 320
+  'y': 940
   wires: []
 - id: 6e5458755ca35f1b
   type: function
@@ -730,7 +730,7 @@
   finalize: ''
   libs: []
   x: 250
-  'y': 660
+  'y': 1280
   wires:
     - - 204ba00bb6a13bac
 - id: cc2f0f7f0427b58c
@@ -746,7 +746,7 @@
   alignToClock: true
   generator: internal
   x: 460
-  'y': 660
+  'y': 1280
   wires:
     - - bb33ba25cd6b92e2
       - b4f824ad67b0be80
@@ -764,7 +764,7 @@
   statusVal: ''
   statusType: auto
   x: 620
-  'y': 660
+  'y': 1280
   wires: []
 - id: 9147ca10781b15f4
   type: function
@@ -848,7 +848,7 @@
   finalize: ''
   libs: []
   x: 240
-  'y': 700
+  'y': 1320
   wires:
     - - 204ba00bb6a13bac
 - id: fbbf19c3b6f8e430
@@ -868,7 +868,7 @@
   to: ''
   reg: false
   x: 1060
-  'y': 450
+  'y': 1070
   wires:
     - []
 - id: b4f824ad67b0be80
@@ -888,7 +888,7 @@
   to: ''
   reg: false
   x: 680
-  'y': 710
+  'y': 1330
   wires:
     - []
 - id: 34b91b78d80e9b18
@@ -903,7 +903,7 @@
   encoding: utf8
   allProps: false
   x: 290
-  'y': 840
+  'y': 1460
   wires:
     - - d7c8b9aa4ece1574
 - id: d7c8b9aa4ece1574
@@ -921,7 +921,7 @@
   include_empty_strings: false
   include_null_values: false
   x: 460
-  'y': 840
+  'y': 1460
   wires:
     - - b0e9f1b5a6dca969
       - 205520c7b4338967
@@ -939,7 +939,7 @@
   onceDelay: 0.1
   topic: ''
   x: 110
-  'y': 840
+  'y': 1460
   wires:
     - - 34b91b78d80e9b18
 - id: b0e9f1b5a6dca969
@@ -954,7 +954,7 @@
   statusVal: ''
   statusType: auto
   x: 610
-  'y': 840
+  'y': 1460
   wires: []
 - id: 205520c7b4338967
   type: split
@@ -967,7 +967,7 @@
   stream: false
   addname: ''
   x: 240
-  'y': 880
+  'y': 1500
   wires:
     - - 1df7fa1d5bbf8fe0
 - id: e6dfbafc8c3042c3
@@ -983,7 +983,7 @@
   statusVal: ''
   statusType: auto
   x: 610
-  'y': 880
+  'y': 1500
   wires: []
 - id: 1df7fa1d5bbf8fe0
   type: function
@@ -1029,7 +1029,7 @@
   finalize: ''
   libs: []
   x: 410
-  'y': 880
+  'y': 1500
   wires:
     - - fb7400d80e8fad49
     - - fb7400d80e8fad49
@@ -1039,7 +1039,7 @@
   name: Migrate - power - fix timeline
   info: ''
   x: 180
-  'y': 800
+  'y': 1420
   wires: []
 - id: 1eae10dbef23d854
   type: debug
@@ -1054,7 +1054,7 @@
   statusVal: ''
   statusType: auto
   x: 380
-  'y': 920
+  'y': 1540
   wires: []
 - id: 8f1a3faa6d1e85ef
   type: http request
@@ -1072,6 +1072,121 @@
   senderr: false
   headers: []
   x: 240
-  'y': 920
+  'y': 1540
   wires:
     - - 1eae10dbef23d854
+- id: cc675ec4.106d
+  type: comment
+  z: cf0d480a582294ae
+  name: Sensors - Heaters/Power/RFM868
+  info: ''
+  x: 200
+  'y': 80
+  wires: []
+- id: 90d304a9.c871a
+  type: mqtt in
+  z: cf0d480a582294ae
+  name: sensors/#
+  topic: sensors/#
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  inputs: 0
+  x: 120
+  'y': 120
+  wires:
+    - - dcd509f1.d56dd
+- id: 14def27.355280e
+  type: debug
+  z: cf0d480a582294ae
+  name: Debug
+  active: false
+  tosidebar: true
+  console: true
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 440
+  'y': 120
+  wires: []
+- id: dcd509f1.d56dd
+  type: function
+  z: cf0d480a582294ae
+  name: Store Global
+  func: |-
+    var topicNodesPrefix = 'tidhome.sensors.' + msg.payload.gateway + '.nodes'
+    var nodes = global.get(topicNodesPrefix) || [];
+    for (var i = 0; i < nodes.length; i++) {
+        if(nodes[i].id === msg.payload.id) {
+            // found node
+            let entryStr = (msg.payload.entry != undefined) ? ('-' + msg.payload.entry) : ''
+            global.set(topicNodesPrefix + '[' + i + '].' + msg.payload.type + entryStr, msg.payload.value);
+            global.set(topicNodesPrefix + '[' + i + '].timestamp', msg.payload.timestamp);
+        }
+    }
+    // pass through
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 280
+  'y': 120
+  wires:
+    - - 14def27.355280e
+- id: 694da039.ceca8
+  type: catch
+  z: cf0d480a582294ae
+  name: ''
+  scope: null
+  uncaught: false
+  x: 120
+  'y': 40
+  wires:
+    - - 950a0758.599f88
+- id: 950a0758.599f88
+  type: link out
+  z: cf0d480a582294ae
+  name: General CatchAll
+  links:
+    - 1bf42829.b3e0b8
+  x: 275
+  'y': 40
+  wires: []
+- id: b07467b620e87a9b
+  type: comment
+  z: cf0d480a582294ae
+  name: Solar - OpenDTU
+  info: ''
+  x: 140
+  'y': 200
+  wires: []
+- id: fd3bdcda17442d2e
+  type: mqtt in
+  z: cf0d480a582294ae
+  name: solar/#
+  topic: solar/#
+  qos: '2'
+  datatype: utf8
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: false
+  inputs: 0
+  x: 110
+  'y': 240
+  wires:
+    - - 7c650ace12c32993
+- id: 7c650ace12c32993
+  type: debug
+  z: cf0d480a582294ae
+  name: Debug
+  active: false
+  tosidebar: true
+  console: true
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 440
+  'y': 240
+  wires: []
