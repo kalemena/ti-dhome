@@ -4,6 +4,13 @@
   disabled: false
   info: ''
   env: []
+- id: 1f8446bb27ae1246
+  type: junction
+  z: 72c052849e700b0b
+  x: 390
+  'y': 1040
+  wires:
+    - - 49a743cdbddaf93a
 - id: 08c26ffab2032d6a
   type: inject
   z: 72c052849e700b0b
@@ -452,3 +459,322 @@
   x: 140
   'y': 720
   wires: []
+- id: 91f761ca904fa281
+  type: inject
+  z: 72c052849e700b0b
+  name: 01 - Bureau
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '1'
+  x: 130
+  'y': 940
+  wires:
+    - - 1f8446bb27ae1246
+- id: 82c1cd2571ad46f9
+  type: inject
+  z: 72c052849e700b0b
+  name: 00 - SdJ
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '0'
+  x: 120
+  'y': 900
+  wires:
+    - - 1f8446bb27ae1246
+- id: 306a5f274443feb1
+  type: inject
+  z: 72c052849e700b0b
+  name: 02 - Chambre L.
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '2'
+  x: 140
+  'y': 980
+  wires:
+    - - 1f8446bb27ae1246
+- id: 91aaca8ba2d3e434
+  type: inject
+  z: 72c052849e700b0b
+  name: 03 - Chambre D.
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '3'
+  x: 140
+  'y': 1020
+  wires:
+    - - 1f8446bb27ae1246
+- id: 8d1632528bc94f63
+  type: inject
+  z: 72c052849e700b0b
+  name: 04 - SdB - Haut
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '4'
+  x: 140
+  'y': 1060
+  wires:
+    - - 1f8446bb27ae1246
+- id: d29a460298d69a35
+  type: inject
+  z: 72c052849e700b0b
+  name: 05 - Mezanine
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '5'
+  x: 130
+  'y': 1100
+  wires:
+    - - 1f8446bb27ae1246
+- id: 59dccdf262ec31ab
+  type: inject
+  z: 72c052849e700b0b
+  name: 06 - Chambre P/M
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '6'
+  x: 150
+  'y': 1140
+  wires:
+    - - 1f8446bb27ae1246
+- id: 8d7e1425befa23aa
+  type: inject
+  z: 72c052849e700b0b
+  name: 14 - Salon
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '14'
+  x: 120
+  'y': 1210
+  wires:
+    - - 1f8446bb27ae1246
+- id: d036deee7379e853
+  type: inject
+  z: 72c052849e700b0b
+  name: 15 - Hall
+  props:
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: ''
+  topic: '15'
+  x: 120
+  'y': 1250
+  wires:
+    - - 1f8446bb27ae1246
+- id: 96b915d32104e4c9
+  type: comment
+  z: 72c052849e700b0b
+  name: IOTHeaters - Test
+  info: ''
+  x: 140
+  'y': 860
+  wires: []
+- id: bf57ace63c657aa2
+  type: mqtt out
+  z: 72c052849e700b0b
+  name: actors/iotheaters/switch
+  topic: actors/iotheaters/switch
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 980
+  'y': 1040
+  wires: []
+- id: 49a743cdbddaf93a
+  type: change
+  z: 72c052849e700b0b
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{}'
+      tot: json
+    - t: set
+      p: payload.id
+      pt: msg
+      to: topic
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 690
+  'y': 1040
+  wires:
+    - - bf57ace63c657aa2
+      - a0ec524fed66b2f8
+- id: 4c914888a30c94a8
+  type: link in
+  z: 72c052849e700b0b
+  name: WebRelaysIn
+  links: []
+  x: 315
+  'y': 900
+  wires:
+    - - 1f8446bb27ae1246
+- id: 791cdf633207e3f9
+  type: link in
+  z: 72c052849e700b0b
+  name: WebRelaysInLatch
+  links:
+    - 7dfb853e.03a1f4
+    - 1fd6723.fc4360e
+  x: 265
+  'y': 1290
+  wires:
+    - - 35315ea6d04584e3
+- id: a0ec524fed66b2f8
+  type: debug
+  z: 72c052849e700b0b
+  name: ''
+  active: false
+  console: 'false'
+  complete: 'true'
+  x: 920
+  'y': 1000
+  wires: []
+- id: e605214d35a29b79
+  type: debug
+  z: 72c052849e700b0b
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 660
+  'y': 1150
+  wires: []
+- id: 34370b2992146cf6
+  type: inject
+  z: 72c052849e700b0b
+  name: 08 - Portail
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: '8'
+  payload: ''
+  payloadType: date
+  x: 220
+  'y': 1330
+  wires:
+    - - 35315ea6d04584e3
+- id: ac3020bde89b2456
+  type: trigger
+  z: 72c052849e700b0b
+  name: Portail Clic
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '1'
+  extend: true
+  overrideDelay: false
+  units: s
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 680
+  'y': 1110
+  wires:
+    - - 7746f3ad7a4e1eb0
+      - 49a743cdbddaf93a
+- id: 7746f3ad7a4e1eb0
+  type: debug
+  z: 72c052849e700b0b
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 920
+  'y': 1110
+  wires: []
+- id: 35315ea6d04584e3
+  type: change
+  z: 72c052849e700b0b
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: ''
+      tot: date
+    - t: set
+      p: topic
+      pt: msg
+      to: '8'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 390
+  'y': 1330
+  wires:
+    - - ac3020bde89b2456
+      - e605214d35a29b79
+      - 49a743cdbddaf93a
