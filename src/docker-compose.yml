@@ -63,6 +63,8 @@ services:
       - ./etc/nodered/data:/data
       - ./etc/tidhome:/etc/tidhome
       - /var/log/nodered:/var/log/nodered
+    env_file:
+     - .env-nodered
 
   nodered:
     #image: kalemena/node-red:latest
