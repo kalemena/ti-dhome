@@ -63,6 +63,9 @@ services:
       - ./etc/nodered/data:/data
       - ./etc/tidhome:/etc/tidhome
       - /var/log/nodered:/var/log/nodered
+    devices:
+     - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
+     - "/dev/ttyJeeLink:/dev/ttyJeeLink"
     env_file:
      - .env-nodered
 
