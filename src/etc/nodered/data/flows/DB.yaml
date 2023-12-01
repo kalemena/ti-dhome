@@ -28,6 +28,14 @@
   wires:
     - - e6dfbafc8c3042c3
       - 8f1a3faa6d1e85ef
+- id: 064675a6c9a4fd43
+  type: junction
+  z: cf0d480a582294ae
+  x: 260
+  'y': 320
+  wires:
+    - - 9f381a6c811925c5
+      - 4141c8aa2b2d3b22
 - id: c7ee104a98cf18f3
   type: moment
   z: cf0d480a582294ae
@@ -1160,7 +1168,7 @@
   name: Solar - OpenDTU
   info: ''
   x: 140
-  'y': 200
+  'y': 500
   wires: []
 - id: fd3bdcda17442d2e
   type: mqtt in
@@ -1174,7 +1182,7 @@
   rap: false
   inputs: 0
   x: 110
-  'y': 240
+  'y': 540
   wires:
     - - 7c650ace12c32993
 - id: 7c650ace12c32993
@@ -1188,5 +1196,102 @@
   complete: 'true'
   targetType: full
   x: 440
-  'y': 240
+  'y': 540
   wires: []
+- id: 794c9a35ab495787
+  type: comment
+  z: cf0d480a582294ae
+  name: insert - events
+  info: ''
+  x: 130
+  'y': 260
+  wires: []
+- id: 4141c8aa2b2d3b22
+  type: debug
+  z: cf0d480a582294ae
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 350
+  'y': 340
+  wires: []
+- id: c54b6b3075201912
+  type: mqtt in
+  z: cf0d480a582294ae
+  name: sensors
+  topic: sensors
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: false
+  inputs: 0
+  x: 110
+  'y': 300
+  wires:
+    - []
+- id: 9f381a6c811925c5
+  type: function
+  z: cf0d480a582294ae
+  name: Wrap
+  func: |
+    var msgres = msg.payload
+    return msgres;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 350
+  'y': 300
+  wires:
+    - - 467510bb8765ad25
+      - 71930ec74ed1c51f
+- id: 467510bb8765ad25
+  type: debug
+  z: cf0d480a582294ae
+  name: ''
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 530
+  'y': 340
+  wires: []
+- id: 71930ec74ed1c51f
+  type: influxdb out
+  z: cf0d480a582294ae
+  influxdb: 2b52259bfe2133a5
+  name: ''
+  measurement: ''
+  precision: ''
+  retentionPolicy: ''
+  database: ''
+  retentionPolicyV18Flux: ''
+  org: ''
+  bucket: ''
+  x: 570
+  'y': 300
+  wires: []
+- id: 8f74f3f76c223f4d
+  type: link in
+  z: cf0d480a582294ae
+  name: DB-Insert
+  links:
+    - 78c90ae53c32e0c1
+    - 217fc7c76bf682ea
+    - bd608bdcef55352f
+  x: 145
+  'y': 350
+  wires:
+    - - 064675a6c9a4fd43
