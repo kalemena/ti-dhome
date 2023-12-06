@@ -1,68 +1,69 @@
-- id: f96b3a53.67de8
+- id: ec75ad2cb670e9c0
   type: tab
-  label: Sensors-CCost
+  label: Sensors
   disabled: false
   info: ''
-- id: 983b112c63f7357f
+  env: []
+- id: 9695703c2344fa5a
   type: junction
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   x: 1130
-  'y': 260
+  'y': 320
   wires:
-    - - bd608bdcef55352f
-- id: 81a1739b.736d1
+    - - dcc503f036cd122b
+- id: 48cdf1ba85dfcd37
   type: serial in
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: CurrentCost
-  serial: 36396f66.41717
+  serial: 2389cf8558b3742d
   x: 110
-  'y': 120
+  'y': 140
   wires:
-    - - e9003ce.5c1f84
-- id: e9003ce.5c1f84
+    - - 44401c61545f8b54
+- id: 44401c61545f8b54
   type: xml
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: xml2json
   property: payload
   attr: ''
   chr: ''
   x: 210
-  'y': 160
+  'y': 220
   wires:
-    - - 1da3548.6a44bac
-- id: 57c57a10.955624
+    - - bbc11ee1b53a74b6
+- id: 7894147300ba4e35
   type: mqtt out
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: sensors/xxx/nodes/...
   topic: ''
   qos: ''
   retain: ''
   broker: c38452a5.4f84e8
   x: 1010
-  'y': 130
+  'y': 190
   wires: []
-- id: a44c6fd5.e88c1
+- id: 9b9aa3979144f9f4
   type: catch
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: ''
   scope: null
   uncaught: false
   x: 100
-  'y': 80
+  'y': 60
   wires:
-    - - 4a641f47.46cb08
-- id: 4a641f47.46cb08
+    - - b38faeed3daa5034
+- id: b38faeed3daa5034
   type: link out
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: General CatchAll
   links:
     - 1bf42829.b3e0b8
   x: 255
-  'y': 80
+  'y': 60
   wires: []
-- id: ef7af4f7.f7274
+- id: d6e08f42e4a188de
   type: debug
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: CCDebug
   active: false
   tosidebar: true
@@ -72,12 +73,12 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 830
-  'y': 200
+  x: 820
+  'y': 260
   wires: []
-- id: b378c436.6d3a5
+- id: 0e9eb4e190902bd8
   type: function
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: power-inst
   func: |-
     var msgres1 =  {
@@ -110,14 +111,14 @@
   finalize: ''
   libs: []
   x: 1000
-  'y': 240
+  'y': 300
   wires:
-    - - 983b112c63f7357f
-    - - 983b112c63f7357f
-      - b49e71f589d30da2
-- id: 99e6cd73.0c8e88
+    - - 9695703c2344fa5a
+    - - 9695703c2344fa5a
+      - 4575d700fd60f480
+- id: aae3f5fc1bf84067
   type: switch
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: ''
   property: payload.type
   propertyType: msg
@@ -133,14 +134,14 @@
   repair: false
   outputs: 3
   x: 820
-  'y': 250
+  'y': 310
   wires:
-    - - b378c436.6d3a5
-    - - 23acd2ce.970c6e
-    - - 6db06cf3.4bc614
-- id: 65932785.3642e
+    - - 0e9eb4e190902bd8
+    - - 03f4e78666d3f120
+    - - 88197bac85a955f3
+- id: 6fb898c071ee2fdd
   type: function
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: Friendly name
   func: |-
     var tidhome = global.get("tidhome") || {}
@@ -164,13 +165,13 @@
   finalize: ''
   libs: []
   x: 620
-  'y': 220
+  'y': 280
   wires:
-    - - ef7af4f7.f7274
-      - 99e6cd73.0c8e88
-- id: 6db06cf3.4bc614
+    - - d6e08f42e4a188de
+      - aae3f5fc1bf84067
+- id: 88197bac85a955f3
   type: debug
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: CCDebug
   active: false
   tosidebar: true
@@ -181,11 +182,11 @@
   statusVal: ''
   statusType: auto
   x: 990
-  'y': 320
+  'y': 380
   wires: []
-- id: 23acd2ce.970c6e
+- id: 03f4e78666d3f120
   type: function
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: temperature
   func: |
     var msgres1 =  {
@@ -218,13 +219,13 @@
   finalize: ''
   libs: []
   x: 1000
-  'y': 280
+  'y': 340
   wires:
-    - - 983b112c63f7357f
-    - - 983b112c63f7357f
-- id: 1da3548.6a44bac
+    - - 9695703c2344fa5a
+    - - 9695703c2344fa5a
+- id: bbc11ee1b53a74b6
   type: switch
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: ''
   property: 'payload.msg.type[0]'
   propertyType: msg
@@ -240,14 +241,14 @@
   repair: false
   outputs: 3
   x: 340
-  'y': 120
+  'y': 180
   wires:
-    - - 75611bae5888eb02
-    - - 5e8cddc7.be4dec
-    - - 5e8cddc7.be4dec
-- id: 5e8cddc7.be4dec
+    - - e018d12e8cad5fbf
+    - - 77da59c25f261bfc
+    - - 77da59c25f261bfc
+- id: 77da59c25f261bfc
   type: debug
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: CCDebug
   active: false
   tosidebar: true
@@ -258,11 +259,11 @@
   statusVal: ''
   statusType: auto
   x: 490
-  'y': 140
+  'y': 200
   wires: []
-- id: 75611bae5888eb02
+- id: e018d12e8cad5fbf
   type: function
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: 'sensor Type, "1" = electricity'
   func: >-
     // name: Parse CurrentCost
@@ -355,14 +356,14 @@
   finalize: ''
   libs: []
   x: 550
-  'y': 80
+  'y': 140
   wires:
-    - - 57c57a10.955624
-      - 65932785.3642e
-      - 92124dd055692a09
-- id: 92124dd055692a09
+    - - 7894147300ba4e35
+      - 6fb898c071ee2fdd
+      - 2b3793d257e19809
+- id: 2b3793d257e19809
   type: debug
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: CC W Debug
   active: false
   tosidebar: true
@@ -373,21 +374,21 @@
   statusVal: ''
   statusType: auto
   x: 980
-  'y': 80
+  'y': 140
   wires: []
-- id: bd608bdcef55352f
+- id: dcc503f036cd122b
   type: link out
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: link out 3
   mode: link
   links:
-    - e72a9a6d97ae5b4a
+    - 8f74f3f76c223f4d
   x: 1175
-  'y': 260
+  'y': 320
   wires: []
-- id: b49e71f589d30da2
+- id: 4575d700fd60f480
   type: debug
-  z: f96b3a53.67de8
+  z: ec75ad2cb670e9c0
   name: CCDebug
   active: false
   tosidebar: true
@@ -398,5 +399,5 @@
   statusVal: ''
   statusType: auto
   x: 1220
-  'y': 220
+  'y': 260
   wires: []
