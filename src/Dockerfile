@@ -1,6 +1,10 @@
 FROM kalemena/node-red:3.0.2
 
 RUN npm i \
+        node-red-contrib-flow-manager \
+        node-red-node-serialport \
+        node-red-node-ping \
+        node-red-contrib-credentials \
         node-red-contrib-simpletime \
         node-red-contrib-moment \
         node-red-node-suncalc \
@@ -14,9 +18,8 @@ RUN npm i \
         node-red-contrib-simple-weekly-scheduler \
         node-red-contrib-flatter \
         node-red-contrib-influxdb \
-        node-red-contrib-topic-frequencies \
         node-red-node-feedparser \
         node-red-contrib-feedparser-ext@0.0.2 \
-        node-red-contrib-gorules@v0.0.4 \
-        node-red-contrib-flow-manager
+        node-red-contrib-topic-frequencies \
+        node-red-contrib-gorules@v0.0.4
         
