@@ -16,7 +16,7 @@ services:
       - 1883:1883
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:1.33.2
+    image: koenkk/zigbee2mqtt:1.34.0
     restart: always
     ports:
       - 8181
@@ -83,7 +83,7 @@ services:
     # - /home/nodered/.node-red/settings.js      # Default Settings file
     # - /data/flows.json                         # Default Flows file
     devices:
-     - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
+     # - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
     #  - "/dev/ttyZWave:/dev/ttyZWave"
     # environment:
