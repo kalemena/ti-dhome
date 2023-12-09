@@ -401,3 +401,228 @@
   x: 1220
   'y': 260
   wires: []
+- id: a8cd2888c83eb4f6
+  type: serial in
+  z: ec75ad2cb670e9c0
+  name: Jeelink
+  serial: aa3008f8a002170a
+  x: 90
+  'y': 480
+  wires:
+    - - e324eb60e5e0fd71
+- id: 82feacacfc9ee30f
+  type: mqtt out
+  z: ec75ad2cb670e9c0
+  name: sensors/xxx/nodes/...
+  topic: ''
+  qos: ''
+  retain: ''
+  broker: c38452a5.4f84e8
+  x: 760
+  'y': 480
+  wires: []
+- id: 03653501b09f1ff3
+  type: debug
+  z: ec75ad2cb670e9c0
+  name: Debug
+  active: false
+  tosidebar: true
+  console: true
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 1140
+  'y': 550
+  wires: []
+- id: 51b1bc3751c94bf7
+  type: function
+  z: ec75ad2cb670e9c0
+  name: query insert
+  func: >-
+    var msgres =  {
+        payload: {
+            payload: [
+                { "value": Number(msg.payload.value) },
+                { "type": msg.payload.type, "location": msg.topic }
+            ],
+            measurement: "sensors"
+        }
+    }
+
+
+    node.status({ fill: "blue", shape: "dot", text: msg.topic + ": " +
+    Number(msg.payload.value) });
+
+
+    return msgres;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 930
+  'y': 570
+  wires:
+    - - 62a23415b0a2245c
+      - 03653501b09f1ff3
+- id: 62a23415b0a2245c
+  type: mqtt out
+  z: ec75ad2cb670e9c0
+  name: sensors
+  topic: sensors
+  qos: ''
+  retain: ''
+  broker: c38452a5.4f84e8
+  x: 1140
+  'y': 590
+  wires: []
+- id: 518d9a7198e9a4c9
+  type: switch
+  z: ec75ad2cb670e9c0
+  name: Sort
+  property: payload.type
+  propertyType: msg
+  rules:
+    - t: eq
+      v: temperature
+      vt: str
+    - t: eq
+      v: humidity
+      vt: str
+    - t: eq
+      v: pressure
+      vt: str
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 4
+  x: 710
+  'y': 580
+  wires:
+    - - 51b1bc3751c94bf7
+    - - 51b1bc3751c94bf7
+    - - 51b1bc3751c94bf7
+    - - 65f1413068738793
+- id: 65f1413068738793
+  type: debug
+  z: ec75ad2cb670e9c0
+  name: Not looked
+  active: false
+  tosidebar: true
+  console: true
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 930
+  'y': 630
+  wires: []
+- id: e324eb60e5e0fd71
+  type: function
+  z: ec75ad2cb670e9c0
+  name: Parse JeeLink
+  func: |-
+    // name: Parse JeeLink
+    // outputs: 1
+    var outputMsgs = []
+    timestampH = new Date().toISOString()
+    timestamp = new Date().getTime()
+
+    var s = msg.payload.split(' ')
+    if(s[0] === 'ROOM') {
+        var type = ''
+        var nodeid = parseInt(s[1])
+        // var nodeid5 = ("00000" + nodeid).slice (-5)
+        var entry = parseInt(s[2])
+        var value = s[4].replace(/(\r\n|\n|\r)/gm,"");
+        if(s[3] == 0) {
+          type = 'temperature';
+          value = value / 10;
+        } else if(s[3] == 1) {
+          type = 'humidity';
+          value = value / 10;
+        } else if(s[3] == 2) {
+          type = 'pressure';
+          value = value / 10;
+        } else if(s[3] == 3) {
+          type = 'light';
+        } else if(s[3] == 4 && value !== 0) {
+          type = 'battery';
+          value = value / 100;
+        } else if(s[3] == 5) {
+          type = 'soil';
+        } else if(s[3] == 6) {
+          type = 'toggle';
+          value = parseInt(value);
+        }
+        
+        if(type !== '') {
+            var msgJ = {}
+            msgJ.topic = 'sensors/rfm868usb/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;
+            msgJ.payload = { 
+                "gateway":"rfm868usb",
+                "id": nodeid,
+                "entry": entry,
+                "type": type,
+                "value": value,
+                "timestamp": timestamp,
+                "timestamp-human": timestampH
+            }
+            node.status({ fill:"blue", shape:"dot", text: msg.payload });
+            outputMsgs.push(msgJ);
+        } else {
+          node.status({ fill:"red", shape:"dot", text: msg.payload });
+        }
+        
+        //setTimeout(function() { this.status({}); }, 500);
+        //this.status({fill:"green",shape:"dot",text:"processed"});
+    }
+
+    return [ outputMsgs ];
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 320
+  'y': 480
+  wires:
+    - - 518d9a7198e9a4c9
+      - 82feacacfc9ee30f
+      - c28fe8ce0758bb68
+- id: c28fe8ce0758bb68
+  type: trigger
+  z: ec75ad2cb670e9c0
+  name: Watchdog
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: pay
+  duration: '1'
+  extend: true
+  overrideDelay: false
+  units: hr
+  reset: ''
+  bytopic: topic
+  topic: topic
+  outputs: 1
+  x: 520
+  'y': 650
+  wires:
+    - - d10281f1d98eed79
+- id: d10281f1d98eed79
+  type: debug
+  z: ec75ad2cb670e9c0
+  name: JL W Debug
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 730
+  'y': 650
+  wires: []
