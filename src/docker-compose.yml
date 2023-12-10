@@ -67,7 +67,7 @@ services:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
     env_file:
-     - .env-nodered
+     - .env
 
   nodered:
     #image: kalemena/node-red:latest
