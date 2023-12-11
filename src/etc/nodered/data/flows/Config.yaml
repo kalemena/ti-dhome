@@ -96,6 +96,8 @@
     - a24eb884.8fa9a
     - da805bda.a8c0b
     - b38faeed3daa5034
+    - 9a6a1d1d3a5e080e
+    - 884a9608c7926815
   x: 235
   'y': 270
   wires:
@@ -108,6 +110,7 @@
   mode: link
   links:
     - 2f30621f40aa8285
+    - b18b366e53d25a05
   x: 815
   'y': 240
   wires: []
