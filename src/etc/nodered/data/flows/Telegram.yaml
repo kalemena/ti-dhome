@@ -1,0 +1,573 @@
+- id: 5e1cd18d830e0a6b
+  type: tab
+  label: Telegram
+  disabled: false
+  info: ''
+  env: []
+- id: f7290145.4541
+  type: telegram command
+  z: 5e1cd18d830e0a6b
+  name: /help
+  command: /help
+  bot: 4fc69d2d.235124
+  strict: false
+  hasresponse: false
+  outputs: 2
+  x: 110
+  'y': 200
+  wires:
+    - - 2a90a04d.2f6e98
+    - []
+- id: 42720d76.713b3c
+  type: telegram sender
+  z: 5e1cd18d830e0a6b
+  name: Send
+  bot: 4fc69d2d.235124
+  outputs: 1
+  x: 470
+  'y': 150
+  wires:
+    - - 20cc8013.f8d02
+- id: 2a90a04d.2f6e98
+  type: function
+  z: 5e1cd18d830e0a6b
+  name: ''
+  func: >-
+    var helpMessage = "/help - shows help\n";
+
+    helpMessage += "/status - request for status\n";
+
+    helpMessage += "/meteo - request for meteo\n";
+
+
+    helpMessage += "Your chat id is " + msg.payload.chatId + "\n";
+
+    helpMessage += "You are welcome: "+ msg.originalMessage.from.username +
+    "\n";
+
+
+    msg.payload.content = helpMessage;
+
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  x: 290
+  'y': 150
+  wires:
+    - - 42720d76.713b3c
+- id: 20cc8013.f8d02
+  type: debug
+  z: 5e1cd18d830e0a6b
+  name: Status
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 640
+  'y': 150
+  wires: []
+- id: 118b2ea9.b320d1
+  type: telegram command
+  z: 5e1cd18d830e0a6b
+  name: /start
+  command: /start
+  description: ''
+  registercommand: false
+  language: ''
+  bot: 4fc69d2d.235124
+  strict: false
+  hasresponse: false
+  useregex: false
+  removeregexcommand: false
+  outputs: 1
+  x: 110
+  'y': 150
+  wires:
+    - - 2a90a04d.2f6e98
+- id: a7974ba.f02b438
+  type: comment
+  z: 5e1cd18d830e0a6b
+  name: HELP
+  info: ''
+  x: 110
+  'y': 110
+  wires: []
+- id: d999d32fe886cc82
+  type: catch
+  z: 5e1cd18d830e0a6b
+  name: ''
+  scope: null
+  uncaught: false
+  x: 120
+  'y': 60
+  wires:
+    - - 9a6a1d1d3a5e080e
+- id: 9a6a1d1d3a5e080e
+  type: link out
+  z: 5e1cd18d830e0a6b
+  name: General CatchAll
+  links:
+    - 1bf42829.b3e0b8
+  x: 275
+  'y': 60
+  wires: []
+- id: 393b16e6dcf9dc54
+  type: telegram sender
+  z: 5e1cd18d830e0a6b
+  name: Send
+  bot: 4fc69d2d.235124
+  outputs: 1
+  x: 1090
+  'y': 480
+  wires:
+    - - 944b453ad99e7579
+- id: 944b453ad99e7579
+  type: debug
+  z: 5e1cd18d830e0a6b
+  name: Status
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  x: 1260
+  'y': 480
+  wires: []
+- id: 72c915cf0c88c628
+  type: function
+  z: 5e1cd18d830e0a6b
+  name: Render notification event
+  func: |-
+    msg.payload = {
+        "chatId": msg.telegramrecipients,
+        "type": "message",
+        "options": { "parse_mode": "Markdown" },
+        "content": msg.payload
+    }
+    return msg;
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 900
+  'y': 480
+  wires:
+    - - 393b16e6dcf9dc54
+- id: d4122acbec49caa5
+  type: comment
+  z: 5e1cd18d830e0a6b
+  name: Publish Telegram message to K
+  info: ''
+  x: 390
+  'y': 420
+  wires: []
+- id: 2c17af8d4a856ba0
+  type: credentials
+  z: 5e1cd18d830e0a6b
+  name: K-C
+  props:
+    - value: telegramrecipients
+      type: msg
+  x: 530
+  'y': 480
+  wires:
+    - - 4240d9a910b2407b
+- id: 28d00cf12c1af661
+  type: telegram command
+  z: 5e1cd18d830e0a6b
+  name: /vol
+  command: /vol
+  description: ''
+  registercommand: false
+  language: ''
+  bot: 4fc69d2d.235124
+  strict: false
+  hasresponse: false
+  useregex: false
+  removeregexcommand: false
+  outputs: 1
+  x: 310
+  'y': 890
+  wires:
+    - - 6015541df1abee94
+- id: 1f61a229db7c7f3c
+  type: comment
+  z: 5e1cd18d830e0a6b
+  name: Ouverture/Fermeture - Volets
+  info: ''
+  x: 380
+  'y': 820
+  wires: []
+- id: 6015541df1abee94
+  type: switch
+  z: 5e1cd18d830e0a6b
+  name: ''
+  property: originalMessage.text
+  propertyType: msg
+  rules:
+    - t: cont
+      v: up
+      vt: str
+    - t: cont
+      v: down
+      vt: str
+    - t: else
+  checkall: 'false'
+  repair: false
+  outputs: 3
+  x: 480
+  'y': 890
+  wires:
+    - - 889dbcf330523ddd
+    - - 74afd300b8dba85d
+    - - 989686415a11743f
+- id: cbacfd822d1436be
+  type: link out
+  z: 5e1cd18d830e0a6b
+  name: ''
+  mode: link
+  links:
+    - f576c3026a84db30
+  x: 985
+  'y': 880
+  wires: []
+- id: e0775251a62ef6a7
+  type: debug
+  z: 5e1cd18d830e0a6b
+  name: Debug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 840
+  'y': 960
+  wires: []
+- id: 4240d9a910b2407b
+  type: switch
+  z: 5e1cd18d830e0a6b
+  name: not empty
+  property: payload
+  propertyType: msg
+  rules:
+    - t: nempty
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 690
+  'y': 480
+  wires:
+    - - 72c915cf0c88c628
+- id: 989686415a11743f
+  type: function
+  z: 5e1cd18d830e0a6b
+  name: Parse
+  func: |-
+
+    function isNumeric(n) { 
+          return !isNaN(parseFloat(n)) && isFinite(n); 
+    }
+
+    if(isNumeric(msg.payload.content)) {
+        var position = Number(msg.payload.content)
+        return {
+            position: position
+        };
+    }
+  outputs: 1
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 640
+  'y': 960
+  wires:
+    - - e0775251a62ef6a7
+      - d992c33b68d9bbe1
+- id: 889dbcf330523ddd
+  type: change
+  z: 5e1cd18d830e0a6b
+  name: up = 100
+  rules:
+    - t: set
+      p: position
+      pt: msg
+      to: '100'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 650
+  'y': 880
+  wires:
+    - - d992c33b68d9bbe1
+- id: 74afd300b8dba85d
+  type: change
+  z: 5e1cd18d830e0a6b
+  name: down = 0
+  rules:
+    - t: set
+      p: position
+      pt: msg
+      to: '0'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 650
+  'y': 920
+  wires:
+    - - d992c33b68d9bbe1
+- id: e0b66b613223f73f
+  type: telegram command
+  z: 5e1cd18d830e0a6b
+  name: /voletH
+  command: /voletH
+  description: ''
+  registercommand: false
+  language: ''
+  bot: 4fc69d2d.235124
+  strict: false
+  hasresponse: false
+  useregex: false
+  removeregexcommand: false
+  outputs: 1
+  x: 310
+  'y': 1060
+  wires:
+    - - 37768d24d19530f8
+- id: 37768d24d19530f8
+  type: switch
+  z: 5e1cd18d830e0a6b
+  name: ''
+  property: originalMessage.text
+  propertyType: msg
+  rules:
+    - t: cont
+      v: up
+      vt: str
+    - t: cont
+      v: mid
+      vt: str
+    - t: cont
+      v: down
+      vt: str
+    - t: else
+  checkall: 'false'
+  repair: false
+  outputs: 4
+  x: 480
+  'y': 1060
+  wires:
+    - - e15cf02b132e6ee9
+    - []
+    - - be222617095f9b7b
+    - []
+- id: e15cf02b132e6ee9
+  type: change
+  z: 5e1cd18d830e0a6b
+  name: up = 0
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '0'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 640
+  'y': 1050
+  wires:
+    - - bae747e5713c11b9
+- id: be222617095f9b7b
+  type: change
+  z: 5e1cd18d830e0a6b
+  name: down = 100
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '100'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 660
+  'y': 1090
+  wires:
+    - - bae747e5713c11b9
+- id: bae747e5713c11b9
+  type: link out
+  z: 5e1cd18d830e0a6b
+  name: ''
+  links:
+    - 4343d80627f170c9
+  x: 805
+  'y': 1050
+  wires: []
+- id: bf7cd90f5b8cd706
+  type: telegram command
+  z: 5e1cd18d830e0a6b
+  name: /rad
+  command: /rad
+  description: ''
+  registercommand: false
+  language: ''
+  bot: 4fc69d2d.235124
+  strict: false
+  hasresponse: false
+  useregex: false
+  removeregexcommand: false
+  outputs: 1
+  x: 310
+  'y': 1190
+  wires:
+    - - 5e23c4fa9cb4d959
+      - 02a52509f76ecb9e
+- id: 5e23c4fa9cb4d959
+  type: switch
+  z: 5e1cd18d830e0a6b
+  name: ''
+  property: payload.content
+  propertyType: msg
+  rules:
+    - t: cont
+      v: a
+      vt: str
+    - t: cont
+      v: c
+      vt: str
+    - t: cont
+      v: e
+      vt: str
+    - t: else
+  checkall: 'false'
+  repair: false
+  outputs: 4
+  x: 480
+  'y': 1190
+  wires:
+    - - bbf5d03ca842044f
+    - - dbf101ad092865ad
+    - - 26699d5f27783b37
+    - []
+- id: bbf5d03ca842044f
+  type: link out
+  z: 5e1cd18d830e0a6b
+  name: ''
+  links:
+    - 32ea48f887dcaf01
+    - 1289ec8160b383c0
+  x: 615
+  'y': 1170
+  wires: []
+- id: dbf101ad092865ad
+  type: link out
+  z: 5e1cd18d830e0a6b
+  name: ''
+  links:
+    - f59fd05791a47896
+    - 8b59b8b09ecd5508
+  x: 615
+  'y': 1210
+  wires: []
+- id: 26699d5f27783b37
+  type: link out
+  z: 5e1cd18d830e0a6b
+  name: ''
+  links:
+    - b08009e947680796
+    - fd31e45552eeb4e5
+  x: 615
+  'y': 1250
+  wires: []
+- id: 02a52509f76ecb9e
+  type: debug
+  z: 5e1cd18d830e0a6b
+  name: ''
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 480
+  'y': 1290
+  wires: []
+- id: b18b366e53d25a05
+  type: link in
+  z: 5e1cd18d830e0a6b
+  name: Telegram-To-K
+  links:
+    - 0a19614dac750dc9
+    - 84b1892ac15ea678
+    - e7a7cb7a8df21f27
+    - ecb2912f7071e62b
+    - 7a96ec2943dd38cc
+    - 920a6d44fc9d1a0a
+    - 4d87ac10f93853bc
+    - 4da44a73cf53899e
+  x: 415
+  'y': 480
+  wires:
+    - - 2c17af8d4a856ba0
+- id: d992c33b68d9bbe1
+  type: change
+  z: 5e1cd18d830e0a6b
+  name: POSITION
+  rules:
+    - t: set
+      p: action
+      pt: msg
+      to: POSITION
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 860
+  'y': 880
+  wires:
+    - - cbacfd822d1436be
+- id: 2c9440268510b912
+  type: link in
+  z: 5e1cd18d830e0a6b
+  name: Telegram-To-All
+  links:
+    - 1ba3302a5169676e
+  x: 415
+  'y': 520
+  wires:
+    - - 3da27e5a474ebfb3
+- id: 3da27e5a474ebfb3
+  type: credentials
+  z: 5e1cd18d830e0a6b
+  name: K-CM
+  props:
+    - value: telegramrecipients
+      type: msg
+  x: 530
+  'y': 520
+  wires:
+    - - 4240d9a910b2407b
