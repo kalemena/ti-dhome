@@ -7,10 +7,6 @@ version: '3.7'
 
 services:
 
-  noderedo:
-    extra_hosts:
-      ioteleinfo.local: ${IOT_WEBRELAY_IP}
-
   nodered:
     extra_hosts:
       ioteleinfo.local: ${IOT_WEBRELAY_IP}

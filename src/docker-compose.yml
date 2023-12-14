@@ -51,14 +51,13 @@ services:
     extra_hosts:
       - "opendtu:${IOT_OPENDTU_IP}"
 
-  noderedo:
-    # docker ps -aimage: nodered/node-red:3.1.0
+  nodered:
     build: 
       context: .
       dockerfile: Dockerfile.official
     restart: always
     ports:
-      - 2880:1880
+      - 1880
     volumes:
       - ./etc/nodered/data:/data
       - ./etc/tidhome:/etc/tidhome
@@ -66,22 +65,6 @@ services:
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
-    env_file:
-     - .env
-
-  nodered:
-    #image: kalemena/node-red:latest
-    build: .
-    restart: always
-    ports:
-     - 1880
-    volumes:
-     - ./etc/tidhome:/etc/tidhome
-     - ./tidhome:/opt/tidhome
-     - ./tidhome/config:/home/nodered/.node-red
-    # - ./var/log/node-red:/var/log/node-red
-    # - /home/nodered/.node-red/settings.js      # Default Settings file
-    # - /data/flows.json                         # Default Flows file
     env_file:
      - .env
 
