@@ -51,13 +51,13 @@ services:
     extra_hosts:
       - "opendtu:${IOT_OPENDTU_IP}"
 
-  nodered:
+  noderedo:
     build: 
       context: .
       dockerfile: Dockerfile.official
     restart: always
     ports:
-      - 1880
+      - 1880:1880
     volumes:
       - ./etc/nodered/data:/data
       - ./etc/tidhome:/etc/tidhome
