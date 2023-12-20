@@ -2455,6 +2455,7 @@
   name: Zigbee-GroupB
   links:
     - e7e52fec716f59a2
+    - bae747e5713c11b9
   x: 175
   'y': 3300
   wires:
@@ -2730,6 +2731,7 @@
     - e45defb4b0e38b62
     - a0f1b25d.56ebd8
     - fecb20f01567e4a8
+    - cbacfd822d1436be
   x: 175
   'y': 3080
   wires:

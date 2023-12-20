@@ -121,8 +121,8 @@
   name: Send
   bot: 4fc69d2d.235124
   outputs: 1
-  x: 1090
-  'y': 480
+  x: 890
+  'y': 360
   wires:
     - - 944b453ad99e7579
 - id: 944b453ad99e7579
@@ -135,8 +135,8 @@
   tostatus: false
   complete: 'true'
   targetType: full
-  x: 1260
-  'y': 480
+  x: 1060
+  'y': 360
   wires: []
 - id: 72c915cf0c88c628
   type: function
@@ -155,8 +155,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 900
-  'y': 480
+  x: 700
+  'y': 360
   wires:
     - - 393b16e6dcf9dc54
 - id: d4122acbec49caa5
@@ -164,8 +164,8 @@
   z: 5e1cd18d830e0a6b
   name: Publish Telegram message to K
   info: ''
-  x: 390
-  'y': 420
+  x: 190
+  'y': 300
   wires: []
 - id: 2c17af8d4a856ba0
   type: credentials
@@ -174,8 +174,8 @@
   props:
     - value: telegramrecipients
       type: msg
-  x: 530
-  'y': 480
+  x: 330
+  'y': 360
   wires:
     - - 4240d9a910b2407b
 - id: 28d00cf12c1af661
@@ -192,8 +192,8 @@
   useregex: false
   removeregexcommand: false
   outputs: 1
-  x: 310
-  'y': 890
+  x: 110
+  'y': 560
   wires:
     - - 6015541df1abee94
 - id: 1f61a229db7c7f3c
@@ -201,8 +201,8 @@
   z: 5e1cd18d830e0a6b
   name: Ouverture/Fermeture - Volets
   info: ''
-  x: 380
-  'y': 820
+  x: 180
+  'y': 490
   wires: []
 - id: 6015541df1abee94
   type: switch
@@ -221,8 +221,8 @@
   checkall: 'false'
   repair: false
   outputs: 3
-  x: 480
-  'y': 890
+  x: 280
+  'y': 560
   wires:
     - - 889dbcf330523ddd
     - - 74afd300b8dba85d
@@ -233,9 +233,9 @@
   name: ''
   mode: link
   links:
-    - f576c3026a84db30
-  x: 985
-  'y': 880
+    - 54015e759adf6f9c
+  x: 785
+  'y': 550
   wires: []
 - id: e0775251a62ef6a7
   type: debug
@@ -249,8 +249,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 840
-  'y': 960
+  x: 640
+  'y': 630
   wires: []
 - id: 4240d9a910b2407b
   type: switch
@@ -263,8 +263,8 @@
   checkall: 'true'
   repair: false
   outputs: 1
-  x: 690
-  'y': 480
+  x: 490
+  'y': 360
   wires:
     - - 72c915cf0c88c628
 - id: 989686415a11743f
@@ -288,8 +288,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 640
-  'y': 960
+  x: 440
+  'y': 630
   wires:
     - - e0775251a62ef6a7
       - d992c33b68d9bbe1
@@ -308,8 +308,8 @@
   from: ''
   to: ''
   reg: false
-  x: 650
-  'y': 880
+  x: 450
+  'y': 550
   wires:
     - - d992c33b68d9bbe1
 - id: 74afd300b8dba85d
@@ -327,8 +327,8 @@
   from: ''
   to: ''
   reg: false
-  x: 650
-  'y': 920
+  x: 450
+  'y': 590
   wires:
     - - d992c33b68d9bbe1
 - id: e0b66b613223f73f
@@ -345,8 +345,8 @@
   useregex: false
   removeregexcommand: false
   outputs: 1
-  x: 310
-  'y': 1060
+  x: 110
+  'y': 730
   wires:
     - - 37768d24d19530f8
 - id: 37768d24d19530f8
@@ -369,8 +369,8 @@
   checkall: 'false'
   repair: false
   outputs: 4
-  x: 480
-  'y': 1060
+  x: 280
+  'y': 730
   wires:
     - - e15cf02b132e6ee9
     - []
@@ -391,8 +391,8 @@
   from: ''
   to: ''
   reg: false
-  x: 640
-  'y': 1050
+  x: 440
+  'y': 720
   wires:
     - - bae747e5713c11b9
 - id: be222617095f9b7b
@@ -410,18 +410,19 @@
   from: ''
   to: ''
   reg: false
-  x: 660
-  'y': 1090
+  x: 460
+  'y': 760
   wires:
     - - bae747e5713c11b9
 - id: bae747e5713c11b9
   type: link out
   z: 5e1cd18d830e0a6b
   name: ''
+  mode: link
   links:
-    - 4343d80627f170c9
-  x: 805
-  'y': 1050
+    - 60b8f9c187ea8197
+  x: 605
+  'y': 720
   wires: []
 - id: bf7cd90f5b8cd706
   type: telegram command
@@ -437,8 +438,8 @@
   useregex: false
   removeregexcommand: false
   outputs: 1
-  x: 310
-  'y': 1190
+  x: 110
+  'y': 860
   wires:
     - - 5e23c4fa9cb4d959
       - 02a52509f76ecb9e
@@ -462,8 +463,8 @@
   checkall: 'false'
   repair: false
   outputs: 4
-  x: 480
-  'y': 1190
+  x: 280
+  'y': 860
   wires:
     - - bbf5d03ca842044f
     - - dbf101ad092865ad
@@ -476,8 +477,8 @@
   links:
     - 32ea48f887dcaf01
     - 1289ec8160b383c0
-  x: 615
-  'y': 1170
+  x: 415
+  'y': 840
   wires: []
 - id: dbf101ad092865ad
   type: link out
@@ -486,8 +487,8 @@
   links:
     - f59fd05791a47896
     - 8b59b8b09ecd5508
-  x: 615
-  'y': 1210
+  x: 415
+  'y': 880
   wires: []
 - id: 26699d5f27783b37
   type: link out
@@ -496,8 +497,8 @@
   links:
     - b08009e947680796
     - fd31e45552eeb4e5
-  x: 615
-  'y': 1250
+  x: 415
+  'y': 920
   wires: []
 - id: 02a52509f76ecb9e
   type: debug
@@ -511,8 +512,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 480
-  'y': 1290
+  x: 280
+  'y': 960
   wires: []
 - id: b18b366e53d25a05
   type: link in
@@ -527,8 +528,8 @@
     - 920a6d44fc9d1a0a
     - 4d87ac10f93853bc
     - 4da44a73cf53899e
-  x: 415
-  'y': 480
+  x: 215
+  'y': 360
   wires:
     - - 2c17af8d4a856ba0
 - id: d992c33b68d9bbe1
@@ -546,8 +547,8 @@
   from: ''
   to: ''
   reg: false
-  x: 860
-  'y': 880
+  x: 660
+  'y': 550
   wires:
     - - cbacfd822d1436be
 - id: 2c9440268510b912
@@ -556,8 +557,8 @@
   name: Telegram-To-All
   links:
     - 1ba3302a5169676e
-  x: 415
-  'y': 520
+  x: 215
+  'y': 400
   wires:
     - - 3da27e5a474ebfb3
 - id: 3da27e5a474ebfb3
@@ -567,7 +568,7 @@
   props:
     - value: telegramrecipients
       type: msg
-  x: 530
-  'y': 520
+  x: 330
+  'y': 400
   wires:
     - - 4240d9a910b2407b

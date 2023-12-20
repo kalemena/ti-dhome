@@ -25,6 +25,7 @@
   'y': 680
   wires:
     - - 31351825673be596
+      - 281623751d7a9995
 - id: cb68db5a.bdbca8
   type: inject
   z: 75ea6d580fabeb76
@@ -355,6 +356,7 @@
         return msg
         
   outputs: 1
+  timeout: ''
   noerr: 0
   initialize: ''
   finalize: ''
@@ -722,8 +724,8 @@
   z: 75ea6d580fabeb76
   name: To Telegram C
   info: ''
-  x: 1110
-  'y': 620
+  x: 1230
+  'y': 600
   wires: []
 - id: 40bb6b4fc46482fe
   type: comment
@@ -788,7 +790,7 @@
   x: 650
   'y': 680
   wires:
-    - []
+    - - 6bd6ba5dcaaf48cb
 - id: ed8bdee63a5d4662
   type: switch
   z: 75ea6d580fabeb76
