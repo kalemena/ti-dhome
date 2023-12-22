@@ -36,7 +36,7 @@ services:
           - zigbee2mqtt.tidhome.local
 
   victoriametrics:
-    image: victoriametrics/victoria-metrics:v1.87.11
+    image: victoriametrics/victoria-metrics:v1.87.12
     restart: always
     ports:
       - 8428:8428
