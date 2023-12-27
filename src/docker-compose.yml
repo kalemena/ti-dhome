@@ -55,6 +55,8 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.official
+      args:
+        NODERED_VERSION: 3.1.2
     restart: always
     ports:
       - 1880:1880

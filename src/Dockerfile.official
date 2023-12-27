@@ -1,4 +1,5 @@
-FROM nodered/node-red:3.1.0
+ARG NODERED_VERSION
+FROM nodered/node-red:${NODERED_VERSION}
 
 USER root
 RUN addgroup node-red dialout
