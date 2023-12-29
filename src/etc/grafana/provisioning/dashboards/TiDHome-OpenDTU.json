@@ -1712,11 +1712,11 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval])",
-          "hide": false,
+          "expr": "avg_over_time(opendtu_Power{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval])",
+          "hide": true,
           "legendFormat": "Energy",
           "range": true,
-          "refId": "A"
+          "refId": "B"
         },
         {
           "datasource": {
@@ -1724,11 +1724,11 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "avg_over_time(opendtu_Power{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval])",
-          "hide": true,
+          "expr": "sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval] offset -$bar_chart_interval))",
+          "hide": false,
           "legendFormat": "Energy",
           "range": true,
-          "refId": "B"
+          "refId": "C"
         }
       ],
       "timeFrom": "72h",
@@ -1848,7 +1848,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[1d])",
+          "expr": "sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[1d] offset -1d))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -1857,11 +1857,12 @@
           "interval": "24h",
           "legendFormat": "Energy",
           "range": true,
-          "refId": "B",
+          "refId": "C",
           "useBackend": false
         }
       ],
       "timeFrom": "$bar_chart_duration",
+      "timeShift": "1d",
       "title": "Per Day (Last $bar_chart_duration)",
       "transformations": [],
       "type": "barchart"
@@ -3949,6 +3950,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 49,
+  "version": 53,
   "weekStart": ""
 }
