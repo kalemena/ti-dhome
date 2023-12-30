@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -51,7 +51,7 @@
           "refId": "A"
         }
       ],
-      "title": "24h Details",
+      "title": "Timeline",
       "type": "row"
     },
     {
@@ -137,6 +137,7 @@
         "y": 1
       },
       "id": 18,
+      "interval": "15m",
       "options": {
         "legend": {
           "calcs": [
@@ -277,6 +278,7 @@
         "y": 11
       },
       "id": 19,
+      "interval": "15m",
       "options": {
         "legend": {
           "calcs": [
@@ -624,7 +626,7 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.7",
           "targets": [
             {
               "datasource": {
@@ -694,7 +696,7 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.7",
           "targets": [
             {
               "datasource": {
@@ -762,7 +764,7 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.7",
           "targets": [
             {
               "datasource": {
@@ -829,7 +831,7 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.7",
           "targets": [
             {
               "datasource": {
@@ -910,7 +912,7 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.7",
           "targets": [
             {
               "datasource": {
@@ -972,13 +974,13 @@
           },
           "gridPos": {
             "h": 25,
-            "w": 8,
+            "w": 9,
             "x": 0,
             "y": 43
           },
           "id": 21,
           "options": {
-            "displayMode": "gradient",
+            "displayMode": "lcd",
             "minVizHeight": 8,
             "minVizWidth": 0,
             "orientation": "horizontal",
@@ -994,7 +996,7 @@
               "valueSize": 1
             }
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.7",
           "targets": [
             {
               "datasource": {
@@ -1002,7 +1004,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "sort_by_label(sensors_zigbee_battery[24h],\"location\")",
+              "expr": "sort_by_label(sensors_zigbee_battery,\"location\")",
               "hide": false,
               "legendFormat": "{{location}}",
               "range": true,
@@ -1043,8 +1045,8 @@
           },
           "gridPos": {
             "h": 25,
-            "w": 6,
-            "x": 8,
+            "w": 7,
+            "x": 9,
             "y": 43
           },
           "id": 27,
@@ -1062,7 +1064,7 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.7",
           "targets": [
             {
               "datasource": {
@@ -1110,13 +1112,13 @@
           },
           "gridPos": {
             "h": 25,
-            "w": 7,
-            "x": 14,
+            "w": 8,
+            "x": 16,
             "y": 43
           },
           "id": 23,
           "options": {
-            "displayMode": "gradient",
+            "displayMode": "lcd",
             "minVizHeight": 10,
             "minVizWidth": 0,
             "orientation": "horizontal",
@@ -1129,7 +1131,7 @@
             },
             "showUnfilled": true
           },
-          "pluginVersion": "9.3.8",
+          "pluginVersion": "9.4.7",
           "targets": [
             {
               "datasource": {
@@ -1153,7 +1155,8 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 37,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
