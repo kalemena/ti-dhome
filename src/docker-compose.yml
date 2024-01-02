@@ -48,8 +48,6 @@ services:
       # - "--storageDataPath=/storage"
       - "--promscrape.config=/etc/victoria-metrics/prometheus.yml"
       - "--promscrape.config.strictParse=false"
-    extra_hosts:
-      - "opendtu:${IOT_OPENDTU_IP}"
 
   noderedo:
     build: 
