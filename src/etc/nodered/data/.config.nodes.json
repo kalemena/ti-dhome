@@ -1,7 +1,7 @@
 {
     "node-red": {
         "name": "node-red",
-        "version": "3.1.0",
+        "version": "3.1.3",
         "local": false,
         "user": false,
         "nodes": {
@@ -710,7 +710,7 @@
     },
     "node-red-contrib-telegrambot": {
         "name": "node-red-contrib-telegrambot",
-        "version": "15.1.8",
+        "version": "15.1.9",
         "local": false,
         "user": false,
         "nodes": {
@@ -807,6 +807,67 @@
                 "user": false,
                 "module": "node-red-node-suncalc",
                 "file": "/usr/src/node-red/node_modules/node-red-node-suncalc/79-suncalc.js"
+            }
+        }
+    },
+    "node-red-contrib-credentials": {
+        "name": "node-red-contrib-credentials",
+        "version": "0.2.3",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "credent": {
+                "name": "credent",
+                "types": [
+                    "credentials"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-credentials",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-credentials/credentials/credentials.js"
+            }
+        }
+    },
+    "node-red-node-ping": {
+        "name": "node-red-node-ping",
+        "version": "0.3.3",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "ping": {
+                "name": "ping",
+                "types": [
+                    "ping"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-node-ping",
+                "file": "/usr/src/node-red/node_modules/node-red-node-ping/88-ping.js"
+            }
+        }
+    },
+    "node-red-node-serialport": {
+        "name": "node-red-node-serialport",
+        "version": "2.0.2",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "serialport": {
+                "name": "serialport",
+                "types": [
+                    "serial in",
+                    "serial out",
+                    "serial request",
+                    "serial-port",
+                    "serial control"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-node-serialport",
+                "file": "/usr/src/node-red/node_modules/node-red-node-serialport/25-serial.js"
             }
         }
     }
