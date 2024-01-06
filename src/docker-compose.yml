@@ -69,6 +69,10 @@ services:
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
     env_file:
      - .env
+    networks:
+      default:
+        aliases:
+          - nodered.tidhome.local
 
   telegraf:
     image: telegraf
