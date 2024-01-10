@@ -112,6 +112,16 @@ services:
     env_file:
       - .env
 
+  homeassistant:
+    image: homeassistant/home-assistant:stable
+    environment:
+      - TZ=Europe/Paris
+    ports:
+      - 8123:8123
+    volumes:
+      - ha-config:/config
+    restart: always
+
   gateway:
     image: nginx
     restart: always
