@@ -21,5 +21,6 @@ RUN npm i \
         node-red-node-feedparser \
         node-red-contrib-feedparser-ext@0.0.2 \
         node-red-contrib-topic-frequencies \
+        node-red-contrib-home-assistant-websocket \
         node-red-contrib-gorules@v0.0.4
         
