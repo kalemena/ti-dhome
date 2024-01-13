@@ -1386,7 +1386,7 @@
                   "options": {
                     "mode": "exclude",
                     "names": [
-                      "Total"
+                      "Teleinfo (raw)"
                     ],
                     "prefix": "All except:",
                     "readOnly": true
@@ -2639,7 +2639,7 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "200d",
+        "query": "260d",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -2820,6 +2820,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 4,
+  "version": 11,
   "weekStart": ""
 }
