@@ -120,8 +120,20 @@ services:
       - 8123:8123
     volumes:
       - ha-config:/config
+      - /etc/localtime:/etc/localtime:ro
     restart: always
 
+  # https://github.com/CausticLab/hass-configurator-docker
+  hass-configurator:
+    image: "causticlab/hass-configurator-docker"
+    restart: unless-stopped
+    ports:
+      - "3218:3218/tcp"
+    depends_on:
+      - homeassistant
+    volumes:
+      - ./etc/homeassistant/configurator/config:/config
+      - ha-config:/hass-config
   gateway:
     image: nginx
     restart: always
