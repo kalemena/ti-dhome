@@ -735,6 +735,13 @@
   type: inject
   z: ec75ad2cb670e9c0
   name: Poll Web Relays (60s)
+  props:
+    - p: payload
+      v: ''
+      vt: str
+    - p: topic
+      v: ''
+      vt: str
   repeat: '60'
   crontab: ''
   once: false
@@ -1708,7 +1715,7 @@
   type: debug
   z: ec75ad2cb670e9c0
   name: ZDebugEvent
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
@@ -2023,8 +2030,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 280
-  'y': 2610
+  x: 290
+  'y': 2600
   wires: []
 - id: 3591c75b692dd6c1
   type: switch
@@ -2059,8 +2066,8 @@
   rap: true
   rh: 0
   inputs: 0
-  x: 210
-  'y': 2650
+  x: 200
+  'y': 2640
   wires:
     - - bf06d3be07b1aa3a
       - 3591c75b692dd6c1
@@ -2264,10 +2271,11 @@
   rap: true
   rh: 0
   inputs: 0
-  x: 240
-  'y': 2560
+  x: 230
+  'y': 2540
   wires:
     - - 6e6da3a62b4c2160
+      - fd62fbe3c093228e
 - id: 6e6da3a62b4c2160
   type: switch
   z: ec75ad2cb670e9c0
@@ -2969,3 +2977,18 @@
   'y': 2930
   wires:
     - - c33f4def1ffb589e
+- id: fd62fbe3c093228e
+  type: debug
+  z: ec75ad2cb670e9c0
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 290
+  'y': 2500
+  wires: []

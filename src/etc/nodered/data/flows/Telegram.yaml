@@ -572,3 +572,17 @@
   'y': 400
   wires:
     - - 4240d9a910b2407b
+- id: 1185acefc1bc1038
+  type: inject
+  z: 5e1cd18d830e0a6b
+  name: ''
+  props: []
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  x: 110
+  'y': 620
+  wires:
+    - - 889dbcf330523ddd

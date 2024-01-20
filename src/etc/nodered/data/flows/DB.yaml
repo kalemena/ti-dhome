@@ -1099,6 +1099,8 @@
   qos: '2'
   datatype: json
   broker: c38452a5.4f84e8
+  nl: false
+  rap: false
   inputs: 0
   x: 120
   'y': 120
