@@ -1063,7 +1063,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "opendtu_Power{serial=\"$serial\", type=\"AC\"}",
+          "expr": "opendtu_Power{serial=\"$serial\", type=\"AC\"}[5m]",
           "hide": false,
           "instant": false,
           "legendFormat": "__auto",
@@ -1071,6 +1071,7 @@
           "refId": "A"
         }
       ],
+      "timeFrom": "300s",
       "title": "Power now",
       "type": "gauge"
     },
@@ -1352,7 +1353,7 @@
           "type": "math"
         }
       ],
-      "title": "Days RoI",
+      "title": "RoI",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -1759,7 +1760,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[1d] offset -1d))",
+          "expr": "sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[1d] offset -1d)) or vector(0)",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -1871,7 +1872,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval] offset -$bar_chart_interval))",
+          "expr": "sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)",
           "hide": false,
           "legendFormat": "Solar",
           "range": true,
@@ -1925,6 +1926,7 @@
             }
           },
           "mappings": [],
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1990,30 +1992,16 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(sensors_teleinfo_PAPP{}[$bar_chart_interval] offset -$bar_chart_interval)) - sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval] offset -$bar_chart_interval)) * 1000",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "Teleinfo (raw)",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[$bar_chart_interval] offset -$bar_chart_interval)) - sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval] offset -$bar_chart_interval)) * 1000",
+          "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)",
           "hide": false,
           "instant": false,
-          "legendFormat": "Diff",
+          "legendFormat": "Energy /h",
           "range": true,
           "refId": "B"
         }
       ],
       "timeFrom": "72h",
-      "title": "Conso - Solar",
+      "title": "Energy /h",
       "type": "barchart"
     },
     {
@@ -2073,7 +2061,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2178,7 +2167,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2311,7 +2301,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "purple"
+                    "color": "purple",
+                    "value": null
                   }
                 ]
               },
@@ -2407,7 +2398,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "semi-dark-orange",
@@ -2571,7 +2563,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "orange"
+                    "color": "orange",
+                    "value": null
                   }
                 ]
               },
@@ -2663,7 +2656,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2757,7 +2751,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2853,7 +2848,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "yellow"
+                    "color": "yellow",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -4099,6 +4095,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 22,
+  "version": 31,
   "weekStart": ""
 }
