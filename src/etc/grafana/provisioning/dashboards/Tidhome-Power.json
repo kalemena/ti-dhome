@@ -43,7 +43,7 @@
       },
       "id": 18,
       "panels": [],
-      "title": "Summary",
+      "title": "Now",
       "type": "row"
     },
     {
@@ -117,7 +117,7 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 4,
+        "w": 5,
         "x": 0,
         "y": 1
       },
@@ -269,9 +269,9 @@
         ]
       },
       "gridPos": {
-        "h": 5,
-        "w": 9,
-        "x": 4,
+        "h": 9,
+        "w": 7,
+        "x": 5,
         "y": 1
       },
       "id": 44,
@@ -384,12 +384,267 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Current Power on outlets",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [],
+          "max": 2500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 100
+              },
+              {
+                "color": "orange",
+                "value": 500
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 28,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"} @ now()",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "CurrentCost"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power{location=~\"P.+\"} @ now()",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "Zigbee Plugs"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_l2{location=\"C02~Garage~PowerMeter\"} @ now()",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "VMC",
+          "range": false,
+          "refId": "Zigbee Clamps"
+        }
+      ],
+      "title": "Outlets (W)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "P(.*)~(.*)~OnOff",
+            "renamePattern": "$2"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "description": "Current Total Power consumption",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [],
+          "max": 9000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 500
+              },
+              {
+                "color": "orange",
+                "value": 3000
+              },
+              {
+                "color": "red",
+                "value": 6000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 5,
+        "x": 0,
+        "y": 3
+      },
+      "id": 26,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_teleinfo_PAPP @ now()",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Total (teleinfo)",
+          "range": false,
+          "refId": "TotalTeleinfo"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_l1{location=\"C02~Garage~PowerMeter\"} @ now()",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Total (clamp)",
+          "range": false,
+          "refId": "TotalClamp"
+        }
+      ],
+      "title": "Total (W)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 121,
+      "panels": [],
+      "title": "Energy Overview",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
       "description": "",
       "gridPos": {
-        "h": 14,
-        "w": 11,
-        "x": 13,
-        "y": 1
+        "h": 17,
+        "w": 12,
+        "x": 0,
+        "y": 11
       },
       "id": 113,
       "options": {
@@ -586,12 +841,12 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays)",
+          "expr": "avg(sensors_zigbee_energy_l2{location=\"C02~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C02~Garage~PowerMeter\"} offset $nbDays))",
           "hide": false,
           "instant": true,
-          "legendFormat": "{{location}}",
+          "legendFormat": "VMC",
           "range": false,
-          "refId": "Plugs"
+          "refId": "VMC"
         },
         {
           "datasource": {
@@ -600,12 +855,26 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
+          "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $nbDays))\n+\navg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $nbDays))\n+\navg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $nbDays))\n+\n((avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $nbDays))) or vector(0))",
           "hide": true,
           "instant": true,
           "legendFormat": "TotalClamps",
           "range": false,
           "refId": "TotalClamps"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_energy{location=~\"P.*\"} - (sensors_zigbee_energy{location=~\"P.*\"} offset $nbDays)",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{location}}",
+          "range": false,
+          "refId": "Plugs"
         },
         {
           "datasource": {
@@ -641,218 +910,6 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "Current Total Power consumption",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "Live",
-              "url": "http://ioteleinfo.local/index.html"
-            }
-          ],
-          "mappings": [],
-          "max": 9000,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 500
-              },
-              {
-                "color": "orange",
-                "value": 3000
-              },
-              {
-                "color": "red",
-                "value": 6000
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 0,
-        "y": 3
-      },
-      "id": 26,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_teleinfo_PAPP @ now()",
-          "format": "time_series",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "B"
-        }
-      ],
-      "title": "Total (W)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "Current Power on outlets",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "Live",
-              "url": "http://ioteleinfo.local/index.html"
-            }
-          ],
-          "mappings": [],
-          "max": 2500,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 100
-              },
-              {
-                "color": "orange",
-                "value": 500
-              },
-              {
-                "color": "red",
-                "value": 1000
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 9,
-        "x": 4,
-        "y": 6
-      },
-      "id": 28,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"} @ now()",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "CurrentCost"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_zigbee_power{location=~\"P.+\"} @ now()",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "Zigbee Plugs"
-        }
-      ],
-      "title": "Outlets (W)",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "P(.*)~(.*)~OnOff",
-            "renamePattern": "$2"
-          }
-        }
-      ],
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
       "description": "Costs computed with Low/High hours energy prices",
       "fieldConfig": {
         "defaults": {
@@ -875,10 +932,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 17,
         "w": 4,
-        "x": 0,
-        "y": 8
+        "x": 12,
+        "y": 11
       },
       "id": 110,
       "options": {
@@ -1004,7 +1061,7 @@
           "refId": "2024"
         }
       ],
-      "title": "Cost (€)",
+      "title": "Cost (€) - Tempo",
       "transformations": [
         {
           "id": "calculateField",
@@ -1024,50 +1081,17 @@
       "type": "stat"
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 15
-      },
-      "id": 53,
-      "panels": [],
-      "repeat": "timelineRange",
-      "repeatDirection": "h",
-      "title": "Energy Timeline ${timelineRange} (kWh)",
-      "type": "row"
-    },
-    {
       "datasource": {
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Costs computed with Low/High hours energy prices",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-RdYlGr"
+            "mode": "thresholds"
           },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 59,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "dashed"
-            }
-          },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1075,57 +1099,36 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 300
-              },
-              {
-                "color": "red",
-                "value": 1000
               }
             ]
           },
-          "unit": "watth"
+          "unit": "currencyEUR"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 24,
-        "x": 0,
-        "y": 16
+        "h": 17,
+        "w": 4,
+        "x": 16,
+        "y": 11
       },
-      "id": 118,
-      "interval": "1h",
+      "id": 122,
       "options": {
-        "barRadius": 0.25,
-        "barWidth": 0.7,
-        "colorByField": "Value",
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
-            "max"
+            "lastNotNull"
           ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "fields": "",
+          "values": false
         },
-        "orientation": "auto",
-        "showValue": "always",
-        "stacking": "none",
-        "text": {
-          "valueSize": 9
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        },
-        "xTickLabelMaxLength": 10,
-        "xTickLabelRotation": -45,
-        "xTickLabelSpacing": -100
+        "text": {},
+        "textMode": "value_and_name"
       },
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "datasource": {
@@ -1134,383 +1137,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[1h] offset -1h)) or vector(0)",
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day1)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day1)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day1)) / 1000) * $kWhHP))",
           "hide": false,
           "instant": false,
-          "legendFormat": "Energy",
+          "interval": "",
+          "legendFormat": "$day1",
           "range": true,
-          "refId": "B"
-        }
-      ],
-      "timeFrom": "72h",
-      "title": "Energy /h",
-      "type": "barchart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "Energy Consumed hourly (kWh)",
-      "gridPos": {
-        "h": 10,
-        "w": 24,
-        "x": 0,
-        "y": 28
-      },
-      "id": 119,
-      "interval": "1h",
-      "options": {
-        "baidu": {
-          "callback": "bmapReady",
-          "key": ""
-        },
-        "editor": {
-          "format": "auto",
-          "height": 600
-        },
-        "gaode": {
-          "key": "",
-          "plugin": "AMap.Scale,AMap.ToolBar"
-        },
-        "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\nvar tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    }\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.25 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.22 / 1000) + (totalHP * 0.28 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
-        "google": {
-          "callback": "gmapReady",
-          "key": ""
-        },
-        "map": "none",
-        "renderer": "svg",
-        "themeEditor": {
-          "config": "{}",
-          "height": 400,
-          "name": "default"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Creuses",
-          "range": true,
-          "refId": "Teleinfo-BBRHPJB"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Pleines",
-          "range": true,
-          "refId": "Teleinfo-BBRHCJB"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Creuses",
-          "range": true,
-          "refId": "Teleinfo-BBRHPJW"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Pleines",
-          "range": true,
-          "refId": "Teleinfo-BBRHCJW"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Creuses",
-          "range": true,
-          "refId": "Teleinfo-BBRHPJR"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Pleines",
-          "range": true,
-          "refId": "Teleinfo-BBRHCJR"
-        }
-      ],
-      "timeFrom": "72h",
-      "title": "Total (1h)",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "greater",
-                  "options": {
-                    "value": 90000000
-                  }
-                },
-                "fieldName": "Total"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
-          }
-        }
-      ],
-      "transparent": true,
-      "type": "volkovlabs-echarts-panel"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "Energy Consumed daily (kWh)",
-      "gridPos": {
-        "h": 10,
-        "w": 24,
-        "x": 0,
-        "y": 38
-      },
-      "id": 106,
-      "interval": "${timelineRange}",
-      "options": {
-        "baidu": {
-          "callback": "bmapReady",
-          "key": ""
-        },
-        "editor": {
-          "format": "auto",
-          "height": 600
-        },
-        "gaode": {
-          "key": "",
-          "plugin": "AMap.Scale,AMap.ToolBar"
-        },
-        "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\nvar tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    }\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.25 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.22 / 1000) + (totalHP * 0.28 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
-        "google": {
-          "callback": "gmapReady",
-          "key": ""
-        },
-        "map": "none",
-        "renderer": "svg",
-        "themeEditor": {
-          "config": "{}",
-          "height": 400,
-          "name": "default"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Creuses",
-          "range": true,
-          "refId": "Teleinfo-BBRHPJB"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Pleines",
-          "range": true,
-          "refId": "Teleinfo-BBRHCJB"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Creuses",
-          "range": true,
-          "refId": "Teleinfo-BBRHPJW"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Pleines",
-          "range": true,
-          "refId": "Teleinfo-BBRHCJW"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Creuses",
-          "range": true,
-          "refId": "Teleinfo-BBRHPJR"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
-          "hide": false,
-          "legendFormat": "Heures Pleines",
-          "range": true,
-          "refId": "Teleinfo-BBRHCJR"
-        }
-      ],
-      "title": "Total (${timelineTotal})",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "greater",
-                  "options": {
-                    "value": 90000000
-                  }
-                },
-                "fieldName": "Total"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
-          }
-        }
-      ],
-      "transparent": true,
-      "type": "volkovlabs-echarts-panel"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "Clamps consumption. \nThis does not take cost period into account.",
-      "gridPos": {
-        "h": 14,
-        "w": 24,
-        "x": 0,
-        "y": 48
-      },
-      "id": 107,
-      "interval": "${timelineRange}",
-      "options": {
-        "baidu": {
-          "callback": "bmapReady",
-          "key": ""
-        },
-        "editor": {
-          "format": "auto",
-          "height": 600
-        },
-        "gaode": {
-          "key": "",
-          "plugin": "AMap.Scale,AMap.ToolBar"
-        },
-        "getOption": "const series = data.series.map((s) => {\n\n  // console.log(s)\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  /*sTime = sTime.map(function (x) { \n    const tempDate = new Date(x);\n    return tempDate.getUTCDate();\n  });*/\n\n  var tooltipCallback = (args) => {\n    // console.log(args)\n    let date = new Date(parseInt(args.data[0]))\n    return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n  }\n\n  return {\n    name: s.refId.includes(\"Plugs\") ? s.name.replace(/P(.*)~(.*)~OnOff/, '$2') : s.refId,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    /*tooltip: {\n      trigger: 'item',\n      // formater: tooltipCallback\n    },*/\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n      \n      return \"                 \" + (total / 1000).toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = data.series.map((s) => {\n  if (s.refId.includes(\"Plugs\")) {\n    return s.name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  } else {\n    return s.refId\n  }\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n    // formater: tooltipCallback\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 90,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
-        "google": {
-          "callback": "gmapReady",
-          "key": ""
-        },
-        "map": "none",
-        "renderer": "canvas",
-        "themeEditor": {
-          "config": "{}",
-          "height": 400,
-          "name": "default"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
-          "hide": true,
-          "legendFormat": "Car+Water+Heating",
-          "range": true,
-          "refId": "Car+Water+Heating"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
-          "hide": false,
-          "legendFormat": "1-Car Charging",
-          "range": true,
-          "refId": "1-Car Charging"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
-          "hide": false,
-          "legendFormat": "2-Water Heater",
-          "range": true,
-          "refId": "2-Water Heater"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
-          "hide": false,
-          "legendFormat": "3-Heaters",
-          "range": true,
-          "refId": "3-Heaters"
+          "refId": "1 day"
         },
         {
           "datasource": {
@@ -1519,45 +1152,283 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhHP))",
           "hide": false,
-          "instant": true,
-          "legendFormat": "{{location}}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day7",
           "range": true,
-          "refId": "Plugs"
+          "refId": "7 days"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day30)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day30)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day30)) / 1000) * $kWhHP))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day30",
+          "range": true,
+          "refId": "30d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhHP))",
+          "hide": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day60",
+          "range": true,
+          "refId": "60d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_HCHP{} @end() offset $day365)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhHP))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day365",
+          "range": true,
+          "refId": "365 days"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1672552800)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhHP))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "2023",
+          "range": true,
+          "refId": "2023"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1704067200)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1704067200)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1704067200)) / 1000) * $kWhHP))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "2024",
+          "range": true,
+          "refId": "2024"
         }
       ],
-      "title": "Clamps (kWh)",
+      "title": "Cost (€) - HP/HC",
       "transformations": [
         {
-          "id": "filterByValue",
+          "id": "calculateField",
           "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "greater",
-                  "options": {
-                    "value": 90000000
-                  }
-                },
-                "fieldName": "Total"
-              },
-              {
-                "config": {
-                  "id": "greater",
-                  "options": {
-                    "value": 20
-                  }
-                },
-                "fieldName": "Car+Water+Heating"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
           }
         }
       ],
-      "type": "volkovlabs-echarts-panel"
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "description": "Costs computed with Low/High hours energy prices",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyEUR"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 4,
+        "x": 20,
+        "y": 11
+      },
+      "id": 123,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day1)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day1)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day1)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day1)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day1)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day1)) / 1000) * $kWhBase))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day1",
+          "range": true,
+          "refId": "1 day"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhBase))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day7",
+          "range": true,
+          "refId": "7 days"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day30)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day30)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day30)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day30)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day30)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day30)) / 1000) * $kWhBase))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day30",
+          "range": true,
+          "refId": "30d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhBase))",
+          "hide": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day60",
+          "range": true,
+          "refId": "60d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_HCHC{} @end() offset $day365)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_HCHP{} @end() offset $day365)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhBase))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "$day365",
+          "range": true,
+          "refId": "365 days"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1672552800)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1672552800)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhBase))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "2023",
+          "range": true,
+          "refId": "2023"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1704067200)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1704067200)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1704067200)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1704067200)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1704067200)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1704067200)) / 1000) * $kWhBase))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "2024",
+          "range": true,
+          "refId": "2024"
+        }
+      ],
+      "title": "Cost (€) - Base",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "stat"
     },
     {
       "collapsed": true,
@@ -1565,7 +1436,558 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 62
+        "y": 28
+      },
+      "id": 53,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-RdYlGr"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "fillOpacity": 59,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 2,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "thresholdsStyle": {
+                  "mode": "dashed"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "orange",
+                    "value": 300
+                  },
+                  {
+                    "color": "red",
+                    "value": 1000
+                  }
+                ]
+              },
+              "unit": "watth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 12
+          },
+          "id": 118,
+          "interval": "1h",
+          "options": {
+            "barRadius": 0.25,
+            "barWidth": 0.7,
+            "colorByField": "Value",
+            "fullHighlight": false,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "orientation": "auto",
+            "showValue": "always",
+            "stacking": "none",
+            "text": {
+              "valueSize": 9
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            },
+            "xTickLabelMaxLength": 10,
+            "xTickLabelRotation": -45,
+            "xTickLabelSpacing": -100
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[1h] offset -1h)) or vector(0)",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "Energy",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "timeFrom": "72h",
+          "title": "Energy /h",
+          "type": "barchart"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "description": "Energy Consumed hourly (kWh)",
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 24
+          },
+          "id": 119,
+          "interval": "1h",
+          "options": {
+            "baidu": {
+              "callback": "bmapReady",
+              "key": ""
+            },
+            "editor": {
+              "format": "auto",
+              "height": 600
+            },
+            "gaode": {
+              "key": "",
+              "plugin": "AMap.Scale,AMap.ToolBar"
+            },
+            "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\nvar tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    }\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.25 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.22 / 1000) + (totalHP * 0.28 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "google": {
+              "callback": "gmapReady",
+              "key": ""
+            },
+            "map": "none",
+            "renderer": "svg",
+            "themeEditor": {
+              "config": "{}",
+              "height": 400,
+              "name": "default"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Creuses",
+              "range": true,
+              "refId": "Teleinfo-BBRHPJB"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "Teleinfo-BBRHCJB"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Creuses",
+              "range": true,
+              "refId": "Teleinfo-BBRHPJW"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "Teleinfo-BBRHCJW"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Creuses",
+              "range": true,
+              "refId": "Teleinfo-BBRHPJR"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "Teleinfo-BBRHCJR"
+            }
+          ],
+          "timeFrom": "72h",
+          "title": "Total (1h)",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 90000000
+                      }
+                    },
+                    "fieldName": "Total"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "transparent": true,
+          "type": "volkovlabs-echarts-panel"
+        }
+      ],
+      "repeat": "timelineRange",
+      "repeatDirection": "h",
+      "title": "Energy Timeline 72h (kWh)",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 125,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "description": "Energy Consumed daily (kWh)",
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 35
+          },
+          "id": 106,
+          "interval": "${timelineRange}",
+          "options": {
+            "baidu": {
+              "callback": "bmapReady",
+              "key": ""
+            },
+            "editor": {
+              "format": "auto",
+              "height": 600
+            },
+            "gaode": {
+              "key": "",
+              "plugin": "AMap.Scale,AMap.ToolBar"
+            },
+            "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\nvar tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    }\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.25 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.22 / 1000) + (totalHP * 0.28 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "google": {
+              "callback": "gmapReady",
+              "key": ""
+            },
+            "map": "none",
+            "renderer": "svg",
+            "themeEditor": {
+              "config": "{}",
+              "height": 400,
+              "name": "default"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Creuses",
+              "range": true,
+              "refId": "Teleinfo-BBRHPJB"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "Teleinfo-BBRHCJB"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Creuses",
+              "range": true,
+              "refId": "Teleinfo-BBRHPJW"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "Teleinfo-BBRHCJW"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Creuses",
+              "range": true,
+              "refId": "Teleinfo-BBRHPJR"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+              "hide": false,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "Teleinfo-BBRHCJR"
+            }
+          ],
+          "title": "Total (${timelineTotal})",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 90000000
+                      }
+                    },
+                    "fieldName": "Total"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "transparent": true,
+          "type": "volkovlabs-echarts-panel"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "description": "Clamps consumption. \nThis does not take cost period into account.",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 45
+          },
+          "id": 107,
+          "interval": "${timelineRange}",
+          "options": {
+            "baidu": {
+              "callback": "bmapReady",
+              "key": ""
+            },
+            "editor": {
+              "format": "auto",
+              "height": 600
+            },
+            "gaode": {
+              "key": "",
+              "plugin": "AMap.Scale,AMap.ToolBar"
+            },
+            "getOption": "const series = data.series.map((s) => {\n\n  // console.log(s)\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  /*sTime = sTime.map(function (x) { \n    const tempDate = new Date(x);\n    return tempDate.getUTCDate();\n  });*/\n\n  var tooltipCallback = (args) => {\n    // console.log(args)\n    let date = new Date(parseInt(args.data[0]))\n    return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n  }\n\n  return {\n    name: s.refId.includes(\"Plugs\") ? s.name.replace(/P(.*)~(.*)~OnOff/, '$2') : s.refId,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    /*tooltip: {\n      trigger: 'item',\n      // formater: tooltipCallback\n    },*/\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n      \n      return \"                 \" + (total / 1000).toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = data.series.map((s) => {\n  if (s.refId.includes(\"Plugs\")) {\n    return s.name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  } else {\n    return s.refId\n  }\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n    // formater: tooltipCallback\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 90,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "google": {
+              "callback": "gmapReady",
+              "key": ""
+            },
+            "map": "none",
+            "renderer": "canvas",
+            "themeEditor": {
+              "config": "{}",
+              "height": 400,
+              "name": "default"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+              "hide": true,
+              "legendFormat": "Car+Water+Heating",
+              "range": true,
+              "refId": "Car+Water+Heating"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+              "hide": false,
+              "legendFormat": "1-Car Charging",
+              "range": true,
+              "refId": "1-Car Charging"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+              "hide": false,
+              "legendFormat": "2-Water Heater",
+              "range": true,
+              "refId": "2-Water Heater"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+              "hide": false,
+              "legendFormat": "3-Heaters",
+              "range": true,
+              "refId": "3-Heaters"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+              "hide": false,
+              "instant": true,
+              "legendFormat": "{{location}}",
+              "range": true,
+              "refId": "Plugs"
+            }
+          ],
+          "title": "Clamps (kWh)",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 90000000
+                      }
+                    },
+                    "fieldName": "Total"
+                  },
+                  {
+                    "config": {
+                      "id": "greater",
+                      "options": {
+                        "value": 20
+                      }
+                    },
+                    "fieldName": "Car+Water+Heating"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "type": "volkovlabs-echarts-panel"
+        }
+      ],
+      "title": "Energy Timeline (Days)",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 30
       },
       "id": 23,
       "panels": [
@@ -1656,7 +2078,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 53
+            "y": 84
           },
           "id": 29,
           "interval": "1m",
@@ -1832,7 +2254,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 53
+            "y": 84
           },
           "id": 25,
           "options": {
@@ -1892,7 +2314,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 63
+        "y": 31
       },
       "id": 115,
       "panels": [
@@ -1964,7 +2386,7 @@
             "h": 9,
             "w": 3,
             "x": 0,
-            "y": 51
+            "y": 85
           },
           "id": 30,
           "options": {
@@ -2076,7 +2498,7 @@
             "h": 9,
             "w": 3,
             "x": 3,
-            "y": 51
+            "y": 85
           },
           "id": 51,
           "options": {
@@ -2220,7 +2642,7 @@
             "h": 9,
             "w": 18,
             "x": 6,
-            "y": 51
+            "y": 85
           },
           "id": 116,
           "options": {
@@ -2485,7 +2907,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 60
+            "y": 94
           },
           "id": 112,
           "options": {
@@ -2893,8 +3315,8 @@
       {
         "current": {
           "selected": true,
-          "text": "180d",
-          "value": "180d"
+          "text": "30d",
+          "value": "30d"
         },
         "hide": 0,
         "includeAll": false,
@@ -2918,7 +3340,7 @@
             "value": "15d"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "30d",
             "value": "30d"
           },
@@ -2933,7 +3355,7 @@
             "value": "90d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "180d",
             "value": "180d"
           },
@@ -3078,6 +3500,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 42,
+  "version": 59,
   "weekStart": "monday"
 }
