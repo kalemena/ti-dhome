@@ -1332,7 +1332,7 @@
             "h": 12,
             "w": 24,
             "x": 0,
-            "y": 29
+            "y": 27
           },
           "id": 118,
           "interval": "1h",
@@ -1377,7 +1377,129 @@
               "instant": false,
               "legendFormat": "Energy",
               "range": true,
-              "refId": "B"
+              "refId": "teleinfo"
+            }
+          ],
+          "timeFrom": "72h",
+          "title": "Energy /h",
+          "type": "barchart"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-RdYlGr"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "fillOpacity": 59,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 2,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "thresholdsStyle": {
+                  "mode": "dashed"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "orange",
+                    "value": 300
+                  },
+                  {
+                    "color": "red",
+                    "value": 1000
+                  }
+                ]
+              },
+              "unit": "watth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 39
+          },
+          "id": 127,
+          "interval": "1h",
+          "options": {
+            "barRadius": 0.25,
+            "barWidth": 0.7,
+            "colorByField": "Value",
+            "fullHighlight": false,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "orientation": "auto",
+            "showValue": "always",
+            "stacking": "none",
+            "text": {
+              "valueSize": 9
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            },
+            "xTickLabelMaxLength": 10,
+            "xTickLabelRotation": -45,
+            "xTickLabelSpacing": -100
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sum(increase(sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h] offset -1h)) or vector(0)) * 1000",
+              "hide": true,
+              "instant": false,
+              "legendFormat": "Energy",
+              "range": true,
+              "refId": "Total (Wh)"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(( (sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h] offset -1h) or vector(0)) - sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h]) * 1000",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "Energy",
+              "range": true,
+              "refId": "A"
             }
           ],
           "timeFrom": "72h",
@@ -1394,7 +1516,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 41
+            "y": 51
           },
           "id": 119,
           "interval": "1h",
@@ -1530,25 +1652,12 @@
       "type": "row"
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 36
-      },
-      "id": 125,
-      "panels": [],
-      "title": "Energy Timeline (Days)",
-      "type": "row"
-    },
-    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 36
       },
       "id": 23,
       "panels": [
@@ -1640,7 +1749,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 31
+            "y": 4
           },
           "id": 29,
           "interval": "1m",
@@ -1829,7 +1938,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 31
+            "y": 4
           },
           "id": 25,
           "options": {
@@ -1889,7 +1998,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 37
       },
       "id": 115,
       "panels": [
@@ -1923,7 +2032,7 @@
             "h": 17,
             "w": 4,
             "x": 0,
-            "y": 39
+            "y": 63
           },
           "id": 110,
           "options": {
@@ -2098,7 +2207,7 @@
             "h": 17,
             "w": 4,
             "x": 4,
-            "y": 39
+            "y": 63
           },
           "id": 122,
           "options": {
@@ -2273,7 +2382,7 @@
             "h": 17,
             "w": 4,
             "x": 8,
-            "y": 39
+            "y": 63
           },
           "id": 123,
           "options": {
@@ -2487,7 +2596,7 @@
             "h": 9,
             "w": 3,
             "x": 0,
-            "y": 56
+            "y": 80
           },
           "id": 30,
           "options": {
@@ -2602,7 +2711,7 @@
             "h": 9,
             "w": 18,
             "x": 6,
-            "y": 56
+            "y": 80
           },
           "id": 116,
           "options": {
@@ -2868,7 +2977,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 65
+            "y": 89
           },
           "id": 112,
           "options": {
@@ -3275,7 +3384,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "30d",
           "value": "30d"
         },
@@ -3367,7 +3476,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "1d",
           "value": "1d"
         },
@@ -3392,6 +3501,11 @@
             "selected": false,
             "text": "1w",
             "value": "1w"
+          },
+          {
+            "selected": false,
+            "text": "1M",
+            "value": "1M"
           }
         ],
         "query": "1h,1d,1w",
@@ -3401,9 +3515,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "tempo",
-          "value": "tempo"
+          "selected": false,
+          "text": "kWh",
+          "value": "kWh"
         },
         "description": "Base, Blue or Tempo",
         "hide": 0,
@@ -3413,12 +3527,12 @@
         "name": "timelineTotal",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "kWh",
             "value": "kWh"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "tempo",
             "value": "tempo"
           },
@@ -3461,6 +3575,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 68,
+  "version": 75,
   "weekStart": "monday"
 }
