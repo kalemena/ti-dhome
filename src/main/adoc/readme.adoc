@@ -7,10 +7,12 @@ endif::[]
 = Ti-DHome
 
 This is a Home automation project. +
-Pronounced "Ti d'Homme" stands for *little man* in French, or as short for *petite domotique*. +
+Pronounced "Ti d'Homme" in French, is short for *petite domotique*. +
 This GIT project is a hat project with a set of sub-projects enabling Home Automation.
 
 This project tries to offer a lot of flexibility in intergrating heterogeneous systems, while remaining simple: KISS (Keep It Simple Stupid).
+
+Standard principles similar to IFTTT (If This Then That) can be applied, although architecture allows more flexible interoperability, yet simple-enough to understand and adapt to customized use-cases.
 
 image:schema-architecture.png[Overview]
 
@@ -21,18 +23,27 @@ Sensors (DIY or proprietary) are sending room temperatures, motion or doors stat
 A small and flexible Node-Red workflow allows to orchestrate heaters based on simple rules around sensors values and/or schedule and/or external weather.
 ====
 
+.Example Usage
+[TIP]
+====
+Sensors (DIY or proprietary) are sending power and energy consumption. +
+
+Grafana allows to analyze and take next best improvements actions.
+This is possible to enable Solar routers, etc
+====
+
 == Design
 
 === Principle
 
 The source and explanation in this repository are following few principles:
 
-* Avoid complex monolithic framework used here and there in automation
-* Avoid using proprietary gateways named *boxes* such as any IKEA, Xiaomi, Amazon Echo, Leroy Merlin, etc
+* Avoid monolithic home automation frameworks
+* Avoid using proprietary gateways named *boxes* such as any IKEA, Xiaomi, Amazon Echo, Leroy Merlin, Philips, Lidl, etc
 * Use (or re-use) available technology, avoid deprecation, but stay open to new technology
-* Client(s)/server(s) plugs together using *ANY* progamming language by leveraging message queues (MQTT) when necessary
-* DIY sensors or Web devices are using simple arduino sketches
-* Each element (e.g. Timeseries datastore) can be any, or multiple, and are interchangeable
+* Client(s)/server(s) plugs together using *any* progamming language by leveraging message queues (MQTT) when necessary
+* DIY sensors or Web devices are using simple arduino sketches (Arduino, ESP8266, ESP32, etc)
+* Each element (e.g. Timeseries datastore) can be any, or multiple, and are interchangeable and migration-friendly
 * Deploy as much as possible with automation in mind, using link:https://www.docker.com/[Docker]
 
 === Architecture
@@ -50,7 +61,7 @@ In turns, this simplistic approach allows very flexible and powerful Home Automa
 
 Hardware used for sensors/actors:
 
-* Fanless low-consumption servers (e.g. Core i3 with SSD, or RaspberryPi)
+* Fanless low-consumption servers (e.g. Core i3 with SSD, or RaspberryPi, ODroid-M1S)
 * link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR] to measure 230v main + 9 plugs
 * link:http://www.rfxcom.com/[RFXtrx433] to record Weather Station measures, trigger Window motor openers, or monitor alarm
 * link:https://aeotec.com/z-wave-usb-stick/[ZWave] or link:https://phoscon.de/en/conbee2[ZigBee] USB sticks as gateways (with minimal footprint) to proprietary devices
