@@ -70,30 +70,33 @@ Hardware used for sensors/actors:
 * link:https://kalemena.github.io/iot-tools/#sensors_teleinfo[Téléinfo (Electric French Main power counters)]
 * Few cheap components
 
-=== Dashboard
+=== Dashboards
 
-TIP: A simple Dashboard using Grafana and Victoria Metrics as storage.
+[TIP]
+====
+The project allows creation of simple Dashboards using Grafana and thanks to Victoria Metrics as timeseries database.
+====
 
-
-.Overview
+.Power Overview
 image:dashboard-power-overview.png[Dashboard Power - overview,1024]
 
-* Summary :
+* Now:
 ** *Periode* : Power cost period. "Heures Pleines" or "Heures Creuses" stands for high/low cost hours
-** *Total (W)* : Power level at the moment
-** *Costs (€)* : Computed costs, taking Low/High hours prices into account
+** *Total (VA)* : Power level from Téléinfo (EDF)
+** *Total (W)* : Power level from clamp
 ** *Consumers* : Clamp meters on various elements (Zigbee clamps onto electric car, water heater, heaters)
 ** *Outlets* : Wall plugs (CurrentCost or Zigbee plugs)
+
+* Energy Overview:
 ** *X days* : Energy consumption (in kWh, percent, or € cost), for the selected period (1d,7d,30d,etc), and by categories
+** *Total (tempo,hphc,base,kWh)* : Energy consummed by hour, or day, or week slots and for each of the 6 *Periode* costs (EDF provider contract)
+** *Clamps (kWh)* : Energy consumed by devices, in kWh
 
-* Energy Timeline Xd (kWh or € cost):
-** *Bars* : Energy consummed by hour, day, or week slots and for each of the 6 *Periode* costs (EDF provider contract)
-** *Total* : At top of each bar, total as kWh, or € cost
+.Energy Timelines
+image:dashboard-power-hours.png[Dashboard Power - hours,1024]
 
-* Clamps Timeline Xd (kWh or € cost):
-** *Bars* : Energy consummed by hour, day, or week slots and for each of the 6 *Periode* costs (EDF provider contract)
-** *Total* : At top of each bar, total as kWh, or € cost
-
+* *Total from grid* : Energy consumed (in Wh, percent, or € cost)
+* *Clamps (Wh)*: Energy consumed by devices, in Wh
 
 image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
 image:dashboard-system-1.png[Dashboard System,320,240]
