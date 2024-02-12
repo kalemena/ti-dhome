@@ -587,7 +587,7 @@
           "refId": "TotalTeleinfo"
         }
       ],
-      "title": "Total (VA)",
+      "title": "Total (VA - teleinfo)",
       "transformations": [
         {
           "id": "calculateField",
@@ -680,7 +680,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_power_l1{location=\"C02~Garage~PowerMeter\"} @ now()",
+          "expr": "-(sensors_zigbee_power_l1{location=\"C02~Garage~PowerMeter\"} @ now())",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -689,7 +689,7 @@
           "refId": "TotalClamp"
         }
       ],
-      "title": "Total (W)",
+      "title": "Total (W - clamp)",
       "transformations": [
         {
           "id": "calculateField",
@@ -1848,9 +1848,9 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h)) or vector(0)",
               "hide": false,
-              "legendFormat": "Heures Creuses",
+              "legendFormat": "HPJB",
               "range": true,
               "refId": "Teleinfo-BBRHPJB"
             },
@@ -1860,9 +1860,9 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h)) or vector(0)",
               "hide": false,
-              "legendFormat": "Heures Pleines",
+              "legendFormat": "HCJB",
               "range": true,
               "refId": "Teleinfo-BBRHCJB"
             },
@@ -1872,9 +1872,9 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h)) or vector(0)",
               "hide": false,
-              "legendFormat": "Heures Creuses",
+              "legendFormat": "HPJW",
               "range": true,
               "refId": "Teleinfo-BBRHPJW"
             },
@@ -1884,9 +1884,9 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h)) or vector(0)",
               "hide": false,
-              "legendFormat": "Heures Pleines",
+              "legendFormat": "HCJW",
               "range": true,
               "refId": "Teleinfo-BBRHCJW"
             },
@@ -1896,9 +1896,9 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h)) or vector(0)",
               "hide": false,
-              "legendFormat": "Heures Creuses",
+              "legendFormat": "HPJR",
               "range": true,
               "refId": "Teleinfo-BBRHPJR"
             },
@@ -1908,11 +1908,23 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h) offset -1h) or vector(0)",
+              "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h)) or vector(0)",
               "hide": false,
-              "legendFormat": "Heures Pleines",
+              "legendFormat": "HCJR",
               "range": true,
               "refId": "Teleinfo-BBRHCJR"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((increase(sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h]) offset -1h)) or vector(0)",
+              "hide": true,
+              "legendFormat": "Heures Pleines",
+              "range": true,
+              "refId": "ClampToGrid"
             }
           ],
           "timeFrom": "144h",
@@ -2273,8 +2285,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2542,8 +2553,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2664,8 +2674,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2817,8 +2826,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3084,8 +3092,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3634,7 +3641,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "kWh",
           "value": "kWh"
         },
@@ -3694,6 +3701,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 94,
+  "version": 99,
   "weekStart": "monday"
 }
