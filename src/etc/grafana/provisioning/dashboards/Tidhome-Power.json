@@ -1979,7 +1979,7 @@
               "key": "",
               "plugin": "AMap.Scale,AMap.ToolBar"
             },
-            "getOption": "const series = data.series.map((s) => {\n\n  // console.log(s)\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  /*sTime = sTime.map(function (x) { \n    const tempDate = new Date(x);\n    return tempDate.getUTCDate();\n  });*/\n\n  var tooltipCallback = (args) => {\n    // console.log(args)\n    let date = new Date(parseInt(args.data[0]))\n    return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n  }\n\n  return {\n    name: s.refId.includes(\"Plugs\") ? s.name.replace(/P(.*)~(.*)~OnOff/, '$2') : s.refId,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    },\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n\n      return \"                 \" + total.toFixed(0) + \" Wh\";\n    }\n  }\n}\n\nconst legend = data.series.map((s) => {\n  if (s.refId.includes(\"Plugs\")) {\n    return s.name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  } else {\n    return s.refId\n  }\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n    // formater: tooltipCallback\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + d.toFixed(0) + \" Wh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "getOption": "const series = data.series.map((s) => {\n\n  // console.log(s)\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  /*sTime = sTime.map(function (x) { \n    const tempDate = new Date(x);\n    return tempDate.getUTCDate();\n  });*/\n\n  var tooltipCallback = (args) => {\n    // console.log(args)\n    let date = new Date(parseInt(args.data[0]))\n    return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1]).toFixed(2) + ' Wh';\n  }\n\n  return {\n    name: s.refId.includes(\"Plugs\") ? s.name.replace(/P(.*)~(.*)~OnOff/, '$2') : s.refId,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    },\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n\n      return \"                 \" + total.toFixed(0) + \" Wh\";\n    }\n  }\n}\n\nconst legend = data.series.map((s) => {\n  if (s.refId.includes(\"Plugs\")) {\n    return s.name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  } else {\n    return s.refId\n  }\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n    // formater: tooltipCallback\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + d.toFixed(0) + \" Wh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
             "google": {
               "callback": "gmapReady",
               "key": ""
@@ -2226,7 +2226,7 @@
       ],
       "repeat": "timelineRange",
       "repeatDirection": "h",
-      "title": "Energy Timeline 72h (kWh)",
+      "title": "Energy Timeline 144h (kWh)",
       "type": "row"
     },
     {
@@ -2242,7 +2242,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "VictoriaMetrics"
+            "uid": "P4169E866C3094E38"
           },
           "fieldConfig": {
             "defaults": {
@@ -2285,7 +2285,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2380,10 +2381,10 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 72
           },
           "id": 29,
-          "interval": "1m",
+          "interval": "5m",
           "options": {
             "legend": {
               "calcs": [
@@ -2503,7 +2504,7 @@
               "refId": "Teleinfo (raw)"
             }
           ],
-          "timeFrom": "72h",
+          "timeFrom": "144h",
           "title": "Clamps (W)",
           "type": "timeseries"
         },
@@ -2553,7 +2554,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2594,7 +2596,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 72
           },
           "id": 25,
           "options": {
@@ -2674,7 +2676,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2727,7 +2730,7 @@
             "h": 17,
             "w": 3,
             "x": 0,
-            "y": 38
+            "y": 73
           },
           "id": 30,
           "options": {
@@ -2826,7 +2829,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2842,7 +2846,7 @@
             "h": 17,
             "w": 12,
             "x": 3,
-            "y": 38
+            "y": 73
           },
           "id": 116,
           "options": {
@@ -3092,7 +3096,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3108,7 +3113,7 @@
             "h": 17,
             "w": 9,
             "x": 15,
-            "y": 38
+            "y": 73
           },
           "id": 112,
           "options": {
@@ -3515,9 +3520,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "180d",
-          "value": "180d"
+          "selected": true,
+          "text": "300d",
+          "value": "300d"
         },
         "hide": 0,
         "includeAll": false,
@@ -3537,11 +3542,6 @@
           },
           {
             "selected": false,
-            "text": "15d",
-            "value": "15d"
-          },
-          {
-            "selected": false,
             "text": "30d",
             "value": "30d"
           },
@@ -3556,9 +3556,14 @@
             "value": "90d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "180d",
             "value": "180d"
+          },
+          {
+            "selected": true,
+            "text": "300d",
+            "value": "300d"
           },
           {
             "selected": false,
@@ -3566,7 +3571,7 @@
             "value": "365d"
           }
         ],
-        "query": "1d,7d,15d,30d,60d,90d,180d,365d",
+        "query": "1d,7d,30d,60d,90d,180d,300d,365d",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -3701,6 +3706,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 99,
+  "version": 108,
   "weekStart": "monday"
 }
