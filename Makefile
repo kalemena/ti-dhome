@@ -3,13 +3,16 @@ WORKSPACE := $(PWD)
 SHELL := /bin/bash
 DATE := $(date '+%Y-%m-%d')
 
-.PHONY: backup
+.PHONY: build backup
 
 all: 
 
 ##########################
 # Manage Environment
 ##########################
+
+init:
+	cd src && $(MAKE) init
 
 build:
 	cd src && docker-compose build
