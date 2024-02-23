@@ -15,22 +15,22 @@ init:
 	cd src && $(MAKE) init
 
 build:
-	cd src && docker-compose build
+	cd src && docker compose build
 
 start: 
-	cd src && docker-compose up -d
+	cd src && docker compose up -d
 
 logs:
-	cd src && docker-compose logs -f
+	cd src && docker compose logs -f
 
 stop:
-	cd src && docker-compose stop
+	cd src && docker compose stop
 
 down:
-	cd src && docker-compose down
+	cd src && docker compose down
 
 clean:
-	cd src && docker-compose down --volumes
+	cd src && docker compose down --volumes
 
 backup:
 	date
