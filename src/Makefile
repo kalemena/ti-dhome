@@ -6,7 +6,7 @@ init: init-env init-config init-images init-telegraf init-grafana
 
 init-env:
 	echo "Initialize: Folders ..."
-	cp .env-example src/.env
+	cp .env-example .env
 
 init-config:
 	echo "Initialize: Configuration Defaults ..."
