@@ -14,7 +14,7 @@ init-config:
 
 init-images:
 	echo "Initialize: Pull Images ..."
-	docker-compose pull
+	docker compose pull
 
 init-defaults:
 	echo "Initialize: Get default config for grafana, etc ..."

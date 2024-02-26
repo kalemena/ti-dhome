@@ -5,6 +5,7 @@ networks:
 volumes:
   victoria-metrics-data:
   grafana-data:
+  ha-config:
 
 services:
 
