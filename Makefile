@@ -17,7 +17,7 @@ init:
 build:
 	cd src && docker compose build
 
-start: 
+up: 
 	cd src && docker compose up -d
 
 logs:

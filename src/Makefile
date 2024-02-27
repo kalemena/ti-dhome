@@ -2,32 +2,22 @@
 # Initialize Environment
 ##########################
 
-init: init-env init-config init-images init-telegraf init-grafana
+init: init-config init-images
 
-init-env:
+init-config:
 	echo "Initialize: Folders ..."
 	cp .env-example .env
 
-init-config:
 	echo "Initialize: Configuration Defaults ..."
 	cp etc/tidhome/ti-dhome.yaml.example etc/tidhome/ti-dhome.yaml
+	
+	echo "Initialize: Telegraf ..."
+	mkdir -p etc/telegraf
+	docker run --rm telegraf telegraf config | tee etc/telegraf/telegraf-default.conf > /dev/null
+	cp -n etc/telegraf/telegraf-default.conf etc/telegraf/telegraf.conf
 
 init-images:
 	echo "Initialize: Pull Images ..."
 	docker compose pull
+	docker compose build nodered
 
-init-defaults:
-	echo "Initialize: Get default config for grafana, etc ..."
-	mkdir -p etc/telegraf
-	docker run --rm telegraf telegraf config | tee etc/telegraf/telegraf-default.conf > /dev/null
-
-init-telegraf: init-defaults
-	echo "Initialize: Setup Telegraf ..."
-	# For information only
-	mkdir -p etc/telegraf
-	cp -n etc/telegraf/telegraf-default.conf etc/telegraf/telegraf.conf
-
-init-grafana: init-defaults
-	echo "Initialize: Setup Grafana ..."
-	# mkdir -p var/lib/grafana
-	# mkdir -p var/log/grafana
