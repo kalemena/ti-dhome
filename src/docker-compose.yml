@@ -50,8 +50,10 @@ services:
       # - "--storageDataPath=/storage"
       - "--promscrape.config=/etc/victoria-metrics/prometheus.yml"
       - "--promscrape.config.strictParse=false"
+    extra_hosts:
+      opendtu: ${IOT_OPENDTU_IP}
 
-  noderedo:
+  nodered:
     build: 
       context: .
       dockerfile: Dockerfile.official
@@ -73,6 +75,8 @@ services:
       default:
         aliases:
           - nodered.tidhome.local
+    extra_hosts:
+      ioteleinfo.local: ${IOT_WEBRELAY_IP}
 
   telegraf:
     image: telegraf
@@ -145,3 +149,5 @@ services:
      - ./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
      - ./usr/share/nginx/html:/usr/share/nginx/html
      # - /var/log/nginx:/var/log/nginx
+    extra_hosts:
+      ioteleinfo.local: ${IOT_WEBRELAY_IP}
