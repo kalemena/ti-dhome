@@ -79,11 +79,11 @@ services:
       ioteleinfo.local: ${IOT_WEBRELAY_IP}
 
   telegraf:
-    image: telegraf
+    image: telegraf:1.30.0
     # network_mode: host
     hostname: telegraf
     restart: always
-    user: telegraf:998
+    user: ${TELEGRAF_USER}
     volumes:
       - ./etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
