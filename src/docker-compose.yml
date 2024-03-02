@@ -30,7 +30,7 @@ services:
       - /dev/ttyACM0:/dev/ttyACM0
     privileged: true
     environment:
-      - TZ=Europe/Paris
+      - TZ=${TZ}
       # - DEBUG=zigbee-herdsman*
     networks:
       default:
