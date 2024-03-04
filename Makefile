@@ -3,7 +3,7 @@ WORKSPACE := $(PWD)
 SHELL := /bin/bash
 DATE := $(date '+%Y-%m-%d')
 
-.PHONY: build backup
+.PHONY: build backup restore
 
 all: 
 
@@ -34,10 +34,18 @@ clean:
 
 backup:
 	date
-	docker stop ti-dhome_victoriametrics_1
+	docker stop ti-dhome-victoriametrics-1
 	mkdir -p $(WORKSPACE)/backup/victoriametrics
 	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu sh -c 'tar czvf /backup/victoriametrics/vm-$(DATE).tar.gz .'
-	docker start ti-dhome_victoriametrics_1
+	docker start ti-dhome-victoriametrics-1
+	date
+
+# WARNING: Danger zone !
+restore:
+	date
+	docker stop ti-dhome-victoriametrics-1
+	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu sh -c 'rm -rf /victoria-metrics-data/* && tar xvf /backup/victoriametrics/vm-2024-03-31.tar.gz -C /victoria-metrics-data/'
+	docker start ti-dhome-victoriametrics-1
 	date
 
 ###########################
