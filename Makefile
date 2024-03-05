@@ -1,7 +1,7 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 WORKSPACE := $(PWD)
 SHELL := /bin/bash
-DATE := $(date '+%Y-%m-%d')
+BACKUP_DATE := $(shell date '+%Y-%m-%d')
 
 .PHONY: build backup restore
 
@@ -36,7 +36,7 @@ backup:
 	date
 	docker stop ti-dhome-victoriametrics-1
 	mkdir -p $(WORKSPACE)/backup/victoriametrics
-	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu sh -c 'tar czvf /backup/victoriametrics/vm-$(DATE).tar.gz .'
+	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu bash -c "tar czvf /backup/victoriametrics/vm-$(BACKUP_DATE).tar.gz ."
 	docker start ti-dhome-victoriametrics-1
 	date
 
@@ -44,7 +44,7 @@ backup:
 restore:
 	date
 	docker stop ti-dhome-victoriametrics-1
-	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu sh -c 'rm -rf /victoria-metrics-data/* && tar xvf /backup/victoriametrics/vm-2024-03-31.tar.gz -C /victoria-metrics-data/'
+	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu sh -c 'rm -rf /victoria-metrics-data/* && tar xvf /backup/victoriametrics/vm-$(BACKUP_DATE).tar.gz -C /victoria-metrics-data/'
 	docker start ti-dhome-victoriametrics-1
 	date
 
