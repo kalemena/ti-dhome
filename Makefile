@@ -1,7 +1,9 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 WORKSPACE := $(PWD)
 SHELL := /bin/bash
+
 BACKUP_DATE := $(shell date '+%Y-%m-%d')
+BACKUP_FOLDER := /backup/victoriametrics
 
 .PHONY: build backup restore
 
@@ -36,7 +38,7 @@ backup:
 	date
 	docker stop ti-dhome-victoriametrics-1
 	mkdir -p $(WORKSPACE)/backup/victoriametrics
-	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu bash -c "tar czvf /backup/victoriametrics/vm-$(BACKUP_DATE).tar.gz ."
+	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(BACKUP_FOLDER):/backup/victoriametrics -w /victoria-metrics-data alpine sh -c "apk add rsync && rsync --delete -rtD /victoria-metrics-data /backup/victoriametrics/"
 	docker start ti-dhome-victoriametrics-1
 	date
 
