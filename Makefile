@@ -38,7 +38,7 @@ backup:
 	date
 	docker stop ti-dhome-victoriametrics-1
 	mkdir -p $(WORKSPACE)/backup/victoriametrics
-	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(BACKUP_FOLDER):/backup/victoriametrics -w /victoria-metrics-data alpine sh -c "apk add rsync && rsync --delete -rtD /victoria-metrics-data /backup/victoriametrics/"
+	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(BACKUP_FOLDER):/backup/victoriametrics -w /victoria-metrics-data alpine sh -c "apk add rsync && rsync --delete -rtD --info=progress2 /victoria-metrics-data/* /backup/victoriametrics/"
 	docker start ti-dhome-victoriametrics-1
 	date
 
@@ -46,7 +46,7 @@ backup:
 restore:
 	date
 	docker stop ti-dhome-victoriametrics-1
-	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(WORKSPACE)/backup/victoriametrics:/backup/victoriametrics -w /victoria-metrics-data ubuntu sh -c 'rm -rf /victoria-metrics-data/* && tar xvf /backup/victoriametrics/vm-$(BACKUP_DATE).tar.gz -C /victoria-metrics-data/'
+	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(BACKUP_FOLDER):/backup/victoriametrics -w /victoria-metrics-data alpine sh -c "apk add rsync && rsync --delete -rtD --info=progress2 /backup/victoriametrics/* /victoria-metrics-data/"
 	docker start ti-dhome-victoriametrics-1
 	date
 
