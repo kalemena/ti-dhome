@@ -1983,11 +1983,51 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)",
-          "hide": false,
+          "hide": true,
           "instant": false,
           "legendFormat": "Energy /h",
           "range": true,
-          "refId": "TotalFromGrrid"
+          "refId": "TeleinfoTotalFromGrrid"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sum(increase(sensors_zigbee_energy_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) * 1000",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "TotalFromGrid",
+          "range": true,
+          "refId": "TotalFromGrid"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "-(sum(increase(sensors_zigbee_energy_produced_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) * 1000",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "TotalToGrid",
+          "range": true,
+          "refId": "TotalToGrid"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "((sum(increase(sensors_zigbee_energy_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) - (sum(increase(sensors_zigbee_energy_produced_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0))) * 1000",
+          "hide": false,
+          "legendFormat": "Energy /h",
+          "range": true,
+          "refId": "InOut"
         }
       ],
       "timeFrom": "72h",
@@ -3877,8 +3917,8 @@
       {
         "current": {
           "selected": false,
-          "text": "114491839827",
-          "value": "114491839827"
+          "text": "827",
+          "value": "827"
         },
         "datasource": {
           "type": "prometheus",
@@ -4077,6 +4117,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 42,
+  "version": 46,
   "weekStart": ""
 }

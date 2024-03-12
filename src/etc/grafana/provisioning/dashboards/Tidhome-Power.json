@@ -680,13 +680,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "-(sensors_zigbee_power_l1{location=\"C02~Garage~PowerMeter\"} @ now())",
+          "expr": "sensors_zigbee_power_b{location=\"C03~Garage~PowerMeter\"} @ now()",
           "format": "time_series",
           "hide": false,
           "instant": true,
           "legendFormat": "Total (clamp)",
           "range": false,
-          "refId": "TotalClamp"
+          "refId": "A"
         }
       ],
       "title": "Total (W - clamp)",
@@ -1360,21 +1360,6 @@
           "legendFormat": "$day30",
           "range": true,
           "refId": "30d"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhBase))",
-          "hide": true,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "$day60",
-          "range": true,
-          "refId": "60d"
         },
         {
           "datasource": {
@@ -2109,7 +2094,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "orange",
@@ -2184,7 +2170,7 @@
               "editorMode": "code",
               "exemplar": false,
               "expr": "(( (sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h] offset -1h) or vector(0)) - sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h]) * 1000",
-              "hide": false,
+              "hide": true,
               "instant": false,
               "legendFormat": "Energy from grid (Wh)",
               "range": true,
@@ -2201,6 +2187,34 @@
               "legendFormat": "__auto",
               "range": true,
               "refId": "Teleinfo"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "Energy from grid (Wh)",
+              "range": true,
+              "refId": "EnergyFromGrid"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "Energy to grid (Wh)",
+              "range": true,
+              "refId": "EnergyToGrid"
             }
           ],
           "timeFrom": "144h",
@@ -3414,42 +3428,6 @@
         "type": "constant"
       },
       {
-        "description": "13h-18h and 20h-8h",
-        "hide": 2,
-        "label": "kWhZFEHC",
-        "name": "kWhZFEHC",
-        "query": "0.1464",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": "8h-13h and 18h-20h",
-        "hide": 2,
-        "label": "kWhZFEHP",
-        "name": "kWhZFEHP",
-        "query": "0.2460",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": "13h-18h and 20h-8h",
-        "hide": 2,
-        "label": "kWhZFSHC",
-        "name": "kWhZFSHC",
-        "query": "0.2460",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": "8h-13h and 18h-20h",
-        "hide": 2,
-        "label": "kWhZFSHP",
-        "name": "kWhZFSHP",
-        "query": "0.7324",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
         "hide": 2,
         "label": "1 Day",
         "name": "day1",
@@ -3483,25 +3461,17 @@
       },
       {
         "hide": 2,
-        "label": "180 Day",
-        "name": "day180",
-        "query": "180d",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "305d",
+        "query": "310d",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
-          "selected": true,
-          "text": "300d",
-          "value": "300d"
+          "selected": false,
+          "text": "310d",
+          "value": "310d"
         },
         "hide": 0,
         "includeAll": false,
@@ -3541,8 +3511,8 @@
           },
           {
             "selected": true,
-            "text": "300d",
-            "value": "300d"
+            "text": "310d",
+            "value": "310d"
           },
           {
             "selected": false,
@@ -3550,7 +3520,7 @@
             "value": "365d"
           }
         ],
-        "query": "1d,7d,30d,60d,90d,180d,300d,365d",
+        "query": "1d,7d,30d,60d,90d,180d,310d,365d",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -3685,6 +3655,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 116,
+  "version": 133,
   "weekStart": "monday"
 }
