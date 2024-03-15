@@ -98,6 +98,14 @@ image:dashboard-power-hours.png[Dashboard Power - hours,1024]
 * *Total from grid* : Energy consumed (in Wh, percent, or € cost)
 * *Clamps (Wh)*: Energy consumed by devices, in Wh
 
+TIP: The integration with Solar systems such as OpenDTU allows to view and diagnose daily production and compare grid consumption/production.
+
+.Solar Days Overview
+image:dashboard-solar-days.png[Dashboard Solar - days,1024]
+
+.Solar Hours Overview
+image:dashboard-solar-hours.png[Dashboard Solar - hours,1024]
+
 image:dashboard-sensors-1.png[Dashboard Sensors,320,240]
 image:dashboard-system-1.png[Dashboard System,320,240]
 
