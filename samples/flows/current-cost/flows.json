@@ -1,0 +1,267 @@
+[
+    {
+        "id": "48cdf1ba85dfcd37",
+        "type": "serial in",
+        "z": "c3befeddba80c01b",
+        "name": "CurrentCost",
+        "serial": "2389cf8558b3742d",
+        "x": 150,
+        "y": 3880,
+        "wires": [
+            [
+                "44401c61545f8b54"
+            ]
+        ]
+    },
+    {
+        "id": "44401c61545f8b54",
+        "type": "xml",
+        "z": "c3befeddba80c01b",
+        "name": "xml2json",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 270,
+        "y": 3940,
+        "wires": [
+            [
+                "bbc11ee1b53a74b6"
+            ]
+        ]
+    },
+    {
+        "id": "7894147300ba4e35",
+        "type": "mqtt out",
+        "z": "c3befeddba80c01b",
+        "name": "sensors/xxx/nodes/...",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 920,
+        "y": 3860,
+        "wires": []
+    },
+    {
+        "id": "bbc11ee1b53a74b6",
+        "type": "switch",
+        "z": "c3befeddba80c01b",
+        "name": "",
+        "property": "payload.msg.type[0]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 400,
+        "y": 3880,
+        "wires": [
+            [
+                "179a82ecfc805176"
+            ],
+            [
+                "db6948584bdeaa61"
+            ],
+            [
+                "db6948584bdeaa61"
+            ]
+        ]
+    },
+    {
+        "id": "77da59c25f261bfc",
+        "type": "debug",
+        "z": "c3befeddba80c01b",
+        "name": "CCOtherEvents",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 3960,
+        "wires": []
+    },
+    {
+        "id": "2b3793d257e19809",
+        "type": "debug",
+        "z": "c3befeddba80c01b",
+        "name": "CC W Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 3810,
+        "wires": []
+    },
+    {
+        "id": "8bd4826e4bf66b13",
+        "type": "function",
+        "z": "c3befeddba80c01b",
+        "name": "temperature",
+        "func": "// name: Parse CurrentCost\n// outputs: 1\nvar timestampH = new Date().toISOString()\nvar timestamp = new Date().getTime()\n\n// temperature\nif(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {\n    // sensors/iotpower/nodes/1/entries/1/events/temperature\n    let type = 'temperature'\n    let nodeid = 1 // Bureau\n    let entry = 1\n    let value = msg.payload.msg.tmpr[0]\n    \n    let msgT = {}\n    msgT.topic = 'sensors/iotpower/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;\n    msgT.payload = { \n        \"gateway\":\"iotpower\",\n        \"id\": nodeid,\n        \"entry\": entry,\n        \"type\": type,\n        \"value\": parseFloat(value),\n        \"timestamp\": timestamp,\n        \"timestamp-human\": timestampH\n    }\n    let displayMsg = msgT.payload.id + \"/\" + msgT.payload.type + \"=\" + msgT.payload.value\n    node.status({ fill:\"orange\", shape:\"dot\", text: displayMsg })\n    return msgT\n}\n\nreturn null",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 3780,
+        "wires": [
+            [
+                "906d8b502fffeee7"
+            ]
+        ]
+    },
+    {
+        "id": "9af399db6433bdbb",
+        "type": "comment",
+        "z": "c3befeddba80c01b",
+        "name": "sensor Type, \"1\" = electricity",
+        "info": "",
+        "x": 620,
+        "y": 3740,
+        "wires": []
+    },
+    {
+        "id": "cad0f4e51c73d88d",
+        "type": "function",
+        "z": "c3befeddba80c01b",
+        "name": "History",
+        "func": "// name: Parse CurrentCost\n// outputs: 1\nvar timestampH = new Date().toISOString()\nvar timestamp = new Date().getTime()\n\n/*\n// History power\nfor (var i in msg.payload.msg.hist[0].data) {\n    var chunk = msg.payload.msg.hist[0].data[i];\n    var chunkClean = {};\n    for (var j in chunk) {\n        chunkClean[j] = chunk[j][0];\n    }\n    var topic = 'sensors/03967/entries/' + chunk.sensor[0] + '/history/power';\n    outputMsgs.push( { topic:topic, payload: chunkClean });\n}\n*/\n\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 3900,
+        "wires": [
+            [
+                "906d8b502fffeee7"
+            ]
+        ]
+    },
+    {
+        "id": "e018d12e8cad5fbf",
+        "type": "function",
+        "z": "c3befeddba80c01b",
+        "name": "Live power",
+        "func": "// name: Parse CurrentCost\n// outputs: 1\nvar timestampH = new Date().toISOString()\nvar timestamp = new Date().getTime()\n\n// Live power\nif(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] != undefined) {\n    // sensors/iotpower/nodes/.../entries/0/events/watts\n    let type = 'watts'\n    let nodeid = parseInt(msg.payload.msg.sensor[0])\n    let entry = 0\n    let value = msg.payload.msg.ch1[0].watts[0]\n    \n    let msgP = {}\n    msgP.topic = 'sensors/iotpower/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;\n    msgP.payload = { \n        \"gateway\":\"iotpower\",\n        \"id\": nodeid,\n        \"entry\": entry,\n        \"type\": type,\n        \"value\": parseFloat(value),\n        \"timestamp\": timestamp,\n        \"timestamp-human\": timestampH\n    }\n    let displayMsg = msgP.payload.id + \" => \" + msgP.payload.value + \" \" + msgP.payload.type\n    node.status({ fill:\"blue\", shape:\"dot\", text: displayMsg })\n    return msgP\n}\n\nreturn null",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 3840,
+        "wires": [
+            [
+                "906d8b502fffeee7"
+            ]
+        ]
+    },
+    {
+        "id": "179a82ecfc805176",
+        "type": "junction",
+        "z": "c3befeddba80c01b",
+        "x": 500,
+        "y": 3840,
+        "wires": [
+            [
+                "8bd4826e4bf66b13",
+                "cad0f4e51c73d88d",
+                "e018d12e8cad5fbf"
+            ]
+        ]
+    },
+    {
+        "id": "906d8b502fffeee7",
+        "type": "junction",
+        "z": "c3befeddba80c01b",
+        "x": 760,
+        "y": 3840,
+        "wires": [
+            [
+                "7894147300ba4e35",
+                "2b3793d257e19809"
+            ]
+        ]
+    },
+    {
+        "id": "db6948584bdeaa61",
+        "type": "junction",
+        "z": "c3befeddba80c01b",
+        "x": 480,
+        "y": 3900,
+        "wires": [
+            [
+                "77da59c25f261bfc"
+            ]
+        ]
+    },
+    {
+        "id": "2389cf8558b3742d",
+        "type": "serial-port",
+        "serialport": "/dev/ttyCurrenCost",
+        "serialbaud": "57600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": false
+    },
+    {
+        "id": "c38452a5.4f84e8",
+        "type": "mqtt-broker",
+        "name": "mqtt",
+        "broker": "mqtt",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "15",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
