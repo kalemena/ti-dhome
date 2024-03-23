@@ -344,20 +344,6 @@
           "legendFormat": "Heaters",
           "range": false,
           "refId": "Heaters"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_ccost_PAPP{location=\"cc-0-Non-chauffage\"} @ now()",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "Non-Heaters",
-          "range": false,
-          "refId": "CCClamp"
         }
       ],
       "title": "Consumers (W)",
@@ -446,21 +432,6 @@
       },
       "pluginVersion": "9.4.7",
       "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"} @ now()",
-          "hide": true,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
-          "range": false,
-          "refId": "CurrentCost"
-        },
         {
           "datasource": {
             "type": "prometheus",
@@ -942,7 +913,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $nbDays))\n+\navg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $nbDays))\n+\navg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $nbDays))\n+\n((avg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $nbDays))) or vector(0))",
+          "expr": "avg(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\"} offset $nbDays))\n+\navg(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\"} offset $nbDays))\n+\navg(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} - (sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\"} offset $nbDays))",
           "hide": true,
           "instant": true,
           "legendFormat": "TotalClamps",
@@ -1927,12 +1898,160 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-RdYlGr"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "fillOpacity": 59,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 2,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "thresholdsStyle": {
+                  "mode": "dashed"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "orange",
+                    "value": 300
+                  },
+                  {
+                    "color": "red",
+                    "value": 1000
+                  }
+                ]
+              },
+              "unit": "kwatth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 48
+          },
+          "id": 127,
+          "interval": "1h",
+          "options": {
+            "barRadius": 0.25,
+            "barWidth": 0.7,
+            "colorByField": "Value",
+            "fullHighlight": false,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "orientation": "auto",
+            "showValue": "always",
+            "stacking": "none",
+            "text": {
+              "valueSize": 9
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            },
+            "xTickLabelMaxLength": 10,
+            "xTickLabelRotation": -45,
+            "xTickLabelSpacing": -100
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[1h] offset -1h)) or vector(0)",
+              "hide": true,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "Teleinfo"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "hide": true,
+              "instant": false,
+              "legendFormat": "Energy from grid (Wh)",
+              "range": true,
+              "refId": "EnergyFromGrid"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "hide": true,
+              "instant": false,
+              "legendFormat": "Energy to grid (Wh)",
+              "range": true,
+              "refId": "EnergyToGrid"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h])) - sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "Energy to grid (Wh)",
+              "range": true,
+              "refId": "FromToGrid"
+            }
+          ],
+          "timeFrom": "144h",
+          "title": "Energy /h",
+          "type": "barchart"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
           "description": "Clamps consumption (kWh)",
           "gridPos": {
             "h": 11,
             "w": 24,
             "x": 0,
-            "y": 48
+            "y": 60
           },
           "id": 128,
           "interval": "1h",
@@ -2058,168 +2177,6 @@
             }
           ],
           "type": "volkovlabs-echarts-panel"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "continuous-RdYlGr"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "fillOpacity": 59,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineWidth": 2,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "thresholdsStyle": {
-                  "mode": "dashed"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "orange",
-                    "value": 300
-                  },
-                  {
-                    "color": "red",
-                    "value": 1000
-                  }
-                ]
-              },
-              "unit": "watth"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 12,
-            "w": 24,
-            "x": 0,
-            "y": 59
-          },
-          "id": 127,
-          "interval": "1h",
-          "options": {
-            "barRadius": 0.25,
-            "barWidth": 0.7,
-            "colorByField": "Value",
-            "fullHighlight": false,
-            "groupWidth": 0.7,
-            "legend": {
-              "calcs": [
-                "max"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "orientation": "auto",
-            "showValue": "always",
-            "stacking": "none",
-            "text": {
-              "valueSize": 9
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            },
-            "xTickLabelMaxLength": 10,
-            "xTickLabelRotation": -45,
-            "xTickLabelSpacing": -100
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(sum(increase(sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h] offset -1h)) or vector(0)) * 1000",
-              "hide": true,
-              "instant": false,
-              "legendFormat": "Energy",
-              "range": true,
-              "refId": "Total increase (Wh)"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(( (sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h] offset -1h) or vector(0)) - sensors_zigbee_energy_l1{location=\"C02~Garage~PowerMeter\"}[1h]) * 1000",
-              "hide": true,
-              "instant": false,
-              "legendFormat": "Energy from grid (Wh)",
-              "range": true,
-              "refId": "Total diff (Wh)"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[1h] offset -1h)) or vector(0)",
-              "hide": true,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "Teleinfo"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Energy from grid (Wh)",
-              "range": true,
-              "refId": "EnergyFromGrid"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Energy to grid (Wh)",
-              "range": true,
-              "refId": "EnergyToGrid"
-            }
-          ],
-          "timeFrom": "144h",
-          "title": "Energy /h",
-          "type": "barchart"
         }
       ],
       "repeat": "timelineRange",
@@ -2283,7 +2240,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2420,18 +2378,6 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "avg_over_time(sensors_ccost_PAPP{location=\"cc-0-Non-chauffage\"}[5m])",
-              "hide": false,
-              "legendFormat": "CCost-Non-Heating",
-              "range": true,
-              "refId": "CCost-Non-Heating"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
               "expr": "avg_over_time(sensors_zigbee_power_l1{location=\"C01~Garage~PowerMeter\"}[5m])",
               "hide": false,
               "legendFormat": "1-Car Charging",
@@ -2551,7 +2497,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2613,18 +2560,6 @@
             }
           },
           "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sensors_ccost_PAPP{location=~\"cc-[1-9].+\"}[1m]",
-              "hide": false,
-              "legendFormat": "{{location}}",
-              "range": true,
-              "refId": "A"
-            },
             {
               "datasource": {
                 "type": "prometheus",
@@ -3463,15 +3398,15 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "310d",
+        "query": "320d",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
           "selected": false,
-          "text": "310d",
-          "value": "310d"
+          "text": "320d",
+          "value": "320d"
         },
         "hide": 0,
         "includeAll": false,
@@ -3511,8 +3446,8 @@
           },
           {
             "selected": true,
-            "text": "310d",
-            "value": "310d"
+            "text": "320d",
+            "value": "320d"
           },
           {
             "selected": false,
@@ -3520,7 +3455,7 @@
             "value": "365d"
           }
         ],
-        "query": "1d,7d,30d,60d,90d,180d,310d,365d",
+        "query": "1d,7d,30d,60d,90d,180d,320d,365d",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -3655,6 +3590,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 133,
+  "version": 149,
   "weekStart": "monday"
 }
