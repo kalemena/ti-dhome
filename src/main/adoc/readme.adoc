@@ -138,7 +138,7 @@ Victoria Metrics is generally used in stack with monitoring of system, with link
 
 ==== IoT Gateways
 
-Here are gateways integrated OK in Ti-Dhome:
+Here are gateways used in this project:
 
 * link:https://github.com/kalemena/ti-dhome-web-relay-board[Ti-Dhome - Web Relays (external git project)]
 * link:https://github.com/kalemena/ti-dhome-sensors[Ti-Dhome - Sensors (external git project)]

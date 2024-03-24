@@ -6,139 +6,20 @@ The USB device allows also historical reports, every 2h.
 
 Additional plugable sensor can be used to monitor more devices.
 
+See link:https://kalemena.github.io/iot-tools/#gateways_currentcost[Hardware - Gateway USB CurrentCost] for details.
+
 [IMPORTANT]
 ====
 Because Current Cost is a USB device with no particular driver needs, this module does not require any hacking. +
 The module is just a set of wires in Node-Red flows.
 ====
 
-== Overview
-
+.Overview
 image:gateways-current-cost-schema.jpg[Schema]
 
-== Node-RED flow
-
+.Node-Red sample flow
 image:gateways-current-cost-nodered-flow.png[Node-RED flow]
 
-== How-To
+Integration is done as simple USB tty device node, an XML to JSON translate, and few lines of code to read proper JSON fields.
 
-* Connect to USB and find which usb resource connected
-
-[source,bash]
-----
-$ lsusb
-$ dmesg
-----
-
-* Setup automatic USB device mapping (optional)
-
-[source,bash]
-----
-# Grep information on device:
-$ udevadm info -a -n /dev/ttyUSB1 | grep '{serial}'
-ATTRS{serial}=="A600dVPj"
-$ udevadm info -a -n /dev/ttyUSB1 | grep '{idProduct}'
-ATTRS{idProduct}=="6001"
-$ udevadm info -a -n /dev/ttyUSB1 | grep '{idVendor}'
-ATTRS{idVendor}=="0403"
-
-# Add rule for this device mapping:
-
-$ sudo nano /etc/udev/rules.d/99-usb-serial.rules
-SUBSYSTEM=="tty", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", SYMLINK+="ttyCurrenCost"
-----
-
-* Allow user access to resource and set speed
-
-[source,bash]
-----
-$ sudo stty -F /dev/ttyCurrentCost 57600
-$ sudo chmod 777 /dev/ttyCurrentCost
-$ cat /dev/ttyCurrentCost
-----
-
-* Edit test script to point to USB devices or point Node-Red to correct USB device.
-
-== Test
-
-* Run script from link:https://github.com/kalemena/ti-dhome/blob/master/src/main/adoc/modules/gateways-usb-currentcost/src/pub-current-cost.js[pub-current-cost.js] folder (once mosquitto bus running on port 1884)
-
-[source,bash]
-----
-$ npm install serialport
-$ npm install eyes
-$ npm install xml2js
-$ npm install mqtt
-$ node pub-current-cost.js
-----
-
-== Node-RED integration
-
-This is simple USB tty device node, an XML to JSON translate, and few lines of code to read proper JSON fields:
-
-image:gateways-current-cost-nodered-flow.png[Node-RED flow]
-
-[source,bash]
-----
-// name: Parse CurrentCost
-// outputs: 1
-var outputMsgs = []
-timestampH = new Date().toISOString()
-timestamp = new Date().getTime()
-
-// temperature
-if(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {
-    // sensors/iotpower/nodes/1/entries/1/events/temperature
-    type = 'temperature'
-    nodeid = 1 // Bureau
-    entry = 1
-    value = msg.payload.msg.tmpr[0]
-    
-    var msgT = {}
-    msgT.topic = 'sensors/iotpower/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;
-    msgT.payload = { 
-        "gateway":"iotpower",
-        "id": nodeid,
-        "entry": entry,
-        "type": type,
-        "value": parseFloat(value),
-        "timestamp": timestamp,
-        "timestamp-human": timestampH
-    }
-    displayMsg = msgT.payload.id + "/" + msgT.payload.type + "=" + msgT.payload.value
-    node.status({ fill:"orange", shape:"dot", text: displayMsg });
-    outputMsgs.push(msgT);
-}
-
-// Live power
-if(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] != undefined) {
-    // sensors/iotpower/nodes/.../entries/0/events/watts
-    type = 'watts'
-    nodeid = parseInt(msg.payload.msg.sensor[0])
-    entry = 0
-    value = msg.payload.msg.ch1[0].watts[0]
-    
-    var msgP = {}
-    msgP.topic = 'sensors/iotpower/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;
-    msgP.payload = { 
-        "gateway":"iotpower",
-        "id": nodeid,
-        "entry": entry,
-        "type": type,
-        "value": parseFloat(value),
-        "timestamp": timestamp,
-        "timestamp-human": timestampH
-    }
-    displayMsg = msgP.payload.id + "/" + msgP.payload.type + "=" + msgP.payload.value
-    node.status({ fill:"blue", shape:"dot", text: displayMsg });
-    outputMsgs.push(msgP);
-}
-
-return [ outputMsgs ];
-----
-
-== Links
-
-* link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR]
-* link:https://subversion.nexusuk.org/projects/currentcost/[]
-* link:https://blog.nexusuk.org/2017/10/esp8266-currentcost-wifi-gateway.html[]
+Check link:https://raw.githubusercontent.com/kalemena/ti-dhome/master/src/main/adoc/modules/gateways-usb-currentcost/flows.json[Sample CurrentCost flow].
