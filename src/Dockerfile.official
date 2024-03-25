@@ -1,6 +1,11 @@
 ARG NODERED_VERSION
 FROM nodered/node-red:${NODERED_VERSION}
 
+# ENV LC_ALL en_US.UTF-8 \
+#     LANG en_US.UTF-8 \
+#     LANGUAGE en_US:en \
+#     TZ=Europe/Paris
+
 USER root
 RUN addgroup node-red dialout
 USER node-red
