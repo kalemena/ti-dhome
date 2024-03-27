@@ -96,7 +96,7 @@ services:
       HOST_ETC: /rootfs/etc
 
   grafana:
-    image: grafana/grafana:9.4.7
+    image: grafana/grafana:9.4.17
     restart: always
     ports:
       - "3000:3000"
