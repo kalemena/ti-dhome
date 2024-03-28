@@ -1,25 +1,24 @@
 = Module - Current Cost
 
-The link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR] allows to monitor main power home usage live and historical.
-
-The USB device allows also historical reports, every 2h.
-
-Additional plugable sensor can be used to monitor more devices.
-
-See link:https://kalemena.github.io/iot-tools/#gateways_currentcost[Hardware - Gateway USB CurrentCost] for details.
-
-[IMPORTANT]
-====
-Because Current Cost is a USB device with no particular driver needs, this module does not require any hacking. +
-The module is just a set of wires in Node-Red flows.
-====
+The link:http://www.currentcost.com/product-envir.html[CurrentCost EnviR] allows to monitor live power usage and energy consumption.
+Up to 9 additional plugs can be used to monitor more devices.
 
 .Overview
 image:gateways-current-cost-schema.jpg[Schema]
 
+See how to install and connect link:https://kalemena.github.io/iot-tools/#gateways_currentcost[Hardware - Gateway USB CurrentCost] for details.
+
 .Node-Red sample flow
 image:gateways-current-cost-nodered-flow.png[Node-RED flow]
 
-Integration is done as simple USB tty device node, an XML to JSON translate, and few lines of code to read proper JSON fields.
+Integration in Node-Red is done listening on USB tty device node.
+An XML to JSON translates information, and few lines of code are enough to read proper JSON fields.
 
-Check link:https://raw.githubusercontent.com/kalemena/ti-dhome/master/src/main/adoc/modules/gateways-usb-currentcost/flows.json[Sample CurrentCost flow].
+Current Cost send several types of data:
+
+* Live power and live temperature (temperature of screen)
+* Historical energy consumption sent every 2h at mid-hour
+
+The below Node-Red flow allows monitoring live power:
+
+* link:https://raw.githubusercontent.com/kalemena/ti-dhome/master/src/main/adoc/modules/gateways-usb-currentcost/flows.json[Sample CurrentCost flow].
