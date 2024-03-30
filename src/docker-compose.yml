@@ -96,7 +96,7 @@ services:
       HOST_ETC: /rootfs/etc
 
   grafana:
-    image: grafana/grafana:9.4.17
+    image: grafana/grafana-oss:9.4.17
     restart: always
     ports:
       - "3000:3000"
@@ -110,7 +110,10 @@ services:
     environment:
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-default}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-password}
-      GF_INSTALL_PLUGINS: grafana-polystat-panel,volkovlabs-echarts-panel
+      GF_ENABLE_GZIP: true
+      GF_USERS_DEFAULT_THEME: dark
+      GF_ANALYTICS_CHECK_FOR_UPDATES: false
+      GF_INSTALL_PLUGINS: volkovlabs-echarts-panel
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/Tidhome-Power.json
       GF_FEATURE_TOGGLES_ENABLE: topnav,newPanelChromeUI
     env_file:

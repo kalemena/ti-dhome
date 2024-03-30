@@ -136,7 +136,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.4.17",
       "targets": [
         {
           "datasource": {
@@ -287,7 +287,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.4.17",
       "targets": [
         {
           "datasource": {
@@ -430,7 +430,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.4.17",
       "targets": [
         {
           "datasource": {
@@ -540,7 +540,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.4.17",
       "targets": [
         {
           "datasource": {
@@ -642,7 +642,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.4.17",
       "targets": [
         {
           "datasource": {
@@ -714,6 +714,7 @@
           "format": "auto",
           "height": 600
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
@@ -729,9 +730,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "console.log(context);\nreturn {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "5.3.0",
       "targets": [
         {
           "datasource": {
@@ -986,6 +992,7 @@
           "format": "auto",
           "height": 600
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
@@ -1001,8 +1008,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "console.log(context);\nreturn {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
+      "pluginVersion": "5.3.0",
       "targets": [
         {
           "datasource": {
@@ -1124,6 +1137,7 @@
           "format": "auto",
           "height": 600
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
@@ -1139,8 +1153,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "console.log(context);\nreturn {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
+      "pluginVersion": "5.3.0",
       "targets": [
         {
           "datasource": {
@@ -1285,7 +1305,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.4.17",
       "targets": [
         {
           "datasource": {
@@ -1445,7 +1465,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.4.17",
       "targets": [
         {
           "datasource": {
@@ -1620,7 +1640,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.4.17",
       "targets": [
         {
           "datasource": {
@@ -1928,8 +1948,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "orange",
@@ -2240,8 +2259,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2497,8 +2515,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3398,15 +3415,15 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "320d",
+        "query": "330d",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
           "selected": false,
-          "text": "320d",
-          "value": "320d"
+          "text": "330d",
+          "value": "330d"
         },
         "hide": 0,
         "includeAll": false,
@@ -3446,8 +3463,8 @@
           },
           {
             "selected": true,
-            "text": "320d",
-            "value": "320d"
+            "text": "330d",
+            "value": "330d"
           },
           {
             "selected": false,
@@ -3455,7 +3472,7 @@
             "value": "365d"
           }
         ],
-        "query": "1d,7d,30d,60d,90d,180d,320d,365d",
+        "query": "1d,7d,30d,60d,90d,180d,330d,365d",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -3590,6 +3607,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 149,
+  "version": 150,
   "weekStart": "monday"
 }
