@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 6,
   "links": [],
   "liveNow": true,
   "panels": [
@@ -134,9 +134,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.17",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -276,6 +278,8 @@
       },
       "id": 44,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -285,9 +289,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "9.4.17",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -419,6 +424,8 @@
       },
       "id": 28,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -428,9 +435,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "9.4.17",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -529,6 +537,8 @@
       },
       "id": 26,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -538,9 +548,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "9.4.17",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -631,6 +642,8 @@
       },
       "id": 126,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -640,9 +653,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "9.4.17",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -719,7 +733,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const dataBull = []\nconst dataCenter = []\nconst dataOuter = []\n\nlet totalHPkWh = Number(0)\nlet totalHCkWh = Number(0)\nlet totalHPCost = Number(0)\nlet totalHCCost = Number(0)\n\nconst barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\ndata.series.map((s) => {\n\n  switch (s.refId) {\n    case 'TotalHP':\n      //console.log(s)\n      fieldName = s.refId.replace('Total', '')\n      value = s.fields.find((f) => f.type === 'number').values.buffer[0];\n      value = Number(value).toFixed(2)\n      valueCost = Number(value * 0.20).toFixed(2)\n      //dataBull.push({ value: value, name: fieldName, cost: valueCost, color: barData['HPJB'].color });\n      break;\n\n    case 'TotalHC':\n      //console.log(s)\n      fieldName = s.refId.replace('Total', '')\n      value = s.fields.find((f) => f.type === 'number').values.buffer[0];\n      value = Number(value).toFixed(2)\n      valueCost = Number(value * 0.15).toFixed(2)\n      //dataBull.push({ value: value, name: fieldName, cost: valueCost, color: barData['HCJB'].color });\n      break;\n\n    case 'HPJB':\n    case 'HCJB':\n    case 'HPJW':\n    case 'HCJW':\n    case 'HPJR':\n    case 'HCJR':\n      //console.log(s)\n      value = s.fields.find((f) => f.type === 'number').values.buffer[0];\n      value = Number(value).toFixed(2)\n      valueCost = Number(value * barData[s.refId].cost).toFixed(2)\n      dataCenter.push({ value: value, name: s.refId, cost: valueCost, color: barData[s.refId].color });\n      if (s.refId.includes('HP')) {\n        totalHPkWh += Number(value)\n        totalHPCost += Number(valueCost)\n      } else {\n        totalHCkWh += Number(value)\n        totalHCCost += Number(valueCost)\n      }\n      break;\n\n    case 'Car':\n    case 'Water':\n    case 'Heaters':\n    case 'Plugs':\n    case 'Others':\n      value = s.fields.find((f) => f.type === 'number').values.buffer[0];\n      value = Number(value).toFixed(2)\n      if (s.fields[0].name.includes('OnOff')) {\n        device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n        cost = 0.2062\n      } else {\n        switch (s.refId) {\n          case 'Car':\n          case 'Water':\n            cost = 0.134\n            break\n          case 'Others':\n            cost = 0.17\n            break\n        }\n        device = s.refId\n      }\n      valueCost = Number(value * cost).toFixed(2)\n      dataOuter.push({ value: value, name: device, cost: valueCost });\n      break;\n  }\n\n});\n\n\ndataBull.push({ value: Number(totalHPkWh).toFixed(2), name: 'HP', cost: Number(totalHPCost).toFixed(2), color: barData['HPJB'].color });\ndataBull.push({ value: Number(totalHCkWh).toFixed(2), name: 'HC', cost: Number(totalHCCost).toFixed(2), color: barData['HCJB'].color });\n// console.log(dataBull);\n\nreturn {\n  /*tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name.replace('Total', '')}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },\n  legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'HC/HP',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: ['0%', '20%'],\n      color: ['#6495ED', '#87CEFA'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          let timelineTotal = replaceVariables(\"${donutValueAs}\");\n          switch (timelineTotal) {\n            case 'percent':\n              return `${params.name.replace('Total', '')}\\n${params.percent}%`;\n            case 'kWh':\n              return `${params.name.replace('Total', '')}\\n${params.data.value} kWh`;\n            case '€':\n              return `${params.name.replace('Total', '')}\\n${params.data.cost} €`;\n          }\n        },\n        fontSize: 16,\n        // color: \"lightgray\"\n        fontWeight: \"bold\"\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"40\",\n          fontWeight: \"bold\",\n          formatter: function (params) {\n            return `${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n          },\n        },\n      },\n      data: dataBull\n    },\n    {\n      id: 'tempo',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: ['30%', '45%'],\n      color: [\n        barData['HPJB'].color,\n        barData['HPJW'].color,\n        barData['HPJR'].color,\n        barData['HCJB'].color,\n        barData['HCJW'].color,\n        barData['HCJR'].color\n      ],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          let timelineTotal = replaceVariables(\"${donutValueAs}\");\n          switch (timelineTotal) {\n            case 'percent':\n              return `${params.name}\\n${params.percent}%`;\n            case 'kWh':\n              return `${params.name}\\n${params.data.value} kWh`;\n            case '€':\n              return `${params.name}\\n${params.data.cost} €`;\n          }\n        },\n        fontSize: 16,\n        fontWeight: \"bold\"\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"40\",\n          fontWeight: \"bold\",\n          // color: \"black\",\n          formatter: function (params) {\n            return `${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n          }\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['55%', '66%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name} - ${params.percent}%}\\n{values|${params.data.value} kWh / ${params.data.cost} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        fontSize: 12,\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          }\n        }\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
+        "getOption": "const dataBull = []\nconst dataCenter = []\nconst dataOuter = []\n\nlet totalHPkWh = Number(0)\nlet totalHCkWh = Number(0)\nlet totalHPCost = Number(0)\nlet totalHCCost = Number(0)\n\nconst barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\ncontext.panel.data.series.map((s) => {\n\n  switch (s.refId) {\n    case 'TotalHP':\n      //console.log(s)\n      fieldName = s.refId.replace('Total', '')\n      value = s.fields.find((f) => f.type === 'number').values[0];\n      value = Number(value).toFixed(2)\n      valueCost = Number(value * 0.20).toFixed(2)\n      //dataBull.push({ value: value, name: fieldName, cost: valueCost, color: barData['HPJB'].color });\n      break;\n\n    case 'TotalHC':\n      //console.log(s)\n      fieldName = s.refId.replace('Total', '')\n      value = s.fields.find((f) => f.type === 'number').values[0];\n      value = Number(value).toFixed(2)\n      valueCost = Number(value * 0.15).toFixed(2)\n      //dataBull.push({ value: value, name: fieldName, cost: valueCost, color: barData['HCJB'].color });\n      break;\n\n    case 'HPJB':\n    case 'HCJB':\n    case 'HPJW':\n    case 'HCJW':\n    case 'HPJR':\n    case 'HCJR':\n      //console.log(s)\n      value = s.fields.find((f) => f.type === 'number').values[0];\n      value = Number(value).toFixed(2)\n      valueCost = Number(value * barData[s.refId].cost).toFixed(2)\n      dataCenter.push({ value: value, name: s.refId, cost: valueCost, color: barData[s.refId].color });\n      if (s.refId.includes('HP')) {\n        totalHPkWh += Number(value)\n        totalHPCost += Number(valueCost)\n      } else {\n        totalHCkWh += Number(value)\n        totalHCCost += Number(valueCost)\n      }\n      break;\n\n    case 'Car':\n    case 'Water':\n    case 'Heaters':\n    case 'Plugs':\n    case 'Others':\n      value = s.fields.find((f) => f.type === 'number').values[0];\n      value = Number(value).toFixed(2)\n      if (s.fields[0].name.includes('OnOff')) {\n        device = s.fields[0].name.replace(/P(.*)~(.*)~OnOff/, '$2')\n        cost = 0.2062\n      } else {\n        switch (s.refId) {\n          case 'Car':\n          case 'Water':\n            cost = 0.134\n            break\n          case 'Others':\n            cost = 0.17\n            break\n        }\n        device = s.refId\n      }\n      valueCost = Number(value * cost).toFixed(2)\n      dataOuter.push({ value: value, name: device, cost: valueCost });\n      break;\n  }\n\n});\n\n\ndataBull.push({ value: Number(totalHPkWh).toFixed(2), name: 'HP', cost: Number(totalHPCost).toFixed(2), color: barData['HPJB'].color });\ndataBull.push({ value: Number(totalHCkWh).toFixed(2), name: 'HC', cost: Number(totalHCCost).toFixed(2), color: barData['HCJB'].color });\n// console.log(dataBull);\n\nreturn {\n  /*tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name.replace('Total', '')}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },\n  legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'HC/HP',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: ['0%', '20%'],\n      color: ['#6495ED', '#87CEFA'],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          let timelineTotal = context.grafana.replaceVariables(\"${donutValueAs}\");\n          switch (timelineTotal) {\n            case 'percent':\n              return `${params.name.replace('Total', '')}\\n${params.percent}%`;\n            case 'kWh':\n              return `${params.name.replace('Total', '')}\\n${params.data.value} kWh`;\n            case '€':\n              return `${params.name.replace('Total', '')}\\n${params.data.cost} €`;\n          }\n        },\n        fontSize: 16,\n        // color: \"lightgray\"\n        fontWeight: \"bold\"\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"40\",\n          fontWeight: \"bold\",\n          formatter: function (params) {\n            return `${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n          },\n        },\n      },\n      data: dataBull\n    },\n    {\n      id: 'tempo',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: ['30%', '45%'],\n      color: [\n        barData['HPJB'].color,\n        barData['HPJW'].color,\n        barData['HPJR'].color,\n        barData['HCJB'].color,\n        barData['HCJW'].color,\n        barData['HCJR'].color\n      ],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          let timelineTotal = context.grafana.replaceVariables(\"${donutValueAs}\");\n          switch (timelineTotal) {\n            case 'percent':\n              return `${params.name}\\n${params.percent}%`;\n            case 'kWh':\n              return `${params.name}\\n${params.data.value} kWh`;\n            case '€':\n              return `${params.name}\\n${params.data.cost} €`;\n          }\n        },\n        fontSize: 16,\n        fontWeight: \"bold\"\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"40\",\n          fontWeight: \"bold\",\n          // color: \"black\",\n          formatter: function (params) {\n            return `${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n          }\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['55%', '66%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name} - ${params.percent}%}\\n{values|${params.data.value} kWh / ${params.data.cost} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        fontSize: 12,\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          }\n        }\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -737,7 +751,7 @@
           "series": []
         }
       },
-      "pluginVersion": "5.3.0",
+      "pluginVersion": "6.0.0",
       "targets": [
         {
           "datasource": {
@@ -997,7 +1011,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\nvar tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    }\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.25 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.22 / 1000) + (totalHP * 0.28 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\nvar tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = context.panel.data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values;\n  const sTime = s.fields.find((f) => f.type === 'time').values;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    }\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = context.grafana.replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.25 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.22 / 1000) + (totalHP * 0.28 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  context.grafana.locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: context.panel.data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -1015,7 +1029,7 @@
           "series": []
         }
       },
-      "pluginVersion": "5.3.0",
+      "pluginVersion": "6.0.0",
       "targets": [
         {
           "datasource": {
@@ -1126,7 +1140,7 @@
         "x": 10,
         "y": 22
       },
-      "id": 107,
+      "id": 129,
       "interval": "${timelineRange}",
       "options": {
         "baidu": {
@@ -1142,13 +1156,13 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const series = data.series.map((s) => {\n\n  // console.log(s)\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  /*sTime = sTime.map(function (x) { \n    const tempDate = new Date(x);\n    return tempDate.getUTCDate();\n  });*/\n\n  var tooltipCallback = (args) => {\n    // console.log(args)\n    let date = new Date(parseInt(args.data[0]))\n    return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n  }\n\n  return {\n    name: s.refId.includes(\"Plugs\") ? s.name.replace(/P(.*)~(.*)~OnOff/, '$2') : s.refId,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    },\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n\n      return \"                 \" + (total / 1000).toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = data.series.map((s) => {\n  if (s.refId.includes(\"Plugs\")) {\n    return s.name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  } else {\n    return s.refId\n  }\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n    // formater: tooltipCallback\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "getOption": "var tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS.replace(/P(.*)~(.*)~OnOff/, '$2')\n\n  const sData = s.fields.find((f) => f.type === 'number').values;\n  const sTime = s.fields.find((f) => f.type === 'time').values;\n  // const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    },\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n\n      return \"                 \" + (total / 1000).toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n  const nameClean = name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  return nameClean\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  context.grafana.locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
         },
         "map": "none",
-        "renderer": "canvas",
+        "renderer": "svg",
         "themeEditor": {
           "config": "{}",
           "height": 400,
@@ -1160,20 +1174,8 @@
           "series": []
         }
       },
-      "pluginVersion": "5.3.0",
+      "pluginVersion": "6.0.0",
       "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
-          "hide": true,
-          "legendFormat": "Car+Water+Heating",
-          "range": true,
-          "refId": "Car+Water+Heating"
-        },
         {
           "datasource": {
             "type": "prometheus",
@@ -1182,9 +1184,9 @@
           "editorMode": "code",
           "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
-          "legendFormat": "1-Car Charging",
+          "legendFormat": "1-CarCharging",
           "range": true,
-          "refId": "1-Car Charging"
+          "refId": "1-CarCharging"
         },
         {
           "datasource": {
@@ -1194,9 +1196,9 @@
           "editorMode": "code",
           "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
-          "legendFormat": "2-Water Heater",
+          "legendFormat": "2-WaterHeater",
           "range": true,
-          "refId": "2-Water Heater"
+          "refId": "2-WaterHeater"
         },
         {
           "datasource": {
@@ -1216,45 +1218,15 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "exemplar": false,
           "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
-          "instant": true,
           "legendFormat": "{{location}}",
           "range": true,
           "refId": "Plugs"
         }
       ],
       "title": "Clamps (kWh)",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "greater",
-                  "options": {
-                    "value": 90000000
-                  }
-                },
-                "fieldName": "Total"
-              },
-              {
-                "config": {
-                  "id": "greater",
-                  "options": {
-                    "value": 20
-                  }
-                },
-                "fieldName": "Car+Water+Heating"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
-          }
-        }
-      ],
+      "transparent": true,
       "type": "volkovlabs-echarts-panel"
     },
     {
@@ -1302,10 +1274,12 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "value_and_name"
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.17",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1462,10 +1436,12 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "value_and_name"
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.17",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1637,10 +1613,12 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "value_and_name"
+        "textMode": "value_and_name",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.17",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1785,11 +1763,12 @@
               "format": "auto",
               "height": 600
             },
+            "editorMode": "code",
             "gaode": {
               "key": "",
               "plugin": "AMap.Scale,AMap.ToolBar"
             },
-            "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\nvar tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1]).toFixed(0) + ' Wh';\n}\n\nconst series = data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    }\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total).toFixed(0) + \" Wh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.25 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.22 / 1000) + (totalHP * 0.28 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "getOption": "const barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609 },\n  HPJW: { color: '#B0C4DE', cost: 0.1894 },\n  HPJR: { color: '#B22222', cost: 0.7564 },\n  HCJB: { color: '#87CEFA', cost: 0.1296 },\n  HCJW: { color: '#F8F8FF', cost: 0.1486 },\n  HCJR: { color: '#F08080', cost: 0.1568 }\n}\n\nvar tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = context.panel.data.series.map((s) => {\n  const name = s.refId.replace(\"Teleinfo-BBR\", \"\")\n\n  const sData = s.fields.find((f) => f.type === 'number').values;\n  const sTime = s.fields.find((f) => f.type === 'time').values;\n  const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n    color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    }\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let timelineTotal = context.grafana.replaceVariables(\"${timelineTotal}\");\n      let display = \"\"\n      switch (timelineTotal) {\n        case 'kWh':\n          let total = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            total += parseInt(serie.data[params.dataIndex][1]);\n          })\n          display = \"                 \" + (total / 1000).toFixed(1) + \" kWh\"\n          break;\n        case 'base':\n          let totalBase = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBase += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotal = (totalBase * 0.25 / 1000).toFixed(1)\n          display = \"                 \" + costTotal + \" €\";\n          break\n        case 'blue':\n          let totalHC = 0;\n          let totalHP = 0;\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            if (serie.name.indexOf('HC') >= 0)\n              totalHC += parseInt(serie.data[params.dataIndex][1]);\n            else\n              totalHP += parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalBlue = ((totalHC * 0.22 / 1000) + (totalHP * 0.28 / 1000)).toFixed(1)\n          display = \"                 \" + costTotalBlue + \" €\";\n          break\n        case 'tempo':\n          let totalBBR = {};\n          series.forEach(serie => {\n            // console.log(serie.data[params.dataIndex])\n            totalBBR[serie.name] = parseInt(serie.data[params.dataIndex][1]);\n          })\n          let costTotalTempo = (\n            (totalBBR['HPJB'] * barData['HPJB'].cost / 1000)\n            + (totalBBR['HCJB'] * barData['HCJB'].cost / 1000)\n            + (totalBBR['HPJW'] * barData['HPJW'].cost / 1000)\n            + (totalBBR['HCJW'] * barData['HCJW'].cost / 1000)\n            + (totalBBR['HPJR'] * barData['HPJR'].cost / 1000)\n            + (totalBBR['HCJR'] * barData['HCJR'].cost / 1000)\n          ).toFixed(1)\n          display = \"                 \" + costTotalTempo + \" €\";\n          break\n      }\n      return display\n    }\n  }\n}\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  context.grafana.locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: context.panel.data.series.map((s) => s.refId.replace(\"Teleinfo-BBR\", \"\")),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
             "google": {
               "callback": "gmapReady",
               "key": ""
@@ -1800,8 +1779,14 @@
               "config": "{}",
               "height": 400,
               "name": "default"
+            },
+            "visualEditor": {
+              "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+              "dataset": [],
+              "series": []
             }
           },
+          "pluginVersion": "6.0.0",
           "targets": [
             {
               "datasource": {
@@ -1924,6 +1909,7 @@
                 "mode": "continuous-RdYlGr"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -1948,7 +1934,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "orange",
@@ -2067,12 +2054,12 @@
           },
           "description": "Clamps consumption (kWh)",
           "gridPos": {
-            "h": 11,
+            "h": 13,
             "w": 24,
             "x": 0,
             "y": 60
           },
-          "id": 128,
+          "id": 130,
           "interval": "1h",
           "options": {
             "baidu": {
@@ -2083,36 +2070,31 @@
               "format": "auto",
               "height": 600
             },
+            "editorMode": "code",
             "gaode": {
               "key": "",
               "plugin": "AMap.Scale,AMap.ToolBar"
             },
-            "getOption": "const series = data.series.map((s) => {\n\n  // console.log(s)\n\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer;\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer;\n  /*sTime = sTime.map(function (x) { \n    const tempDate = new Date(x);\n    return tempDate.getUTCDate();\n  });*/\n\n  var tooltipCallback = (args) => {\n    // console.log(args)\n    let date = new Date(parseInt(args.data[0]))\n    return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1]).toFixed(2) + ' Wh';\n  }\n\n  return {\n    name: s.refId.includes(\"Plugs\") ? s.name.replace(/P(.*)~(.*)~OnOff/, '$2') : s.refId,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    },\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n\n      return \"                 \" + total.toFixed(0) + \" Wh\";\n    }\n  }\n}\n\nconst legend = data.series.map((s) => {\n  if (s.refId.includes(\"Plugs\")) {\n    return s.name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  } else {\n    return s.refId\n  }\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => echartsInstance.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\nechartsInstance.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n    // formater: tooltipCallback\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + d.toFixed(0) + \" Wh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "getOption": "var tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS.replace(/P(.*)~(.*)~OnOff/, '$2')\n\n  const sData = s.fields.find((f) => f.type === 'number').values;\n  const sTime = s.fields.find((f) => f.type === 'time').values;\n  // const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: true,\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    },\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n\n      return \"                 \" + (total / 1000).toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n  const nameClean = name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  return nameClean\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  context.grafana.locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
             "google": {
               "callback": "gmapReady",
               "key": ""
             },
             "map": "none",
-            "renderer": "canvas",
+            "renderer": "svg",
             "themeEditor": {
               "config": "{}",
               "height": 400,
               "name": "default"
+            },
+            "visualEditor": {
+              "code": "console.log(context);\nreturn {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+              "dataset": [],
+              "series": []
             }
           },
+          "pluginVersion": "6.0.0",
           "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
-              "hide": true,
-              "legendFormat": "Car+Water+Heating",
-              "range": true,
-              "refId": "Car+Water+Heating"
-            },
             {
               "datasource": {
                 "type": "prometheus",
@@ -2121,9 +2103,9 @@
               "editorMode": "code",
               "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
               "hide": false,
-              "legendFormat": "1-Car Charging",
+              "legendFormat": "1-CarCharging",
               "range": true,
-              "refId": "1-Car Charging"
+              "refId": "1-CarCharging"
             },
             {
               "datasource": {
@@ -2133,9 +2115,9 @@
               "editorMode": "code",
               "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
               "hide": false,
-              "legendFormat": "2-Water Heater",
+              "legendFormat": "2-WaterHeater",
               "range": true,
-              "refId": "2-Water Heater"
+              "refId": "2-WaterHeater"
             },
             {
               "datasource": {
@@ -2155,10 +2137,8 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "exemplar": false,
               "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
               "hide": false,
-              "instant": true,
               "legendFormat": "{{location}}",
               "range": true,
               "refId": "Plugs"
@@ -2166,35 +2146,7 @@
           ],
           "timeFrom": "144h",
           "title": "Clamps (kWh)",
-          "transformations": [
-            {
-              "id": "filterByValue",
-              "options": {
-                "filters": [
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 90000000
-                      }
-                    },
-                    "fieldName": "Total"
-                  },
-                  {
-                    "config": {
-                      "id": "greater",
-                      "options": {
-                        "value": 20
-                      }
-                    },
-                    "fieldName": "Car+Water+Heating"
-                  }
-                ],
-                "match": "any",
-                "type": "exclude"
-              }
-            }
-          ],
+          "transparent": true,
           "type": "volkovlabs-echarts-panel"
         }
       ],
@@ -2224,6 +2176,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2237,6 +2190,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2259,7 +2213,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2354,7 +2309,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 72
+            "y": 37
           },
           "id": 29,
           "interval": "5m",
@@ -2481,6 +2436,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2494,6 +2450,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2515,7 +2472,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2556,7 +2514,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 72
+            "y": 37
           },
           "id": 25,
           "options": {
@@ -2592,7 +2550,6 @@
           ],
           "timeFrom": "72h",
           "title": "Outlets (W)",
-          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -2624,7 +2581,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2677,7 +2635,7 @@
             "h": 17,
             "w": 3,
             "x": 0,
-            "y": 73
+            "y": 38
           },
           "id": 30,
           "options": {
@@ -2692,9 +2650,11 @@
               "fields": "",
               "values": false
             },
-            "textMode": "value_and_name"
+            "showPercentChange": false,
+            "textMode": "value_and_name",
+            "wideLayout": true
           },
-          "pluginVersion": "9.4.7",
+          "pluginVersion": "10.4.2",
           "targets": [
             {
               "datasource": {
@@ -2776,7 +2736,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2792,7 +2753,7 @@
             "h": 17,
             "w": 12,
             "x": 3,
-            "y": 73
+            "y": 38
           },
           "id": 116,
           "options": {
@@ -2807,9 +2768,11 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.4.7",
+          "pluginVersion": "10.4.2",
           "targets": [
             {
               "datasource": {
@@ -3042,7 +3005,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3058,7 +3022,7 @@
             "h": 17,
             "w": 9,
             "x": 15,
-            "y": 73
+            "y": 38
           },
           "id": 112,
           "options": {
@@ -3073,9 +3037,11 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.4.7",
+          "pluginVersion": "10.4.2",
           "targets": [
             {
               "datasource": {
@@ -3299,8 +3265,7 @@
   ],
   "refresh": "5m",
   "revision": 1,
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
@@ -3415,15 +3380,15 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "330d",
+        "query": "335d",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
           "selected": false,
-          "text": "330d",
-          "value": "330d"
+          "text": "335d",
+          "value": "335d"
         },
         "hide": 0,
         "includeAll": false,
@@ -3462,7 +3427,7 @@
             "value": "180d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "330d",
             "value": "330d"
           },
@@ -3472,7 +3437,7 @@
             "value": "365d"
           }
         ],
-        "query": "1d,7d,30d,60d,90d,180d,330d,365d",
+        "query": "1d,7d,30d,60d,90d,180d,335d,365d",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -3607,6 +3572,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 150,
+  "version": 155,
   "weekStart": "monday"
 }
