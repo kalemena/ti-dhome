@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 19666,
   "graphTooltip": 1,
-  "id": 1,
+  "id": 4,
   "links": [],
   "liveNow": true,
   "panels": [
@@ -891,9 +891,11 @@
           "fields": "/^name$/",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -959,9 +961,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1043,6 +1047,8 @@
       },
       "id": 20,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -1052,9 +1058,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1118,9 +1125,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1181,9 +1190,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1245,9 +1256,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1310,9 +1323,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1413,9 +1428,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1477,9 +1494,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1554,9 +1573,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1575,7 +1596,6 @@
         }
       ],
       "title": "Yield (€) ($cent cent)",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -1623,9 +1643,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1644,7 +1666,6 @@
         }
       ],
       "title": "Yield (avg €/day) ($cent cent, $bar_chart_duration)",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -1658,6 +1679,7 @@
             "mode": "continuous-RdYlGr"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1776,7 +1798,6 @@
       "timeFrom": "$bar_chart_duration",
       "timeShift": "1d",
       "title": "Per Day (Last $bar_chart_duration)",
-      "transformations": [],
       "type": "barchart"
     },
     {
@@ -1790,6 +1811,7 @@
             "mode": "continuous-RdYlGr"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1894,6 +1916,7 @@
             "mode": "continuous-RdYlGr"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -3907,8 +3930,7 @@
   ],
   "refresh": "1m",
   "revision": 1,
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
     "solar"
   ],
@@ -4117,6 +4139,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 46,
+  "version": 50,
   "weekStart": ""
 }
