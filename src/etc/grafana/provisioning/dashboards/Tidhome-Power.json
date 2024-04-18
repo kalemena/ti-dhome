@@ -1536,7 +1536,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1745,9 +1744,22 @@
           "expr": "increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[$nbDays])",
           "hide": false,
           "instant": false,
-          "legendFormat": "Consumed",
+          "legendFormat": "Clamp Conso",
           "range": true,
           "refId": "EConsummed"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "increase(sensors_teleinfo_Wh_Total{location=\"main\"}[$nbDays])",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "TIC Conso",
+          "range": true,
+          "refId": "TConso"
         }
       ],
       "title": "Energy In/Out",
@@ -2291,36 +2303,6 @@
                   {
                     "id": "custom.axisPlacement",
                     "value": "right"
-                  }
-                ]
-              },
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "Total",
-                      "CCost-Non-Heating",
-                      "1-Car Charging",
-                      "2-Water Heater",
-                      "3-Heaters",
-                      "4-VMC",
-                      "Teleinfo (raw)"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
                   }
                 ]
               }
@@ -3397,15 +3379,15 @@
         "hide": 2,
         "label": "365 Day",
         "name": "day365",
-        "query": "345d",
+        "query": "365d",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
           "selected": false,
-          "text": "90d",
-          "value": "90d"
+          "text": "365d",
+          "value": "365d"
         },
         "hide": 0,
         "includeAll": false,
@@ -3434,7 +3416,7 @@
             "value": "60d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "90d",
             "value": "90d"
           },
@@ -3444,17 +3426,12 @@
             "value": "180d"
           },
           {
-            "selected": false,
-            "text": "345d",
-            "value": "345d"
-          },
-          {
-            "selected": false,
+            "selected": true,
             "text": "365d",
             "value": "365d"
           }
         ],
-        "query": "1d,7d,30d,60d,90d,180d,345d,365d",
+        "query": "1d,7d,30d,60d,90d,180d,365d",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -3589,6 +3566,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 170,
+  "version": 172,
   "weekStart": "monday"
 }
