@@ -1136,12 +1136,24 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "expr": "opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "Solar",
           "range": true,
-          "refId": "A"
+          "refId": "PSolar"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}",
+          "hide": false,
+          "legendFormat": "ToGrid",
+          "range": true,
+          "refId": "PGrid"
         }
       ],
       "title": "Production (Total - AC)",
@@ -4048,27 +4060,27 @@
             "value": "7d"
           },
           {
-            "selected": false,
-            "text": "14d",
-            "value": "14d"
-          },
-          {
             "selected": true,
             "text": "30d",
             "value": "30d"
           },
           {
             "selected": false,
-            "text": "60d",
-            "value": "60d"
+            "text": "90d",
+            "value": "90d"
           },
           {
             "selected": false,
-            "text": "90d",
-            "value": "90d"
+            "text": "180d",
+            "value": "180d"
+          },
+          {
+            "selected": false,
+            "text": "365d",
+            "value": "365d"
           }
         ],
-        "query": "7d,14d,30d,60d,90d",
+        "query": "7d,30d,90d,180d,365d",
         "queryValue": "",
         "refresh": 2,
         "skipUrlSync": false,
@@ -4139,6 +4151,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 50,
+  "version": 55,
   "weekStart": ""
 }
