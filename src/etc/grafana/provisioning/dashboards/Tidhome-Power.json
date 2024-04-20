@@ -1229,7 +1229,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 2,
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1240,7 +1240,7 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "Eu"
         },
         "overrides": []
       },
@@ -1263,7 +1263,7 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
+        "showPercentChange": true,
         "text": {},
         "textMode": "value_and_name",
         "wideLayout": true
@@ -1293,7 +1293,7 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhBase))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhBase)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhBase))",
-          "hide": false,
+          "hide": true,
           "instant": false,
           "interval": "",
           "legendFormat": "$day7",
@@ -1375,7 +1375,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 2,
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1386,7 +1386,7 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "Eu"
         },
         "overrides": []
       },
@@ -1409,7 +1409,7 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
+        "showPercentChange": true,
         "text": {},
         "textMode": "value_and_name",
         "wideLayout": true
@@ -1439,7 +1439,7 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhHP))",
-          "hide": false,
+          "hide": true,
           "instant": false,
           "interval": "",
           "legendFormat": "$day7",
@@ -1536,6 +1536,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1546,7 +1547,7 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "Eu"
         },
         "overrides": []
       },
@@ -1569,7 +1570,7 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
+        "showPercentChange": true,
         "text": {},
         "textMode": "value_and_name",
         "wideLayout": true
@@ -1599,7 +1600,7 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhTWHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhTWHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhTRHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhTRHP))",
-          "hide": false,
+          "hide": true,
           "instant": false,
           "interval": "",
           "legendFormat": "$day7",
@@ -3566,6 +3567,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 172,
+  "version": 175,
   "weekStart": "monday"
 }
