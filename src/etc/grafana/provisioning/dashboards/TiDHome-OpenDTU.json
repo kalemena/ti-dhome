@@ -1117,7 +1117,7 @@
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "auto",
+        "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -4088,9 +4088,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "30",
-          "value": "30"
+          "selected": false,
+          "text": "25",
+          "value": "25"
         },
         "description": "How many cents per kWh",
         "hide": 0,
@@ -4099,11 +4099,11 @@
         "options": [
           {
             "selected": true,
-            "text": "30",
-            "value": "30"
+            "text": "25",
+            "value": "25"
           }
         ],
-        "query": "30",
+        "query": "25",
         "skipUrlSync": false,
         "type": "textbox"
       },
@@ -4151,6 +4151,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 55,
+  "version": 60,
   "weekStart": ""
 }
