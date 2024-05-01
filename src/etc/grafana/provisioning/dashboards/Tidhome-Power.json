@@ -751,7 +751,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.0.0",
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -760,7 +760,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"} @ now() - sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HPJB",
@@ -774,7 +774,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"} @ now() - sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HPJW",
@@ -788,7 +788,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"} @ now() - sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HPJR",
@@ -1018,7 +1018,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.0.0",
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -1163,7 +1163,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.0.0",
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -1263,7 +1263,7 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": true,
+        "showPercentChange": false,
         "text": {},
         "textMode": "value_and_name",
         "wideLayout": true
@@ -1409,7 +1409,7 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": true,
+        "showPercentChange": false,
         "text": {},
         "textMode": "value_and_name",
         "wideLayout": true
@@ -1570,7 +1570,7 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": true,
+        "showPercentChange": false,
         "text": {},
         "textMode": "value_and_name",
         "wideLayout": true
@@ -2136,7 +2136,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
+              "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h)",
               "hide": false,
               "legendFormat": "1-CarCharging",
               "range": true,
@@ -2148,7 +2148,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
+              "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h)",
               "hide": false,
               "legendFormat": "2-WaterHeater",
               "range": true,
@@ -2160,7 +2160,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
+              "expr": "(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h)",
               "hide": false,
               "legendFormat": "3-Heaters",
               "range": true,
@@ -2172,7 +2172,7 @@
                 "uid": "VictoriaMetrics"
               },
               "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
+              "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[1h]) offset -1h)",
               "hide": false,
               "legendFormat": "{{location}}",
               "range": true,
@@ -2304,6 +2304,30 @@
                   {
                     "id": "custom.axisPlacement",
                     "value": "right"
+                  }
+                ]
+              },
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "2-Water Heater"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
                   }
                 ]
               }
@@ -3567,6 +3591,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 175,
+  "version": 180,
   "weekStart": "monday"
 }
