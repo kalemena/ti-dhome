@@ -1,0 +1,9 @@
+// Ref doc:
+// https://www.zigbee2mqtt.io/devices/GX02.html
+
+return {
+    payload: {
+        "state": msg.state
+    },
+    topic: "zigbee2mqtt/" + msg.topic + "/set"
+}

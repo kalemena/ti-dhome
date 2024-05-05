@@ -1,0 +1,106 @@
+[
+    {
+        "id": "fd490c64c00ffc6c",
+        "type": "inject",
+        "z": "ec75ad2cb670e9c0",
+        "name": "18h - ON - 5min",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "state",
+                "v": "ON",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 18 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "G01~Garage~WaterValve",
+        "x": 170,
+        "y": 3100,
+        "wires": [
+            [
+                "8f0841fd6c7f4c5e"
+            ]
+        ]
+    },
+    {
+        "id": "9296c6589aba70de",
+        "type": "comment",
+        "z": "ec75ad2cb670e9c0",
+        "name": "Triggers -> Actions -> Water Valve",
+        "info": "",
+        "x": 180,
+        "y": 3040,
+        "wires": []
+    },
+    {
+        "id": "dfa9c68b3dfcb3a4",
+        "type": "mqtt out",
+        "z": "ec75ad2cb670e9c0",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 550,
+        "y": 3100,
+        "wires": []
+    },
+    {
+        "id": "8f0841fd6c7f4c5e",
+        "type": "function",
+        "z": "ec75ad2cb670e9c0",
+        "name": "State",
+        "func": "\nreturn {\n    payload: {\n        \"state\": msg.state\n    },\n    topic: \"zigbee2mqtt/\" + msg.topic + \"/set\"\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 3100,
+        "wires": [
+            [
+                "dfa9c68b3dfcb3a4"
+            ]
+        ]
+    },
+    {
+        "id": "c38452a5.4f84e8",
+        "type": "mqtt-broker",
+        "name": "mqtt",
+        "broker": "mqtt",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "15",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
