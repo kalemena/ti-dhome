@@ -760,7 +760,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"}[1h] - sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"}[1h] offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HPJB",
@@ -774,7 +774,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"}[1h] - sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"}[1h] offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HPJW",
@@ -788,7 +788,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"}[1h] - sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"}[1h] offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HPJR",
@@ -813,7 +813,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHCJB{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHCJB{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHCJB{db=\"sensors\",location=\"main\"}[1h] - sensors_teleinfo_BBRHCJB{db=\"sensors\",location=\"main\"}[1h] offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HCJB",
@@ -827,7 +827,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHCJW{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHCJW{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHCJW{db=\"sensors\",location=\"main\"}[1h] - sensors_teleinfo_BBRHCJW{db=\"sensors\",location=\"main\"}[1h] offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HCJW",
@@ -841,7 +841,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sensors_teleinfo_BBRHCJR{db=\"sensors\",location=\"main\"} - sensors_teleinfo_BBRHCJR{db=\"sensors\",location=\"main\"} offset $nbDays) / 1000",
+          "expr": "(sensors_teleinfo_BBRHCJR{db=\"sensors\",location=\"main\"}[1h] - sensors_teleinfo_BBRHCJR{db=\"sensors\",location=\"main\"}[1h] offset $nbDays) / 1000",
           "hide": false,
           "instant": true,
           "legendFormat": "HCJR",
@@ -1822,7 +1822,7 @@
               "series": []
             }
           },
-          "pluginVersion": "6.0.0",
+          "pluginVersion": "6.1.0",
           "targets": [
             {
               "datasource": {
@@ -1970,7 +1970,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "orange",
@@ -2128,7 +2129,7 @@
               "series": []
             }
           },
-          "pluginVersion": "6.0.0",
+          "pluginVersion": "6.1.0",
           "targets": [
             {
               "datasource": {
@@ -3591,6 +3592,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 180,
+  "version": 190,
   "weekStart": "monday"
 }
