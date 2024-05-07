@@ -1781,12 +1781,104 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "description": "Energy Consumed hourly (kWh)",
           "gridPos": {
             "h": 12,
             "w": 24,
             "x": 0,
             "y": 36
+          },
+          "id": 127,
+          "interval": "1h",
+          "options": {
+            "baidu": {
+              "callback": "bmapReady",
+              "key": ""
+            },
+            "editor": {
+              "format": "auto"
+            },
+            "editorMode": "code",
+            "gaode": {
+              "key": "",
+              "plugin": "AMap.Scale,AMap.ToolBar"
+            },
+            "getOption": "const series = context.panel.data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer || s.fields.find((f) => f.type === 'number').values;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer || s.fields.find((f) => f.type === 'time').values;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'total',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: context.panel.data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "google": {
+              "callback": "gmapReady",
+              "key": ""
+            },
+            "map": "none",
+            "renderer": "canvas",
+            "themeEditor": {
+              "config": "{}",
+              "name": "default"
+            },
+            "visualEditor": {
+              "code": "const series = data.series.map((s) => {\n  let sData = s.fields.find((f) => f.type === \"number\").values.buffer;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"A\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  // It seems that ECharts is no friend of Unix timestamps\n  // Use JS date and set the hours to 0 since we are interested\n  // in the entire day\n  let sTime = s.fields.find((f) => f.type === \"time\").values.buffer;\n  sTime = sTime.map(function (x) {\n    // Move back 1 ms to avoid the overflow to the next day\n    x -= 1;\n    const tmpDate = new Date(x);\n    return tmpDate.setHours(0, 0, 0, 0);\n  });\n\n  return {\n    name: s.fields[1].labels.Source,\n    type: \"bar\",\n    stack: \"total\",\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n  };\n});\n\n// Debug\n//console.log('series');\n//console.log(series);\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    show: false,\n    interval: 0,\n    alignWithLabel: true,\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" Wh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: false,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\nreturn {\n  color: [\n    \"#27727b\", // Series A\n    \"#c23531\", // Series B\n    \"#9bca63\", // Series C\n  ],\n  backgroundColor: \"transparent\",\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return (value / 1000.0).toFixed(2).toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"long\",\n            year: \"numeric\",\n            month: \"long\",\n            day: \"numeric\",\n          };\n          return tmpDate.toLocaleDateString(\"en-EN\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: \"0\",\n    bottom: \"0\",\n    textStyle: {\n      color: \"rgba(128, 128, 128, .9)\",\n    },\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: 10,\n    right: 10,\n    top: 6,\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+              "dataset": [],
+              "series": []
+            }
+          },
+          "pluginVersion": "6.1.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "Energy from grid (Wh)",
+              "range": true,
+              "refId": "EnergyFromGrid"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "-sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "Energy to grid (Wh)",
+              "range": true,
+              "refId": "EnergyToGrid"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sum(increase(opendtu_YieldTotal{serial=\"114491839827\", type=\"AC\"}[1h])) or vector(0)) - sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "Solar (Wh)",
+              "range": true,
+              "refId": "Solar"
+            }
+          ],
+          "timeFrom": "144h",
+          "title": "Energy /h",
+          "type": "volkovlabs-echarts-panel"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "description": "Energy Consumed hourly (kWh)",
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 48
           },
           "id": 119,
           "interval": "1h",
@@ -1991,9 +2083,9 @@
             "h": 12,
             "w": 24,
             "x": 0,
-            "y": 48
+            "y": 60
           },
-          "id": 127,
+          "id": 132,
           "interval": "1h",
           "options": {
             "barRadius": 0.25,
@@ -2093,7 +2185,7 @@
             "h": 13,
             "w": 24,
             "x": 0,
-            "y": 60
+            "y": 72
           },
           "id": 130,
           "interval": "1h",
