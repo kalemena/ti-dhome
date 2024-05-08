@@ -1802,7 +1802,7 @@
               "key": "",
               "plugin": "AMap.Scale,AMap.ToolBar"
             },
-            "getOption": "const series = context.panel.data.series.map((s) => {\n  const sData = s.fields.find((f) => f.type === 'number').values.buffer || s.fields.find((f) => f.type === 'number').values;\n  const sTime = s.fields.find((f) => f.type === 'time').values.buffer || s.fields.find((f) => f.type === 'time').values;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'total',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    data: sData.map((d, i) => [sTime[i], d.toFixed(2)]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: context.panel.data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+            "getOption": "const series = context.panel.data.series.map((s) => {\n  let sData = s.fields.find((f) => f.type === 'number').values.buffer || s.fields.find((f) => f.type === 'number').values;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"EnergyToGrid\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer || s.fields.find((f) => f.type === 'time').values;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'total',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" kWh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: false,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: context.panel.data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
             "google": {
               "callback": "gmapReady",
               "key": ""
@@ -1842,7 +1842,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "-sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
+              "expr": "sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
               "hide": false,
               "instant": false,
               "legendFormat": "Energy to grid (Wh)",
@@ -3684,6 +3684,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 190,
+  "version": 192,
   "weekStart": "monday"
 }
