@@ -2019,161 +2019,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "continuous-RdYlGr"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "fillOpacity": 59,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineWidth": 2,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "thresholdsStyle": {
-                  "mode": "dashed"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "orange",
-                    "value": 300
-                  },
-                  {
-                    "color": "red",
-                    "value": 1000
-                  }
-                ]
-              },
-              "unit": "kwatth"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 12,
-            "w": 24,
-            "x": 0,
-            "y": 60
-          },
-          "id": 132,
-          "interval": "1h",
-          "options": {
-            "barRadius": 0.25,
-            "barWidth": 0.7,
-            "colorByField": "Value",
-            "fullHighlight": false,
-            "groupWidth": 0.7,
-            "legend": {
-              "calcs": [
-                "max"
-              ],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "orientation": "auto",
-            "showValue": "always",
-            "stacking": "none",
-            "text": {
-              "valueSize": 9
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            },
-            "xTickLabelMaxLength": 10,
-            "xTickLabelRotation": -45,
-            "xTickLabelSpacing": -100
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[1h] offset -1h)) or vector(0)",
-              "hide": true,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "Teleinfo"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
-              "hide": true,
-              "instant": false,
-              "legendFormat": "Energy from grid (Wh)",
-              "range": true,
-              "refId": "EnergyFromGrid"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
-              "hide": true,
-              "instant": false,
-              "legendFormat": "Energy to grid (Wh)",
-              "range": true,
-              "refId": "EnergyToGrid"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h])) - sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Energy to grid (Wh)",
-              "range": true,
-              "refId": "FromToGrid"
-            }
-          ],
-          "timeFrom": "144h",
-          "title": "Energy /h",
-          "type": "barchart"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
           "description": "Clamps consumption (kWh)",
           "gridPos": {
             "h": 13,
             "w": 24,
             "x": 0,
-            "y": 72
+            "y": 60
           },
           "id": 130,
           "interval": "1h",
@@ -3672,6 +3523,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 195,
+  "version": 196,
   "weekStart": "monday"
 }
