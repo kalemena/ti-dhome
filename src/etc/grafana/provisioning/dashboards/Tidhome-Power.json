@@ -1856,12 +1856,23 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(sum(increase(opendtu_YieldTotal{type=\"AC\"}[1h])) or vector(0)) - sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]))",
-              "hide": false,
+              "expr": "(sum(increase(opendtu_YieldTotal{type=\"AC\"}[1h])) or vector(0))",
+              "hide": true,
               "instant": false,
               "legendFormat": "Solar (Wh)",
               "range": true,
               "refId": "Solar"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "${Solar} - ${EnergyToGrid}",
+              "hide": false,
+              "refId": "AutoConsumption",
+              "type": "math"
             }
           ],
           "timeFrom": "144h",
@@ -3523,6 +3534,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 196,
+  "version": 197,
   "weekStart": "monday"
 }
