@@ -271,8 +271,8 @@
         ]
       },
       "gridPos": {
-        "h": 9,
-        "w": 7,
+        "h": 7,
+        "w": 6,
         "x": 6,
         "y": 1
       },
@@ -417,9 +417,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 11,
-        "x": 13,
+        "h": 7,
+        "w": 12,
+        "x": 12,
         "y": 1
       },
       "id": 28,
@@ -530,7 +530,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 5,
         "w": 3,
         "x": 0,
         "y": 3
@@ -635,7 +635,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 5,
         "w": 3,
         "x": 3,
         "y": 3
@@ -699,7 +699,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 8
       },
       "id": 121,
       "panels": [],
@@ -716,7 +716,7 @@
         "h": 18,
         "w": 11,
         "x": 0,
-        "y": 11
+        "y": 9
       },
       "id": 113,
       "options": {
@@ -982,7 +982,7 @@
         "h": 11,
         "w": 13,
         "x": 11,
-        "y": 11
+        "y": 9
       },
       "id": 106,
       "interval": "${timelineRange}",
@@ -1026,20 +1026,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "-sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[${timelineRange}])) or vector(0)",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "EnergyToGrid"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1051,7 +1038,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1063,7 +1050,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1075,7 +1062,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1087,7 +1074,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1099,7 +1086,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1153,7 +1140,7 @@
         "h": 13,
         "w": 13,
         "x": 11,
-        "y": 22
+        "y": 20
       },
       "id": 129,
       "interval": "${timelineRange}",
@@ -1274,7 +1261,7 @@
         "h": 6,
         "w": 3,
         "x": 0,
-        "y": 29
+        "y": 27
       },
       "id": 123,
       "options": {
@@ -1420,7 +1407,7 @@
         "h": 6,
         "w": 3,
         "x": 3,
-        "y": 29
+        "y": 27
       },
       "id": 122,
       "options": {
@@ -1581,7 +1568,7 @@
         "h": 6,
         "w": 3,
         "x": 6,
-        "y": 29
+        "y": 27
       },
       "id": 110,
       "options": {
@@ -1727,7 +1714,7 @@
         "h": 6,
         "w": 2,
         "x": 9,
-        "y": 29
+        "y": 27
       },
       "id": 131,
       "options": {
@@ -1793,12 +1780,114 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 33
+      },
+      "id": 132,
+      "interval": "${timelineRange}",
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto"
+        },
+        "editorMode": "code",
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const series = context.panel.data.series.map((s) => {\n  let sData = s.fields.find((f) => f.type === 'number').values.buffer || s.fields.find((f) => f.type === 'number').values;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"EnergyToGrid\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer || s.fields.find((f) => f.type === 'time').values;\n\n  return {\n    name: s.refId,\n    type: 'bar',\n    stack: 'total',\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n    //markLine: {\n    //  lineStyle: {\n    //    type: 'dashed'\n    //  },\n    //  data: [[{ type: 'min' }, { type: 'max' }]]\n    //}\n  };\n});\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n    //rotate: 45,\n    //formatter: function (d) {\n    // console.log(d)\n    //  let date = new Date(parseInt(d))\n    //  return date.toDateString().slice(0, 3) + \" - \" + date.getHours() + \"h\";\n    //},\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    show: false,\n    interval: 0,\n    alignWithLabel: true,\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" kWh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: false,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return value.toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"short\",\n            year: \"numeric\",\n            month: \"short\",\n            day: \"numeric\"\n          };\n          return tmpDate.toLocaleDateString(\"fr-FR\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: context.panel.data.series.map((s) => s.refId),\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "name": "default"
+        },
+        "visualEditor": {
+          "code": "const series = data.series.map((s) => {\n  let sData = s.fields.find((f) => f.type === \"number\").values.buffer;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"A\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  // It seems that ECharts is no friend of Unix timestamps\n  // Use JS date and set the hours to 0 since we are interested\n  // in the entire day\n  let sTime = s.fields.find((f) => f.type === \"time\").values.buffer;\n  sTime = sTime.map(function (x) {\n    // Move back 1 ms to avoid the overflow to the next day\n    x -= 1;\n    const tmpDate = new Date(x);\n    return tmpDate.setHours(0, 0, 0, 0);\n  });\n\n  return {\n    name: s.fields[1].labels.Source,\n    type: \"bar\",\n    stack: \"total\",\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n  };\n});\n\n// Debug\n//console.log('series');\n//console.log(series);\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    show: false,\n    interval: 0,\n    alignWithLabel: true,\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" Wh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: false,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\nreturn {\n  color: [\n    \"#27727b\", // Series A\n    \"#c23531\", // Series B\n    \"#9bca63\", // Series C\n  ],\n  backgroundColor: \"transparent\",\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return (value / 1000.0).toFixed(2).toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"long\",\n            year: \"numeric\",\n            month: \"long\",\n            day: \"numeric\",\n          };\n          return tmpDate.toLocaleDateString(\"en-EN\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: \"0\",\n    bottom: \"0\",\n    textStyle: {\n      color: \"rgba(128, 128, 128, .9)\",\n    },\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: 10,\n    right: 10,\n    top: 6,\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+          "dataset": [],
+          "series": []
+        }
+      },
+      "pluginVersion": "6.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[${timelineRange}]))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Energy from grid (Wh)",
+          "range": true,
+          "refId": "EnergyFromGrid"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[${timelineRange}]))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Energy to grid (Wh)",
+          "range": true,
+          "refId": "EnergyToGrid"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sum(increase(opendtu_YieldTotal{type=\"AC\"}[${timelineRange}])) or vector(0))",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "Solar (Wh)",
+          "range": true,
+          "refId": "Solar"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "${Solar} - ${EnergyToGrid}",
+          "hide": false,
+          "refId": "AutoConsumption",
+          "type": "math"
+        }
+      ],
+      "title": "Energy /d",
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 45
       },
       "id": 53,
       "panels": [
@@ -1811,7 +1900,7 @@
             "h": 12,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 48
           },
           "id": 127,
           "interval": "1h",
@@ -1915,7 +2004,7 @@
             "h": 12,
             "w": 24,
             "x": 0,
-            "y": 48
+            "y": 60
           },
           "id": 119,
           "interval": "1h",
@@ -2061,7 +2150,7 @@
             "h": 13,
             "w": 24,
             "x": 0,
-            "y": 60
+            "y": 72
           },
           "id": 130,
           "interval": "1h",
@@ -2165,7 +2254,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 46
       },
       "id": 23,
       "panels": [
@@ -2558,7 +2647,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 47
       },
       "id": 115,
       "panels": [
@@ -3560,6 +3649,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 199,
+  "version": 200,
   "weekStart": "monday"
 }
