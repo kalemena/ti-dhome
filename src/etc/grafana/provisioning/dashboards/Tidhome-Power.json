@@ -1026,7 +1026,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1038,7 +1038,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1050,7 +1050,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1062,7 +1062,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
@@ -1074,7 +1074,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "Heures Creuses",
           "range": true,
@@ -1086,24 +1086,11 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) or vector(0)",
+          "expr": "(increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
           "hide": false,
           "legendFormat": "Heures Pleines",
           "range": true,
           "refId": "Teleinfo-BBRHCJR"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "sum(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[${timelineRange}]))",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "EnergyFromGrid"
         }
       ],
       "title": "Total (${timelineTotal})",
@@ -3768,6 +3755,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 204,
+  "version": 205,
   "weekStart": "monday"
 }
