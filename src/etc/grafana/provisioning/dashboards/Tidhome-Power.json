@@ -983,7 +983,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 3,
+        "w": 4,
         "x": 11,
         "y": 9
       },
@@ -1130,7 +1130,7 @@
       "gridPos": {
         "h": 7,
         "w": 3,
-        "x": 14,
+        "x": 15,
         "y": 9
       },
       "id": 122,
@@ -1290,8 +1290,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 3,
-        "x": 17,
+        "w": 4,
+        "x": 18,
         "y": 9
       },
       "id": 110,
@@ -1508,43 +1508,40 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "Clamps consumption (kWh)",
       "gridPos": {
         "h": 11,
         "w": 13,
         "x": 11,
         "y": 16
       },
-      "id": 129,
-      "interval": "${timelineRange}",
+      "id": 133,
+      "interval": "1h",
       "options": {
         "baidu": {
           "callback": "bmapReady",
           "key": ""
         },
         "editor": {
-          "format": "auto",
-          "height": 600
+          "format": "auto"
         },
         "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "var tooltipCallback = (args) => {\n  // console.log(args)\n  let date = new Date(parseInt(args.data[0]))\n  return date.toDateString().slice(0, 10) + '<br />' + args.seriesName + ' ' + Number(args.data[1] / 1000).toFixed(2) + ' kWh';\n}\n\nconst series = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS.replace(/P(.*)~(.*)~OnOff/, '$2')\n\n  const sData = s.fields.find((f) => f.type === 'number').values;\n  const sTime = s.fields.find((f) => f.type === 'time').values;\n  // const color = barData[name].color;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: 'clamps',\n    showSymbol: false,\n    symbolSize: 12,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // color: color,\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'shadow',\n      },\n      formatter: tooltipCallback\n    },\n    data: sData.map((d, i) => [sTime[i], d ? Number(d * 1000).toFixed(2) : 0]),\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0;\n\n      series.forEach(serie => {\n        serie.data.forEach(value => {\n          // Note to understand below:\n          // IF timestamps are matching\n          // THEN we have a value for the given bar to count\n          if (params.data[0] == value[0]) {\n            // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n            total += parseInt(value[1])\n          }\n        })\n      })\n\n      return \"                 \" + (total / 1000).toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n  const nameClean = name.replace(/P(.*)~(.*)~OnOff/, '$2')\n  return nameClean\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  // console.log(params)\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  context.grafana.locationService.partial({ from: startValue, to: endValue });\n});\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: 'axis',\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: {\n    // type: 'time',\n    type: 'category',\n    axisLabel: {\n      rotate: 45,\n      // formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        let date = new Date(parseInt(d))\n        return date.toDateString().slice(0, 10) + \" - \" + date.getHours() + \"h\";\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    min: '0',\n    axisLabel: {\n      rotate: 0,\n      //formatter: '{value} Wh'\n      formatter: function (d) {\n        // console.log(d)\n        return \"\" + (d / 1000).toFixed(0) + \" kWh\";\n      }\n    }\n  },\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "getOption": "\nconst barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609, stack: 'main' },\n  HPJW: { color: '#B0C4DE', cost: 0.1894, stack: 'main' },\n  HPJR: { color: '#B22222', cost: 0.7564, stack: 'main' },\n  HCJB: { color: '#87CEFA', cost: 0.1296, stack: 'main' },\n  HCJW: { color: '#F8F8FF', cost: 0.1486, stack: 'main' },\n  HCJR: { color: '#F08080', cost: 0.1568, stack: 'main' },\n  ToGrid: { color: '#80F080', cost: 0.10, stack: 'main' },\n  AutoConso: { color: '#f8c471', cost: 0.0, stack: 'main' },\n  '1-Car': { color: '#a569bd', cost: 0.0, stack: 'clamps' },\n  '2-WaterHeater': { color: '#b7950b', cost: 0.0, stack: 'clamps' },\n  '3-Heaters': { color: '#138d75', cost: 0.0, stack: 'clamps' },\n  ChL: { color: '#d5dbdb', cost: 0.0, stack: 'clamps' },\n  SL: { color: '#bdc3c7', cost: 0.0, stack: 'clamps' },\n  Bureau: { color: '#7fb3d5', cost: 0.0, stack: 'clamps' },\n  LL: { color: '#138d75', cost: 0.0, stack: 'clamps' },\n  TV: { color: '#7dcea0', cost: 0.0, stack: 'clamps' },\n  Aquarium: { color: '#e59866', cost: 0.0, stack: 'clamps' },\n  Stove: { color: '#76d7c4', cost: 0.0, stack: 'clamps' },\n  IT: { color: '#a569bd', cost: 0.0, stack: 'clamps' },\n  Frigo: { color: '#cd6155', cost: 0.0, stack: 'clamps' },\n}\n\ngenStack = function (stackName) {\n  if (stackName == 'main') return '45%'\n  else return '20%'\n}\n\nconst series = context.panel.data.series.map((s) => {\n  // console.log(s)\n\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n    .replace(/P(.*)~(.*)~OnOff/, '$2')\n    .replace(/Teleinfo-BBR(.*)/, '$1')\n\n  let sData = s.fields.find((f) => f.type === 'number').values.buffer || s.fields.find((f) => f.type === 'number').values;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"MainToGrid\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer || s.fields.find((f) => f.type === 'time').values;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: barData[name].stack,\n    barWidth: genStack(barData[name].stack),\n    color: barData[name].color,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n    //markLine: {\n    //  lineStyle: {\n    //    type: 'dashed'\n    //  },\n    //  data: [[{ type: 'min' }, { type: 'max' }]]\n    //}\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0.0;\n      series.forEach(serie => {\n        if (serie.stack == 'main' && (serie.name.startsWith('HC') || serie.name.startsWith('HP'))) {\n          console.log(serie)\n          serie.data.forEach(value => {\n            // Note to understand below:\n            // IF timestamps are matching\n            // THEN we have a value for the given bar to count\n            if (params.data[0] == value[0]) {\n              // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n              total += parseFloat(value[1])\n            }\n          })\n        }\n      })\n\n      return \"                 \" + total.toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n  let nameClean = name.replace(/P(.*)~(.*)~OnOff/, '$2')\n    .replace(/Teleinfo-BBR(.*)/, '$1')\n  return nameClean\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n    //rotate: 45,\n    //formatter: function (d) {\n    // console.log(d)\n    //  let date = new Date(parseInt(d))\n    //  return date.toDateString().slice(0, 3) + \" - \" + date.getHours() + \"h\";\n    //},\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    show: true,\n    interval: 0,\n    alignWithLabel: true,\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" kWh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: true,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return value.toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"short\",\n            year: \"numeric\",\n            month: \"short\",\n            day: \"numeric\",\n            hour: \"numeric\"\n          };\n          return tmpDate.toLocaleDateString(\"fr-FR\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
         },
         "map": "none",
-        "renderer": "svg",
+        "renderer": "canvas",
         "themeEditor": {
           "config": "{}",
-          "height": 400,
           "name": "default"
         },
         "visualEditor": {
-          "code": "console.log(context);\nreturn {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "code": "const series = data.series.map((s) => {\n  let sData = s.fields.find((f) => f.type === \"number\").values.buffer;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"A\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  // It seems that ECharts is no friend of Unix timestamps\n  // Use JS date and set the hours to 0 since we are interested\n  // in the entire day\n  let sTime = s.fields.find((f) => f.type === \"time\").values.buffer;\n  sTime = sTime.map(function (x) {\n    // Move back 1 ms to avoid the overflow to the next day\n    x -= 1;\n    const tmpDate = new Date(x);\n    return tmpDate.setHours(0, 0, 0, 0);\n  });\n\n  return {\n    name: s.fields[1].labels.Source,\n    type: \"bar\",\n    stack: \"total\",\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n  };\n});\n\n// Debug\n//console.log('series');\n//console.log(series);\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    show: false,\n    interval: 0,\n    alignWithLabel: true,\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" Wh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: false,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\nreturn {\n  color: [\n    \"#27727b\", // Series A\n    \"#c23531\", // Series B\n    \"#9bca63\", // Series C\n  ],\n  backgroundColor: \"transparent\",\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return (value / 1000.0).toFixed(2).toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"long\",\n            year: \"numeric\",\n            month: \"long\",\n            day: \"numeric\",\n          };\n          return tmpDate.toLocaleDateString(\"en-EN\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: \"0\",\n    bottom: \"0\",\n    textStyle: {\n      color: \"rgba(128, 128, 128, .9)\",\n    },\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: 10,\n    right: 10,\n    top: 6,\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
           "dataset": [],
           "series": []
         }
@@ -1557,11 +1554,12 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+          "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
           "hide": false,
-          "legendFormat": "1-CarCharging",
+          "instant": false,
+          "legendFormat": "1-Car",
           "range": true,
-          "refId": "1-CarCharging"
+          "refId": "1-Car"
         },
         {
           "datasource": {
@@ -1569,8 +1567,9 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+          "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
           "hide": false,
+          "instant": false,
           "legendFormat": "2-WaterHeater",
           "range": true,
           "refId": "2-WaterHeater"
@@ -1581,8 +1580,9 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+          "expr": "(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
           "hide": false,
+          "instant": false,
           "legendFormat": "3-Heaters",
           "range": true,
           "refId": "3-Heaters"
@@ -1593,15 +1593,136 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[${timelineRange}]) offset -${timelineRange}) offset -${timelineRange}",
+          "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
           "hide": false,
+          "instant": false,
           "legendFormat": "{{location}}",
           "range": true,
-          "refId": "Plugs"
+          "refId": "4-Plugs"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h]) offset -1h}) offset -1h",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "FromGrid",
+          "range": true,
+          "refId": "MainFromGrid"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]) offset -1h) offset -1h",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "ToGrid",
+          "range": true,
+          "refId": "MainToGrid"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Teleinfo-BBRHPJB",
+          "range": true,
+          "refId": "Teleinfo-BBRHPJB"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Teleinfo-BBRHCJB",
+          "range": true,
+          "refId": "Teleinfo-BBRHCJB"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Teleinfo-BBRHPJW",
+          "range": true,
+          "refId": "Teleinfo-BBRHPJW"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Teleinfo-BBRHCJW",
+          "range": true,
+          "refId": "Teleinfo-BBRHCJW"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Teleinfo-BBRHPJR",
+          "range": true,
+          "refId": "Teleinfo-BBRHPJR"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Teleinfo-BBRHCJR",
+          "range": true,
+          "refId": "Teleinfo-BBRHCJR"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(\n  (sum(increase(opendtu_YieldTotal{type=\"AC\"}[1h]) offset -1h) offset -1h) \n  - \n  (sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]) offset -1h) offset -1h)\n)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "AutoConso",
+          "range": true,
+          "refId": "MainAutoConso"
         }
       ],
-      "title": "Clamps (kWh)",
-      "transparent": true,
+      "timeFrom": "96h",
+      "title": "Energy /h",
       "type": "volkovlabs-echarts-panel"
     },
     {
@@ -1630,7 +1751,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "\nconst barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609, stack: 'main' },\n  HPJW: { color: '#B0C4DE', cost: 0.1894, stack: 'main' },\n  HPJR: { color: '#B22222', cost: 0.7564, stack: 'main' },\n  HCJB: { color: '#87CEFA', cost: 0.1296, stack: 'main' },\n  HCJW: { color: '#F8F8FF', cost: 0.1486, stack: 'main' },\n  HCJR: { color: '#F08080', cost: 0.1568, stack: 'main' },\n  ToGrid: { color: '#80F080', cost: 0.10, stack: 'main' },\n  AutoConso: { color: '#f8c471', cost: 0.0, stack: 'main' },\n  '1-Car': { color: '#a569bd', cost: 0.0, stack: 'clamps' },\n  '2-WaterHeater': { color: '#b7950b', cost: 0.0, stack: 'clamps' },\n  '3-Heaters': { color: '#138d75', cost: 0.0, stack: 'clamps' },\n  ChL: { color: '#d5dbdb', cost: 0.0, stack: 'clamps' },\n  SL: { color: '#bdc3c7', cost: 0.0, stack: 'clamps' },\n  Bureau: { color: '#7fb3d5', cost: 0.0, stack: 'clamps' },\n  LL: { color: '#138d75', cost: 0.0, stack: 'clamps' },\n  TV: { color: '#7dcea0', cost: 0.0, stack: 'clamps' },\n  Aquarium: { color: '#e59866', cost: 0.0, stack: 'clamps' },\n  Stove: { color: '#76d7c4', cost: 0.0, stack: 'clamps' },\n  IT: { color: '#a569bd', cost: 0.0, stack: 'clamps' },\n  Frigo: { color: '#cd6155', cost: 0.0, stack: 'clamps' },\n}\n\ngenStack = function (stackName) {\n  if (stackName == 'main') return '45%'\n  else return '20%'\n}\n\nconst series = context.panel.data.series.map((s) => {\n  // console.log(s)\n\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n    .replace(/P(.*)~(.*)~OnOff/, '$2')\n    .replace(/Teleinfo-BBR(.*)/, '$1')\n\n  let sData = s.fields.find((f) => f.type === 'number').values.buffer || s.fields.find((f) => f.type === 'number').values;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"MainToGrid\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer || s.fields.find((f) => f.type === 'time').values;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: barData[name].stack,\n    barWidth: genStack(barData[name].stack),\n    color: barData[name].color,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n    //markLine: {\n    //  lineStyle: {\n    //    type: 'dashed'\n    //  },\n    //  data: [[{ type: 'min' }, { type: 'max' }]]\n    //}\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0.0;\n      series.forEach(serie => {\n        if (serie.stack == 'main' && (serie.name.startsWith('HC') || serie.name.startsWith('HP'))) {\n          console.log(serie)\n          serie.data.forEach(value => {\n            // Note to understand below:\n            // IF timestamps are matching\n            // THEN we have a value for the given bar to count\n            if (params.data[0] == value[0]) {\n              // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n              total += parseFloat(value[1])\n            }\n          })\n        }\n      })\n\n      return \"                 \" + total.toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n  let nameClean = name.replace(/P(.*)~(.*)~OnOff/, '$2')\n    .replace(/Teleinfo-BBR(.*)/, '$1')\n  return nameClean\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n    //rotate: 45,\n    //formatter: function (d) {\n    // console.log(d)\n    //  let date = new Date(parseInt(d))\n    //  return date.toDateString().slice(0, 3) + \" - \" + date.getHours() + \"h\";\n    //},\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    show: true,\n    interval: 0,\n    alignWithLabel: true,\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" kWh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: true,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return value.toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"short\",\n            year: \"numeric\",\n            month: \"short\",\n            day: \"numeric\"\n          };\n          return tmpDate.toLocaleDateString(\"fr-FR\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
+        "getOption": "\nconst barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609, stack: 'main' },\n  HPJW: { color: '#B0C4DE', cost: 0.1894, stack: 'main' },\n  HPJR: { color: '#B22222', cost: 0.7564, stack: 'main' },\n  HCJB: { color: '#87CEFA', cost: 0.1296, stack: 'main' },\n  HCJW: { color: '#F8F8FF', cost: 0.1486, stack: 'main' },\n  HCJR: { color: '#F08080', cost: 0.1568, stack: 'main' },\n  ToGrid: { color: '#80F080', cost: 0.10, stack: 'main' },\n  AutoConso: { color: '#f8c471', cost: 0.0, stack: 'main' },\n  '1-Car': { color: '#a569bd', cost: 0.0, stack: 'clamps' },\n  '2-WaterHeater': { color: '#b7950b', cost: 0.0, stack: 'clamps' },\n  '3-Heaters': { color: '#138d75', cost: 0.0, stack: 'clamps' },\n  ChL: { color: '#d5dbdb', cost: 0.0, stack: 'clamps' },\n  SL: { color: '#bdc3c7', cost: 0.0, stack: 'clamps' },\n  Bureau: { color: '#7fb3d5', cost: 0.0, stack: 'clamps' },\n  LL: { color: '#138d75', cost: 0.0, stack: 'clamps' },\n  TV: { color: '#7dcea0', cost: 0.0, stack: 'clamps' },\n  Aquarium: { color: '#e59866', cost: 0.0, stack: 'clamps' },\n  Stove: { color: '#76d7c4', cost: 0.0, stack: 'clamps' },\n  IT: { color: '#a569bd', cost: 0.0, stack: 'clamps' },\n  Frigo: { color: '#cd6155', cost: 0.0, stack: 'clamps' },\n}\n\ngenStack = function (stackName) {\n  if (stackName == 'main') return '45%'\n  else return '20%'\n}\n\nconst series = context.panel.data.series.map((s) => {\n  // console.log(s)\n\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n    .replace(/P(.*)~(.*)~OnOff/, '$2')\n    .replace(/Teleinfo-BBR(.*)/, '$1')\n\n  let sData = s.fields.find((f) => f.type === 'number').values.buffer || s.fields.find((f) => f.type === 'number').values;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"MainToGrid\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer || s.fields.find((f) => f.type === 'time').values;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: barData[name].stack,\n    barWidth: genStack(barData[name].stack),\n    color: barData[name].color,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n    //markLine: {\n    //  lineStyle: {\n    //    type: 'dashed'\n    //  },\n    //  data: [[{ type: 'min' }, { type: 'max' }]]\n    //}\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0.0;\n      series.forEach(serie => {\n        if (serie.stack == 'main' && (serie.name.startsWith('HC') || serie.name.startsWith('HP'))) {\n          console.log(serie)\n          serie.data.forEach(value => {\n            // Note to understand below:\n            // IF timestamps are matching\n            // THEN we have a value for the given bar to count\n            if (params.data[0] == value[0]) {\n              // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n              total += parseFloat(value[1])\n            }\n          })\n        }\n      })\n\n      return \"                 \" + total.toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n  let nameClean = name.replace(/P(.*)~(.*)~OnOff/, '$2')\n    .replace(/Teleinfo-BBR(.*)/, '$1')\n  return nameClean\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n    //rotate: 45,\n    //formatter: function (d) {\n    // console.log(d)\n    //  let date = new Date(parseInt(d))\n    //  return date.toDateString().slice(0, 3) + \" - \" + date.getHours() + \"h\";\n    //},\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    alignWithLabel: false,\n    length: 5,\n    align: \"left\",\n    interval: function (index, value) {\n      return value ? true : false;\n    }\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" kWh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: true,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return value.toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"short\",\n            year: \"numeric\",\n            month: \"short\",\n            day: \"numeric\"\n          };\n          return tmpDate.toLocaleDateString(\"fr-FR\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -1833,244 +1954,6 @@
         "x": 0,
         "y": 38
       },
-      "id": 53,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "gridPos": {
-            "h": 11,
-            "w": 24,
-            "x": 0,
-            "y": 39
-          },
-          "id": 133,
-          "interval": "1h",
-          "options": {
-            "baidu": {
-              "callback": "bmapReady",
-              "key": ""
-            },
-            "editor": {
-              "format": "auto"
-            },
-            "editorMode": "code",
-            "gaode": {
-              "key": "",
-              "plugin": "AMap.Scale,AMap.ToolBar"
-            },
-            "getOption": "\nconst barData = {\n  HPJB: { color: '#6495ED', cost: 0.1609, stack: 'main' },\n  HPJW: { color: '#B0C4DE', cost: 0.1894, stack: 'main' },\n  HPJR: { color: '#B22222', cost: 0.7564, stack: 'main' },\n  HCJB: { color: '#87CEFA', cost: 0.1296, stack: 'main' },\n  HCJW: { color: '#F8F8FF', cost: 0.1486, stack: 'main' },\n  HCJR: { color: '#F08080', cost: 0.1568, stack: 'main' },\n  ToGrid: { color: '#80F080', cost: 0.10, stack: 'main' },\n  AutoConso: { color: '#f8c471', cost: 0.0, stack: 'main' },\n  '1-Car': { color: '#a569bd', cost: 0.0, stack: 'clamps' },\n  '2-WaterHeater': { color: '#b7950b', cost: 0.0, stack: 'clamps' },\n  '3-Heaters': { color: '#138d75', cost: 0.0, stack: 'clamps' },\n  ChL: { color: '#d5dbdb', cost: 0.0, stack: 'clamps' },\n  SL: { color: '#bdc3c7', cost: 0.0, stack: 'clamps' },\n  Bureau: { color: '#7fb3d5', cost: 0.0, stack: 'clamps' },\n  LL: { color: '#138d75', cost: 0.0, stack: 'clamps' },\n  TV: { color: '#7dcea0', cost: 0.0, stack: 'clamps' },\n  Aquarium: { color: '#e59866', cost: 0.0, stack: 'clamps' },\n  Stove: { color: '#76d7c4', cost: 0.0, stack: 'clamps' },\n  IT: { color: '#a569bd', cost: 0.0, stack: 'clamps' },\n  Frigo: { color: '#cd6155', cost: 0.0, stack: 'clamps' },\n}\n\ngenStack = function (stackName) {\n  if (stackName == 'main') return '45%'\n  else return '20%'\n}\n\nconst series = context.panel.data.series.map((s) => {\n  // console.log(s)\n\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n    .replace(/P(.*)~(.*)~OnOff/, '$2')\n    .replace(/Teleinfo-BBR(.*)/, '$1')\n\n  let sData = s.fields.find((f) => f.type === 'number').values.buffer || s.fields.find((f) => f.type === 'number').values;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"MainToGrid\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  let sTime = s.fields.find((f) => f.type === 'time').values.buffer || s.fields.find((f) => f.type === 'time').values;\n\n  return {\n    name: name,\n    type: 'bar',\n    stack: barData[name].stack,\n    barWidth: genStack(barData[name].stack),\n    color: barData[name].color,\n    showSymbol: false,\n    areaStyle: {\n      opacity: 0.1,\n    },\n    lineStyle: {\n      width: 1,\n    },\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n    //markLine: {\n    //  lineStyle: {\n    //    type: 'dashed'\n    //  },\n    //  data: [[{ type: 'min' }, { type: 'max' }]]\n    //}\n  };\n});\n\n// top stack bar label\nseries[series.length - 1].label = {\n  normal: {\n    show: true,\n    position: 'top',\n    color: \"white\",\n    fontSize: 12,\n    rotate: 50,\n    formatter: (params) => {\n      let total = 0.0;\n      series.forEach(serie => {\n        if (serie.stack == 'main' && (serie.name.startsWith('HC') || serie.name.startsWith('HP'))) {\n          console.log(serie)\n          serie.data.forEach(value => {\n            // Note to understand below:\n            // IF timestamps are matching\n            // THEN we have a value for the given bar to count\n            if (params.data[0] == value[0]) {\n              // console.log(serie.name + \" \" + value[0] + \"=\" + value[1])\n              total += parseFloat(value[1])\n            }\n          })\n        }\n      })\n\n      return \"                 \" + total.toFixed(1) + \" kWh\";\n    }\n  }\n}\n\nconst legend = context.panel.data.series.map((s) => {\n  const name = s.fields.find((f) => f.type === 'number').config.displayNameFromDS\n  let nameClean = name.replace(/P(.*)~(.*)~OnOff/, '$2')\n    .replace(/Teleinfo-BBR(.*)/, '$1')\n  return nameClean\n})\n\n/**\n * Enable Data Zoom by default\n */\nsetTimeout(() => context.panel.chart.dispatchAction({\n  type: 'takeGlobalCursor',\n  key: 'dataZoomSelect',\n  dataZoomSelectActive: true,\n}), 500);\n\n/**\n * Update Time Range on Zoom\n */\ncontext.panel.chart.on('datazoom', function (params) {\n  const startValue = params.batch[0]?.startValue;\n  const endValue = params.batch[0]?.endValue;\n  locationService.partial({ from: startValue, to: endValue });\n});\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n    //rotate: 45,\n    //formatter: function (d) {\n    // console.log(d)\n    //  let date = new Date(parseInt(d))\n    //  return date.toDateString().slice(0, 3) + \" - \" + date.getHours() + \"h\";\n    //},\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    show: true,\n    interval: 0,\n    alignWithLabel: true,\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" kWh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: true,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\n\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return value.toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"short\",\n            year: \"numeric\",\n            month: \"short\",\n            day: \"numeric\",\n            hour: \"numeric\"\n          };\n          return tmpDate.toLocaleDateString(\"fr-FR\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: '0',\n    bottom: '0',\n    data: legend,\n    textStyle: {\n      color: 'rgba(128, 128, 128, .9)',\n    },\n  },\n  toolbox: {\n    feature: {\n      dataZoom: {\n        yAxisIndex: 'none',\n        icon: {\n          zoom: 'path://',\n          back: 'path://',\n        },\n      },\n      saveAsImage: {},\n    }\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: '2%',\n    right: '2%',\n    top: '2%',\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
-            "google": {
-              "callback": "gmapReady",
-              "key": ""
-            },
-            "map": "none",
-            "renderer": "canvas",
-            "themeEditor": {
-              "config": "{}",
-              "name": "default"
-            },
-            "visualEditor": {
-              "code": "const series = data.series.map((s) => {\n  let sData = s.fields.find((f) => f.type === \"number\").values.buffer;\n\n  // Move 'Grid Feed' to the negative quadrant\n  if (s.refId === \"A\") {\n    sData = sData.map(function (x) {\n      return x * -1.0;\n    });\n  }\n\n  // It seems that ECharts is no friend of Unix timestamps\n  // Use JS date and set the hours to 0 since we are interested\n  // in the entire day\n  let sTime = s.fields.find((f) => f.type === \"time\").values.buffer;\n  sTime = sTime.map(function (x) {\n    // Move back 1 ms to avoid the overflow to the next day\n    x -= 1;\n    const tmpDate = new Date(x);\n    return tmpDate.setHours(0, 0, 0, 0);\n  });\n\n  return {\n    name: s.fields[1].labels.Source,\n    type: \"bar\",\n    stack: \"total\",\n    // 'createEmpty: true' is needed to align the bars in case of missing values\n    // but creates 'null' values in the data and eCharts fails\n    // Make sure to catch the null values via 'd ? d.toFixed(2) : 0'\n    data: sData.map((d, i) => [sTime[i], d ? d.toFixed(2) : 0]),\n  };\n});\n\n// Debug\n//console.log('series');\n//console.log(series);\n\nconst axisOptionX = {\n  axisLabel: {\n    // Should show all category values on the x-Axis but\n    // does not work\n    interval: 0,\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  formatter: \"{d}\",\n  axisLine: {\n    show: false,\n    onZero: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n  // Work around the 'interval: 0' issue\n  // Potentially causes issues for low data count\n  splitNumber: 31,\n  boundaryGap: true,\n  axisTick: {\n    show: false,\n    interval: 0,\n    alignWithLabel: true,\n  },\n};\n\nconst axisOptionY = {\n  axisLabel: {\n    formatter: function (value) {\n      // 'toLocaleString' applies internationalization to the\n      // number format, e.g. thousands separator\n      return value.toLocaleString() + \" Wh\";\n    },\n    color: \"rgba(128, 128, 128, .9)\",\n  },\n  axisTick: {\n    show: false,\n  },\n  axisLine: {\n    show: false,\n  },\n  splitLine: {\n    lineStyle: {\n      color: \"rgba(128, 128, 128, .2)\",\n    },\n  },\n};\n\nreturn {\n  color: [\n    \"#27727b\", // Series A\n    \"#c23531\", // Series B\n    \"#9bca63\", // Series C\n  ],\n  backgroundColor: \"transparent\",\n  tooltip: {\n    trigger: \"axis\",\n    valueFormatter: function (value) {\n      return (value / 1000.0).toFixed(2).toLocaleString() + \" kWh\";\n    },\n    axisPointer: {\n      type: \"shadow\",\n      label: {\n        // For whatever reason axisPointer.label sets the tooltip \"heading\"\n        formatter: function (params) {\n          const tmpDate = new Date(params.value);\n          const options = {\n            weekday: \"long\",\n            year: \"numeric\",\n            month: \"long\",\n            day: \"numeric\",\n          };\n          return tmpDate.toLocaleDateString(\"en-EN\", options);\n        },\n      },\n    },\n  },\n  legend: {\n    left: \"0\",\n    bottom: \"0\",\n    textStyle: {\n      color: \"rgba(128, 128, 128, .9)\",\n    },\n  },\n  xAxis: Object.assign(\n    {\n      type: \"time\",\n    },\n    axisOptionX\n  ),\n  yAxis: Object.assign(\n    {\n      type: \"value\",\n    },\n    axisOptionY\n  ),\n  grid: {\n    left: 10,\n    right: 10,\n    top: 6,\n    bottom: 24,\n    containLabel: true,\n  },\n  series,\n};",
-              "dataset": [],
-              "series": []
-            }
-          },
-          "pluginVersion": "6.1.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy_l1{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "1-Car",
-              "range": true,
-              "refId": "1-Car"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy_l2{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "2-WaterHeater",
-              "range": true,
-              "refId": "2-WaterHeater"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy_l3{location=\"C01~Garage~PowerMeter\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "3-Heaters",
-              "range": true,
-              "refId": "3-Heaters"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "(increase(sensors_zigbee_energy{location=~\"P.*\",db=\"sensors\"}[1h]) offset -1h) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "{{location}}",
-              "range": true,
-              "refId": "4-Plugs"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(increase(sensors_zigbee_energy_b{location=\"C03~Garage~PowerMeter\"}[1h]) offset -1h}) offset -1h",
-              "hide": true,
-              "instant": false,
-              "legendFormat": "FromGrid",
-              "range": true,
-              "refId": "MainFromGrid"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]) offset -1h) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "ToGrid",
-              "range": true,
-              "refId": "MainToGrid"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHPJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Teleinfo-BBRHPJB",
-              "range": true,
-              "refId": "Teleinfo-BBRHPJB"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHCJB{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Teleinfo-BBRHCJB",
-              "range": true,
-              "refId": "Teleinfo-BBRHCJB"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHPJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Teleinfo-BBRHPJW",
-              "range": true,
-              "refId": "Teleinfo-BBRHPJW"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHCJW{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Teleinfo-BBRHCJW",
-              "range": true,
-              "refId": "Teleinfo-BBRHCJW"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHPJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Teleinfo-BBRHPJR",
-              "range": true,
-              "refId": "Teleinfo-BBRHPJR"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "((increase(sensors_teleinfo_BBRHCJR{location=\"main\",db=\"sensors\"}[1h]) offset -1h)  / 1000) offset -1h",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Teleinfo-BBRHCJR",
-              "range": true,
-              "refId": "Teleinfo-BBRHCJR"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(\n  (sum(increase(opendtu_YieldTotal{type=\"AC\"}[1h]) offset -1h) offset -1h) \n  - \n  (sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h]) offset -1h) offset -1h)\n)",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "AutoConso",
-              "range": true,
-              "refId": "MainAutoConso"
-            }
-          ],
-          "timeFrom": "144h",
-          "title": "Energy /h",
-          "type": "volkovlabs-echarts-panel"
-        }
-      ],
-      "repeat": "timelineRange",
-      "repeatDirection": "h",
-      "title": "Energy Timeline 144h (kWh)",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 39
-      },
       "id": 23,
       "panels": [
         {
@@ -2179,30 +2062,6 @@
                     "value": "right"
                   }
                 ]
-              },
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "2-Water Heater"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
               }
             ]
           },
@@ -2210,7 +2069,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 40
           },
           "id": 29,
           "interval": "5m",
@@ -2321,7 +2180,6 @@
               "refId": "Teleinfo (raw)"
             }
           ],
-          "timeFrom": "144h",
           "title": "Clamps (W)",
           "type": "timeseries"
         },
@@ -2414,7 +2272,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 40
           },
           "id": 25,
           "options": {
@@ -2448,7 +2306,6 @@
               "refId": "B"
             }
           ],
-          "timeFrom": "72h",
           "title": "Outlets (W)",
           "type": "timeseries"
         }
@@ -2462,7 +2319,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 39
       },
       "id": 115,
       "panels": [
@@ -3464,6 +3321,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 212,
+  "version": 213,
   "weekStart": "monday"
 }
