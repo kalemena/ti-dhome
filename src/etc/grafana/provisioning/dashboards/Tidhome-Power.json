@@ -734,7 +734,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.1.0",
+      "pluginVersion": "6.4.1",
       "targets": [
         {
           "datasource": {
@@ -1546,7 +1546,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.1.0",
+      "pluginVersion": "6.4.1",
       "targets": [
         {
           "datasource": {
@@ -1721,7 +1721,7 @@
           "refId": "MainAutoConso"
         }
       ],
-      "timeFrom": "96h",
+      "timeFrom": "72h",
       "title": "Energy /h",
       "type": "volkovlabs-echarts-panel"
     },
@@ -1768,7 +1768,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.1.0",
+      "pluginVersion": "6.4.1",
       "targets": [
         {
           "datasource": {
@@ -3141,8 +3141,8 @@
       {
         "current": {
           "selected": false,
-          "text": "365d",
-          "value": "365d"
+          "text": "90d",
+          "value": "90d"
         },
         "hide": 0,
         "includeAll": false,
@@ -3171,7 +3171,7 @@
             "value": "60d"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "90d",
             "value": "90d"
           },
@@ -3181,7 +3181,7 @@
             "value": "180d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "365d",
             "value": "365d"
           }
@@ -3321,6 +3321,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 213,
+  "version": 214,
   "weekStart": "monday"
 }
