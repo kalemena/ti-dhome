@@ -557,7 +557,7 @@
   start: sunrise
   end: sunset
   soff: '0'
-  eoff: '15'
+  eoff: '20'
   x: 120
   'y': 840
   wires:
@@ -872,7 +872,7 @@
   topic: ''
   payload: ''
   payloadType: date
-  x: 110
+  x: 120
   'y': 1040
   wires:
     - - 52c3cf4742e30142
@@ -892,7 +892,7 @@
   from: ''
   to: ''
   reg: false
-  x: 270
+  x: 280
   'y': 1040
   wires:
     - - 05e4cac4db741f9d
@@ -921,7 +921,7 @@
   arraySpltType: len
   stream: false
   addname: ''
-  x: 420
+  x: 430
   'y': 1040
   wires:
     - []

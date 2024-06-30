@@ -1131,16 +1131,12 @@
                 if (idxPeriod > 0) { 
                     // set DB index for an update
                     fields["teleinfo_" + periods[period]] = idxPeriod
-
-                    fields["teleinfo_HCHP"] = idxPeriod
                 }
                 break
             case "BBRHCJB":
                 if (idxPeriod > 0) { 
                     // set DB index for an update
                     fields["teleinfo_" + periods[period]] = idxPeriod
-
-                    fields["teleinfo_HCHC"] = idxPeriod
                 }
                 break
             default:
