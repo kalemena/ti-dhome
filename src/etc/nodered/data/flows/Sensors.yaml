@@ -934,22 +934,6 @@
   z: ec75ad2cb670e9c0
   name: Insert X
   func: >-
-    // sensors_value
-
-    let fields = { "value": Number(msg.payload) }
-
-    let tags =   { "type": "teleinfo-" + msg.topic, "location": "main" }
-
-
-    var msgres1 =  {
-        topic: "teleinfo-" + msg.topic,
-        payload: {
-            payload: [ fields, tags ],
-            measurement: "sensors"
-        }
-    }
-
-
     // sensors_teleinfo_X
 
     let namedFieldName = "teleinfo_" + msg.topic
@@ -959,7 +943,7 @@
     var namedTags = { "location": "main" }
 
 
-    var msgres2 = {
+    var msgres = {
         topic: namedFieldName,
         payload: {
             payload: [namedFields, namedTags],
@@ -975,10 +959,10 @@
 
 
     return [
-        msgres1,
-        msgres2
+        msgres
     ]
-  outputs: 2
+  outputs: 1
+  timeout: ''
   noerr: 0
   initialize: ''
   finalize: ''
@@ -986,7 +970,6 @@
   x: 1270
   'y': 1230
   wires:
-    - - 3a926826af10884b
     - - 3a926826af10884b
 - id: 2824712821b59f6c
   type: function
@@ -1168,6 +1151,7 @@
 
     return msg
   outputs: 1
+  timeout: ''
   noerr: 0
   initialize: ''
   finalize: ''
@@ -1310,8 +1294,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 400
-  'y': 1410
+  x: 390
+  'y': 1420
   wires: []
 - id: bace985d48876ed3
   type: mqtt in
@@ -1394,39 +1378,6 @@
   wires:
     - - ec4ab99b1e9b03d7
       - 164bfa497952db59
-- id: ff92d9f85eeda30e
-  type: function
-  z: ec75ad2cb670e9c0
-  name: sensors_value
-  func: >-
-    let fields = { "value": Number(msg.payload) }
-
-    let tags = { "type": "zigbee-" + msg.topic, "location": msg.sensor_name }
-
-
-    var msgres = {
-        topic: "zigbee-" + msg.topic,
-        payload: {
-            payload: [fields, tags],
-            measurement: "sensors"
-        }
-    }
-
-
-    node.status({ fill: "blue", shape: "dot", text: msg.sensor_name + "/" +
-    msg.topic + ": " + Number(msg.payload) });
-
-
-    return msgres
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 890
-  'y': 1520
-  wires:
-    - - aede2387acfabe40
 - id: 31367ce045ab32a2
   type: function
   z: ec75ad2cb670e9c0
@@ -1486,7 +1437,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 870
+  x: 880
   'y': 1580
   wires: []
 - id: ae9f3e3b816d1937
@@ -1531,8 +1482,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 900
-  'y': 1470
+  x: 910
+  'y': 1520
   wires:
     - - aede2387acfabe40
 - id: 837d2234bda1d724
@@ -1582,7 +1533,7 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 870
+  x: 880
   'y': 1620
   wires: []
 - id: c2bdb1f8fe501507
@@ -2166,7 +2117,7 @@
   name: Triggers -> Actions -> Aquarium
   info: ''
   x: 170
-  'y': 2440
+  'y': 2480
   wires: []
 - id: e94b3d2f6a60fc41
   type: mqtt out
@@ -2287,6 +2238,7 @@
         ]
     }
   outputs: 2
+  timeout: ''
   noerr: 0
   initialize: ''
   finalize: ''
@@ -2515,7 +2467,7 @@
   to: ''
   reg: false
   x: 300
-  'y': 2800
+  'y': 2760
   wires:
     - - 3184599136af5dd3
 - id: 85150e703fc3107a
@@ -2535,7 +2487,7 @@
   to: ''
   reg: false
   x: 300
-  'y': 2930
+  'y': 2880
   wires:
     - - 3184599136af5dd3
 - id: c33f4def1ffb589e
