@@ -1711,8 +1711,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1939,8 +1938,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2049,8 +2047,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -2062,7 +2059,7 @@
             "h": 9,
             "w": 3,
             "x": 0,
-            "y": 40
+            "y": 48
           },
           "id": 123,
           "options": {
@@ -2193,8 +2190,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2210,7 +2206,7 @@
             "h": 17,
             "w": 12,
             "x": 3,
-            "y": 40
+            "y": 48
           },
           "id": 116,
           "options": {
@@ -2438,8 +2434,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2455,7 +2450,7 @@
             "h": 17,
             "w": 9,
             "x": 15,
-            "y": 40
+            "y": 48
           },
           "id": 112,
           "options": {
@@ -2684,8 +2679,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -2697,7 +2691,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 49
+            "y": 57
           },
           "id": 122,
           "options": {
@@ -2956,56 +2950,23 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "365d",
           "value": "365d"
         },
         "hide": 0,
-        "includeAll": false,
         "label": "Days in Donut",
-        "multi": false,
         "name": "nbDays",
         "options": [
-          {
-            "selected": false,
-            "text": "1d",
-            "value": "1d"
-          },
-          {
-            "selected": false,
-            "text": "7d",
-            "value": "7d"
-          },
-          {
-            "selected": false,
-            "text": "30d",
-            "value": "30d"
-          },
-          {
-            "selected": false,
-            "text": "60d",
-            "value": "60d"
-          },
-          {
-            "selected": false,
-            "text": "90d",
-            "value": "90d"
-          },
-          {
-            "selected": false,
-            "text": "180d",
-            "value": "180d"
-          },
           {
             "selected": true,
             "text": "365d",
             "value": "365d"
           }
         ],
-        "query": "1d,7d,30d,60d,90d,180d,365d",
-        "queryValue": "",
+        "query": "365d",
         "skipUrlSync": false,
-        "type": "custom"
+        "type": "textbox"
       },
       {
         "current": {
@@ -3137,6 +3098,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 218,
+  "version": 223,
   "weekStart": "monday"
 }
