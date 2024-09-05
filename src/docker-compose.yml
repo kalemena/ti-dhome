@@ -78,7 +78,8 @@ services:
       ioteleinfo.local: ${IOT_WEBRELAY_IP}
 
   telegraf:
-    image: telegraf:1.30.2
+    # https://github.com/influxdata/telegraf/releases
+    image: telegraf:1.31.3
     # network_mode: host
     hostname: telegraf
     restart: always
