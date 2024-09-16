@@ -10,6 +10,7 @@ volumes:
 services:
 
   mqtt:
+    # https://hub.docker.com/_/eclipse-mosquitto/
     image: eclipse-mosquitto:2.0.18
     restart: always
     ports:
@@ -18,7 +19,8 @@ services:
       - ./etc/mosquitto:/mosquitto/config:ro
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:1.39.1
+    # https://github.com/Koenkk/zigbee2mqtt/releases
+    image: koenkk/zigbee2mqtt:1.40.0
     restart: always
     ports:
       - 8181
