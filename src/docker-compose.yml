@@ -40,6 +40,7 @@ services:
           - zigbee2mqtt.tidhome.local
 
   victoriametrics:
+    # https://github.com/VictoriaMetrics/VictoriaMetrics/releases
     image: victoriametrics/victoria-metrics:v1.87.14
     restart: always
     ports:
@@ -60,7 +61,8 @@ services:
       context: .
       dockerfile: Dockerfile.official
       args:
-        NODERED_VERSION: 4.0.2
+        # https://github.com/node-red/node-red-docker/releases
+        NODERED_VERSION: 4.0.3
     restart: always
     ports:
       - 1880:1880
