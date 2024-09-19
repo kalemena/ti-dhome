@@ -895,7 +895,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -965,7 +965,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1061,7 +1061,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1129,7 +1129,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1206,7 +1206,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1272,7 +1272,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1322,7 +1322,7 @@
         "y": 2
       },
       "id": 214,
-      "interval": "1s",
+      "interval": "1d",
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -1339,7 +1339,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1380,6 +1380,7 @@
           "type": "math"
         }
       ],
+      "timeFrom": "365d",
       "title": "RoI",
       "transformations": [
         {
@@ -1444,7 +1445,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1510,7 +1511,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1589,7 +1590,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -1659,7 +1660,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "10.4.10",
       "targets": [
         {
           "datasource": {
@@ -4151,6 +4152,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 60,
+  "version": 70,
   "weekStart": ""
 }
