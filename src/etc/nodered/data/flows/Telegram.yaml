@@ -475,7 +475,6 @@
   z: 5e1cd18d830e0a6b
   name: ''
   links:
-    - 32ea48f887dcaf01
     - 1289ec8160b383c0
   x: 415
   'y': 840
@@ -485,7 +484,6 @@
   z: 5e1cd18d830e0a6b
   name: ''
   links:
-    - f59fd05791a47896
     - 8b59b8b09ecd5508
   x: 415
   'y': 880
@@ -495,7 +493,6 @@
   z: 5e1cd18d830e0a6b
   name: ''
   links:
-    - b08009e947680796
     - fd31e45552eeb4e5
   x: 415
   'y': 920
@@ -520,11 +517,7 @@
   z: 5e1cd18d830e0a6b
   name: Telegram-To-K
   links:
-    - 0a19614dac750dc9
     - 84b1892ac15ea678
-    - e7a7cb7a8df21f27
-    - ecb2912f7071e62b
-    - 7a96ec2943dd38cc
     - 920a6d44fc9d1a0a
     - 4d87ac10f93853bc
     - 4da44a73cf53899e

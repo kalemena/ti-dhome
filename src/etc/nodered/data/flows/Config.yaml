@@ -85,16 +85,10 @@
   z: a7ebb2f7a8ede884
   name: Config-CatchAll-In
   links:
-    - 4a641f47.46cb08
     - 4d670d8450380ac6
-    - 5d10dd0b.1db574
-    - 60b06b25.f9c98c
-    - 64dacb8b.d2f3e4
     - 7ddfd97.7160228
     - 950a0758.599f88
-    - 98c9017f.76bca
     - a24eb884.8fa9a
-    - da805bda.a8c0b
     - b38faeed3daa5034
     - 9a6a1d1d3a5e080e
     - 884a9608c7926815
@@ -109,7 +103,6 @@
   name: Config-CatchAll-Notif-Out
   mode: link
   links:
-    - 2f30621f40aa8285
     - b18b366e53d25a05
   x: 815
   'y': 240

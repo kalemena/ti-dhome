@@ -58,8 +58,7 @@
   x: 780
   'y': 1550
   wires:
-    - - ff92d9f85eeda30e
-      - 17d6f5a85077df47
+    - - 17d6f5a85077df47
 - id: 5c8e03f5abcc6c4f
   type: junction
   z: ec75ad2cb670e9c0
@@ -89,6 +88,20 @@
   'y': 1850
   wires:
     - - b09f11acafb9618a
+- id: ebeff0528bcffa61
+  type: junction
+  z: ec75ad2cb670e9c0
+  x: 220
+  'y': 2760
+  wires:
+    - - 3c2ea8d420d3f326
+- id: 4466ce34a2033069
+  type: junction
+  z: ec75ad2cb670e9c0
+  x: 880
+  'y': 2060
+  wires:
+    - - be2763750dc16e10
 - id: 9b9aa3979144f9f4
   type: catch
   z: ec75ad2cb670e9c0
@@ -126,7 +139,7 @@
   retain: ''
   broker: c38452a5.4f84e8
   x: 760
-  'y': 120
+  'y': 100
   wires: []
 - id: 03653501b09f1ff3
   type: debug
@@ -139,7 +152,7 @@
   complete: 'true'
   targetType: full
   x: 1140
-  'y': 190
+  'y': 180
   wires: []
 - id: 51b1bc3751c94bf7
   type: function
@@ -715,8 +728,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1480
-  'y': 1040
+  x: 1500
+  'y': 1060
   wires: []
 - id: 40224e0c1b893541
   type: mqtt in
@@ -1498,8 +1511,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1150
-  'y': 1470
+  x: 1140
+  'y': 1460
   wires: []
 - id: 164bfa497952db59
   type: switch
@@ -1584,8 +1597,8 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1330
-  'y': 2100
+  x: 1320
+  'y': 2060
   wires: []
 - id: bf06d3be07b1aa3a
   type: debug
@@ -1889,8 +1902,8 @@
   from: ''
   to: ''
   reg: false
-  x: 1070
-  'y': 2100
+  x: 1060
+  'y': 2060
   wires:
     - - 81c37e8ebb9804b5
 - id: 5b5d01c39c8b050e
@@ -2031,27 +2044,27 @@
   z: ec75ad2cb670e9c0
   name: Zigbee-GroupB
   links:
-    - e7e52fec716f59a2
     - bae747e5713c11b9
   x: 165
-  'y': 2930
+  'y': 2880
   wires:
     - - 85150e703fc3107a
 - id: 238f0552cc0c17f4
   type: inject
   z: ec75ad2cb670e9c0
-  name: 14h30
+  name: 18h
   props:
     - p: payload
     - p: topic
       vt: str
   repeat: ''
-  crontab: 30 14 * * *
+  crontab: 00 18 * * *
   once: false
   onceDelay: 0.1
   topic: ''
+  payload: ''
   payloadType: date
-  x: 140
+  x: 130
   'y': 2540
   wires:
     - - 5711653aff0ebeda
@@ -2132,8 +2145,8 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1320
-  'y': 2050
+  x: 1310
+  'y': 2120
   wires: []
 - id: ab25ec62a461f551
   type: change
@@ -2150,8 +2163,8 @@
   from: ''
   to: ''
   reg: false
-  x: 1070
-  'y': 2050
+  x: 1060
+  'y': 2120
   wires:
     - - e94b3d2f6a60fc41
 - id: 19e19d22577a26de
@@ -2186,22 +2199,21 @@
   'y': 1960
   wires:
     - - e0f4def5f27a20d1
-    - - ab25ec62a461f551
-    - - ab25ec62a461f551
+    - - 4466ce34a2033069
+    - - 4466ce34a2033069
     - - f1612c0ae6828f97
-    - - ab25ec62a461f551
-    - - ab25ec62a461f551
+    - - 4466ce34a2033069
+    - - 4466ce34a2033069
 - id: 4fdb9190057f63d6
   type: link in
   z: ec75ad2cb670e9c0
   name: Cmd-Light-Salon
   links:
-    - c81f8f99a238d079
-  x: 745
-  'y': 2080
+    - 02a289b676003bd6
+  x: 865
+  'y': 2120
   wires:
-    - - be2763750dc16e10
-      - ab25ec62a461f551
+    - - ab25ec62a461f551
 - id: 3a5a0484a61b744e
   type: inject
   z: ec75ad2cb670e9c0
@@ -2216,9 +2228,10 @@
   onceDelay: 0.1
   topic: ''
   x: 130
-  'y': 2760
+  'y': 2840
   wires:
-    - - 3c2ea8d420d3f326
+    - - 85150e703fc3107a
+      - ebeff0528bcffa61
 - id: c90d5de23f9d01d9
   type: function
   z: ec75ad2cb670e9c0
@@ -2298,22 +2311,21 @@
   onceDelay: 0.1
   topic: ''
   x: 130
-  'y': 2810
+  'y': 2760
   wires:
-    - - 3c2ea8d420d3f326
+    - - ebeff0528bcffa61
 - id: 54015e759adf6f9c
   type: link in
   z: ec75ad2cb670e9c0
   name: Zigbee-GroupA
   links:
     - e45defb4b0e38b62
-    - a0f1b25d.56ebd8
     - fecb20f01567e4a8
     - cbacfd822d1436be
   x: 165
   'y': 2710
   wires:
-    - - 3c2ea8d420d3f326
+    - - ebeff0528bcffa61
 - id: e45defb4b0e38b62
   type: link out
   z: ec75ad2cb670e9c0
@@ -2370,9 +2382,9 @@
   onceDelay: 0.1
   topic: ''
   x: 130
-  'y': 2860
+  'y': 2800
   wires:
-    - - 3c2ea8d420d3f326
+    - - ebeff0528bcffa61
 - id: 6484417009153f26
   type: change
   z: ec75ad2cb670e9c0
@@ -2382,7 +2394,7 @@
       p: position
       pt: msg
       to: '100'
-      tot: str
+      tot: num
   action: ''
   property: ''
   from: ''
@@ -2426,7 +2438,7 @@
       p: position
       pt: msg
       to: '0'
-      tot: str
+      tot: num
   action: ''
   property: ''
   from: ''

@@ -125,8 +125,6 @@
   z: 72c052849e700b0b
   name: SdB - Bas - Arrêt
   links:
-    - c1852428ac6080d8
-    - 793f6369000801a1
     - 962e06cafd534c99
     - bbf5d03ca842044f
   x: 405
@@ -137,8 +135,7 @@
   type: link in
   z: 72c052849e700b0b
   name: SdB - Bas - HG
-  links:
-    - 18a5a31073de4d77
+  links: []
   x: 405
   'y': 220
   wires:
@@ -148,8 +145,6 @@
   z: 72c052849e700b0b
   name: SdB - Bas - Eco
   links:
-    - 2945bb0883a55a36
-    - 493fa36818992cda
     - d5eab31525ab9e92
     - 26699d5f27783b37
   x: 405
@@ -161,8 +156,6 @@
   z: 72c052849e700b0b
   name: SdB - Bas - Confort
   links:
-    - 3a1ef7f0e97ac224
-    - d8336f52c2dabcac
     - f2e3c9f82c0a4872
     - dbf101ad092865ad
   x: 405
@@ -277,7 +270,6 @@
   z: 72c052849e700b0b
   name: ''
   links:
-    - 32ea48f887dcaf01
     - 1289ec8160b383c0
   x: 765
   'y': 690
@@ -287,7 +279,6 @@
   z: 72c052849e700b0b
   name: ''
   links:
-    - f59fd05791a47896
     - 8b59b8b09ecd5508
   x: 765
   'y': 490
@@ -348,7 +339,6 @@
   z: 72c052849e700b0b
   name: ''
   links:
-    - b08009e947680796
     - fd31e45552eeb4e5
   x: 765
   'y': 580
@@ -668,9 +658,7 @@
   type: link in
   z: 72c052849e700b0b
   name: WebRelaysInLatch
-  links:
-    - 7dfb853e.03a1f4
-    - 1fd6723.fc4360e
+  links: []
   x: 265
   'y': 1290
   wires:
