@@ -1876,8 +1876,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2104,8 +2103,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2224,8 +2222,8 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 9,
-            "w": 3,
+            "h": 8,
+            "w": 4,
             "x": 0,
             "y": 41
           },
@@ -2348,6 +2346,167 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
+          "description": "Costs computed with Low/High hours energy prices",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 1,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "Eu"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 4,
+            "x": 4,
+            "y": 41
+          },
+          "id": 122,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "text": {},
+            "textMode": "value_and_name",
+            "wideLayout": true
+          },
+          "pluginVersion": "10.4.10",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day1)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day1)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day1)) / 1000) * $kWhHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day1",
+              "range": true,
+              "refId": "1 day"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhHP))",
+              "hide": true,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day7",
+              "range": true,
+              "refId": "7 days"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day30)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day30)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day30)) / 1000) * $kWhHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day30",
+              "range": true,
+              "refId": "30d"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhHP))",
+              "hide": true,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day60",
+              "range": true,
+              "refId": "60d"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day365)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day365",
+              "range": true,
+              "refId": "365 days"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1672552800)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "2023",
+              "range": true,
+              "refId": "2023"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @ 1735689600 - (sensors_teleinfo_BBRHCJB{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @ 1735689600 - (sensors_teleinfo_BBRHPJB{} @ 1704067200)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @ 1735689600 - (sensors_teleinfo_BBRHCJW{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @ 1735689600 - (sensors_teleinfo_BBRHPJW{} @ 1704067200)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @ 1735689600 - (sensors_teleinfo_BBRHCJR{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @ 1735689600 - (sensors_teleinfo_BBRHPJR{} @ 1704067200)) / 1000) * $kWhHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "2024",
+              "range": true,
+              "refId": "2024"
+            }
+          ],
+          "title": "Cost (€) - HC/HP",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2372,9 +2531,9 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 17,
-            "w": 12,
-            "x": 3,
+            "h": 16,
+            "w": 11,
+            "x": 8,
             "y": 41
           },
           "id": 116,
@@ -2617,9 +2776,9 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 17,
-            "w": 9,
-            "x": 15,
+            "h": 16,
+            "w": 5,
+            "x": 19,
             "y": 41
           },
           "id": 112,
@@ -2860,11 +3019,11 @@
           },
           "gridPos": {
             "h": 8,
-            "w": 3,
+            "w": 4,
             "x": 0,
-            "y": 50
+            "y": 49
           },
-          "id": 122,
+          "id": 135,
           "options": {
             "colorMode": "value",
             "graphMode": "none",
@@ -2891,7 +3050,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day1)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day1)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day1)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day1)) / 1000) * $kWhHP))",
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day1)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day1)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day1)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day1)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day1)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day1)) / 1000) * $kWhZenFix))",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -2906,7 +3065,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhHP))",
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhZenFix))",
               "hide": true,
               "instant": false,
               "interval": "",
@@ -2921,7 +3080,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day30)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day30)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day30)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day30)) / 1000) * $kWhHP))",
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day30)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day30)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day30)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day30)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day30)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day30)) / 1000) * $kWhZenFix))",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -2936,7 +3095,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhHP))",
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhZenFix))",
               "hide": true,
               "instant": false,
               "interval": "",
@@ -2951,7 +3110,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day365)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhHP))",
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day365)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day365)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhZenFix))",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -2966,7 +3125,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1672552800)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhHP))",
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1672552800)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1672552800)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhZenFix))",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -2981,7 +3140,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @ 1735689600 - (sensors_teleinfo_BBRHCJB{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @ 1735689600 - (sensors_teleinfo_BBRHPJB{} @ 1704067200)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @ 1735689600 - (sensors_teleinfo_BBRHCJW{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @ 1735689600 - (sensors_teleinfo_BBRHPJW{} @ 1704067200)) / 1000) * $kWhHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @ 1735689600 - (sensors_teleinfo_BBRHCJR{} @ 1704067200)) / 1000) * $kWhHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @ 1735689600 - (sensors_teleinfo_BBRHPJR{} @ 1704067200)) / 1000) * $kWhHP))",
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @ 1735689600 - (sensors_teleinfo_BBRHCJB{} @ 1704067200)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @ 1735689600 - (sensors_teleinfo_BBRHPJB{} @ 1704067200)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJW{} @ 1735689600 - (sensors_teleinfo_BBRHCJW{} @ 1704067200)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @ 1735689600 - (sensors_teleinfo_BBRHPJW{} @ 1704067200)) / 1000) * $kWhZenFix))\n+\navg((((sensors_teleinfo_BBRHCJR{} @ 1735689600 - (sensors_teleinfo_BBRHCJR{} @ 1704067200)) / 1000) * $kWhZenFix)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @ 1735689600 - (sensors_teleinfo_BBRHPJR{} @ 1704067200)) / 1000) * $kWhZenFix))",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -2990,7 +3149,168 @@
               "refId": "2024"
             }
           ],
-          "title": "Cost (€) - HC/HP",
+          "title": "Cost (€) - ZenFix",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "description": "Costs computed with Low/High hours energy prices",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 1,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "Eu"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 4,
+            "x": 4,
+            "y": 49
+          },
+          "id": 136,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "text": {},
+            "textMode": "value_and_name",
+            "wideLayout": true
+          },
+          "pluginVersion": "10.4.10",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day1)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day1)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day1)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day1)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day1)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day1)) / 1000) * $kWhZenFixHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day1",
+              "range": true,
+              "refId": "1 day"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day7)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day7)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day7)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day7)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day7)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day7)) / 1000) * $kWhZenFixHP))",
+              "hide": true,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day7",
+              "range": true,
+              "refId": "7 days"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day30)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day30)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day30)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day30)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day30)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day30)) / 1000) * $kWhZenFixHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day30",
+              "range": true,
+              "refId": "30d"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day60)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day60)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day60)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day60)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day60)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day60)) / 1000) * $kWhZenFixHP))",
+              "hide": true,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day60",
+              "range": true,
+              "refId": "60d"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day365)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day365)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhZenFixHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "$day365",
+              "range": true,
+              "refId": "365 days"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1672552800)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @ 1672552800)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1672552800)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @ 1672552800)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1672552800)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @ 1672552800)) / 1000) * $kWhZenFixHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "2023",
+              "range": true,
+              "refId": "2023"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "avg((((sensors_teleinfo_BBRHCJB{} @ 1735689600 - (sensors_teleinfo_BBRHCJB{} @ 1704067200)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @ 1735689600 - (sensors_teleinfo_BBRHPJB{} @ 1704067200)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @ 1735689600 - (sensors_teleinfo_BBRHCJW{} @ 1704067200)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @ 1735689600 - (sensors_teleinfo_BBRHPJW{} @ 1704067200)) / 1000) * $kWhZenFixHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @ 1735689600 - (sensors_teleinfo_BBRHCJR{} @ 1704067200)) / 1000) * $kWhZenFixHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @ 1735689600 - (sensors_teleinfo_BBRHPJR{} @ 1704067200)) / 1000) * $kWhZenFixHP))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "2024",
+              "range": true,
+              "refId": "2024"
+            }
+          ],
+          "title": "Cost (€) - ZenFix HP/HC",
           "type": "stat"
         }
       ],
@@ -3028,6 +3348,14 @@
         "label": "kWhHC",
         "name": "kWhHC",
         "query": "0.2068",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "Price Tempo",
+        "name": "priceTempo",
+        "query": "195",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3076,6 +3404,27 @@
         "label": "kWhTRHP",
         "name": "kWhTRHP",
         "query": "0.7564",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "kWhZenFix",
+        "query": "0.1753",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "kWhZenFixHC",
+        "query": "0.1456",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "kWhZenFixHP",
+        "query": "0.1876",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3175,7 +3524,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1d",
           "value": "1d"
         },
@@ -3269,6 +3618,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 257,
+  "version": 266,
   "weekStart": "monday"
 }
