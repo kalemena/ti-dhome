@@ -3363,7 +3363,7 @@
         "hide": 2,
         "label": "kWhTBHC",
         "name": "kWhTBHC",
-        "query": "0.1296",
+        "query": "0.1288",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3371,7 +3371,7 @@
         "hide": 2,
         "label": "kWhTBH9",
         "name": "kWhTBHP",
-        "query": "0.1609",
+        "query": "0.1552",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3379,7 +3379,7 @@
         "hide": 2,
         "label": "kWhTWHC",
         "name": "kWhTWHC",
-        "query": "0.1486",
+        "query": "0.1447",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3387,7 +3387,7 @@
         "hide": 2,
         "label": "kWhTWHP",
         "name": "kWhTWHP",
-        "query": "0.1894",
+        "query": "0.1792",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3395,7 +3395,7 @@
         "hide": 2,
         "label": "kWhTRHC",
         "name": "kWhTRHC",
-        "query": "0.1568",
+        "query": "0.1518",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3403,7 +3403,7 @@
         "hide": 2,
         "label": "kWhTRHP",
         "name": "kWhTRHP",
-        "query": "0.7564",
+        "query": "0.6586",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3618,6 +3618,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 266,
+  "version": 270,
   "weekStart": "monday"
 }
