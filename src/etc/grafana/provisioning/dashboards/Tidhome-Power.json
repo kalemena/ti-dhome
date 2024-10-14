@@ -3329,7 +3329,7 @@
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhBase",
-        "query": "0.2516",
+        "query": "0.2016",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3338,7 +3338,7 @@
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhHP",
-        "query": "0.2700",
+        "query": "0.2146",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3347,7 +3347,7 @@
         "hide": 2,
         "label": "kWhHC",
         "name": "kWhHC",
-        "query": "0.2068",
+        "query": "0.1696",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3618,6 +3618,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 270,
+  "version": 274,
   "weekStart": "monday"
 }
