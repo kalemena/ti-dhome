@@ -3417,14 +3417,14 @@
       {
         "hide": 2,
         "name": "kWhZenFixHC",
-        "query": "0.1456",
+        "query": "0.1608",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "hide": 2,
         "name": "kWhZenFixHP",
-        "query": "0.1876",
+        "query": "0.2028",
         "skipUrlSync": false,
         "type": "constant"
       },
@@ -3618,6 +3618,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 274,
+  "version": 277,
   "weekStart": "monday"
 }
