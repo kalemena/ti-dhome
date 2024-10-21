@@ -23,16 +23,16 @@
 - id: 214a7a3538c0f9d7
   type: junction
   z: ec75ad2cb670e9c0
-  x: 870
-  'y': 1100
+  x: 820
+  'y': 1280
   wires:
     - - 19075162ee42791e
       - 02b328556dfff5f1
 - id: e20462ad11c24a6e
   type: junction
   z: ec75ad2cb670e9c0
-  x: 1040
-  'y': 1210
+  x: 940
+  'y': 1120
   wires:
     - - 2824712821b59f6c
       - d07cbbeeea4b6838
@@ -932,15 +932,19 @@
     - t: cont
       v: BBRH
       vt: str
+    - t: cont
+      v: DEMAIN
+      vt: str
     - t: else
   checkall: 'false'
   repair: false
-  outputs: 2
-  x: 760
-  'y': 1110
+  outputs: 3
+  x: 660
+  'y': 1140
   wires:
     - - 214a7a3538c0f9d7
       - e20462ad11c24a6e
+    - - 3ab87727b7402d26
     - - e20462ad11c24a6e
 - id: 62cbf3d2735867d5
   type: function
@@ -980,8 +984,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1270
-  'y': 1230
+  x: 1220
+  'y': 1100
   wires:
     - - 3a926826af10884b
 - id: 2824712821b59f6c
@@ -1003,8 +1007,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 1130
-  'y': 1230
+  x: 1080
+  'y': 1100
   wires:
     - - 62cbf3d2735867d5
 - id: 1d3b3214dcde0243
@@ -1169,8 +1173,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 990
-  'y': 1080
+  x: 950
+  'y': 1300
   wires:
     - - e26a2cc5cb07a613
 - id: d07cbbeeea4b6838
@@ -1185,8 +1189,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1190
-  'y': 1190
+  x: 1140
+  'y': 1060
   wires: []
 - id: 02b328556dfff5f1
   type: function
@@ -1232,8 +1236,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 980
-  'y': 1130
+  x: 940
+  'y': 1260
   wires:
     - - e20462ad11c24a6e
 - id: e26a2cc5cb07a613
@@ -1252,8 +1256,8 @@
   drop: true
   allowrate: false
   outputs: 1
-  x: 1210
-  'y': 1050
+  x: 1220
+  'y': 1300
   wires:
     - - 3a926826af10884b
 - id: be29ee5cf7174c69
@@ -2573,4 +2577,69 @@
   statusType: auto
   x: 280
   'y': 2130
+  wires: []
+- id: 3ab87727b7402d26
+  type: function
+  z: ec75ad2cb670e9c0
+  name: DEMAIN
+  func: >-
+    // live info
+
+    node.status({ fill: "blue", shape: "dot", text: msg.topic + ": " +
+    msg.payload });
+
+    return msg;
+  outputs: 1
+  timeout: ''
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 1080
+  'y': 1160
+  wires:
+    - - 0a5ecf72ca6e1d03
+- id: 0a5ecf72ca6e1d03
+  type: switch
+  z: ec75ad2cb670e9c0
+  name: Demain?
+  property: payload
+  propertyType: msg
+  rules:
+    - t: neq
+      v: '----'
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 1220
+  'y': 1160
+  wires:
+    - - 511ebd8d5e50183b
+- id: 511ebd8d5e50183b
+  type: function
+  z: ec75ad2cb670e9c0
+  name: Render Msg
+  func: |-
+    msg.payload = "DEMAIN=" + msg.payload
+    return msg;
+  outputs: 1
+  timeout: ''
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 1370
+  'y': 1160
+  wires:
+    - - 457c715d771e6b27
+- id: 457c715d771e6b27
+  type: link out
+  z: ec75ad2cb670e9c0
+  name: out-sensor-notif
+  mode: link
+  links:
+    - b18b366e53d25a05
+  x: 1475
+  'y': 1160
   wires: []
