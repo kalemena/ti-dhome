@@ -1941,7 +1941,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 40
+            "y": 48
           },
           "id": 29,
           "interval": "5m",
@@ -2144,7 +2144,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 40
+            "y": 48
           },
           "id": 25,
           "options": {
@@ -3353,14 +3353,6 @@
       },
       {
         "hide": 2,
-        "label": "Price Tempo",
-        "name": "priceTempo",
-        "query": "195",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
         "label": "kWhTBHC",
         "name": "kWhTBHC",
         "query": "0.1288",
@@ -3618,6 +3610,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 277,
+  "version": 281,
   "weekStart": "monday"
 }
