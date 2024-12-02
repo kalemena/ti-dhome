@@ -62,7 +62,7 @@ services:
       dockerfile: Dockerfile.official
       args:
         # https://github.com/node-red/node-red-docker/releases
-        NODERED_VERSION: 4.0.3
+        NODERED_VERSION: 4.0.5
     restart: always
     ports:
       - 1880:1880
