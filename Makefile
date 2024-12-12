@@ -6,6 +6,17 @@ BACKUP_DATE := $(shell date '+%Y-%m-%d')
 BACKUP_FOLDER := /backups
 BACKUP_FOLDER_RAW := $(BACKUP_FOLDER)/victoriametrics
 
+BACKUP_CMD_BASE := docker run --rm -it \
+    -v ti-dhome_victoria-metrics-data:/victoria-metrics-data \
+    -v $(BACKUP_FOLDER_RAW):/backup/victoriametrics \
+    -w /victoria-metrics-data alpine sh
+
+BACKUP_CMD := $(BACKUP_CMD_BASE) \
+    -c "apk add rsync && rsync --delete -rtD --info=progress2 /victoria-metrics-data/* /backup/victoriametrics/"
+
+RESTORE_CMD := $(BACKUP_CMD_BASE) \
+    -c "apk add rsync && rsync --delete -rtD --info=progress2 /backup/victoriametrics/* /victoria-metrics-data/"
+
 .PHONY: build backup restore
 
 all: 
@@ -45,14 +56,14 @@ clean:
 backup:
 	docker stop ti-dhome-victoriametrics-1
 	mkdir -p $(WORKSPACE)/backup/victoriametrics
-	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(BACKUP_FOLDER_RAW):/backup/victoriametrics -w /victoria-metrics-data alpine sh -c "apk add rsync && rsync --delete -rtD --info=progress2 /victoria-metrics-data/* /backup/victoriametrics/"
+	$(BACKUP_CMD)
 	docker start ti-dhome-victoriametrics-1
 
 
 # WARNING: Danger zone !
 restore:
 	docker stop ti-dhome-victoriametrics-1
-	docker run --rm -it -v ti-dhome_victoria-metrics-data:/victoria-metrics-data -v $(BACKUP_FOLDER_RAW):/backup/victoriametrics -w /victoria-metrics-data alpine sh -c "apk add rsync && rsync --delete -rtD --info=progress2 /backup/victoriametrics/* /victoria-metrics-data/"
+	$(RESTORE_CMD)
 	docker start ti-dhome-victoriametrics-1
 
 ###########################
