@@ -37,6 +37,21 @@
         "x": 0,
         "y": 0
       },
+      "id": 139,
+      "panels": [],
+      "repeat": "hour",
+      "repeatDirection": "h",
+      "title": "Row title",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
       "id": 121,
       "panels": [],
       "title": "Energy Overview",
@@ -115,7 +130,7 @@
         "h": 2,
         "w": 4,
         "x": 0,
-        "y": 1
+        "y": 2
       },
       "id": 41,
       "options": {
@@ -134,7 +149,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -205,7 +220,7 @@
         "h": 8,
         "w": 5,
         "x": 4,
-        "y": 1
+        "y": 2
       },
       "id": 134,
       "options": {
@@ -224,7 +239,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -466,7 +481,7 @@
         "h": 6,
         "w": 3,
         "x": 9,
-        "y": 1
+        "y": 2
       },
       "id": 26,
       "options": {
@@ -484,7 +499,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -571,7 +586,7 @@
         "h": 6,
         "w": 3,
         "x": 12,
-        "y": 1
+        "y": 2
       },
       "id": 126,
       "options": {
@@ -589,7 +604,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -725,7 +740,7 @@
         "h": 6,
         "w": 9,
         "x": 15,
-        "y": 1
+        "y": 2
       },
       "id": 44,
       "options": {
@@ -743,7 +758,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -851,7 +866,7 @@
         "h": 6,
         "w": 4,
         "x": 0,
-        "y": 3
+        "y": 4
       },
       "id": 110,
       "options": {
@@ -871,7 +886,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -925,7 +940,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @end() offset $day365)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end()- (sensors_teleinfo_BBRHPJB{} @end() offset $day365)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @end() offset $day365)) / 1000) * $kWhTWHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end()- (sensors_teleinfo_BBRHPJW{} @end() offset $day365)) / 1000) * $kWhTWHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @end() offset $day365)) / 1000) * $kWhTRHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end()- (sensors_teleinfo_BBRHPJR{} @end() offset $day365)) / 1000) * $kWhTRHP))",
+          "expr": "(  increase(sensors_teleinfo_BBRHCJB{}[365d]) * $kWhTBHC\n    + increase(sensors_teleinfo_BBRHPJB{}[365d]) * $kWhTBHP\n    + increase(sensors_teleinfo_BBRHCJW{}[365d]) * $kWhTWHC\n    + increase(sensors_teleinfo_BBRHPJW{}[365d]) * $kWhTWHP\n    + increase(sensors_teleinfo_BBRHCJR{}[365d]) * $kWhTRHC\n    + increase(sensors_teleinfo_BBRHPJR{}[365d]) * $kWhTRHP) / 1000",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -1032,7 +1047,7 @@
         "h": 9,
         "w": 15,
         "x": 9,
-        "y": 7
+        "y": 8
       },
       "id": 28,
       "options": {
@@ -1050,7 +1065,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1105,7 +1120,7 @@
         "h": 19,
         "w": 9,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 113,
       "options": {
@@ -1384,7 +1399,7 @@
         "h": 12,
         "w": 15,
         "x": 9,
-        "y": 16
+        "y": 17
       },
       "id": 133,
       "interval": "1h",
@@ -1606,7 +1621,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 29
       },
       "id": 132,
       "interval": "${timelineRange}",
@@ -1824,7 +1839,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 40
       },
       "id": 23,
       "panels": [
@@ -1941,7 +1956,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 48
+            "y": 64
           },
           "id": 29,
           "interval": "5m",
@@ -2144,7 +2159,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 48
+            "y": 64
           },
           "id": 25,
           "options": {
@@ -2191,7 +2206,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 41
       },
       "id": 115,
       "panels": [
@@ -2224,7 +2239,7 @@
             "h": 8,
             "w": 4,
             "x": 0,
-            "y": 41
+            "y": 42
           },
           "id": 123,
           "options": {
@@ -2369,7 +2384,7 @@
             "h": 8,
             "w": 4,
             "x": 4,
-            "y": 41
+            "y": 42
           },
           "id": 122,
           "options": {
@@ -2531,7 +2546,7 @@
             "h": 16,
             "w": 11,
             "x": 8,
-            "y": 41
+            "y": 42
           },
           "id": 116,
           "options": {
@@ -2775,7 +2790,7 @@
             "h": 16,
             "w": 5,
             "x": 19,
-            "y": 41
+            "y": 42
           },
           "id": 112,
           "options": {
@@ -3016,7 +3031,7 @@
             "h": 8,
             "w": 4,
             "x": 0,
-            "y": 49
+            "y": 50
           },
           "id": 135,
           "options": {
@@ -3176,7 +3191,7 @@
             "h": 8,
             "w": 4,
             "x": 4,
-            "y": 49
+            "y": 50
           },
           "id": 136,
           "options": {
@@ -3587,6 +3602,7 @@
     "from": "now-30d",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "hidden": false,
     "refresh_intervals": [
@@ -3604,6 +3620,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 285,
+  "version": 311,
   "weekStart": "monday"
 }
