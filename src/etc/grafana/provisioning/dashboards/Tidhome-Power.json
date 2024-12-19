@@ -3321,6 +3321,460 @@
           ],
           "title": "Cost (€) - ZenFix HP/HC",
           "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "fillOpacity": 80,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 1,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Time"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 58
+          },
+          "hideTimeOverride": false,
+          "id": 137,
+          "interval": "1h",
+          "maxDataPoints": 7000,
+          "options": {
+            "barRadius": 0,
+            "barWidth": 0.97,
+            "fullHighlight": false,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "orientation": "auto",
+            "showValue": "auto",
+            "stacking": "none",
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            },
+            "xTickLabelRotation": 0,
+            "xTickLabelSpacing": 0
+          },
+          "pluginVersion": "10.4.10",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 19h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "5h",
+              "range": true,
+              "refId": "5h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 18h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "6h",
+              "range": true,
+              "refId": "6h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 17h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "7h",
+              "range": true,
+              "refId": "7h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 16h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "8h",
+              "range": true,
+              "refId": "8h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 15h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "9h",
+              "range": true,
+              "refId": "9h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 14h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "10h",
+              "range": true,
+              "refId": "10h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 13h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "11h",
+              "range": true,
+              "refId": "11h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 12h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "12h",
+              "range": true,
+              "refId": "12h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 11h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "13h",
+              "range": true,
+              "refId": "13h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 10h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "14h",
+              "range": true,
+              "refId": "14h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 9h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "15h",
+              "range": true,
+              "refId": "15h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 8h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "16h",
+              "range": true,
+              "refId": "16h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 7h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "17h",
+              "range": true,
+              "refId": "17h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 6h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "18h",
+              "range": true,
+              "refId": "18h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 5h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "19h",
+              "range": true,
+              "refId": "19h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 4h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "20h",
+              "range": true,
+              "refId": "20h"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 3h)[365d:1d]) @end()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "21h",
+              "range": true,
+              "refId": "21h"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$21h + $20h + $19h + $18h + $17h + $16h + $15h + $14h + $13h + $12h + $11h + $10h + $9h + $8h + $7h + $6h + $5h",
+              "hide": true,
+              "refId": "Total",
+              "type": "math"
+            }
+          ],
+          "timeFrom": "365d",
+          "title": "Panel Title",
+          "type": "barchart"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "fillOpacity": 80,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 1,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 68
+          },
+          "id": 138,
+          "interval": "1h",
+          "maxDataPoints": 7000,
+          "options": {
+            "barRadius": 0,
+            "barWidth": 0.97,
+            "fullHighlight": false,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "orientation": "auto",
+            "showValue": "always",
+            "stacking": "none",
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            },
+            "xTickLabelRotation": 0,
+            "xTickLabelSpacing": 0
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset ${hour}h)[365d:1d])",
+              "instant": false,
+              "legendFormat": "{{hour}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "timeFrom": "365d",
+          "title": "Panel Title",
+          "transformations": [
+            {
+              "id": "formatTime",
+              "options": {
+                "outputFormat": "HH",
+                "timeField": "",
+                "timezone": "browser",
+                "useTimezone": true
+              }
+            },
+            {
+              "id": "groupBy",
+              "options": {
+                "fields": {
+                  "Time": {
+                    "aggregations": [],
+                    "operation": "groupby"
+                  },
+                  "Value": {
+                    "aggregations": [
+                      "sum"
+                    ],
+                    "operation": "aggregate"
+                  }
+                }
+              }
+            }
+          ],
+          "type": "barchart"
         }
       ],
       "title": "Troubleshooting",
@@ -3758,6 +4212,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 312,
+  "version": 313,
   "weekStart": "monday"
 }
