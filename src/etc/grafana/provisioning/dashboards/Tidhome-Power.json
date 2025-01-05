@@ -233,12 +233,37 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(\n  (sum(increase(opendtu_YieldTotal{type=\"AC\"}[${nbDays}]))) \n  - \n  (sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[${nbDays}])))\n)",
+          "expr": "sum((sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1d] @end()) - (sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1d] @end() offset $nbDays))",
           "hide": true,
           "instant": true,
-          "legendFormat": "Solar",
+          "legendFormat": "TotalProduced",
           "range": false,
-          "refId": "RSolar"
+          "refId": "TotalProduced"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum((opendtu_YieldTotal{type=\"AC\"}[1d] @end()) - (opendtu_YieldTotal{type=\"AC\"}[1d] @end() offset $nbDays))",
+          "hide": true,
+          "instant": true,
+          "legendFormat": "TotalSolar",
+          "range": false,
+          "refId": "TotalSolar"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$TotalSolar - $TotalProduced",
+          "hide": true,
+          "refId": "RSolar",
+          "type": "math"
         },
         {
           "datasource": {
@@ -367,20 +392,6 @@
           "hide": false,
           "refId": "Total Home",
           "type": "math"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[$nbDays])",
-          "hide": true,
-          "instant": true,
-          "legendFormat": "TotalProduced",
-          "range": false,
-          "refId": "TotalProduced"
         },
         {
           "datasource": {
@@ -4197,6 +4208,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 316,
+  "version": 320,
   "weekStart": "monday"
 }
