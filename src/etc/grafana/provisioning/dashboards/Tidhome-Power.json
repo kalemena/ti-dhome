@@ -1151,7 +1151,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.6.0",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "datasource": {
@@ -1429,7 +1429,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.6.0",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "datasource": {
@@ -1651,7 +1651,7 @@
           "series": []
         }
       },
-      "pluginVersion": "6.6.0",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "datasource": {
@@ -1887,7 +1887,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1952,7 +1953,7 @@
             "h": 17,
             "w": 12,
             "x": 0,
-            "y": 64
+            "y": 40
           },
           "id": 29,
           "interval": "5m",
@@ -1969,6 +1970,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "single",
               "sort": "none"
             }
@@ -2114,7 +2116,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2155,7 +2158,7 @@
             "h": 17,
             "w": 12,
             "x": 12,
-            "y": 64
+            "y": 40
           },
           "id": 25,
           "options": {
@@ -2171,6 +2174,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -3921,7 +3925,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "365d",
           "value": "365d"
         },
