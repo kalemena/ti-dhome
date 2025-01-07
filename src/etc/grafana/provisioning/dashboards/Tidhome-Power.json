@@ -1160,12 +1160,37 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(\n  (sum(increase(opendtu_YieldTotal{type=\"AC\"}[${nbDays}]))) \n  - \n  (sum(increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[${nbDays}])))\n)",
+          "expr": "sum((sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1d] @end()) - (sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1d] @end() offset $nbDays))",
           "hide": false,
           "instant": true,
-          "legendFormat": "Solar",
+          "legendFormat": "__auto",
           "range": false,
-          "refId": "Solar"
+          "refId": "TotalProduced"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum((opendtu_YieldTotal{type=\"AC\"}[1d] @end()) - (opendtu_YieldTotal{type=\"AC\"}[1d] @end() offset $nbDays))",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "TotalSolar"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$TotalSolar - $TotalProduced",
+          "hide": false,
+          "refId": "Solar",
+          "type": "math"
         },
         {
           "datasource": {
@@ -4212,6 +4237,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 320,
+  "version": 324,
   "weekStart": "monday"
 }
