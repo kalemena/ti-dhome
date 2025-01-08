@@ -66,7 +66,7 @@
             "h": 3,
             "w": 3,
             "x": 0,
-            "y": 1
+            "y": 9
           },
           "id": 2,
           "options": {
@@ -129,7 +129,7 @@
             "h": 3,
             "w": 3,
             "x": 3,
-            "y": 1
+            "y": 9
           },
           "id": 5,
           "options": {
@@ -211,7 +211,7 @@
             "h": 6,
             "w": 4,
             "x": 6,
-            "y": 1
+            "y": 9
           },
           "id": 9,
           "options": {
@@ -360,7 +360,7 @@
             "h": 9,
             "w": 14,
             "x": 10,
-            "y": 1
+            "y": 9
           },
           "id": 7,
           "options": {
@@ -421,7 +421,7 @@
             "h": 3,
             "w": 3,
             "x": 0,
-            "y": 4
+            "y": 12
           },
           "id": 4,
           "options": {
@@ -484,7 +484,7 @@
             "h": 3,
             "w": 3,
             "x": 3,
-            "y": 4
+            "y": 12
           },
           "id": 3,
           "options": {
@@ -547,7 +547,7 @@
             "h": 3,
             "w": 3,
             "x": 0,
-            "y": 7
+            "y": 15
           },
           "id": 6,
           "options": {
@@ -611,7 +611,7 @@
             "h": 3,
             "w": 3,
             "x": 3,
-            "y": 7
+            "y": 15
           },
           "id": 11,
           "options": {
@@ -674,7 +674,7 @@
             "h": 3,
             "w": 4,
             "x": 6,
-            "y": 7
+            "y": 15
           },
           "id": 12,
           "options": {
@@ -772,7 +772,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 10
+            "y": 18
           },
           "id": 121,
           "options": {
@@ -895,7 +895,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -965,7 +965,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1061,7 +1061,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1129,7 +1129,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1206,7 +1206,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1272,7 +1272,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1339,7 +1339,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1445,7 +1445,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1511,7 +1511,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1590,7 +1590,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1660,7 +1660,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.10",
+      "pluginVersion": "11.0.9",
       "targets": [
         {
           "datasource": {
@@ -1758,6 +1758,7 @@
           "valueSize": 15
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         },
@@ -1818,6 +1819,327 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 21
+      },
+      "hideTimeOverride": false,
+      "id": 278,
+      "interval": "1h",
+      "maxDataPoints": 7000,
+      "options": {
+        "displayMode": "lcd",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.0.9",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 19h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "5h",
+          "range": true,
+          "refId": "5h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 18h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "6h",
+          "range": true,
+          "refId": "6h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 17h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "7h",
+          "range": true,
+          "refId": "7h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 16h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "8h",
+          "range": true,
+          "refId": "8h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 15h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "9h",
+          "range": true,
+          "refId": "9h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 14h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "10h",
+          "range": true,
+          "refId": "10h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 13h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "11h",
+          "range": true,
+          "refId": "11h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 12h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "12h",
+          "range": true,
+          "refId": "12h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 11h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "13h",
+          "range": true,
+          "refId": "13h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 10h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "14h",
+          "range": true,
+          "refId": "14h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 9h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "15h",
+          "range": true,
+          "refId": "15h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 8h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "16h",
+          "range": true,
+          "refId": "16h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 7h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "17h",
+          "range": true,
+          "refId": "17h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 6h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "18h",
+          "range": true,
+          "refId": "18h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 5h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "19h",
+          "range": true,
+          "refId": "19h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 4h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "20h",
+          "range": true,
+          "refId": "20h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 3h)[365d:1d]) @end()",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "21h",
+          "range": true,
+          "refId": "21h"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$21h + $20h + $19h + $18h + $17h + $16h + $15h + $14h + $13h + $12h + $11h + $10h + $9h + $8h + $7h + $6h + $5h",
+          "hide": true,
+          "refId": "Total",
+          "type": "math"
+        }
+      ],
+      "timeFrom": "365d",
+      "title": "365d energy production",
+      "type": "bargauge"
+    },
+    {
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 21
+      },
+      "id": 279,
+      "libraryPanel": {
+        "name": "365d energy",
+        "uid": "cewxqrjbo6arke"
+      },
+      "title": "365d energy production"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 280,
+      "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1849,8 +2171,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                    "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -1866,7 +2187,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 21
+            "y": 30
       },
       "id": 252,
       "interval": "$bar_chart_interval",
@@ -1892,6 +2213,7 @@
           "valueSize": 9
         },
         "tooltip": {
+              "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         },
@@ -1955,8 +2277,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                    "color": "green"
               },
               {
                 "color": "orange",
@@ -1976,7 +2297,7 @@
         "h": 14,
         "w": 24,
         "x": 0,
-        "y": 32
+            "y": 41
       },
       "id": 265,
       "interval": "1h",
@@ -2003,6 +2324,7 @@
           "valueSize": 9
         },
         "tooltip": {
+              "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         },
@@ -2069,6 +2391,10 @@
       "timeFrom": "72h",
       "title": "Energy /h (from grid)",
       "type": "barchart"
+        }
+      ],
+      "title": "Inverter 72/h",
+      "type": "row"
     },
     {
       "collapsed": true,
@@ -2076,7 +2402,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 30
       },
       "id": 227,
       "panels": [
@@ -2139,7 +2465,7 @@
             "h": 8,
             "w": 9,
             "x": 0,
-            "y": 47
+            "y": 55
           },
           "id": 22,
           "options": {
@@ -2270,7 +2596,7 @@
             "h": 8,
             "w": 9,
             "x": 9,
-            "y": 47
+            "y": 55
           },
           "id": 21,
           "options": {
@@ -2377,7 +2703,7 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 47
+            "y": 55
           },
           "id": 86,
           "options": {
@@ -2515,7 +2841,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 55
+            "y": 63
           },
           "id": 15,
           "options": {
@@ -2637,7 +2963,7 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 64
+            "y": 72
           },
           "id": 85,
           "options": {
@@ -2729,7 +3055,7 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 64
+            "y": 72
           },
           "id": 87,
           "options": {
@@ -2823,7 +3149,7 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 64
+            "y": 72
           },
           "id": 143,
           "options": {
@@ -2923,7 +3249,7 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 64
+            "y": 72
           },
           "id": 88,
           "options": {
@@ -3018,7 +3344,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 72
+            "y": 80
           },
           "hideTimeOverride": false,
           "id": 178,
@@ -3074,7 +3400,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 31
       },
       "id": 24,
       "panels": [
@@ -3125,7 +3451,7 @@
             "h": 3,
             "w": 5,
             "x": 0,
-            "y": 48
+            "y": 56
           },
           "id": 25,
           "options": {
@@ -3210,7 +3536,7 @@
             "h": 3,
             "w": 3,
             "x": 5,
-            "y": 48
+            "y": 56
           },
           "id": 34,
           "options": {
@@ -3272,7 +3598,7 @@
             "h": 3,
             "w": 4,
             "x": 8,
-            "y": 48
+            "y": 56
           },
           "id": 47,
           "options": {
@@ -3334,7 +3660,7 @@
             "h": 3,
             "w": 4,
             "x": 12,
-            "y": 48
+            "y": 56
           },
           "id": 40,
           "options": {
@@ -3396,7 +3722,7 @@
             "h": 3,
             "w": 4,
             "x": 16,
-            "y": 48
+            "y": 56
           },
           "id": 55,
           "options": {
@@ -3460,7 +3786,7 @@
             "h": 3,
             "w": 4,
             "x": 20,
-            "y": 48
+            "y": 56
           },
           "id": 154,
           "options": {
@@ -3554,7 +3880,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 51
+            "y": 59
           },
           "id": 28,
           "options": {
@@ -3651,7 +3977,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 51
+            "y": 59
           },
           "id": 33,
           "options": {
@@ -3750,7 +4076,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 59
+            "y": 67
           },
           "id": 64,
           "options": {
@@ -3865,7 +4191,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 59
+            "y": 67
           },
           "id": 74,
           "options": {
@@ -4135,6 +4461,7 @@
     "from": "now-7d",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "refresh_intervals": [
       "5s",
@@ -4152,6 +4479,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 70,
+  "version": 75,
   "weekStart": ""
 }
