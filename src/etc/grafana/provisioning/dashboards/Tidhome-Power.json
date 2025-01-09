@@ -1133,7 +1133,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const dataBull = []\nconst dataCenter = []\nconst dataOuter = []\n\nlet totalHPkWh = Number(0)\nlet totalHCkWh = Number(0)\nlet totalSolarkWh = Number(0)\nlet totalHPCost = Number(0)\nlet totalHCCost = Number(0)\n\nconst barData = {\n  Solar: { color: '#F1EE8E', cost: 0 },\n  HPJB: { color: '#6495ED', cost: 0.1552 },\n  HPJW: { color: '#B0C4DE', cost: 0.1792 },\n  HPJR: { color: '#B22222', cost: 0.6586 },\n  HCJB: { color: '#87CEFA', cost: 0.1288 },\n  HCJW: { color: '#F8F8FF', cost: 0.1447 },\n  HCJR: { color: '#F08080', cost: 0.1518 }\n}\n\ncontext.panel.data.series.map((s) => {\n\n  if (s.fields.length > 0)\n    value = s.fields.find((f) => f.type === 'number').values[0];\n  else\n    value = 0\n  value = Number(value).toFixed(2)\n\n  switch (s.refId) {\n    case 'TotalHP':\n      //console.log(s)\n      fieldName = s.refId.replace('Total', '')\n      valueCost = Number(value * 0.20).toFixed(2)\n      //dataBull.push({ value: value, name: fieldName, cost: valueCost, color: barData['HPJB'].color });\n      break;\n\n    case 'TotalHC':\n      //console.log(s)\n      fieldName = s.refId.replace('Total', '')\n      valueCost = Number(value * 0.15).toFixed(2)\n      //dataBull.push({ value: value, name: fieldName, cost: valueCost, color: barData['HCJB'].color });\n      break;\n\n    case 'HPJB':\n    case 'HCJB':\n    case 'HPJW':\n    case 'HCJW':\n    case 'HPJR':\n    case 'HCJR':\n    case 'Solar':\n      //console.log(s)\n      valueCost = Number(value * barData[s.refId].cost).toFixed(2)\n      dataCenter.push({ value: value, name: s.refId, cost: valueCost, color: barData[s.refId].color });\n      if (s.refId.includes('HP')) {\n        totalHPkWh += Number(value)\n        totalHPCost += Number(valueCost)\n      }\n      if (s.refId.includes('HC')) {\n        totalHCkWh += Number(value)\n        totalHCCost += Number(valueCost)\n      }\n      if (s.refId.includes('Solar')) {\n        totalSolarkWh = Number(value)\n      }\n      break;\n\n    case 'Car':\n    case 'Water':\n    case 'Heaters':\n    case 'Plugs':\n      device = s.fields[0].config.displayNameFromDS\n    case 'Others':\n      if (s.fields[0].name.includes('OnOff') || device.includes('OnOff')) {\n        device = s.fields[0].config.displayNameFromDS.replace(/P(.*)~(.*)~OnOff/, '$2')\n        cost = 0.2062\n      } else {\n        switch (s.refId) {\n          case 'Car':\n            cost = 0.13\n            break\n          case 'Water':\n            cost = 0.11\n            break\n          case 'Heaters':\n            cost = 0.18\n            break\n          case 'Others':\n            cost = 0.18\n            break\n        }\n        device = s.refId\n      }\n      valueCost = Number(value * cost).toFixed(2)\n      dataOuter.push({ value: value, name: device, cost: valueCost });\n      break;\n  }\n\n});\n\ndataBull.push({ value: Number(totalSolarkWh).toFixed(2), name: 'Solar', cost: Number(0).toFixed(2), color: barData['Solar'].color });\ndataBull.push({ value: Number(totalHPkWh).toFixed(2), name: 'HP', cost: Number(totalHPCost).toFixed(2), color: barData['HPJB'].color });\ndataBull.push({ value: Number(totalHCkWh).toFixed(2), name: 'HC', cost: Number(totalHCCost).toFixed(2), color: barData['HCJB'].color });\n// console.log(dataBull);\n\ndataOuter.sort((a, b) => {\n  if (a.name < b.name) {\n    return -1;\n  }\n  if (a.name > b.name) {\n    return 1;\n  }\n  return 0;\n});\n\nreturn {\n  /*tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name.replace('Total', '')}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },\n  legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'HC/HP',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: ['0%', '22%'],\n      color: [barData['Solar'].color, barData['HPJB'].color, barData['HCJB'].color],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          let timelineTotal = context.grafana.replaceVariables(\"${donutValueAs}\");\n          switch (timelineTotal) {\n            case 'percent':\n              return `${params.name.replace('Total', '')}\\n${params.percent}%`;\n            case 'kWh':\n              return `${params.name.replace('Total', '')}\\n${params.data.value} kWh`;\n            case '€':\n              return `${params.name.replace('Total', '')}\\n${params.data.cost} €`;\n          }\n        },\n        fontSize: 16,\n        // color: \"lightgray\"\n        fontWeight: \"bold\"\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"40\",\n          fontWeight: \"bold\",\n          formatter: function (params) {\n            return `${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n          },\n        },\n      },\n      data: dataBull\n    },\n    {\n      id: 'tempo',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: ['24%', '46%'],\n      color: [\n        barData['HPJB'].color,\n        barData['HPJW'].color,\n        barData['HPJR'].color,\n        barData['HCJB'].color,\n        barData['HCJW'].color,\n        barData['HCJR'].color\n      ],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          let timelineTotal = context.grafana.replaceVariables(\"${donutValueAs}\");\n          switch (timelineTotal) {\n            case 'percent':\n              return `${params.name}\\n${params.percent}%`;\n            case 'kWh':\n              return `${params.name}\\n${params.data.value} kWh`;\n            case '€':\n              return `${params.name}\\n${params.data.cost} €`;\n          }\n        },\n        fontSize: 16,\n        fontWeight: \"bold\"\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"40\",\n          fontWeight: \"bold\",\n          // color: \"black\",\n          formatter: function (params) {\n            return `${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n          }\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['48%', '52%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name}}\\n{values|${params.percent}%\\n${Number(params.data.value).toFixed(0)} kWh\\n~${Number(params.data.cost).toFixed(0)} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        fontSize: 12,\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          }\n        }\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
+        "getOption": "const dataBull = []\nconst dataCenter = []\nconst dataOuter = []\n\nlet totalHPkWh = Number(0)\nlet totalHCkWh = Number(0)\nlet totalSolarkWh = Number(0)\nlet totalHPCost = Number(0)\nlet totalHCCost = Number(0)\n\nconst barData = {\n  Solar: { color: '#F1EE8E', cost: 0 },\n  HPJB: { color: '#6495ED', cost: 0.1552 },\n  HPJW: { color: '#B0C4DE', cost: 0.1792 },\n  HPJR: { color: '#B22222', cost: 0.6586 },\n  HCJB: { color: '#87CEFA', cost: 0.1288 },\n  HCJW: { color: '#F8F8FF', cost: 0.1447 },\n  HCJR: { color: '#F08080', cost: 0.1518 }\n}\n\ncontext.panel.data.series.map((s) => {\n\n  if (s.fields.length > 0)\n    value = s.fields.find((f) => f.type === 'number').values[0];\n  else\n    value = 0\n  value = Number(value).toFixed(2)\n\n  switch (s.refId) {\n    case 'TotalHP':\n      //console.log(s)\n      fieldName = s.refId.replace('Total', '')\n      valueCost = Number(value * 0.20).toFixed(2)\n      //dataBull.push({ value: value, name: fieldName, cost: valueCost, color: barData['HPJB'].color });\n      break;\n\n    case 'TotalHC':\n      //console.log(s)\n      fieldName = s.refId.replace('Total', '')\n      valueCost = Number(value * 0.15).toFixed(2)\n      //dataBull.push({ value: value, name: fieldName, cost: valueCost, color: barData['HCJB'].color });\n      break;\n\n    case 'HPJB':\n    case 'HCJB':\n    case 'HPJW':\n    case 'HCJW':\n    case 'HPJR':\n    case 'HCJR':\n    case 'Solar':\n      //console.log(s)\n      valueCost = Number(value * barData[s.refId].cost).toFixed(2)\n      dataCenter.push({ value: value, name: s.refId, cost: valueCost, color: barData[s.refId].color });\n      if (s.refId.includes('HP')) {\n        totalHPkWh += Number(value)\n        totalHPCost += Number(valueCost)\n      }\n      if (s.refId.includes('HC')) {\n        totalHCkWh += Number(value)\n        totalHCCost += Number(valueCost)\n      }\n      if (s.refId.includes('Solar')) {\n        totalSolarkWh = Number(value)\n      }\n      break;\n\n    case 'Car':\n    case 'Water':\n    case 'Heaters':\n    case 'Plugs':\n      device = s.fields[0].config.displayNameFromDS\n    case 'Others':\n      if (s.fields[0].name.includes('OnOff') || device.includes('OnOff')) {\n        device = s.fields[0].config.displayNameFromDS.replace(/P(.*)~(.*)~OnOff/, '$2')\n        cost = 0.2062\n      } else {\n        switch (s.refId) {\n          case 'Car':\n            cost = 0.13\n            break\n          case 'Water':\n            cost = 0.09\n            break\n          case 'Heaters':\n            cost = 0.18\n            break\n          case 'Others':\n            cost = 0.18\n            break\n        }\n        device = s.refId\n      }\n      valueCost = Number(value * cost).toFixed(2)\n      dataOuter.push({ value: value, name: device, cost: valueCost });\n      break;\n  }\n\n});\n\ndataBull.push({ value: Number(totalSolarkWh).toFixed(2), name: 'Solar', cost: Number(0).toFixed(2), color: barData['Solar'].color });\ndataBull.push({ value: Number(totalHPkWh).toFixed(2), name: 'HP', cost: Number(totalHPCost).toFixed(2), color: barData['HPJB'].color });\ndataBull.push({ value: Number(totalHCkWh).toFixed(2), name: 'HC', cost: Number(totalHCCost).toFixed(2), color: barData['HCJB'].color });\n// console.log(dataBull);\n\ndataOuter.sort((a, b) => {\n  if (a.name < b.name) {\n    return -1;\n  }\n  if (a.name > b.name) {\n    return 1;\n  }\n  return 0;\n});\n\nreturn {\n  /*tooltip: {\n    trigger: 'item',\n    //formatter: '{b}: {c} kWh ({d}%)'\n    formatter: function (params) {\n      return `${params.name.replace('Total', '')}<br />\n              ${params.data.value} kWh (${params.percent}%)<br />\n              ${params.data.cost} €`;\n    }\n  },\n  legend: {\n    top: \"0%\",\n    left: \"right\",    \n  },*/\n  series: [\n    {\n      id: 'edf',\n      name: 'HC/HP',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: ['0%', '22%'],\n      color: [barData['Solar'].color, barData['HPJB'].color, barData['HCJB'].color],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          let timelineTotal = context.grafana.replaceVariables(\"${donutValueAs}\");\n          switch (timelineTotal) {\n            case 'percent':\n              return `${params.name.replace('Total', '')}\\n${params.percent}%`;\n            case 'kWh':\n              return `${params.name.replace('Total', '')}\\n${params.data.value} kWh`;\n            case '€':\n              return `${params.name.replace('Total', '')}\\n${params.data.cost} €`;\n          }\n        },\n        fontSize: 16,\n        // color: \"lightgray\"\n        fontWeight: \"bold\"\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"40\",\n          fontWeight: \"bold\",\n          formatter: function (params) {\n            return `${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n          },\n        },\n      },\n      data: dataBull\n    },\n    {\n      id: 'tempo',\n      name: 'EDF',\n      type: 'pie',\n      selectedMode: 'single',\n      radius: ['24%', '46%'],\n      color: [\n        barData['HPJB'].color,\n        barData['HPJW'].color,\n        barData['HPJR'].color,\n        barData['HCJB'].color,\n        barData['HCJW'].color,\n        barData['HCJR'].color\n      ],\n      /*itemStyle: {\n        borderRadius: 10,\n        borderColor: \"#fff\",\n        borderWidth: 2,\n      },*/\n      label: {\n        position: 'inner',\n        //formatter: '{b}\\n{c} kWh\\n{d}%',\n        formatter: function (params) {\n          let timelineTotal = context.grafana.replaceVariables(\"${donutValueAs}\");\n          switch (timelineTotal) {\n            case 'percent':\n              return `${params.name}\\n${params.percent}%`;\n            case 'kWh':\n              return `${params.name}\\n${params.data.value} kWh`;\n            case '€':\n              return `${params.name}\\n${params.data.cost} €`;\n          }\n        },\n        fontSize: 16,\n        fontWeight: \"bold\"\n      },\n      labelLine: {\n        show: false\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"40\",\n          fontWeight: \"bold\",\n          // color: \"black\",\n          formatter: function (params) {\n            return `${params.data.value} kWh\\n${params.percent}%\\n${params.data.cost} €`;\n          }\n        },\n      },\n      data: dataCenter\n    },\n    {\n      id: 'clamps',\n      name: 'Clamps',\n      type: 'pie',\n      radius: ['48%', '52%'],\n      labelLine: {\n        length: 30\n      },\n      label: {\n        /*formatter: [\n          '{b|{b}：}{c|{c} kWh}',\n          '{per|{d}%}'\n        ].join('\\n'),*/\n        formatter: function (params) {\n          return `{name|${params.name}}\\n{values|${params.percent}%\\n${Number(params.data.value).toFixed(0)} kWh\\n~${Number(params.data.cost).toFixed(0)} €}`;\n        },\n        //'{hr|}\\n  {b|{b}：}{c|{c} kWh}\\n{per|{d}%}',\n        fontSize: 12,\n        backgroundColor: '#F6F8FC',\n        borderColor: '#8C8D8E',\n        borderWidth: 1,\n        borderRadius: 4,\n        rich: {\n          name: {\n            align: 'center',\n            color: '#4C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          },\n          values: {\n            align: 'center',\n            color: '#9C5058',\n            //fontSize: 12,\n            fontWeight: 'bold',\n            lineHeight: 15\n          }\n        }\n      },\n      emphasis: {\n        label: {\n          show: true,\n          fontSize: \"30\",\n          fontWeight: \"bold\",\n        }\n      },\n      data: dataOuter\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -1912,8 +1912,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2141,8 +2140,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2252,7 +2250,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2264,7 +2263,7 @@
             "h": 8,
             "w": 4,
             "x": 0,
-            "y": 42
+            "y": 41
           },
           "id": 123,
           "options": {
@@ -2284,7 +2283,7 @@
             "textMode": "value_and_name",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.10",
+          "pluginVersion": "11.0.9",
           "targets": [
             {
               "datasource": {
@@ -2397,7 +2396,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2409,7 +2409,7 @@
             "h": 8,
             "w": 4,
             "x": 4,
-            "y": 42
+            "y": 41
           },
           "id": 122,
           "options": {
@@ -2429,7 +2429,7 @@
             "textMode": "value_and_name",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.10",
+          "pluginVersion": "11.0.9",
           "targets": [
             {
               "datasource": {
@@ -2555,7 +2555,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2571,7 +2572,7 @@
             "h": 16,
             "w": 11,
             "x": 8,
-            "y": 42
+            "y": 41
           },
           "id": 116,
           "options": {
@@ -2590,7 +2591,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.10",
+          "pluginVersion": "11.0.9",
           "targets": [
             {
               "datasource": {
@@ -2799,7 +2800,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2815,7 +2817,7 @@
             "h": 16,
             "w": 5,
             "x": 19,
-            "y": 42
+            "y": 41
           },
           "id": 112,
           "options": {
@@ -2834,7 +2836,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.10",
+          "pluginVersion": "11.0.9",
           "targets": [
             {
               "datasource": {
@@ -3044,7 +3046,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3056,7 +3059,7 @@
             "h": 8,
             "w": 4,
             "x": 0,
-            "y": 50
+            "y": 49
           },
           "id": 135,
           "options": {
@@ -3076,7 +3079,7 @@
             "textMode": "value_and_name",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.10",
+          "pluginVersion": "11.0.9",
           "targets": [
             {
               "datasource": {
@@ -3204,7 +3207,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3216,7 +3220,7 @@
             "h": 8,
             "w": 4,
             "x": 4,
-            "y": 50
+            "y": 49
           },
           "id": 136,
           "options": {
@@ -3236,7 +3240,7 @@
             "textMode": "value_and_name",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.10",
+          "pluginVersion": "11.0.9",
           "targets": [
             {
               "datasource": {
@@ -3355,90 +3359,55 @@
           "fieldConfig": {
             "defaults": {
               "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "fillOpacity": 80,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineWidth": 1,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
+                "mode": "continuous-GrYlRd"
               },
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
                     "value": 80
                   }
                 ]
-              }
+              },
+              "unit": "kwatth"
             },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Time"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "string"
-                  }
-                ]
-              }
-            ]
+            "overrides": []
           },
           "gridPos": {
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 58
+            "y": 57
           },
           "hideTimeOverride": false,
           "id": 137,
           "interval": "1h",
           "maxDataPoints": 7000,
           "options": {
-            "barRadius": 0,
-            "barWidth": 0.97,
-            "fullHighlight": false,
-            "groupWidth": 0.7,
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
+            "displayMode": "lcd",
+            "maxVizHeight": 300,
+            "minVizHeight": 16,
+            "minVizWidth": 8,
+            "namePlacement": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
             },
-            "orientation": "auto",
-            "showValue": "auto",
-            "stacking": "none",
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            },
-            "xTickLabelRotation": 0,
-            "xTickLabelSpacing": 0
+            "showUnfilled": true,
+            "sizing": "auto",
+            "valueMode": "color"
           },
-          "pluginVersion": "10.4.10",
+          "pluginVersion": "11.0.9",
           "targets": [
             {
               "datasource": {
@@ -3675,131 +3644,8 @@
             }
           ],
           "timeFrom": "365d",
-          "title": "Panel Title",
-          "type": "barchart"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "fillOpacity": 80,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineWidth": 1,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 68
-          },
-          "id": 138,
-          "interval": "1h",
-          "maxDataPoints": 7000,
-          "options": {
-            "barRadius": 0,
-            "barWidth": 0.97,
-            "fullHighlight": false,
-            "groupWidth": 0.7,
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": false
-            },
-            "orientation": "auto",
-            "showValue": "always",
-            "stacking": "none",
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            },
-            "xTickLabelRotation": 0,
-            "xTickLabelSpacing": 0
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset ${hour}h)[365d:1d])",
-              "instant": false,
-              "legendFormat": "{{hour}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "timeFrom": "365d",
-          "title": "Panel Title",
-          "transformations": [
-            {
-              "id": "formatTime",
-              "options": {
-                "outputFormat": "HH",
-                "timeField": "",
-                "timezone": "browser",
-                "useTimezone": true
-              }
-            },
-            {
-              "id": "groupBy",
-              "options": {
-                "fields": {
-                  "Time": {
-                    "aggregations": [],
-                    "operation": "groupby"
-                  },
-                  "Value": {
-                    "aggregations": [
-                      "sum"
-                    ],
-                    "operation": "aggregate"
-                  }
-                }
-              }
-            }
-          ],
-          "type": "barchart"
+          "title": "365d energy production",
+          "type": "bargauge"
         }
       ],
       "title": "Troubleshooting",
@@ -4237,6 +4083,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 324,
+  "version": 327,
   "weekStart": "monday"
 }
