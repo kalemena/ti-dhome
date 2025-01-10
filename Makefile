@@ -17,6 +17,9 @@ BACKUP_CMD := $(BACKUP_CMD_BASE) \
 RESTORE_CMD := $(BACKUP_CMD_BASE) \
     -c "apk add rsync && rsync --delete -rtD --info=progress2 /backup/victoriametrics/* /victoria-metrics-data/"
 
+DB_SIZE_CMD := $(BACKUP_CMD_BASE) \
+	-c "du -sh /victoria-metrics-data"
+
 .PHONY: build backup restore
 
 all: 
@@ -53,11 +56,17 @@ down:
 clean:
 	cd src && docker compose down --volumes
 
-backup:
-	docker stop ti-dhome-victoriametrics-1
-	mkdir -p $(WORKSPACE)/backup/victoriametrics
+##########################
+# Backup/Restore DB
+##########################
+
+backup.cmd:
+	@mkdir -p $(WORKSPACE)/backup/victoriametrics
 	$(BACKUP_CMD)
-	docker start ti-dhome-victoriametrics-1
+
+backup.size:
+	@mkdir -p $(WORKSPACE)/backup/victoriametrics
+	$(DB_SIZE_CMD)
 
 
 # WARNING: Danger zone !
