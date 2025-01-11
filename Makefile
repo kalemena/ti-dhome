@@ -49,6 +49,14 @@ logs:
 stop:
 	cd src && docker compose stop
 
+%.stop:
+	cd src \
+		&& docker compose stop -t 10 $(@:.stop= )
+
+%.start:
+	cd src \
+		&& docker compose start $(@:.start= )
+
 down:
 	cd src && docker compose down
 
