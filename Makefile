@@ -76,6 +76,8 @@ backup.size:
 	@mkdir -p $(WORKSPACE)/backup/victoriametrics
 	$(DB_SIZE_CMD)
 
+backup: victoriametrics.stop backup.cmd victoriametrics.start
+
 
 # WARNING: Danger zone !
 restore:
