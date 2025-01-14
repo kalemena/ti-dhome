@@ -78,6 +78,9 @@ backup.size:
 
 backup: victoriametrics.stop backup.cmd victoriametrics.start
 
+backup.compress:
+	find $(BACKUP_FOLDER_RAW) -type f | wc -l
+	tar -cvjf - $(BACKUP_FOLDER_RAW) > $(BACKUP_FOLDER)/$(BACKUP_DATE).tar.bz2
 
 # WARNING: Danger zone !
 restore:
