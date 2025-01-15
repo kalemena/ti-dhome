@@ -131,6 +131,7 @@ services:
     ports:
       - 8123:8123
     volumes:
+    # https://www.home-assistant.io/docs/authentication/providers/
       - ha-config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: always
