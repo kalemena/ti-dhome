@@ -76,3 +76,20 @@ MOTDETAT 000000 B
 * link:http://www.frinux.fr/2015/01/25/afficher-et-analyser-les-donnees-teleinfo-du-compteur-edf-avec-raspberry-pi-et-nodejs/[Sample app teleinfo]
 * link:https://github.com/lhuet/teleinfo-app[Sample app teleinfo]
 
+== Notes
+
+.Costs in France
+[source,json]
+----
+const costs = {
+  kWhBase: 0.2062,
+  kWhHP: 0.2228,
+  kWhHC: 0.1615,
+  kWhTBHC: 0.0970,
+  kWhTBHP: 0.1249,
+  kWhTWHC: 0.1140,
+  kWhTWHP: 0.1508,
+  kWhTRHC: 0.1216,
+  kWhTRHP: 0.6712,
+}
+----
