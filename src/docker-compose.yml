@@ -20,7 +20,7 @@ services:
 
   zigbee2mqtt:
     # https://github.com/Koenkk/zigbee2mqtt/releases
-    image: koenkk/zigbee2mqtt:1.40.1
+    image: koenkk/zigbee2mqtt:1.40.2
     restart: always
     ports:
       - 8181
