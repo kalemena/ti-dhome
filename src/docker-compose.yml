@@ -11,7 +11,7 @@ services:
 
   mqtt:
     # https://hub.docker.com/_/eclipse-mosquitto/
-    image: eclipse-mosquitto:2.0.18
+    image: eclipse-mosquitto:2.0.19
     restart: always
     ports:
       - 1883:1883
