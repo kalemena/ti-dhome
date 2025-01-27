@@ -3645,457 +3645,227 @@
           ],
           "title": "Cost (€) - ZenFix HP/HC",
           "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "continuous-GrYlRd"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "kwatth"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 57
-          },
-          "hideTimeOverride": false,
-          "id": 137,
-          "interval": "1h",
-          "maxDataPoints": 7000,
-          "options": {
-            "displayMode": "lcd",
-            "maxVizHeight": 300,
-            "minVizHeight": 16,
-            "minVizWidth": 8,
-            "namePlacement": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showUnfilled": true,
-            "sizing": "auto",
-            "valueMode": "color"
-          },
-          "pluginVersion": "11.0.9",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 19h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "5h",
-              "range": true,
-              "refId": "5h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 18h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "6h",
-              "range": true,
-              "refId": "6h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 17h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "7h",
-              "range": true,
-              "refId": "7h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 16h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "8h",
-              "range": true,
-              "refId": "8h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 15h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "9h",
-              "range": true,
-              "refId": "9h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 14h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "10h",
-              "range": true,
-              "refId": "10h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 13h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "11h",
-              "range": true,
-              "refId": "11h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 12h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "12h",
-              "range": true,
-              "refId": "12h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 11h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "13h",
-              "range": true,
-              "refId": "13h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 10h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "14h",
-              "range": true,
-              "refId": "14h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 9h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "15h",
-              "range": true,
-              "refId": "15h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 8h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "16h",
-              "range": true,
-              "refId": "16h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 7h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "17h",
-              "range": true,
-              "refId": "17h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 6h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "18h",
-              "range": true,
-              "refId": "18h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 5h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "19h",
-              "range": true,
-              "refId": "19h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 4h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "20h",
-              "range": true,
-              "refId": "20h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "VictoriaMetrics"
-              },
-              "editorMode": "code",
-              "expr": "sum_over_time(increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 3h)[365d:1d]) @end()",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "21h",
-              "range": true,
-              "refId": "21h"
-            },
-            {
-              "datasource": {
-                "name": "Expression",
-                "type": "__expr__",
-                "uid": "__expr__"
-              },
-              "expression": "$21h + $20h + $19h + $18h + $17h + $16h + $15h + $14h + $13h + $12h + $11h + $10h + $9h + $8h + $7h + $6h + $5h",
-              "hide": true,
-              "refId": "Total",
-              "type": "math"
-            }
-          ],
-          "timeFrom": "365d",
-          "title": "365d energy production",
-          "type": "bargauge"
         }
       ],
       "title": "Troubleshooting",
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "5m",
-  "revision": 1,
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": [
       {
+        "current": {
+          "text": "0.2016",
+          "value": "0.2016"
+        },
         "description": "Cost of kWh normal price",
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhBase",
         "query": "0.2016",
-        "skipUrlSync": false,
+        "skipUrlSync": true,
         "type": "constant"
       },
       {
+        "current": {
+          "text": "0.2146",
+          "value": "0.2146"
+        },
         "description": "Cost of kWh during high cost hours",
         "hide": 2,
         "label": "kWhHP",
         "name": "kWhHP",
         "query": "0.2146",
-        "skipUrlSync": false,
+        "skipUrlSync": true,
         "type": "constant"
       },
       {
+        "current": {
+          "text": "0.1696",
+          "value": "0.1696"
+        },
         "description": "Cost of kWh during low cost hours",
         "hide": 2,
         "label": "kWhHC",
         "name": "kWhHC",
         "query": "0.1696",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "kWhTBHC",
-        "name": "kWhTBHC",
-        "query": "0.1288",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "kWhTBH9",
-        "name": "kWhTBHP",
-        "query": "0.1552",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "kWhTWHC",
-        "name": "kWhTWHC",
-        "query": "0.1447",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "kWhTWHP",
-        "name": "kWhTWHP",
-        "query": "0.1792",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "kWhTRHC",
-        "name": "kWhTRHC",
-        "query": "0.1518",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "kWhTRHP",
-        "name": "kWhTRHP",
-        "query": "0.6586",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "name": "kWhZenFix",
-        "query": "0.1753",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "name": "kWhZenFixHC",
-        "query": "0.1608",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "name": "kWhZenFixHP",
-        "query": "0.2028",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "1 Day",
-        "name": "day1",
-        "query": "1d",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "7 Day",
-        "name": "day7",
-        "query": "7d",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "30 Day",
-        "name": "day30",
-        "query": "30d",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "60 Day",
-        "name": "day60",
-        "query": "60d",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "hide": 2,
-        "label": "365 Day",
-        "name": "day365",
-        "query": "365d",
-        "skipUrlSync": false,
+        "skipUrlSync": true,
         "type": "constant"
       },
       {
         "current": {
-          "selected": false,
+          "text": "0.1288",
+          "value": "0.1288"
+        },
+        "hide": 2,
+        "label": "kWhTBHC",
+        "name": "kWhTBHC",
+        "query": "0.1288",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "0.1552",
+          "value": "0.1552"
+        },
+        "hide": 2,
+        "label": "kWhTBH9",
+        "name": "kWhTBHP",
+        "query": "0.1552",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "0.1447",
+          "value": "0.1447"
+        },
+        "hide": 2,
+        "label": "kWhTWHC",
+        "name": "kWhTWHC",
+        "query": "0.1447",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "0.1792",
+          "value": "0.1792"
+        },
+        "hide": 2,
+        "label": "kWhTWHP",
+        "name": "kWhTWHP",
+        "query": "0.1792",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "0.1518",
+          "value": "0.1518"
+        },
+        "hide": 2,
+        "label": "kWhTRHC",
+        "name": "kWhTRHC",
+        "query": "0.1518",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "0.6586",
+          "value": "0.6586"
+        },
+        "hide": 2,
+        "label": "kWhTRHP",
+        "name": "kWhTRHP",
+        "query": "0.6586",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "0.1753",
+          "value": "0.1753"
+        },
+        "hide": 2,
+        "name": "kWhZenFix",
+        "query": "0.1753",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "0.1608",
+          "value": "0.1608"
+        },
+        "hide": 2,
+        "name": "kWhZenFixHC",
+        "query": "0.1608",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "0.2028",
+          "value": "0.2028"
+        },
+        "hide": 2,
+        "name": "kWhZenFixHP",
+        "query": "0.2028",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "1d",
+          "value": "1d"
+        },
+        "hide": 2,
+        "label": "1 Day",
+        "name": "day1",
+        "query": "1d",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "7d",
+          "value": "7d"
+        },
+        "hide": 2,
+        "label": "7 Day",
+        "name": "day7",
+        "query": "7d",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "30d",
+          "value": "30d"
+        },
+        "hide": 2,
+        "label": "30 Day",
+        "name": "day30",
+        "query": "30d",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "60d",
+          "value": "60d"
+        },
+        "hide": 2,
+        "label": "60 Day",
+        "name": "day60",
+        "query": "60d",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
           "text": "365d",
           "value": "365d"
         },
-        "hide": 0,
+        "hide": 2,
+        "label": "365 Day",
+        "name": "day365",
+        "query": "365d",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "365d",
+          "value": "365d"
+        },
         "label": "Days in Donut",
         "name": "nbDays",
         "options": [
@@ -4106,20 +3876,16 @@
           }
         ],
         "query": "365d",
-        "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
-          "selected": false,
           "text": "percent",
           "value": "percent"
         },
         "description": "Show donut values as",
-        "hide": 0,
         "includeAll": false,
         "label": "Donut Value As",
-        "multi": false,
         "name": "donutValueAs",
         "options": [
           {
@@ -4139,21 +3905,16 @@
           }
         ],
         "query": "percent,kWh,€",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "selected": false,
           "text": "1d",
           "value": "1d"
         },
         "description": "Range for Timeline",
-        "hide": 0,
         "includeAll": false,
         "label": "Timeline Range",
-        "multi": false,
         "name": "timelineRange",
         "options": [
           {
@@ -4173,21 +3934,16 @@
           }
         ],
         "query": "1h,1d,1w",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "selected": false,
           "text": "kWh",
           "value": "kWh"
         },
         "description": "Base, Blue or Tempo",
-        "hide": 0,
         "includeAll": false,
         "label": "Timeline Total",
-        "multi": false,
         "name": "timelineTotal",
         "options": [
           {
@@ -4212,20 +3968,16 @@
           }
         ],
         "query": "kWh,tempo,blue,base",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "selected": false,
           "text": "12",
           "value": "12"
         },
         "hide": 2,
         "includeAll": false,
         "label": "hour",
-        "multi": false,
         "name": "hour",
         "options": [
           {
@@ -4350,8 +4102,6 @@
           }
         ],
         "query": "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -4360,9 +4110,7 @@
     "from": "now-30d",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
-    "hidden": false,
     "refresh_intervals": [
       "5s",
       "10s",
@@ -4378,6 +4126,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 327,
+  "version": 334,
   "weekStart": "monday"
 }
