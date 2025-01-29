@@ -101,7 +101,7 @@ services:
 
   grafana:
     # https://github.com/grafana/grafana/releases
-    image: grafana/grafana-oss:11.4.0
+    image: grafana/grafana-oss:11.4.1
     restart: unless-stopped
     ports:
       - "3000:3000"
