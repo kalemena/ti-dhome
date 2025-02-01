@@ -24,7 +24,6 @@
   "description": "Dashboard for OpenDTU",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": 19666,
   "graphTooltip": 1,
   "id": 4,
   "links": [],
@@ -873,7 +872,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 3,
         "w": 2,
         "x": 0,
         "y": 2
@@ -884,6 +883,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -895,7 +895,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -954,6 +954,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -965,7 +966,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1015,6 +1016,84 @@
           "color": {
             "mode": "thresholds"
           },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "kwatth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 4,
+        "y": 2
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}",
+          "hide": false,
+          "legendFormat": "Solar",
+          "range": true,
+          "refId": "PSolar"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}",
+          "hide": false,
+          "legendFormat": "ToGrid",
+          "range": true,
+          "refId": "PGrid"
+        }
+      ],
+      "title": "Production (Total - AC)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "decimals": 0,
           "mappings": [],
           "max": 1100,
@@ -1042,7 +1121,7 @@
       "gridPos": {
         "h": 7,
         "w": 3,
-        "x": 4,
+        "x": 7,
         "y": 2
       },
       "id": 20,
@@ -1061,7 +1140,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1102,83 +1181,6 @@
               }
             ]
           },
-          "unit": "kwatth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 3,
-        "x": 7,
-        "y": 2
-      },
-      "id": 19,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.0.9",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}",
-          "hide": false,
-          "legendFormat": "Solar",
-          "range": true,
-          "refId": "PSolar"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}",
-          "hide": false,
-          "legendFormat": "ToGrid",
-          "range": true,
-          "refId": "PGrid"
-        }
-      ],
-      "title": "Production (Total - AC)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
           "unit": "watth"
         },
         "overrides": []
@@ -1195,6 +1197,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1206,7 +1209,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1261,6 +1264,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1272,7 +1276,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1328,6 +1332,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -1339,7 +1344,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1425,7 +1430,7 @@
       "gridPos": {
         "h": 4,
         "w": 2,
-        "x": 2,
+        "x": 0,
         "y": 5
       },
       "id": 17,
@@ -1434,6 +1439,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1445,7 +1451,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1461,6 +1467,95 @@
         }
       ],
       "title": "Temperature",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 2,
+        "y": 5
+      },
+      "id": 281,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "avg(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"})",
+          "hide": true,
+          "legendFormat": "Solar",
+          "range": true,
+          "refId": "PSolar"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "expr": "avg(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"})",
+          "hide": true,
+          "legendFormat": "ToGrid",
+          "range": true,
+          "refId": "PGrid"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "100 - (${PGrid} *  100 / ${PSolar})",
+          "hide": false,
+          "refId": "Loss",
+          "type": "math"
+        }
+      ],
+      "title": "Autoconso (%)",
       "type": "stat"
     },
     {
@@ -1500,6 +1595,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1511,7 +1607,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1579,6 +1675,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1590,7 +1687,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1649,6 +1746,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -1660,7 +1758,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1758,6 +1856,7 @@
           "valueSize": 15
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
@@ -1767,6 +1866,7 @@
         "xTickLabelRotation": 90,
         "xTickLabelSpacing": 0
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1855,6 +1955,12 @@
       "maxDataPoints": 7000,
       "options": {
         "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
         "maxVizHeight": 300,
         "minVizHeight": 16,
         "minVizWidth": 8,
@@ -1871,7 +1977,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.0.9",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -3346,7 +3452,6 @@
             "x": 0,
             "y": 80
           },
-          "hideTimeOverride": false,
           "id": 178,
           "options": {
             "legend": {
@@ -3387,7 +3492,6 @@
             }
           ],
           "title": "Power Loss in W",
-          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -4262,14 +4366,13 @@
         }
       ],
       "repeat": "channel",
-      "repeatDirection": "h",
       "title": "Channel $channel",
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "1m",
-  "revision": 1,
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
     "solar"
   ],
@@ -4286,10 +4389,7 @@
           "uid": "VictoriaMetrics"
         },
         "definition": "label_values(opendtu_last_update,serial)",
-        "hide": 0,
         "includeAll": false,
-        "label": "",
-        "multi": false,
         "name": "serial",
         "options": [],
         "query": {
@@ -4298,13 +4398,10 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -4315,7 +4412,6 @@
         "definition": "label_values(opendtu_PanelInfo,channel)",
         "hide": 2,
         "includeAll": true,
-        "multi": false,
         "name": "channel",
         "options": [],
         "query": {
@@ -4324,8 +4420,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -4333,11 +4427,9 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "selected": false,
           "text": "1h",
           "value": "1h"
         },
-        "hide": 0,
         "label": "Bar Chart Interval",
         "name": "bar_chart_interval",
         "options": [
@@ -4363,9 +4455,7 @@
           }
         ],
         "query": "15m,30m,1h,2h",
-        "queryValue": "",
         "refresh": 2,
-        "skipUrlSync": false,
         "type": "interval"
       },
       {
@@ -4373,11 +4463,9 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "selected": false,
           "text": "30d",
           "value": "30d"
         },
-        "hide": 0,
         "label": "Bar Chart Duration",
         "name": "bar_chart_duration",
         "options": [
@@ -4408,19 +4496,15 @@
           }
         ],
         "query": "7d,30d,90d,180d,365d",
-        "queryValue": "",
         "refresh": 2,
-        "skipUrlSync": false,
         "type": "interval"
       },
       {
         "current": {
-          "selected": false,
           "text": "25",
           "value": "25"
         },
         "description": "How many cents per kWh",
-        "hide": 0,
         "label": "Cent / kWh",
         "name": "cent",
         "options": [
@@ -4431,17 +4515,14 @@
           }
         ],
         "query": "25",
-        "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
-          "selected": true,
           "text": "500",
           "value": "500"
         },
         "description": "Set to € cost of solar system",
-        "hide": 0,
         "label": "Costs of installed Solar System",
         "name": "solar_cost",
         "options": [
@@ -4452,7 +4533,6 @@
           }
         ],
         "query": "500",
-        "skipUrlSync": false,
         "type": "textbox"
       }
     ]
@@ -4461,24 +4541,10 @@
     "from": "now-7d",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
-  "timepicker": {
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ]
-  },
+  "timepicker": {},
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 75,
+  "version": 80,
   "weekStart": ""
 }
