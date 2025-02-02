@@ -2241,262 +2241,262 @@
       },
       "id": 280,
       "panels": [
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-RdYlGr"
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
           },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 59,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "dashed"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                    "color": "green"
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-RdYlGr"
               },
-              {
-                "color": "#EAB839",
-                "value": 0.3
-              }
-            ]
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "fillOpacity": 59,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 2,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "thresholdsStyle": {
+                  "mode": "dashed"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 0.3
+                  }
+                ]
+              },
+              "unit": "kwatth"
+            },
+            "overrides": []
           },
-          "unit": "kwatth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 24,
-        "x": 0,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
             "y": 30
-      },
-      "id": 252,
-      "interval": "$bar_chart_interval",
-      "options": {
-        "barRadius": 0.25,
-        "barWidth": 0.7,
-        "colorByField": "Value",
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [
-            "logmin",
-            "max"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "orientation": "auto",
-        "showValue": "always",
-        "stacking": "none",
-        "text": {
-          "valueSize": 9
-        },
-        "tooltip": {
+          },
+          "id": 252,
+          "interval": "$bar_chart_interval",
+          "options": {
+            "barRadius": 0.25,
+            "barWidth": 0.7,
+            "colorByField": "Value",
+            "fullHighlight": false,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [
+                "logmin",
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "orientation": "auto",
+            "showValue": "always",
+            "stacking": "none",
+            "text": {
+              "valueSize": 9
+            },
+            "tooltip": {
               "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        },
-        "xField": "Time",
-        "xTickLabelMaxLength": 10,
-        "xTickLabelRotation": 45,
-        "xTickLabelSpacing": -100
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)",
-          "hide": false,
-          "legendFormat": "Solar",
-          "range": true,
-          "refId": "Solar"
-        }
-      ],
-      "timeFrom": "72h",
-      "title": "Energy Solar /h",
-      "type": "barchart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-RdYlGr"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 59,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+              "mode": "multi",
+              "sort": "none"
             },
-            "lineWidth": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "dashed"
+            "xField": "Time",
+            "xTickLabelMaxLength": 10,
+            "xTickLabelRotation": 45,
+            "xTickLabelSpacing": -100
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "sum(increase(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)",
+              "hide": false,
+              "legendFormat": "Solar",
+              "range": true,
+              "refId": "Solar"
             }
-          },
-          "mappings": [],
-          "noValue": "0",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                    "color": "green"
-              },
-              {
-                "color": "orange",
-                "value": 300
-              },
-              {
-                "color": "red",
-                "value": 1000
-              }
-            ]
-          },
-          "unit": "watth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 24,
-        "x": 0,
-            "y": 41
-      },
-      "id": 265,
-      "interval": "1h",
-      "options": {
-        "barRadius": 0.25,
-        "barWidth": 0.7,
-        "colorByField": "Value",
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [
-            "max",
-            "min",
-            "mean"
           ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "timeFrom": "72h",
+          "title": "Energy Solar /h",
+          "type": "barchart"
         },
-        "orientation": "auto",
-        "showValue": "always",
-        "stacking": "none",
-        "text": {
-          "valueSize": 9
-        },
-        "tooltip": {
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-RdYlGr"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "fillOpacity": 59,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 2,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "thresholdsStyle": {
+                  "mode": "dashed"
+                }
+              },
+              "mappings": [],
+              "noValue": "0",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "orange",
+                    "value": 300
+                  },
+                  {
+                    "color": "red",
+                    "value": 1000
+                  }
+                ]
+              },
+              "unit": "watth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 41
+          },
+          "id": 265,
+          "interval": "1h",
+          "options": {
+            "barRadius": 0.25,
+            "barWidth": 0.7,
+            "colorByField": "Value",
+            "fullHighlight": false,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [
+                "max",
+                "min",
+                "mean"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "orientation": "auto",
+            "showValue": "always",
+            "stacking": "none",
+            "text": {
+              "valueSize": 9
+            },
+            "tooltip": {
               "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        },
-        "xTickLabelMaxLength": 10,
-        "xTickLabelRotation": 45,
-        "xTickLabelSpacing": 100
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
+              "mode": "multi",
+              "sort": "none"
+            },
+            "xTickLabelMaxLength": 10,
+            "xTickLabelRotation": 45,
+            "xTickLabelSpacing": 100
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "Energy /h",
-          "range": true,
-          "refId": "TeleinfoTotalFromGrrid"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(sum(increase(sensors_zigbee_energy_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) * 1000",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "TotalFromGrid",
-          "range": true,
-          "refId": "TotalFromGrid"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "-(sum(increase(sensors_zigbee_energy_produced_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) * 1000",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "TotalToGrid",
-          "range": true,
-          "refId": "TotalToGrid"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "expr": "((sum(increase(sensors_zigbee_energy_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) - (sum(increase(sensors_zigbee_energy_produced_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0))) * 1000",
-          "hide": false,
-          "legendFormat": "Energy /h",
-          "range": true,
-          "refId": "InOut"
-        }
-      ],
-      "timeFrom": "72h",
-      "title": "Energy /h (from grid)",
-      "type": "barchart"
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(increase(sensors_teleinfo_Wh_Total{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)",
+              "hide": true,
+              "instant": false,
+              "legendFormat": "Energy /h",
+              "range": true,
+              "refId": "TeleinfoTotalFromGrrid"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(sum(increase(sensors_zigbee_energy_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) * 1000",
+              "hide": true,
+              "instant": false,
+              "legendFormat": "TotalFromGrid",
+              "range": true,
+              "refId": "TotalFromGrid"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "-(sum(increase(sensors_zigbee_energy_produced_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) * 1000",
+              "hide": true,
+              "instant": false,
+              "legendFormat": "TotalToGrid",
+              "range": true,
+              "refId": "TotalToGrid"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "((sum(increase(sensors_zigbee_energy_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0)) - (sum(increase(sensors_zigbee_energy_produced_b{}[$bar_chart_interval] offset -$bar_chart_interval)) or vector(0))) * 1000",
+              "hide": false,
+              "legendFormat": "Energy /h",
+              "range": true,
+              "refId": "InOut"
+            }
+          ],
+          "timeFrom": "72h",
+          "title": "Energy /h (from grid)",
+          "type": "barchart"
         }
       ],
       "title": "Inverter 72/h",
