@@ -23,7 +23,7 @@ services:
     image: koenkk/zigbee2mqtt:1.40.2
     restart: always
     ports:
-      - 8181
+      - 8181:8181
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./tidhome/data:/app/data
