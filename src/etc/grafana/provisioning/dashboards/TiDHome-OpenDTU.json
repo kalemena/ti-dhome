@@ -1525,7 +1525,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "avg(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"})",
+          "expr": "(opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"}) - (opendtu_YieldTotal{serial=\"$serial\", type=\"AC\"} offset 365d)",
           "hide": true,
           "legendFormat": "Solar",
           "range": true,
@@ -1537,7 +1537,7 @@
             "uid": "VictoriaMetrics"
           },
           "editorMode": "code",
-          "expr": "avg(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"})",
+          "expr": "(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}) - (sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"} offset 365d)",
           "hide": true,
           "legendFormat": "ToGrid",
           "range": true,
@@ -1555,7 +1555,7 @@
           "type": "math"
         }
       ],
-      "title": "Autoconso (%)",
+      "title": "Autoconso 365d (%)",
       "type": "stat"
     },
     {
@@ -4545,6 +4545,6 @@
   "timezone": "",
   "title": "OpenDTU",
   "uid": "b6a167e4-6bf1-44c6-9060-3266160a6fb7",
-  "version": 80,
+  "version": 85,
   "weekStart": ""
 }
