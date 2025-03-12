@@ -83,7 +83,7 @@ services:
 
   telegraf:
     # https://github.com/influxdata/telegraf/releases
-    image: telegraf:1.33.2
+    image: telegraf:1.33.3
     # network_mode: host
     hostname: telegraf
     restart: always
