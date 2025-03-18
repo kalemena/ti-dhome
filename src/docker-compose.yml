@@ -20,16 +20,14 @@ services:
 
   zigbee2mqtt:
     # https://github.com/Koenkk/zigbee2mqtt/releases
-    image: koenkk/zigbee2mqtt:1.40.2
-    restart: always
+    image: koenkk/zigbee2mqtt:2.7.2
+    restart: unless-stopped
+    user: 1000:1000
     ports:
-      - 8181:8181
+      - 8280:8280
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./tidhome/data:/app/data
-      - /run/udev:/run/udev:ro
-    devices:
-      - /dev/ttyACM0:/dev/ttyACM0
+      - ./etc/zigbee2mqtt:/app/data
     privileged: true
     environment:
       - TZ=${TZ}
