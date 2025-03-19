@@ -113,7 +113,7 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 4,
+        "w": 3,
         "x": 0,
         "y": 1
       },
@@ -135,7 +135,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -177,6 +177,111 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
+      "description": "Current Total Power consumption",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Live",
+              "url": "http://ioteleinfo.local/index.html"
+            }
+          ],
+          "mappings": [],
+          "max": 9000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 500
+              },
+              {
+                "color": "orange",
+                "value": 3000
+              },
+              {
+                "color": "red",
+                "value": 6000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 3,
+        "y": 1
+      },
+      "id": 126,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_b{location=\"C03~Garage~PowerMeter\"} @ now()",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Total (clamp)",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Total (W - clamp)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "VictoriaMetrics"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -203,9 +308,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
-        "x": 4,
+        "h": 10,
+        "w": 3,
+        "x": 6,
         "y": 1
       },
       "id": 134,
@@ -226,7 +331,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -434,7 +539,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "Current Total Power consumption",
+      "description": "Largest consumers: Car, Water heating, Electric heating",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -448,7 +553,7 @@
             }
           ],
           "mappings": [],
-          "max": 9000,
+          "max": 5000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -458,135 +563,79 @@
                 "value": null
               },
               {
-                "color": "#EAB839",
-                "value": 500
+                "color": "yellow",
+                "value": 1000
               },
               {
                 "color": "orange",
-                "value": 3000
+                "value": 2000
               },
               {
                 "color": "red",
-                "value": 6000
-              }
-            ]
-          },
-          "unit": "voltamp"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 3,
-        "x": 9,
-        "y": 1
-      },
-      "id": 26,
-      "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "sizing": "auto"
-      },
-      "pluginVersion": "11.4.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_teleinfo_PAPP @ now()",
-          "format": "time_series",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "Total (teleinfo)",
-          "range": false,
-          "refId": "TotalTeleinfo"
-        }
-      ],
-      "title": "Total (VA - teleinfo)",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "VictoriaMetrics"
-      },
-      "description": "Current Total Power consumption",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "Live",
-              "url": "http://ioteleinfo.local/index.html"
-            }
-          ],
-          "mappings": [],
-          "max": 9000,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 500
-              },
-              {
-                "color": "orange",
-                "value": 3000
-              },
-              {
-                "color": "red",
-                "value": 6000
+                "value": 4000
               }
             ]
           },
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Car Charging"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Water Heater"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power_l3"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heaters"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "zigbee-power"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Car+Water+Heating"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 6,
-        "w": 3,
-        "x": 12,
+        "h": 12,
+        "w": 4,
+        "x": 9,
         "y": 1
       },
-      "id": 126,
+      "id": 44,
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -602,7 +651,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -611,16 +660,57 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_power_b{location=\"C03~Garage~PowerMeter\"} @ now()",
-          "format": "time_series",
+          "expr": "sensors_zigbee_power{location=\"C01~Garage~PowerMeter\"} @ now()",
+          "hide": true,
+          "instant": true,
+          "legendFormat": "Car+Water+Heating",
+          "range": false,
+          "refId": "TotalClamps"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_l1{location=\"C01~Garage~PowerMeter\"} @ now()",
           "hide": false,
           "instant": true,
-          "legendFormat": "Total (clamp)",
+          "legendFormat": "Car",
           "range": false,
-          "refId": "A"
+          "refId": "Car"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_l2{location=\"C01~Garage~PowerMeter\"} @ now()",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Water",
+          "range": false,
+          "refId": "Water"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sensors_zigbee_power_l3{location=\"C01~Garage~PowerMeter\"} @ now()",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Heaters",
+          "range": false,
+          "refId": "Heaters"
         }
       ],
-      "title": "Total (W - clamp)",
+      "title": "Consumers (W)",
       "transformations": [
         {
           "id": "calculateField",
