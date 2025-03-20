@@ -734,7 +734,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "Largest consumers: Car, Water heating, Electric heating",
+      "description": "Current Power on outlets",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -748,7 +748,7 @@
             }
           ],
           "mappings": [],
-          "max": 5000,
+          "max": 2500,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -759,78 +759,29 @@
               },
               {
                 "color": "yellow",
-                "value": 1000
+                "value": 100
               },
               {
                 "color": "orange",
-                "value": 2000
+                "value": 500
               },
               {
                 "color": "red",
-                "value": 4000
+                "value": 1000
               }
             ]
           },
           "unit": "watt"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "zigbee-power_l1"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Car Charging"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "zigbee-power_l2"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Water Heater"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "zigbee-power_l3"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Heaters"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "zigbee-power"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Car+Water+Heating"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 9,
-        "x": 15,
+        "h": 12,
+        "w": 11,
+        "x": 13,
         "y": 1
       },
-      "id": 44,
+      "id": 28,
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -846,7 +797,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -855,12 +806,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_power{location=\"C01~Garage~PowerMeter\"} @ now()",
-          "hide": true,
+          "expr": "sensors_zigbee_power{location=~\"P.+\"} @ now()",
+          "hide": false,
           "instant": true,
-          "legendFormat": "Car+Water+Heating",
+          "interval": "",
+          "legendFormat": "{{location}}",
           "range": false,
-          "refId": "TotalClamps"
+          "refId": "Zigbee Plugs"
         },
         {
           "datasource": {
@@ -869,12 +821,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_power_l1{location=\"C01~Garage~PowerMeter\"} @ now()",
+          "expr": "sensors_zigbee_power_l1{location=\"C02~Garage~PowerMeter\"} @ now()",
           "hide": false,
           "instant": true,
-          "legendFormat": "Car",
+          "interval": "",
+          "legendFormat": "Box/NAS",
           "range": false,
-          "refId": "Car"
+          "refId": "Zigbee Clamps - TBD1"
         },
         {
           "datasource": {
@@ -883,12 +836,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_power_l2{location=\"C01~Garage~PowerMeter\"} @ now()",
+          "expr": "sensors_zigbee_power_l2{location=\"C02~Garage~PowerMeter\"} @ now()",
           "hide": false,
           "instant": true,
-          "legendFormat": "Water",
+          "interval": "",
+          "legendFormat": "TBD2",
           "range": false,
-          "refId": "Water"
+          "refId": "Zigbee Clamps - TBD2"
         },
         {
           "datasource": {
@@ -897,28 +851,22 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_power_l3{location=\"C01~Garage~PowerMeter\"} @ now()",
+          "expr": "sensors_zigbee_power_l3{location=\"C02~Garage~PowerMeter\"} @ now()",
           "hide": false,
           "instant": true,
-          "legendFormat": "Heaters",
+          "interval": "",
+          "legendFormat": "TBD3",
           "range": false,
-          "refId": "Heaters"
+          "refId": "Zigbee Clamps - TBD3"
         }
       ],
-      "title": "Consumers (W)",
+      "title": "Outlets (W)",
       "transformations": [
         {
-          "id": "calculateField",
+          "id": "renameByRegex",
           "options": {
-            "binary": {
-              "left": "sensors {type: teleinfo-HCHC}",
-              "reducer": "sum",
-              "right": "sensors {type: teleinfo-HCHP}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
+            "regex": "P(.*)~(.*)~OnOff",
+            "renamePattern": "$2"
           }
         }
       ],
@@ -951,8 +899,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 4,
+        "h": 8,
+        "w": 3,
         "x": 0,
         "y": 3
       },
@@ -975,7 +923,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
