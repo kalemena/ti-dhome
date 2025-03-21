@@ -1022,13 +1022,28 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1735689600)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end() - (sensors_teleinfo_BBRHPJB{} @ 1735689600)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1735689600)) / 1000) * $kWhTWHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end() - (sensors_teleinfo_BBRHPJW{} @ 1735689600)) / 1000) * $kWhTWHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1735689600)) / 1000) * $kWhTRHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end() - (sensors_teleinfo_BBRHPJR{} @ 1735689600)) / 1000) * $kWhTRHP))",
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @ 1767225600 - (sensors_teleinfo_BBRHCJB{} @ 1735689600)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @ 1767225600 - (sensors_teleinfo_BBRHPJB{} @ 1735689600)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @ 1767225600 - (sensors_teleinfo_BBRHCJW{} @ 1735689600)) / 1000) * $kWhTWHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @ 1767225600 - (sensors_teleinfo_BBRHPJW{} @ 1735689600)) / 1000) * $kWhTWHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @ 1767225600 - (sensors_teleinfo_BBRHCJR{} @ 1735689600)) / 1000) * $kWhTRHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @ 1767225600 - (sensors_teleinfo_BBRHPJR{} @ 1735689600)) / 1000) * $kWhTRHP))",
           "hide": false,
           "instant": false,
           "interval": "",
           "legendFormat": "2025",
           "range": true,
           "refId": "2025"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg((((sensors_teleinfo_BBRHCJB{} @end() - (sensors_teleinfo_BBRHCJB{} @ 1767225600)) / 1000) * $kWhTBHC)) \n+\navg((((sensors_teleinfo_BBRHPJB{} @end() - (sensors_teleinfo_BBRHPJB{} @ 1767225600)) / 1000) * $kWhTBHP))\n+\navg((((sensors_teleinfo_BBRHCJW{} @end() - (sensors_teleinfo_BBRHCJW{} @ 1767225600)) / 1000) * $kWhTWHC)) \n+\navg((((sensors_teleinfo_BBRHPJW{} @end() - (sensors_teleinfo_BBRHPJW{} @ 1767225600)) / 1000) * $kWhTWHP))\n+\navg((((sensors_teleinfo_BBRHCJR{} @end() - (sensors_teleinfo_BBRHCJR{} @ 1767225600)) / 1000) * $kWhTRHC)) \n+\navg((((sensors_teleinfo_BBRHPJR{} @end() - (sensors_teleinfo_BBRHPJR{} @ 1767225600)) / 1000) * $kWhTRHP))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "2026",
+          "range": true,
+          "refId": "2026"
         }
       ],
       "title": "Cost (€) - Tempo",
@@ -1039,7 +1054,7 @@
         "type": "prometheus",
         "uid": "VictoriaMetrics"
       },
-      "description": "Current Power on outlets",
+      "description": "Current Total Power consumption",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1053,7 +1068,7 @@
             }
           ],
           "mappings": [],
-          "max": 2500,
+          "max": 9000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1063,30 +1078,30 @@
                 "value": null
               },
               {
-                "color": "yellow",
-                "value": 100
-              },
-              {
-                "color": "orange",
+                "color": "#EAB839",
                 "value": 500
               },
               {
+                "color": "orange",
+                "value": 3000
+              },
+              {
                 "color": "red",
-                "value": 1000
+                "value": 6000
               }
             ]
           },
-          "unit": "watt"
+          "unit": "voltamp"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 15,
-        "x": 9,
-        "y": 7
+        "h": 5,
+        "w": 3,
+        "x": 3,
+        "y": 6
       },
-      "id": 28,
+      "id": 26,
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1102,7 +1117,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1111,67 +1126,29 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sensors_zigbee_power{location=~\"P.+\"} @ now()",
+          "expr": "sensors_teleinfo_PAPP @ now()",
+          "format": "time_series",
           "hide": false,
           "instant": true,
-          "interval": "",
-          "legendFormat": "{{location}}",
+          "legendFormat": "Total (teleinfo)",
           "range": false,
-          "refId": "Zigbee Plugs"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_zigbee_power_l1{location=\"C02~Garage~PowerMeter\"} @ now()",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Box/NAS",
-          "range": false,
-          "refId": "Zigbee Clamps - TBD1"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_zigbee_power_l2{location=\"C02~Garage~PowerMeter\"} @ now()",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "TBD2",
-          "range": false,
-          "refId": "Zigbee Clamps - TBD2"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VictoriaMetrics"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sensors_zigbee_power_l3{location=\"C02~Garage~PowerMeter\"} @ now()",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "TBD3",
-          "range": false,
-          "refId": "Zigbee Clamps - TBD3"
+          "refId": "TotalTeleinfo"
         }
       ],
-      "title": "Outlets (W)",
+      "title": "Total (VA - teleinfo)",
       "transformations": [
         {
-          "id": "renameByRegex",
+          "id": "calculateField",
           "options": {
-            "regex": "P(.*)~(.*)~OnOff",
-            "renamePattern": "$2"
+            "binary": {
+              "left": "sensors {type: teleinfo-HCHC}",
+              "reducer": "sum",
+              "right": "sensors {type: teleinfo-HCHP}"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
           }
         }
       ],
@@ -1191,7 +1168,7 @@
         "h": 19,
         "w": 9,
         "x": 0,
-        "y": 9
+        "y": 11
       },
       "id": 113,
       "options": {
@@ -1226,7 +1203,7 @@
           "series": []
         }
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.2.2",
       "targets": [
         {
           "datasource": {
@@ -1238,7 +1215,7 @@
           "expr": "sum((sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1d] @end()) - (sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1d] @end() offset $nbDays))",
           "hide": false,
           "instant": true,
-          "legendFormat": "__auto",
+          "legendFormat": "TotalProduced",
           "range": false,
           "refId": "TotalProduced"
         },
@@ -1252,7 +1229,7 @@
           "expr": "sum((opendtu_YieldTotal{type=\"AC\"}[1d] @end()) - (opendtu_YieldTotal{type=\"AC\"}[1d] @end() offset $nbDays))",
           "hide": false,
           "instant": true,
-          "legendFormat": "__auto",
+          "legendFormat": "TotalSolar",
           "range": false,
           "refId": "TotalSolar"
         },
@@ -1496,10 +1473,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 17,
         "w": 15,
         "x": 9,
-        "y": 16
+        "y": 13
       },
       "id": 133,
       "interval": "1h",
@@ -1533,7 +1510,7 @@
           "series": []
         }
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.2.2",
       "targets": [
         {
           "datasource": {
@@ -1725,7 +1702,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 30
       },
       "id": 132,
       "interval": "${timelineRange}",
@@ -1759,7 +1736,7 @@
           "series": []
         }
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.2.2",
       "targets": [
         {
           "datasource": {
@@ -1943,7 +1920,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 41
       },
       "id": 23,
       "panels": [
@@ -2312,7 +2289,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 42
       },
       "id": 115,
       "panels": [
@@ -4203,6 +4180,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 334,
+  "version": 340,
   "weekStart": "monday"
 }
