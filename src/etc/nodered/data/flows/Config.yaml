@@ -104,7 +104,7 @@
   mode: link
   links:
     - b18b366e53d25a05
-  x: 815
+  x: 855
   'y': 240
   wires: []
 - id: f26be183.4f807
@@ -195,3 +195,34 @@
   'y': 460
   wires:
     - - af26e828.9b92
+- id: 740ed822087bf6d8
+  type: mqtt in
+  z: a7ebb2f7a8ede884
+  name: ''
+  topic: /test
+  qos: '2'
+  datatype: auto-detect
+  broker: 6c61322e9b1a14f8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 90
+  'y': 580
+  wires:
+    - - e5cce5b8a952e41e
+- id: e5cce5b8a952e41e
+  type: debug
+  z: a7ebb2f7a8ede884
+  name: debug 3
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 300
+  'y': 580
+  wires: []

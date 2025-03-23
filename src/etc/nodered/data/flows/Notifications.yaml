@@ -470,7 +470,7 @@
   type: debug
   z: 75ea6d580fabeb76
   name: News
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
@@ -555,9 +555,10 @@
   lat: '48.5'
   lon: '-4.5'
   start: sunrise
-  end: sunset
+  end: dusk
   soff: '0'
-  eoff: '20'
+  eoff: '-10'
+  sendAtStartup: false
   x: 120
   'y': 840
   wires:
@@ -584,39 +585,6 @@
   wires:
     - []
     - - 7735f46c01861b34
-- id: 7735f46c01861b34
-  type: function
-  z: 75ea6d580fabeb76
-  name: Shutters down !
-  func: |-
-    return [
-        {
-            payload: "This is night !"
-        },
-        {
-            action: "CLOSE"
-        }
-    ]
-  outputs: 2
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 510
-  'y': 880
-  wires:
-    - - 4d87ac10f93853bc
-    - - fecb20f01567e4a8
-- id: fecb20f01567e4a8
-  type: link out
-  z: 75ea6d580fabeb76
-  name: Config-Schedulers-Out
-  mode: link
-  links:
-    - 54015e759adf6f9c
-  x: 705
-  'y': 890
-  wires: []
 - id: 920a6d44fc9d1a0a
   type: link out
   z: 75ea6d580fabeb76
@@ -699,16 +667,6 @@
   'y': 280
   wires:
     - - 8b517c2b.d93ed8
-- id: 4d87ac10f93853bc
-  type: link out
-  z: 75ea6d580fabeb76
-  name: Telegram C
-  mode: link
-  links:
-    - b18b366e53d25a05
-  x: 705
-  'y': 850
-  wires: []
 - id: 4da44a73cf53899e
   type: link out
   z: 75ea6d580fabeb76
@@ -725,7 +683,7 @@
   name: To Telegram C
   info: ''
   x: 1230
-  'y': 600
+  'y': 580
   wires: []
 - id: 40bb6b4fc46482fe
   type: comment
@@ -935,3 +893,47 @@
   'y': 1040
   wires:
     - - ca6aa5f83b1bf87b
+- id: 7735f46c01861b34
+  type: function
+  z: 75ea6d580fabeb76
+  name: Shutters down !
+  func: |-
+    return [
+        {
+            payload: "This is REAL night !"
+        },
+        {
+            action: "CLOSE"
+        }
+    ]
+  outputs: 2
+  timeout: ''
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 560
+  'y': 860
+  wires:
+    - - 4d87ac10f93853bc
+    - - fecb20f01567e4a8
+- id: fecb20f01567e4a8
+  type: link out
+  z: 75ea6d580fabeb76
+  name: Config-Schedulers-Out
+  mode: link
+  links:
+    - 54015e759adf6f9c
+  x: 705
+  'y': 890
+  wires: []
+- id: 4d87ac10f93853bc
+  type: link out
+  z: 75ea6d580fabeb76
+  name: Telegram C
+  mode: link
+  links:
+    - b18b366e53d25a05
+  x: 705
+  'y': 850
+  wires: []
