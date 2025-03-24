@@ -47,7 +47,7 @@
 - id: aede2387acfabe40
   type: junction
   z: ec75ad2cb670e9c0
-  x: 1030
+  x: 1270
   'y': 1520
   wires:
     - - ae9f3e3b816d1937
@@ -58,7 +58,7 @@
   x: 780
   'y': 1550
   wires:
-    - - 17d6f5a85077df47
+    - - da3657249bf5fe91
 - id: 5c8e03f5abcc6c4f
   type: junction
   z: ec75ad2cb670e9c0
@@ -67,13 +67,6 @@
   wires:
     - - 0cd9d34b9af9cb74
       - 5cc60cc5361ef586
-- id: f4669f975aff8c94
-  type: junction
-  z: ec75ad2cb670e9c0
-  x: 890
-  'y': 2320
-  wires:
-    - - d81ddfcbb68c35af
 - id: e0f4def5f27a20d1
   type: junction
   z: ec75ad2cb670e9c0
@@ -91,8 +84,8 @@
 - id: ebeff0528bcffa61
   type: junction
   z: ec75ad2cb670e9c0
-  x: 220
-  'y': 2760
+  x: 230
+  'y': 2620
   wires:
     - - 3c2ea8d420d3f326
 - id: 4466ce34a2033069
@@ -102,6 +95,14 @@
   'y': 2060
   wires:
     - - be2763750dc16e10
+- id: 2764b3c643c48f65
+  type: junction
+  z: ec75ad2cb670e9c0
+  x: 770
+  'y': 3000
+  wires:
+    - - f75f7e3b81f991fd
+      - d1e7af971f57f7af
 - id: 9b9aa3979144f9f4
   type: catch
   z: ec75ad2cb670e9c0
@@ -470,7 +471,7 @@
   name: WebRelay
   server: ''
   client: 7e89f6fe472270aa
-  x: 100
+  x: 80
   'y': 680
   wires:
     - - 18f9bc805dacd963
@@ -1101,7 +1102,7 @@
   mode: link
   links:
     - 8f74f3f76c223f4d
-  x: 1425
+  x: 1435
   'y': 740
   wires: []
 - id: 19075162ee42791e
@@ -1257,7 +1258,7 @@
   allowrate: false
   outputs: 1
   x: 1220
-  'y': 1300
+  'y': 1280
   wires:
     - - 3a926826af10884b
 - id: be29ee5cf7174c69
@@ -1349,10 +1350,13 @@
   type: function
   z: ec75ad2cb670e9c0
   name: Name?
-  func: |-
-    msg.sensor_name = msg.topic.replace("zigbee2mqtt/","")
+  func: >-
+    msg.sensor_name =
+    msg.topic.replace("zigbee2mqtt/","").replace("zigbee2mqttv2/","")
+
     return msg
   outputs: 1
+  timeout: ''
   noerr: 0
   initialize: ''
   finalize: ''
@@ -1464,7 +1468,7 @@
   mode: link
   links:
     - 8f74f3f76c223f4d
-  x: 1095
+  x: 1335
   'y': 1520
   wires: []
 - id: 17d6f5a85077df47
@@ -1499,7 +1503,7 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 910
+  x: 1150
   'y': 1520
   wires:
     - - aede2387acfabe40
@@ -1515,8 +1519,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 1140
-  'y': 1460
+  x: 1380
+  'y': 1440
   wires: []
 - id: 164bfa497952db59
   type: switch
@@ -1572,6 +1576,7 @@
   'y': 2190
   wires:
     - - 1959a89276377b62
+      - 16790c01c002e9af
 - id: 1959a89276377b62
   type: mqtt out
   z: ec75ad2cb670e9c0
@@ -1604,154 +1609,11 @@
   x: 1320
   'y': 2060
   wires: []
-- id: bf06d3be07b1aa3a
-  type: debug
-  z: ec75ad2cb670e9c0
-  name: ''
-  active: false
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 280
-  'y': 2230
-  wires: []
-- id: 3591c75b692dd6c1
-  type: switch
-  z: ec75ad2cb670e9c0
-  name: ''
-  property: payload.action
-  propertyType: msg
-  rules:
-    - t: eq
-      v: 'on'
-      vt: str
-    - t: eq
-      v: 'off'
-      vt: str
-  checkall: 'true'
-  repair: false
-  outputs: 2
-  x: 550
-  'y': 2320
-  wires:
-    - - abebbab3b6db912c
-    - - 4b32ea4a743664e3
-- id: 7932e8c57b15423f
-  type: mqtt in
-  z: ec75ad2cb670e9c0
-  name: ''
-  topic: zigbee2mqtt/R01~ChD~OnOff
-  qos: '2'
-  datatype: json
-  broker: c38452a5.4f84e8
-  nl: false
-  rap: true
-  rh: 0
-  inputs: 0
-  x: 160
-  'y': 2280
-  wires:
-    - - bf06d3be07b1aa3a
-      - 3591c75b692dd6c1
-- id: abebbab3b6db912c
-  type: change
-  z: ec75ad2cb670e9c0
-  name: state=ON
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '{"state":"ON"}'
-      tot: json
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 740
-  'y': 2300
-  wires:
-    - - f4669f975aff8c94
-- id: d81ddfcbb68c35af
-  type: mqtt out
-  z: ec75ad2cb670e9c0
-  name: ''
-  topic: zigbee2mqtt/P01~ChD~Lit/set
-  qos: ''
-  retain: ''
-  respTopic: ''
-  contentType: ''
-  userProps: ''
-  correl: ''
-  expiry: ''
-  broker: c38452a5.4f84e8
-  x: 1260
-  'y': 2290
-  wires: []
-- id: 62ed4d71d6af731f
-  type: inject
-  z: ec75ad2cb670e9c0
-  name: ''
-  props:
-    - p: payload
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  payload: P01220vDam
-  payloadType: str
-  x: 750
-  'y': 2260
-  wires:
-    - - 078f54d2c3f62bf7
-- id: 4b32ea4a743664e3
-  type: change
-  z: ec75ad2cb670e9c0
-  name: state=OFF
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '{"state":"OFF"}'
-      tot: json
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 750
-  'y': 2340
-  wires:
-    - - f4669f975aff8c94
-- id: 078f54d2c3f62bf7
-  type: change
-  z: ec75ad2cb670e9c0
-  name: state=TOGGLE
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '{"state":"TOGGLE"}'
-      tot: json
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 940
-  'y': 2260
-  wires:
-    - - d81ddfcbb68c35af
 - id: e318f587a18e223e
   type: mqtt in
   z: ec75ad2cb670e9c0
   name: ''
-  topic: zigbee2mqtt/R06~Salon~Cube
+  topic: zigbee2mqtt/R01~Salon~Cube
   qos: '2'
   datatype: json
   broker: c38452a5.4f84e8
