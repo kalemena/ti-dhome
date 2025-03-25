@@ -1911,93 +1911,10 @@
   name: Zigbee-GroupB
   links:
     - bae747e5713c11b9
-  x: 165
-  'y': 2880
+  x: 175
+  'y': 2740
   wires:
     - - 85150e703fc3107a
-- id: 238f0552cc0c17f4
-  type: inject
-  z: ec75ad2cb670e9c0
-  name: 18h
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: 00 18 * * *
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  payload: ''
-  payloadType: date
-  x: 130
-  'y': 2540
-  wires:
-    - - 5711653aff0ebeda
-- id: 5711653aff0ebeda
-  type: change
-  z: ec75ad2cb670e9c0
-  name: state=ON
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '{"state":"ON"}'
-      tot: json
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 310
-  'y': 2540
-  wires:
-    - - c1506e088fe817bd
-- id: 45c657b5aa67cb09
-  type: change
-  z: ec75ad2cb670e9c0
-  name: state=OFF
-  rules:
-    - t: set
-      p: payload
-      pt: msg
-      to: '{"state":"OFF"}'
-      tot: json
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 320
-  'y': 2580
-  wires:
-    - - c1506e088fe817bd
-- id: f2801a14368b71aa
-  type: inject
-  z: ec75ad2cb670e9c0
-  name: 22h30
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: 30 22 * * *
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  payloadType: date
-  x: 140
-  'y': 2580
-  wires:
-    - - 45c657b5aa67cb09
-- id: 31f8d65b84424e75
-  type: comment
-  z: ec75ad2cb670e9c0
-  name: Triggers -> Actions -> Aquarium
-  info: ''
-  x: 170
-  'y': 2480
-  wires: []
 - id: e94b3d2f6a60fc41
   type: mqtt out
   z: ec75ad2cb670e9c0
@@ -2093,8 +2010,8 @@
   once: false
   onceDelay: 0.1
   topic: ''
-  x: 130
-  'y': 2840
+  x: 140
+  'y': 2700
   wires:
     - - 85150e703fc3107a
       - ebeff0528bcffa61
@@ -2122,8 +2039,8 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 870
-  'y': 2770
+  x: 880
+  'y': 2630
   wires:
     - - 5bbe95588daa44b5
     - - 46e44c04560e551e
@@ -2143,8 +2060,8 @@
   drop: false
   allowrate: false
   outputs: 1
-  x: 870
-  'y': 2830
+  x: 880
+  'y': 2690
   wires:
     - - c90d5de23f9d01d9
 - id: 5ed342cf9cafef09
@@ -2160,8 +2077,8 @@
   correl: ''
   expiry: ''
   broker: c38452a5.4f84e8
-  x: 1210
-  'y': 2770
+  x: 1220
+  'y': 2630
   wires: []
 - id: 1196f432a47f9d18
   type: inject
@@ -2176,8 +2093,8 @@
   once: false
   onceDelay: 0.1
   topic: ''
-  x: 130
-  'y': 2760
+  x: 140
+  'y': 2620
   wires:
     - - ebeff0528bcffa61
 - id: 54015e759adf6f9c
@@ -2188,8 +2105,9 @@
     - e45defb4b0e38b62
     - fecb20f01567e4a8
     - cbacfd822d1436be
-  x: 165
-  'y': 2710
+    - 3a0a45ba035a504f
+  x: 175
+  'y': 2570
   wires:
     - - ebeff0528bcffa61
 - id: e45defb4b0e38b62
@@ -2207,8 +2125,8 @@
   z: ec75ad2cb670e9c0
   name: Triggers => Actions -> Shutters
   info: ''
-  x: 170
-  'y': 2660
+  x: 180
+  'y': 2520
   wires: []
 - id: 5bbe95588daa44b5
   type: function
@@ -2223,12 +2141,13 @@
         topic: "zigbee2mqtt/" + msg.topic + "/set"
     }
   outputs: 1
+  timeout: ''
   noerr: 0
   initialize: ''
   finalize: ''
   libs: []
-  x: 1050
-  'y': 2770
+  x: 1060
+  'y': 2630
   wires:
     - - 5ed342cf9cafef09
 - id: f43e2331f0e24c97
@@ -2247,8 +2166,8 @@
   once: false
   onceDelay: 0.1
   topic: ''
-  x: 130
-  'y': 2800
+  x: 140
+  'y': 2660
   wires:
     - - ebeff0528bcffa61
 - id: 6484417009153f26
@@ -2266,8 +2185,8 @@
   from: ''
   to: ''
   reg: false
-  x: 640
-  'y': 2760
+  x: 650
+  'y': 2620
   wires:
     - - c90d5de23f9d01d9
 - id: 3184599136af5dd3
@@ -2289,8 +2208,8 @@
   checkall: 'false'
   repair: false
   outputs: 3
-  x: 470
-  'y': 2800
+  x: 480
+  'y': 2660
   wires:
     - - 6484417009153f26
     - - 2cb0799139d8bd91
@@ -2310,8 +2229,8 @@
   from: ''
   to: ''
   reg: false
-  x: 630
-  'y': 2800
+  x: 640
+  'y': 2660
   wires:
     - - c90d5de23f9d01d9
 - id: bfd4804414e77acf
@@ -2324,8 +2243,8 @@
   from: ''
   to: ''
   reg: false
-  x: 640
-  'y': 2840
+  x: 650
+  'y': 2700
   wires:
     - - c90d5de23f9d01d9
 - id: 3c2ea8d420d3f326
@@ -2344,8 +2263,8 @@
   from: ''
   to: ''
   reg: false
-  x: 300
-  'y': 2760
+  x: 310
+  'y': 2620
   wires:
     - - 3184599136af5dd3
 - id: 85150e703fc3107a
@@ -2364,67 +2283,10 @@
   from: ''
   to: ''
   reg: false
-  x: 300
-  'y': 2880
+  x: 310
+  'y': 2740
   wires:
     - - 3184599136af5dd3
-- id: c33f4def1ffb589e
-  type: mqtt out
-  z: ec75ad2cb670e9c0
-  name: ''
-  topic: ''
-  qos: ''
-  retain: ''
-  respTopic: ''
-  contentType: ''
-  userProps: ''
-  correl: ''
-  expiry: ''
-  broker: c38452a5.4f84e8
-  x: 830
-  'y': 2560
-  wires: []
-- id: c1506e088fe817bd
-  type: change
-  z: ec75ad2cb670e9c0
-  name: Group C
-  rules:
-    - t: set
-      p: topics
-      pt: msg
-      to: tidhome.groups.groupC
-      tot: global
-      dc: true
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 480
-  'y': 2560
-  wires:
-    - - 07fc3bdc3ad533e1
-- id: 07fc3bdc3ad533e1
-  type: function
-  z: ec75ad2cb670e9c0
-  name: State
-  func: |-
-
-    return {
-        payload: {
-            "state": msg.payload.state
-        },
-        topic: "zigbee2mqtt/" + msg.topics.pop(0) + "/set"
-    }
-  outputs: 1
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 660
-  'y': 2560
-  wires:
-    - - c33f4def1ffb589e
 - id: fd62fbe3c093228e
   type: debug
   z: ec75ad2cb670e9c0
