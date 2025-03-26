@@ -2302,6 +2302,52 @@
   x: 280
   'y': 2130
   wires: []
+- id: fd490c64c00ffc6c
+  type: inject
+  z: ec75ad2cb670e9c0
+  name: 19h00 - ON
+  props:
+    - p: topic
+      vt: str
+    - p: state
+      v: 'ON'
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: G01~Garage~Arrosage
+  x: 150
+  'y': 2960
+  wires:
+    - []
+- id: 9296c6589aba70de
+  type: comment
+  z: ec75ad2cb670e9c0
+  name: Triggers -> Actions -> Water Valve
+  info: ''
+  x: 190
+  'y': 2900
+  wires: []
+- id: 77d303a8810aeac0
+  type: inject
+  z: ec75ad2cb670e9c0
+  name: 19h03 - OFF
+  props:
+    - p: topic
+      vt: str
+    - p: state
+      v: 'OFF'
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: G01~Garage~Arrosage
+  x: 150
+  'y': 3040
+  wires:
+    - - 88918f1a44321ef6
 - id: 3ab87727b7402d26
   type: function
   z: ec75ad2cb670e9c0
@@ -2366,4 +2412,263 @@
     - b18b366e53d25a05
   x: 1475
   'y': 1160
+  wires: []
+- id: d1e7af971f57f7af
+  type: mqtt out
+  z: ec75ad2cb670e9c0
+  name: ''
+  topic: zigbee2mqtt/G01~Garage~Arrosage/set
+  qos: ''
+  retain: ''
+  respTopic: ''
+  contentType: ''
+  userProps: ''
+  correl: ''
+  expiry: ''
+  broker: c38452a5.4f84e8
+  x: 990
+  'y': 3040
+  wires: []
+- id: 650bf2413b19695e
+  type: change
+  z: ec75ad2cb670e9c0
+  name: state=ON
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"ON"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 630
+  'y': 2960
+  wires:
+    - - 2764b3c643c48f65
+- id: 88918f1a44321ef6
+  type: change
+  z: ec75ad2cb670e9c0
+  name: state=OFF
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{"state":"OFF"}'
+      tot: json
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 640
+  'y': 3040
+  wires:
+    - - 2764b3c643c48f65
+- id: ce94a085276e206c
+  type: link in
+  z: ec75ad2cb670e9c0
+  name: out-water
+  links:
+    - c3482c2239291822
+  x: 265
+  'y': 3000
+  wires:
+    - - 0dc40d752e7164a2
+- id: 0dc40d752e7164a2
+  type: switch
+  z: ec75ad2cb670e9c0
+  name: ''
+  property: state
+  propertyType: msg
+  rules:
+    - t: regex
+      v: 'ON'
+      vt: str
+      case: true
+    - t: regex
+      v: 'OFF'
+      vt: str
+      case: true
+  checkall: 'false'
+  repair: false
+  outputs: 2
+  x: 450
+  'y': 3000
+  wires:
+    - - 650bf2413b19695e
+    - - 88918f1a44321ef6
+- id: f75f7e3b81f991fd
+  type: function
+  z: ec75ad2cb670e9c0
+  name: Water ?
+  func: |-
+    return [
+        {
+            payload: "Water " + msg.payload.state
+        }
+    ]
+  outputs: 1
+  timeout: ''
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 890
+  'y': 2960
+  wires:
+    - - 5f10489649ad892c
+- id: 5f10489649ad892c
+  type: link out
+  z: ec75ad2cb670e9c0
+  name: out-sensor-notif
+  mode: link
+  links:
+    - b18b366e53d25a05
+  x: 1025
+  'y': 2960
+  wires: []
+- id: da3657249bf5fe91
+  type: switch
+  z: ec75ad2cb670e9c0
+  name: Filtering
+  property: topic
+  propertyType: msg
+  rules:
+    - t: cont
+      v: voltage
+      vt: str
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 880
+  'y': 1520
+  wires:
+    - - 3c10a097d8837f7a
+    - - 17d6f5a85077df47
+- id: 3c10a097d8837f7a
+  type: debug
+  z: ec75ad2cb670e9c0
+  name: ZDebug
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1040
+  'y': 1460
+  wires: []
+- id: 16790c01c002e9af
+  type: debug
+  z: ec75ad2cb670e9c0
+  name: ''
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'true'
+  targetType: full
+  statusVal: ''
+  statusType: auto
+  x: 1190
+  'y': 2240
+  wires: []
+- id: 459ba757041633f5
+  type: mqtt in
+  z: ec75ad2cb670e9c0
+  name: ''
+  topic: zigbee2mqtt/W01~Garden~Weather
+  qos: '2'
+  datatype: json
+  broker: c38452a5.4f84e8
+  nl: false
+  rap: true
+  rh: 0
+  inputs: 0
+  x: 180
+  'y': 2360
+  wires:
+    - - fcf0b0945abb4e09
+- id: fcf0b0945abb4e09
+  type: switch
+  z: ec75ad2cb670e9c0
+  name: illuminance < 10
+  property: payload.illuminance
+  propertyType: msg
+  rules:
+    - t: lt
+      v: '10'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 460
+  'y': 2360
+  wires:
+    - - 2f718b58b692549d
+- id: 2f718b58b692549d
+  type: switch
+  z: ec75ad2cb670e9c0
+  name: Shutter OPEN ?
+  property: 'tidhome_zigbee["V07~BW~Gauche"].state'
+  propertyType: global
+  rules:
+    - t: neq
+      v: CLOSE
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 680
+  'y': 2360
+  wires:
+    - - 1e7167bcb80581de
+- id: 1e7167bcb80581de
+  type: function
+  z: ec75ad2cb670e9c0
+  name: Shutters down !
+  func: |-
+    return [
+        {
+            payload: "This is night !"
+        },
+        {
+            action: "CLOSE"
+        }
+    ]
+  outputs: 2
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 900
+  'y': 2360
+  wires:
+    - - 3b572f3ddca0dfef
+    - - 3a0a45ba035a504f
+- id: 3a0a45ba035a504f
+  type: link out
+  z: ec75ad2cb670e9c0
+  name: Config-Schedulers-Out
+  mode: link
+  links:
+    - 54015e759adf6f9c
+  x: 1045
+  'y': 2390
+  wires: []
+- id: 3b572f3ddca0dfef
+  type: link out
+  z: ec75ad2cb670e9c0
+  name: Telegram C
+  mode: link
+  links:
+    - b18b366e53d25a05
+  x: 1045
+  'y': 2350
   wires: []
