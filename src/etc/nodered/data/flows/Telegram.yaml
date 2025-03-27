@@ -522,6 +522,8 @@
     - 4d87ac10f93853bc
     - 4da44a73cf53899e
     - 457c715d771e6b27
+    - 5f10489649ad892c
+    - 3b572f3ddca0dfef
   x: 215
   'y': 360
   wires:
@@ -580,3 +582,51 @@
   'y': 620
   wires:
     - - 889dbcf330523ddd
+- id: 5320db8c50a49c31
+  type: telegram command
+  z: 5e1cd18d830e0a6b
+  name: /water
+  command: /water
+  description: ''
+  registercommand: false
+  language: ''
+  bot: 4fc69d2d.235124
+  strict: false
+  hasresponse: false
+  useregex: false
+  removeregexcommand: false
+  outputs: 1
+  x: 110
+  'y': 1060
+  wires:
+    - - ca81dd3f495084fa
+- id: c3482c2239291822
+  type: link out
+  z: 5e1cd18d830e0a6b
+  name: ''
+  mode: link
+  links:
+    - ce94a085276e206c
+  x: 395
+  'y': 1060
+  wires: []
+- id: ca81dd3f495084fa
+  type: change
+  z: 5e1cd18d830e0a6b
+  name: ''
+  rules:
+    - t: set
+      p: state
+      pt: msg
+      to: originalMessage.text
+      tot: msg
+      dc: true
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 260
+  'y': 1060
+  wires:
+    - - c3482c2239291822
