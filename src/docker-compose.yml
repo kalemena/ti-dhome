@@ -20,7 +20,7 @@ services:
 
   zigbee2mqtt:
     # https://github.com/Koenkk/zigbee2mqtt/releases
-    image: koenkk/zigbee2mqtt:2.8.0
+    image: koenkk/zigbee2mqtt:2.9.1
     restart: unless-stopped
     user: 1000:1000
     ports:
