@@ -470,7 +470,7 @@
   type: debug
   z: 75ea6d580fabeb76
   name: News
-  active: true
+  active: false
   tosidebar: true
   console: false
   tostatus: false
