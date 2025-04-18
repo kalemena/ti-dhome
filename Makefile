@@ -3,12 +3,14 @@ WORKSPACE := $(PWD)
 SHELL := /bin/bash
 
 BACKUP_DATE := $(shell date '+%Y-%m-%d')
-BACKUP_FOLDER := /backups
-BACKUP_FOLDER_RAW := $(BACKUP_FOLDER)/victoriametrics
+BACKUP_FOLDER_ROOT := /tmp
+BACKUP_FOLDER_NAME := victoriametrics
+
+BACKUP_FOLDER_ARCHIVE := /<mount>/backups/tidhome
 
 BACKUP_CMD_BASE := docker run --rm -it \
     -v ti-dhome_victoria-metrics-data:/victoria-metrics-data \
-    -v $(BACKUP_FOLDER_RAW):/backup/victoriametrics \
+    -v $(BACKUP_FOLDER_ROOT)/$(BACKUP_FOLDER_NAME):/backup/victoriametrics \
     -w /victoria-metrics-data alpine sh
 
 BACKUP_CMD := $(BACKUP_CMD_BASE) \
@@ -68,25 +70,36 @@ clean:
 # Backup/Restore DB
 ##########################
 
-backup.cmd:
-	@mkdir -p $(WORKSPACE)/backup/victoriametrics
+backup.prereq: 
+	@mkdir -p $(BACKUP_FOLDER_ROOT)/$(BACKUP_FOLDER_NAME)
+
+backup.cmd: backup.prereq
 	$(BACKUP_CMD)
 
-backup.size:
-	@mkdir -p $(WORKSPACE)/backup/victoriametrics
+backup.size: backup.prereq
+	@echo "TMP files:"
 	$(DB_SIZE_CMD)
+	find $(BACKUP_FOLDER_ROOT)/$(BACKUP_FOLDER_NAME) -type f | wc -l
+	@echo "ARCHIVE files:"
+	du -sh $(BACKUP_FOLDER_ARCHIVE)/victoriametrics
+	find $(BACKUP_FOLDER_ARCHIVE)/victoriametrics -type f | wc -l
 
-backup: victoriametrics.stop backup.cmd victoriametrics.start
+backup: victoriametrics.stop backup.cmd backup.size victoriametrics.start
 
-backup.compress:
-	find $(BACKUP_FOLDER_RAW) -type f | wc -l
-	tar -cvjf - $(BACKUP_FOLDER_RAW) > $(BACKUP_FOLDER)/$(BACKUP_DATE).tar.bz2
+backup.archive:
+	find $(BACKUP_FOLDER_ROOT)/$(BACKUP_FOLDER_NAME) -type f | wc -l
+	rsync --delete -rtD --info=progress2 $(BACKUP_FOLDER_ROOT)/$(BACKUP_FOLDER_NAME)/* $(BACKUP_FOLDER_ARCHIVE)/
+	tar -cvjf - $(BACKUP_FOLDER_ROOT)/$(BACKUP_FOLDER_NAME) > $(BACKUP_FOLDER_ARCHIVE)/vm-$(BACKUP_DATE).tar.bz2
+
+restore.cmd:
+	$(RESTORE_CMD)
 
 # WARNING: Danger zone !
-restore:
-	docker stop ti-dhome-victoriametrics-1
-	$(RESTORE_CMD)
-	docker start ti-dhome-victoriametrics-1
+restore: victoriametrics.stop restore.cmd victoriametrics.start
+
+restore.archive:
+	find $(BACKUP_FOLDER_ARCHIVE) -type f | wc -l
+	rsync --delete -rtD --info=progress2 $(BACKUP_FOLDER_ARCHIVE)/* $(BACKUP_FOLDER_ROOT)/$(BACKUP_FOLDER_NAME)/
 
 ###########################
 # BUILDING & PUBLISHING DOC
