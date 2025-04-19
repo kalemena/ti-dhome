@@ -564,7 +564,6 @@
   wires:
     - []
     - - 5f629250b70e5979
-      - 23ba36ae280854e7
 - id: 5f629250b70e5979
   type: switch
   z: 75ea6d580fabeb76
@@ -789,47 +788,23 @@
 - id: 7735f46c01861b34
   type: function
   z: 75ea6d580fabeb76
-  name: Shutters down !
+  name: Notif Night
   func: |-
     return [
         {
             payload: "This is WWW night !"
-        },
-        {
-            action: "CLOSE"
         }
     ]
-  outputs: 2
+  outputs: 1
   timeout: ''
   noerr: 0
   initialize: ''
   finalize: ''
   libs: []
-  x: 520
+  x: 510
   'y': 840
   wires:
-    - - 4d87ac10f93853bc
-    - - fecb20f01567e4a8
-- id: fecb20f01567e4a8
-  type: link out
-  z: 75ea6d580fabeb76
-  name: Config-Schedulers-Out
-  mode: link
-  links:
-    - 54015e759adf6f9c
-  x: 685
-  'y': 880
-  wires: []
-- id: 4d87ac10f93853bc
-  type: link out
-  z: 75ea6d580fabeb76
-  name: Telegram C
-  mode: link
-  links:
-    - b18b366e53d25a05
-  x: 685
-  'y': 840
-  wires: []
+    - - 3b572f3ddca0dfef
 - id: 459ba757041633f5
   type: mqtt in
   z: 75ea6d580fabeb76
@@ -921,7 +896,7 @@
   links:
     - b18b366e53d25a05
   x: 1225
-  'y': 930
+  'y': 860
   wires: []
 - id: 8493ed2e67e7a403
   type: delay
@@ -943,10 +918,99 @@
   'y': 940
   wires:
     - - fcf0b0945abb4e09
-- id: 23ba36ae280854e7
+- id: 449387a4bb6fbe05
+  type: inject
+  z: 75ea6d580fabeb76
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: 'true'
+  payloadType: bool
+  x: 1330
+  'y': 420
+  wires:
+    - - 7ca0a89a50dc4668
+- id: 7ca0a89a50dc4668
+  type: trigger
+  z: 75ea6d580fabeb76
+  name: ''
+  op1: ''
+  op2: ''
+  op1type: nul
+  op2type: payl
+  duration: '5'
+  extend: false
+  overrideDelay: false
+  units: s
+  reset: 'false'
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 1520
+  'y': 420
+  wires:
+    - - a203938da5027e6b
+- id: 3b7c015f5db82fb5
+  type: inject
+  z: 75ea6d580fabeb76
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: 'false'
+  payloadType: bool
+  x: 1330
+  'y': 480
+  wires:
+    - - a203938da5027e6b
+- id: a203938da5027e6b
+  type: rbe
+  z: 75ea6d580fabeb76
+  name: ''
+  func: rbe
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: payload
+  topi: topic
+  x: 1710
+  'y': 420
+  wires:
+    - - 9e8a0d270c935eaf
+- id: 9e8a0d270c935eaf
+  type: template
+  z: 75ea6d580fabeb76
+  name: ''
+  field: payload
+  fieldType: msg
+  format: handlebars
+  syntax: mustache
+  template: >-
+    {{#payload}}The door has been open some time{{/payload}}{{^payload}}The door
+    is closed{{/payload}}
+  output: str
+  x: 1860
+  'y': 420
+  wires:
+    - - c7105a45c5dcf4c2
+- id: c7105a45c5dcf4c2
   type: debug
   z: 75ea6d580fabeb76
-  name: debug 4
+  name: debug 2576
   active: true
   tosidebar: true
   console: false
@@ -954,6 +1018,6 @@
   complete: 'false'
   statusVal: ''
   statusType: auto
-  x: 280
-  'y': 880
+  x: 1830
+  'y': 540
   wires: []
