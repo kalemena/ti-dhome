@@ -554,33 +554,16 @@
   name: ''
   lat: '48.5'
   lon: '-4.5'
-  start: sunrise
-  end: goldenHour
+  start: nauticalDawn
+  end: sunsetStart
   soff: '0'
   eoff: '0'
   sendAtStartup: false
   x: 110
   'y': 840
   wires:
+    - - 8b218a0121a5370d
     - []
-    - - 5f629250b70e5979
-- id: 5f629250b70e5979
-  type: switch
-  z: 75ea6d580fabeb76
-  name: Night ?
-  property: payload
-  propertyType: msg
-  rules:
-    - t: eq
-      v: '0'
-      vt: num
-  checkall: 'true'
-  repair: false
-  outputs: 1
-  x: 280
-  'y': 840
-  wires:
-    - - 7735f46c01861b34
 - id: 920a6d44fc9d1a0a
   type: link out
   z: 75ea6d580fabeb76
@@ -785,26 +768,6 @@
   'y': 1040
   wires:
     - - ca6aa5f83b1bf87b
-- id: 7735f46c01861b34
-  type: function
-  z: 75ea6d580fabeb76
-  name: Notif Night
-  func: |-
-    return [
-        {
-            payload: "This is WWW night !"
-        }
-    ]
-  outputs: 1
-  timeout: ''
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 510
-  'y': 840
-  wires:
-    - - 3b572f3ddca0dfef
 - id: 459ba757041633f5
   type: mqtt in
   z: 75ea6d580fabeb76
@@ -976,6 +939,7 @@
   'y': 480
   wires:
     - - a203938da5027e6b
+      - 7ca0a89a50dc4668
 - id: a203938da5027e6b
   type: rbe
   z: 75ea6d580fabeb76
@@ -1021,3 +985,32 @@
   x: 1830
   'y': 540
   wires: []
+- id: 8b218a0121a5370d
+  type: rbe
+  z: 75ea6d580fabeb76
+  name: ''
+  func: rbe
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: payload
+  topi: topic
+  x: 290
+  'y': 840
+  wires:
+    - - b4e04b630ddbd38d
+- id: b4e04b630ddbd38d
+  type: template
+  z: 75ea6d580fabeb76
+  name: ''
+  field: payload
+  fieldType: msg
+  format: handlebars
+  syntax: mustache
+  template: '{{#payload}}Night time{{/payload}}{{^payload}}Day time{{/payload}}'
+  output: str
+  x: 440
+  'y': 840
+  wires:
+    - - 3b572f3ddca0dfef
