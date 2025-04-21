@@ -563,7 +563,7 @@
   'y': 840
   wires:
     - - 8b218a0121a5370d
-    - []
+    - - 8b218a0121a5370d
 - id: 920a6d44fc9d1a0a
   type: link out
   z: 75ea6d580fabeb76
@@ -993,7 +993,7 @@
   gap: ''
   start: ''
   inout: out
-  septopics: true
+  septopics: false
   property: payload
   topi: topic
   x: 290
@@ -1008,7 +1008,7 @@
   fieldType: msg
   format: handlebars
   syntax: mustache
-  template: '{{#payload}}Night time{{/payload}}{{^payload}}Day time{{/payload}}'
+  template: '{{#payload}}Day time{{/payload}}{{^payload}}Night time{{/payload}}'
   output: str
   x: 440
   'y': 840
