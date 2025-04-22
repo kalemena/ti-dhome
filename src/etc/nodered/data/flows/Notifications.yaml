@@ -25,6 +25,20 @@
   'y': 580
   wires:
     - - 281623751d7a9995
+- id: 3d234fa9cffbeb84
+  type: junction
+  z: 75ea6d580fabeb76
+  x: 240
+  'y': 840
+  wires:
+    - - 92c9f6a201fe27bc
+- id: 92c9f6a201fe27bc
+  type: junction
+  z: 75ea6d580fabeb76
+  x: 700
+  'y': 840
+  wires:
+    - - 8b218a0121a5370d
 - id: cb68db5a.bdbca8
   type: inject
   z: 75ea6d580fabeb76
@@ -562,8 +576,8 @@
   x: 110
   'y': 840
   wires:
-    - - 8b218a0121a5370d
-    - - 8b218a0121a5370d
+    - - 3d234fa9cffbeb84
+    - - 3d234fa9cffbeb84
 - id: 920a6d44fc9d1a0a
   type: link out
   z: 75ea6d580fabeb76
@@ -661,16 +675,8 @@
   z: 75ea6d580fabeb76
   name: To Telegram C
   info: ''
-  x: 1210
-  'y': 680
-  wires: []
-- id: 40bb6b4fc46482fe
-  type: comment
-  z: 75ea6d580fabeb76
-  name: To Telegram C
-  info: ''
-  x: 810
-  'y': 800
+  x: 1250
+  'y': 740
   wires: []
 - id: c5569efa7d734875
   type: change
@@ -781,66 +787,35 @@
   rh: 0
   inputs: 0
   x: 180
-  'y': 940
+  'y': 900
   wires:
     - - 8493ed2e67e7a403
-- id: fcf0b0945abb4e09
-  type: switch
-  z: 75ea6d580fabeb76
-  name: illuminance < 140
-  property: payload.illuminance
-  propertyType: msg
-  rules:
-    - t: lt
-      v: '140'
-      vt: num
-  checkall: 'true'
-  repair: false
-  outputs: 1
-  x: 650
-  'y': 940
-  wires:
-    - - 2f718b58b692549d
-- id: 2f718b58b692549d
-  type: switch
-  z: 75ea6d580fabeb76
-  name: Shutter OPEN ?
-  property: 'tidhome_zigbee["V07~BW~Gauche"].state'
-  propertyType: global
-  rules:
-    - t: neq
-      v: CLOSE
-      vt: str
-  checkall: 'true'
-  repair: false
-  outputs: 1
-  x: 860
-  'y': 940
-  wires:
-    - - 1e7167bcb80581de
 - id: 1e7167bcb80581de
   type: function
   z: 75ea6d580fabeb76
-  name: Shutters down !
+  name: Night -> Close
   func: |-
-    return [
-        {
-            payload: "This is night !"
-        },
-        {
-            action: "CLOSE"
-        }
-    ]
+    if((!msg.payload.sun) && (!msg.garden)) {
+        return [
+            {
+                action: "CLOSE"
+            },
+            {
+                payload: "Night -> Close"
+            }
+        ]
+    }
   outputs: 2
+  timeout: ''
   noerr: 0
   initialize: ''
   finalize: ''
   libs: []
-  x: 1080
-  'y': 940
+  x: 880
+  'y': 900
   wires:
-    - - 3b572f3ddca0dfef
     - - 3a0a45ba035a504f
+    - - 3b572f3ddca0dfef
 - id: 3a0a45ba035a504f
   type: link out
   z: 75ea6d580fabeb76
@@ -848,8 +823,8 @@
   mode: link
   links:
     - 54015e759adf6f9c
-  x: 1225
-  'y': 970
+  x: 1155
+  'y': 880
   wires: []
 - id: 3b572f3ddca0dfef
   type: link out
@@ -858,8 +833,8 @@
   mode: link
   links:
     - b18b366e53d25a05
-  x: 1225
-  'y': 860
+  x: 1155
+  'y': 920
   wires: []
 - id: 8493ed2e67e7a403
   type: delay
@@ -877,73 +852,14 @@
   drop: true
   allowrate: false
   outputs: 1
-  x: 440
-  'y': 940
+  x: 420
+  'y': 900
   wires:
-    - - fcf0b0945abb4e09
-- id: 449387a4bb6fbe05
-  type: inject
-  z: 75ea6d580fabeb76
-  name: ''
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  payload: 'true'
-  payloadType: bool
-  x: 1330
-  'y': 420
-  wires:
-    - - 7ca0a89a50dc4668
-- id: 7ca0a89a50dc4668
-  type: trigger
-  z: 75ea6d580fabeb76
-  name: ''
-  op1: ''
-  op2: ''
-  op1type: nul
-  op2type: payl
-  duration: '5'
-  extend: false
-  overrideDelay: false
-  units: s
-  reset: 'false'
-  bytopic: all
-  topic: topic
-  outputs: 1
-  x: 1520
-  'y': 420
-  wires:
-    - - a203938da5027e6b
-- id: 3b7c015f5db82fb5
-  type: inject
-  z: 75ea6d580fabeb76
-  name: ''
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  payload: 'false'
-  payloadType: bool
-  x: 1330
-  'y': 480
-  wires:
-    - - a203938da5027e6b
-      - 7ca0a89a50dc4668
-- id: a203938da5027e6b
+    - - 8f7a9069752d5813
+- id: 8b218a0121a5370d
   type: rbe
   z: 75ea6d580fabeb76
-  name: ''
+  name: hasChanged?
   func: rbe
   gap: ''
   start: ''
@@ -951,66 +867,171 @@
   septopics: true
   property: payload
   topi: topic
-  x: 1710
-  'y': 420
+  x: 800
+  'y': 840
   wires:
-    - - 9e8a0d270c935eaf
-- id: 9e8a0d270c935eaf
-  type: template
-  z: 75ea6d580fabeb76
-  name: ''
-  field: payload
-  fieldType: msg
-  format: handlebars
-  syntax: mustache
-  template: >-
-    {{#payload}}The door has been open some time{{/payload}}{{^payload}}The door
-    is closed{{/payload}}
-  output: str
-  x: 1860
-  'y': 420
-  wires:
-    - - c7105a45c5dcf4c2
-- id: c7105a45c5dcf4c2
+    - - 47b769c5.cb0e28
+- id: f9afb265.b11b7
   type: debug
   z: 75ea6d580fabeb76
-  name: debug 2576
+  name: ''
   active: true
   tosidebar: true
   console: false
   tostatus: false
-  complete: 'false'
+  complete: 'true'
+  targetType: full
   statusVal: ''
   statusType: auto
-  x: 1830
-  'y': 540
+  x: 1190
+  'y': 840
   wires: []
-- id: 8b218a0121a5370d
-  type: rbe
+- id: 8f7a9069752d5813
+  type: change
+  z: 75ea6d580fabeb76
+  name: topic=garden
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: msg.payload.illuminance > 140
+      tot: jsonata
+    - t: set
+      p: topic
+      pt: msg
+      to: garden
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 590
+  'y': 900
+  wires:
+    - - 92c9f6a201fe27bc
+- id: 28c2c623d5491af5
+  type: comment
+  z: 75ea6d580fabeb76
+  name: topic=sun / topic=garden
+  info: ''
+  x: 830
+  'y': 760
+  wires: []
+- id: 884a970179b174b4
+  type: comment
+  z: 75ea6d580fabeb76
+  name: day=1 / night=0
+  info: ''
+  x: 800
+  'y': 800
+  wires: []
+- id: 47b769c5.cb0e28
+  type: join
   z: 75ea6d580fabeb76
   name: ''
-  func: rbe
-  gap: ''
-  start: ''
-  inout: out
-  septopics: false
+  mode: custom
+  build: object
   property: payload
-  topi: topic
-  x: 290
+  propertyType: msg
+  key: topic
+  joiner: \n
+  joinerType: str
+  useparts: true
+  accumulate: false
+  timeout: ''
+  count: '2'
+  reduceRight: false
+  reduceExp: ''
+  reduceInit: ''
+  reduceInitType: ''
+  reduceFixup: ''
+  x: 960
   'y': 840
   wires:
-    - - b4e04b630ddbd38d
-- id: b4e04b630ddbd38d
-  type: template
+    - - 1e7167bcb80581de
+      - f9afb265.b11b7
+- id: 5be6a88c87fc019f
+  type: comment
+  z: 75ea6d580fabeb76
+  name: illuminance < 140
+  info: ''
+  x: 600
+  'y': 940
+  wires: []
+- id: d74fcb75a8255ddf
+  type: inject
   z: 75ea6d580fabeb76
   name: ''
-  field: payload
-  fieldType: msg
-  format: handlebars
-  syntax: mustache
-  template: '{{#payload}}Day time{{/payload}}{{^payload}}Night time{{/payload}}'
-  output: str
-  x: 440
-  'y': 840
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: sun
+  payload: '0'
+  payloadType: num
+  x: 290
+  'y': 760
   wires:
-    - - 3b572f3ddca0dfef
+    - - 92c9f6a201fe27bc
+- id: 145dec520583425e
+  type: inject
+  z: 75ea6d580fabeb76
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: sun
+  payload: '1'
+  payloadType: num
+  x: 290
+  'y': 800
+  wires:
+    - - 92c9f6a201fe27bc
+- id: 39900a22ca10c649
+  type: inject
+  z: 75ea6d580fabeb76
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: garden
+  payload: 'false'
+  payloadType: bool
+  x: 470
+  'y': 760
+  wires:
+    - - 92c9f6a201fe27bc
+- id: 13d39e8da40ae7f8
+  type: inject
+  z: 75ea6d580fabeb76
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: garden
+  payload: 'true'
+  payloadType: bool
+  x: 470
+  'y': 800
+  wires:
+    - - 92c9f6a201fe27bc
