@@ -29,14 +29,14 @@
   type: junction
   z: 75ea6d580fabeb76
   x: 240
-  'y': 840
+  'y': 960
   wires:
     - - 92c9f6a201fe27bc
 - id: 92c9f6a201fe27bc
   type: junction
   z: 75ea6d580fabeb76
   x: 700
-  'y': 840
+  'y': 960
   wires:
     - - 8b218a0121a5370d
 - id: cb68db5a.bdbca8
@@ -264,6 +264,8 @@
   name: Dealabs
   url: 'https://www.dealabs.com/rss/hot'
   interval: 15
+  ignorefirst: false
+  sendarray: false
   x: 100
   'y': 540
   wires:
@@ -559,8 +561,8 @@
   z: 75ea6d580fabeb76
   name: Schedulers
   info: ''
-  x: 110
-  'y': 790
+  x: 100
+  'y': 880
   wires: []
 - id: f2f40dc3da630cc9
   type: sunrise
@@ -574,7 +576,7 @@
   eoff: '0'
   sendAtStartup: false
   x: 110
-  'y': 840
+  'y': 960
   wires:
     - - 3d234fa9cffbeb84
     - - 3d234fa9cffbeb84
@@ -675,8 +677,8 @@
   z: 75ea6d580fabeb76
   name: To Telegram C
   info: ''
-  x: 1250
-  'y': 740
+  x: 1070
+  'y': 700
   wires: []
 - id: c5569efa7d734875
   type: change
@@ -711,8 +713,8 @@
   topic: ''
   payload: ''
   payloadType: date
-  x: 120
-  'y': 1040
+  x: 100
+  'y': 800
   wires:
     - - 52c3cf4742e30142
 - id: 52c3cf4742e30142
@@ -731,8 +733,8 @@
   from: ''
   to: ''
   reg: false
-  x: 280
-  'y': 1040
+  x: 260
+  'y': 800
   wires:
     - - 05e4cac4db741f9d
 - id: ca6aa5f83b1bf87b
@@ -747,8 +749,8 @@
   targetType: full
   statusVal: ''
   statusType: auto
-  x: 940
-  'y': 1040
+  x: 920
+  'y': 800
   wires: []
 - id: 05e4cac4db741f9d
   type: split
@@ -760,8 +762,8 @@
   arraySpltType: len
   stream: false
   addname: ''
-  x: 430
-  'y': 1040
+  x: 410
+  'y': 800
   wires:
     - []
 - id: aa60ef3c037444c5
@@ -770,8 +772,8 @@
   name: RSS Fetch
   url: ''
   ignorefirst: false
-  x: 670
-  'y': 1040
+  x: 650
+  'y': 800
   wires:
     - - ca6aa5f83b1bf87b
 - id: 459ba757041633f5
@@ -787,7 +789,7 @@
   rh: 0
   inputs: 0
   x: 180
-  'y': 900
+  'y': 1020
   wires:
     - - 8493ed2e67e7a403
 - id: 1e7167bcb80581de
@@ -812,7 +814,7 @@
   finalize: ''
   libs: []
   x: 880
-  'y': 900
+  'y': 1020
   wires:
     - - 3a0a45ba035a504f
     - - 3b572f3ddca0dfef
@@ -824,7 +826,7 @@
   links:
     - 54015e759adf6f9c
   x: 1155
-  'y': 880
+  'y': 1000
   wires: []
 - id: 3b572f3ddca0dfef
   type: link out
@@ -834,7 +836,7 @@
   links:
     - b18b366e53d25a05
   x: 1155
-  'y': 920
+  'y': 1040
   wires: []
 - id: 8493ed2e67e7a403
   type: delay
@@ -853,7 +855,7 @@
   allowrate: false
   outputs: 1
   x: 420
-  'y': 900
+  'y': 1020
   wires:
     - - 8f7a9069752d5813
 - id: 8b218a0121a5370d
@@ -868,7 +870,7 @@
   property: payload
   topi: topic
   x: 800
-  'y': 840
+  'y': 960
   wires:
     - - 47b769c5.cb0e28
 - id: f9afb265.b11b7
@@ -884,7 +886,7 @@
   statusVal: ''
   statusType: auto
   x: 1190
-  'y': 840
+  'y': 960
   wires: []
 - id: 8f7a9069752d5813
   type: change
@@ -907,7 +909,7 @@
   to: ''
   reg: false
   x: 590
-  'y': 900
+  'y': 1020
   wires:
     - - 92c9f6a201fe27bc
 - id: 28c2c623d5491af5
@@ -916,7 +918,7 @@
   name: topic=sun / topic=garden
   info: ''
   x: 830
-  'y': 760
+  'y': 880
   wires: []
 - id: 884a970179b174b4
   type: comment
@@ -924,7 +926,7 @@
   name: day=1 / night=0
   info: ''
   x: 800
-  'y': 800
+  'y': 920
   wires: []
 - id: 47b769c5.cb0e28
   type: join
@@ -947,7 +949,7 @@
   reduceInitType: ''
   reduceFixup: ''
   x: 960
-  'y': 840
+  'y': 960
   wires:
     - - 1e7167bcb80581de
       - f9afb265.b11b7
@@ -957,7 +959,7 @@
   name: illuminance < 140
   info: ''
   x: 600
-  'y': 940
+  'y': 1060
   wires: []
 - id: d74fcb75a8255ddf
   type: inject
@@ -975,7 +977,7 @@
   payload: '0'
   payloadType: num
   x: 290
-  'y': 760
+  'y': 880
   wires:
     - - 92c9f6a201fe27bc
 - id: 145dec520583425e
@@ -994,7 +996,7 @@
   payload: '1'
   payloadType: num
   x: 290
-  'y': 800
+  'y': 920
   wires:
     - - 92c9f6a201fe27bc
 - id: 39900a22ca10c649
@@ -1013,7 +1015,7 @@
   payload: 'false'
   payloadType: bool
   x: 470
-  'y': 760
+  'y': 880
   wires:
     - - 92c9f6a201fe27bc
 - id: 13d39e8da40ae7f8
@@ -1032,6 +1034,22 @@
   payload: 'true'
   payloadType: bool
   x: 470
-  'y': 800
+  'y': 920
   wires:
     - - 92c9f6a201fe27bc
+- id: f07519ab3ab5ad07
+  type: comment
+  z: 75ea6d580fabeb76
+  name: To Telegram C
+  info: ''
+  x: 1250
+  'y': 1040
+  wires: []
+- id: ea4040f8aec16794
+  type: comment
+  z: 75ea6d580fabeb76
+  name: Z2M
+  info: ''
+  x: 1230
+  'y': 1000
+  wires: []
