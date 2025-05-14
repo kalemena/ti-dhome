@@ -103,7 +103,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -135,7 +135,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -198,7 +198,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -240,7 +240,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -295,7 +295,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -331,7 +331,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -560,7 +560,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "yellow",
@@ -651,7 +651,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -755,7 +755,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "yellow",
@@ -797,7 +797,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -890,7 +890,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -923,7 +923,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -1075,7 +1075,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -1117,7 +1117,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -1203,7 +1203,7 @@
           "series": []
         }
       },
-      "pluginVersion": "7.2.2",
+      "pluginVersion": "7.2.4",
       "targets": [
         {
           "datasource": {
@@ -1510,7 +1510,7 @@
           "series": []
         }
       },
-      "pluginVersion": "7.2.2",
+      "pluginVersion": "7.2.4",
       "targets": [
         {
           "datasource": {
@@ -1699,7 +1699,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 15,
         "w": 24,
         "x": 0,
         "y": 30
@@ -1736,7 +1736,7 @@
           "series": []
         }
       },
-      "pluginVersion": "7.2.2",
+      "pluginVersion": "7.2.4",
       "targets": [
         {
           "datasource": {
@@ -1920,7 +1920,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 45
       },
       "id": 23,
       "panels": [
@@ -2289,10 +2289,150 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 46
       },
       "id": 115,
       "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "VictoriaMetrics"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "kwatth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 43
+          },
+          "id": 138,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.5.3",
+          "targets": [
+            {
+              "editorMode": "code",
+              "expr": "increase(opendtu_YieldTotal{type=\"AC\"}[1h] offset 12h)[7d:1d]",
+              "hide": false,
+              "legendFormat": "SolarTotal",
+              "range": true,
+              "refId": "SolarTotal"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "- increase(sensors_zigbee_energy_produced_b{location=\"C03~Garage~PowerMeter\"}[1h] offset 12h)[7d:1d]",
+              "hide": true,
+              "legendFormat": "SolarProd",
+              "range": true,
+              "refId": "SolarProd"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "VictoriaMetrics"
+              },
+              "editorMode": "code",
+              "expr": "increase(sensors_teleinfo_BBRHPJB{db=\"sensors\",location=\"main\"}[1h] offset 12h)[7d:1d] /1000\n +\nincrease(sensors_teleinfo_BBRHPJW{db=\"sensors\",location=\"main\"}[1h] offset 12h)[7d:1d] /1000\n +\nincrease(sensors_teleinfo_BBRHPJR{db=\"sensors\",location=\"main\"}[1h] offset 12h)[7d:1d] /1000",
+              "hide": true,
+              "legendFormat": "Grid",
+              "range": true,
+              "refId": "Grid"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$SolarTotal + $SolarProd + $Grid ",
+              "hide": false,
+              "refId": "Home",
+              "type": "math"
+            },
+            {
+              "datasource": {
+                "name": "Expression",
+                "type": "__expr__",
+                "uid": "__expr__"
+              },
+              "expression": "$Home - $SolarTotal * 4",
+              "hide": false,
+              "refId": "If4kWc",
+              "type": "math"
+            }
+          ],
+          "title": "30d @ lunch",
+          "type": "timeseries"
+        },
         {
           "datasource": {
             "type": "prometheus",
@@ -2324,7 +2464,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 41
+            "y": 53
           },
           "hideTimeOverride": false,
           "id": 137,
@@ -2332,6 +2472,12 @@
           "maxDataPoints": 7000,
           "options": {
             "displayMode": "lcd",
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
             "maxVizHeight": 300,
             "minVizHeight": 16,
             "minVizWidth": 8,
@@ -2348,7 +2494,7 @@
             "sizing": "auto",
             "valueMode": "color"
           },
-          "pluginVersion": "11.0.9",
+          "pluginVersion": "11.5.3",
           "targets": [
             {
               "datasource": {
@@ -2617,7 +2763,7 @@
             "h": 8,
             "w": 4,
             "x": 0,
-            "y": 51
+            "y": 63
           },
           "id": 123,
           "options": {
@@ -2625,6 +2771,7 @@
             "graphMode": "none",
             "justifyMode": "center",
             "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -2637,7 +2784,7 @@
             "textMode": "value_and_name",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.9",
+          "pluginVersion": "11.5.3",
           "targets": [
             {
               "datasource": {
@@ -2762,7 +2909,7 @@
             "h": 8,
             "w": 4,
             "x": 4,
-            "y": 51
+            "y": 63
           },
           "id": 122,
           "options": {
@@ -2770,6 +2917,7 @@
             "graphMode": "none",
             "justifyMode": "center",
             "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -2782,7 +2930,7 @@
             "textMode": "value_and_name",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.9",
+          "pluginVersion": "11.5.3",
           "targets": [
             {
               "datasource": {
@@ -2924,7 +3072,7 @@
             "h": 16,
             "w": 11,
             "x": 8,
-            "y": 51
+            "y": 63
           },
           "id": 116,
           "options": {
@@ -2932,6 +3080,7 @@
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "auto",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -2943,7 +3092,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.9",
+          "pluginVersion": "11.5.3",
           "targets": [
             {
               "datasource": {
@@ -3168,7 +3317,7 @@
             "h": 16,
             "w": 5,
             "x": 19,
-            "y": 51
+            "y": 63
           },
           "id": 112,
           "options": {
@@ -3176,6 +3325,7 @@
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "auto",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -3187,7 +3337,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.9",
+          "pluginVersion": "11.5.3",
           "targets": [
             {
               "datasource": {
@@ -3409,7 +3559,7 @@
             "h": 8,
             "w": 4,
             "x": 0,
-            "y": 59
+            "y": 71
           },
           "id": 135,
           "options": {
@@ -3417,6 +3567,7 @@
             "graphMode": "none",
             "justifyMode": "center",
             "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -3429,7 +3580,7 @@
             "textMode": "value_and_name",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.9",
+          "pluginVersion": "11.5.3",
           "targets": [
             {
               "datasource": {
@@ -3569,7 +3720,7 @@
             "h": 8,
             "w": 4,
             "x": 4,
-            "y": 59
+            "y": 71
           },
           "id": 136,
           "options": {
@@ -3577,6 +3728,7 @@
             "graphMode": "none",
             "justifyMode": "center",
             "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -3589,7 +3741,7 @@
             "textMode": "value_and_name",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.9",
+          "pluginVersion": "11.5.3",
           "targets": [
             {
               "datasource": {
@@ -3707,7 +3859,7 @@
   ],
   "preload": false,
   "refresh": "5m",
-  "schemaVersion": 40,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
@@ -3985,9 +4137,14 @@
             "selected": false,
             "text": "1w",
             "value": "1w"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
           }
         ],
-        "query": "1h,1d,1w",
+        "query": "1h,1d,1w,30d",
         "type": "custom"
       },
       {
@@ -4161,7 +4318,7 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-6M",
     "to": "now"
   },
   "timepicker": {
@@ -4180,6 +4337,6 @@
   "timezone": "",
   "title": "Tidhome - Power",
   "uid": "YjE61Qdnz",
-  "version": 340,
+  "version": 345,
   "weekStart": "monday"
 }
