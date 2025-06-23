@@ -122,29 +122,35 @@ services:
     env_file:
       - .env
 
-  homeassistant:
-    image: homeassistant/home-assistant:stable
-    environment:
-      - TZ=Europe/Paris
-    ports:
-      - 8123:8123
-    volumes:
-    # https://www.home-assistant.io/docs/authentication/providers/
-      - ha-config:/config
-      - /etc/localtime:/etc/localtime:ro
-    restart: always
+  # homeassistant:
+  #   image: homeassistant/home-assistant:stable
+  #   environment:
+  #     - TZ=Europe/Paris
+  #   ports:
+  #     - 8123:8123
+  #   volumes:
+  #   # https://www.home-assistant.io/docs/authentication/providers/
+  #     - ha-config:/config
+  #     - /etc/localtime:/etc/localtime:ro
+  #   restart: always
 
-  # https://github.com/CausticLab/hass-configurator-docker
-  hass-configurator:
-    image: "causticlab/hass-configurator-docker"
-    restart: unless-stopped
-    ports:
-      - "3218:3218/tcp"
-    depends_on:
-      - homeassistant
-    volumes:
-      - ./etc/homeassistant/configurator/config:/config
-      - ha-config:/hass-config
+  # # https://github.com/CausticLab/hass-configurator-docker
+  # hass-configurator:
+  #   image: "causticlab/hass-configurator-docker"
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3218:3218/tcp"
+  #   depends_on:
+  #     - homeassistant
+  #   volumes:
+  #     - ./etc/homeassistant/configurator/config:/config
+  #     - ha-config:/hass-config
+  #   # user: "${PUID}:${PGID}"
+  #   #environment:
+  #   #  HC_BASEPATH: "/hass-config/"
+  #   #  HC_ALLOWED_NETWORKS: "192.168.1.0/24"
+  #   #  HC_GIT: "True"
+
 
   gateway:
     image: nginx
